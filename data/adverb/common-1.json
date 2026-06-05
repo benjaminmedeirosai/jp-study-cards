@@ -1,0 +1,302 @@
+[
+  {
+    "kanji": "全然",
+    "hiragana": "ぜんぜん",
+    "type": "adverb",
+    "english": "(not) at all"
+  },
+  {
+    "kanji": "絶対",
+    "hiragana": "ぜったい",
+    "type": "adverb",
+    "english": "absolutely; definitely"
+  },
+  {
+    "kanji": "必ず",
+    "hiragana": "かならず",
+    "type": "adverb",
+    "english": "surely; without fail"
+  },
+  {
+    "kanji": "特に",
+    "hiragana": "とくに",
+    "type": "adverb",
+    "english": "especially; particularly"
+  },
+  {
+    "kanji": "例えば",
+    "hiragana": "たとえば",
+    "type": "adverb",
+    "english": "for example"
+  },
+  {
+    "kanji": "最初に",
+    "hiragana": "さいしょに",
+    "type": "adverb",
+    "english": "first; in the beginning"
+  },
+  {
+    "kanji": "最後に",
+    "hiragana": "さいごに",
+    "type": "adverb",
+    "english": "finally; at the end"
+  },
+  {
+    "kanji": "早く",
+    "hiragana": "はやく",
+    "type": "adverb",
+    "english": "quickly; early"
+  },
+  {
+    "kanji": "本当に",
+    "hiragana": "ほんとうに",
+    "type": "adverb",
+    "english": "really; truly"
+  },
+  {
+    "kanji": "急に",
+    "hiragana": "きゅうに",
+    "type": "adverb",
+    "english": "suddenly"
+  },
+  {
+    "kanji": "一体",
+    "hiragana": "いったい",
+    "type": "adverb",
+    "english": "on earth; in the world (used in questions for emphasis)"
+  },
+  {
+    "kanji": "未だ",
+    "hiragana": "まだ",
+    "type": "adverb",
+    "english": "still; not yet"
+  },
+  {
+    "kanji": "何でも",
+    "hiragana": "なんでも",
+    "type": "adverb",
+    "english": "anything"
+  },
+  {
+    "kanji": "直ぐ",
+    "hiragana": "すぐ",
+    "type": "adverb",
+    "english": "right away; immediately"
+  },
+  {
+    "kanji": "ずっと",
+    "hiragana": "ずっと",
+    "type": "adverb",
+    "english": "all the time; continuously; much more"
+  },
+  {
+    "kanji": "沢山",
+    "hiragana": "たくさん",
+    "type": "adverb",
+    "english": "a lot; many; much"
+  },
+  {
+    "kanji": "ビリビリ",
+    "hiragana": "ビリビリ",
+    "type": "adverb",
+    "english": "tingle; electric shock feeling (onomatopoeia)"
+  },
+  {
+    "kanji": "ベトベト",
+    "hiragana": "ベトベト",
+    "type": "adverb",
+    "english": "sticky (onomatopoeia)"
+  },
+  {
+    "kanji": "きらきら",
+    "hiragana": "キラキラ",
+    "type": "adverb",
+    "english": "sparkling; glittering (onomatopoeia)"
+  },
+  {
+    "kanji": "どきどき",
+    "hiragana": "ドキドキ",
+    "type": "adverb",
+    "english": "heart pounding; nervous excitement (onomatopoeia)"
+  },
+  {
+    "kanji": "ぺらぺら",
+    "hiragana": "ペラペラ",
+    "type": "adverb",
+    "english": "fluently (languages); chattering; flimsy/thin (onomatopoeia)"
+  },
+  {
+    "kanji": "ああ",
+    "hiragana": "ああ",
+    "type": "adverb",
+    "english": "ah; yes"
+  },
+  {
+    "kanji": "びっくり",
+    "hiragana": "びっくり",
+    "type": "adverb",
+    "english": "surprised; with surprise (onomatopoeia)"
+  },
+  {
+    "kanji": "大分",
+    "hiragana": "だいぶ",
+    "type": "adverb",
+    "english": "considerably; greatly"
+  },
+  {
+    "kanji": "艶々",
+    "hiragana": "つやつや",
+    "type": "adverb",
+    "english": "glossy; shiny"
+  },
+  {
+    "kanji": "ざらざら",
+    "hiragana": "ざらざら",
+    "type": "adverb",
+    "english": "rough; gritty"
+  },
+  {
+    "kanji": "ふわふわ",
+    "hiragana": "ふわふわ",
+    "type": "adverb",
+    "english": "fluffy; soft and airy"
+  },
+  {
+    "kanji": "べたべた",
+    "hiragana": "べたべた",
+    "type": "adverb",
+    "english": "sticky"
+  },
+  {
+    "kanji": "さらさら",
+    "hiragana": "さらさら",
+    "type": "adverb",
+    "english": "smooth; dry and silky"
+  },
+  {
+    "kanji": "しわしわ",
+    "hiragana": "しわしわ",
+    "type": "adverb",
+    "english": "wrinkled"
+  },
+  {
+    "kanji": "人知れず",
+    "hiragana": "ひとしれず",
+    "type": "adverb",
+    "english": "secretly; unnoticed"
+  },
+  {
+    "kanji": "正々堂々",
+    "hiragana": "せいせいどうどう",
+    "type": "adverb",
+    "english": "fair and square; openly and honorably"
+  },
+  {
+    "kanji": "たくさん",
+    "hiragana": "たくさん",
+    "type": "adverb",
+    "english": "a lot; many; much"
+  },
+  {
+    "kanji": "よく",
+    "hiragana": "よく",
+    "type": "adverb",
+    "english": "often; well"
+  },
+  {
+    "kanji": "少し",
+    "hiragana": "すこし",
+    "type": "adverb",
+    "english": "a little"
+  },
+  {
+    "kanji": "毎朝",
+    "hiragana": "まいあさ",
+    "type": "adverb",
+    "english": "every morning"
+  },
+  {
+    "kanji": "じっと",
+    "hiragana": "じっと",
+    "type": "adverb",
+    "english": "still; motionlessly; intently"
+  },
+  {
+    "kanji": "すぐ",
+    "hiragana": "すぐ",
+    "type": "adverb",
+    "english": "immediately"
+  },
+  {
+    "kanji": "もう",
+    "hiragana": "もう",
+    "type": "adverb",
+    "english": "already; any more"
+  },
+  {
+    "kanji": "ゆっくり",
+    "hiragana": "ゆっくり",
+    "type": "adverb",
+    "english": "slowly; at ease"
+  },
+  {
+    "kanji": "今でも",
+    "hiragana": "いまでも",
+    "type": "adverb",
+    "english": "even now; still"
+  },
+  {
+    "kanji": "昔から",
+    "hiragana": "むかしから",
+    "type": "adverb",
+    "english": "from long ago; since old times"
+  },
+  {
+    "kanji": "なかなか",
+    "hiragana": "なかなか",
+    "type": "adverb",
+    "english": "not easily; quite; fairly"
+  },
+  {
+    "kanji": "何度も",
+    "hiragana": "なんども",
+    "type": "adverb",
+    "english": "many times; repeatedly"
+  },
+  {
+    "kanji": "暫く",
+    "hiragana": "しばらく",
+    "type": "adverb",
+    "english": "for a while"
+  },
+  {
+    "kanji": "速く",
+    "hiragana": "はやく",
+    "type": "adverb",
+    "english": "fast; quickly"
+  },
+  {
+    "kanji": "又",
+    "hiragana": "また",
+    "type": "adverb",
+    "english": "again; also"
+  },
+  {
+    "kanji": "突然",
+    "hiragana": "とつぜん",
+    "type": "adverb",
+    "english": "suddenly"
+  },
+  {
+    "kanji": "ギリギリ",
+    "hiragana": "ギリギリ",
+    "type": "adverb",
+    "english": "just barely; right to the limit"
+  },
+  {
+    "kanji": "常に",
+    "hiragana": "つねに",
+    "type": "adverb",
+    "english": "always; constantly"
+  }
+]

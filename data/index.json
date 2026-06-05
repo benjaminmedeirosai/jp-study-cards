@@ -1,0 +1,460 @@
+{
+  "generatedAt": "2026-06-05T14:58:19.331Z",
+  "decks": [
+    {
+      "id": "nouns/animals",
+      "label": "Animals",
+      "category": "Nouns",
+      "path": "/data/nouns/animals.json",
+      "count": 85
+    },
+    {
+      "id": "nouns/food",
+      "label": "Food",
+      "category": "Nouns",
+      "path": "/data/nouns/food.json",
+      "count": 49
+    },
+    {
+      "id": "nouns/places-buildings",
+      "label": "Places & Buildings",
+      "category": "Nouns",
+      "path": "/data/nouns/places-buildings.json",
+      "count": 51
+    },
+    {
+      "id": "nouns/common-1",
+      "label": "Nouns 1",
+      "category": "Nouns",
+      "path": "/data/nouns/common-1.json",
+      "count": 50
+    },
+    {
+      "id": "nouns/common-2",
+      "label": "Nouns 2",
+      "category": "Nouns",
+      "path": "/data/nouns/common-2.json",
+      "count": 50
+    },
+    {
+      "id": "nouns/common-3",
+      "label": "Nouns 3",
+      "category": "Nouns",
+      "path": "/data/nouns/common-3.json",
+      "count": 50
+    },
+    {
+      "id": "nouns/common-4",
+      "label": "Nouns 4",
+      "category": "Nouns",
+      "path": "/data/nouns/common-4.json",
+      "count": 50
+    },
+    {
+      "id": "nouns/common-5",
+      "label": "Nouns 5",
+      "category": "Nouns",
+      "path": "/data/nouns/common-5.json",
+      "count": 50
+    },
+    {
+      "id": "nouns/common-6",
+      "label": "Nouns 6",
+      "category": "Nouns",
+      "path": "/data/nouns/common-6.json",
+      "count": 50
+    },
+    {
+      "id": "nouns/common-7",
+      "label": "Nouns 7",
+      "category": "Nouns",
+      "path": "/data/nouns/common-7.json",
+      "count": 50
+    },
+    {
+      "id": "nouns/common-8",
+      "label": "Nouns 8",
+      "category": "Nouns",
+      "path": "/data/nouns/common-8.json",
+      "count": 50
+    },
+    {
+      "id": "nouns/common-9",
+      "label": "Nouns 9",
+      "category": "Nouns",
+      "path": "/data/nouns/common-9.json",
+      "count": 50
+    },
+    {
+      "id": "nouns/common-10",
+      "label": "Nouns 10",
+      "category": "Nouns",
+      "path": "/data/nouns/common-10.json",
+      "count": 50
+    },
+    {
+      "id": "nouns/common-11",
+      "label": "Nouns 11",
+      "category": "Nouns",
+      "path": "/data/nouns/common-11.json",
+      "count": 50
+    },
+    {
+      "id": "nouns/common-12",
+      "label": "Nouns 12",
+      "category": "Nouns",
+      "path": "/data/nouns/common-12.json",
+      "count": 50
+    },
+    {
+      "id": "nouns/common-13",
+      "label": "Nouns 13",
+      "category": "Nouns",
+      "path": "/data/nouns/common-13.json",
+      "count": 50
+    },
+    {
+      "id": "nouns/common-14",
+      "label": "Nouns 14",
+      "category": "Nouns",
+      "path": "/data/nouns/common-14.json",
+      "count": 50
+    },
+    {
+      "id": "nouns/common-15",
+      "label": "Nouns 15",
+      "category": "Nouns",
+      "path": "/data/nouns/common-15.json",
+      "count": 50
+    },
+    {
+      "id": "nouns/common-16",
+      "label": "Nouns 16",
+      "category": "Nouns",
+      "path": "/data/nouns/common-16.json",
+      "count": 50
+    },
+    {
+      "id": "nouns/common-17",
+      "label": "Nouns 17",
+      "category": "Nouns",
+      "path": "/data/nouns/common-17.json",
+      "count": 50
+    },
+    {
+      "id": "nouns/common-18",
+      "label": "Nouns 18",
+      "category": "Nouns",
+      "path": "/data/nouns/common-18.json",
+      "count": 50
+    },
+    {
+      "id": "nouns/common-19",
+      "label": "Nouns 19",
+      "category": "Nouns",
+      "path": "/data/nouns/common-19.json",
+      "count": 50
+    },
+    {
+      "id": "nouns/common-20",
+      "label": "Nouns 20",
+      "category": "Nouns",
+      "path": "/data/nouns/common-20.json",
+      "count": 50
+    },
+    {
+      "id": "nouns/common-21",
+      "label": "Nouns 21",
+      "category": "Nouns",
+      "path": "/data/nouns/common-21.json",
+      "count": 50
+    },
+    {
+      "id": "nouns/common-22",
+      "label": "Nouns 22",
+      "category": "Nouns",
+      "path": "/data/nouns/common-22.json",
+      "count": 9
+    },
+    {
+      "id": "proper-nouns/prefectures",
+      "label": "Prefectures",
+      "category": "Proper Nouns",
+      "path": "/data/proper-nouns/prefectures.json",
+      "count": 47
+    },
+    {
+      "id": "proper-nouns/cities-stations-places",
+      "label": "Cities, Stations & Places",
+      "category": "Proper Nouns",
+      "path": "/data/proper-nouns/cities-stations-places.json",
+      "count": 31
+    },
+    {
+      "id": "proper-nouns/brands-titles",
+      "label": "Brands & Titles",
+      "category": "Proper Nouns",
+      "path": "/data/proper-nouns/brands-titles.json",
+      "count": 4
+    },
+    {
+      "id": "proper-nouns/common-1",
+      "label": "Proper Nouns 1",
+      "category": "Proper Nouns",
+      "path": "/data/proper-nouns/common-1.json",
+      "count": 27
+    },
+    {
+      "id": "verbs/ichidan/common-1",
+      "label": "Ichidan Verbs 1",
+      "category": "Verbs / Ichidan",
+      "path": "/data/verbs/ichidan/common-1.json",
+      "count": 50
+    },
+    {
+      "id": "verbs/ichidan/common-2",
+      "label": "Ichidan Verbs 2",
+      "category": "Verbs / Ichidan",
+      "path": "/data/verbs/ichidan/common-2.json",
+      "count": 50
+    },
+    {
+      "id": "verbs/ichidan/common-3",
+      "label": "Ichidan Verbs 3",
+      "category": "Verbs / Ichidan",
+      "path": "/data/verbs/ichidan/common-3.json",
+      "count": 50
+    },
+    {
+      "id": "verbs/ichidan/common-4",
+      "label": "Ichidan Verbs 4",
+      "category": "Verbs / Ichidan",
+      "path": "/data/verbs/ichidan/common-4.json",
+      "count": 24
+    },
+    {
+      "id": "verbs/godan/u-ending",
+      "label": "Godan u ending",
+      "category": "Verbs / Godan",
+      "path": "/data/verbs/godan/u-ending.json",
+      "count": 44
+    },
+    {
+      "id": "verbs/godan/ku-ending",
+      "label": "Godan ku ending",
+      "category": "Verbs / Godan",
+      "path": "/data/verbs/godan/ku-ending.json",
+      "count": 29
+    },
+    {
+      "id": "verbs/godan/gu-ending",
+      "label": "Godan gu ending",
+      "category": "Verbs / Godan",
+      "path": "/data/verbs/godan/gu-ending.json",
+      "count": 21
+    },
+    {
+      "id": "verbs/godan/su-ending",
+      "label": "Godan su ending",
+      "category": "Verbs / Godan",
+      "path": "/data/verbs/godan/su-ending.json",
+      "count": 26
+    },
+    {
+      "id": "verbs/godan/tsu-ending",
+      "label": "Godan tsu ending",
+      "category": "Verbs / Godan",
+      "path": "/data/verbs/godan/tsu-ending.json",
+      "count": 5
+    },
+    {
+      "id": "verbs/godan/nu-ending",
+      "label": "Godan nu ending",
+      "category": "Verbs / Godan",
+      "path": "/data/verbs/godan/nu-ending.json",
+      "count": 1
+    },
+    {
+      "id": "verbs/godan/bu-ending",
+      "label": "Godan bu ending",
+      "category": "Verbs / Godan",
+      "path": "/data/verbs/godan/bu-ending.json",
+      "count": 13
+    },
+    {
+      "id": "verbs/godan/mu-ending",
+      "label": "Godan mu ending",
+      "category": "Verbs / Godan",
+      "path": "/data/verbs/godan/mu-ending.json",
+      "count": 33
+    },
+    {
+      "id": "verbs/godan/ru-ending",
+      "label": "Godan ru ending",
+      "category": "Verbs / Godan",
+      "path": "/data/verbs/godan/ru-ending.json",
+      "count": 113
+    },
+    {
+      "id": "verbs/godan/other-ending",
+      "label": "Godan other ending",
+      "category": "Verbs / Godan",
+      "path": "/data/verbs/godan/other-ending.json",
+      "count": 133
+    },
+    {
+      "id": "verbs/irregular/common",
+      "label": "Irregular Verbs",
+      "category": "Verbs / Irregular",
+      "path": "/data/verbs/irregular/common.json",
+      "count": 52
+    },
+    {
+      "id": "i-adjective/common-1",
+      "label": "I-adjectives 1",
+      "category": "Adjectives",
+      "path": "/data/i-adjective/common-1.json",
+      "count": 50
+    },
+    {
+      "id": "i-adjective/common-2",
+      "label": "I-adjectives 2",
+      "category": "Adjectives",
+      "path": "/data/i-adjective/common-2.json",
+      "count": 50
+    },
+    {
+      "id": "i-adjective/common-3",
+      "label": "I-adjectives 3",
+      "category": "Adjectives",
+      "path": "/data/i-adjective/common-3.json",
+      "count": 16
+    },
+    {
+      "id": "na-adjective/common-1",
+      "label": "Na-adjectives 1",
+      "category": "Adjectives",
+      "path": "/data/na-adjective/common-1.json",
+      "count": 50
+    },
+    {
+      "id": "na-adjective/common-2",
+      "label": "Na-adjectives 2",
+      "category": "Adjectives",
+      "path": "/data/na-adjective/common-2.json",
+      "count": 11
+    },
+    {
+      "id": "adverb/common-1",
+      "label": "Adverbs 1",
+      "category": "Adverbs",
+      "path": "/data/adverb/common-1.json",
+      "count": 50
+    },
+    {
+      "id": "adverb/common-2",
+      "label": "Adverbs 2",
+      "category": "Adverbs",
+      "path": "/data/adverb/common-2.json",
+      "count": 10
+    },
+    {
+      "id": "counter/common-1",
+      "label": "Counters 1",
+      "category": "Counters",
+      "path": "/data/counter/common-1.json",
+      "count": 50
+    },
+    {
+      "id": "counter/common-2",
+      "label": "Counters 2",
+      "category": "Counters",
+      "path": "/data/counter/common-2.json",
+      "count": 50
+    },
+    {
+      "id": "counter/common-3",
+      "label": "Counters 3",
+      "category": "Counters",
+      "path": "/data/counter/common-3.json",
+      "count": 50
+    },
+    {
+      "id": "counter/common-4",
+      "label": "Counters 4",
+      "category": "Counters",
+      "path": "/data/counter/common-4.json",
+      "count": 41
+    },
+    {
+      "id": "expression/common-1",
+      "label": "Expressions 1",
+      "category": "Expressions",
+      "path": "/data/expression/common-1.json",
+      "count": 50
+    },
+    {
+      "id": "expression/common-2",
+      "label": "Expressions 2",
+      "category": "Expressions",
+      "path": "/data/expression/common-2.json",
+      "count": 50
+    },
+    {
+      "id": "expression/common-3",
+      "label": "Expressions 3",
+      "category": "Expressions",
+      "path": "/data/expression/common-3.json",
+      "count": 50
+    },
+    {
+      "id": "expression/common-4",
+      "label": "Expressions 4",
+      "category": "Expressions",
+      "path": "/data/expression/common-4.json",
+      "count": 31
+    },
+    {
+      "id": "descriptive-phrase/common-1",
+      "label": "Descriptive Phrases 1",
+      "category": "Expressions",
+      "path": "/data/descriptive-phrase/common-1.json",
+      "count": 25
+    },
+    {
+      "id": "particle/common-1",
+      "label": "Particles 1",
+      "category": "Grammar",
+      "path": "/data/particle/common-1.json",
+      "count": 14
+    },
+    {
+      "id": "conjunction/common-1",
+      "label": "Conjunctions 1",
+      "category": "Grammar",
+      "path": "/data/conjunction/common-1.json",
+      "count": 4
+    },
+    {
+      "id": "numeral/common-1",
+      "label": "Numerals 1",
+      "category": "Numbers",
+      "path": "/data/numeral/common-1.json",
+      "count": 22
+    },
+    {
+      "id": "morpheme/common-1",
+      "label": "Morphemes 1",
+      "category": "Grammar",
+      "path": "/data/morpheme/common-1.json",
+      "count": 44
+    },
+    {
+      "id": "phrase-sentence/common-1",
+      "label": "Phrase Sentences 1",
+      "category": "Expressions",
+      "path": "/data/phrase-sentence/common-1.json",
+      "count": 8
+    }
+  ]
+}

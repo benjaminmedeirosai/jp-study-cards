@@ -1,0 +1,302 @@
+[
+  {
+    "kanji": "長い",
+    "hiragana": "ながい",
+    "type": "i-adjective",
+    "english": "long"
+  },
+  {
+    "kanji": "清い",
+    "hiragana": "きよい",
+    "type": "i-adjective",
+    "english": "pure; clean"
+  },
+  {
+    "kanji": "新しい",
+    "hiragana": "あたらしい",
+    "type": "i-adjective",
+    "english": "new"
+  },
+  {
+    "kanji": "古い",
+    "hiragana": "ふるい",
+    "type": "i-adjective",
+    "english": "old"
+  },
+  {
+    "kanji": "高い",
+    "hiragana": "たかい",
+    "type": "i-adjective",
+    "english": "tall; expensive"
+  },
+  {
+    "kanji": "安い",
+    "hiragana": "やすい",
+    "type": "i-adjective",
+    "english": "cheap"
+  },
+  {
+    "kanji": "低い",
+    "hiragana": "ひくい",
+    "type": "i-adjective",
+    "english": "low"
+  },
+  {
+    "kanji": "広い",
+    "hiragana": "ひろい",
+    "type": "i-adjective",
+    "english": "wide; spacious"
+  },
+  {
+    "kanji": "狭い",
+    "hiragana": "せまい",
+    "type": "i-adjective",
+    "english": "narrow"
+  },
+  {
+    "kanji": "大きい",
+    "hiragana": "おおきい",
+    "type": "i-adjective",
+    "english": "big; large"
+  },
+  {
+    "kanji": "小さい",
+    "hiragana": "ちいさい",
+    "type": "i-adjective",
+    "english": "small"
+  },
+  {
+    "kanji": "多い",
+    "hiragana": "おおい",
+    "type": "i-adjective",
+    "english": "many; a lot"
+  },
+  {
+    "kanji": "少ない",
+    "hiragana": "すくない",
+    "type": "i-adjective",
+    "english": "few; little"
+  },
+  {
+    "kanji": "早い",
+    "hiragana": "はやい",
+    "type": "i-adjective",
+    "english": "early; fast"
+  },
+  {
+    "kanji": "遅い",
+    "hiragana": "おそい",
+    "type": "i-adjective",
+    "english": "late; slow"
+  },
+  {
+    "kanji": "近い",
+    "hiragana": "ちかい",
+    "type": "i-adjective",
+    "english": "near"
+  },
+  {
+    "kanji": "遠い",
+    "hiragana": "とおい",
+    "type": "i-adjective",
+    "english": "far"
+  },
+  {
+    "kanji": "強い",
+    "hiragana": "つよい",
+    "type": "i-adjective",
+    "english": "strong"
+  },
+  {
+    "kanji": "弱い",
+    "hiragana": "よわい",
+    "type": "i-adjective",
+    "english": "weak"
+  },
+  {
+    "kanji": "重い",
+    "hiragana": "おもい",
+    "type": "i-adjective",
+    "english": "heavy"
+  },
+  {
+    "kanji": "軽い",
+    "hiragana": "かるい",
+    "type": "i-adjective",
+    "english": "light (weight)"
+  },
+  {
+    "kanji": "明るい",
+    "hiragana": "あかるい",
+    "type": "i-adjective",
+    "english": "bright; cheerful"
+  },
+  {
+    "kanji": "暗い",
+    "hiragana": "くらい",
+    "type": "i-adjective",
+    "english": "dark; gloomy"
+  },
+  {
+    "kanji": "暑い",
+    "hiragana": "あつい",
+    "type": "i-adjective",
+    "english": "hot (weather)"
+  },
+  {
+    "kanji": "寒い",
+    "hiragana": "さむい",
+    "type": "i-adjective",
+    "english": "cold (weather)"
+  },
+  {
+    "kanji": "冷たい",
+    "hiragana": "つめたい",
+    "type": "i-adjective",
+    "english": "cold (touch)"
+  },
+  {
+    "kanji": "熱い",
+    "hiragana": "あつい",
+    "type": "i-adjective",
+    "english": "hot (touch)"
+  },
+  {
+    "kanji": "温かい",
+    "hiragana": "あたたかい",
+    "type": "i-adjective",
+    "english": "warm"
+  },
+  {
+    "kanji": "難しい",
+    "hiragana": "むずかしい",
+    "type": "i-adjective",
+    "english": "difficult"
+  },
+  {
+    "kanji": "易しい",
+    "hiragana": "やさしい",
+    "type": "i-adjective",
+    "english": "easy (rare kanji)"
+  },
+  {
+    "kanji": "面白い",
+    "hiragana": "おもしろい",
+    "type": "i-adjective",
+    "english": "interesting; funny"
+  },
+  {
+    "kanji": "つまらない",
+    "hiragana": "つまらない",
+    "type": "i-adjective",
+    "english": "boring"
+  },
+  {
+    "kanji": "嬉しい",
+    "hiragana": "うれしい",
+    "type": "i-adjective",
+    "english": "happy; glad"
+  },
+  {
+    "kanji": "悲しい",
+    "hiragana": "かなしい",
+    "type": "i-adjective",
+    "english": "sad"
+  },
+  {
+    "kanji": "楽しい",
+    "hiragana": "たのしい",
+    "type": "i-adjective",
+    "english": "fun; enjoyable"
+  },
+  {
+    "kanji": "苦しい",
+    "hiragana": "くるしい",
+    "type": "i-adjective",
+    "english": "painful; hard"
+  },
+  {
+    "kanji": "痛い",
+    "hiragana": "いたい",
+    "type": "i-adjective",
+    "english": "painful"
+  },
+  {
+    "kanji": "甘い",
+    "hiragana": "あまい",
+    "type": "i-adjective",
+    "english": "sweet"
+  },
+  {
+    "kanji": "辛い",
+    "hiragana": "からい",
+    "type": "i-adjective",
+    "english": "spicy"
+  },
+  {
+    "kanji": "苦い",
+    "hiragana": "にがい",
+    "type": "i-adjective",
+    "english": "bitter"
+  },
+  {
+    "kanji": "美味しい",
+    "hiragana": "おいしい",
+    "type": "i-adjective",
+    "english": "delicious"
+  },
+  {
+    "kanji": "まずい",
+    "hiragana": "まずい",
+    "type": "i-adjective",
+    "english": "tastes bad"
+  },
+  {
+    "kanji": "赤い",
+    "hiragana": "あかい",
+    "type": "i-adjective",
+    "english": "red"
+  },
+  {
+    "kanji": "青い",
+    "hiragana": "あおい",
+    "type": "i-adjective",
+    "english": "blue"
+  },
+  {
+    "kanji": "白い",
+    "hiragana": "しろい",
+    "type": "i-adjective",
+    "english": "white"
+  },
+  {
+    "kanji": "黒い",
+    "hiragana": "くろい",
+    "type": "i-adjective",
+    "english": "black"
+  },
+  {
+    "kanji": "丸い",
+    "hiragana": "まるい",
+    "type": "i-adjective",
+    "english": "round"
+  },
+  {
+    "kanji": "四角い",
+    "hiragana": "しかくい",
+    "type": "i-adjective",
+    "english": "square"
+  },
+  {
+    "kanji": "若い",
+    "hiragana": "わかい",
+    "type": "i-adjective",
+    "english": "young"
+  },
+  {
+    "kanji": "優しい",
+    "hiragana": "やさしい",
+    "type": "i-adjective",
+    "english": "kind; gentle"
+  }
+]

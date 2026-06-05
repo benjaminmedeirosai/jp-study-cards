@@ -1,0 +1,68 @@
+[
+  {
+    "kanji": "便利",
+    "hiragana": "べんり",
+    "type": "na-adjective",
+    "english": "convenient"
+  },
+  {
+    "kanji": "便利そう",
+    "hiragana": "べんりそう",
+    "type": "na-adjective",
+    "english": "looks convenient"
+  },
+  {
+    "kanji": "有名",
+    "hiragana": "ゆうめい",
+    "type": "na-adjective",
+    "english": "famous"
+  },
+  {
+    "kanji": "有名そう",
+    "hiragana": "ゆうめいそう",
+    "type": "na-adjective",
+    "english": "looks famous"
+  },
+  {
+    "kanji": "静か",
+    "hiragana": "しずか",
+    "type": "na-adjective",
+    "english": "quiet"
+  },
+  {
+    "kanji": "静かそう",
+    "hiragana": "しずかそう",
+    "type": "na-adjective",
+    "english": "looks quiet"
+  },
+  {
+    "kanji": "大変",
+    "hiragana": "たいへん",
+    "type": "na-adjective",
+    "english": "serious; tough"
+  },
+  {
+    "kanji": "大変そう",
+    "hiragana": "たいへんそう",
+    "type": "na-adjective",
+    "english": "looks serious; tough"
+  },
+  {
+    "kanji": "安そう",
+    "hiragana": "やすそう",
+    "type": "na-adjective",
+    "english": "looks cheap"
+  },
+  {
+    "kanji": "新しそう",
+    "hiragana": "あたらしそう",
+    "type": "na-adjective",
+    "english": "looks new"
+  },
+  {
+    "kanji": "古そう",
+    "hiragana": "ふるそう",
+    "type": "na-adjective",
+    "english": "looks old"
+  }
+]

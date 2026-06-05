@@ -1,0 +1,146 @@
+[
+  {
+    "kanji": "開けなかった",
+    "hiragana": "あけなかった",
+    "type": "ichidan-verb",
+    "english": "did not open"
+  },
+  {
+    "kanji": "開けて",
+    "hiragana": "あけて",
+    "type": "ichidan-verb",
+    "english": "open and; please open"
+  },
+  {
+    "kanji": "開ければ",
+    "hiragana": "あければ",
+    "type": "ichidan-verb",
+    "english": "if open"
+  },
+  {
+    "kanji": "開けたら",
+    "hiragana": "あけたら",
+    "type": "ichidan-verb",
+    "english": "if/when opened"
+  },
+  {
+    "kanji": "開けよう",
+    "hiragana": "あけよう",
+    "type": "ichidan-verb",
+    "english": "let's open"
+  },
+  {
+    "kanji": "開けられる",
+    "hiragana": "あけられる",
+    "type": "ichidan-verb",
+    "english": "can open"
+  },
+  {
+    "kanji": "開けさせる",
+    "hiragana": "あけさせる",
+    "type": "ichidan-verb",
+    "english": "make/let open"
+  },
+  {
+    "kanji": "開けろ",
+    "hiragana": "あけろ",
+    "type": "ichidan-verb",
+    "english": "open!"
+  },
+  {
+    "kanji": "閉める",
+    "hiragana": "しめる",
+    "type": "ichidan-verb",
+    "english": "to close"
+  },
+  {
+    "kanji": "閉めない",
+    "hiragana": "しめない",
+    "type": "ichidan-verb",
+    "english": "to not close"
+  },
+  {
+    "kanji": "閉めた",
+    "hiragana": "しめた",
+    "type": "ichidan-verb",
+    "english": "closed"
+  },
+  {
+    "kanji": "閉めなかった",
+    "hiragana": "しめなかった",
+    "type": "ichidan-verb",
+    "english": "did not close"
+  },
+  {
+    "kanji": "閉めて",
+    "hiragana": "しめて",
+    "type": "ichidan-verb",
+    "english": "close and; please close"
+  },
+  {
+    "kanji": "閉めれば",
+    "hiragana": "しめれば",
+    "type": "ichidan-verb",
+    "english": "if close"
+  },
+  {
+    "kanji": "閉めたら",
+    "hiragana": "しめたら",
+    "type": "ichidan-verb",
+    "english": "if/when closed"
+  },
+  {
+    "kanji": "閉めよう",
+    "hiragana": "しめよう",
+    "type": "ichidan-verb",
+    "english": "let's close"
+  },
+  {
+    "kanji": "閉められる",
+    "hiragana": "しめられる",
+    "type": "ichidan-verb",
+    "english": "can close"
+  },
+  {
+    "kanji": "閉めさせる",
+    "hiragana": "しめさせる",
+    "type": "ichidan-verb",
+    "english": "make/let close"
+  },
+  {
+    "kanji": "閉めろ",
+    "hiragana": "しめろ",
+    "type": "ichidan-verb",
+    "english": "close!"
+  },
+  {
+    "kanji": "見られる",
+    "hiragana": "みられる",
+    "type": "ichidan-verb",
+    "english": "be seen"
+  },
+  {
+    "kanji": "食べられる",
+    "hiragana": "たべられる",
+    "type": "ichidan-verb",
+    "english": "be eaten"
+  },
+  {
+    "kanji": "起きられる",
+    "hiragana": "おきられる",
+    "type": "ichidan-verb",
+    "english": "be woken up"
+  },
+  {
+    "kanji": "開けられる",
+    "hiragana": "あけられる",
+    "type": "ichidan-verb",
+    "english": "be opened"
+  },
+  {
+    "kanji": "閉められる",
+    "hiragana": "しめられる",
+    "type": "ichidan-verb",
+    "english": "be closed"
+  }
+]

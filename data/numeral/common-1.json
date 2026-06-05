@@ -1,0 +1,134 @@
+[
+  {
+    "kanji": "壱",
+    "hiragana": "いち",
+    "type": "numeral",
+    "english": "one (formal/financial numeral; used in documents)"
+  },
+  {
+    "kanji": "弐",
+    "hiragana": "に",
+    "type": "numeral",
+    "english": "two (formal/financial numeral; used in documents)"
+  },
+  {
+    "kanji": "参",
+    "hiragana": "さん",
+    "type": "numeral",
+    "english": "three (formal/financial numeral; used in documents)"
+  },
+  {
+    "kanji": "拾",
+    "hiragana": "じゅう",
+    "type": "numeral",
+    "english": "ten (formal/financial numeral; used in documents)"
+  },
+  {
+    "kanji": "阡",
+    "hiragana": "せん",
+    "type": "numeral",
+    "english": "one thousand (formal/old variant used in documents)"
+  },
+  {
+    "kanji": "萬",
+    "hiragana": "まん",
+    "type": "numeral",
+    "english": "ten thousand; old traditional form"
+  },
+  {
+    "kanji": "零",
+    "hiragana": "れい",
+    "type": "numeral",
+    "english": "zero"
+  },
+  {
+    "kanji": "一",
+    "hiragana": "いち",
+    "type": "numeral",
+    "english": "one"
+  },
+  {
+    "kanji": "二",
+    "hiragana": "に",
+    "type": "numeral",
+    "english": "two"
+  },
+  {
+    "kanji": "三",
+    "hiragana": "さん",
+    "type": "numeral",
+    "english": "three"
+  },
+  {
+    "kanji": "四",
+    "hiragana": "よん",
+    "type": "numeral",
+    "english": "four"
+  },
+  {
+    "kanji": "五",
+    "hiragana": "ご",
+    "type": "numeral",
+    "english": "five"
+  },
+  {
+    "kanji": "六",
+    "hiragana": "ろく",
+    "type": "numeral",
+    "english": "six"
+  },
+  {
+    "kanji": "七",
+    "hiragana": "なな",
+    "type": "numeral",
+    "english": "seven"
+  },
+  {
+    "kanji": "八",
+    "hiragana": "はち",
+    "type": "numeral",
+    "english": "eight"
+  },
+  {
+    "kanji": "九",
+    "hiragana": "きゅう",
+    "type": "numeral",
+    "english": "nine"
+  },
+  {
+    "kanji": "十",
+    "hiragana": "じゅう",
+    "type": "numeral",
+    "english": "ten"
+  },
+  {
+    "kanji": "百",
+    "hiragana": "ひゃく",
+    "type": "numeral",
+    "english": "hundred"
+  },
+  {
+    "kanji": "千",
+    "hiragana": "せん",
+    "type": "numeral",
+    "english": "thousand"
+  },
+  {
+    "kanji": "万",
+    "hiragana": "まん",
+    "type": "numeral",
+    "english": "ten thousand"
+  },
+  {
+    "kanji": "億",
+    "hiragana": "おく",
+    "type": "numeral",
+    "english": "hundred million"
+  },
+  {
+    "kanji": "十二",
+    "hiragana": "じゅうに",
+    "type": "numeral",
+    "english": "twelve"
+  }
+]

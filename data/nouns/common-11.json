@@ -1,0 +1,302 @@
+[
+  {
+    "kanji": "プライバシー",
+    "hiragana": "プライバシー",
+    "type": "noun",
+    "english": "privacy"
+  },
+  {
+    "kanji": "ライブ",
+    "hiragana": "ライブ",
+    "type": "noun",
+    "english": "live broadcast; live stream; live (event)"
+  },
+  {
+    "kanji": "ログアウト",
+    "hiragana": "ログアウト",
+    "type": "noun",
+    "english": "log out (noun/verb in Japanese UI)"
+  },
+  {
+    "kanji": "ログイン",
+    "hiragana": "ログイン",
+    "type": "noun",
+    "english": "log in; sign in (noun/verb in Japanese UI)"
+  },
+  {
+    "kanji": "ゴースト",
+    "hiragana": "ゴースト",
+    "type": "noun",
+    "english": "ghost"
+  },
+  {
+    "kanji": "ドラゴン",
+    "hiragana": "ドラゴン",
+    "type": "noun",
+    "english": "dragon"
+  },
+  {
+    "kanji": "インセクト",
+    "hiragana": "インセクト",
+    "type": "noun",
+    "english": "insect"
+  },
+  {
+    "kanji": "ウインド",
+    "hiragana": "ウインド",
+    "type": "noun",
+    "english": "wind"
+  },
+  {
+    "kanji": "エレクトリック",
+    "hiragana": "エレクトリック",
+    "type": "noun",
+    "english": "electric"
+  },
+  {
+    "kanji": "オウム",
+    "hiragana": "オウム",
+    "type": "noun",
+    "english": "parrot"
+  },
+  {
+    "kanji": "オウムガイ",
+    "hiragana": "オウムガイ",
+    "type": "noun",
+    "english": "nautilus (chambered nautilus)"
+  },
+  {
+    "kanji": "ガード",
+    "hiragana": "ガード",
+    "type": "noun",
+    "english": "guard; protection"
+  },
+  {
+    "kanji": "カイロス",
+    "hiragana": "カイロス",
+    "type": "noun",
+    "english": "Kairos (name-root; also ‘opportune moment’ in Greek)"
+  },
+  {
+    "kanji": "カラ",
+    "hiragana": "カラ",
+    "type": "noun",
+    "english": "shell; empty (name-root)"
+  },
+  {
+    "kanji": "ガラ",
+    "hiragana": "ガラ",
+    "type": "noun",
+    "english": "pattern; design; also ‘rattle’ nuance (name-root)"
+  },
+  {
+    "kanji": "キャタピラー",
+    "hiragana": "キャタピラー",
+    "type": "noun",
+    "english": "caterpillar"
+  },
+  {
+    "kanji": "ギャロップ",
+    "hiragana": "ギャロップ",
+    "type": "noun",
+    "english": "gallop"
+  },
+  {
+    "kanji": "キング",
+    "hiragana": "キング",
+    "type": "noun",
+    "english": "king"
+  },
+  {
+    "kanji": "クイーン",
+    "hiragana": "クイーン",
+    "type": "noun",
+    "english": "queen"
+  },
+  {
+    "kanji": "クラブ",
+    "hiragana": "クラブ",
+    "type": "noun",
+    "english": "club; crab (name-root; often ‘crab’ in Pokémon)"
+  },
+  {
+    "kanji": "ケーシー",
+    "hiragana": "ケーシー",
+    "type": "noun",
+    "english": "Casey (name-root)"
+  },
+  {
+    "kanji": "ゲンガー",
+    "hiragana": "ゲンガー",
+    "type": "noun",
+    "english": "Gengar (name-root)"
+  },
+  {
+    "kanji": "ケンタウロス",
+    "hiragana": "ケンタウロス",
+    "type": "noun",
+    "english": "centaur"
+  },
+  {
+    "kanji": "コイル",
+    "hiragana": "コイル",
+    "type": "noun",
+    "english": "coil"
+  },
+  {
+    "kanji": "ゴール",
+    "hiragana": "ゴール",
+    "type": "noun",
+    "english": "goal"
+  },
+  {
+    "kanji": "ゴールド",
+    "hiragana": "ゴールド",
+    "type": "noun",
+    "english": "gold"
+  },
+  {
+    "kanji": "ゴーレム",
+    "hiragana": "ゴーレム",
+    "type": "noun",
+    "english": "golem"
+  },
+  {
+    "kanji": "コクーン",
+    "hiragana": "コクーン",
+    "type": "noun",
+    "english": "cocoon"
+  },
+  {
+    "kanji": "サイ",
+    "hiragana": "サイ",
+    "type": "noun",
+    "english": "rhinoceros (sai)"
+  },
+  {
+    "kanji": "サンダー",
+    "hiragana": "サンダー",
+    "type": "noun",
+    "english": "thunder"
+  },
+  {
+    "kanji": "サンド",
+    "hiragana": "サンド",
+    "type": "noun",
+    "english": "sand"
+  },
+  {
+    "kanji": "シー",
+    "hiragana": "シー",
+    "type": "noun",
+    "english": "sea / ‘C’ (name-root)"
+  },
+  {
+    "kanji": "シェル",
+    "hiragana": "シェル",
+    "type": "noun",
+    "english": "shell"
+  },
+  {
+    "kanji": "ジュゴン",
+    "hiragana": "ジュゴン",
+    "type": "noun",
+    "english": "dugong"
+  },
+  {
+    "kanji": "スター",
+    "hiragana": "スター",
+    "type": "noun",
+    "english": "star; celebrity"
+  },
+  {
+    "kanji": "ストライク",
+    "hiragana": "ストライク",
+    "type": "noun",
+    "english": "strike"
+  },
+  {
+    "kanji": "スピア",
+    "hiragana": "スピア",
+    "type": "noun",
+    "english": "spear"
+  },
+  {
+    "kanji": "スリープ",
+    "hiragana": "スリープ",
+    "type": "noun",
+    "english": "sleep"
+  },
+  {
+    "kanji": "セル",
+    "hiragana": "セル",
+    "type": "noun",
+    "english": "cell (name-root; generic ‘cell’)"
+  },
+  {
+    "kanji": "ダグ",
+    "hiragana": "ダグ",
+    "type": "noun",
+    "english": "dug / dig (name-root)"
+  },
+  {
+    "kanji": "ダック",
+    "hiragana": "ダック",
+    "type": "noun",
+    "english": "duck"
+  },
+  {
+    "kanji": "ツー",
+    "hiragana": "ツー",
+    "type": "noun",
+    "english": "two / ‘2’ (name-root)"
+  },
+  {
+    "kanji": "ディグ",
+    "hiragana": "ディグ",
+    "type": "noun",
+    "english": "dig"
+  },
+  {
+    "kanji": "ドードー",
+    "hiragana": "ドードー",
+    "type": "noun",
+    "english": "dodo (bird)"
+  },
+  {
+    "kanji": "トリオ",
+    "hiragana": "トリオ",
+    "type": "noun",
+    "english": "trio"
+  },
+  {
+    "kanji": "ドリル",
+    "hiragana": "ドリル",
+    "type": "noun",
+    "english": "drill"
+  },
+  {
+    "kanji": "ナッツ",
+    "hiragana": "ナッツ",
+    "type": "noun",
+    "english": "nuts"
+  },
+  {
+    "kanji": "ニードル",
+    "hiragana": "ニードル",
+    "type": "noun",
+    "english": "needle"
+  },
+  {
+    "kanji": "パール",
+    "hiragana": "パール",
+    "type": "noun",
+    "english": "pearl"
+  },
+  {
+    "kanji": "パウ",
+    "hiragana": "パウ",
+    "type": "noun",
+    "english": "pow / ‘paw’ (name-root)"
+  }
+]

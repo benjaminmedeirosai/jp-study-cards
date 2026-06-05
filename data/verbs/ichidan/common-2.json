@@ -1,0 +1,302 @@
+[
+  {
+    "kanji": "名付ける",
+    "hiragana": "なづける",
+    "type": "ichidan-verb",
+    "english": "to name; to give a name"
+  },
+  {
+    "kanji": "いる",
+    "hiragana": "いる",
+    "type": "ichidan-verb",
+    "english": "to exist (animate); to be (someone is here)"
+  },
+  {
+    "kanji": "できる",
+    "hiragana": "できる",
+    "type": "ichidan-verb",
+    "english": "to be able to; can do; to be made; to be completed"
+  },
+  {
+    "kanji": "片付ける",
+    "hiragana": "かたづける",
+    "type": "ichidan-verb",
+    "english": "to tidy up; to put in order; to clean up"
+  },
+  {
+    "kanji": "付ける",
+    "hiragana": "つける",
+    "type": "ichidan-verb",
+    "english": "to attach; to add; to turn on (a light); to set (a rule/condition)"
+  },
+  {
+    "kanji": "止める",
+    "hiragana": "とめる",
+    "type": "ichidan-verb",
+    "english": "to stop (something); to turn off; to park (a car)"
+  },
+  {
+    "kanji": "取れる",
+    "hiragana": "とれる",
+    "type": "ichidan-verb",
+    "english": "to come off; to be removed; to be obtained/caught"
+  },
+  {
+    "kanji": "掛ける",
+    "hiragana": "かける",
+    "type": "ichidan-verb",
+    "english": "to hang (something); to put on; to apply; to make a call"
+  },
+  {
+    "kanji": "出かける",
+    "hiragana": "でかける",
+    "type": "ichidan-verb",
+    "english": "to go out; to leave (home) for a while"
+  },
+  {
+    "kanji": "見つける",
+    "hiragana": "みつける",
+    "type": "ichidan-verb",
+    "english": "to find; to discover"
+  },
+  {
+    "kanji": "飲み比べる",
+    "hiragana": "のみくらべる",
+    "type": "ichidan-verb",
+    "english": "to compare drinks; taste test"
+  },
+  {
+    "kanji": "買い替える",
+    "hiragana": "かいかえる",
+    "type": "ichidan-verb",
+    "english": "to replace by buying a new one"
+  },
+  {
+    "kanji": "書き換える",
+    "hiragana": "かきかえる",
+    "type": "ichidan-verb",
+    "english": "to rewrite; to reword"
+  },
+  {
+    "kanji": "引き受ける",
+    "hiragana": "ひきうける",
+    "type": "ichidan-verb",
+    "english": "to take on; to undertake"
+  },
+  {
+    "kanji": "見届ける",
+    "hiragana": "みとどける",
+    "type": "ichidan-verb",
+    "english": "to see something through; to witness to completion"
+  },
+  {
+    "kanji": "取り替える",
+    "hiragana": "とりかえる",
+    "type": "ichidan-verb",
+    "english": "to exchange; to replace"
+  },
+  {
+    "kanji": "受け止める",
+    "hiragana": "うけとめる",
+    "type": "ichidan-verb",
+    "english": "to catch; to receive (emotion/information)"
+  },
+  {
+    "kanji": "取り入れる",
+    "hiragana": "とりいれる",
+    "type": "ichidan-verb",
+    "english": "to adopt; to incorporate"
+  },
+  {
+    "kanji": "書き直せる",
+    "hiragana": "かきなおせる",
+    "type": "ichidan-verb",
+    "english": "can rewrite (useful example form)"
+  },
+  {
+    "kanji": "試し見る",
+    "hiragana": "ためしみる",
+    "type": "ichidan-verb",
+    "english": "to try looking/try seeing (rare example)"
+  },
+  {
+    "kanji": "話しかける",
+    "hiragana": "はなしかける",
+    "type": "ichidan-verb",
+    "english": "to address; to speak to someone"
+  },
+  {
+    "kanji": "持ち上げる",
+    "hiragana": "もちあげる",
+    "type": "ichidan-verb",
+    "english": "to lift up; to praise (colloquial)"
+  },
+  {
+    "kanji": "見合わせる",
+    "hiragana": "みあわせる",
+    "type": "ichidan-verb",
+    "english": "to postpone; to refrain after consideration"
+  },
+  {
+    "kanji": "申し合わせる",
+    "hiragana": "もうしあわせる",
+    "type": "ichidan-verb",
+    "english": "to arrange/agree (by prior arrangement)"
+  },
+  {
+    "kanji": "差し上げる",
+    "hiragana": "さしあげる",
+    "type": "ichidan-verb",
+    "english": "humble form of 'to give' (polite compound)"
+  },
+  {
+    "kanji": "引き上げる",
+    "hiragana": "ひきあげる",
+    "type": "ichidan-verb",
+    "english": "to pull up; to raise; to withdraw"
+  },
+  {
+    "kanji": "受け渡せる",
+    "hiragana": "うけわたせる",
+    "type": "ichidan-verb",
+    "english": "can hand over (example grammaticalized usage)"
+  },
+  {
+    "kanji": "連れ戻せる",
+    "hiragana": "つれもどせる",
+    "type": "ichidan-verb",
+    "english": "can bring back (example form)"
+  },
+  {
+    "kanji": "申し上げる",
+    "hiragana": "もうしあげる",
+    "type": "ichidan-verb",
+    "english": "humble/polite say; to say (humble)"
+  },
+  {
+    "kanji": "見つけ合わせる",
+    "hiragana": "みつけあわせる",
+    "type": "ichidan-verb",
+    "english": "to cross-check by finding/matching (rare example)"
+  },
+  {
+    "kanji": "讃える",
+    "hiragana": "たたえる",
+    "type": "ichidan-verb",
+    "english": "to praise; to acclaim"
+  },
+  {
+    "kanji": "押し寄せる",
+    "hiragana": "おしよせる",
+    "type": "ichidan-verb",
+    "english": "to surge toward; to press in"
+  },
+  {
+    "kanji": "乗り越える",
+    "hiragana": "のりこえる",
+    "type": "ichidan-verb",
+    "english": "to overcome; to get over"
+  },
+  {
+    "kanji": "掲げる",
+    "hiragana": "かかげる",
+    "type": "ichidan-verb",
+    "english": "to raise; to hold up"
+  },
+  {
+    "kanji": "化ける",
+    "hiragana": "ばける",
+    "type": "ichidan-verb",
+    "english": "to transform; to disguise oneself"
+  },
+  {
+    "kanji": "かける",
+    "hiragana": "かける",
+    "type": "ichidan-verb",
+    "english": "to pour; to sprinkle; to hang"
+  },
+  {
+    "kanji": "しょげる",
+    "hiragana": "しょげる",
+    "type": "ichidan-verb",
+    "english": "to feel down; to be dejected"
+  },
+  {
+    "kanji": "見かける",
+    "hiragana": "みかける",
+    "type": "ichidan-verb",
+    "english": "to notice; to catch sight of"
+  },
+  {
+    "kanji": "終わらせる",
+    "hiragana": "おわらせる",
+    "type": "ichidan-verb",
+    "english": "to finish; to bring to an end"
+  },
+  {
+    "kanji": "入れる",
+    "hiragana": "いれる",
+    "type": "ichidan-verb",
+    "english": "to put in"
+  },
+  {
+    "kanji": "離れる",
+    "hiragana": "はなれる",
+    "type": "ichidan-verb",
+    "english": "to move away; to leave"
+  },
+  {
+    "kanji": "ほどける",
+    "hiragana": "ほどける",
+    "type": "ichidan-verb",
+    "english": "to come undone; to get untied"
+  },
+  {
+    "kanji": "下りる",
+    "hiragana": "おりる",
+    "type": "ichidan-verb",
+    "english": "to go down; to descend"
+  },
+  {
+    "kanji": "見える",
+    "hiragana": "みえる",
+    "type": "ichidan-verb",
+    "english": "to be visible; to be able to see"
+  },
+  {
+    "kanji": "外れる",
+    "hiragana": "はずれる",
+    "type": "ichidan-verb",
+    "english": "to come off; to be disconnected; to miss"
+  },
+  {
+    "kanji": "合わせる",
+    "hiragana": "あわせる",
+    "type": "ichidan-verb",
+    "english": "to match; to align"
+  },
+  {
+    "kanji": "走り過ぎる",
+    "hiragana": "はしりすぎる",
+    "type": "ichidan-verb",
+    "english": "to run/drive too fast; to overdo running"
+  },
+  {
+    "kanji": "増える",
+    "hiragana": "ふえる",
+    "type": "ichidan-verb",
+    "english": "to increase"
+  },
+  {
+    "kanji": "居る",
+    "hiragana": "いる",
+    "type": "ichidan-verb",
+    "english": "to exist; to be present (animate)"
+  },
+  {
+    "kanji": "向ける",
+    "hiragana": "むける",
+    "type": "ichidan-verb",
+    "english": "to turn toward; to point at"
+  }
+]

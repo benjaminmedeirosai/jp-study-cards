@@ -1,0 +1,50 @@
+[
+  {
+    "kanji": "出てくる",
+    "hiragana": "でてくる",
+    "type": "phrase-sentence",
+    "english": "to appear; to come out"
+  },
+  {
+    "kanji": "家をつぐ",
+    "hiragana": "いえをつぐ",
+    "type": "phrase-sentence",
+    "english": "to succeed/inherit the household"
+  },
+  {
+    "kanji": "力を入れる",
+    "hiragana": "ちからをいれる",
+    "type": "phrase-sentence",
+    "english": "to put effort into; to focus on"
+  },
+  {
+    "kanji": "と言われている",
+    "hiragana": "といわれている",
+    "type": "phrase-sentence",
+    "english": "it is said that; is called"
+  },
+  {
+    "kanji": "ようにしている",
+    "hiragana": "ようにしている",
+    "type": "phrase-sentence",
+    "english": "make a habit of; try to"
+  },
+  {
+    "kanji": "視聴できる",
+    "hiragana": "しちょうできる",
+    "type": "phrase-sentence",
+    "english": "can watch; can view"
+  },
+  {
+    "kanji": "背が高い",
+    "hiragana": "せがたかい",
+    "type": "phrase-sentence",
+    "english": "to be tall"
+  },
+  {
+    "kanji": "値段が高い",
+    "hiragana": "ねだんがたかい",
+    "type": "phrase-sentence",
+    "english": "to be expensive"
+  }
+]

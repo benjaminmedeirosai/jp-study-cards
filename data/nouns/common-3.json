@@ -1,0 +1,302 @@
+[
+  {
+    "kanji": "検索",
+    "hiragana": "けんさく",
+    "type": "noun",
+    "english": "search (noun); searching"
+  },
+  {
+    "kanji": "言語",
+    "hiragana": "げんご",
+    "type": "noun",
+    "english": "language"
+  },
+  {
+    "kanji": "限定公開",
+    "hiragana": "げんていこうかい",
+    "type": "noun",
+    "english": "unlisted (limited visibility); limited public"
+  },
+  {
+    "kanji": "固定",
+    "hiragana": "こてい",
+    "type": "noun",
+    "english": "pin; fixed; sticking (e.g., pinned comment)"
+  },
+  {
+    "kanji": "公開",
+    "hiragana": "こうかい",
+    "type": "noun",
+    "english": "public; release; publishing"
+  },
+  {
+    "kanji": "更新",
+    "hiragana": "こうしん",
+    "type": "noun",
+    "english": "update; renewal; refresh"
+  },
+  {
+    "kanji": "削除",
+    "hiragana": "さくじょ",
+    "type": "noun",
+    "english": "deletion; remove"
+  },
+  {
+    "kanji": "字幕",
+    "hiragana": "じまく",
+    "type": "noun",
+    "english": "subtitles; captions"
+  },
+  {
+    "kanji": "自動再生",
+    "hiragana": "じどうさいせい",
+    "type": "noun",
+    "english": "autoplay (automatic playback)"
+  },
+  {
+    "kanji": "制限",
+    "hiragana": "せいげん",
+    "type": "noun",
+    "english": "restriction; limit"
+  },
+  {
+    "kanji": "切替",
+    "hiragana": "きりかえ",
+    "type": "noun",
+    "english": "switching; toggle; changeover"
+  },
+  {
+    "kanji": "接続",
+    "hiragana": "せつぞく",
+    "type": "noun",
+    "english": "connection; connecting"
+  },
+  {
+    "kanji": "全画面",
+    "hiragana": "ぜんがめん",
+    "type": "noun",
+    "english": "full screen"
+  },
+  {
+    "kanji": "送信",
+    "hiragana": "そうしん",
+    "type": "noun",
+    "english": "send; transmission"
+  },
+  {
+    "kanji": "速度",
+    "hiragana": "そくど",
+    "type": "noun",
+    "english": "speed; playback speed"
+  },
+  {
+    "kanji": "地域",
+    "hiragana": "ちいき",
+    "type": "noun",
+    "english": "region; area"
+  },
+  {
+    "kanji": "追加",
+    "hiragana": "ついか",
+    "type": "noun",
+    "english": "add; addition"
+  },
+  {
+    "kanji": "通知",
+    "hiragana": "つうち",
+    "type": "noun",
+    "english": "notification; notice"
+  },
+  {
+    "kanji": "通報",
+    "hiragana": "つうほう",
+    "type": "noun",
+    "english": "report (to authorities/system); filing a report"
+  },
+  {
+    "kanji": "登録",
+    "hiragana": "とうろく",
+    "type": "noun",
+    "english": "registration; subscription"
+  },
+  {
+    "kanji": "読み込み",
+    "hiragana": "よみこみ",
+    "type": "noun",
+    "english": "loading; reading in (data)"
+  },
+  {
+    "kanji": "非公開",
+    "hiragana": "ひこうかい",
+    "type": "noun",
+    "english": "private (not public)"
+  },
+  {
+    "kanji": "標準",
+    "hiragana": "ひょうじゅん",
+    "type": "noun",
+    "english": "standard; default"
+  },
+  {
+    "kanji": "表示",
+    "hiragana": "ひょうじ",
+    "type": "noun",
+    "english": "display; show"
+  },
+  {
+    "kanji": "並び替え",
+    "hiragana": "ならびかえ",
+    "type": "noun",
+    "english": "sort; reorder"
+  },
+  {
+    "kanji": "編集",
+    "hiragana": "へんしゅう",
+    "type": "noun",
+    "english": "edit; editing"
+  },
+  {
+    "kanji": "返信",
+    "hiragana": "へんしん",
+    "type": "noun",
+    "english": "reply; response"
+  },
+  {
+    "kanji": "保存",
+    "hiragana": "ほぞん",
+    "type": "noun",
+    "english": "save; saving"
+  },
+  {
+    "kanji": "報告",
+    "hiragana": "ほうこく",
+    "type": "noun",
+    "english": "report; reporting"
+  },
+  {
+    "kanji": "利用規約",
+    "hiragana": "りようきやく",
+    "type": "noun",
+    "english": "terms of service; terms of use"
+  },
+  {
+    "kanji": "履歴",
+    "hiragana": "りれき",
+    "type": "noun",
+    "english": "history; log (viewing/search history)"
+  },
+  {
+    "kanji": "暗証",
+    "hiragana": "あんしょう",
+    "type": "noun",
+    "english": "PIN; passcode (secret code)"
+  },
+  {
+    "kanji": "位置",
+    "hiragana": "いち",
+    "type": "noun",
+    "english": "position; location"
+  },
+  {
+    "kanji": "印刷",
+    "hiragana": "いんさつ",
+    "type": "noun",
+    "english": "printing; print"
+  },
+  {
+    "kanji": "音量",
+    "hiragana": "おんりょう",
+    "type": "noun",
+    "english": "volume (sound level)"
+  },
+  {
+    "kanji": "拡大",
+    "hiragana": "かくだい",
+    "type": "noun",
+    "english": "enlarge; zoom in"
+  },
+  {
+    "kanji": "管理",
+    "hiragana": "かんり",
+    "type": "noun",
+    "english": "management; control; administration"
+  },
+  {
+    "kanji": "機内",
+    "hiragana": "きない",
+    "type": "noun",
+    "english": "onboard (an aircraft); inside the airplane"
+  },
+  {
+    "kanji": "権限",
+    "hiragana": "けんげん",
+    "type": "noun",
+    "english": "permission; authority (app permission)"
+  },
+  {
+    "kanji": "残量",
+    "hiragana": "ざんりょう",
+    "type": "noun",
+    "english": "remaining amount (battery/data)"
+  },
+  {
+    "kanji": "指紋",
+    "hiragana": "しもん",
+    "type": "noun",
+    "english": "fingerprint"
+  },
+  {
+    "kanji": "時刻",
+    "hiragana": "じこく",
+    "type": "noun",
+    "english": "time (clock time)"
+  },
+  {
+    "kanji": "自動回転",
+    "hiragana": "じどうかいてん",
+    "type": "noun",
+    "english": "auto-rotate (screen rotation)"
+  },
+  {
+    "kanji": "辞書",
+    "hiragana": "じしょ",
+    "type": "noun",
+    "english": "dictionary"
+  },
+  {
+    "kanji": "初期化",
+    "hiragana": "しょきか",
+    "type": "noun",
+    "english": "initialize; reset (to factory settings)"
+  },
+  {
+    "kanji": "省電力",
+    "hiragana": "しょうでんりょく",
+    "type": "noun",
+    "english": "power saving; low power"
+  },
+  {
+    "kanji": "情報",
+    "hiragana": "じょうほう",
+    "type": "noun",
+    "english": "information"
+  },
+  {
+    "kanji": "同期",
+    "hiragana": "どうき",
+    "type": "noun",
+    "english": "sync; synchronization"
+  },
+  {
+    "kanji": "日付",
+    "hiragana": "ひづけ",
+    "type": "noun",
+    "english": "date (calendar date)"
+  },
+  {
+    "kanji": "入力",
+    "hiragana": "にゅうりょく",
+    "type": "noun",
+    "english": "input; entry (text/data)"
+  }
+]

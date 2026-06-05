@@ -1,0 +1,62 @@
+[
+  {
+    "kanji": "まだ",
+    "hiragana": "まだ",
+    "type": "adverb",
+    "english": "still; not yet"
+  },
+  {
+    "kanji": "やっと",
+    "hiragana": "やっと",
+    "type": "adverb",
+    "english": "at last; finally"
+  },
+  {
+    "kanji": "高く",
+    "hiragana": "たかく",
+    "type": "adverb",
+    "english": "highly; expensively"
+  },
+  {
+    "kanji": "便利に",
+    "hiragana": "べんりに",
+    "type": "adverb",
+    "english": "conveniently"
+  },
+  {
+    "kanji": "有名に",
+    "hiragana": "ゆうめいに",
+    "type": "adverb",
+    "english": "famously"
+  },
+  {
+    "kanji": "静かに",
+    "hiragana": "しずかに",
+    "type": "adverb",
+    "english": "quietly"
+  },
+  {
+    "kanji": "大変に",
+    "hiragana": "たいへんに",
+    "type": "adverb",
+    "english": "very; greatly"
+  },
+  {
+    "kanji": "安く",
+    "hiragana": "やすく",
+    "type": "adverb",
+    "english": "cheaply"
+  },
+  {
+    "kanji": "新しく",
+    "hiragana": "あたらしく",
+    "type": "adverb",
+    "english": "newly"
+  },
+  {
+    "kanji": "古く",
+    "hiragana": "ふるく",
+    "type": "adverb",
+    "english": "formerly; in an old way"
+  }
+]

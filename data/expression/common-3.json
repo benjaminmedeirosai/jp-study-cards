@@ -1,0 +1,302 @@
+[
+  {
+    "kanji": "高ければ",
+    "hiragana": "たかければ",
+    "type": "expression",
+    "english": "if high/tall/expensive"
+  },
+  {
+    "kanji": "高かったら",
+    "hiragana": "たかかったら",
+    "type": "expression",
+    "english": "if it was high/tall/expensive"
+  },
+  {
+    "kanji": "高くなければ",
+    "hiragana": "たかくなければ",
+    "type": "expression",
+    "english": "if not high/tall/expensive"
+  },
+  {
+    "kanji": "高くなかったら",
+    "hiragana": "たかくなかったら",
+    "type": "expression",
+    "english": "if it was not high/tall/expensive"
+  },
+  {
+    "kanji": "便利じゃない",
+    "hiragana": "べんりじゃない",
+    "type": "expression",
+    "english": "not convenient"
+  },
+  {
+    "kanji": "便利だった",
+    "hiragana": "べんりだった",
+    "type": "expression",
+    "english": "was convenient"
+  },
+  {
+    "kanji": "便利じゃなかった",
+    "hiragana": "べんりじゃなかった",
+    "type": "expression",
+    "english": "was not convenient"
+  },
+  {
+    "kanji": "便利で",
+    "hiragana": "べんりで",
+    "type": "expression",
+    "english": "convenient and; because convenient"
+  },
+  {
+    "kanji": "便利ではない",
+    "hiragana": "べんりではない",
+    "type": "expression",
+    "english": "not convenient (formal)"
+  },
+  {
+    "kanji": "便利ではなかった",
+    "hiragana": "べんりではなかった",
+    "type": "expression",
+    "english": "was not convenient (formal)"
+  },
+  {
+    "kanji": "便利なら",
+    "hiragana": "べんりなら",
+    "type": "expression",
+    "english": "if convenient"
+  },
+  {
+    "kanji": "便利だったら",
+    "hiragana": "べんりだったら",
+    "type": "expression",
+    "english": "if it was convenient"
+  },
+  {
+    "kanji": "便利じゃなければ",
+    "hiragana": "べんりじゃなければ",
+    "type": "expression",
+    "english": "if not convenient"
+  },
+  {
+    "kanji": "便利じゃなかったら",
+    "hiragana": "べんりじゃなかったら",
+    "type": "expression",
+    "english": "if it was not convenient"
+  },
+  {
+    "kanji": "便利ではなければ",
+    "hiragana": "べんりではなければ",
+    "type": "expression",
+    "english": "if not convenient (formal)"
+  },
+  {
+    "kanji": "便利ではなかったら",
+    "hiragana": "べんりではなかったら",
+    "type": "expression",
+    "english": "if it was not convenient (formal)"
+  },
+  {
+    "kanji": "有名じゃない",
+    "hiragana": "ゆうめいじゃない",
+    "type": "expression",
+    "english": "not famous"
+  },
+  {
+    "kanji": "有名だった",
+    "hiragana": "ゆうめいだった",
+    "type": "expression",
+    "english": "was famous"
+  },
+  {
+    "kanji": "有名じゃなかった",
+    "hiragana": "ゆうめいじゃなかった",
+    "type": "expression",
+    "english": "was not famous"
+  },
+  {
+    "kanji": "有名で",
+    "hiragana": "ゆうめいで",
+    "type": "expression",
+    "english": "famous and; because famous"
+  },
+  {
+    "kanji": "有名ではない",
+    "hiragana": "ゆうめいではない",
+    "type": "expression",
+    "english": "not famous (formal)"
+  },
+  {
+    "kanji": "有名ではなかった",
+    "hiragana": "ゆうめいではなかった",
+    "type": "expression",
+    "english": "was not famous (formal)"
+  },
+  {
+    "kanji": "有名なら",
+    "hiragana": "ゆうめいなら",
+    "type": "expression",
+    "english": "if famous"
+  },
+  {
+    "kanji": "有名だったら",
+    "hiragana": "ゆうめいだったら",
+    "type": "expression",
+    "english": "if it was famous"
+  },
+  {
+    "kanji": "有名じゃなければ",
+    "hiragana": "ゆうめいじゃなければ",
+    "type": "expression",
+    "english": "if not famous"
+  },
+  {
+    "kanji": "有名じゃなかったら",
+    "hiragana": "ゆうめいじゃなかったら",
+    "type": "expression",
+    "english": "if it was not famous"
+  },
+  {
+    "kanji": "有名ではなければ",
+    "hiragana": "ゆうめいではなければ",
+    "type": "expression",
+    "english": "if not famous (formal)"
+  },
+  {
+    "kanji": "有名ではなかったら",
+    "hiragana": "ゆうめいではなかったら",
+    "type": "expression",
+    "english": "if it was not famous (formal)"
+  },
+  {
+    "kanji": "静かじゃない",
+    "hiragana": "しずかじゃない",
+    "type": "expression",
+    "english": "not quiet"
+  },
+  {
+    "kanji": "静かだった",
+    "hiragana": "しずかだった",
+    "type": "expression",
+    "english": "was quiet"
+  },
+  {
+    "kanji": "静かじゃなかった",
+    "hiragana": "しずかじゃなかった",
+    "type": "expression",
+    "english": "was not quiet"
+  },
+  {
+    "kanji": "静かで",
+    "hiragana": "しずかで",
+    "type": "expression",
+    "english": "quiet and; because quiet"
+  },
+  {
+    "kanji": "静かではない",
+    "hiragana": "しずかではない",
+    "type": "expression",
+    "english": "not quiet (formal)"
+  },
+  {
+    "kanji": "静かではなかった",
+    "hiragana": "しずかではなかった",
+    "type": "expression",
+    "english": "was not quiet (formal)"
+  },
+  {
+    "kanji": "静かなら",
+    "hiragana": "しずかなら",
+    "type": "expression",
+    "english": "if quiet"
+  },
+  {
+    "kanji": "静かだったら",
+    "hiragana": "しずかだったら",
+    "type": "expression",
+    "english": "if it was quiet"
+  },
+  {
+    "kanji": "静かじゃなければ",
+    "hiragana": "しずかじゃなければ",
+    "type": "expression",
+    "english": "if not quiet"
+  },
+  {
+    "kanji": "静かじゃなかったら",
+    "hiragana": "しずかじゃなかったら",
+    "type": "expression",
+    "english": "if it was not quiet"
+  },
+  {
+    "kanji": "静かではなければ",
+    "hiragana": "しずかではなければ",
+    "type": "expression",
+    "english": "if not quiet (formal)"
+  },
+  {
+    "kanji": "静かではなかったら",
+    "hiragana": "しずかではなかったら",
+    "type": "expression",
+    "english": "if it was not quiet (formal)"
+  },
+  {
+    "kanji": "大変じゃない",
+    "hiragana": "たいへんじゃない",
+    "type": "expression",
+    "english": "not serious; tough"
+  },
+  {
+    "kanji": "大変だった",
+    "hiragana": "たいへんだった",
+    "type": "expression",
+    "english": "was serious; tough"
+  },
+  {
+    "kanji": "大変じゃなかった",
+    "hiragana": "たいへんじゃなかった",
+    "type": "expression",
+    "english": "was not serious; tough"
+  },
+  {
+    "kanji": "大変で",
+    "hiragana": "たいへんで",
+    "type": "expression",
+    "english": "serious; tough and; because serious; tough"
+  },
+  {
+    "kanji": "大変ではない",
+    "hiragana": "たいへんではない",
+    "type": "expression",
+    "english": "not serious; tough (formal)"
+  },
+  {
+    "kanji": "大変ではなかった",
+    "hiragana": "たいへんではなかった",
+    "type": "expression",
+    "english": "was not serious; tough (formal)"
+  },
+  {
+    "kanji": "大変なら",
+    "hiragana": "たいへんなら",
+    "type": "expression",
+    "english": "if serious; tough"
+  },
+  {
+    "kanji": "大変だったら",
+    "hiragana": "たいへんだったら",
+    "type": "expression",
+    "english": "if it was serious; tough"
+  },
+  {
+    "kanji": "大変じゃなければ",
+    "hiragana": "たいへんじゃなければ",
+    "type": "expression",
+    "english": "if not serious; tough"
+  },
+  {
+    "kanji": "大変じゃなかったら",
+    "hiragana": "たいへんじゃなかったら",
+    "type": "expression",
+    "english": "if it was not serious; tough"
+  }
+]

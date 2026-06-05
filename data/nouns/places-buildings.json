@@ -1,0 +1,308 @@
+[
+  {
+    "kanji": "王国",
+    "hiragana": "おうこく",
+    "type": "noun",
+    "english": "kingdom"
+  },
+  {
+    "kanji": "空間",
+    "hiragana": "くうかん",
+    "type": "noun",
+    "english": "space (physical/three-dimensional); room"
+  },
+  {
+    "kanji": "生徒",
+    "hiragana": "せいと",
+    "type": "noun",
+    "english": "student (pupil; esp. school)"
+  },
+  {
+    "kanji": "都市",
+    "hiragana": "とし",
+    "type": "noun",
+    "english": "city (urban area)"
+  },
+  {
+    "kanji": "沢村",
+    "hiragana": "さわむら",
+    "type": "noun",
+    "english": "Sawamura (surname; name-root)"
+  },
+  {
+    "kanji": "学校",
+    "hiragana": "がっこう",
+    "type": "noun",
+    "english": "school"
+  },
+  {
+    "kanji": "国",
+    "hiragana": "くに",
+    "type": "noun",
+    "english": "country"
+  },
+  {
+    "kanji": "町",
+    "hiragana": "まち",
+    "type": "noun",
+    "english": "town; city"
+  },
+  {
+    "kanji": "村",
+    "hiragana": "むら",
+    "type": "noun",
+    "english": "village"
+  },
+  {
+    "kanji": "駅",
+    "hiragana": "えき",
+    "type": "noun",
+    "english": "station"
+  },
+  {
+    "kanji": "店",
+    "hiragana": "みせ",
+    "type": "noun",
+    "english": "store"
+  },
+  {
+    "kanji": "店員",
+    "hiragana": "てんいん",
+    "type": "noun",
+    "english": "clerk; store staff"
+  },
+  {
+    "kanji": "部屋",
+    "hiragana": "へや",
+    "type": "noun",
+    "english": "room"
+  },
+  {
+    "kanji": "家",
+    "hiragana": "いえ",
+    "type": "noun",
+    "english": "house; home"
+  },
+  {
+    "kanji": "部屋代",
+    "hiragana": "へやだい",
+    "type": "noun",
+    "english": "room charge"
+  },
+  {
+    "kanji": "注文",
+    "hiragana": "ちゅうもん",
+    "type": "noun",
+    "english": "order (at a restaurant)"
+  },
+  {
+    "kanji": "寝室",
+    "hiragana": "しんしつ",
+    "type": "noun",
+    "english": "bedroom"
+  },
+  {
+    "kanji": "居間",
+    "hiragana": "いま",
+    "type": "noun",
+    "english": "living room"
+  },
+  {
+    "kanji": "建物",
+    "hiragana": "たてもの",
+    "type": "noun",
+    "english": "building"
+  },
+  {
+    "kanji": "入学",
+    "hiragana": "にゅうがく",
+    "type": "noun",
+    "english": "entrance to school; matriculation"
+  },
+  {
+    "kanji": "ホテル",
+    "hiragana": "ホテル",
+    "type": "noun",
+    "english": "hotel"
+  },
+  {
+    "kanji": "レストラン",
+    "hiragana": "レストラン",
+    "type": "noun",
+    "english": "restaurant"
+  },
+  {
+    "kanji": "ショップ",
+    "hiragana": "ショップ",
+    "type": "noun",
+    "english": "shop"
+  },
+  {
+    "kanji": "コンビニ",
+    "hiragana": "コンビニ",
+    "type": "noun",
+    "english": "convenience store"
+  },
+  {
+    "kanji": "ビル",
+    "hiragana": "ビル",
+    "type": "noun",
+    "english": "office building"
+  },
+  {
+    "kanji": "カフェ",
+    "hiragana": "カフェ",
+    "type": "noun",
+    "english": "cafe; coffee shop"
+  },
+  {
+    "kanji": "ホーム",
+    "hiragana": "ホーム",
+    "type": "noun",
+    "english": "platform (train); home (context-dependent)"
+  },
+  {
+    "kanji": "城",
+    "hiragana": "しろ",
+    "type": "noun",
+    "english": "castle"
+  },
+  {
+    "kanji": "中学校",
+    "hiragana": "ちゅうがっこう",
+    "type": "noun",
+    "english": "junior high school; middle school"
+  },
+  {
+    "kanji": "本屋",
+    "hiragana": "ほんや",
+    "type": "noun",
+    "english": "bookstore; bookshop"
+  },
+  {
+    "kanji": "書店",
+    "hiragana": "しょてん",
+    "type": "noun",
+    "english": "bookstore"
+  },
+  {
+    "kanji": "古本屋",
+    "hiragana": "ふるほんや",
+    "type": "noun",
+    "english": "used bookstore"
+  },
+  {
+    "kanji": "花屋",
+    "hiragana": "はなや",
+    "type": "noun",
+    "english": "flower shop"
+  },
+  {
+    "kanji": "魚屋",
+    "hiragana": "さかなや",
+    "type": "noun",
+    "english": "fish shop; fishmonger"
+  },
+  {
+    "kanji": "パン屋",
+    "hiragana": "パンや",
+    "type": "noun",
+    "english": "bakery"
+  },
+  {
+    "kanji": "内",
+    "hiragana": "うち",
+    "type": "noun",
+    "english": "home; my house; inside"
+  },
+  {
+    "kanji": "座敷童子",
+    "hiragana": "ざしきわらし",
+    "type": "noun",
+    "english": "house child spirit; brings fortune"
+  },
+  {
+    "kanji": "うち",
+    "hiragana": "うち",
+    "type": "noun",
+    "english": "home; our place"
+  },
+  {
+    "kanji": "作家",
+    "hiragana": "さっか",
+    "type": "noun",
+    "english": "writer; author"
+  },
+  {
+    "kanji": "市役所",
+    "hiragana": "しやくしょ",
+    "type": "noun",
+    "english": "city hall"
+  },
+  {
+    "kanji": "神社",
+    "hiragana": "じんじゃ",
+    "type": "noun",
+    "english": "shrine"
+  },
+  {
+    "kanji": "神輿",
+    "hiragana": "みこし",
+    "type": "noun",
+    "english": "portable shrine"
+  },
+  {
+    "kanji": "駅前",
+    "hiragana": "えきまえ",
+    "type": "noun",
+    "english": "in front of the station"
+  },
+  {
+    "kanji": "外国",
+    "hiragana": "がいこく",
+    "type": "noun",
+    "english": "foreign country"
+  },
+  {
+    "kanji": "休憩スペース",
+    "hiragana": "きゅうけいスペース",
+    "type": "noun",
+    "english": "rest area; break space"
+  },
+  {
+    "kanji": "高校生",
+    "hiragana": "こうこうせい",
+    "type": "noun",
+    "english": "high school student"
+  },
+  {
+    "kanji": "自宅",
+    "hiragana": "じたく",
+    "type": "noun",
+    "english": "one's home; residence"
+  },
+  {
+    "kanji": "小学生",
+    "hiragana": "しょうがくせい",
+    "type": "noun",
+    "english": "elementary school student"
+  },
+  {
+    "kanji": "探検家",
+    "hiragana": "たんけんか",
+    "type": "noun",
+    "english": "explorer"
+  },
+  {
+    "kanji": "ご自宅",
+    "hiragana": "ごじたく",
+    "type": "noun",
+    "english": "your home; one's home (honorific)"
+  },
+  {
+    "kanji": "お寺",
+    "hiragana": "おてら",
+    "type": "noun",
+    "english": "temple (Buddhist)"
+  }
+]

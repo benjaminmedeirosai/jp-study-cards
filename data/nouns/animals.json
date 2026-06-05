@@ -1,0 +1,512 @@
+[
+  {
+    "kanji": "犬",
+    "hiragana": "いぬ",
+    "type": "noun",
+    "english": "dog"
+  },
+  {
+    "kanji": "猫",
+    "hiragana": "ねこ",
+    "type": "noun",
+    "english": "cat"
+  },
+  {
+    "kanji": "鳥",
+    "hiragana": "とり",
+    "type": "noun",
+    "english": "bird"
+  },
+  {
+    "kanji": "魚",
+    "hiragana": "さかな",
+    "type": "noun",
+    "english": "fish"
+  },
+  {
+    "kanji": "牛",
+    "hiragana": "うし",
+    "type": "noun",
+    "english": "cow; cattle"
+  },
+  {
+    "kanji": "馬",
+    "hiragana": "うま",
+    "type": "noun",
+    "english": "horse"
+  },
+  {
+    "kanji": "羊",
+    "hiragana": "ひつじ",
+    "type": "noun",
+    "english": "sheep"
+  },
+  {
+    "kanji": "カンガルー",
+    "hiragana": "カンガルー",
+    "type": "noun",
+    "english": "kangaroo"
+  },
+  {
+    "kanji": "蜥蜴",
+    "hiragana": "とかげ",
+    "type": "noun",
+    "english": "lizard"
+  },
+  {
+    "kanji": "亀",
+    "hiragana": "かめ",
+    "type": "noun",
+    "english": "turtle; tortoise"
+  },
+  {
+    "kanji": "猿",
+    "hiragana": "さる",
+    "type": "noun",
+    "english": "monkey"
+  },
+  {
+    "kanji": "狐",
+    "hiragana": "きつね",
+    "type": "noun",
+    "english": "fox; fox spirit (kitsune)"
+  },
+  {
+    "kanji": "蛇",
+    "hiragana": "へび",
+    "type": "noun",
+    "english": "snake"
+  },
+  {
+    "kanji": "鳩",
+    "hiragana": "はと",
+    "type": "noun",
+    "english": "pigeon; dove"
+  },
+  {
+    "kanji": "豚",
+    "hiragana": "ぶた",
+    "type": "noun",
+    "english": "pig"
+  },
+  {
+    "kanji": "山羊",
+    "hiragana": "やぎ",
+    "type": "noun",
+    "english": "goat"
+  },
+  {
+    "kanji": "鶏",
+    "hiragana": "にわとり",
+    "type": "noun",
+    "english": "chicken"
+  },
+  {
+    "kanji": "兎",
+    "hiragana": "うさぎ",
+    "type": "noun",
+    "english": "rabbit"
+  },
+  {
+    "kanji": "蛙",
+    "hiragana": "かえる",
+    "type": "noun",
+    "english": "frog"
+  },
+  {
+    "kanji": "熊",
+    "hiragana": "くま",
+    "type": "noun",
+    "english": "bear"
+  },
+  {
+    "kanji": "虎",
+    "hiragana": "とら",
+    "type": "noun",
+    "english": "tiger"
+  },
+  {
+    "kanji": "獅子",
+    "hiragana": "しし",
+    "type": "noun",
+    "english": "lion"
+  },
+  {
+    "kanji": "象",
+    "hiragana": "ぞう",
+    "type": "noun",
+    "english": "elephant"
+  },
+  {
+    "kanji": "鹿",
+    "hiragana": "しか",
+    "type": "noun",
+    "english": "deer"
+  },
+  {
+    "kanji": "狼",
+    "hiragana": "おおかみ",
+    "type": "noun",
+    "english": "wolf"
+  },
+  {
+    "kanji": "鼠",
+    "hiragana": "ねずみ",
+    "type": "noun",
+    "english": "mouse; rat"
+  },
+  {
+    "kanji": "子犬",
+    "hiragana": "こいぬ",
+    "type": "noun",
+    "english": "puppy"
+  },
+  {
+    "kanji": "番犬",
+    "hiragana": "ばんけん",
+    "type": "noun",
+    "english": "guard dog"
+  },
+  {
+    "kanji": "子猫",
+    "hiragana": "こねこ",
+    "type": "noun",
+    "english": "kitten"
+  },
+  {
+    "kanji": "野良猫",
+    "hiragana": "のらねこ",
+    "type": "noun",
+    "english": "stray cat"
+  },
+  {
+    "kanji": "小鳥",
+    "hiragana": "ことり",
+    "type": "noun",
+    "english": "small bird"
+  },
+  {
+    "kanji": "焼き鳥",
+    "hiragana": "やきとり",
+    "type": "noun",
+    "english": "grilled chicken (yakitori)"
+  },
+  {
+    "kanji": "金魚",
+    "hiragana": "きんぎょ",
+    "type": "noun",
+    "english": "goldfish"
+  },
+  {
+    "kanji": "競馬",
+    "hiragana": "けいば",
+    "type": "noun",
+    "english": "horse racing"
+  },
+  {
+    "kanji": "馬車",
+    "hiragana": "ばしゃ",
+    "type": "noun",
+    "english": "horse-drawn carriage"
+  },
+  {
+    "kanji": "乳牛",
+    "hiragana": "にゅうぎゅう",
+    "type": "noun",
+    "english": "dairy cow"
+  },
+  {
+    "kanji": "子豚",
+    "hiragana": "こぶた",
+    "type": "noun",
+    "english": "piglet"
+  },
+  {
+    "kanji": "羊毛",
+    "hiragana": "ようもう",
+    "type": "noun",
+    "english": "wool"
+  },
+  {
+    "kanji": "子羊",
+    "hiragana": "こひつじ",
+    "type": "noun",
+    "english": "lamb"
+  },
+  {
+    "kanji": "養鶏",
+    "hiragana": "ようけい",
+    "type": "noun",
+    "english": "poultry farming"
+  },
+  {
+    "kanji": "白兎",
+    "hiragana": "しろうさぎ",
+    "type": "noun",
+    "english": "white rabbit"
+  },
+  {
+    "kanji": "海亀",
+    "hiragana": "うみがめ",
+    "type": "noun",
+    "english": "sea turtle"
+  },
+  {
+    "kanji": "雨蛙",
+    "hiragana": "あまがえる",
+    "type": "noun",
+    "english": "tree frog"
+  },
+  {
+    "kanji": "猿山",
+    "hiragana": "さるやま",
+    "type": "noun",
+    "english": "monkey hill (zoo area)"
+  },
+  {
+    "kanji": "虎柄",
+    "hiragana": "とらがら",
+    "type": "noun",
+    "english": "tiger pattern"
+  },
+  {
+    "kanji": "獅子舞",
+    "hiragana": "ししまい",
+    "type": "noun",
+    "english": "lion dance"
+  },
+  {
+    "kanji": "鹿肉",
+    "hiragana": "しかにく",
+    "type": "noun",
+    "english": "venison"
+  },
+  {
+    "kanji": "人狼",
+    "hiragana": "じんろう",
+    "type": "noun",
+    "english": "werewolf"
+  },
+  {
+    "kanji": "狐火",
+    "hiragana": "きつねび",
+    "type": "noun",
+    "english": "foxfire (folklore)"
+  },
+  {
+    "kanji": "白鼠",
+    "hiragana": "しろねずみ",
+    "type": "noun",
+    "english": "white mouse"
+  },
+  {
+    "kanji": "黒豹",
+    "hiragana": "くろひょう",
+    "type": "noun",
+    "english": "black panther"
+  },
+  {
+    "kanji": "捕鯨",
+    "hiragana": "ほげい",
+    "type": "noun",
+    "english": "whaling"
+  },
+  {
+    "kanji": "人食い鮫",
+    "hiragana": "ひとくいざめ",
+    "type": "noun",
+    "english": "man-eating shark"
+  },
+  {
+    "kanji": "車海老",
+    "hiragana": "くるまえび",
+    "type": "noun",
+    "english": "kuruma prawn"
+  },
+  {
+    "kanji": "毛蟹",
+    "hiragana": "けがに",
+    "type": "noun",
+    "english": "hairy crab"
+  },
+  {
+    "kanji": "毒蛇",
+    "hiragana": "どくじゃ",
+    "type": "noun",
+    "english": "venomous snake"
+  },
+  {
+    "kanji": "蟻地獄",
+    "hiragana": "ありじごく",
+    "type": "noun",
+    "english": "antlion (lit. ant hell)"
+  },
+  {
+    "kanji": "胡蝶",
+    "hiragana": "こちょう",
+    "type": "noun",
+    "english": "butterfly (poetic)"
+  },
+  {
+    "kanji": "蚊取り線香",
+    "hiragana": "かとりせんこう",
+    "type": "noun",
+    "english": "mosquito coil"
+  },
+  {
+    "kanji": "鷹狩り",
+    "hiragana": "たかがり",
+    "type": "noun",
+    "english": "falconry"
+  },
+  {
+    "kanji": "伝書鳩",
+    "hiragana": "でんしょばと",
+    "type": "noun",
+    "english": "carrier pigeon"
+  },
+  {
+    "kanji": "豹",
+    "hiragana": "ひょう",
+    "type": "noun",
+    "english": "leopard"
+  },
+  {
+    "kanji": "駱駝",
+    "hiragana": "らくだ",
+    "type": "noun",
+    "english": "camel"
+  },
+  {
+    "kanji": "猩々",
+    "hiragana": "オランウータン",
+    "type": "noun",
+    "english": "orangutan"
+  },
+  {
+    "kanji": "ゴリラ",
+    "hiragana": "ゴリラ",
+    "type": "noun",
+    "english": "gorilla"
+  },
+  {
+    "kanji": "パンダ",
+    "hiragana": "パンダ",
+    "type": "noun",
+    "english": "panda"
+  },
+  {
+    "kanji": "コアラ",
+    "hiragana": "コアラ",
+    "type": "noun",
+    "english": "koala"
+  },
+  {
+    "kanji": "イルカ",
+    "hiragana": "イルカ",
+    "type": "noun",
+    "english": "dolphin"
+  },
+  {
+    "kanji": "鯨",
+    "hiragana": "くじら",
+    "type": "noun",
+    "english": "whale"
+  },
+  {
+    "kanji": "鮫",
+    "hiragana": "さめ",
+    "type": "noun",
+    "english": "shark"
+  },
+  {
+    "kanji": "蛸",
+    "hiragana": "たこ",
+    "type": "noun",
+    "english": "octopus"
+  },
+  {
+    "kanji": "海老",
+    "hiragana": "えび",
+    "type": "noun",
+    "english": "shrimp"
+  },
+  {
+    "kanji": "蟹",
+    "hiragana": "かに",
+    "type": "noun",
+    "english": "crab"
+  },
+  {
+    "kanji": "蜂",
+    "hiragana": "はち",
+    "type": "noun",
+    "english": "bee"
+  },
+  {
+    "kanji": "蟻",
+    "hiragana": "あり",
+    "type": "noun",
+    "english": "ant"
+  },
+  {
+    "kanji": "蝶",
+    "hiragana": "ちょう",
+    "type": "noun",
+    "english": "butterfly"
+  },
+  {
+    "kanji": "蝿",
+    "hiragana": "はえ",
+    "type": "noun",
+    "english": "fly (insect)"
+  },
+  {
+    "kanji": "蚊",
+    "hiragana": "か",
+    "type": "noun",
+    "english": "mosquito"
+  },
+  {
+    "kanji": "梟",
+    "hiragana": "ふくろう",
+    "type": "noun",
+    "english": "owl"
+  },
+  {
+    "kanji": "鷹",
+    "hiragana": "たか",
+    "type": "noun",
+    "english": "hawk"
+  },
+  {
+    "kanji": "孔雀",
+    "hiragana": "くじゃく",
+    "type": "noun",
+    "english": "peacock"
+  },
+  {
+    "kanji": "ペンギン",
+    "hiragana": "ペンギン",
+    "type": "noun",
+    "english": "penguin"
+  },
+  {
+    "kanji": "ライオン",
+    "hiragana": "ライオン",
+    "type": "noun",
+    "english": "lion"
+  },
+  {
+    "kanji": "トラ",
+    "hiragana": "トラ",
+    "type": "noun",
+    "english": "tiger"
+  },
+  {
+    "kanji": "蜂.",
+    "hiragana": "はち",
+    "type": "noun",
+    "english": "bee; wasp"
+  }
+]

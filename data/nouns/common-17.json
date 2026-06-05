@@ -1,0 +1,302 @@
+[
+  {
+    "kanji": "ぬらりひょん",
+    "hiragana": "ぬらりひょん",
+    "type": "noun",
+    "english": "mysterious elder yokai; leader-like figure"
+  },
+  {
+    "kanji": "百目",
+    "hiragana": "どうもく",
+    "type": "noun",
+    "english": "hundred-eyed yokai"
+  },
+  {
+    "kanji": "一つ目小僧",
+    "hiragana": "ひとつめこぞう",
+    "type": "noun",
+    "english": "one-eyed monk boy yokai"
+  },
+  {
+    "kanji": "化け猫",
+    "hiragana": "ばけねこ",
+    "type": "noun",
+    "english": "monster cat; transformed cat spirit"
+  },
+  {
+    "kanji": "猫又",
+    "hiragana": "ねこまた",
+    "type": "noun",
+    "english": "fork-tailed cat yokai"
+  },
+  {
+    "kanji": "絡新婦",
+    "hiragana": "じょろうぐも",
+    "type": "noun",
+    "english": "spider woman yokai"
+  },
+  {
+    "kanji": "のっぺらぼう",
+    "hiragana": "のっぺらぼう",
+    "type": "noun",
+    "english": "faceless ghost"
+  },
+  {
+    "kanji": "参上",
+    "hiragana": "さんじょう",
+    "type": "noun",
+    "english": "dramatic appearance; arrival"
+  },
+  {
+    "kanji": "必勝",
+    "hiragana": "ひっしょう",
+    "type": "noun",
+    "english": "certain victory"
+  },
+  {
+    "kanji": "完了",
+    "hiragana": "かんりょう",
+    "type": "noun",
+    "english": "completion; complete"
+  },
+  {
+    "kanji": "圧勝",
+    "hiragana": "あっしょう",
+    "type": "noun",
+    "english": "overwhelming victory"
+  },
+  {
+    "kanji": "限界",
+    "hiragana": "げんかい",
+    "type": "noun",
+    "english": "limit; boundary"
+  },
+  {
+    "kanji": "喝采",
+    "hiragana": "かっさい",
+    "type": "noun",
+    "english": "applause; cheers"
+  },
+  {
+    "kanji": "覚悟",
+    "hiragana": "かくご",
+    "type": "noun",
+    "english": "resolve; readiness"
+  },
+  {
+    "kanji": "鉄拳",
+    "hiragana": "てっけん",
+    "type": "noun",
+    "english": "iron fist"
+  },
+  {
+    "kanji": "執行",
+    "hiragana": "しっこう",
+    "type": "noun",
+    "english": "execution; carrying out"
+  },
+  {
+    "kanji": "合掌",
+    "hiragana": "がっしょう",
+    "type": "noun",
+    "english": "prayer with palms together; requiescat"
+  },
+  {
+    "kanji": "技",
+    "hiragana": "わざ",
+    "type": "noun",
+    "english": "technique; skill; move (in fighting/games)"
+  },
+  {
+    "kanji": "己",
+    "hiragana": "おのれ",
+    "type": "noun",
+    "english": "oneself"
+  },
+  {
+    "kanji": "拳",
+    "hiragana": "こぶし",
+    "type": "noun",
+    "english": "fist"
+  },
+  {
+    "kanji": "敗北",
+    "hiragana": "はいぼく",
+    "type": "noun",
+    "english": "defeat; loss"
+  },
+  {
+    "kanji": "汚泥",
+    "hiragana": "おでい",
+    "type": "noun",
+    "english": "mud; mire"
+  },
+  {
+    "kanji": "明日（あす）",
+    "hiragana": "あす",
+    "type": "noun",
+    "english": "tomorrow"
+  },
+  {
+    "kanji": "孤独",
+    "hiragana": "こどく",
+    "type": "noun",
+    "english": "solitude; loneliness"
+  },
+  {
+    "kanji": "昔",
+    "hiragana": "むかし",
+    "type": "noun",
+    "english": "old times; long ago"
+  },
+  {
+    "kanji": "コップ",
+    "hiragana": "コップ",
+    "type": "noun",
+    "english": "cup; glass"
+  },
+  {
+    "kanji": "こと",
+    "hiragana": "こと",
+    "type": "noun",
+    "english": "thing; matter"
+  },
+  {
+    "kanji": "ころ",
+    "hiragana": "ころ",
+    "type": "noun",
+    "english": "around; about that time"
+  },
+  {
+    "kanji": "じゃがいも",
+    "hiragana": "じゃがいも",
+    "type": "noun",
+    "english": "potato"
+  },
+  {
+    "kanji": "とき",
+    "hiragana": "とき",
+    "type": "noun",
+    "english": "time; when"
+  },
+  {
+    "kanji": "ノート",
+    "hiragana": "ノート",
+    "type": "noun",
+    "english": "notebook"
+  },
+  {
+    "kanji": "のど",
+    "hiragana": "のど",
+    "type": "noun",
+    "english": "throat"
+  },
+  {
+    "kanji": "プール",
+    "hiragana": "プール",
+    "type": "noun",
+    "english": "pool"
+  },
+  {
+    "kanji": "プレゼント",
+    "hiragana": "プレゼント",
+    "type": "noun",
+    "english": "present; gift"
+  },
+  {
+    "kanji": "ベランダ",
+    "hiragana": "ベランダ",
+    "type": "noun",
+    "english": "veranda; balcony"
+  },
+  {
+    "kanji": "ボート",
+    "hiragana": "ボート",
+    "type": "noun",
+    "english": "boat"
+  },
+  {
+    "kanji": "マフラー",
+    "hiragana": "マフラー",
+    "type": "noun",
+    "english": "scarf"
+  },
+  {
+    "kanji": "みんな",
+    "hiragana": "みんな",
+    "type": "noun",
+    "english": "everyone"
+  },
+  {
+    "kanji": "やる気",
+    "hiragana": "やるき",
+    "type": "noun",
+    "english": "motivation; willingness"
+  },
+  {
+    "kanji": "りんご",
+    "hiragana": "りんご",
+    "type": "noun",
+    "english": "apple"
+  },
+  {
+    "kanji": "仮面",
+    "hiragana": "かめん",
+    "type": "noun",
+    "english": "mask"
+  },
+  {
+    "kanji": "家業",
+    "hiragana": "かぎょう",
+    "type": "noun",
+    "english": "family business"
+  },
+  {
+    "kanji": "河",
+    "hiragana": "かわ",
+    "type": "noun",
+    "english": "river"
+  },
+  {
+    "kanji": "花粉",
+    "hiragana": "かふん",
+    "type": "noun",
+    "english": "pollen"
+  },
+  {
+    "kanji": "海外",
+    "hiragana": "かいがい",
+    "type": "noun",
+    "english": "overseas; abroad"
+  },
+  {
+    "kanji": "機械",
+    "hiragana": "きかい",
+    "type": "noun",
+    "english": "machine"
+  },
+  {
+    "kanji": "技術",
+    "hiragana": "ぎじゅつ",
+    "type": "noun",
+    "english": "technology; skill"
+  },
+  {
+    "kanji": "胸",
+    "hiragana": "むね",
+    "type": "noun",
+    "english": "chest"
+  },
+  {
+    "kanji": "穴",
+    "hiragana": "あな",
+    "type": "noun",
+    "english": "hole"
+  },
+  {
+    "kanji": "結論",
+    "hiragana": "けつろん",
+    "type": "noun",
+    "english": "conclusion"
+  }
+]

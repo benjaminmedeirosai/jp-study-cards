@@ -1,0 +1,680 @@
+[
+  {
+    "kanji": "濁る",
+    "hiragana": "にごる",
+    "type": "godan-verb",
+    "english": "to become muddy; cloudy"
+  },
+  {
+    "kanji": "送る",
+    "hiragana": "おくる",
+    "type": "godan-verb",
+    "english": "to send"
+  },
+  {
+    "kanji": "見送る",
+    "hiragana": "みおくる",
+    "type": "godan-verb",
+    "english": "to see off; to postpone"
+  },
+  {
+    "kanji": "上がる",
+    "hiragana": "あがる",
+    "type": "godan-verb",
+    "english": "to rise; to go up"
+  },
+  {
+    "kanji": "生きる",
+    "hiragana": "いきる",
+    "type": "godan-verb",
+    "english": "to live"
+  },
+  {
+    "kanji": "語る",
+    "hiragana": "かたる",
+    "type": "godan-verb",
+    "english": "to narrate; to talk about"
+  },
+  {
+    "kanji": "下がる",
+    "hiragana": "さがる",
+    "type": "godan-verb",
+    "english": "to fall; to go down; to step back"
+  },
+  {
+    "kanji": "名乗る",
+    "hiragana": "なのる",
+    "type": "godan-verb",
+    "english": "to give one's name; to introduce oneself"
+  },
+  {
+    "kanji": "割り振る",
+    "hiragana": "わりふる",
+    "type": "godan-verb",
+    "english": "to allocate; to distribute"
+  },
+  {
+    "kanji": "立ち去る",
+    "hiragana": "たちさる",
+    "type": "godan-verb",
+    "english": "to leave; to depart"
+  },
+  {
+    "kanji": "聞き取る",
+    "hiragana": "ききとる",
+    "type": "godan-verb",
+    "english": "to catch (what someone says)"
+  },
+  {
+    "kanji": "見切る",
+    "hiragana": "みきる",
+    "type": "godan-verb",
+    "english": "to give up on; to judge/decide (from context)"
+  },
+  {
+    "kanji": "立ち寄る",
+    "hiragana": "たちよる",
+    "type": "godan-verb",
+    "english": "to drop by; to stop by"
+  },
+  {
+    "kanji": "持ち上がる",
+    "hiragana": "もちあがる",
+    "type": "godan-verb",
+    "english": "to be raised; to come up (issue/event)"
+  },
+  {
+    "kanji": "探し回る",
+    "hiragana": "さがしまわる",
+    "type": "godan-verb",
+    "english": "to search all over"
+  },
+  {
+    "kanji": "探り回る",
+    "hiragana": "さぐりまわる",
+    "type": "godan-verb",
+    "english": "to probe around; to snoop around"
+  },
+  {
+    "kanji": "歩き回る",
+    "hiragana": "あるきまわる",
+    "type": "godan-verb",
+    "english": "to walk around; go around"
+  },
+  {
+    "kanji": "飛び回る",
+    "hiragana": "とびまわる",
+    "type": "godan-verb",
+    "english": "to fly/visit around; go around (frequently)"
+  },
+  {
+    "kanji": "駆け回る",
+    "hiragana": "かけまわる",
+    "type": "godan-verb",
+    "english": "to run about; run around"
+  },
+  {
+    "kanji": "光る",
+    "hiragana": "ひかる",
+    "type": "godan-verb",
+    "english": "to shine; to glitter"
+  },
+  {
+    "kanji": "入る",
+    "hiragana": "はいる",
+    "type": "godan-verb",
+    "english": "to enter; to go in"
+  },
+  {
+    "kanji": "分かる",
+    "hiragana": "わかる",
+    "type": "godan-verb",
+    "english": "to understand; to know"
+  },
+  {
+    "kanji": "集まる",
+    "hiragana": "あつまる",
+    "type": "godan-verb",
+    "english": "to gather; to collect (intrans.)"
+  },
+  {
+    "kanji": "謝る",
+    "hiragana": "あやまる",
+    "type": "godan-verb",
+    "english": "to apologize"
+  },
+  {
+    "kanji": "伸びきる",
+    "hiragana": "のびきる",
+    "type": "godan-verb",
+    "english": "to stretch completely; to reach full extension"
+  },
+  {
+    "kanji": "怖がる",
+    "hiragana": "こわがる",
+    "type": "godan-verb",
+    "english": "to be afraid (of); to show fear"
+  },
+  {
+    "kanji": "舞い上がる",
+    "hiragana": "まいあがる",
+    "type": "godan-verb",
+    "english": "to soar; to rise up"
+  },
+  {
+    "kanji": "なる",
+    "hiragana": "なる",
+    "type": "godan-verb",
+    "english": "to become"
+  },
+  {
+    "kanji": "ある",
+    "hiragana": "ある",
+    "type": "godan-verb",
+    "english": "to exist; there is"
+  },
+  {
+    "kanji": "こわがる",
+    "hiragana": "こわがる",
+    "type": "godan-verb",
+    "english": "to be afraid of"
+  },
+  {
+    "kanji": "走る",
+    "hiragana": "はしる",
+    "type": "godan-verb",
+    "english": "to run"
+  },
+  {
+    "kanji": "売る",
+    "hiragana": "うる",
+    "type": "godan-verb",
+    "english": "to sell"
+  },
+  {
+    "kanji": "眠る",
+    "hiragana": "ねむる",
+    "type": "godan-verb",
+    "english": "to sleep"
+  },
+  {
+    "kanji": "乗る",
+    "hiragana": "のる",
+    "type": "godan-verb",
+    "english": "to ride; to get on"
+  },
+  {
+    "kanji": "帰る",
+    "hiragana": "かえる",
+    "type": "godan-verb",
+    "english": "to return home"
+  },
+  {
+    "kanji": "ぶつかる",
+    "hiragana": "ぶつかる",
+    "type": "godan-verb",
+    "english": "to bump into; to collide"
+  },
+  {
+    "kanji": "回る",
+    "hiragana": "まわる",
+    "type": "godan-verb",
+    "english": "to turn; to go around; to rotate"
+  },
+  {
+    "kanji": "行きたがる",
+    "hiragana": "いきたがる",
+    "type": "godan-verb",
+    "english": "to want to go (third-person desire)"
+  },
+  {
+    "kanji": "作る",
+    "hiragana": "つくる",
+    "type": "godan-verb",
+    "english": "to make"
+  },
+  {
+    "kanji": "取る",
+    "hiragana": "とる",
+    "type": "godan-verb",
+    "english": "to take; to get (a prize)"
+  },
+  {
+    "kanji": "終わる",
+    "hiragana": "おわる",
+    "type": "godan-verb",
+    "english": "to finish"
+  },
+  {
+    "kanji": "切る",
+    "hiragana": "きる",
+    "type": "godan-verb",
+    "english": "to cut"
+  },
+  {
+    "kanji": "探る",
+    "hiragana": "さぐる",
+    "type": "godan-verb",
+    "english": "to probe; to investigate"
+  },
+  {
+    "kanji": "上る",
+    "hiragana": "のぼる",
+    "type": "godan-verb",
+    "english": "to go up; to climb"
+  },
+  {
+    "kanji": "通る",
+    "hiragana": "とおる",
+    "type": "godan-verb",
+    "english": "to pass through; to go along"
+  },
+  {
+    "kanji": "配る",
+    "hiragana": "くばる",
+    "type": "godan-verb",
+    "english": "to hand out; to distribute"
+  },
+  {
+    "kanji": "黙る",
+    "hiragana": "だまる",
+    "type": "godan-verb",
+    "english": "to fall silent; to keep quiet"
+  },
+  {
+    "kanji": "止まる",
+    "hiragana": "とまる",
+    "type": "godan-verb",
+    "english": "to stop"
+  },
+  {
+    "kanji": "高くなる",
+    "hiragana": "たかくなる",
+    "type": "godan-verb",
+    "english": "to become high/tall/expensive"
+  },
+  {
+    "kanji": "便利になる",
+    "hiragana": "べんりになる",
+    "type": "godan-verb",
+    "english": "to become convenient"
+  },
+  {
+    "kanji": "有名になる",
+    "hiragana": "ゆうめいになる",
+    "type": "godan-verb",
+    "english": "to become famous"
+  },
+  {
+    "kanji": "静かになる",
+    "hiragana": "しずかになる",
+    "type": "godan-verb",
+    "english": "to become quiet"
+  },
+  {
+    "kanji": "大変になる",
+    "hiragana": "たいへんになる",
+    "type": "godan-verb",
+    "english": "to become serious; tough"
+  },
+  {
+    "kanji": "安くなる",
+    "hiragana": "やすくなる",
+    "type": "godan-verb",
+    "english": "to become cheap"
+  },
+  {
+    "kanji": "新しくなる",
+    "hiragana": "あたらしくなる",
+    "type": "godan-verb",
+    "english": "to become new"
+  },
+  {
+    "kanji": "古くなる",
+    "hiragana": "ふるくなる",
+    "type": "godan-verb",
+    "english": "to become old"
+  },
+  {
+    "kanji": "ある",
+    "hiragana": "ある",
+    "type": "godan-verb",
+    "english": "to exist; have"
+  },
+  {
+    "kanji": "行ける",
+    "hiragana": "いける",
+    "type": "godan-verb",
+    "english": "can go"
+  },
+  {
+    "kanji": "行かれる",
+    "hiragana": "いかれる",
+    "type": "godan-verb",
+    "english": "be gone to"
+  },
+  {
+    "kanji": "行かせる",
+    "hiragana": "いかせる",
+    "type": "godan-verb",
+    "english": "make/let go"
+  },
+  {
+    "kanji": "買える",
+    "hiragana": "かえる",
+    "type": "godan-verb",
+    "english": "can buy"
+  },
+  {
+    "kanji": "買われる",
+    "hiragana": "かわれる",
+    "type": "godan-verb",
+    "english": "be bought"
+  },
+  {
+    "kanji": "買わせる",
+    "hiragana": "かわせる",
+    "type": "godan-verb",
+    "english": "make/let buy"
+  },
+  {
+    "kanji": "使える",
+    "hiragana": "つかえる",
+    "type": "godan-verb",
+    "english": "can use"
+  },
+  {
+    "kanji": "使われる",
+    "hiragana": "つかわれる",
+    "type": "godan-verb",
+    "english": "be used"
+  },
+  {
+    "kanji": "使わせる",
+    "hiragana": "つかわせる",
+    "type": "godan-verb",
+    "english": "make/let use"
+  },
+  {
+    "kanji": "書ける",
+    "hiragana": "かける",
+    "type": "godan-verb",
+    "english": "can write"
+  },
+  {
+    "kanji": "書かれる",
+    "hiragana": "かかれる",
+    "type": "godan-verb",
+    "english": "be written"
+  },
+  {
+    "kanji": "書かせる",
+    "hiragana": "かかせる",
+    "type": "godan-verb",
+    "english": "make/let write"
+  },
+  {
+    "kanji": "聞ける",
+    "hiragana": "きける",
+    "type": "godan-verb",
+    "english": "can hear; ask"
+  },
+  {
+    "kanji": "聞かれる",
+    "hiragana": "きかれる",
+    "type": "godan-verb",
+    "english": "be heard; asked"
+  },
+  {
+    "kanji": "聞かせる",
+    "hiragana": "きかせる",
+    "type": "godan-verb",
+    "english": "make/let hear; ask"
+  },
+  {
+    "kanji": "泳げる",
+    "hiragana": "およげる",
+    "type": "godan-verb",
+    "english": "can swim"
+  },
+  {
+    "kanji": "泳がれる",
+    "hiragana": "およがれる",
+    "type": "godan-verb",
+    "english": "be swum at"
+  },
+  {
+    "kanji": "泳がせる",
+    "hiragana": "およがせる",
+    "type": "godan-verb",
+    "english": "make/let swim"
+  },
+  {
+    "kanji": "急げる",
+    "hiragana": "いそげる",
+    "type": "godan-verb",
+    "english": "can hurry"
+  },
+  {
+    "kanji": "急がれる",
+    "hiragana": "いそがれる",
+    "type": "godan-verb",
+    "english": "be hurried"
+  },
+  {
+    "kanji": "急がせる",
+    "hiragana": "いそがせる",
+    "type": "godan-verb",
+    "english": "make/let hurry"
+  },
+  {
+    "kanji": "話せる",
+    "hiragana": "はなせる",
+    "type": "godan-verb",
+    "english": "can speak"
+  },
+  {
+    "kanji": "話される",
+    "hiragana": "はなされる",
+    "type": "godan-verb",
+    "english": "be spoken"
+  },
+  {
+    "kanji": "話させる",
+    "hiragana": "はなさせる",
+    "type": "godan-verb",
+    "english": "make/let speak"
+  },
+  {
+    "kanji": "過ごせる",
+    "hiragana": "すごせる",
+    "type": "godan-verb",
+    "english": "can spend"
+  },
+  {
+    "kanji": "過ごされる",
+    "hiragana": "すごされる",
+    "type": "godan-verb",
+    "english": "be spent"
+  },
+  {
+    "kanji": "過ごさせる",
+    "hiragana": "すごさせる",
+    "type": "godan-verb",
+    "english": "make/let spend"
+  },
+  {
+    "kanji": "待てる",
+    "hiragana": "まてる",
+    "type": "godan-verb",
+    "english": "can wait"
+  },
+  {
+    "kanji": "待たれる",
+    "hiragana": "またれる",
+    "type": "godan-verb",
+    "english": "be waited for"
+  },
+  {
+    "kanji": "待たせる",
+    "hiragana": "またせる",
+    "type": "godan-verb",
+    "english": "make/let wait"
+  },
+  {
+    "kanji": "立てる",
+    "hiragana": "たてる",
+    "type": "godan-verb",
+    "english": "can stand"
+  },
+  {
+    "kanji": "立たれる",
+    "hiragana": "たたれる",
+    "type": "godan-verb",
+    "english": "be stood by"
+  },
+  {
+    "kanji": "立たせる",
+    "hiragana": "たたせる",
+    "type": "godan-verb",
+    "english": "make/let stand"
+  },
+  {
+    "kanji": "死ねる",
+    "hiragana": "しねる",
+    "type": "godan-verb",
+    "english": "can die"
+  },
+  {
+    "kanji": "死なれる",
+    "hiragana": "しなれる",
+    "type": "godan-verb",
+    "english": "be died on"
+  },
+  {
+    "kanji": "死なせる",
+    "hiragana": "しなせる",
+    "type": "godan-verb",
+    "english": "make/let die"
+  },
+  {
+    "kanji": "遊べる",
+    "hiragana": "あそべる",
+    "type": "godan-verb",
+    "english": "can play"
+  },
+  {
+    "kanji": "遊ばれる",
+    "hiragana": "あそばれる",
+    "type": "godan-verb",
+    "english": "be played with"
+  },
+  {
+    "kanji": "遊ばせる",
+    "hiragana": "あそばせる",
+    "type": "godan-verb",
+    "english": "make/let play"
+  },
+  {
+    "kanji": "飛べる",
+    "hiragana": "とべる",
+    "type": "godan-verb",
+    "english": "can fly"
+  },
+  {
+    "kanji": "飛ばれる",
+    "hiragana": "とばれる",
+    "type": "godan-verb",
+    "english": "be flown to"
+  },
+  {
+    "kanji": "飛ばせる",
+    "hiragana": "とばせる",
+    "type": "godan-verb",
+    "english": "make/let fly"
+  },
+  {
+    "kanji": "読める",
+    "hiragana": "よめる",
+    "type": "godan-verb",
+    "english": "can read"
+  },
+  {
+    "kanji": "読まれる",
+    "hiragana": "よまれる",
+    "type": "godan-verb",
+    "english": "be read"
+  },
+  {
+    "kanji": "読ませる",
+    "hiragana": "よませる",
+    "type": "godan-verb",
+    "english": "make/let read"
+  },
+  {
+    "kanji": "飲める",
+    "hiragana": "のめる",
+    "type": "godan-verb",
+    "english": "can drink"
+  },
+  {
+    "kanji": "飲まれる",
+    "hiragana": "のまれる",
+    "type": "godan-verb",
+    "english": "be drunk"
+  },
+  {
+    "kanji": "飲ませる",
+    "hiragana": "のませる",
+    "type": "godan-verb",
+    "english": "make/let drink"
+  },
+  {
+    "kanji": "取る",
+    "hiragana": "とる",
+    "type": "godan-verb",
+    "english": "to take"
+  },
+  {
+    "kanji": "取れる",
+    "hiragana": "とれる",
+    "type": "godan-verb",
+    "english": "can take"
+  },
+  {
+    "kanji": "取られる",
+    "hiragana": "とられる",
+    "type": "godan-verb",
+    "english": "be taken"
+  },
+  {
+    "kanji": "取らせる",
+    "hiragana": "とらせる",
+    "type": "godan-verb",
+    "english": "make/let take"
+  },
+  {
+    "kanji": "帰る",
+    "hiragana": "かえる",
+    "type": "godan-verb",
+    "english": "to return"
+  },
+  {
+    "kanji": "帰れる",
+    "hiragana": "かえれる",
+    "type": "godan-verb",
+    "english": "can return"
+  },
+  {
+    "kanji": "帰られる",
+    "hiragana": "かえられる",
+    "type": "godan-verb",
+    "english": "be returned to"
+  },
+  {
+    "kanji": "帰らせる",
+    "hiragana": "かえらせる",
+    "type": "godan-verb",
+    "english": "make/let return"
+  }
+]

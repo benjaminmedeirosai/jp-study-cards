@@ -1,0 +1,302 @@
+[
+  {
+    "kanji": "目標",
+    "hiragana": "もくひょう",
+    "type": "noun",
+    "english": "goal; target"
+  },
+  {
+    "kanji": "結果",
+    "hiragana": "けっか",
+    "type": "noun",
+    "english": "result"
+  },
+  {
+    "kanji": "原因",
+    "hiragana": "げんいん",
+    "type": "noun",
+    "english": "cause"
+  },
+  {
+    "kanji": "経験",
+    "hiragana": "けいけん",
+    "type": "noun",
+    "english": "experience"
+  },
+  {
+    "kanji": "練習",
+    "hiragana": "れんしゅう",
+    "type": "noun",
+    "english": "practice; training"
+  },
+  {
+    "kanji": "努力",
+    "hiragana": "どりょく",
+    "type": "noun",
+    "english": "effort"
+  },
+  {
+    "kanji": "成長",
+    "hiragana": "せいちょう",
+    "type": "noun",
+    "english": "growth; development"
+  },
+  {
+    "kanji": "変化",
+    "hiragana": "へんか",
+    "type": "noun",
+    "english": "change"
+  },
+  {
+    "kanji": "準備",
+    "hiragana": "じゅんび",
+    "type": "noun",
+    "english": "preparation"
+  },
+  {
+    "kanji": "開始",
+    "hiragana": "かいし",
+    "type": "noun",
+    "english": "start; beginning"
+  },
+  {
+    "kanji": "終了",
+    "hiragana": "しゅうりょう",
+    "type": "noun",
+    "english": "end; finish"
+  },
+  {
+    "kanji": "途中",
+    "hiragana": "とちゅう",
+    "type": "noun",
+    "english": "on the way; halfway"
+  },
+  {
+    "kanji": "最後",
+    "hiragana": "さいご",
+    "type": "noun",
+    "english": "last; end"
+  },
+  {
+    "kanji": "最初",
+    "hiragana": "さいしょ",
+    "type": "noun",
+    "english": "first; beginning"
+  },
+  {
+    "kanji": "以上",
+    "hiragana": "いじょう",
+    "type": "noun",
+    "english": "more than; above; that's all"
+  },
+  {
+    "kanji": "以下",
+    "hiragana": "いか",
+    "type": "noun",
+    "english": "less than; below"
+  },
+  {
+    "kanji": "場合",
+    "hiragana": "ばあい",
+    "type": "noun",
+    "english": "case; situation"
+  },
+  {
+    "kanji": "理由書",
+    "hiragana": "りゆうしょ",
+    "type": "noun",
+    "english": "written statement of reasons"
+  },
+  {
+    "kanji": "書類",
+    "hiragana": "しょるい",
+    "type": "noun",
+    "english": "documents; paperwork"
+  },
+  {
+    "kanji": "身分証",
+    "hiragana": "みぶんしょう",
+    "type": "noun",
+    "english": "ID card; identification"
+  },
+  {
+    "kanji": "番号",
+    "hiragana": "ばんごう",
+    "type": "noun",
+    "english": "number; ID number"
+  },
+  {
+    "kanji": "携帯",
+    "hiragana": "けいたい",
+    "type": "noun",
+    "english": "mobile phone; cell phone"
+  },
+  {
+    "kanji": "携帯電話",
+    "hiragana": "けいたいでんわ",
+    "type": "noun",
+    "english": "cell phone"
+  },
+  {
+    "kanji": "電話番号",
+    "hiragana": "でんわばんごう",
+    "type": "noun",
+    "english": "phone number"
+  },
+  {
+    "kanji": "充電",
+    "hiragana": "じゅうでん",
+    "type": "noun",
+    "english": "charging (a battery)"
+  },
+  {
+    "kanji": "電池",
+    "hiragana": "でんち",
+    "type": "noun",
+    "english": "battery"
+  },
+  {
+    "kanji": "画面",
+    "hiragana": "がめん",
+    "type": "noun",
+    "english": "screen"
+  },
+  {
+    "kanji": "設定",
+    "hiragana": "せってい",
+    "type": "noun",
+    "english": "settings; configuration"
+  },
+  {
+    "kanji": "番号札",
+    "hiragana": "ばんごうふだ",
+    "type": "noun",
+    "english": "number ticket; queue ticket"
+  },
+  {
+    "kanji": "領収書",
+    "hiragana": "りょうしゅうしょ",
+    "type": "noun",
+    "english": "receipt"
+  },
+  {
+    "kanji": "交通",
+    "hiragana": "こうつう",
+    "type": "noun",
+    "english": "traffic; transportation"
+  },
+  {
+    "kanji": "渋滞",
+    "hiragana": "じゅうたい",
+    "type": "noun",
+    "english": "traffic jam"
+  },
+  {
+    "kanji": "事故現場",
+    "hiragana": "じこげんば",
+    "type": "noun",
+    "english": "accident site"
+  },
+  {
+    "kanji": "規則",
+    "hiragana": "きそく",
+    "type": "noun",
+    "english": "rule; regulation"
+  },
+  {
+    "kanji": "法律",
+    "hiragana": "ほうりつ",
+    "type": "noun",
+    "english": "law"
+  },
+  {
+    "kanji": "契約",
+    "hiragana": "けいやく",
+    "type": "noun",
+    "english": "contract"
+  },
+  {
+    "kanji": "申込",
+    "hiragana": "もうしこみ",
+    "type": "noun",
+    "english": "application; sign-up"
+  },
+  {
+    "kanji": "受付",
+    "hiragana": "うけつけ",
+    "type": "noun",
+    "english": "reception; front desk"
+  },
+  {
+    "kanji": "番号順",
+    "hiragana": "ばんごうじゅん",
+    "type": "noun",
+    "english": "numerical order"
+  },
+  {
+    "kanji": "列",
+    "hiragana": "れつ",
+    "type": "noun",
+    "english": "line; queue"
+  },
+  {
+    "kanji": "順番",
+    "hiragana": "じゅんばん",
+    "type": "noun",
+    "english": "turn; order"
+  },
+  {
+    "kanji": "会場",
+    "hiragana": "かいじょう",
+    "type": "noun",
+    "english": "venue; site"
+  },
+  {
+    "kanji": "場所",
+    "hiragana": "ばしょ",
+    "type": "noun",
+    "english": "place; location"
+  },
+  {
+    "kanji": "近所",
+    "hiragana": "きんじょ",
+    "type": "noun",
+    "english": "neighborhood; vicinity"
+  },
+  {
+    "kanji": "方向",
+    "hiragana": "ほうこう",
+    "type": "noun",
+    "english": "direction"
+  },
+  {
+    "kanji": "左右",
+    "hiragana": "さゆう",
+    "type": "noun",
+    "english": "left and right"
+  },
+  {
+    "kanji": "右",
+    "hiragana": "みぎ",
+    "type": "noun",
+    "english": "right"
+  },
+  {
+    "kanji": "左",
+    "hiragana": "ひだり",
+    "type": "noun",
+    "english": "left"
+  },
+  {
+    "kanji": "前",
+    "hiragana": "まえ",
+    "type": "noun",
+    "english": "front; before"
+  },
+  {
+    "kanji": "上",
+    "hiragana": "うえ",
+    "type": "noun",
+    "english": "top; above"
+  }
+]

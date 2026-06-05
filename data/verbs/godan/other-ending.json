@@ -1,0 +1,800 @@
+[
+  {
+    "kanji": "ない",
+    "hiragana": "ない",
+    "type": "godan-verb",
+    "english": "to not exist; have"
+  },
+  {
+    "kanji": "あった",
+    "hiragana": "あった",
+    "type": "godan-verb",
+    "english": "existed; had"
+  },
+  {
+    "kanji": "なかった",
+    "hiragana": "なかった",
+    "type": "godan-verb",
+    "english": "did not exist; have"
+  },
+  {
+    "kanji": "あって",
+    "hiragana": "あって",
+    "type": "godan-verb",
+    "english": "exist; have and; please exist; have"
+  },
+  {
+    "kanji": "あれば",
+    "hiragana": "あれば",
+    "type": "godan-verb",
+    "english": "if exist; have"
+  },
+  {
+    "kanji": "あったら",
+    "hiragana": "あったら",
+    "type": "godan-verb",
+    "english": "if/when existed; had"
+  },
+  {
+    "kanji": "あれ",
+    "hiragana": "あれ",
+    "type": "godan-verb",
+    "english": "exist; have!"
+  },
+  {
+    "kanji": "行かない",
+    "hiragana": "いかない",
+    "type": "godan-verb",
+    "english": "to not go"
+  },
+  {
+    "kanji": "行った",
+    "hiragana": "いった",
+    "type": "godan-verb",
+    "english": "went"
+  },
+  {
+    "kanji": "行かなかった",
+    "hiragana": "いかなかった",
+    "type": "godan-verb",
+    "english": "did not go"
+  },
+  {
+    "kanji": "行って",
+    "hiragana": "いって",
+    "type": "godan-verb",
+    "english": "go and; please go"
+  },
+  {
+    "kanji": "行けば",
+    "hiragana": "いけば",
+    "type": "godan-verb",
+    "english": "if go"
+  },
+  {
+    "kanji": "行ったら",
+    "hiragana": "いったら",
+    "type": "godan-verb",
+    "english": "if/when went"
+  },
+  {
+    "kanji": "行け",
+    "hiragana": "いけ",
+    "type": "godan-verb",
+    "english": "go!"
+  },
+  {
+    "kanji": "買わない",
+    "hiragana": "かわない",
+    "type": "godan-verb",
+    "english": "to not buy"
+  },
+  {
+    "kanji": "買った",
+    "hiragana": "かった",
+    "type": "godan-verb",
+    "english": "bought"
+  },
+  {
+    "kanji": "買わなかった",
+    "hiragana": "かわなかった",
+    "type": "godan-verb",
+    "english": "did not buy"
+  },
+  {
+    "kanji": "買って",
+    "hiragana": "かって",
+    "type": "godan-verb",
+    "english": "buy and; please buy"
+  },
+  {
+    "kanji": "買えば",
+    "hiragana": "かえば",
+    "type": "godan-verb",
+    "english": "if buy"
+  },
+  {
+    "kanji": "買ったら",
+    "hiragana": "かったら",
+    "type": "godan-verb",
+    "english": "if/when bought"
+  },
+  {
+    "kanji": "買え",
+    "hiragana": "かえ",
+    "type": "godan-verb",
+    "english": "buy!"
+  },
+  {
+    "kanji": "使わない",
+    "hiragana": "つかわない",
+    "type": "godan-verb",
+    "english": "to not use"
+  },
+  {
+    "kanji": "使った",
+    "hiragana": "つかった",
+    "type": "godan-verb",
+    "english": "used"
+  },
+  {
+    "kanji": "使わなかった",
+    "hiragana": "つかわなかった",
+    "type": "godan-verb",
+    "english": "did not use"
+  },
+  {
+    "kanji": "使って",
+    "hiragana": "つかって",
+    "type": "godan-verb",
+    "english": "use and; please use"
+  },
+  {
+    "kanji": "使えば",
+    "hiragana": "つかえば",
+    "type": "godan-verb",
+    "english": "if use"
+  },
+  {
+    "kanji": "使ったら",
+    "hiragana": "つかったら",
+    "type": "godan-verb",
+    "english": "if/when used"
+  },
+  {
+    "kanji": "使え",
+    "hiragana": "つかえ",
+    "type": "godan-verb",
+    "english": "use!"
+  },
+  {
+    "kanji": "書かない",
+    "hiragana": "かかない",
+    "type": "godan-verb",
+    "english": "to not write"
+  },
+  {
+    "kanji": "書いた",
+    "hiragana": "かいた",
+    "type": "godan-verb",
+    "english": "wrote"
+  },
+  {
+    "kanji": "書かなかった",
+    "hiragana": "かかなかった",
+    "type": "godan-verb",
+    "english": "did not write"
+  },
+  {
+    "kanji": "書いて",
+    "hiragana": "かいて",
+    "type": "godan-verb",
+    "english": "write and; please write"
+  },
+  {
+    "kanji": "書けば",
+    "hiragana": "かけば",
+    "type": "godan-verb",
+    "english": "if write"
+  },
+  {
+    "kanji": "書いたら",
+    "hiragana": "かいたら",
+    "type": "godan-verb",
+    "english": "if/when wrote"
+  },
+  {
+    "kanji": "書け",
+    "hiragana": "かけ",
+    "type": "godan-verb",
+    "english": "write!"
+  },
+  {
+    "kanji": "聞かない",
+    "hiragana": "きかない",
+    "type": "godan-verb",
+    "english": "to not hear; ask"
+  },
+  {
+    "kanji": "聞いた",
+    "hiragana": "きいた",
+    "type": "godan-verb",
+    "english": "heard; asked"
+  },
+  {
+    "kanji": "聞かなかった",
+    "hiragana": "きかなかった",
+    "type": "godan-verb",
+    "english": "did not hear; ask"
+  },
+  {
+    "kanji": "聞いて",
+    "hiragana": "きいて",
+    "type": "godan-verb",
+    "english": "hear; ask and; please hear; ask"
+  },
+  {
+    "kanji": "聞けば",
+    "hiragana": "きけば",
+    "type": "godan-verb",
+    "english": "if hear; ask"
+  },
+  {
+    "kanji": "聞いたら",
+    "hiragana": "きいたら",
+    "type": "godan-verb",
+    "english": "if/when heard; asked"
+  },
+  {
+    "kanji": "聞け",
+    "hiragana": "きけ",
+    "type": "godan-verb",
+    "english": "hear; ask!"
+  },
+  {
+    "kanji": "泳がない",
+    "hiragana": "およがない",
+    "type": "godan-verb",
+    "english": "to not swim"
+  },
+  {
+    "kanji": "泳いだ",
+    "hiragana": "およいだ",
+    "type": "godan-verb",
+    "english": "swam"
+  },
+  {
+    "kanji": "泳がなかった",
+    "hiragana": "およがなかった",
+    "type": "godan-verb",
+    "english": "did not swim"
+  },
+  {
+    "kanji": "泳いで",
+    "hiragana": "およいで",
+    "type": "godan-verb",
+    "english": "swim and; please swim"
+  },
+  {
+    "kanji": "泳げば",
+    "hiragana": "およげば",
+    "type": "godan-verb",
+    "english": "if swim"
+  },
+  {
+    "kanji": "泳いだら",
+    "hiragana": "およいだら",
+    "type": "godan-verb",
+    "english": "if/when swam"
+  },
+  {
+    "kanji": "泳げ",
+    "hiragana": "およげ",
+    "type": "godan-verb",
+    "english": "swim!"
+  },
+  {
+    "kanji": "急がない",
+    "hiragana": "いそがない",
+    "type": "godan-verb",
+    "english": "to not hurry"
+  },
+  {
+    "kanji": "急いだ",
+    "hiragana": "いそいだ",
+    "type": "godan-verb",
+    "english": "hurried"
+  },
+  {
+    "kanji": "急がなかった",
+    "hiragana": "いそがなかった",
+    "type": "godan-verb",
+    "english": "did not hurry"
+  },
+  {
+    "kanji": "急いで",
+    "hiragana": "いそいで",
+    "type": "godan-verb",
+    "english": "hurry and; please hurry"
+  },
+  {
+    "kanji": "急げば",
+    "hiragana": "いそげば",
+    "type": "godan-verb",
+    "english": "if hurry"
+  },
+  {
+    "kanji": "急いだら",
+    "hiragana": "いそいだら",
+    "type": "godan-verb",
+    "english": "if/when hurried"
+  },
+  {
+    "kanji": "急げ",
+    "hiragana": "いそげ",
+    "type": "godan-verb",
+    "english": "hurry!"
+  },
+  {
+    "kanji": "話さない",
+    "hiragana": "はなさない",
+    "type": "godan-verb",
+    "english": "to not speak"
+  },
+  {
+    "kanji": "話した",
+    "hiragana": "はなした",
+    "type": "godan-verb",
+    "english": "spoke"
+  },
+  {
+    "kanji": "話さなかった",
+    "hiragana": "はなさなかった",
+    "type": "godan-verb",
+    "english": "did not speak"
+  },
+  {
+    "kanji": "話して",
+    "hiragana": "はなして",
+    "type": "godan-verb",
+    "english": "speak and; please speak"
+  },
+  {
+    "kanji": "話せば",
+    "hiragana": "はなせば",
+    "type": "godan-verb",
+    "english": "if speak"
+  },
+  {
+    "kanji": "話したら",
+    "hiragana": "はなしたら",
+    "type": "godan-verb",
+    "english": "if/when spoke"
+  },
+  {
+    "kanji": "話せ",
+    "hiragana": "はなせ",
+    "type": "godan-verb",
+    "english": "speak!"
+  },
+  {
+    "kanji": "過ごさない",
+    "hiragana": "すごさない",
+    "type": "godan-verb",
+    "english": "to not spend"
+  },
+  {
+    "kanji": "過ごした",
+    "hiragana": "すごした",
+    "type": "godan-verb",
+    "english": "spent"
+  },
+  {
+    "kanji": "過ごさなかった",
+    "hiragana": "すごさなかった",
+    "type": "godan-verb",
+    "english": "did not spend"
+  },
+  {
+    "kanji": "過ごして",
+    "hiragana": "すごして",
+    "type": "godan-verb",
+    "english": "spend and; please spend"
+  },
+  {
+    "kanji": "過ごせば",
+    "hiragana": "すごせば",
+    "type": "godan-verb",
+    "english": "if spend"
+  },
+  {
+    "kanji": "過ごしたら",
+    "hiragana": "すごしたら",
+    "type": "godan-verb",
+    "english": "if/when spent"
+  },
+  {
+    "kanji": "過ごせ",
+    "hiragana": "すごせ",
+    "type": "godan-verb",
+    "english": "spend!"
+  },
+  {
+    "kanji": "待たない",
+    "hiragana": "またない",
+    "type": "godan-verb",
+    "english": "to not wait"
+  },
+  {
+    "kanji": "待った",
+    "hiragana": "まった",
+    "type": "godan-verb",
+    "english": "waited"
+  },
+  {
+    "kanji": "待たなかった",
+    "hiragana": "またなかった",
+    "type": "godan-verb",
+    "english": "did not wait"
+  },
+  {
+    "kanji": "待って",
+    "hiragana": "まって",
+    "type": "godan-verb",
+    "english": "wait and; please wait"
+  },
+  {
+    "kanji": "待てば",
+    "hiragana": "まてば",
+    "type": "godan-verb",
+    "english": "if wait"
+  },
+  {
+    "kanji": "待ったら",
+    "hiragana": "まったら",
+    "type": "godan-verb",
+    "english": "if/when waited"
+  },
+  {
+    "kanji": "待て",
+    "hiragana": "まて",
+    "type": "godan-verb",
+    "english": "wait!"
+  },
+  {
+    "kanji": "立たない",
+    "hiragana": "たたない",
+    "type": "godan-verb",
+    "english": "to not stand"
+  },
+  {
+    "kanji": "立った",
+    "hiragana": "たった",
+    "type": "godan-verb",
+    "english": "stood"
+  },
+  {
+    "kanji": "立たなかった",
+    "hiragana": "たたなかった",
+    "type": "godan-verb",
+    "english": "did not stand"
+  },
+  {
+    "kanji": "立って",
+    "hiragana": "たって",
+    "type": "godan-verb",
+    "english": "stand and; please stand"
+  },
+  {
+    "kanji": "立てば",
+    "hiragana": "たてば",
+    "type": "godan-verb",
+    "english": "if stand"
+  },
+  {
+    "kanji": "立ったら",
+    "hiragana": "たったら",
+    "type": "godan-verb",
+    "english": "if/when stood"
+  },
+  {
+    "kanji": "立て",
+    "hiragana": "たて",
+    "type": "godan-verb",
+    "english": "stand!"
+  },
+  {
+    "kanji": "死なない",
+    "hiragana": "しなない",
+    "type": "godan-verb",
+    "english": "to not die"
+  },
+  {
+    "kanji": "死んだ",
+    "hiragana": "しんだ",
+    "type": "godan-verb",
+    "english": "died"
+  },
+  {
+    "kanji": "死ななかった",
+    "hiragana": "しななかった",
+    "type": "godan-verb",
+    "english": "did not die"
+  },
+  {
+    "kanji": "死んで",
+    "hiragana": "しんで",
+    "type": "godan-verb",
+    "english": "die and; please die"
+  },
+  {
+    "kanji": "死ねば",
+    "hiragana": "しねば",
+    "type": "godan-verb",
+    "english": "if die"
+  },
+  {
+    "kanji": "死んだら",
+    "hiragana": "しんだら",
+    "type": "godan-verb",
+    "english": "if/when died"
+  },
+  {
+    "kanji": "死ね",
+    "hiragana": "しね",
+    "type": "godan-verb",
+    "english": "die!"
+  },
+  {
+    "kanji": "遊ばない",
+    "hiragana": "あそばない",
+    "type": "godan-verb",
+    "english": "to not play"
+  },
+  {
+    "kanji": "遊んだ",
+    "hiragana": "あそんだ",
+    "type": "godan-verb",
+    "english": "played"
+  },
+  {
+    "kanji": "遊ばなかった",
+    "hiragana": "あそばなかった",
+    "type": "godan-verb",
+    "english": "did not play"
+  },
+  {
+    "kanji": "遊んで",
+    "hiragana": "あそんで",
+    "type": "godan-verb",
+    "english": "play and; please play"
+  },
+  {
+    "kanji": "遊べば",
+    "hiragana": "あそべば",
+    "type": "godan-verb",
+    "english": "if play"
+  },
+  {
+    "kanji": "遊んだら",
+    "hiragana": "あそんだら",
+    "type": "godan-verb",
+    "english": "if/when played"
+  },
+  {
+    "kanji": "遊べ",
+    "hiragana": "あそべ",
+    "type": "godan-verb",
+    "english": "play!"
+  },
+  {
+    "kanji": "飛ばない",
+    "hiragana": "とばない",
+    "type": "godan-verb",
+    "english": "to not fly"
+  },
+  {
+    "kanji": "飛んだ",
+    "hiragana": "とんだ",
+    "type": "godan-verb",
+    "english": "flew"
+  },
+  {
+    "kanji": "飛ばなかった",
+    "hiragana": "とばなかった",
+    "type": "godan-verb",
+    "english": "did not fly"
+  },
+  {
+    "kanji": "飛んで",
+    "hiragana": "とんで",
+    "type": "godan-verb",
+    "english": "fly and; please fly"
+  },
+  {
+    "kanji": "飛べば",
+    "hiragana": "とべば",
+    "type": "godan-verb",
+    "english": "if fly"
+  },
+  {
+    "kanji": "飛んだら",
+    "hiragana": "とんだら",
+    "type": "godan-verb",
+    "english": "if/when flew"
+  },
+  {
+    "kanji": "飛べ",
+    "hiragana": "とべ",
+    "type": "godan-verb",
+    "english": "fly!"
+  },
+  {
+    "kanji": "読まない",
+    "hiragana": "よまない",
+    "type": "godan-verb",
+    "english": "to not read"
+  },
+  {
+    "kanji": "読んだ",
+    "hiragana": "よんだ",
+    "type": "godan-verb",
+    "english": "read"
+  },
+  {
+    "kanji": "読まなかった",
+    "hiragana": "よまなかった",
+    "type": "godan-verb",
+    "english": "did not read"
+  },
+  {
+    "kanji": "読んで",
+    "hiragana": "よんで",
+    "type": "godan-verb",
+    "english": "read and; please read"
+  },
+  {
+    "kanji": "読めば",
+    "hiragana": "よめば",
+    "type": "godan-verb",
+    "english": "if read"
+  },
+  {
+    "kanji": "読んだら",
+    "hiragana": "よんだら",
+    "type": "godan-verb",
+    "english": "if/when read"
+  },
+  {
+    "kanji": "読め",
+    "hiragana": "よめ",
+    "type": "godan-verb",
+    "english": "read!"
+  },
+  {
+    "kanji": "飲まない",
+    "hiragana": "のまない",
+    "type": "godan-verb",
+    "english": "to not drink"
+  },
+  {
+    "kanji": "飲んだ",
+    "hiragana": "のんだ",
+    "type": "godan-verb",
+    "english": "drank"
+  },
+  {
+    "kanji": "飲まなかった",
+    "hiragana": "のまなかった",
+    "type": "godan-verb",
+    "english": "did not drink"
+  },
+  {
+    "kanji": "飲んで",
+    "hiragana": "のんで",
+    "type": "godan-verb",
+    "english": "drink and; please drink"
+  },
+  {
+    "kanji": "飲めば",
+    "hiragana": "のめば",
+    "type": "godan-verb",
+    "english": "if drink"
+  },
+  {
+    "kanji": "飲んだら",
+    "hiragana": "のんだら",
+    "type": "godan-verb",
+    "english": "if/when drank"
+  },
+  {
+    "kanji": "飲め",
+    "hiragana": "のめ",
+    "type": "godan-verb",
+    "english": "drink!"
+  },
+  {
+    "kanji": "取らない",
+    "hiragana": "とらない",
+    "type": "godan-verb",
+    "english": "to not take"
+  },
+  {
+    "kanji": "取った",
+    "hiragana": "とった",
+    "type": "godan-verb",
+    "english": "took"
+  },
+  {
+    "kanji": "取らなかった",
+    "hiragana": "とらなかった",
+    "type": "godan-verb",
+    "english": "did not take"
+  },
+  {
+    "kanji": "取って",
+    "hiragana": "とって",
+    "type": "godan-verb",
+    "english": "take and; please take"
+  },
+  {
+    "kanji": "取れば",
+    "hiragana": "とれば",
+    "type": "godan-verb",
+    "english": "if take"
+  },
+  {
+    "kanji": "取ったら",
+    "hiragana": "とったら",
+    "type": "godan-verb",
+    "english": "if/when took"
+  },
+  {
+    "kanji": "取れ",
+    "hiragana": "とれ",
+    "type": "godan-verb",
+    "english": "take!"
+  },
+  {
+    "kanji": "帰らない",
+    "hiragana": "かえらない",
+    "type": "godan-verb",
+    "english": "to not return"
+  },
+  {
+    "kanji": "帰った",
+    "hiragana": "かえった",
+    "type": "godan-verb",
+    "english": "returned"
+  },
+  {
+    "kanji": "帰らなかった",
+    "hiragana": "かえらなかった",
+    "type": "godan-verb",
+    "english": "did not return"
+  },
+  {
+    "kanji": "帰って",
+    "hiragana": "かえって",
+    "type": "godan-verb",
+    "english": "return and; please return"
+  },
+  {
+    "kanji": "帰れば",
+    "hiragana": "かえれば",
+    "type": "godan-verb",
+    "english": "if return"
+  },
+  {
+    "kanji": "帰ったら",
+    "hiragana": "かえったら",
+    "type": "godan-verb",
+    "english": "if/when returned"
+  },
+  {
+    "kanji": "帰れ",
+    "hiragana": "かえれ",
+    "type": "godan-verb",
+    "english": "return!"
+  }
+]

@@ -1,0 +1,302 @@
+[
+  {
+    "kanji": "花",
+    "hiragana": "はな",
+    "type": "noun",
+    "english": "flower; blossom"
+  },
+  {
+    "kanji": "草",
+    "hiragana": "くさ",
+    "type": "noun",
+    "english": "grass; weeds; vegetation"
+  },
+  {
+    "kanji": "葉",
+    "hiragana": "は",
+    "type": "noun",
+    "english": "leaf"
+  },
+  {
+    "kanji": "虫",
+    "hiragana": "むし",
+    "type": "noun",
+    "english": "insect; bug; worm"
+  },
+  {
+    "kanji": "肉",
+    "hiragana": "にく",
+    "type": "noun",
+    "english": "meat"
+  },
+  {
+    "kanji": "野菜",
+    "hiragana": "やさい",
+    "type": "noun",
+    "english": "vegetables"
+  },
+  {
+    "kanji": "果物",
+    "hiragana": "くだもの",
+    "type": "noun",
+    "english": "fruit"
+  },
+  {
+    "kanji": "米",
+    "hiragana": "こめ",
+    "type": "noun",
+    "english": "rice (uncooked)"
+  },
+  {
+    "kanji": "砂糖",
+    "hiragana": "さとう",
+    "type": "noun",
+    "english": "sugar"
+  },
+  {
+    "kanji": "塩",
+    "hiragana": "しお",
+    "type": "noun",
+    "english": "salt"
+  },
+  {
+    "kanji": "油",
+    "hiragana": "あぶら",
+    "type": "noun",
+    "english": "oil"
+  },
+  {
+    "kanji": "皿",
+    "hiragana": "さら",
+    "type": "noun",
+    "english": "plate; dish"
+  },
+  {
+    "kanji": "茶碗",
+    "hiragana": "ちゃわん",
+    "type": "noun",
+    "english": "rice bowl"
+  },
+  {
+    "kanji": "箸",
+    "hiragana": "はし",
+    "type": "noun",
+    "english": "chopsticks"
+  },
+  {
+    "kanji": "包丁",
+    "hiragana": "ほうちょう",
+    "type": "noun",
+    "english": "kitchen knife"
+  },
+  {
+    "kanji": "台所",
+    "hiragana": "だいどころ",
+    "type": "noun",
+    "english": "kitchen"
+  },
+  {
+    "kanji": "冷蔵庫",
+    "hiragana": "れいぞうこ",
+    "type": "noun",
+    "english": "refrigerator"
+  },
+  {
+    "kanji": "鍋",
+    "hiragana": "なべ",
+    "type": "noun",
+    "english": "pot"
+  },
+  {
+    "kanji": "掃除",
+    "hiragana": "そうじ",
+    "type": "noun",
+    "english": "cleaning"
+  },
+  {
+    "kanji": "洗濯",
+    "hiragana": "せんたく",
+    "type": "noun",
+    "english": "laundry"
+  },
+  {
+    "kanji": "洗剤",
+    "hiragana": "せんざい",
+    "type": "noun",
+    "english": "detergent"
+  },
+  {
+    "kanji": "布団",
+    "hiragana": "ふとん",
+    "type": "noun",
+    "english": "futon; bedding"
+  },
+  {
+    "kanji": "玄関",
+    "hiragana": "げんかん",
+    "type": "noun",
+    "english": "entryway"
+  },
+  {
+    "kanji": "窓",
+    "hiragana": "まど",
+    "type": "noun",
+    "english": "window"
+  },
+  {
+    "kanji": "床",
+    "hiragana": "ゆか",
+    "type": "noun",
+    "english": "floor"
+  },
+  {
+    "kanji": "天井",
+    "hiragana": "てんじょう",
+    "type": "noun",
+    "english": "ceiling"
+  },
+  {
+    "kanji": "壁",
+    "hiragana": "かべ",
+    "type": "noun",
+    "english": "wall"
+  },
+  {
+    "kanji": "机",
+    "hiragana": "つくえ",
+    "type": "noun",
+    "english": "desk"
+  },
+  {
+    "kanji": "椅子",
+    "hiragana": "いす",
+    "type": "noun",
+    "english": "chair"
+  },
+  {
+    "kanji": "本棚",
+    "hiragana": "ほんだな",
+    "type": "noun",
+    "english": "bookshelf"
+  },
+  {
+    "kanji": "本",
+    "hiragana": "ほん",
+    "type": "noun",
+    "english": "book"
+  },
+  {
+    "kanji": "新聞",
+    "hiragana": "しんぶん",
+    "type": "noun",
+    "english": "newspaper"
+  },
+  {
+    "kanji": "雑誌",
+    "hiragana": "ざっし",
+    "type": "noun",
+    "english": "magazine"
+  },
+  {
+    "kanji": "手紙",
+    "hiragana": "てがみ",
+    "type": "noun",
+    "english": "letter"
+  },
+  {
+    "kanji": "地図",
+    "hiragana": "ちず",
+    "type": "noun",
+    "english": "map"
+  },
+  {
+    "kanji": "写真",
+    "hiragana": "しゃしん",
+    "type": "noun",
+    "english": "photo; picture"
+  },
+  {
+    "kanji": "映画",
+    "hiragana": "えいが",
+    "type": "noun",
+    "english": "movie; film"
+  },
+  {
+    "kanji": "音楽",
+    "hiragana": "おんがく",
+    "type": "noun",
+    "english": "music"
+  },
+  {
+    "kanji": "歌",
+    "hiragana": "うた",
+    "type": "noun",
+    "english": "song"
+  },
+  {
+    "kanji": "声",
+    "hiragana": "こえ",
+    "type": "noun",
+    "english": "voice"
+  },
+  {
+    "kanji": "言葉",
+    "hiragana": "ことば",
+    "type": "noun",
+    "english": "word; language"
+  },
+  {
+    "kanji": "日本語",
+    "hiragana": "にほんご",
+    "type": "noun",
+    "english": "Japanese (language)"
+  },
+  {
+    "kanji": "英語",
+    "hiragana": "えいご",
+    "type": "noun",
+    "english": "English (language)"
+  },
+  {
+    "kanji": "意味",
+    "hiragana": "いみ",
+    "type": "noun",
+    "english": "meaning"
+  },
+  {
+    "kanji": "漢字",
+    "hiragana": "かんじ",
+    "type": "noun",
+    "english": "kanji; Chinese characters"
+  },
+  {
+    "kanji": "文法",
+    "hiragana": "ぶんぽう",
+    "type": "noun",
+    "english": "grammar"
+  },
+  {
+    "kanji": "宿題",
+    "hiragana": "しゅくだい",
+    "type": "noun",
+    "english": "homework"
+  },
+  {
+    "kanji": "試験",
+    "hiragana": "しけん",
+    "type": "noun",
+    "english": "exam"
+  },
+  {
+    "kanji": "点数",
+    "hiragana": "てんすう",
+    "type": "noun",
+    "english": "score; points"
+  },
+  {
+    "kanji": "問題",
+    "hiragana": "もんだい",
+    "type": "noun",
+    "english": "problem; question"
+  }
+]

@@ -1,0 +1,32 @@
+[
+  {
+    "kanji": "断つ",
+    "hiragana": "たつ",
+    "type": "godan-verb",
+    "english": "to cut off; to put an end to"
+  },
+  {
+    "kanji": "持つ",
+    "hiragana": "もつ",
+    "type": "godan-verb",
+    "english": "to hold; to carry"
+  },
+  {
+    "kanji": "勝つ",
+    "hiragana": "かつ",
+    "type": "godan-verb",
+    "english": "to win"
+  },
+  {
+    "kanji": "待つ",
+    "hiragana": "まつ",
+    "type": "godan-verb",
+    "english": "to wait"
+  },
+  {
+    "kanji": "立つ",
+    "hiragana": "たつ",
+    "type": "godan-verb",
+    "english": "to stand"
+  }
+]

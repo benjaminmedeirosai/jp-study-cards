@@ -1,0 +1,158 @@
+[
+  {
+    "kanji": "促す",
+    "hiragana": "うながす",
+    "type": "godan-verb",
+    "english": "to urge; to prompt"
+  },
+  {
+    "kanji": "話す",
+    "hiragana": "はなす",
+    "type": "godan-verb",
+    "english": "to talk"
+  },
+  {
+    "kanji": "外す",
+    "hiragana": "はずす",
+    "type": "godan-verb",
+    "english": "to remove; to take off; to unfasten"
+  },
+  {
+    "kanji": "書き直す",
+    "hiragana": "かきなおす",
+    "type": "godan-verb",
+    "english": "to rewrite; to correct writing"
+  },
+  {
+    "kanji": "聞き直す",
+    "hiragana": "ききなおす",
+    "type": "godan-verb",
+    "english": "to ask again; to check by asking"
+  },
+  {
+    "kanji": "見直す",
+    "hiragana": "みなおす",
+    "type": "godan-verb",
+    "english": "to review; to reconsider"
+  },
+  {
+    "kanji": "書き足す",
+    "hiragana": "かきたす",
+    "type": "godan-verb",
+    "english": "to add writing; to add a note"
+  },
+  {
+    "kanji": "飛び出す",
+    "hiragana": "とびだす",
+    "type": "godan-verb",
+    "english": "to jump out; to rush out"
+  },
+  {
+    "kanji": "逃げ出す",
+    "hiragana": "にげだす",
+    "type": "godan-verb",
+    "english": "to run away; to escape"
+  },
+  {
+    "kanji": "引き返す",
+    "hiragana": "ひきかえす",
+    "type": "godan-verb",
+    "english": "to go back; to return"
+  },
+  {
+    "kanji": "切り落とす",
+    "hiragana": "きりおとす",
+    "type": "godan-verb",
+    "english": "to cut off; to cut away"
+  },
+  {
+    "kanji": "聞き逃す",
+    "hiragana": "ききのがす",
+    "type": "godan-verb",
+    "english": "to miss hearing; to fail to catch (audio)"
+  },
+  {
+    "kanji": "取り戻す",
+    "hiragana": "とりもどす",
+    "type": "godan-verb",
+    "english": "to take back; regain"
+  },
+  {
+    "kanji": "持ち出す",
+    "hiragana": "もちだす",
+    "type": "godan-verb",
+    "english": "to take out; bring out"
+  },
+  {
+    "kanji": "聞き返す",
+    "hiragana": "ききかえす",
+    "type": "godan-verb",
+    "english": "to ask someone to repeat; to ask back"
+  },
+  {
+    "kanji": "読み返す",
+    "hiragana": "よみかえす",
+    "type": "godan-verb",
+    "english": "to reread; to read again"
+  },
+  {
+    "kanji": "繰り出す",
+    "hiragana": "くりだす",
+    "type": "godan-verb",
+    "english": "to unleash; to send out"
+  },
+  {
+    "kanji": "溢れ出す",
+    "hiragana": "あふれだす",
+    "type": "godan-verb",
+    "english": "to overflow; to pour out"
+  },
+  {
+    "kanji": "ぶちかます",
+    "hiragana": "ぶちかます",
+    "type": "godan-verb",
+    "english": "to smash into; to let loose"
+  },
+  {
+    "kanji": "刺す",
+    "hiragana": "さす",
+    "type": "godan-verb",
+    "english": "to sting; to stab"
+  },
+  {
+    "kanji": "押す",
+    "hiragana": "おす",
+    "type": "godan-verb",
+    "english": "to push; to press"
+  },
+  {
+    "kanji": "回す",
+    "hiragana": "まわす",
+    "type": "godan-verb",
+    "english": "to turn; to spin; to rotate something"
+  },
+  {
+    "kanji": "探す",
+    "hiragana": "さがす",
+    "type": "godan-verb",
+    "english": "to search; to look for"
+  },
+  {
+    "kanji": "過ごす",
+    "hiragana": "すごす",
+    "type": "godan-verb",
+    "english": "to spend (time); to pass"
+  },
+  {
+    "kanji": "話す",
+    "hiragana": "はなす",
+    "type": "godan-verb",
+    "english": "to speak"
+  },
+  {
+    "kanji": "過ごす",
+    "hiragana": "すごす",
+    "type": "godan-verb",
+    "english": "to spend"
+  }
+]

@@ -1,0 +1,302 @@
+[
+  {
+    "kanji": "ぬいぐるみ",
+    "hiragana": "ぬいぐるみ",
+    "type": "noun",
+    "english": "stuffed toy; plush"
+  },
+  {
+    "kanji": "ムービー",
+    "hiragana": "ムービー",
+    "type": "noun",
+    "english": "movie; video clip"
+  },
+  {
+    "kanji": "リズム",
+    "hiragana": "リズム",
+    "type": "noun",
+    "english": "rhythm"
+  },
+  {
+    "kanji": "レースゲーム",
+    "hiragana": "レースゲーム",
+    "type": "noun",
+    "english": "racing game"
+  },
+  {
+    "kanji": "レジ",
+    "hiragana": "レジ",
+    "type": "noun",
+    "english": "cash register; checkout"
+  },
+  {
+    "kanji": "ワイドスクリーン",
+    "hiragana": "ワイドスクリーン",
+    "type": "noun",
+    "english": "widescreen"
+  },
+  {
+    "kanji": "以外",
+    "hiragana": "いがい",
+    "type": "noun",
+    "english": "except; besides; other than"
+  },
+  {
+    "kanji": "一日",
+    "hiragana": "いちにち",
+    "type": "noun",
+    "english": "one day"
+  },
+  {
+    "kanji": "一番",
+    "hiragana": "いちばん",
+    "type": "noun",
+    "english": "number one; the most"
+  },
+  {
+    "kanji": "映像",
+    "hiragana": "えいぞう",
+    "type": "noun",
+    "english": "visual footage; imagery"
+  },
+  {
+    "kanji": "黄金色",
+    "hiragana": "こがねいろ",
+    "type": "noun",
+    "english": "golden"
+  },
+  {
+    "kanji": "黄緑",
+    "hiragana": "きみどり",
+    "type": "noun",
+    "english": "yellow-green"
+  },
+  {
+    "kanji": "音楽ゲーム",
+    "hiragana": "おんがくゲーム",
+    "type": "noun",
+    "english": "music rhythm game"
+  },
+  {
+    "kanji": "加入",
+    "hiragana": "かにゅう",
+    "type": "noun",
+    "english": "joining; enrollment; membership"
+  },
+  {
+    "kanji": "画集",
+    "hiragana": "がしゅう",
+    "type": "noun",
+    "english": "art book; collection of illustrations"
+  },
+  {
+    "kanji": "回数",
+    "hiragana": "かいすう",
+    "type": "noun",
+    "english": "number of times; frequency"
+  },
+  {
+    "kanji": "回転",
+    "hiragana": "かいてん",
+    "type": "noun",
+    "english": "rotation; spinning"
+  },
+  {
+    "kanji": "回復",
+    "hiragana": "かいふく",
+    "type": "noun",
+    "english": "recovery; restoration"
+  },
+  {
+    "kanji": "外国人",
+    "hiragana": "がいこくじん",
+    "type": "noun",
+    "english": "foreigner; foreign person"
+  },
+  {
+    "kanji": "外出",
+    "hiragana": "がいしゅつ",
+    "type": "noun",
+    "english": "going out; outing"
+  },
+  {
+    "kanji": "外側",
+    "hiragana": "そとがわ",
+    "type": "noun",
+    "english": "outside; outer side"
+  },
+  {
+    "kanji": "外伝",
+    "hiragana": "がいでん",
+    "type": "noun",
+    "english": "side story; spinoff tale"
+  },
+  {
+    "kanji": "完結",
+    "hiragana": "かんけつ",
+    "type": "noun",
+    "english": "completion; finished (series)"
+  },
+  {
+    "kanji": "完全版",
+    "hiragana": "かんぜんばん",
+    "type": "noun",
+    "english": "complete edition"
+  },
+  {
+    "kanji": "間",
+    "hiragana": "あいだ",
+    "type": "noun",
+    "english": "interval; while; during"
+  },
+  {
+    "kanji": "魚売り場",
+    "hiragana": "さかなうりば",
+    "type": "noun",
+    "english": "fish section"
+  },
+  {
+    "kanji": "空色",
+    "hiragana": "そらいろ",
+    "type": "noun",
+    "english": "sky blue"
+  },
+  {
+    "kanji": "原作",
+    "hiragana": "げんさく",
+    "type": "noun",
+    "english": "original work; source material"
+  },
+  {
+    "kanji": "限定版",
+    "hiragana": "げんていばん",
+    "type": "noun",
+    "english": "limited edition"
+  },
+  {
+    "kanji": "紅色",
+    "hiragana": "べにいろ",
+    "type": "noun",
+    "english": "crimson"
+  },
+  {
+    "kanji": "鋼管",
+    "hiragana": "こうかん",
+    "type": "noun",
+    "english": "steel pipe"
+  },
+  {
+    "kanji": "鋼材",
+    "hiragana": "こうざい",
+    "type": "noun",
+    "english": "steel materials; structural steel"
+  },
+  {
+    "kanji": "鋼鉄",
+    "hiragana": "こうてつ",
+    "type": "noun",
+    "english": "steel"
+  },
+  {
+    "kanji": "鋼板",
+    "hiragana": "こうばん",
+    "type": "noun",
+    "english": "steel plate; sheet steel"
+  },
+  {
+    "kanji": "今回",
+    "hiragana": "こんかい",
+    "type": "noun",
+    "english": "this time"
+  },
+  {
+    "kanji": "紺色",
+    "hiragana": "こんいろ",
+    "type": "noun",
+    "english": "navy blue"
+  },
+  {
+    "kanji": "作者",
+    "hiragana": "さくしゃ",
+    "type": "noun",
+    "english": "author; creator"
+  },
+  {
+    "kanji": "桜色",
+    "hiragana": "さくらいろ",
+    "type": "noun",
+    "english": "cherry blossom pink"
+  },
+  {
+    "kanji": "山吹色",
+    "hiragana": "やまぶきいろ",
+    "type": "noun",
+    "english": "golden yellow"
+  },
+  {
+    "kanji": "紙版",
+    "hiragana": "かみばん",
+    "type": "noun",
+    "english": "print edition (paper version)"
+  },
+  {
+    "kanji": "視聴",
+    "hiragana": "しちょう",
+    "type": "noun",
+    "english": "viewing; watching"
+  },
+  {
+    "kanji": "若草色",
+    "hiragana": "わかくさいろ",
+    "type": "noun",
+    "english": "fresh green"
+  },
+  {
+    "kanji": "朱色",
+    "hiragana": "しゅいろ",
+    "type": "noun",
+    "english": "vermilion"
+  },
+  {
+    "kanji": "受像機",
+    "hiragana": "じゅぞうき",
+    "type": "noun",
+    "english": "television receiver"
+  },
+  {
+    "kanji": "重版",
+    "hiragana": "じゅうはん",
+    "type": "noun",
+    "english": "reprint (additional printing)"
+  },
+  {
+    "kanji": "出版社",
+    "hiragana": "しゅっぱんしゃ",
+    "type": "noun",
+    "english": "publishing company; publisher"
+  },
+  {
+    "kanji": "初版",
+    "hiragana": "しょはん",
+    "type": "noun",
+    "english": "first edition; first printing"
+  },
+  {
+    "kanji": "象牙色",
+    "hiragana": "ぞうげいろ",
+    "type": "noun",
+    "english": "ivory"
+  },
+  {
+    "kanji": "信頼",
+    "hiragana": "しんらい",
+    "type": "noun",
+    "english": "trust; confidence"
+  },
+  {
+    "kanji": "新刊",
+    "hiragana": "しんかん",
+    "type": "noun",
+    "english": "new release (book/volume)"
+  }
+]

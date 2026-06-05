@@ -1,0 +1,302 @@
+[
+  {
+    "kanji": "仕事",
+    "hiragana": "しごと",
+    "type": "noun",
+    "english": "work; job"
+  },
+  {
+    "kanji": "会計",
+    "hiragana": "かいけい",
+    "type": "noun",
+    "english": "bill; accounting"
+  },
+  {
+    "kanji": "銀行",
+    "hiragana": "ぎんこう",
+    "type": "noun",
+    "english": "bank"
+  },
+  {
+    "kanji": "郵便局",
+    "hiragana": "ゆうびんきょく",
+    "type": "noun",
+    "english": "post office"
+  },
+  {
+    "kanji": "図書館",
+    "hiragana": "としょかん",
+    "type": "noun",
+    "english": "library"
+  },
+  {
+    "kanji": "美術館",
+    "hiragana": "びじゅつかん",
+    "type": "noun",
+    "english": "art museum"
+  },
+  {
+    "kanji": "映画館",
+    "hiragana": "えいがかん",
+    "type": "noun",
+    "english": "movie theater"
+  },
+  {
+    "kanji": "客",
+    "hiragana": "きゃく",
+    "type": "noun",
+    "english": "customer; guest"
+  },
+  {
+    "kanji": "財布",
+    "hiragana": "さいふ",
+    "type": "noun",
+    "english": "wallet"
+  },
+  {
+    "kanji": "切符",
+    "hiragana": "きっぷ",
+    "type": "noun",
+    "english": "ticket"
+  },
+  {
+    "kanji": "予約",
+    "hiragana": "よやく",
+    "type": "noun",
+    "english": "reservation"
+  },
+  {
+    "kanji": "予定",
+    "hiragana": "よてい",
+    "type": "noun",
+    "english": "plan; schedule"
+  },
+  {
+    "kanji": "時間",
+    "hiragana": "じかん",
+    "type": "noun",
+    "english": "time; hour"
+  },
+  {
+    "kanji": "今日",
+    "hiragana": "きょう",
+    "type": "noun",
+    "english": "today"
+  },
+  {
+    "kanji": "明日",
+    "hiragana": "あした",
+    "type": "noun",
+    "english": "tomorrow"
+  },
+  {
+    "kanji": "昨日",
+    "hiragana": "きのう",
+    "type": "noun",
+    "english": "yesterday"
+  },
+  {
+    "kanji": "今週",
+    "hiragana": "こんしゅう",
+    "type": "noun",
+    "english": "this week"
+  },
+  {
+    "kanji": "来週",
+    "hiragana": "らいしゅう",
+    "type": "noun",
+    "english": "next week"
+  },
+  {
+    "kanji": "先週",
+    "hiragana": "せんしゅう",
+    "type": "noun",
+    "english": "last week"
+  },
+  {
+    "kanji": "今月",
+    "hiragana": "こんげつ",
+    "type": "noun",
+    "english": "this month"
+  },
+  {
+    "kanji": "来月",
+    "hiragana": "らいげつ",
+    "type": "noun",
+    "english": "next month"
+  },
+  {
+    "kanji": "去年",
+    "hiragana": "きょねん",
+    "type": "noun",
+    "english": "last year"
+  },
+  {
+    "kanji": "今年",
+    "hiragana": "ことし",
+    "type": "noun",
+    "english": "this year"
+  },
+  {
+    "kanji": "来年",
+    "hiragana": "らいねん",
+    "type": "noun",
+    "english": "next year"
+  },
+  {
+    "kanji": "朝",
+    "hiragana": "あさ",
+    "type": "noun",
+    "english": "morning"
+  },
+  {
+    "kanji": "昼",
+    "hiragana": "ひる",
+    "type": "noun",
+    "english": "daytime; noon"
+  },
+  {
+    "kanji": "夜",
+    "hiragana": "よる",
+    "type": "noun",
+    "english": "night"
+  },
+  {
+    "kanji": "週末",
+    "hiragana": "しゅうまつ",
+    "type": "noun",
+    "english": "weekend"
+  },
+  {
+    "kanji": "季節",
+    "hiragana": "きせつ",
+    "type": "noun",
+    "english": "season"
+  },
+  {
+    "kanji": "春",
+    "hiragana": "はる",
+    "type": "noun",
+    "english": "spring"
+  },
+  {
+    "kanji": "夏",
+    "hiragana": "なつ",
+    "type": "noun",
+    "english": "summer"
+  },
+  {
+    "kanji": "秋",
+    "hiragana": "あき",
+    "type": "noun",
+    "english": "autumn; fall"
+  },
+  {
+    "kanji": "冬",
+    "hiragana": "ふゆ",
+    "type": "noun",
+    "english": "winter"
+  },
+  {
+    "kanji": "天気",
+    "hiragana": "てんき",
+    "type": "noun",
+    "english": "weather"
+  },
+  {
+    "kanji": "雨",
+    "hiragana": "あめ",
+    "type": "noun",
+    "english": "rain"
+  },
+  {
+    "kanji": "雪",
+    "hiragana": "ゆき",
+    "type": "noun",
+    "english": "snow"
+  },
+  {
+    "kanji": "風",
+    "hiragana": "かぜ",
+    "type": "noun",
+    "english": "wind"
+  },
+  {
+    "kanji": "空",
+    "hiragana": "そら",
+    "type": "noun",
+    "english": "sky"
+  },
+  {
+    "kanji": "雲",
+    "hiragana": "くも",
+    "type": "noun",
+    "english": "cloud"
+  },
+  {
+    "kanji": "星",
+    "hiragana": "ほし",
+    "type": "noun",
+    "english": "star"
+  },
+  {
+    "kanji": "月",
+    "hiragana": "つき",
+    "type": "noun",
+    "english": "moon; month"
+  },
+  {
+    "kanji": "太陽",
+    "hiragana": "たいよう",
+    "type": "noun",
+    "english": "sun"
+  },
+  {
+    "kanji": "山",
+    "hiragana": "やま",
+    "type": "noun",
+    "english": "mountain"
+  },
+  {
+    "kanji": "川",
+    "hiragana": "かわ",
+    "type": "noun",
+    "english": "river"
+  },
+  {
+    "kanji": "海",
+    "hiragana": "うみ",
+    "type": "noun",
+    "english": "sea; ocean"
+  },
+  {
+    "kanji": "池",
+    "hiragana": "いけ",
+    "type": "noun",
+    "english": "pond"
+  },
+  {
+    "kanji": "湖",
+    "hiragana": "みずうみ",
+    "type": "noun",
+    "english": "lake"
+  },
+  {
+    "kanji": "森",
+    "hiragana": "もり",
+    "type": "noun",
+    "english": "forest"
+  },
+  {
+    "kanji": "林",
+    "hiragana": "はやし",
+    "type": "noun",
+    "english": "woods; grove"
+  },
+  {
+    "kanji": "木",
+    "hiragana": "き",
+    "type": "noun",
+    "english": "tree; wood"
+  }
+]

@@ -1,0 +1,188 @@
+[
+  {
+    "kanji": "大変ではなければ",
+    "hiragana": "たいへんではなければ",
+    "type": "expression",
+    "english": "if not serious; tough (formal)"
+  },
+  {
+    "kanji": "大変ではなかったら",
+    "hiragana": "たいへんではなかったら",
+    "type": "expression",
+    "english": "if it was not serious; tough (formal)"
+  },
+  {
+    "kanji": "安くて",
+    "hiragana": "やすくて",
+    "type": "expression",
+    "english": "cheap and; because cheap"
+  },
+  {
+    "kanji": "安ければ",
+    "hiragana": "やすければ",
+    "type": "expression",
+    "english": "if cheap"
+  },
+  {
+    "kanji": "安かったら",
+    "hiragana": "やすかったら",
+    "type": "expression",
+    "english": "if it was cheap"
+  },
+  {
+    "kanji": "安くなければ",
+    "hiragana": "やすくなければ",
+    "type": "expression",
+    "english": "if not cheap"
+  },
+  {
+    "kanji": "安くなかったら",
+    "hiragana": "やすくなかったら",
+    "type": "expression",
+    "english": "if it was not cheap"
+  },
+  {
+    "kanji": "新しくて",
+    "hiragana": "あたらしくて",
+    "type": "expression",
+    "english": "new and; because new"
+  },
+  {
+    "kanji": "新しければ",
+    "hiragana": "あたらしければ",
+    "type": "expression",
+    "english": "if new"
+  },
+  {
+    "kanji": "新しかったら",
+    "hiragana": "あたらしかったら",
+    "type": "expression",
+    "english": "if it was new"
+  },
+  {
+    "kanji": "新しくなければ",
+    "hiragana": "あたらしくなければ",
+    "type": "expression",
+    "english": "if not new"
+  },
+  {
+    "kanji": "新しくなかったら",
+    "hiragana": "あたらしくなかったら",
+    "type": "expression",
+    "english": "if it was not new"
+  },
+  {
+    "kanji": "古くて",
+    "hiragana": "ふるくて",
+    "type": "expression",
+    "english": "old and; because old"
+  },
+  {
+    "kanji": "古ければ",
+    "hiragana": "ふるければ",
+    "type": "expression",
+    "english": "if old"
+  },
+  {
+    "kanji": "古かったら",
+    "hiragana": "ふるかったら",
+    "type": "expression",
+    "english": "if it was old"
+  },
+  {
+    "kanji": "古くなければ",
+    "hiragana": "ふるくなければ",
+    "type": "expression",
+    "english": "if not old"
+  },
+  {
+    "kanji": "古くなかったら",
+    "hiragana": "ふるくなかったら",
+    "type": "expression",
+    "english": "if it was not old"
+  },
+  {
+    "kanji": "Nになってから",
+    "hiragana": "エヌになってから",
+    "type": "expression",
+    "english": "after becoming N"
+  },
+  {
+    "kanji": "Vたくない",
+    "hiragana": "ブイたくない",
+    "type": "expression",
+    "english": "do not want to V"
+  },
+  {
+    "kanji": "Vたら",
+    "hiragana": "ブイたら",
+    "type": "expression",
+    "english": "if; when (after doing V)"
+  },
+  {
+    "kanji": "Vている",
+    "hiragana": "ブイている",
+    "type": "expression",
+    "english": "be doing; ongoing state"
+  },
+  {
+    "kanji": "Vてから",
+    "hiragana": "ブイてから",
+    "type": "expression",
+    "english": "after doing V"
+  },
+  {
+    "kanji": "Vてください",
+    "hiragana": "ブイてください",
+    "type": "expression",
+    "english": "please do V"
+  },
+  {
+    "kanji": "Vてしまう",
+    "hiragana": "ブイてしまう",
+    "type": "expression",
+    "english": "finish completely; unfortunately do"
+  },
+  {
+    "kanji": "Vてはいけません",
+    "hiragana": "ブイてはいけません",
+    "type": "expression",
+    "english": "must not do V"
+  },
+  {
+    "kanji": "Vないでください",
+    "hiragana": "ブイないでください",
+    "type": "expression",
+    "english": "please do not V"
+  },
+  {
+    "kanji": "Vのは～だ",
+    "hiragana": "ブイのは〜だ",
+    "type": "expression",
+    "english": "the fact that V is ~"
+  },
+  {
+    "kanji": "Vよう",
+    "hiragana": "ブイよう",
+    "type": "expression",
+    "english": "let's; volitional form"
+  },
+  {
+    "kanji": "Vることが多い",
+    "hiragana": "ブイることがおおい",
+    "type": "expression",
+    "english": "often do V"
+  },
+  {
+    "kanji": "Vるつもりだ",
+    "hiragana": "ブイるつもりだ",
+    "type": "expression",
+    "english": "intend to do V"
+  },
+  {
+    "kanji": "Vると",
+    "hiragana": "ブイると",
+    "type": "expression",
+    "english": "when; if (natural consequence)"
+  }
+]

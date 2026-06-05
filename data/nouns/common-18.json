@@ -1,0 +1,302 @@
+[
+  {
+    "kanji": "午後",
+    "hiragana": "ごご",
+    "type": "noun",
+    "english": "afternoon (p.m.)"
+  },
+  {
+    "kanji": "後",
+    "hiragana": "あと",
+    "type": "noun",
+    "english": "after; later"
+  },
+  {
+    "kanji": "広告",
+    "hiragana": "こうこく",
+    "type": "noun",
+    "english": "advertisement"
+  },
+  {
+    "kanji": "香り",
+    "hiragana": "かおり",
+    "type": "noun",
+    "english": "scent; fragrance"
+  },
+  {
+    "kanji": "困難",
+    "hiragana": "こんなん",
+    "type": "noun",
+    "english": "difficulty; hardship"
+  },
+  {
+    "kanji": "師",
+    "hiragana": "し",
+    "type": "noun",
+    "english": "master; teacher"
+  },
+  {
+    "kanji": "糸",
+    "hiragana": "いと",
+    "type": "noun",
+    "english": "thread"
+  },
+  {
+    "kanji": "紙",
+    "hiragana": "かみ",
+    "type": "noun",
+    "english": "paper"
+  },
+  {
+    "kanji": "字",
+    "hiragana": "じ",
+    "type": "noun",
+    "english": "letter; character; handwriting"
+  },
+  {
+    "kanji": "失敗",
+    "hiragana": "しっぱい",
+    "type": "noun",
+    "english": "failure; mistake"
+  },
+  {
+    "kanji": "助け",
+    "hiragana": "たすけ",
+    "type": "noun",
+    "english": "help; assistance"
+  },
+  {
+    "kanji": "上司",
+    "hiragana": "じょうし",
+    "type": "noun",
+    "english": "boss; supervisor"
+  },
+  {
+    "kanji": "食後",
+    "hiragana": "しょくご",
+    "type": "noun",
+    "english": "after a meal"
+  },
+  {
+    "kanji": "進路",
+    "hiragana": "しんろ",
+    "type": "noun",
+    "english": "course; future path"
+  },
+  {
+    "kanji": "人々",
+    "hiragana": "ひとびと",
+    "type": "noun",
+    "english": "people"
+  },
+  {
+    "kanji": "人混み",
+    "hiragana": "ひとごみ",
+    "type": "noun",
+    "english": "crowd"
+  },
+  {
+    "kanji": "人生",
+    "hiragana": "じんせい",
+    "type": "noun",
+    "english": "life"
+  },
+  {
+    "kanji": "祖母",
+    "hiragana": "そぼ",
+    "type": "noun",
+    "english": "grandmother"
+  },
+  {
+    "kanji": "巣",
+    "hiragana": "す",
+    "type": "noun",
+    "english": "nest"
+  },
+  {
+    "kanji": "誰か",
+    "hiragana": "だれか",
+    "type": "noun",
+    "english": "someone"
+  },
+  {
+    "kanji": "地元",
+    "hiragana": "じもと",
+    "type": "noun",
+    "english": "local area; hometown"
+  },
+  {
+    "kanji": "伝統",
+    "hiragana": "でんとう",
+    "type": "noun",
+    "english": "tradition"
+  },
+  {
+    "kanji": "頭",
+    "hiragana": "あたま",
+    "type": "noun",
+    "english": "head"
+  },
+  {
+    "kanji": "童",
+    "hiragana": "わらべ",
+    "type": "noun",
+    "english": "child"
+  },
+  {
+    "kanji": "日曜日",
+    "hiragana": "にちようび",
+    "type": "noun",
+    "english": "Sunday"
+  },
+  {
+    "kanji": "農業",
+    "hiragana": "のうぎょう",
+    "type": "noun",
+    "english": "agriculture"
+  },
+  {
+    "kanji": "箱",
+    "hiragana": "はこ",
+    "type": "noun",
+    "english": "box"
+  },
+  {
+    "kanji": "発言",
+    "hiragana": "はつげん",
+    "type": "noun",
+    "english": "remark; statement"
+  },
+  {
+    "kanji": "表面",
+    "hiragana": "ひょうめん",
+    "type": "noun",
+    "english": "surface"
+  },
+  {
+    "kanji": "布",
+    "hiragana": "ぬの",
+    "type": "noun",
+    "english": "cloth"
+  },
+  {
+    "kanji": "物",
+    "hiragana": "もの",
+    "type": "noun",
+    "english": "thing; item"
+  },
+  {
+    "kanji": "物語",
+    "hiragana": "ものがたり",
+    "type": "noun",
+    "english": "story"
+  },
+  {
+    "kanji": "米袋",
+    "hiragana": "こめぶくろ",
+    "type": "noun",
+    "english": "rice sack"
+  },
+  {
+    "kanji": "未来",
+    "hiragana": "みらい",
+    "type": "noun",
+    "english": "future"
+  },
+  {
+    "kanji": "友だち",
+    "hiragana": "ともだち",
+    "type": "noun",
+    "english": "friend"
+  },
+  {
+    "kanji": "妖狐",
+    "hiragana": "ようこ",
+    "type": "noun",
+    "english": "fox spirit"
+  },
+  {
+    "kanji": "話題",
+    "hiragana": "わだい",
+    "type": "noun",
+    "english": "topic"
+  },
+  {
+    "kanji": "くつ",
+    "hiragana": "くつ",
+    "type": "noun",
+    "english": "shoes"
+  },
+  {
+    "kanji": "ひも",
+    "hiragana": "ひも",
+    "type": "noun",
+    "english": "string; cord; lace"
+  },
+  {
+    "kanji": "気分",
+    "hiragana": "きぶん",
+    "type": "noun",
+    "english": "feeling; mood"
+  },
+  {
+    "kanji": "席",
+    "hiragana": "せき",
+    "type": "noun",
+    "english": "seat"
+  },
+  {
+    "kanji": "お菓子",
+    "hiragana": "おかし",
+    "type": "noun",
+    "english": "sweets; snacks"
+  },
+  {
+    "kanji": "お気に入り",
+    "hiragana": "おきにいり",
+    "type": "noun",
+    "english": "favorite; bookmarked item"
+  },
+  {
+    "kanji": "かご",
+    "hiragana": "かご",
+    "type": "noun",
+    "english": "basket"
+  },
+  {
+    "kanji": "クレーンゲーム",
+    "hiragana": "クレーンゲーム",
+    "type": "noun",
+    "english": "claw crane game"
+  },
+  {
+    "kanji": "ゲームセンター",
+    "hiragana": "ゲームセンター",
+    "type": "noun",
+    "english": "game center; arcade"
+  },
+  {
+    "kanji": "さけ",
+    "hiragana": "さけ",
+    "type": "noun",
+    "english": "salmon"
+  },
+  {
+    "kanji": "チャンネル",
+    "hiragana": "チャンネル",
+    "type": "noun",
+    "english": "channel"
+  },
+  {
+    "kanji": "テレビジョン",
+    "hiragana": "テレビジョン",
+    "type": "noun",
+    "english": "television"
+  },
+  {
+    "kanji": "にんじん",
+    "hiragana": "にんじん",
+    "type": "noun",
+    "english": "carrot"
+  }
+]

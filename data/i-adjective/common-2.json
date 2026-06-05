@@ -1,0 +1,302 @@
+[
+  {
+    "kanji": "厳しい",
+    "hiragana": "きびしい",
+    "type": "i-adjective",
+    "english": "strict; severe"
+  },
+  {
+    "kanji": "正しい",
+    "hiragana": "ただしい",
+    "type": "i-adjective",
+    "english": "correct"
+  },
+  {
+    "kanji": "悪い",
+    "hiragana": "わるい",
+    "type": "i-adjective",
+    "english": "bad"
+  },
+  {
+    "kanji": "良い",
+    "hiragana": "よい",
+    "type": "i-adjective",
+    "english": "good"
+  },
+  {
+    "kanji": "欲しい",
+    "hiragana": "ほしい",
+    "type": "i-adjective",
+    "english": "want; desired"
+  },
+  {
+    "kanji": "忙しい",
+    "hiragana": "いそがしい",
+    "type": "i-adjective",
+    "english": "busy"
+  },
+  {
+    "kanji": "眠い",
+    "hiragana": "ねむい",
+    "type": "i-adjective",
+    "english": "sleepy"
+  },
+  {
+    "kanji": "汚い",
+    "hiragana": "きたない",
+    "type": "i-adjective",
+    "english": "dirty"
+  },
+  {
+    "kanji": "臭い",
+    "hiragana": "くさい",
+    "type": "i-adjective",
+    "english": "smelly"
+  },
+  {
+    "kanji": "危ない",
+    "hiragana": "あぶない",
+    "type": "i-adjective",
+    "english": "dangerous"
+  },
+  {
+    "kanji": "凄い",
+    "hiragana": "すごい",
+    "type": "i-adjective",
+    "english": "amazing"
+  },
+  {
+    "kanji": "偉い",
+    "hiragana": "えらい",
+    "type": "i-adjective",
+    "english": "great; admirable"
+  },
+  {
+    "kanji": "細い",
+    "hiragana": "ほそい",
+    "type": "i-adjective",
+    "english": "thin"
+  },
+  {
+    "kanji": "太い",
+    "hiragana": "ふとい",
+    "type": "i-adjective",
+    "english": "thick; fat"
+  },
+  {
+    "kanji": "深い",
+    "hiragana": "ふかい",
+    "type": "i-adjective",
+    "english": "deep"
+  },
+  {
+    "kanji": "浅い",
+    "hiragana": "あさい",
+    "type": "i-adjective",
+    "english": "shallow"
+  },
+  {
+    "kanji": "厚い",
+    "hiragana": "あつい",
+    "type": "i-adjective",
+    "english": "thick"
+  },
+  {
+    "kanji": "薄い",
+    "hiragana": "うすい",
+    "type": "i-adjective",
+    "english": "thin; pale"
+  },
+  {
+    "kanji": "硬い",
+    "hiragana": "かたい",
+    "type": "i-adjective",
+    "english": "hard (solid/firm)"
+  },
+  {
+    "kanji": "柔らかい",
+    "hiragana": "やわらかい",
+    "type": "i-adjective",
+    "english": "soft"
+  },
+  {
+    "kanji": "固い",
+    "hiragana": "かたい",
+    "type": "i-adjective",
+    "english": "solid; firm"
+  },
+  {
+    "kanji": "鋭い",
+    "hiragana": "するどい",
+    "type": "i-adjective",
+    "english": "sharp"
+  },
+  {
+    "kanji": "鈍い",
+    "hiragana": "にぶい",
+    "type": "i-adjective",
+    "english": "dull"
+  },
+  {
+    "kanji": "眩しい",
+    "hiragana": "まぶしい",
+    "type": "i-adjective",
+    "english": "dazzling"
+  },
+  {
+    "kanji": "寂しい",
+    "hiragana": "さびしい",
+    "type": "i-adjective",
+    "english": "lonely"
+  },
+  {
+    "kanji": "恥ずかしい",
+    "hiragana": "はずかしい",
+    "type": "i-adjective",
+    "english": "embarrassed"
+  },
+  {
+    "kanji": "羨ましい",
+    "hiragana": "うらやましい",
+    "type": "i-adjective",
+    "english": "envious"
+  },
+  {
+    "kanji": "珍しい",
+    "hiragana": "めずらしい",
+    "type": "i-adjective",
+    "english": "rare"
+  },
+  {
+    "kanji": "詳しい",
+    "hiragana": "くわしい",
+    "type": "i-adjective",
+    "english": "detailed; knowledgeable"
+  },
+  {
+    "kanji": "怪しい",
+    "hiragana": "あやしい",
+    "type": "i-adjective",
+    "english": "suspicious"
+  },
+  {
+    "kanji": "可愛い",
+    "hiragana": "かわいい",
+    "type": "i-adjective",
+    "english": "cute"
+  },
+  {
+    "kanji": "憎い",
+    "hiragana": "にくい",
+    "type": "i-adjective",
+    "english": "hateful"
+  },
+  {
+    "kanji": "頼もしい",
+    "hiragana": "たのもしい",
+    "type": "i-adjective",
+    "english": "reliable"
+  },
+  {
+    "kanji": "心強い",
+    "hiragana": "こころづよい",
+    "type": "i-adjective",
+    "english": "reassuring"
+  },
+  {
+    "kanji": "弱々しい",
+    "hiragana": "よわよわしい",
+    "type": "i-adjective",
+    "english": "feeble"
+  },
+  {
+    "kanji": "粗い",
+    "hiragana": "あらい",
+    "type": "i-adjective",
+    "english": "coarse"
+  },
+  {
+    "kanji": "暖かい",
+    "hiragana": "あたたかい",
+    "type": "i-adjective",
+    "english": "warm"
+  },
+  {
+    "kanji": "蒼い",
+    "hiragana": "あおい",
+    "type": "i-adjective",
+    "english": "deep blue"
+  },
+  {
+    "kanji": "黄色い",
+    "hiragana": "きいろい",
+    "type": "i-adjective",
+    "english": "yellow"
+  },
+  {
+    "kanji": "茶色い",
+    "hiragana": "ちゃいろい",
+    "type": "i-adjective",
+    "english": "brown"
+  },
+  {
+    "kanji": "青白い",
+    "hiragana": "あおじろい",
+    "type": "i-adjective",
+    "english": "pale"
+  },
+  {
+    "kanji": "素早い",
+    "hiragana": "すばやい",
+    "type": "i-adjective",
+    "english": "quick"
+  },
+  {
+    "kanji": "だるい",
+    "hiragana": "だるい",
+    "type": "i-adjective",
+    "english": "sluggish"
+  },
+  {
+    "kanji": "きつい",
+    "hiragana": "きつい",
+    "type": "i-adjective",
+    "english": "tight; harsh"
+  },
+  {
+    "kanji": "偽物っぽい",
+    "hiragana": "にせものっぽい",
+    "type": "i-adjective",
+    "english": "fake-looking"
+  },
+  {
+    "kanji": "騒がしい",
+    "hiragana": "さわがしい",
+    "type": "i-adjective",
+    "english": "noisy"
+  },
+  {
+    "kanji": "忙しない",
+    "hiragana": "せわしない",
+    "type": "i-adjective",
+    "english": "restless; hectic"
+  },
+  {
+    "kanji": "食べやすい",
+    "hiragana": "たべやすい",
+    "type": "i-adjective",
+    "english": "easy to eat"
+  },
+  {
+    "kanji": "おいしい",
+    "hiragana": "おいしい",
+    "type": "i-adjective",
+    "english": "delicious"
+  },
+  {
+    "kanji": "読みにくい",
+    "hiragana": "よみにくい",
+    "type": "i-adjective",
+    "english": "hard to read"
+  }
+]

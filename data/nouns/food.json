@@ -1,0 +1,296 @@
+[
+  {
+    "kanji": "林檎",
+    "hiragana": "りんご",
+    "type": "noun",
+    "english": "apple"
+  },
+  {
+    "kanji": "水",
+    "hiragana": "みず",
+    "type": "noun",
+    "english": "water"
+  },
+  {
+    "kanji": "牛乳",
+    "hiragana": "ぎゅうにゅう",
+    "type": "noun",
+    "english": "milk"
+  },
+  {
+    "kanji": "ジュース",
+    "hiragana": "ジュース",
+    "type": "noun",
+    "english": "juice"
+  },
+  {
+    "kanji": "バター",
+    "hiragana": "バター",
+    "type": "noun",
+    "english": "butter"
+  },
+  {
+    "kanji": "チーズ",
+    "hiragana": "チーズ",
+    "type": "noun",
+    "english": "cheese"
+  },
+  {
+    "kanji": "ソーセージ",
+    "hiragana": "ソーセージ",
+    "type": "noun",
+    "english": "sausage"
+  },
+  {
+    "kanji": "ハム",
+    "hiragana": "ハム",
+    "type": "noun",
+    "english": "ham"
+  },
+  {
+    "kanji": "ヨーグルト",
+    "hiragana": "ヨーグルト",
+    "type": "noun",
+    "english": "yogurt"
+  },
+  {
+    "kanji": "トマト",
+    "hiragana": "トマト",
+    "type": "noun",
+    "english": "tomato"
+  },
+  {
+    "kanji": "レモン",
+    "hiragana": "レモン",
+    "type": "noun",
+    "english": "lemon"
+  },
+  {
+    "kanji": "オレンジ",
+    "hiragana": "オレンジ",
+    "type": "noun",
+    "english": "orange"
+  },
+  {
+    "kanji": "焼き鳥",
+    "hiragana": "やきとり",
+    "type": "noun",
+    "english": "grilled chicken (yakitori)"
+  },
+  {
+    "kanji": "鹿肉",
+    "hiragana": "しかにく",
+    "type": "noun",
+    "english": "venison"
+  },
+  {
+    "kanji": "車海老",
+    "hiragana": "くるまえび",
+    "type": "noun",
+    "english": "kuruma prawn"
+  },
+  {
+    "kanji": "毛蟹",
+    "hiragana": "けがに",
+    "type": "noun",
+    "english": "hairy crab"
+  },
+  {
+    "kanji": "蜂蜜",
+    "hiragana": "はちみつ",
+    "type": "noun",
+    "english": "honey"
+  },
+  {
+    "kanji": "卵",
+    "hiragana": "たまご",
+    "type": "noun",
+    "english": "eggs"
+  },
+  {
+    "kanji": "生クリーム",
+    "hiragana": "なまクリーム",
+    "type": "noun",
+    "english": "heavy cream"
+  },
+  {
+    "kanji": "豆腐",
+    "hiragana": "とうふ",
+    "type": "noun",
+    "english": "tofu"
+  },
+  {
+    "kanji": "納豆",
+    "hiragana": "なっとう",
+    "type": "noun",
+    "english": "natto"
+  },
+  {
+    "kanji": "ベーコン",
+    "hiragana": "ベーコン",
+    "type": "noun",
+    "english": "bacon"
+  },
+  {
+    "kanji": "鶏肉",
+    "hiragana": "とりにく",
+    "type": "noun",
+    "english": "chicken meat"
+  },
+  {
+    "kanji": "牛肉",
+    "hiragana": "ぎゅうにく",
+    "type": "noun",
+    "english": "beef"
+  },
+  {
+    "kanji": "豚肉",
+    "hiragana": "ぶたにく",
+    "type": "noun",
+    "english": "pork"
+  },
+  {
+    "kanji": "レタス",
+    "hiragana": "レタス",
+    "type": "noun",
+    "english": "lettuce"
+  },
+  {
+    "kanji": "キャベツ",
+    "hiragana": "キャベツ",
+    "type": "noun",
+    "english": "cabbage"
+  },
+  {
+    "kanji": "人参",
+    "hiragana": "にんじん",
+    "type": "noun",
+    "english": "carrot"
+  },
+  {
+    "kanji": "玉葱",
+    "hiragana": "たまねぎ",
+    "type": "noun",
+    "english": "onion"
+  },
+  {
+    "kanji": "胡瓜",
+    "hiragana": "きゅうり",
+    "type": "noun",
+    "english": "cucumber"
+  },
+  {
+    "kanji": "葡萄",
+    "hiragana": "ぶどう",
+    "type": "noun",
+    "english": "grapes"
+  },
+  {
+    "kanji": "苺",
+    "hiragana": "いちご",
+    "type": "noun",
+    "english": "strawberries"
+  },
+  {
+    "kanji": "炭酸水",
+    "hiragana": "たんさんすい",
+    "type": "noun",
+    "english": "sparkling water"
+  },
+  {
+    "kanji": "ケチャップ",
+    "hiragana": "ケチャップ",
+    "type": "noun",
+    "english": "ketchup"
+  },
+  {
+    "kanji": "マヨネーズ",
+    "hiragana": "マヨネーズ",
+    "type": "noun",
+    "english": "mayonnaise"
+  },
+  {
+    "kanji": "梨",
+    "hiragana": "なし",
+    "type": "noun",
+    "english": "Japanese pear"
+  },
+  {
+    "kanji": "洋梨",
+    "hiragana": "ようなし",
+    "type": "noun",
+    "english": "(western) pear"
+  },
+  {
+    "kanji": "柿",
+    "hiragana": "かき",
+    "type": "noun",
+    "english": "persimmon"
+  },
+  {
+    "kanji": "さくらんぼ",
+    "hiragana": "さくらんぼ",
+    "type": "noun",
+    "english": "cherry (fruit)"
+  },
+  {
+    "kanji": "メロン",
+    "hiragana": "メロン",
+    "type": "noun",
+    "english": "melon (honeydew-type)"
+  },
+  {
+    "kanji": "西瓜",
+    "hiragana": "すいか",
+    "type": "noun",
+    "english": "watermelon"
+  },
+  {
+    "kanji": "ブルーベリー",
+    "hiragana": "ブルーベリー",
+    "type": "noun",
+    "english": "blueberry"
+  },
+  {
+    "kanji": "ライム",
+    "hiragana": "ライム",
+    "type": "noun",
+    "english": "lime"
+  },
+  {
+    "kanji": "グレープフルーツ",
+    "hiragana": "グレープフルーツ",
+    "type": "noun",
+    "english": "grapefruit"
+  },
+  {
+    "kanji": "醤油",
+    "hiragana": "しょうゆ",
+    "type": "noun",
+    "english": "soy sauce"
+  },
+  {
+    "kanji": "みりん",
+    "hiragana": "みりん",
+    "type": "noun",
+    "english": "sweet cooking sake (mirin)"
+  },
+  {
+    "kanji": "胡椒",
+    "hiragana": "こしょう",
+    "type": "noun",
+    "english": "pepper (ground)"
+  },
+  {
+    "kanji": "わさび",
+    "hiragana": "わさび",
+    "type": "noun",
+    "english": "wasabi"
+  },
+  {
+    "kanji": "胡麻",
+    "hiragana": "ごま",
+    "type": "noun",
+    "english": "sesame (seeds)"
+  }
+]

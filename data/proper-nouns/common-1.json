@@ -1,0 +1,164 @@
+[
+  {
+    "kanji": "白川郷",
+    "hiragana": "しらかわごう",
+    "type": "proper-noun",
+    "english": "Shirakawa-go"
+  },
+  {
+    "kanji": "鬼太郎",
+    "hiragana": "きたろう",
+    "type": "proper-noun",
+    "english": "Kitaro (name of the yokai protagonist)"
+  },
+  {
+    "kanji": "ゲゲゲの鬼太郎",
+    "hiragana": "ゲゲゲのきたろう",
+    "type": "proper-noun",
+    "english": "GeGeGe no Kitaro (title of a manga/anime)"
+  },
+  {
+    "kanji": "目玉おやじ",
+    "hiragana": "めだまおやじ",
+    "type": "proper-noun",
+    "english": "Medama Oyaji (Eyeball-Old-Man)"
+  },
+  {
+    "kanji": "太郎",
+    "hiragana": "たろう",
+    "type": "proper-noun",
+    "english": "Taro (male given name)"
+  },
+  {
+    "kanji": "健太",
+    "hiragana": "けんた",
+    "type": "proper-noun",
+    "english": "Kenta (given name)"
+  },
+  {
+    "kanji": "佐藤",
+    "hiragana": "さとう",
+    "type": "proper-noun",
+    "english": "Sato"
+  },
+  {
+    "kanji": "山口",
+    "hiragana": "やまぐち",
+    "type": "proper-noun",
+    "english": "Yamaguchi"
+  },
+  {
+    "kanji": "山田",
+    "hiragana": "やまだ",
+    "type": "proper-noun",
+    "english": "Yamada"
+  },
+  {
+    "kanji": "上野動物園",
+    "hiragana": "うえのどうぶつえん",
+    "type": "proper-noun",
+    "english": "Ueno Zoo"
+  },
+  {
+    "kanji": "大阪",
+    "hiragana": "おおさか",
+    "type": "proper-noun",
+    "english": "Osaka"
+  },
+  {
+    "kanji": "中村",
+    "hiragana": "なかむら",
+    "type": "proper-noun",
+    "english": "Nakamura"
+  },
+  {
+    "kanji": "田村",
+    "hiragana": "たむら",
+    "type": "proper-noun",
+    "english": "Tamura"
+  },
+  {
+    "kanji": "田中",
+    "hiragana": "たなか",
+    "type": "proper-noun",
+    "english": "Tanaka"
+  },
+  {
+    "kanji": "日本",
+    "hiragana": "にほん",
+    "type": "proper-noun",
+    "english": "Japan"
+  },
+  {
+    "kanji": "福岡",
+    "hiragana": "ふくおか",
+    "type": "proper-noun",
+    "english": "Fukuoka"
+  },
+  {
+    "kanji": "鈴木",
+    "hiragana": "すずき",
+    "type": "proper-noun",
+    "english": "Suzuki"
+  },
+  {
+    "kanji": "山本さん",
+    "hiragana": "やまもとさん",
+    "type": "proper-noun",
+    "english": "Mr. Yamamoto"
+  },
+  {
+    "kanji": "渋谷",
+    "hiragana": "しぶや",
+    "type": "proper-noun",
+    "english": "Shibuya"
+  },
+  {
+    "kanji": "鋼の錬金術師",
+    "hiragana": "はがねのれんきんじゅつし",
+    "type": "proper-noun",
+    "english": "Fullmetal Alchemist"
+  },
+  {
+    "kanji": "美咲",
+    "hiragana": "みさき",
+    "type": "proper-noun",
+    "english": "Misaki (given name)"
+  },
+  {
+    "kanji": "亮",
+    "hiragana": "りょう",
+    "type": "proper-noun",
+    "english": "Ryo (given name)"
+  },
+  {
+    "kanji": "田中さん",
+    "hiragana": "たなかさん",
+    "type": "proper-noun",
+    "english": "Mr./Ms. Tanaka"
+  },
+  {
+    "kanji": "ゼウス",
+    "hiragana": "ゼウス",
+    "type": "proper-noun",
+    "english": "Zeus"
+  },
+  {
+    "kanji": "ギリシャ",
+    "hiragana": "ギリシャ",
+    "type": "proper-noun",
+    "english": "Greece"
+  },
+  {
+    "kanji": "ヘラクレス",
+    "hiragana": "ヘラクレス",
+    "type": "proper-noun",
+    "english": "Heracles; Hercules"
+  },
+  {
+    "kanji": "オリンポス山",
+    "hiragana": "オリンポスさん",
+    "type": "proper-noun",
+    "english": "Mount Olympus"
+  }
+]

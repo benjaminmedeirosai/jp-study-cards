@@ -1,0 +1,248 @@
+[
+  {
+    "kanji": "十一歳",
+    "hiragana": "じゅういっさい",
+    "type": "counter",
+    "english": "11 years old"
+  },
+  {
+    "kanji": "十二歳",
+    "hiragana": "じゅうにさい",
+    "type": "counter",
+    "english": "12 years old"
+  },
+  {
+    "kanji": "十三歳",
+    "hiragana": "じゅうさんさい",
+    "type": "counter",
+    "english": "13 years old"
+  },
+  {
+    "kanji": "十四歳",
+    "hiragana": "じゅうよんさい",
+    "type": "counter",
+    "english": "14 years old"
+  },
+  {
+    "kanji": "十五歳",
+    "hiragana": "じゅうごさい",
+    "type": "counter",
+    "english": "15 years old"
+  },
+  {
+    "kanji": "十六歳",
+    "hiragana": "じゅうろくさい",
+    "type": "counter",
+    "english": "16 years old"
+  },
+  {
+    "kanji": "十七歳",
+    "hiragana": "じゅうななさい",
+    "type": "counter",
+    "english": "17 years old"
+  },
+  {
+    "kanji": "十八歳",
+    "hiragana": "じゅうはっさい",
+    "type": "counter",
+    "english": "18 years old"
+  },
+  {
+    "kanji": "十九歳",
+    "hiragana": "じゅうきゅうさい",
+    "type": "counter",
+    "english": "19 years old"
+  },
+  {
+    "kanji": "二十歳",
+    "hiragana": "はたち",
+    "type": "counter",
+    "english": "20 years old"
+  },
+  {
+    "kanji": "一冊",
+    "hiragana": "いっさつ",
+    "type": "counter",
+    "english": "1 bound volume; 1 book"
+  },
+  {
+    "kanji": "二冊",
+    "hiragana": "にさつ",
+    "type": "counter",
+    "english": "2 bound volumes; 2 books"
+  },
+  {
+    "kanji": "三冊",
+    "hiragana": "さんさつ",
+    "type": "counter",
+    "english": "3 bound volumes; 3 books"
+  },
+  {
+    "kanji": "四冊",
+    "hiragana": "よんさつ",
+    "type": "counter",
+    "english": "4 bound volumes; 4 books"
+  },
+  {
+    "kanji": "五冊",
+    "hiragana": "ごさつ",
+    "type": "counter",
+    "english": "5 bound volumes; 5 books"
+  },
+  {
+    "kanji": "六冊",
+    "hiragana": "ろくさつ",
+    "type": "counter",
+    "english": "6 bound volumes; 6 books"
+  },
+  {
+    "kanji": "七冊",
+    "hiragana": "ななさつ",
+    "type": "counter",
+    "english": "7 bound volumes; 7 books"
+  },
+  {
+    "kanji": "八冊",
+    "hiragana": "はっさつ",
+    "type": "counter",
+    "english": "8 bound volumes; 8 books"
+  },
+  {
+    "kanji": "九冊",
+    "hiragana": "きゅうさつ",
+    "type": "counter",
+    "english": "9 bound volumes; 9 books"
+  },
+  {
+    "kanji": "十冊",
+    "hiragana": "じゅっさつ",
+    "type": "counter",
+    "english": "10 bound volumes; 10 books"
+  },
+  {
+    "kanji": "一杯",
+    "hiragana": "いっぱい",
+    "type": "counter",
+    "english": "1 cup; 1 glassful"
+  },
+  {
+    "kanji": "三杯",
+    "hiragana": "さんばい",
+    "type": "counter",
+    "english": "3 cups; 3 glassfuls"
+  },
+  {
+    "kanji": "四杯",
+    "hiragana": "よんはい",
+    "type": "counter",
+    "english": "4 cups; 4 glassfuls"
+  },
+  {
+    "kanji": "五杯",
+    "hiragana": "ごはい",
+    "type": "counter",
+    "english": "5 cups; 5 glassfuls"
+  },
+  {
+    "kanji": "六杯",
+    "hiragana": "ろっぱい",
+    "type": "counter",
+    "english": "6 cups; 6 glassfuls"
+  },
+  {
+    "kanji": "七杯",
+    "hiragana": "ななはい",
+    "type": "counter",
+    "english": "7 cups; 7 glassfuls"
+  },
+  {
+    "kanji": "八杯",
+    "hiragana": "はっぱい",
+    "type": "counter",
+    "english": "8 cups; 8 glassfuls"
+  },
+  {
+    "kanji": "九杯",
+    "hiragana": "きゅうはい",
+    "type": "counter",
+    "english": "9 cups; 9 glassfuls"
+  },
+  {
+    "kanji": "十杯",
+    "hiragana": "じゅっぱい",
+    "type": "counter",
+    "english": "10 cups; 10 glassfuls"
+  },
+  {
+    "kanji": "一台",
+    "hiragana": "いちだい",
+    "type": "counter",
+    "english": "1 machine; 1 vehicle"
+  },
+  {
+    "kanji": "二台",
+    "hiragana": "にだい",
+    "type": "counter",
+    "english": "2 machines; 2 vehicles"
+  },
+  {
+    "kanji": "三台",
+    "hiragana": "さんだい",
+    "type": "counter",
+    "english": "3 machines; 3 vehicles"
+  },
+  {
+    "kanji": "四台",
+    "hiragana": "よんだい",
+    "type": "counter",
+    "english": "4 machines; 4 vehicles"
+  },
+  {
+    "kanji": "五台",
+    "hiragana": "ごだい",
+    "type": "counter",
+    "english": "5 machines; 5 vehicles"
+  },
+  {
+    "kanji": "六台",
+    "hiragana": "ろくだい",
+    "type": "counter",
+    "english": "6 machines; 6 vehicles"
+  },
+  {
+    "kanji": "七台",
+    "hiragana": "ななだい",
+    "type": "counter",
+    "english": "7 machines; 7 vehicles"
+  },
+  {
+    "kanji": "八台",
+    "hiragana": "はちだい",
+    "type": "counter",
+    "english": "8 machines; 8 vehicles"
+  },
+  {
+    "kanji": "九台",
+    "hiragana": "きゅうだい",
+    "type": "counter",
+    "english": "9 machines; 9 vehicles"
+  },
+  {
+    "kanji": "十台",
+    "hiragana": "じゅうだい",
+    "type": "counter",
+    "english": "10 machines; 10 vehicles"
+  },
+  {
+    "kanji": "円",
+    "hiragana": "えん",
+    "type": "counter",
+    "english": "yen (Japanese currency)"
+  },
+  {
+    "kanji": "回",
+    "hiragana": "かい",
+    "type": "counter",
+    "english": "times; occurrence; counter for occurrences"
+  }
+]
