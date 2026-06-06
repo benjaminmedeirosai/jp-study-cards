@@ -1,59 +1,1009 @@
 :root {
   color-scheme: dark;
+  --surface-bg: #020617;
+  --surface-card: #0f172a;
+  --text: #e5eefc;
+  --muted: #94a3b8;
+  --accent: #60a5fa;
+  --accent-border: rgba(96, 165, 250, 0.72);
+  --border-1: 1px solid rgba(96, 165, 250, 0.18);
   font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  background: #020617;
-  color: #e5eefc;
+  background: var(--surface-bg);
+  color: var(--text);
 }
 
 * { box-sizing: border-box; }
 
-html, body {
-  margin: 0;
+html, body, #app {
+  width: 100%;
   min-height: 100%;
+  margin: 0;
 }
 
 body {
-  background:
-    radial-gradient(circle at 50% -10%, rgba(96, 165, 250, 0.18), transparent 34%),
-    linear-gradient(180deg, #0f172a, #020617);
+  min-height: 100dvh;
+  overflow: hidden;
+  background: var(--surface-bg);
 }
 
-button {
+button, input, select {
   font: inherit;
 }
 
-.lite-shell {
-  min-height: 100dvh;
+.japanese-study-page {
+  height: 100dvh;
+  min-height: 0;
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr) auto auto;
+  gap: 10px;
+  padding: 10px;
+  overflow: hidden;
+  background-color: var(--surface-bg);
+  background-image:
+    radial-gradient(circle at 50% -12%, rgba(96, 165, 250, 0.18), transparent 36%),
+    linear-gradient(180deg, rgba(15, 23, 42, 0.24), rgba(2, 6, 23, 0.12) 42%, rgba(2, 6, 23, 0.28));
+}
+
+.japanese-study-top,
+.japanese-study-card,
+.japanese-study-audio-source-row,
+.japanese-study-footer,
+.japanese-study-empty {
+  width: min(100%, 58rem);
+  margin: 0 auto;
+}
+
+.japanese-study-top {
+  display: grid;
+  gap: 6px;
+  grid-template-rows: auto auto auto;
+  padding: 2px;
+  border-radius: 14px;
+  background: linear-gradient(180deg, rgba(15, 23, 42, 0.18), rgba(15, 23, 42, 0.04));
+}
+
+.japanese-study-header-row {
+  display: grid;
+  gap: 6px;
+  min-width: 0;
+}
+
+.japanese-study-header-row.deck-row {
+  grid-template-columns: minmax(88px, 0.75fr) minmax(150px, 1.7fr) minmax(86px, 0.8fr);
+}
+
+.japanese-study-header-row.settings-row {
+  grid-template-columns: minmax(92px, 1fr) minmax(92px, 0.65fr);
+  align-items: end;
+}
+
+.japanese-study-field {
+  display: grid;
+  gap: 2px;
+  min-width: 0;
+  color: var(--muted);
+  font-size: 10px;
+  line-height: 1;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+.japanese-study-field span {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.japanese-study-field input,
+.japanese-study-field select {
+  min-height: 36px;
+  width: 100%;
+  min-width: 0;
+  border: var(--border-1);
+  border-color: rgba(96, 165, 250, 0.22);
+  border-radius: 9px;
+  background:
+    linear-gradient(180deg, rgba(30, 41, 59, 0.5), rgba(15, 23, 42, 0.48));
+  color: var(--text);
+  padding: 6px 8px;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.1;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.045),
+    0 8px 18px rgba(0, 0, 0, 0.08);
+}
+
+.japanese-study-field select:hover,
+.japanese-study-field input:hover,
+.japanese-study-field select:focus,
+.japanese-study-field input:focus {
+  border-color: var(--accent-border);
+  outline: none;
+  background: rgba(30, 41, 59, 0.58);
+}
+
+.japanese-study-summary {
+  grid-column: 1 / -1;
+  min-height: 15px;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.15;
+  font-weight: 500;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.japanese-study-card {
+  min-height: 0;
+  height: min(100%, 520px);
+  align-self: center;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(96, 165, 250, 0.24);
+  border-radius: 14px;
+  background:
+    radial-gradient(circle at 50% 0%, rgba(96, 165, 250, 0.17), transparent 38%),
+    linear-gradient(180deg, rgba(30, 41, 59, 0.42), rgba(2, 6, 23, 0.22)),
+    var(--surface-card);
+  padding: clamp(12px, 4vw, 20px);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.045),
+    0 18px 38px rgba(0, 0, 0, 0.22),
+    0 0 0 1px rgba(255, 255, 255, 0.02);
+}
+
+.japanese-study-card-slot {
+  position: absolute;
+  min-width: 0;
+  color: var(--text);
+  overflow-wrap: anywhere;
+  transition: opacity 0.12s;
+}
+
+.japanese-study-card-slot.is-invisible {
+  visibility: hidden;
+  opacity: 0;
+}
+
+.japanese-study-card-slot.card-type {
+  top: 18px;
+  left: 18px;
+  max-width: 45%;
+  color: var(--accent);
+  font-size: clamp(14px, 3vw, 18px);
+  font-weight: 500;
+  line-height: 1.15;
+}
+
+.japanese-study-card-slot.card-reading {
+  top: calc(50% + (clamp(58px, 22vw, 132px) * var(--japanese-main-font-scale, 1) * 0.58));
+  left: 50%;
+  width: calc(100% - 48px);
+  max-width: none;
+  transform: translateX(-50%);
+  text-align: center;
+  color: var(--muted);
+  font-size: calc(clamp(18px, 6vw, 34px) * var(--japanese-reading-font-scale, 1));
+  font-weight: 400;
+  line-height: 1.15;
+}
+
+.japanese-study-card-slot.card-main {
+  top: 50%;
+  left: 50%;
+  width: calc(100% - 48px);
+  transform: translate(-50%, -50%);
+  text-align: center;
+  font-size: calc(clamp(58px, 22vw, 132px) * var(--japanese-main-font-scale, 1));
+  font-weight: 400;
+  line-height: 1.02;
+  text-shadow: 0 0 14px rgba(96, 165, 250, 0.08);
+}
+
+.japanese-study-card-slot.card-english {
+  left: 18px;
+  right: 18px;
+  bottom: 18px;
+  min-height: 52px;
   display: grid;
   place-items: center;
-  padding: 24px;
+  text-align: center;
+  color: var(--text);
+  font-size: calc(clamp(18px, 5vw, 28px) * var(--japanese-english-font-scale, 1));
+  font-weight: 400;
+  line-height: 1.22;
+  padding-top: 14px;
+  border-top: 1px solid rgba(148, 163, 184, 0.18);
 }
 
-.lite-card {
-  width: min(100%, 480px);
+.japanese-study-audio-source-row {
   display: grid;
-  gap: 14px;
-  padding: 24px;
-  border: 1px solid rgba(96, 165, 250, 0.24);
-  border-radius: 16px;
-  background: linear-gradient(180deg, rgba(30, 41, 59, 0.64), rgba(2, 6, 23, 0.54));
-  box-shadow: 0 18px 42px rgba(0, 0, 0, 0.24);
+  grid-template-columns: auto auto minmax(0, 1fr) minmax(148px, 0.62fr);
+  align-items: center;
+  gap: 8px;
+  padding: 6px;
+  min-height: 78px;
+  border: 1px solid rgba(96, 165, 250, 0.16);
+  border-radius: 14px;
+  background:
+    linear-gradient(180deg, rgba(15, 23, 42, 0.42), rgba(2, 6, 23, 0.22));
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.035),
+    0 10px 24px rgba(0, 0, 0, 0.14);
 }
 
-.lite-card h1, .lite-card p {
-  margin: 0;
+.japanese-study-audio-source-label {
+  color: var(--muted);
+  font-size: 10px;
+  font-weight: 500;
+  line-height: 1;
+  text-transform: uppercase;
 }
 
-.lite-card button {
-  min-height: 44px;
-  border: 1px solid rgba(96, 165, 250, 0.48);
+.japanese-study-button.tts-source-toggle svg {
+  width: 25px;
+  height: 25px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2.3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.japanese-study-button.tts-source-toggle[aria-expanded="false"] {
+  color: rgba(229, 238, 252, 0.82);
+  border-color: rgba(148, 163, 184, 0.28);
+}
+
+.japanese-study-audio-source-control {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0;
+  overflow: hidden;
+  border: 1px solid rgba(96, 165, 250, 0.26);
+  border-radius: 999px;
+  background: rgba(15, 23, 42, 0.58);
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.22);
+  transition: opacity 0.16s ease, transform 0.16s ease, visibility 0.16s ease;
+}
+
+.japanese-study-audio-source-row.source-collapsed .japanese-study-audio-source-control {
+  opacity: 0;
+  pointer-events: none;
+  visibility: hidden;
+  transform: translateX(-8px);
+}
+
+.japanese-study-audio-source-control::before {
+  content: "";
+  position: absolute;
+  top: 3px;
+  bottom: 3px;
+  left: 3px;
+  width: calc((100% - 6px) / 3);
+  border-radius: 999px;
+  background: linear-gradient(180deg, rgba(96, 165, 250, 0.9), rgba(37, 99, 235, 0.62));
+  box-shadow: 0 4px 14px rgba(37, 99, 235, 0.28);
+  transition: transform 0.18s ease;
+}
+
+.japanese-study-audio-source-control[data-selected="auto"]::before {
+  transform: translateX(100%);
+}
+
+.japanese-study-audio-source-control[data-selected="hiragana"]::before {
+  transform: translateX(200%);
+}
+
+.japanese-study-button.tts-source {
+  position: relative;
+  z-index: 1;
+  min-height: 36px;
+  height: 36px;
+  grid-template-rows: 1fr;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 500;
+  box-shadow: none;
+}
+
+.japanese-study-button.tts-source.active {
+  background: transparent;
+  color: #eff6ff;
+}
+
+.japanese-study-audio-actions {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 6px;
+}
+
+.japanese-study-button.audio-action {
+  min-height: 64px;
+  height: 64px;
+  position: relative;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
+  place-items: center;
+  border-color: rgba(96, 165, 250, 0.22);
+  border-radius: 12px;
+  gap: 0;
+  padding: 0;
+  background:
+    linear-gradient(180deg, rgba(30, 41, 59, 0.48), rgba(15, 23, 42, 0.42));
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.055),
+    0 8px 18px rgba(0, 0, 0, 0.16);
+}
+
+.japanese-study-button.audio-action .icon {
+  font-size: 30px;
+  place-self: center;
+}
+
+.japanese-study-button.audio-action .hotkey {
+  display: none;
+}
+
+.japanese-study-button.audio-action .text {
+  position: absolute;
+  left: 8px;
+  right: 8px;
+  bottom: 8px;
+  display: block;
+  color: rgba(148, 163, 184, 0.78);
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1;
+  text-align: center;
+}
+
+.japanese-study-button.inline-audio {
+  border-color: rgba(250, 204, 21, 0.36);
+}
+
+.japanese-study-button.link-action {
+  border-color: rgba(96, 165, 250, 0.24);
+}
+
+.japanese-study-footer {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+  padding: 6px 6px max(0.25rem, env(safe-area-inset-bottom));
+  border: 1px solid rgba(96, 165, 250, 0.14);
+  border-radius: 14px;
+  background:
+    linear-gradient(180deg, rgba(15, 23, 42, 0.38), rgba(2, 6, 23, 0.2));
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.03),
+    0 12px 28px rgba(0, 0, 0, 0.15);
+}
+
+.japanese-study-button {
+  min-height: 64px;
+  min-width: 0;
+  position: relative;
+  display: grid;
+  align-items: center;
+  justify-content: center;
+  place-items: center;
+  gap: 0;
+  padding: 0;
+  border: 1px solid rgba(148, 163, 184, 0.22);
   border-radius: 10px;
-  background: rgba(15, 23, 42, 0.64);
-  color: #bfdbfe;
+  background: rgba(15, 23, 42, 0.55);
+  color: var(--text);
+  font-family: inherit;
+  font-size: 13px;
+  line-height: 1;
+  font-weight: 500;
+  cursor: pointer;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+  transition: background 0.15s, border-color 0.15s, color 0.15s, transform 0.15s;
+}
+
+.japanese-study-button .icon {
+  display: block;
+  font-size: 20px;
+  line-height: 1;
+  place-self: center;
+}
+
+.japanese-study-button .text {
+  position: absolute;
+  left: 8px;
+  right: 8px;
+  bottom: 8px;
+  display: block;
+  max-width: 100%;
+  overflow: hidden;
+  color: rgba(148, 163, 184, 0.82);
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1;
+  text-align: center;
+  text-overflow: ellipsis;
+}
+
+.japanese-study-button .hotkey {
+  display: none;
+  position: absolute;
+  right: 7px;
+  bottom: 7px;
+  max-width: 100%;
+  overflow: hidden;
+  color: var(--muted);
+  font-size: 10px;
+  font-weight: 400;
+  line-height: 1;
+  text-overflow: ellipsis;
+}
+
+.japanese-study-mini-button-rail {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 38px;
+  gap: 8px;
+  align-items: center;
+}
+
+.japanese-study-button.mini-button {
+  width: 38px;
+  min-width: 38px;
+  min-height: 38px;
+  height: 38px;
+  padding: 0;
+  display: grid;
+  place-items: center;
+  border-radius: 12px;
+  border-color: rgba(96, 165, 250, 0.28);
+  background:
+    linear-gradient(180deg, rgba(30, 41, 59, 0.54), rgba(15, 23, 42, 0.46));
+  color: var(--accent);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.055),
+    0 8px 18px rgba(0, 0, 0, 0.16);
+}
+
+.japanese-study-button.shuffle-set {
+  font-size: 24px;
+  line-height: 1;
+}
+
+.japanese-study-audio-source-row:not(.source-collapsed) .japanese-study-button.shuffle-set {
+  display: none;
+}
+
+.japanese-study-page.show-hotkeys .japanese-study-footer .japanese-study-button {
+  min-height: 64px;
+}
+
+.japanese-study-page.show-hotkeys .japanese-study-footer .japanese-study-button .hotkey {
+  display: block;
+}
+
+.japanese-study-button:hover {
+  border-color: var(--accent-border);
+  background: rgba(30, 41, 59, 0.72);
+}
+
+.japanese-study-button:active {
+  transform: translateY(1px);
+}
+
+.japanese-study-button.primary {
+  background:
+    linear-gradient(180deg, rgba(30, 41, 59, 0.58), rgba(15, 23, 42, 0.48));
+  border-color: rgba(96, 165, 250, 0.58);
+  color: var(--accent);
+}
+
+.japanese-study-button.audio {
+  border-color: rgba(250, 204, 21, 0.36);
+}
+
+.japanese-study-button.audio .icon {
+  color: rgb(250, 204, 21);
+}
+
+.japanese-study-button.nav {
+  border-color: rgba(148, 163, 184, 0.34);
+}
+
+.japanese-study-button.reveal {
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.06),
+    0 0 0 1px rgba(59, 130, 246, 0.15);
+}
+
+.japanese-study-footer .japanese-study-button {
+  border-radius: 12px;
+  background: rgba(2, 6, 23, 0.28);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.055),
+    0 8px 18px rgba(0, 0, 0, 0.16);
+}
+
+.japanese-study-footer .japanese-study-button.nav {
+  background: rgba(2, 6, 23, 0.2);
+}
+
+.japanese-study-footer .japanese-study-button:hover {
+  background: rgba(15, 23, 42, 0.48);
+}
+
+.japanese-study-footer .japanese-study-button .icon {
+  width: auto;
+  height: auto;
+  display: grid;
+  place-items: center;
+  color: #e5eefc;
+  background: transparent;
+}
+
+.japanese-study-footer .japanese-study-button.nav .icon {
+  color: #f8fafc;
+  font-size: 34px;
+  line-height: 0.9;
+}
+
+.japanese-study-footer .japanese-study-button.nav {
+  border-color: rgba(148, 163, 184, 0.32);
+  color: #e5eefc;
+}
+
+.japanese-study-footer .japanese-study-button.reveal {
+  background:
+    linear-gradient(180deg, rgba(30, 41, 59, 0.72), rgba(15, 23, 42, 0.52));
+  border-color: rgba(96, 165, 250, 0.62);
+  color: #93c5fd;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.075),
+    0 8px 18px rgba(0, 0, 0, 0.16);
+}
+
+.japanese-study-footer .japanese-study-button.reveal .icon {
+  color: #60a5fa;
+  font-size: 30px;
+  text-shadow: 0 0 10px rgba(96, 165, 250, 0.28);
+}
+
+.japanese-study-footer .japanese-study-button .text {
+  color: rgba(148, 163, 184, 0.82);
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.japanese-study-footer .japanese-study-button .hotkey {
+  color: rgba(226, 232, 240, 0.6);
+}
+
+.japanese-study-footer .japanese-study-button.reveal .hotkey {
+  color: rgba(147, 197, 253, 0.68);
+}
+
+.japanese-study-settings-open {
+  min-height: 36px;
+  height: 36px;
+  display: grid;
+  grid-template-rows: 1fr;
+  grid-template-columns: 18px minmax(0, 1fr);
+  grid-auto-flow: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 0 10px;
+  border-radius: 7px;
+  font-size: 13px;
+}
+
+.japanese-study-settings-open .icon,
+.japanese-study-settings-open .text {
+  display: block;
+}
+
+.japanese-study-settings-open .icon {
+  font-size: 16px;
+}
+
+.japanese-study-settings-open.cache-update-available::after {
+  content: "";
+  position: absolute;
+  top: 7px;
+  right: 8px;
+  width: 9px;
+  height: 9px;
+  border-radius: 999px;
+  background: rgb(250, 204, 21);
+  box-shadow:
+    0 0 0 2px rgba(15, 23, 42, 0.95),
+    0 0 12px rgba(250, 204, 21, 0.75);
+}
+
+.japanese-study-button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.japanese-study-empty {
+  display: grid;
+  place-items: center;
+  min-height: 14rem;
+  border: var(--border-1);
+  border-radius: 0.75rem;
+  background: var(--surface-card);
+  color: var(--muted);
+  padding: 1rem;
+  text-align: center;
+}
+
+.japanese-study-toggle {
+  display: grid;
+  grid-template-columns: 16px minmax(0, 1fr);
+  align-items: center;
+  gap: 6px;
+  min-width: 0;
+  min-height: 36px;
+  padding: 6px 8px;
+  border: 1px solid rgba(96, 165, 250, 0.22);
+  border-radius: 7px;
+  background: rgba(15, 23, 42, 0.38);
+  color: var(--text);
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1;
+}
+
+.japanese-study-toggle input {
+  width: 14px;
+  height: 14px;
+  margin: 0;
+  accent-color: var(--accent);
+}
+
+.japanese-study-toggle span {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.japanese-study-settings-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: grid;
+  place-items: center;
+  padding: 16px;
+  background: rgba(2, 6, 23, 0.72);
+  backdrop-filter: blur(8px);
+}
+
+.japanese-study-settings-dialog {
+  width: min(100%, 420px);
+  max-height: calc(100dvh - 32px);
+  min-height: 0;
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr);
+  gap: 14px;
+  border: 1px solid rgba(96, 165, 250, 0.28);
+  border-radius: 12px;
+  background:
+    linear-gradient(180deg, rgba(30, 41, 59, 0.92), rgba(15, 23, 42, 0.96)),
+    var(--surface-card);
+  padding: 16px;
+  color: var(--text);
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.38);
+}
+
+.japanese-study-settings-dialog:focus {
+  outline: none;
+}
+
+.japanese-study-settings-title {
+  color: var(--text);
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 1;
+}
+
+.japanese-study-settings-form {
+  display: grid;
+  grid-template-rows: minmax(0, 1fr) auto;
+  gap: 12px;
+  min-height: 0;
+}
+
+.japanese-study-settings-content {
+  display: grid;
+  gap: 12px;
+  min-height: 0;
+  overflow: auto;
+  padding-right: 2px;
+}
+
+.japanese-study-settings-toggle-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 8px;
+}
+
+.japanese-study-set-preview {
+  display: grid;
+  gap: 6px;
+  min-width: 0;
+}
+
+.japanese-study-set-preview-title {
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.japanese-study-set-preview-note {
+  color: rgba(147, 197, 253, 0.82);
+  font-size: 11px;
+  line-height: 1.25;
+}
+
+.japanese-study-set-preview-note[hidden] {
+  display: none;
+}
+
+.japanese-study-set-preview-rows {
+  display: block;
+  min-width: 0;
+  max-height: 148px;
+  overflow: auto;
+  padding: 6px;
+  border: 1px solid rgba(96, 165, 250, 0.18);
+  border-radius: 8px;
+  background: rgba(15, 23, 42, 0.28);
+}
+
+.japanese-study-set-preview-row {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  width: max-content;
+  min-width: 100%;
+  margin-bottom: 4px;
+  padding: 5px 6px;
+  border-radius: 6px;
+  background: rgba(2, 6, 23, 0.2);
+  color: var(--text);
+  font-size: 12px;
+  line-height: 1.25;
+  white-space: nowrap;
+}
+
+.japanese-study-set-preview-row:last-child {
+  margin-bottom: 0;
+}
+
+.japanese-study-set-preview-label {
+  flex: 0 0 auto;
+  color: var(--accent);
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.japanese-study-set-preview-words {
+  flex: 0 0 auto;
+  min-width: max-content;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+.japanese-study-cache-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(132px, auto);
+  align-items: center;
+  gap: 8px;
+  padding-top: 2px;
+}
+
+.japanese-study-cache-info {
+  display: grid;
+  gap: 3px;
+  min-width: 0;
+}
+
+.japanese-study-cache-status,
+.japanese-study-cache-version {
+  min-width: 0;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.35;
+}
+
+.japanese-study-cache-version {
+  color: rgba(147, 197, 253, 0.82);
+}
+
+.japanese-study-settings-actions {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+  padding-top: 4px;
+}
+
+.japanese-study-dialog-button {
+  min-height: 40px;
+  border: 1px solid rgba(148, 163, 184, 0.24);
+  border-radius: 8px;
+  background: rgba(15, 23, 42, 0.55);
+  color: var(--text);
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 500;
   cursor: pointer;
 }
 
-.status {
-  color: #94a3b8;
-  font-size: 14px;
+.japanese-study-dialog-button:hover {
+  border-color: var(--accent-border);
+  background: rgba(30, 41, 59, 0.72);
+}
+
+.japanese-study-dialog-button.primary {
+  border-color: rgba(96, 165, 250, 0.72);
+  background: rgba(37, 99, 235, 0.24);
+  color: var(--accent);
+}
+
+.japanese-study-card[hidden],
+.japanese-study-audio-source-row[hidden],
+.japanese-study-footer[hidden],
+.japanese-study-empty[hidden] {
+  display: none !important;
+}
+
+@media (max-width: 540px) {
+  .japanese-study-header-row.deck-row {
+    grid-template-columns: minmax(72px, 0.72fr) minmax(124px, 1.35fr) minmax(72px, 0.68fr);
+  }
+
+  .japanese-study-header-row.settings-row {
+    grid-template-columns: minmax(96px, 1fr) minmax(92px, 0.72fr);
+  }
+
+  .japanese-study-footer {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .japanese-study-audio-source-row {
+    grid-template-columns: auto minmax(0, 1fr);
+    grid-template-rows: 38px 64px;
+    gap: 8px;
+    padding: 6px;
+    min-height: 124px;
+  }
+
+  .japanese-study-audio-actions {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-column: 1 / -1;
+  }
+
+  .japanese-study-audio-source-label {
+    display: none;
+  }
+
+  .japanese-study-button.tts-source {
+    font-size: 11px;
+  }
+
+  .japanese-study-button.audio-action {
+    min-height: 64px;
+    height: 64px;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    font-size: 15px;
+  }
+
+  .japanese-study-button.audio-action .icon {
+    font-size: 30px;
+  }
+
+  .japanese-study-button {
+    min-height: 64px;
+    font-size: 12px;
+  }
+
+  .japanese-study-button .icon {
+    font-size: 30px;
+  }
+
+  .japanese-study-button.reveal .icon {
+    font-size: 32px;
+  }
+
+  .japanese-study-audio-source-row .japanese-study-button.audio-action {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+  }
+
+  .japanese-study-audio-source-row .japanese-study-button.tts-source {
+    grid-template-rows: 1fr;
+  }
+
+  .japanese-study-settings-open {
+    min-height: 36px;
+    height: 36px;
+    grid-template-columns: 18px minmax(0, 1fr);
+    grid-template-rows: 1fr;
+    font-size: 13px;
+  }
+
+  .japanese-study-settings-open .icon {
+    font-size: 16px;
+  }
+
+  .japanese-study-settings-open .hotkey {
+    display: none;
+  }
+
+  .japanese-study-toggle {
+    grid-template-columns: 14px minmax(0, 1fr);
+    gap: 4px;
+    padding: 6px;
+    font-size: 11px;
+  }
+
+  .japanese-study-settings-toggle-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .japanese-study-cache-row {
+    grid-template-columns: 1fr;
+  }
+
+  .japanese-study-card {
+    height: min(100%, 430px);
+  }
+
+  .japanese-study-card-slot.card-type {
+    top: 14px;
+    left: 14px;
+  }
+
+  .japanese-study-card-slot.card-reading {
+    top: calc(50% + (clamp(58px, 22vw, 132px) * var(--japanese-main-font-scale, 1) * 0.58));
+    left: 50%;
+    right: auto;
+    width: calc(100% - 36px);
+    transform: translateX(-50%);
+  }
+
+  .japanese-study-card-slot.card-main {
+    width: calc(100% - 36px);
+  }
+
+  .japanese-study-card-slot.card-english {
+    left: 14px;
+    right: 14px;
+    bottom: 14px;
+  }
+}
+
+@media (min-width: 760px) {
+  .japanese-study-page {
+    padding: 0.8rem;
+  }
+
+  .japanese-study-top {
+    gap: 8px;
+  }
 }

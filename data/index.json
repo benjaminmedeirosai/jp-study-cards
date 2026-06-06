@@ -1,12 +1,27 @@
 {
+  "version": "data-v1",
   "generatedAt": "2026-06-05T14:58:19.331Z",
   "decks": [
     {
-      "id": "nouns/animals",
+      "id": "nouns/animals/animals",
       "label": "Animals",
-      "category": "Nouns",
-      "path": "/data/nouns/animals.json",
-      "count": 85
+      "category": "Nouns / Animals",
+      "path": "/data/nouns/animals/animals.tsv",
+      "count": 63
+    },
+    {
+      "id": "nouns/animals/related",
+      "label": "Animal Related",
+      "category": "Nouns / Animals",
+      "path": "/data/nouns/animals/related.tsv",
+      "count": 12
+    },
+    {
+      "id": "nouns/animals/loanwords",
+      "label": "Animal Loanwords",
+      "category": "Nouns / Animals",
+      "path": "/data/nouns/animals/loanwords.tsv",
+      "count": 19
     },
     {
       "id": "nouns/food",
@@ -100,11 +115,151 @@
       "count": 50
     },
     {
-      "id": "nouns/common-12",
-      "label": "Nouns 12",
-      "category": "Nouns",
-      "path": "/data/nouns/common-12.json",
-      "count": 50
+      "id": "nouns/food/loanwords",
+      "label": "Food Loanwords",
+      "category": "Nouns / Food",
+      "path": "/data/nouns/food/loanwords.tsv",
+      "count": 15
+    },
+    {
+      "id": "nouns/objects/loanwords",
+      "label": "Object Loanwords",
+      "category": "Nouns / Objects",
+      "path": "/data/nouns/objects/loanwords.tsv",
+      "count": 10
+    },
+    {
+      "id": "nouns/abstract/loanwords",
+      "label": "Abstract Loanwords",
+      "category": "Nouns / Abstract",
+      "path": "/data/nouns/abstract/loanwords.tsv",
+      "count": 10
+    },
+    {
+      "id": "nouns/body/loanwords",
+      "label": "Body Loanwords",
+      "category": "Nouns / Body",
+      "path": "/data/nouns/body/loanwords.tsv",
+      "count": 1
+    },
+    {
+      "id": "nouns/nature/loanwords",
+      "label": "Nature Loanwords",
+      "category": "Nouns / Nature",
+      "path": "/data/nouns/nature/loanwords.tsv",
+      "count": 1
+    },
+    {
+      "id": "nouns/name-roots/loanwords",
+      "label": "Name Root Loanwords",
+      "category": "Nouns / Name Roots",
+      "path": "/data/nouns/name-roots/loanwords.tsv",
+      "count": 5
+    },
+    {
+      "id": "nouns/people/people",
+      "label": "People",
+      "category": "Nouns / People",
+      "path": "/data/nouns/people/people.tsv",
+      "count": 12
+    },
+    {
+      "id": "nouns/people/roles",
+      "label": "Roles",
+      "category": "Nouns / People",
+      "path": "/data/nouns/people/roles.tsv",
+      "count": 12
+    },
+    {
+      "id": "nouns/objects/household",
+      "label": "Household Objects",
+      "category": "Nouns / Objects",
+      "path": "/data/nouns/objects/household.tsv",
+      "count": 10
+    },
+    {
+      "id": "nouns/objects/tools",
+      "label": "Tools",
+      "category": "Nouns / Objects",
+      "path": "/data/nouns/objects/tools.tsv",
+      "count": 10
+    },
+    {
+      "id": "nouns/places/locations",
+      "label": "Locations",
+      "category": "Nouns / Places",
+      "path": "/data/nouns/places/locations.tsv",
+      "count": 12
+    },
+    {
+      "id": "nouns/places/buildings",
+      "label": "Buildings",
+      "category": "Nouns / Places",
+      "path": "/data/nouns/places/buildings.tsv",
+      "count": 12
+    },
+    {
+      "id": "nouns/technology/devices",
+      "label": "Devices",
+      "category": "Nouns / Technology",
+      "path": "/data/nouns/technology/devices.tsv",
+      "count": 2
+    },
+    {
+      "id": "nouns/technology/device-loanwords",
+      "label": "Device Loanwords",
+      "category": "Nouns / Technology",
+      "path": "/data/nouns/technology/device-loanwords.tsv",
+      "count": 10
+    },
+    {
+      "id": "nouns/technology/software-loanwords",
+      "label": "Software Loanwords",
+      "category": "Nouns / Technology",
+      "path": "/data/nouns/technology/software-loanwords.tsv",
+      "count": 12
+    },
+    {
+      "id": "nouns/nature/weather",
+      "label": "Weather",
+      "category": "Nouns / Nature",
+      "path": "/data/nouns/nature/weather.tsv",
+      "count": 12
+    },
+    {
+      "id": "nouns/nature/landscape",
+      "label": "Landscape",
+      "category": "Nouns / Nature",
+      "path": "/data/nouns/nature/landscape.tsv",
+      "count": 12
+    },
+    {
+      "id": "nouns/abstract/emotions",
+      "label": "Emotions",
+      "category": "Nouns / Abstract",
+      "path": "/data/nouns/abstract/emotions.tsv",
+      "count": 12
+    },
+    {
+      "id": "nouns/abstract/concepts",
+      "label": "Concepts",
+      "category": "Nouns / Abstract",
+      "path": "/data/nouns/abstract/concepts.tsv",
+      "count": 12
+    },
+    {
+      "id": "nouns/body/body-parts",
+      "label": "Body Parts",
+      "category": "Nouns / Body",
+      "path": "/data/nouns/body/body-parts.tsv",
+      "count": 12
+    },
+    {
+      "id": "nouns/time/time",
+      "label": "Time",
+      "category": "Nouns / Time",
+      "path": "/data/nouns/time/time.tsv",
+      "count": 12
     },
     {
       "id": "nouns/common-13",
