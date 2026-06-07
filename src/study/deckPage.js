@@ -1,7 +1,11 @@
-import { loadState, saveState, buildDeckTree, listDecks, loadIndex, button } from "./shared.js";
+import { loadState, saveState, buildDeckTree, listDecks, loadBundle, deckMatchCounts, button } from "./shared.js";
 
 // Indentation per tree level, in px.
 const INDENT = 34;
+
+// Sentinel path for the synthetic "All decks" root folder (won't collide with
+// any real category path, which are slash-delimited).
+const ALL_PATH = "::all::";
 
 const ICONS = {
   folder: `<svg viewBox="0 0 24 24"><path d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z"/></svg>`,
@@ -64,6 +68,14 @@ export function renderDeckPage() {
   title.textContent = "Decks";
   top.append(backBtn, title);
 
+  // Shared filter — bound to state.query, so it matches the settings filter.
+  const filterInput = document.createElement("input");
+  filterInput.type = "text";
+  filterInput.className = "decks-filter";
+  filterInput.placeholder = "Filter cards…";
+  filterInput.autocomplete = "off";
+  filterInput.value = state.query;
+
   const list = document.createElement("div");
   list.className = "decks-list";
   const empty = document.createElement("div");
@@ -71,10 +83,22 @@ export function renderDeckPage() {
   empty.textContent = "Loading decks...";
   list.append(empty);
 
-  root.append(top, list);
+  root.append(top, filterInput, list);
 
   let tree = [];
+  let bundle = null;
+  let counts = new Map();
   const expanded = new Set();
+
+  filterInput.addEventListener("input", () => {
+    const next = filterInput.value.trim();
+    if (next === state.query) return;
+    state.query = next;
+    state.setId = "all";
+    state.currentIndex = 0;
+    saveState(state);
+    if (bundle) renderList();
+  });
 
   function selectDeck(id) {
     if (id !== state.deckId) {
@@ -107,15 +131,28 @@ export function renderDeckPage() {
     return wrap;
   }
 
+  // "matched / total" while filtering, else just the total.
+  function countLabel(matched, total) {
+    return state.query ? `${matched} / ${total}` : `${total}`;
+  }
+
+  function matchedInNode(node) {
+    let sum = 0;
+    for (const deck of node.decks) sum += counts.get(deck.id) || 0;
+    for (const child of node.children) sum += matchedInNode(child);
+    return sum;
+  }
+
   function fileRow(deck, depth) {
-    return entry(contentRow(ICONS.file, deck.label, deck.count, "deck-row--file"), useButton(deck.id, deck.label), depth);
+    const label = countLabel(counts.get(deck.id) || 0, Number(deck.count || 0));
+    return entry(contentRow(ICONS.file, deck.label, label, "deck-row--file"), useButton(deck.id, deck.label), depth);
   }
 
   // The folder's content row toggles expand/collapse on tap; the "Select" button
   // chooses the folder itself (all files beneath it) as the study target.
   function folderRow(node, path, depth) {
     const isOpen = expanded.has(path);
-    const toggle = contentRow(isOpen ? ICONS.folderOpen : ICONS.folder, node.name, countCards(node), "deck-folder-toggle", true);
+    const toggle = contentRow(isOpen ? ICONS.folderOpen : ICONS.folder, node.name, countLabel(matchedInNode(node), countCards(node)), "deck-folder-toggle", true);
     toggle.setAttribute("aria-expanded", isOpen ? "true" : "false");
     toggle.addEventListener("click", () => {
       if (expanded.has(path)) expanded.delete(path);
@@ -133,15 +170,37 @@ export function renderDeckPage() {
     for (const child of node.children) renderNode(child, path, depth + 1, frag);
   }
 
+  // The "All decks" root folder: selecting it studies the whole collection;
+  // expanding it reveals every top-level folder/deck beneath.
+  function renderAllRow(frag) {
+    const isOpen = expanded.has(ALL_PATH);
+    const matched = tree.reduce((sum, node) => sum + matchedInNode(node), 0);
+    const total = tree.reduce((sum, node) => sum + countCards(node), 0);
+    const toggle = contentRow(isOpen ? ICONS.folderOpen : ICONS.folder, "All decks", countLabel(matched, total), "deck-folder-toggle", true);
+    toggle.setAttribute("aria-expanded", isOpen ? "true" : "false");
+    toggle.addEventListener("click", () => {
+      if (expanded.has(ALL_PATH)) expanded.delete(ALL_PATH);
+      else expanded.add(ALL_PATH);
+      renderList();
+    });
+    frag.append(entry(toggle, useButton("all", "All decks"), 0));
+    return isOpen;
+  }
+
   function renderList() {
+    counts = deckMatchCounts(bundle, state.query);
     const frag = document.createDocumentFragment();
-    for (const node of tree) renderNode(node, "", 0, frag);
+    if (renderAllRow(frag)) {
+      for (const node of tree) renderNode(node, "", 1, frag);
+    }
     list.innerHTML = "";
     list.append(frag);
   }
 
   // Expand the folders leading to (and including) the current selection.
   function seedExpanded(index) {
+    // The All-decks root starts open so its folders are visible.
+    expanded.add(ALL_PATH);
     const sel = state.deckId;
     let segments = [];
     if (sel.startsWith("folder:")) {
@@ -159,9 +218,9 @@ export function renderDeckPage() {
 
   async function initialize() {
     try {
-      const index = await loadIndex();
-      tree = buildDeckTree(index);
-      seedExpanded(index);
+      bundle = await loadBundle();
+      tree = buildDeckTree(bundle);
+      seedExpanded(bundle);
       renderList();
     } catch (error) {
       empty.textContent = `Could not load decks: ${error.message || error}`;

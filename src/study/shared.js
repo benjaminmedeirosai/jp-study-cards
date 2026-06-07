@@ -16,12 +16,12 @@ export const MODES = [
   { id: "voice", label: "Voice" }
 ];
 export const SET_GROUPINGS = [
-  { id: "kanji-alpha", label: "Alphabetical (kanji)", key: "kanji", type: "alpha" },
-  { id: "hiragana-alpha", label: "Alphabetical (hiragana)", key: "hiragana", type: "alpha" },
-  { id: "kanji-likeness-slotting", label: "Kanji - likeness slotting", key: "kanji", type: "slotting" },
-  { id: "kanji-likeness-grouping", label: "Kanji - likeness grouping *", key: "kanji", type: "grouping" },
-  { id: "hiragana-likeness-slotting", label: "Hiragana - likeness slotting", key: "hiragana", type: "slotting" },
-  { id: "hiragana-likeness-grouping", label: "Hiragana - likeness grouping *", key: "hiragana", type: "grouping" }
+  { id: "kanji-alpha", label: "Alphabetical (kanji)", shortLabel: "漢 A-Z", key: "kanji", type: "alpha" },
+  { id: "hiragana-alpha", label: "Alphabetical (hiragana)", shortLabel: "かな A-Z", key: "hiragana", type: "alpha" },
+  { id: "kanji-likeness-slotting", label: "Kanji - likeness slotting", shortLabel: "漢 slot", key: "kanji", type: "slotting" },
+  { id: "kanji-likeness-grouping", label: "Kanji - likeness grouping *", shortLabel: "漢 group", key: "kanji", type: "grouping" },
+  { id: "hiragana-likeness-slotting", label: "Hiragana - likeness slotting", shortLabel: "かな slot", key: "hiragana", type: "slotting" },
+  { id: "hiragana-likeness-grouping", label: "Hiragana - likeness grouping *", shortLabel: "かな group", key: "hiragana", type: "grouping" }
 ];
 
 export function clampInt(value, fallback, min, max) {
@@ -46,9 +46,9 @@ export function loadState() {
     mode: MODES.some((mode) => mode.id === raw.mode) ? raw.mode : "kanji",
     setSize: clampInt(raw.setSize, DEFAULT_SET_SIZE, 5, 100),
     setGrouping: normalizeSetGrouping(raw.setGrouping),
-    kanjiFontScale: clampInt(raw.kanjiFontScale, 150, 10, 250),
-    hiraganaFontScale: clampInt(raw.hiraganaFontScale, 150, 10, 250),
-    englishFontScale: clampInt(raw.englishFontScale, 150, 10, 250),
+    kanjiFontScale: clampInt(raw.kanjiFontScale, 100, 50, 150),
+    hiraganaFontScale: clampInt(raw.hiraganaFontScale, 100, 50, 150),
+    englishFontScale: clampInt(raw.englishFontScale, 100, 50, 150),
     currentIndex: clampInt(raw.currentIndex, 0, 0, 100000),
     query: String(raw.query || "").trim(),
     jpVoice: String(raw.jpVoice || ""),
@@ -91,78 +91,27 @@ export function openSearchLink(template, entry) {
 }
 
 // ---------------------------------------------------------------------------
-// Data loading + parsing
+// Data loading (one bundled file, cached for the page lifetime)
 // ---------------------------------------------------------------------------
 
-export function parseTsvDeck(source, path) {
-  const lines = source.replace(/\r\n?/g, "\n").split("\n").filter((line) => line.trim());
-  if (!lines.length) return [];
+let bundlePromise = null;
 
-  const headers = lines[0].split("\t").map((header) => header.trim());
-  const requiredHeaders = ["kanji", "hiragana", "type", "english"];
-  if (headers.length !== requiredHeaders.length || !requiredHeaders.every((header, index) => headers[index] === header)) {
-    throw new Error(`${path}: expected TSV header ${requiredHeaders.join("\t")}`);
-  }
-
-  return lines.slice(1).map((line, index) => {
-    const fields = line.split("\t");
-    if (fields.length !== requiredHeaders.length) {
-      throw new Error(`${path}:${index + 2}: expected ${requiredHeaders.length} tab-separated fields`);
-    }
-    return Object.fromEntries(requiredHeaders.map((header, fieldIndex) => [header, fields[fieldIndex].trim()]));
-  });
-}
-
-export async function parseDeckResponse(response, path) {
-  if (path.endsWith(".tsv")) return parseTsvDeck(await response.text(), path);
-  return response.json();
-}
-
-// Module-level caches so loaded data survives page navigation (cleared only on
-// a full page refresh). Promises are cached to also dedupe concurrent loads.
-const deckFileCache = new Map();
-let indexPromise = null;
-
-// Strip a leading slash so paths resolve relative to wherever the app is
-// served (domain root, or a GitHub-Pages project subpath like /jp-study-cards/).
-function relativeUrl(path) {
-  return String(path).replace(/^\//, "");
-}
-
-export function loadIndex() {
-  if (!indexPromise) {
-    indexPromise = fetch("data/index.json")
+// No leading slash, so it resolves under any base path (e.g. a GitHub Pages
+// project subpath like /jp-study-cards/).
+export function loadBundle() {
+  if (!bundlePromise) {
+    bundlePromise = fetch("data/cards.json")
       .then((response) => {
-        if (!response.ok) throw new Error(`data/index.json: ${response.status}`);
+        if (!response.ok) throw new Error(`data/cards.json: ${response.status}`);
         return response.json();
       })
-      .catch((error) => { indexPromise = null; throw error; });
+      .catch((error) => { bundlePromise = null; throw error; });
   }
-  return indexPromise;
+  return bundlePromise;
 }
 
-export function loadDeckFile(path) {
-  if (!deckFileCache.has(path)) {
-    const promise = fetch(relativeUrl(path))
-      .then((response) => {
-        if (!response.ok) throw new Error(`${path}: ${response.status}`);
-        return parseDeckResponse(response, path);
-      })
-      .catch((error) => { deckFileCache.delete(path); throw error; });
-    deckFileCache.set(path, promise);
-  }
-  return deckFileCache.get(path);
-}
-
-export async function loadDeckCards(deck) {
-  const paths = deck?.paths || (deck?.path ? [deck.path] : []);
-  const all = [];
-  for (const path of paths) all.push(...(await loadDeckFile(path)));
-  return all;
-}
-
-export function listDecks(index) {
-  return Array.isArray(index?.decks) ? index.decks : [];
+export function listDecks(bundle) {
+  return Array.isArray(bundle?.decks) ? bundle.decks : [];
 }
 
 // Decks whose category folder is `path` or nested beneath it.
@@ -173,12 +122,22 @@ function decksInFolder(decks, path) {
   });
 }
 
-// Resolve a stored deckId to its label, category breadcrumb, and file paths.
-// "folder:<path>" → a folder (all files beneath it); a deck id → a single file.
-// Empty/unknown (including no selection) → null.
-export function resolveDeck(index, deckId) {
-  const decks = listDecks(index);
+// Resolve a stored deckId to a study target with its card entries.
+// "folder:<path>" → a folder (all decks beneath it, concatenated);
+// a deck id → a single deck. Empty/unknown → null.
+export function resolveDeck(bundle, deckId) {
+  const decks = listDecks(bundle);
   if (!deckId) return null;
+  if (deckId === "all") {
+    if (!decks.length) return null;
+    return {
+      id: "all",
+      label: "All decks",
+      category: "",
+      count: decks.reduce((sum, deck) => sum + Number(deck.count || 0), 0),
+      entries: decks.flatMap((deck) => deck.entries || [])
+    };
+  }
   if (deckId.startsWith("folder:")) {
     const path = deckId.slice("folder:".length);
     const segments = path.split("/").map((part) => part.trim()).filter(Boolean);
@@ -188,18 +147,32 @@ export function resolveDeck(index, deckId) {
       id: deckId,
       label: segments[segments.length - 1] || path,
       category: segments.slice(0, -1).join(" / "),
-      paths: inFolder.map((deck) => deck.path),
-      count: inFolder.reduce((sum, deck) => sum + Number(deck.count || 0), 0)
+      count: inFolder.reduce((sum, deck) => sum + Number(deck.count || 0), 0),
+      entries: inFolder.flatMap((deck) => deck.entries || [])
     };
   }
   const deck = decks.find((item) => item.id === deckId);
   if (!deck) return null;
-  return { id: deck.id, label: deck.label, category: String(deck.category || ""), paths: [deck.path], count: Number(deck.count || 0) };
+  return { id: deck.id, label: deck.label, category: String(deck.category || ""), count: Number(deck.count || 0), entries: deck.entries || [] };
+}
+
+// Per-deck count of entries matching `query`, cached by query so callers (the
+// deck page) only recompute when the filter actually changed since last time.
+let matchCache = { query: null, counts: null };
+export function deckMatchCounts(bundle, query) {
+  const q = String(query || "").trim().toLowerCase();
+  if (matchCache.query === q && matchCache.counts) return matchCache.counts;
+  const counts = new Map();
+  for (const deck of listDecks(bundle)) {
+    counts.set(deck.id, q ? (deck.entries || []).filter((entry) => searchText(entry).includes(q)).length : Number(deck.count || 0));
+  }
+  matchCache = { query: q, counts };
+  return counts;
 }
 
 // Breadcrumb for the summary line, e.g. "Nouns / Animals / Animal Related".
 export function deckBreadcrumb(deck) {
-  if (!deck || deck.id === "all") return "All cards";
+  if (!deck || deck.id === "all") return "All decks";
   return [deck.category, deck.label].filter(Boolean).join(" / ");
 }
 

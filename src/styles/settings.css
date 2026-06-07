@@ -67,6 +67,19 @@
   gap: 8px;
 }
 
+/* Font-size sliders: strip the generic input box, theme the native control. */
+.study-field input.font-slider,
+.study-field input.font-slider:hover,
+.study-field input.font-slider:focus {
+  min-height: 28px;
+  padding: 0;
+  border: none;
+  background: none;
+  box-shadow: none;
+  accent-color: var(--accent);
+  cursor: pointer;
+}
+
 /* Japanese voice picker: select + a Preview button. */
 .voice-row {
   display: flex;

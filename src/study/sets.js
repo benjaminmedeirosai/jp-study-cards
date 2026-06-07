@@ -1,9 +1,37 @@
 // Pure set-building engine: sorting, likeness slotting, and likeness grouping.
 // No DOM, no app state — just card arrays in, set-option descriptors out.
 
-import { text, DEFAULT_SET_SIZE, SET_GROUPINGS } from "./shared.js";
+import { text, searchText, DEFAULT_SET_SIZE, SET_GROUPINGS } from "./shared.js";
 
 const MIXED_KEY_DETAIL_LIMIT = 6;
+
+// Single-entry memo of the last grouping result, shared by the card page and the
+// settings preview so a re-mount / page switch with identical inputs is a pure
+// redraw. The grouping calc (sort + likeness grouping) is the expensive step.
+let setsCache = null;
+
+// Filter → sort → build sets for a deck, memoized on {cacheKey, query, setSize,
+// groupingId}. Every real recompute and every cache hit is logged with timing so
+// it is obvious in the console when (and how long) a grouping calc runs.
+export function computeDeckSets({ cacheKey, cards, query, setSize, groupingId }) {
+  const normalizedQuery = String(query || "").trim().toLowerCase();
+  const signature = [cacheKey, cards.length, normalizedQuery, setSize, groupingId].join(" ");
+  if (setsCache && setsCache.signature === signature) {
+    console.log(`[sets] cache hit · ${groupingId} · ${setsCache.result.setOptions.length} sets (no recompute)`);
+    return setsCache.result;
+  }
+  const start = performance.now();
+  const matching = normalizedQuery
+    ? cards.filter((entry) => searchText(entry).includes(normalizedQuery))
+    : cards;
+  const deckCards = sortCardsForSets(matching, groupingId);
+  const setOptions = buildSetOptions(deckCards, setSize, groupingId);
+  const ms = (performance.now() - start).toFixed(1);
+  console.log(`[sets] recompute · ${groupingId} · ${matching.length} cards → ${setOptions.length} sets · ${ms}ms`);
+  const result = { deckCards, setOptions };
+  setsCache = { signature, result };
+  return result;
+}
 
 export function activeSetGrouping(groupingId) {
   return SET_GROUPINGS.find((item) => item.id === groupingId) || SET_GROUPINGS[0];
@@ -22,11 +50,26 @@ function kanjiKeys(entry) {
   return [...new Set([...text(entry, "kanji")].filter((char) => /\p{Script=Han}/u.test(char)))];
 }
 
+// Small/combining kana (yōon ゃゅょ, small vowels ぁぃぅぇぉ, sokuon っ, ゎゕゖ) and
+// the long-vowel mark ー belong to the preceding mora, not their own character —
+// so きょ is one unit. Splitting them produced junk keys like "ょう".
+const COMBINING_KANA = new Set([..."ぁぃぅぇぉっゃゅょゎゕゖー"]);
+
+function hiraganaUnits(value) {
+  const units = [];
+  for (const char of value) {
+    if (!/\p{Script=Hiragana}/u.test(char) && char !== "ー") continue;
+    if (COMBINING_KANA.has(char) && units.length) units[units.length - 1] += char;
+    else units.push(char);
+  }
+  return units;
+}
+
 function hiraganaKeys(entry) {
-  const chars = [...text(entry, "hiragana")].filter((char) => /\p{Script=Hiragana}/u.test(char));
-  if (chars.length <= 1) return chars;
+  const units = hiraganaUnits(text(entry, "hiragana"));
+  if (units.length <= 1) return units;
   const keys = [];
-  for (let index = 0; index < chars.length - 1; index += 1) keys.push(chars.slice(index, index + 2).join(""));
+  for (let index = 0; index < units.length - 1; index += 1) keys.push(units[index] + units[index + 1]);
   return [...new Set(keys)];
 }
 
@@ -47,12 +90,6 @@ function buildLikenessKeyGroups(cards, grouping) {
     .sort((a, b) => b.indexes.length - a.indexes.length || a.key.localeCompare(b.key, "ja"));
 }
 
-function keyCountLabel(groups) {
-  return groups
-    .map((group) => `${group.key}(${group.indexes.length})`)
-    .join("|");
-}
-
 function mixedKeyLabel(indexes, cards, grouping) {
   const counts = new Map();
   for (const index of indexes) {
@@ -69,51 +106,6 @@ function mixedKeyLabel(indexes, cards, grouping) {
   const mixedCount = indexes.filter((index) => !likenessKeys(cards[index], grouping).some((key) => retainedKeys.has(key))).length;
   if (mixedCount > 0) labels.push(`Mixed(${mixedCount})`);
   return labels.length ? labels.join("|") : `Mixed(${indexes.length})`;
-}
-
-function combineMatchingLikenessGroups(groups) {
-  const combined = new Map();
-  for (const group of groups) {
-    const signature = group.indexes.join("|");
-    if (!combined.has(signature)) combined.set(signature, { indexes: group.indexes, groups: [] });
-    combined.get(signature).groups.push(group);
-  }
-  return [...combined.values()]
-    .map((item) => ({ ...item, label: keyCountLabel(item.groups) }))
-    .sort((a, b) => b.indexes.length - a.indexes.length || a.label.localeCompare(b.label, "ja"));
-}
-
-function groupsOverlap(a, b) {
-  return a.indexes.some((index) => b.indexes.includes(index));
-}
-
-function mergedGroup(a, b) {
-  return {
-    indexes: [...new Set([...a.indexes, ...b.indexes])].sort((x, y) => x - y),
-    groups: [...a.groups, ...b.groups]
-  };
-}
-
-function combineOverlappingLikenessGroups(groups, setSize) {
-  const size = Math.max(1, Math.floor(Number(setSize) || DEFAULT_SET_SIZE));
-  const combined = groups.map((group) => ({ indexes: group.indexes, groups: group.groups }));
-  let merged = true;
-  while (merged) {
-    merged = false;
-    for (let left = 0; left < combined.length && !merged; left += 1) {
-      for (let right = left + 1; right < combined.length; right += 1) {
-        const candidate = mergedGroup(combined[left], combined[right]);
-        if (!groupsOverlap(combined[left], combined[right]) || candidate.indexes.length > size) continue;
-        combined[left] = candidate;
-        combined.splice(right, 1);
-        merged = true;
-        break;
-      }
-    }
-  }
-  return combined
-    .map((item) => ({ ...item, label: keyCountLabel(item.groups) }))
-    .sort((a, b) => b.indexes.length - a.indexes.length || a.label.localeCompare(b.label, "ja"));
 }
 
 function buildBalancedSetOptions(total, setSize) {
@@ -221,70 +213,102 @@ function splitIndexesForTarget(indexes, setSize) {
   return buildBalancedSetOptions(indexes.length, setSize).map((option) => indexes.slice(option.start, option.end));
 }
 
-function splitGroupingIndexes(indexes, setSize) {
-  const size = Math.max(1, Math.floor(Number(setSize) || DEFAULT_SET_SIZE));
-  const nearLimit = size + Math.ceil(size / 4);
-  if (indexes.length <= nearLimit) return [indexes];
-  return splitIndexesForTarget(indexes, setSize);
-}
-
-function groupingOptionFromParts(id, label, groupIndexes, mixedIndexes, cards, splitIndex = 0, splitCount = 1) {
-  const indexes = [...groupIndexes, ...mixedIndexes];
-  const setCards = indexes.map((cardIndex) => cards[cardIndex]);
-  const mixedLabel = mixedIndexes.length ? `|Mixed(${mixedIndexes.length})` : "";
-  const splitLabel = splitCount > 1 ? ` ${splitIndex + 1}/${splitCount}` : "";
-  const fullLabel = `${label}${mixedLabel}${splitLabel} (${setCards.length})`;
-  return { id, label: fullLabel, summaryLabel: fullLabel, cards: setCards, count: setCards.length };
-}
-
-function groupingPartLength(part) {
-  return part.groupIndexes.length + part.mixedIndexes.length;
-}
-
-function balanceGroupingParts(parts, setSize) {
-  const size = Math.max(1, Math.floor(Number(setSize) || DEFAULT_SET_SIZE));
-  let moved = true;
-  while (moved) {
-    moved = false;
-    const realParts = parts
-      .filter((part) => part.groupIndexes.length)
-      .sort((a, b) => groupingPartLength(a) - groupingPartLength(b));
-    const mixedParts = parts
-      .filter((part) => !part.groupIndexes.length && part.mixedIndexes.length)
-      .sort((a, b) => groupingPartLength(b) - groupingPartLength(a));
-    const target = realParts.find((part) => groupingPartLength(part) < size);
-    const source = mixedParts.find((part) => groupingPartLength(part) > Math.max(1, groupingPartLength(target || part) + 1));
-    if (!target || !source) break;
-    target.mixedIndexes.push(source.mixedIndexes.shift());
-    moved = true;
-  }
-  return parts.filter((part) => groupingPartLength(part));
-}
-
+// Greedy likeness grouping: sort key groups biggest-first, split oversize ones
+// into balanced sets, first-fit the rest into bins whose DEDUPED union stays at
+// the target size, then let singletons top up the sparse ones. O(groups·bins)
+// instead of the old O(groups³) iterative pairwise merge.
 function buildGroupingSetOptions(cards, setSize, grouping) {
-  const parts = [];
-  const groupedIndexes = new Set();
-  const realGroups = buildLikenessKeyGroups(cards, grouping).filter((group) => group.indexes.length >= 2);
-  const combinedGroups = combineOverlappingLikenessGroups(combineMatchingLikenessGroups(realGroups), setSize);
-  combinedGroups.forEach((group) => group.indexes.forEach((cardIndex) => groupedIndexes.add(cardIndex)));
-  const mixedQueue = cards
-    .map((_, index) => index)
-    .filter((index) => !groupedIndexes.has(index));
-  for (const group of combinedGroups) {
-    const splits = splitGroupingIndexes(group.indexes, setSize);
-    splits.forEach((split, splitIndex) => {
-      parts.push({ id: `group:${group.label}:${splitIndex + 1}`, label: group.label, groupIndexes: split, mixedIndexes: [], splitIndex, splitCount: splits.length });
+  const size = Math.max(1, Math.floor(Number(setSize) || DEFAULT_SET_SIZE));
+  // The ~20% buffer is ONLY for splitting one big kanji's cards into fuller sets
+  // (e.g. 24 → [12,12] rather than [8,8,8]); combining distinct groups targets
+  // the plain size so unrelated kanji don't overstuff a set.
+  const capacity = Math.max(size, Math.round(size * 1.2));
+  // Don't dilute an already-dense likeness set with unrelated singletons.
+  const fillThreshold = Math.ceil(size * 0.9);
+  const keyGroups = buildLikenessKeyGroups(cards, grouping).filter((group) => group.indexes.length >= 2);
+
+  // Each bin is one set-in-progress: a deduped index set plus the key groups
+  // packed into it. Cross-set duplicates are intentional — a card belonging to
+  // two key groups that land in different bins appears in both.
+  const bins = [];
+  const newBin = (overrides = {}) => ({ indexSet: new Set(), keys: [], mixed: 0, oversize: false, split: null, ...overrides });
+  const unionCount = (bin, indexes) => {
+    let count = bin.indexSet.size;
+    for (const index of indexes) if (!bin.indexSet.has(index)) count += 1;
+    return count;
+  };
+  const addGroup = (bin, group, indexes) => {
+    for (const index of indexes) bin.indexSet.add(index);
+    bin.keys.push({ key: group.key, count: indexes.length });
+  };
+
+  for (const group of keyGroups) {
+    if (group.indexes.length > capacity) {
+      // Oversize key group → balanced standalone bins (e.g. 24/cap-12 → [12,12]).
+      const chunks = splitIndexesForTarget(group.indexes, capacity);
+      chunks.forEach((chunk, splitIndex) => {
+        const bin = newBin({ oversize: true, split: { index: splitIndex, count: chunks.length } });
+        addGroup(bin, group, chunk);
+        bins.push(bin);
+      });
+      continue;
+    }
+    // First fit into a packable bin whose deduped union stays at target size.
+    // A fresh bin still accepts a lone group up to capacity (single-kanji buffer).
+    let target = null;
+    for (const bin of bins) {
+      if (bin.oversize) continue;
+      if (unionCount(bin, group.indexes) <= size) { target = bin; break; }
+    }
+    if (!target) { target = newBin(); bins.push(target); }
+    addGroup(target, group, group.indexes);
+  }
+
+  // Singletons: cards that share no likeness key with any other card.
+  const grouped = new Set();
+  for (const group of keyGroups) for (const index of group.indexes) grouped.add(index);
+  const mixed = [];
+  for (let index = 0; index < cards.length; index += 1) if (!grouped.has(index)) mixed.push(index);
+
+  // Top up only the sparse packed bins (below 90% of target) up to size; leave
+  // near-full likeness sets pure. Remaining singletons get their own balanced bins.
+  let next = 0;
+  for (const bin of bins) {
+    if (bin.oversize || bin.indexSet.size >= fillThreshold) continue;
+    while (next < mixed.length && bin.indexSet.size < size) {
+      bin.indexSet.add(mixed[next]);
+      bin.mixed += 1;
+      next += 1;
+    }
+  }
+  if (next < mixed.length) {
+    splitIndexesForTarget(mixed.slice(next), size).forEach((chunk) => {
+      const bin = newBin({ mixed: chunk.length });
+      for (const index of chunk) bin.indexSet.add(index);
+      bins.push(bin);
     });
   }
-  if (mixedQueue.length) {
-    splitGroupingIndexes(mixedQueue, setSize).forEach((split, splitIndex, splits) => {
-      parts.push({ id: `group:mixed:${splitIndex + 1}`, label: "Mixed", groupIndexes: [], mixedIndexes: split, splitIndex, splitCount: splits.length });
+
+  const binLabel = (bin, indexes) => {
+    if (!bin.keys.length) return mixedKeyLabel(indexes, cards, grouping);
+    const keyLabel = bin.keys.map((entry) => `${entry.key}(${entry.count})`).join("|");
+    const mixedLabel = bin.mixed ? `|Mixed(${bin.mixed})` : "";
+    const splitLabel = bin.split && bin.split.count > 1 ? ` ${bin.split.index + 1}/${bin.split.count}` : "";
+    return `${keyLabel}${mixedLabel}${splitLabel}`;
+  };
+
+  return bins
+    .filter((bin) => bin.indexSet.size > 0)
+    .map((bin) => {
+      const indexes = [...bin.indexSet].sort((a, b) => a - b);
+      return { indexes, label: binLabel(bin, indexes), count: indexes.length };
+    })
+    .sort((a, b) => b.count - a.count || a.label.localeCompare(b.label, "ja"))
+    .map((bin, index) => {
+      const setCards = bin.indexes.map((cardIndex) => cards[cardIndex]);
+      const fullLabel = `${bin.label} (${setCards.length})`;
+      return { id: `group:${index + 1}`, label: fullLabel, summaryLabel: fullLabel, cards: setCards, count: setCards.length };
     });
-  }
-  return balanceGroupingParts(parts, setSize).map((part) => {
-    const label = part.groupIndexes.length ? part.label : mixedKeyLabel(part.mixedIndexes, cards, grouping);
-    return groupingOptionFromParts(part.id, label, part.groupIndexes, part.mixedIndexes, cards, part.splitIndex, part.splitCount);
-  });
 }
 
 export function buildSetOptions(cards, setSize, groupingId) {

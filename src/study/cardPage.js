@@ -1,5 +1,5 @@
 import { speak } from "./speech.js";
-import { buildSetOptions, sortCardsForSets } from "./sets.js";
+import { buildSetOptions, activeSetGrouping, computeDeckSets } from "./sets.js";
 import {
   MODES,
   LINK_TEMPLATES,
@@ -7,10 +7,8 @@ import {
   saveState,
   text,
   entryKey,
-  searchText,
   openSearchLink,
-  loadIndex,
-  loadDeckCards,
+  loadBundle,
   resolveDeck,
   deckBreadcrumb,
   button,
@@ -53,7 +51,7 @@ export function renderCardPage() {
 
   let state = loadState();
   root.classList.toggle("show-hotkeys", state.showHotkeys);
-  let index = null;
+  let bundle = null;
   let deckCards = [];
   let setCards = [];
   let setOptions = buildSetOptions(setCards, state.setSize, state.setGrouping);
@@ -79,6 +77,11 @@ export function renderCardPage() {
   const settingsBtn = button("Settings", "settings-open", "⚙");
   const summary = document.createElement("div");
   summary.className = "card-summary";
+  const summaryMain = document.createElement("span");
+  summaryMain.className = "card-summary-main";
+  const summaryGrouping = document.createElement("span");
+  summaryGrouping.className = "card-summary-grouping";
+  summary.append(summaryMain, summaryGrouping);
   const deckRow = document.createElement("div");
   deckRow.className = "card-header-row deck-set-row";
   const setField = fieldLabel(`Set (${state.setSize})`, setSelect);
@@ -154,7 +157,7 @@ export function renderCardPage() {
   // --- Deck / set selection -----------------------------------------------
   // null when nothing is selected (or the saved deck no longer exists).
   function currentDeck() {
-    return resolveDeck(index, state.deckId);
+    return resolveDeck(bundle, state.deckId);
   }
 
   function updateDeckButton() {
@@ -175,26 +178,38 @@ export function renderCardPage() {
     setSelect.value = state.setId;
   }
 
+  // Cheap: slice the active set out of the already-built setOptions. Use this
+  // when only the selected set changed — no re-sort / re-grouping needed.
+  function applyActiveSet({ keepIndex = false } = {}) {
+    const activeSet = setOptions.find((set) => set.id === state.setId) || setOptions[0];
+    // Copy so in-place shuffling never mutates the cached setOptions.
+    setCards = activeSet ? (activeSet.cards ? activeSet.cards.slice() : deckCards.slice(activeSet.start, activeSet.end)) : [];
+    if (!keepIndex) state.currentIndex = 0;
+    if (state.currentIndex >= setCards.length) state.currentIndex = Math.max(0, setCards.length - 1);
+    revealed = false;
+  }
+
+  // Rebuild the deck's sets. The grouping calc itself is memoized by
+  // computeDeckSets (shared with the settings preview), so this is cheap when
+  // the deck, filter, set size, and grouping are unchanged.
   async function rebuildDeck({ keepIndex = false } = {}) {
     const deck = currentDeck();
     if (!deck) {
       deckCards = [];
-      setCards = [];
       setOptions = buildSetOptions([], state.setSize, state.setGrouping);
-      state.currentIndex = 0;
-      revealed = false;
+      applyActiveSet({ keepIndex: false });
       return;
     }
-    const loadedCards = await loadDeckCards(deck);
-    const query = state.query.toLowerCase();
-    const matchingCards = query ? loadedCards.filter((entry) => searchText(entry).includes(query)) : loadedCards;
-    deckCards = sortCardsForSets(matchingCards, state.setGrouping);
-    setOptions = buildSetOptions(deckCards, state.setSize, state.setGrouping);
-    const activeSet = setOptions.find((set) => set.id === state.setId) || setOptions[0];
-    setCards = activeSet?.cards || deckCards.slice(activeSet.start, activeSet.end);
-    if (!keepIndex) state.currentIndex = 0;
-    if (state.currentIndex >= setCards.length) state.currentIndex = Math.max(0, setCards.length - 1);
-    revealed = false;
+    const result = computeDeckSets({
+      cacheKey: state.deckId,
+      cards: deck.entries,
+      query: state.query,
+      setSize: state.setSize,
+      groupingId: state.setGrouping
+    });
+    deckCards = result.deckCards;
+    setOptions = result.setOptions;
+    applyActiveSet({ keepIndex });
   }
 
   // --- Current card / speech ----------------------------------------------
@@ -246,7 +261,11 @@ export function renderCardPage() {
     empty.hidden = total > 0;
     card.hidden = total === 0;
     tray.hidden = total === 0;
-    summary.textContent = deck ? `${deckBreadcrumb(deck)} / ${activeSet?.summaryLabel || "Whole deck"}` : "";
+    const filter = String(state.query || "").trim();
+    summaryMain.textContent = deck
+      ? `${deckBreadcrumb(deck)} / ${activeSet?.summaryLabel || "Whole deck"}${filter ? ` · filter “${filter}”` : ""}`
+      : "";
+    summaryGrouping.textContent = deck ? activeSetGrouping(state.setGrouping).shortLabel : "";
     prevBtn.disabled = total <= 1;
     nextBtn.disabled = total <= 1;
     setSelect.disabled = total === 0;
@@ -254,7 +273,7 @@ export function renderCardPage() {
       const noDeck = !deck;
       emptyMsg.textContent = noDeck
         ? "No deck selected."
-        : (index ? "No cards match this deck or filter." : "Loading Japanese words...");
+        : (bundle ? "No cards match this deck or filter." : "Loading Japanese words...");
       chooseDeckBtn.hidden = !noDeck;
       return;
     }
@@ -263,9 +282,9 @@ export function renderCardPage() {
     const english = text(entry, "english");
     const type = text(entry, "type");
     const mainText = kanji || hiragana || "-";
-    card.style.setProperty("--japanese-main-font-scale", String(state.kanjiFontScale / 150));
-    card.style.setProperty("--japanese-reading-font-scale", String(state.hiraganaFontScale / 150));
-    card.style.setProperty("--japanese-english-font-scale", String(state.englishFontScale / 150));
+    card.style.setProperty("--japanese-main-font-scale", String(state.kanjiFontScale / 100));
+    card.style.setProperty("--japanese-reading-font-scale", String(state.hiraganaFontScale / 100));
+    card.style.setProperty("--japanese-english-font-scale", String(state.englishFontScale / 100));
     cardType.textContent = type;
     cardMain.textContent = mainText;
     cardReading.textContent = hiragana;
@@ -337,10 +356,12 @@ export function renderCardPage() {
   }
 
   deckButton.addEventListener("click", () => { location.hash = "#/decks"; });
-  setSelect.addEventListener("change", async () => {
+  setSelect.addEventListener("change", () => {
+    // Only the selected set changed — re-slice, no re-sort/re-grouping.
     state.setId = setSelect.value;
-    state.currentIndex = 0;
-    await renderAll({ keepIndex: false });
+    applyActiveSet({ keepIndex: false });
+    renderCard();
+    saveState(state);
   });
   modeSelect.addEventListener("change", () => {
     state.mode = modeSelect.value;
@@ -380,7 +401,7 @@ export function renderCardPage() {
 
   async function initialize() {
     try {
-      index = await loadIndex();
+      bundle = await loadBundle();
       await renderAll({ keepIndex: true });
       if (state.mode === "voice") speakJapanese();
     } catch (error) {

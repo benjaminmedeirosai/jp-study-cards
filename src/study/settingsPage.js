@@ -1,10 +1,9 @@
-import { buildSetOptions, sortCardsForSets, activeSetGrouping } from "./sets.js";
+import { activeSetGrouping, computeDeckSets } from "./sets.js";
 import { speak, getVoicesForLang, onVoicesChanged } from "./speech.js";
 
 const VOICE_SAMPLE = "こんにちは。これは音声のプレビューです。";
 import {
   DEFAULT_SET_SIZE,
-  FONT_SCALE_OPTIONS,
   VOICE_RATE_OPTIONS,
   SET_GROUPINGS,
   clampInt,
@@ -13,8 +12,7 @@ import {
   saveState,
   text,
   searchText,
-  loadIndex,
-  loadDeckCards,
+  loadBundle,
   resolveDeck,
   button,
   fieldLabel,
@@ -28,9 +26,9 @@ function goToCards() {
 
 // Resolve and load the cards of the currently-selected deck, for the live preview.
 async function loadActiveDeckCards(state) {
-  const index = await loadIndex();
-  const deck = resolveDeck(index, state.deckId);
-  return deck ? loadDeckCards(deck) : [];
+  const bundle = await loadBundle();
+  const deck = resolveDeck(bundle, state.deckId);
+  return deck ? deck.entries : [];
 }
 
 export function renderSettingsPage() {
@@ -73,11 +71,22 @@ export function renderSettingsPage() {
     state.setGrouping
   );
 
-  // --- Font scales --------------------------------------------------------
-  const fontItems = FONT_SCALE_OPTIONS.map((value) => ({ value: String(value), label: `${value}%` }));
-  const kanjiFontInput = makeSelect(fontItems, String(state.kanjiFontScale));
-  const hiraganaFontInput = makeSelect(fontItems, String(state.hiraganaFontScale));
-  const englishFontInput = makeSelect(fontItems, String(state.englishFontScale));
+  // --- Font scales (sliders, 50–150% in 5% steps) ------------------------
+  const FONT_MIN = 50;
+  const FONT_MAX = 150;
+  function makeFontSlider(value) {
+    const input = document.createElement("input");
+    input.type = "range";
+    input.className = "font-slider";
+    input.min = String(FONT_MIN);
+    input.max = String(FONT_MAX);
+    input.step = "5";
+    input.value = String(clampInt(value, FONT_MAX, FONT_MIN, FONT_MAX));
+    return input;
+  }
+  const kanjiFontInput = makeFontSlider(state.kanjiFontScale);
+  const hiraganaFontInput = makeFontSlider(state.hiraganaFontScale);
+  const englishFontInput = makeFontSlider(state.englishFontScale);
   const hotkeyToggle = makeToggle("Hotkeys", state.showHotkeys);
 
   // --- Japanese voice (Web Speech API voices for ja-*) --------------------
@@ -129,18 +138,12 @@ export function renderSettingsPage() {
   setPreview.append(setPreviewTitle, setPreviewNote, setPreviewRows);
 
   let previewBaseCards = [];
+  let cardsLoaded = false;
   void loadActiveDeckCards(state)
-    .then((cards) => {
-      previewBaseCards = cards;
-      updateSettingsPreview();
-    })
-    .catch(() => {});
+    .then((cards) => { previewBaseCards = cards; })
+    .catch(() => {})
+    .finally(() => { cardsLoaded = true; updateSettingsPreview(); });
 
-  function settingsPreviewCards() {
-    const query = String(queryInput.value || "").trim().toLowerCase();
-    const matchingCards = query ? previewBaseCards.filter((entry) => searchText(entry).includes(query)) : previewBaseCards;
-    return sortCardsForSets(matchingCards, setGroupingInput.value);
-  }
   function updateFilterCount() {
     const base = previewBaseCards;
     const query = String(queryInput.value || "").trim().toLowerCase();
@@ -149,10 +152,25 @@ export function renderSettingsPage() {
   }
   function updateSettingsPreview() {
     updateFilterCount();
-    const cards = settingsPreviewCards();
+    // Don't compute until the deck has loaded — computing with an empty card list
+    // would both show "0 placements" and evict the card page's shared cache entry.
+    if (!cardsLoaded) {
+      setPreviewTitle.textContent = "Set preview (loading…)";
+      setPreviewNote.hidden = true;
+      setPreviewRows.innerHTML = "";
+      return;
+    }
     const groupingId = normalizeSetGrouping(setGroupingInput.value);
     const grouping = activeSetGrouping(groupingId);
-    const options = buildSetOptions(cards, clampInt(setSizeInput.value, DEFAULT_SET_SIZE, 5, 100), groupingId);
+    // Shares the memoized grouping result with the card page (same cacheKey),
+    // so opening settings on an already-built deck is a redraw, not a recompute.
+    const { deckCards: cards, setOptions: options } = computeDeckSets({
+      cacheKey: state.deckId,
+      cards: previewBaseCards,
+      query: queryInput.value,
+      setSize: clampInt(setSizeInput.value, DEFAULT_SET_SIZE, 5, 100),
+      groupingId
+    });
     setPreviewRows.innerHTML = "";
     const seenCards = new Set();
     let placementCount = 0;
@@ -183,9 +201,76 @@ export function renderSettingsPage() {
       ? `* ${duplicateCount} extra placements: ${grouping.key} likeness grouping can put one word in multiple sets when it matches multiple ${grouping.key} keys.`
       : "";
   }
-  queryInput.addEventListener("input", updateSettingsPreview);
-  setSizeInput.addEventListener("input", updateSettingsPreview);
-  setGroupingInput.addEventListener("change", updateSettingsPreview);
+  // Debounce the heavy preview rebuild so rapid typing doesn't trigger a
+  // grouping recompute on every keystroke.
+  let previewTimer = 0;
+  function schedulePreview() {
+    clearTimeout(previewTimer);
+    previewTimer = setTimeout(updateSettingsPreview, 200);
+  }
+  // Filter is a live, shared setting (persisted to state.query immediately) so
+  // it stays in sync with the deck page rather than waiting for Save. The record
+  // count updates instantly; the set preview is debounced.
+  queryInput.addEventListener("input", () => {
+    const next = String(queryInput.value || "").trim();
+    if (next !== state.query) {
+      state.query = next;
+      state.setId = "all";
+      state.currentIndex = 0;
+      saveState(state);
+    }
+    updateFilterCount();
+    schedulePreview();
+  });
+  // Set size / grouping change which sets exist, so reset to the first set.
+  setSizeInput.addEventListener("input", () => {
+    const previous = state.setSize;
+    state.setSize = clampInt(setSizeInput.value, DEFAULT_SET_SIZE, 5, 100);
+    if (state.setSize !== previous) {
+      state.setId = "all";
+      state.currentIndex = 0;
+    }
+    saveState(state);
+    updateSettingsPreview();
+  });
+  setGroupingInput.addEventListener("change", () => {
+    const previous = state.setGrouping;
+    state.setGrouping = SET_GROUPINGS.some((grouping) => grouping.id === setGroupingInput.value) ? setGroupingInput.value : SET_GROUPINGS[0].id;
+    if (state.setGrouping !== previous) {
+      state.setId = "all";
+      state.currentIndex = 0;
+    }
+    saveState(state);
+    updateSettingsPreview();
+  });
+
+  // Font sizes apply immediately; the field label echoes the current percentage.
+  const kanjiFontField = fieldLabel(`Kanji size ${state.kanjiFontScale}%`, kanjiFontInput);
+  const hiraganaFontField = fieldLabel(`Hiragana size ${state.hiraganaFontScale}%`, hiraganaFontInput);
+  const englishFontField = fieldLabel(`English size ${state.englishFontScale}%`, englishFontInput);
+  function wireFontScale(input, field, key, label) {
+    input.addEventListener("input", () => {
+      state[key] = clampInt(input.value, FONT_MAX, FONT_MIN, FONT_MAX);
+      field.querySelector("span").textContent = `${label} size ${state[key]}%`;
+      saveState(state);
+    });
+  }
+  wireFontScale(kanjiFontInput, kanjiFontField, "kanjiFontScale", "Kanji");
+  wireFontScale(hiraganaFontInput, hiraganaFontField, "hiraganaFontScale", "Hiragana");
+  wireFontScale(englishFontInput, englishFontField, "englishFontScale", "English");
+
+  voiceSelect.addEventListener("change", () => {
+    state.jpVoice = voiceSelect.value;
+    saveState(state);
+  });
+  rateSelect.addEventListener("change", () => {
+    state.voiceRate = Number(rateSelect.value);
+    saveState(state);
+  });
+  hotkeyToggle.input.addEventListener("change", () => {
+    state.showHotkeys = hotkeyToggle.input.checked;
+    saveState(state);
+  });
 
   const visibilityGroup = document.createElement("div");
   visibilityGroup.className = "settings-toggle-grid";
@@ -196,28 +281,15 @@ export function renderSettingsPage() {
     fieldLabel("Set size", setSizeInput),
     fieldLabel("Set grouping", setGroupingInput),
     setPreview,
-    fieldLabel(`Kanji size ${state.kanjiFontScale}%`, kanjiFontInput),
-    fieldLabel(`Hiragana size ${state.hiraganaFontScale}%`, hiraganaFontInput),
-    fieldLabel(`English size ${state.englishFontScale}%`, englishFontInput),
+    kanjiFontField,
+    hiraganaFontField,
+    englishFontField,
     fieldLabel("Japanese voice", voiceRow),
     fieldLabel("Voice speed", rateSelect),
     visibilityGroup
   );
 
-  // --- Actions ------------------------------------------------------------
-  const actions = document.createElement("div");
-  actions.className = "settings-actions";
-  const cancelBtn = document.createElement("button");
-  cancelBtn.type = "button";
-  cancelBtn.className = "settings-button";
-  cancelBtn.textContent = "Cancel";
-  const saveBtn = document.createElement("button");
-  saveBtn.type = "submit";
-  saveBtn.className = "settings-button primary";
-  saveBtn.textContent = "Save";
-  actions.append(cancelBtn, saveBtn);
-
-  form.append(content, actions);
+  form.append(content);
   root.append(top, form);
 
   updateFilterCount();
@@ -225,29 +297,8 @@ export function renderSettingsPage() {
 
   // --- Wiring -------------------------------------------------------------
   backBtn.addEventListener("click", goToCards);
-  cancelBtn.addEventListener("click", goToCards);
-  form.addEventListener("submit", (event) => {
-    event.preventDefault();
-    const previousQuery = state.query;
-    const previousSetSize = state.setSize;
-    const previousSetGrouping = state.setGrouping;
-    state.query = String(queryInput.value || "").trim();
-    state.setSize = clampInt(setSizeInput.value, DEFAULT_SET_SIZE, 5, 100);
-    state.setGrouping = SET_GROUPINGS.some((grouping) => grouping.id === setGroupingInput.value) ? setGroupingInput.value : SET_GROUPINGS[0].id;
-    state.kanjiFontScale = clampInt(kanjiFontInput.value, 150, 10, 250);
-    state.hiraganaFontScale = clampInt(hiraganaFontInput.value, 150, 10, 250);
-    state.englishFontScale = clampInt(englishFontInput.value, 150, 10, 250);
-    state.showHotkeys = hotkeyToggle.input.checked;
-    state.jpVoice = voiceSelect.value;
-    state.voiceRate = Number(rateSelect.value);
-    const setMembershipChanged = state.query !== previousQuery || state.setSize !== previousSetSize || state.setGrouping !== previousSetGrouping;
-    if (setMembershipChanged) {
-      state.setId = "all";
-      state.currentIndex = 0;
-    }
-    saveState(state);
-    goToCards();
-  });
+  // Settings apply immediately, so there is nothing to submit.
+  form.addEventListener("submit", (event) => event.preventDefault());
 
   return root;
 }
