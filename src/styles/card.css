@@ -1,0 +1,436 @@
+/* Card study page: header selects, the flashcard, and the bottom tray
+   (a mini rail above six main interaction buttons). */
+
+.card-page {
+  grid-template-rows: auto minmax(0, 1fr) auto;
+}
+
+.card-top,
+.card,
+.card-empty,
+.tray {
+  width: min(100%, 58rem);
+  margin: 0 auto;
+}
+
+/* --- Header ------------------------------------------------------------- */
+.card-top {
+  display: grid;
+  gap: 6px;
+}
+
+.card-header-row {
+  display: grid;
+  gap: 6px;
+  min-width: 0;
+}
+
+.card-header-row.deck-set-row {
+  grid-template-columns: minmax(0, 1fr) minmax(86px, 0.42fr);
+}
+
+/* Deck chooser — a button (like Settings) that opens the deck page. */
+.deck-chooser {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  width: 100%;
+  min-height: 36px;
+  border: 1px solid rgba(148, 163, 184, 0.28);
+  border-radius: 7px;
+  background: rgba(15, 23, 42, 0.55);
+  color: var(--text);
+  padding: 6px 10px;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.1;
+  text-align: left;
+  cursor: pointer;
+}
+
+.deck-chooser:hover {
+  border-color: var(--accent-border);
+  background: rgba(30, 41, 59, 0.72);
+}
+
+.deck-chooser-icon {
+  flex: 0 0 auto;
+  display: grid;
+  place-items: center;
+  color: var(--accent);
+}
+
+.deck-chooser-icon svg {
+  width: 16px;
+  height: 16px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.deck-chooser-label {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.card-header-row.settings-row {
+  grid-template-columns: minmax(92px, 1fr) minmax(92px, 0.65fr);
+  align-items: end;
+}
+
+.card-summary {
+  min-height: 15px;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.15;
+  font-weight: 500;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Gear button in the header (navigates to the settings page). */
+.study-button.settings-open {
+  height: 36px;
+  grid-auto-flow: column;
+  grid-template-columns: 18px minmax(0, 1fr);
+  justify-content: center;
+  gap: 6px;
+  padding: 0 10px;
+  border: 1px solid rgba(148, 163, 184, 0.28);
+  border-radius: 7px;
+  background: rgba(15, 23, 42, 0.55);
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.study-button.settings-open:hover {
+  border-color: var(--accent-border);
+  background: rgba(30, 41, 59, 0.72);
+}
+
+.study-button.settings-open .icon { font-size: 16px; }
+
+/* --- Flashcard ---------------------------------------------------------- */
+.card {
+  min-height: 0;
+  height: min(100%, 520px);
+  align-self: center;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(96, 165, 250, 0.24);
+  border-radius: 14px;
+  background:
+    radial-gradient(circle at 50% 0%, rgba(96, 165, 250, 0.17), transparent 38%),
+    linear-gradient(180deg, rgba(30, 41, 59, 0.42), rgba(2, 6, 23, 0.22)),
+    var(--surface-card);
+  padding: clamp(12px, 4vw, 20px);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.045),
+    0 18px 38px rgba(0, 0, 0, 0.22),
+    0 0 0 1px rgba(255, 255, 255, 0.02);
+}
+
+.card-slot {
+  position: absolute;
+  min-width: 0;
+  color: var(--text);
+  overflow-wrap: anywhere;
+  transition: opacity 0.12s;
+}
+
+.card-slot.is-invisible {
+  visibility: hidden;
+  opacity: 0;
+}
+
+.card-slot.card-type {
+  top: 18px;
+  left: 18px;
+  max-width: 45%;
+  color: var(--accent);
+  font-size: clamp(14px, 3vw, 18px);
+  font-weight: 500;
+  line-height: 1.15;
+}
+
+.card-slot.card-reading {
+  top: calc(50% + (clamp(58px, 22vw, 132px) * var(--japanese-main-font-scale, 1) * 0.58));
+  left: 50%;
+  width: calc(100% - 48px);
+  transform: translateX(-50%);
+  text-align: center;
+  color: var(--muted);
+  font-size: calc(clamp(18px, 6vw, 34px) * var(--japanese-reading-font-scale, 1));
+  font-weight: 400;
+  line-height: 1.15;
+}
+
+.card-slot.card-main {
+  top: 50%;
+  left: 50%;
+  width: calc(100% - 48px);
+  transform: translate(-50%, -50%);
+  text-align: center;
+  font-size: calc(clamp(58px, 22vw, 132px) * var(--japanese-main-font-scale, 1));
+  font-weight: 400;
+  line-height: 1.02;
+  text-shadow: 0 0 14px rgba(96, 165, 250, 0.08);
+}
+
+.card-slot.card-english {
+  left: 18px;
+  right: 18px;
+  bottom: 18px;
+  min-height: 52px;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  color: var(--text);
+  font-size: calc(clamp(18px, 5vw, 28px) * var(--japanese-english-font-scale, 1));
+  font-weight: 400;
+  line-height: 1.22;
+  padding-top: 14px;
+  border-top: 1px solid rgba(148, 163, 184, 0.18);
+}
+
+/* --- Bottom tray -------------------------------------------------------- */
+.tray {
+  display: grid;
+  gap: 8px;
+  padding-bottom: max(0px, env(safe-area-inset-bottom));
+}
+
+/* Mini rail: sound-source toggle | collapsible TTS picker | shuffle. */
+.tray-mini {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 8px;
+}
+
+.study-button.mini {
+  width: 38px;
+  height: 38px;
+  border: 1px solid rgba(96, 165, 250, 0.28);
+  border-radius: 11px;
+  background: linear-gradient(180deg, rgba(30, 41, 59, 0.54), rgba(15, 23, 42, 0.46));
+  color: var(--accent);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.055), 0 6px 14px rgba(0, 0, 0, 0.16);
+}
+
+.study-button.mini:hover { border-color: var(--accent-border); }
+.study-button.mini:active { transform: translateY(1px); }
+
+.study-button.mini--tts svg {
+  width: 22px;
+  height: 22px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2.3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.study-button.mini--tts[aria-expanded="false"] {
+  color: rgba(229, 238, 252, 0.82);
+  border-color: rgba(148, 163, 184, 0.28);
+}
+
+.study-button.mini--shuffle {
+  font-size: 22px;
+  line-height: 1;
+}
+
+/* Segmented sound-source picker (Kanji / Auto / Hiragana). */
+.tts-source {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  overflow: hidden;
+  border: 1px solid rgba(96, 165, 250, 0.26);
+  border-radius: 999px;
+  background: rgba(15, 23, 42, 0.58);
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.22);
+  transition: opacity 0.16s ease, visibility 0.16s ease;
+}
+
+.tts-source::before {
+  content: "";
+  position: absolute;
+  top: 3px;
+  bottom: 3px;
+  left: 3px;
+  width: calc((100% - 6px) / 3);
+  border-radius: 999px;
+  background: linear-gradient(180deg, rgba(96, 165, 250, 0.9), rgba(37, 99, 235, 0.62));
+  box-shadow: 0 4px 14px rgba(37, 99, 235, 0.28);
+  transition: transform 0.18s ease;
+}
+
+.tts-source[data-selected="auto"]::before { transform: translateX(100%); }
+.tts-source[data-selected="hiragana"]::before { transform: translateX(200%); }
+
+.tray.tts-collapsed .tts-source {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.study-button.tts-option {
+  z-index: 1;
+  height: 36px;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.study-button.tts-option.active { color: #eff6ff; }
+
+/* Main rail: six buttons, two rows of three. */
+.tray-main {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.study-button.key {
+  min-height: 60px;
+  border: 1px solid rgba(96, 165, 250, 0.22);
+  border-radius: 12px;
+  background: linear-gradient(180deg, rgba(30, 41, 59, 0.5), rgba(15, 23, 42, 0.42));
+  color: var(--text);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05), 0 6px 16px rgba(0, 0, 0, 0.16);
+  transition: background 0.15s, border-color 0.15s, transform 0.1s;
+}
+
+.study-button.key:hover {
+  border-color: var(--accent-border);
+  background: rgba(30, 41, 59, 0.7);
+}
+
+.study-button.key:active { transform: translateY(1px); }
+
+.study-button.key .icon {
+  display: grid;
+  place-items: center;
+  color: #cbd5e1;
+}
+
+.study-button.key .icon svg {
+  width: 28px;
+  height: 28px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.study-button.key .hotkey {
+  position: absolute;
+  right: 7px;
+  bottom: 6px;
+  color: rgba(226, 232, 240, 0.55);
+  font-size: 10px;
+  font-weight: 400;
+  line-height: 1;
+}
+
+.card-page.show-hotkeys .study-button.key .hotkey { display: block; }
+
+/* Per-button accents. */
+.study-button.key--action .icon { color: #93c5fd; }
+
+.study-button.key.sound { border-color: rgba(250, 204, 21, 0.36); }
+.study-button.key.sound .icon { color: rgb(250, 204, 21); }
+
+.study-button.key--nav {
+  border-color: rgba(148, 163, 184, 0.34);
+  background: rgba(2, 6, 23, 0.22);
+}
+
+.study-button.key--nav .icon { color: #f8fafc; }
+.study-button.key--nav .icon svg { width: 30px; height: 30px; stroke-width: 2.2; }
+
+.study-button.key--reveal {
+  border-color: rgba(96, 165, 250, 0.62);
+  background: linear-gradient(180deg, rgba(30, 41, 59, 0.72), rgba(15, 23, 42, 0.52));
+}
+
+.study-button.key--reveal .icon { color: #60a5fa; }
+.study-button.key--reveal .icon svg {
+  width: 30px;
+  height: 30px;
+  filter: drop-shadow(0 0 8px rgba(96, 165, 250, 0.35));
+}
+
+.study-button.key--reveal .hotkey { color: rgba(147, 197, 253, 0.68); }
+
+/* --- Empty / loading state --------------------------------------------- */
+.card-empty {
+  display: grid;
+  place-items: center;
+  min-height: 14rem;
+  border: var(--border-1);
+  border-radius: 0.75rem;
+  background: var(--surface-card);
+  color: var(--muted);
+  padding: 1rem;
+  text-align: center;
+}
+
+.card[hidden],
+.tray[hidden],
+.card-empty[hidden] {
+  display: none !important;
+}
+
+/* --- Responsive --------------------------------------------------------- */
+@media (max-width: 540px) {
+  .card-header-row.deck-set-row {
+    grid-template-columns: minmax(0, 1fr) minmax(76px, 0.4fr);
+  }
+
+  .card-header-row.settings-row {
+    grid-template-columns: minmax(96px, 1fr) minmax(92px, 0.72fr);
+  }
+
+  .study-button.key {
+    min-height: 64px;
+  }
+
+  .study-button.key .icon svg { width: 30px; height: 30px; }
+  .study-button.key--nav .icon svg { width: 32px; height: 32px; }
+  .study-button.key--reveal .icon svg { width: 32px; height: 32px; }
+
+  .study-button.tts-option { font-size: 11px; }
+
+  .card { height: min(100%, 430px); }
+
+  .card-slot.card-type {
+    top: 14px;
+    left: 14px;
+  }
+
+  .card-slot.card-reading,
+  .card-slot.card-main {
+    width: calc(100% - 36px);
+  }
+
+  .card-slot.card-english {
+    left: 14px;
+    right: 14px;
+    bottom: 14px;
+  }
+}
+
+@media (min-width: 760px) {
+  .card-page { padding: 0.8rem; }
+  .card-top { gap: 8px; }
+}

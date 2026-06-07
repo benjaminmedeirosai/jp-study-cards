@@ -1,0 +1,161 @@
+/* Settings page (reached via #/settings): filter, set sizing/grouping with a
+   live preview, font scales, hotkeys toggle, and the offline-cache controls. */
+
+.settings-page {
+  grid-template-rows: auto minmax(0, 1fr);
+}
+
+.settings-top,
+.settings-form {
+  width: min(100%, 520px);
+  margin: 0 auto;
+}
+
+/* --- Header ------------------------------------------------------------- */
+.settings-top {
+  display: grid;
+  grid-template-columns: 40px minmax(0, 1fr);
+  align-items: center;
+  gap: 10px;
+}
+
+.study-button.settings-back {
+  width: 40px;
+  height: 40px;
+  border: 1px solid rgba(148, 163, 184, 0.3);
+  border-radius: 9px;
+  background: rgba(15, 23, 42, 0.55);
+  color: var(--text);
+  font-size: 20px;
+}
+
+.study-button.settings-back:hover {
+  border-color: var(--accent-border);
+  background: rgba(30, 41, 59, 0.72);
+}
+
+.settings-back .text { display: none; }
+
+.settings-title {
+  margin: 0;
+  color: var(--text);
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1;
+}
+
+/* --- Form / scroll region ---------------------------------------------- */
+.settings-form {
+  display: grid;
+  grid-template-rows: minmax(0, 1fr) auto;
+  gap: 12px;
+  min-height: 0;
+}
+
+.settings-content {
+  display: grid;
+  gap: 12px;
+  align-content: start;
+  min-height: 0;
+  overflow: auto;
+  padding-right: 2px;
+}
+
+.settings-toggle-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 8px;
+}
+
+/* --- Set preview -------------------------------------------------------- */
+.set-preview {
+  display: grid;
+  gap: 6px;
+  min-width: 0;
+}
+
+.set-preview-title {
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.set-preview-note {
+  color: rgba(147, 197, 253, 0.82);
+  font-size: 11px;
+  line-height: 1.25;
+}
+
+.set-preview-note[hidden] { display: none; }
+
+.set-preview-rows {
+  min-width: 0;
+  max-height: 148px;
+  overflow: auto;
+  padding: 6px;
+  border: 1px solid rgba(96, 165, 250, 0.18);
+  border-radius: 8px;
+  background: rgba(15, 23, 42, 0.28);
+}
+
+.set-preview-row {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  width: max-content;
+  min-width: 100%;
+  margin-bottom: 4px;
+  padding: 5px 6px;
+  border-radius: 6px;
+  background: rgba(2, 6, 23, 0.2);
+  color: var(--text);
+  font-size: 12px;
+  line-height: 1.25;
+  white-space: nowrap;
+}
+
+.set-preview-row:last-child { margin-bottom: 0; }
+
+.set-preview-label {
+  flex: 0 0 auto;
+  color: var(--accent);
+  font-weight: 500;
+}
+
+.set-preview-words {
+  flex: 0 0 auto;
+  min-width: max-content;
+  color: var(--muted);
+}
+
+/* --- Actions / shared button ------------------------------------------- */
+.settings-actions {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+  padding-top: 4px;
+}
+
+.settings-button {
+  min-height: 40px;
+  border: 1px solid rgba(148, 163, 184, 0.24);
+  border-radius: 8px;
+  background: rgba(15, 23, 42, 0.55);
+  color: var(--text);
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.settings-button:hover {
+  border-color: var(--accent-border);
+  background: rgba(30, 41, 59, 0.72);
+}
+
+.settings-button.primary {
+  border-color: rgba(96, 165, 250, 0.72);
+  background: rgba(37, 99, 235, 0.24);
+  color: var(--accent);
+}

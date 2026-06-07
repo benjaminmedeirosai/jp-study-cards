@@ -1,0 +1,143 @@
+/* Shared foundations: variables, reset, page shell, and form/button primitives
+   used by both the card page and the settings page. */
+
+:root {
+  color-scheme: dark;
+  --surface-bg: #020617;
+  --surface-card: #0f172a;
+  --text: #e5eefc;
+  --muted: #94a3b8;
+  --accent: #60a5fa;
+  --accent-border: rgba(96, 165, 250, 0.72);
+  --border-1: 1px solid rgba(96, 165, 250, 0.18);
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background: var(--surface-bg);
+  color: var(--text);
+}
+
+* { box-sizing: border-box; }
+
+html, body, #app {
+  width: 100%;
+  min-height: 100%;
+  margin: 0;
+}
+
+body {
+  min-height: 100dvh;
+  overflow: hidden;
+  background: var(--surface-bg);
+}
+
+button, input, select { font: inherit; }
+
+/* Page shell — both pages are a full-height grid with a soft radial backdrop. */
+.study-page {
+  height: 100dvh;
+  min-height: 0;
+  display: grid;
+  gap: 10px;
+  padding: 10px;
+  overflow: hidden;
+  background-color: var(--surface-bg);
+  background-image:
+    radial-gradient(circle at 50% -12%, rgba(96, 165, 250, 0.18), transparent 36%),
+    linear-gradient(180deg, rgba(15, 23, 42, 0.24), rgba(2, 6, 23, 0.12) 42%, rgba(2, 6, 23, 0.28));
+}
+
+/* Button reset — every button() from shared.js carries .study-button. */
+.study-button {
+  position: relative;
+  display: grid;
+  place-items: center;
+  margin: 0;
+  border: 0;
+  background: none;
+  color: var(--text);
+  font-family: inherit;
+  line-height: 1;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.study-button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.study-button .hotkey { display: none; }
+
+/* Labelled field (select / input with a caption). */
+.study-field {
+  display: grid;
+  gap: 2px;
+  min-width: 0;
+  color: var(--muted);
+  font-size: 10px;
+  line-height: 1;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+.study-field span {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.study-field input,
+.study-field select {
+  min-height: 36px;
+  width: 100%;
+  min-width: 0;
+  border: var(--border-1);
+  border-color: rgba(96, 165, 250, 0.22);
+  border-radius: 9px;
+  background: linear-gradient(180deg, rgba(30, 41, 59, 0.5), rgba(15, 23, 42, 0.48));
+  color: var(--text);
+  padding: 6px 8px;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.1;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.045), 0 8px 18px rgba(0, 0, 0, 0.08);
+}
+
+.study-field input:hover,
+.study-field select:hover,
+.study-field input:focus,
+.study-field select:focus {
+  border-color: var(--accent-border);
+  outline: none;
+  background: rgba(30, 41, 59, 0.58);
+}
+
+/* Checkbox toggle. */
+.study-toggle {
+  display: grid;
+  grid-template-columns: 16px minmax(0, 1fr);
+  align-items: center;
+  gap: 6px;
+  min-width: 0;
+  min-height: 36px;
+  padding: 6px 8px;
+  border: 1px solid rgba(96, 165, 250, 0.22);
+  border-radius: 7px;
+  background: rgba(15, 23, 42, 0.38);
+  color: var(--text);
+  font-size: 13px;
+  line-height: 1;
+}
+
+.study-toggle input {
+  width: 14px;
+  height: 14px;
+  margin: 0;
+  accent-color: var(--accent);
+}
+
+.study-toggle span {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

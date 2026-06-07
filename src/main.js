@@ -1,10 +1,15 @@
-import { renderJapaneseStudyPage } from "./study/japaneseStudy.js?v=22";
+import { renderCardPage } from "./study/cardPage.js";
+import { renderSettingsPage } from "./study/settingsPage.js";
+import { renderDeckPage } from "./study/deckPage.js";
 
 const app = document.getElementById("app");
 
 function mount() {
   app.innerHTML = "";
-  app.append(renderJapaneseStudyPage());
+  const hash = location.hash;
+  if (hash.startsWith("#/settings")) app.append(renderSettingsPage());
+  else if (hash.startsWith("#/decks")) app.append(renderDeckPage());
+  else app.append(renderCardPage());
 }
 
 async function registerServiceWorker() {
@@ -16,5 +21,6 @@ async function registerServiceWorker() {
   }
 }
 
+window.addEventListener("hashchange", mount);
 mount();
 void registerServiceWorker();
