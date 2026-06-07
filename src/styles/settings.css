@@ -67,6 +67,42 @@
   gap: 8px;
 }
 
+/* Japanese voice picker: select + a Preview button. */
+.voice-row {
+  display: flex;
+  align-items: stretch;
+  gap: 6px;
+}
+
+.voice-row select { flex: 1; min-width: 0; }
+
+.voice-preview {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 36px;
+  padding: 0 12px;
+  border: 1px solid rgba(96, 165, 250, 0.4);
+  border-radius: 9px;
+  background: rgba(15, 23, 42, 0.5);
+  color: var(--accent);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.voice-preview:hover {
+  border-color: var(--accent-border);
+  background: rgba(30, 41, 59, 0.7);
+}
+
+.voice-preview svg {
+  width: 13px;
+  height: 13px;
+  fill: currentColor;
+}
+
 /* --- Set preview -------------------------------------------------------- */
 .set-preview {
   display: grid;

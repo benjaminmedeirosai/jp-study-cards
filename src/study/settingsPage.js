@@ -1,7 +1,11 @@
 import { buildSetOptions, sortCardsForSets, activeSetGrouping } from "./sets.js";
+import { speak, getVoicesForLang, onVoicesChanged } from "./speech.js";
+
+const VOICE_SAMPLE = "こんにちは。これは音声のプレビューです。";
 import {
   DEFAULT_SET_SIZE,
   FONT_SCALE_OPTIONS,
+  VOICE_RATE_OPTIONS,
   SET_GROUPINGS,
   clampInt,
   normalizeSetGrouping,
@@ -25,8 +29,8 @@ function goToCards() {
 // Resolve and load the cards of the currently-selected deck, for the live preview.
 async function loadActiveDeckCards(state) {
   const index = await loadIndex();
-  const deck = resolveDeck(index, state.deckId) || resolveDeck(index, "all");
-  return loadDeckCards(deck);
+  const deck = resolveDeck(index, state.deckId);
+  return deck ? loadDeckCards(deck) : [];
 }
 
 export function renderSettingsPage() {
@@ -75,6 +79,42 @@ export function renderSettingsPage() {
   const hiraganaFontInput = makeSelect(fontItems, String(state.hiraganaFontScale));
   const englishFontInput = makeSelect(fontItems, String(state.englishFontScale));
   const hotkeyToggle = makeToggle("Hotkeys", state.showHotkeys);
+
+  // --- Japanese voice (Web Speech API voices for ja-*) --------------------
+  const voiceSelect = document.createElement("select");
+  function populateVoices() {
+    const desired = voiceSelect.options.length ? voiceSelect.value : state.jpVoice;
+    voiceSelect.innerHTML = "";
+    const items = [{ value: "", label: "Auto (device default)" }];
+    for (const voice of getVoicesForLang("ja")) items.push({ value: voice.name, label: `${voice.name} · ${voice.lang}` });
+    for (const item of items) {
+      const option = document.createElement("option");
+      option.value = item.value;
+      option.textContent = item.label;
+      voiceSelect.append(option);
+    }
+    voiceSelect.value = items.some((item) => item.value === desired) ? desired : "";
+  }
+  populateVoices();
+  // Voices often arrive asynchronously; repopulate when they do.
+  const offVoices = onVoicesChanged(() => {
+    if (!root.isConnected) { offVoices(); return; }
+    populateVoices();
+  });
+  const rateSelect = makeSelect(
+    VOICE_RATE_OPTIONS.map((rate) => ({ value: String(rate), label: `${rate}×` })),
+    String(state.voiceRate)
+  );
+
+  const voicePreviewBtn = document.createElement("button");
+  voicePreviewBtn.type = "button";
+  voicePreviewBtn.className = "voice-preview";
+  voicePreviewBtn.setAttribute("aria-label", "Preview voice");
+  voicePreviewBtn.innerHTML = `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 5l12 7-12 7z"/></svg><span>Preview</span>`;
+  voicePreviewBtn.addEventListener("click", () => speak(VOICE_SAMPLE, { lang: "ja-JP", voiceName: voiceSelect.value, rate: Number(rateSelect.value) }));
+  const voiceRow = document.createElement("div");
+  voiceRow.className = "voice-row";
+  voiceRow.append(voiceSelect, voicePreviewBtn);
 
   // --- Live set preview ---------------------------------------------------
   const setPreview = document.createElement("div");
@@ -159,6 +199,8 @@ export function renderSettingsPage() {
     fieldLabel(`Kanji size ${state.kanjiFontScale}%`, kanjiFontInput),
     fieldLabel(`Hiragana size ${state.hiraganaFontScale}%`, hiraganaFontInput),
     fieldLabel(`English size ${state.englishFontScale}%`, englishFontInput),
+    fieldLabel("Japanese voice", voiceRow),
+    fieldLabel("Voice speed", rateSelect),
     visibilityGroup
   );
 
@@ -196,6 +238,8 @@ export function renderSettingsPage() {
     state.hiraganaFontScale = clampInt(hiraganaFontInput.value, 150, 10, 250);
     state.englishFontScale = clampInt(englishFontInput.value, 150, 10, 250);
     state.showHotkeys = hotkeyToggle.input.checked;
+    state.jpVoice = voiceSelect.value;
+    state.voiceRate = Number(rateSelect.value);
     const setMembershipChanged = state.query !== previousQuery || state.setSize !== previousSetSize || state.setGrouping !== previousSetGrouping;
     if (setMembershipChanged) {
       state.setId = "all";

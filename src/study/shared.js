@@ -4,6 +4,7 @@
 const STORAGE_KEY = "jp-study-cards-state-v1";
 export const DEFAULT_SET_SIZE = 20;
 export const FONT_SCALE_OPTIONS = [10, 20, 35, 50, 75, 100, 125, 150, 200, 250];
+export const VOICE_RATE_OPTIONS = [0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.25, 1.5, 1.75, 2];
 export const LINK_TEMPLATES = {
   chatgpt: "https://chat.openai.com/?q=",
   googleImages: "https://www.google.com/search?tbm=isch&q="
@@ -40,7 +41,7 @@ export function loadState() {
   try { raw = JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}"); } catch {}
   const visible = raw.visible && typeof raw.visible === "object" ? raw.visible : {};
   return {
-    deckId: String(raw.deckId || "all"),
+    deckId: String(raw.deckId || ""),
     setId: String(raw.setId || "all"),
     mode: MODES.some((mode) => mode.id === raw.mode) ? raw.mode : "kanji",
     setSize: clampInt(raw.setSize, DEFAULT_SET_SIZE, 5, 100),
@@ -50,6 +51,8 @@ export function loadState() {
     englishFontScale: clampInt(raw.englishFontScale, 150, 10, 250),
     currentIndex: clampInt(raw.currentIndex, 0, 0, 100000),
     query: String(raw.query || "").trim(),
+    jpVoice: String(raw.jpVoice || ""),
+    voiceRate: Number.isFinite(Number(raw.voiceRate)) ? Math.min(2, Math.max(0.5, Number(raw.voiceRate))) : 0.9,
     showHotkeys: raw.showHotkeys === true,
     audioSourceExpanded: raw.audioSourceExpanded !== false,
     visible: {
@@ -171,19 +174,11 @@ function decksInFolder(decks, path) {
 }
 
 // Resolve a stored deckId to its label, category breadcrumb, and file paths.
-// "all" → whole collection; "folder:<path>" → a folder (all files beneath it);
-// anything else → a single file deck by id.
+// "folder:<path>" → a folder (all files beneath it); a deck id → a single file.
+// Empty/unknown (including no selection) → null.
 export function resolveDeck(index, deckId) {
   const decks = listDecks(index);
-  if (!deckId || deckId === "all") {
-    return {
-      id: "all",
-      label: "All cards",
-      category: "",
-      paths: decks.map((deck) => deck.path),
-      count: decks.reduce((sum, deck) => sum + Number(deck.count || 0), 0)
-    };
-  }
+  if (!deckId) return null;
   if (deckId.startsWith("folder:")) {
     const path = deckId.slice("folder:".length);
     const segments = path.split("/").map((part) => part.trim()).filter(Boolean);

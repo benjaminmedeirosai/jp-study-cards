@@ -11,9 +11,25 @@ export function speak(text, options = {}) {
 
   const voices = window.speechSynthesis.getVoices?.() || [];
   const langPrefix = utterance.lang.split("-")[0].toLowerCase();
-  const voice = voices.find((item) => String(item.lang || "").toLowerCase() === utterance.lang.toLowerCase())
+  const preferred = options.voiceName ? voices.find((item) => item.name === options.voiceName) : null;
+  const voice = preferred
+    || voices.find((item) => String(item.lang || "").toLowerCase() === utterance.lang.toLowerCase())
     || voices.find((item) => String(item.lang || "").toLowerCase().startsWith(langPrefix));
   if (voice) utterance.voice = voice;
 
   window.speechSynthesis.speak(utterance);
+}
+
+// Voices for a language prefix (default Japanese). Note: getVoices() is often
+// empty until the browser fires `voiceschanged` — subscribe via onVoicesChanged.
+export function getVoicesForLang(prefix = "ja") {
+  const voices = window.speechSynthesis?.getVoices?.() || [];
+  const needle = prefix.toLowerCase();
+  return voices.filter((voice) => String(voice.lang || "").toLowerCase().startsWith(needle));
+}
+
+export function onVoicesChanged(handler) {
+  if (!("speechSynthesis" in window)) return () => {};
+  window.speechSynthesis.addEventListener("voiceschanged", handler);
+  return () => window.speechSynthesis.removeEventListener("voiceschanged", handler);
 }

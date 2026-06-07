@@ -141,14 +141,20 @@ export function renderCardPage() {
 
   const empty = document.createElement("div");
   empty.className = "card-empty";
-  empty.textContent = "Loading Japanese words...";
+  const emptyMsg = document.createElement("p");
+  emptyMsg.className = "card-empty-msg";
+  const chooseDeckBtn = document.createElement("button");
+  chooseDeckBtn.type = "button";
+  chooseDeckBtn.className = "card-empty-action";
+  chooseDeckBtn.textContent = "Choose a deck";
+  chooseDeckBtn.addEventListener("click", () => { location.hash = "#/decks"; });
+  empty.append(emptyMsg, chooseDeckBtn);
   root.append(top, card, empty, tray);
 
   // --- Deck / set selection -----------------------------------------------
-  // Falls back to "all" for display when the deck can't be resolved (e.g. the
-  // index hasn't loaded yet) — without mutating the stored selection.
+  // null when nothing is selected (or the saved deck no longer exists).
   function currentDeck() {
-    return resolveDeck(index, state.deckId) || resolveDeck(index, "all");
+    return resolveDeck(index, state.deckId);
   }
 
   function updateDeckButton() {
@@ -171,6 +177,14 @@ export function renderCardPage() {
 
   async function rebuildDeck({ keepIndex = false } = {}) {
     const deck = currentDeck();
+    if (!deck) {
+      deckCards = [];
+      setCards = [];
+      setOptions = buildSetOptions([], state.setSize, state.setGrouping);
+      state.currentIndex = 0;
+      revealed = false;
+      return;
+    }
     const loadedCards = await loadDeckCards(deck);
     const query = state.query.toLowerCase();
     const matchingCards = query ? loadedCards.filter((entry) => searchText(entry).includes(query)) : loadedCards;
@@ -201,7 +215,7 @@ export function renderCardPage() {
 
   function speakJapanese() {
     const value = getJapaneseSpeechText(currentEntry());
-    if (value) speak(value, { lang: "ja-JP" });
+    if (value) speak(value, { lang: "ja-JP", voiceName: state.jpVoice, rate: state.voiceRate });
   }
 
   function renderTray() {
@@ -232,11 +246,16 @@ export function renderCardPage() {
     empty.hidden = total > 0;
     card.hidden = total === 0;
     tray.hidden = total === 0;
-    summary.textContent = deck ? `${deckBreadcrumb(deck)} / ${activeSet?.summaryLabel || "Whole deck"}` : "No deck";
+    summary.textContent = deck ? `${deckBreadcrumb(deck)} / ${activeSet?.summaryLabel || "Whole deck"}` : "";
     prevBtn.disabled = total <= 1;
     nextBtn.disabled = total <= 1;
+    setSelect.disabled = total === 0;
     if (!entry) {
-      empty.textContent = index ? "No cards match this deck or filter." : "Loading Japanese words...";
+      const noDeck = !deck;
+      emptyMsg.textContent = noDeck
+        ? "No deck selected."
+        : (index ? "No cards match this deck or filter." : "Loading Japanese words...");
+      chooseDeckBtn.hidden = !noDeck;
       return;
     }
     const kanji = text(entry, "kanji");
