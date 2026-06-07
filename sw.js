@@ -2,7 +2,9 @@ const DATA_CACHE_NAME = "jp-study-cards-data";
 
 function isDataRequest(request) {
   const url = new URL(request.url);
-  return url.origin === self.location.origin && url.pathname.startsWith("/data/");
+  // Match the /data/ segment anywhere so it works whether the app is served
+  // from the domain root or a project subpath (e.g. /jp-study-cards/).
+  return url.origin === self.location.origin && url.pathname.includes("/data/");
 }
 
 self.addEventListener("install", (event) => {

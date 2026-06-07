@@ -120,9 +120,15 @@ export async function parseDeckResponse(response, path) {
 const deckFileCache = new Map();
 let indexPromise = null;
 
+// Strip a leading slash so paths resolve relative to wherever the app is
+// served (domain root, or a GitHub-Pages project subpath like /jp-study-cards/).
+function relativeUrl(path) {
+  return String(path).replace(/^\//, "");
+}
+
 export function loadIndex() {
   if (!indexPromise) {
-    indexPromise = fetch("/data/index.json")
+    indexPromise = fetch("data/index.json")
       .then((response) => {
         if (!response.ok) throw new Error(`data/index.json: ${response.status}`);
         return response.json();
@@ -134,7 +140,7 @@ export function loadIndex() {
 
 export function loadDeckFile(path) {
   if (!deckFileCache.has(path)) {
-    const promise = fetch(path)
+    const promise = fetch(relativeUrl(path))
       .then((response) => {
         if (!response.ok) throw new Error(`${path}: ${response.status}`);
         return parseDeckResponse(response, path);
