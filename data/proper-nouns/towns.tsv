@@ -1,0 +1,8 @@
+# Towns & villages (町・村).
+# Belongs here: 〜町 (town) and 〜村 (village) municipalities, written with the
+# suffix so the geography type is clear. Cities (市) go in cities.tsv.
+kanji	hiragana	type	english
+箱根町	はこねまち	proper-noun	Hakone Town (hot-spring resort)
+軽井沢町	かるいざわまち	proper-noun	Karuizawa Town (resort)
+草津町	くさつまち	proper-noun	Kusatsu Town (hot-spring town)
+白川村	しらかわむら	proper-noun	Shirakawa Village (home of Shirakawa-go)

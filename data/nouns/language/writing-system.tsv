@@ -1,0 +1,19 @@
+# Writing System (Nouns / Language).
+# Auto-grouped during the nouns reorg; refine membership as needed.
+kanji	hiragana	type	english
+音読み	おんよみ	noun	on-yomi; Chinese-derived reading
+訓読み	くんよみ	noun	kun-yomi; native Japanese reading
+ひらがな	ひらがな	noun	hiragana
+仮名	かな	noun	hiragana and katakana collectively
+片仮名	かたかな	noun	katakana
+字	じ	noun	letter; character; handwriting
+漢字	かんじ	noun	kanji; Chinese characters
+数字	すうじ	noun	number; numeral
+拗音	ようおん	noun	contracted sound; palatalized kana combination
+促音	そくおん	noun	small tsu; geminate consonant marker
+長音	ちょうおん	noun	long vowel marker (ー)
+撥音	はつおん	noun	syllabic n sound
+清音	せいおん	noun	unvoiced plain kana
+濁音	だくおん	noun	voiced kana with dakuten marks
+半濁音	はんだくおん	noun	semi-voiced kana with handakuten marks
+平仮名	ひらがな	noun	hiragana script

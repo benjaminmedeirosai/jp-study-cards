@@ -1,0 +1,18 @@
+# Train stations (〜駅).
+# Belongs here: named railway stations. The bare place name (without 駅) goes in
+# cities.tsv. Most are major Tokyo/JR hub stations.
+kanji	hiragana	type	english
+東京駅	とうきょうえき	proper-noun	Tokyo Station
+新宿駅	しんじゅくえき	proper-noun	Shinjuku Station
+渋谷駅	しぶやえき	proper-noun	Shibuya Station
+品川駅	しながわえき	proper-noun	Shinagawa Station
+上野駅	うえのえき	proper-noun	Ueno Station
+池袋駅	いけぶくろえき	proper-noun	Ikebukuro Station
+秋葉原駅	あきはばらえき	proper-noun	Akihabara Station
+横浜駅	よこはまえき	proper-noun	Yokohama Station
+名古屋駅	なごやえき	proper-noun	Nagoya Station
+京都駅	きょうとえき	proper-noun	Kyoto Station
+大阪駅	おおさかえき	proper-noun	Osaka Station
+新大阪駅	しんおおさかえき	proper-noun	Shin-Osaka Station
+梅田駅	うめだえき	proper-noun	Umeda Station
+博多駅	はかたえき	proper-noun	Hakata Station

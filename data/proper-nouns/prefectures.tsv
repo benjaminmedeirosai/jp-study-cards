@@ -1,0 +1,51 @@
+# Prefectures (都道府県) — all 47 of Japan's prefectures.
+# Belongs here: the 47 administrative prefectures (〜県/〜都/〜道/〜府). Cities go
+# in cities.tsv. Order: north to south, by JIS prefecture code.
+kanji	hiragana	type	english
+北海道	ほっかいどう	proper-noun	Hokkaido
+青森県	あおもりけん	proper-noun	Aomori Prefecture
+岩手県	いわてけん	proper-noun	Iwate Prefecture
+宮城県	みやぎけん	proper-noun	Miyagi Prefecture
+秋田県	あきたけん	proper-noun	Akita Prefecture
+山形県	やまがたけん	proper-noun	Yamagata Prefecture
+福島県	ふくしまけん	proper-noun	Fukushima Prefecture
+茨城県	いばらきけん	proper-noun	Ibaraki Prefecture
+栃木県	とちぎけん	proper-noun	Tochigi Prefecture
+群馬県	ぐんまけん	proper-noun	Gunma Prefecture
+埼玉県	さいたまけん	proper-noun	Saitama Prefecture
+千葉県	ちばけん	proper-noun	Chiba Prefecture
+東京都	とうきょうと	proper-noun	Tokyo Metropolis
+神奈川県	かながわけん	proper-noun	Kanagawa Prefecture
+新潟県	にいがたけん	proper-noun	Niigata Prefecture
+富山県	とやまけん	proper-noun	Toyama Prefecture
+石川県	いしかわけん	proper-noun	Ishikawa Prefecture
+福井県	ふくいけん	proper-noun	Fukui Prefecture
+山梨県	やまなしけん	proper-noun	Yamanashi Prefecture
+長野県	ながのけん	proper-noun	Nagano Prefecture
+岐阜県	ぎふけん	proper-noun	Gifu Prefecture
+静岡県	しずおかけん	proper-noun	Shizuoka Prefecture
+愛知県	あいちけん	proper-noun	Aichi Prefecture
+三重県	みえけん	proper-noun	Mie Prefecture
+滋賀県	しがけん	proper-noun	Shiga Prefecture
+京都府	きょうとふ	proper-noun	Kyoto Prefecture
+大阪府	おおさかふ	proper-noun	Osaka Prefecture
+兵庫県	ひょうごけん	proper-noun	Hyogo Prefecture
+奈良県	ならけん	proper-noun	Nara Prefecture
+和歌山県	わかやまけん	proper-noun	Wakayama Prefecture
+鳥取県	とっとりけん	proper-noun	Tottori Prefecture
+島根県	しまねけん	proper-noun	Shimane Prefecture
+岡山県	おかやまけん	proper-noun	Okayama Prefecture
+広島県	ひろしまけん	proper-noun	Hiroshima Prefecture
+山口県	やまぐちけん	proper-noun	Yamaguchi Prefecture
+徳島県	とくしまけん	proper-noun	Tokushima Prefecture
+香川県	かがわけん	proper-noun	Kagawa Prefecture
+愛媛県	えひめけん	proper-noun	Ehime Prefecture
+高知県	こうちけん	proper-noun	Kochi Prefecture
+福岡県	ふくおかけん	proper-noun	Fukuoka Prefecture
+佐賀県	さがけん	proper-noun	Saga Prefecture
+長崎県	ながさきけん	proper-noun	Nagasaki Prefecture
+熊本県	くまもとけん	proper-noun	Kumamoto Prefecture
+大分県	おおいたけん	proper-noun	Oita Prefecture
+宮崎県	みやざきけん	proper-noun	Miyazaki Prefecture
+鹿児島県	かごしまけん	proper-noun	Kagoshima Prefecture
+沖縄県	おきなわけん	proper-noun	Okinawa Prefecture

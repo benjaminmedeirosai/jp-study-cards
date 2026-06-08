@@ -1,0 +1,13 @@
+# World places — foreign cities and regions.
+# Belongs here: non-Japanese cities/regions (ニューヨーク, パリ). Countries go in
+# countries.tsv; Japanese cities in cities.tsv.
+kanji	hiragana	type	english
+ニューヨーク	ニューヨーク	proper-noun	New York
+ハワイ	ハワイ	proper-noun	Hawaii
+パリ	パリ	proper-noun	Paris
+ロンドン	ロンドン	proper-noun	London
+ローマ	ローマ	proper-noun	Rome
+北京	ペキン	proper-noun	Beijing
+ソウル	ソウル	proper-noun	Seoul
+アフリカ	アフリカ	proper-noun	Africa
+アジア	アジア	proper-noun	Asia

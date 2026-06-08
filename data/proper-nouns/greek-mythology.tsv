@@ -1,0 +1,19 @@
+# Greek mythology (ギリシャ神話) — gods, heroes, and places.
+# Belongs here: figures and locations from Greek myth (ゼウス, ヘラクレス,
+# オリンポス山). The country Greece (ギリシャ) is in countries.tsv.
+kanji	hiragana	type	english
+ゼウス	ゼウス	proper-noun	Zeus (king of the gods)
+ヘラ	ヘラ	proper-noun	Hera (queen of the gods)
+ポセイドン	ポセイドン	proper-noun	Poseidon (sea)
+ハデス	ハデス	proper-noun	Hades (underworld)
+デメテル	デメテル	proper-noun	Demeter (harvest)
+アテナ	アテナ	proper-noun	Athena (wisdom)
+アポロン	アポロン	proper-noun	Apollo (sun; music)
+アルテミス	アルテミス	proper-noun	Artemis (the hunt)
+アレス	アレス	proper-noun	Ares (war)
+アフロディーテ	アフロディーテ	proper-noun	Aphrodite (love)
+ヘルメス	ヘルメス	proper-noun	Hermes (messenger)
+ヘパイストス	ヘパイストス	proper-noun	Hephaestus (the forge)
+ディオニュソス	ディオニュソス	proper-noun	Dionysus (wine)
+ヘラクレス	ヘラクレス	proper-noun	Heracles; Hercules (hero)
+オリンポス山	オリンポスさん	proper-noun	Mount Olympus

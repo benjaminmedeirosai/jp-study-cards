@@ -1,0 +1,10 @@
+# Formal numerals (大字) — anti-tampering forms used in legal/financial documents.
+# Belongs here: the ornate variants written on contracts, cheques, and receipts.
+# Everyday digits live in digits.tsv.
+kanji	hiragana	type	english
+壱	いち	numeral	one (formal; documents)
+弐	に	numeral	two (formal; documents)
+参	さん	numeral	three (formal; documents)
+拾	じゅう	numeral	ten (formal; documents)
+阡	せん	numeral	thousand (formal variant)
+萬	まん	numeral	ten thousand (old/traditional form)

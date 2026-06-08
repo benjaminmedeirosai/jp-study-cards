@@ -1,0 +1,26 @@
+# Japanese cities (市).
+# Belongs here: incorporated cities, written with the 〜市 suffix so the
+# geography type is explicit. Tokyo's wards (区) go in districts.tsv; towns and
+# villages (町/村) in towns.tsv; prefectures in prefectures.tsv.
+kanji	hiragana	type	english
+東京	とうきょう	proper-noun	Tokyo (capital; officially 東京都)
+札幌市	さっぽろし	proper-noun	Sapporo City
+仙台市	せんだいし	proper-noun	Sendai City
+さいたま市	さいたまし	proper-noun	Saitama City
+千葉市	ちばし	proper-noun	Chiba City
+横浜市	よこはまし	proper-noun	Yokohama City
+川崎市	かわさきし	proper-noun	Kawasaki City
+名古屋市	なごやし	proper-noun	Nagoya City
+京都市	きょうとし	proper-noun	Kyoto City
+大阪市	おおさかし	proper-noun	Osaka City
+神戸市	こうべし	proper-noun	Kobe City
+広島市	ひろしまし	proper-noun	Hiroshima City
+福岡市	ふくおかし	proper-noun	Fukuoka City
+北九州市	きたきゅうしゅうし	proper-noun	Kitakyushu City
+那覇市	なはし	proper-noun	Naha City
+金沢市	かなざわし	proper-noun	Kanazawa City
+長崎市	ながさきし	proper-noun	Nagasaki City
+熊本市	くまもとし	proper-noun	Kumamoto City
+奈良市	ならし	proper-noun	Nara City
+鎌倉市	かまくらし	proper-noun	Kamakura City
+日光市	にっこうし	proper-noun	Nikko City

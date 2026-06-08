@@ -1,0 +1,13 @@
+# Places Loanwords (Nouns / Places).
+# Auto-grouped during the nouns reorg; refine membership as needed.
+kanji	hiragana	type	english
+スーパー	スーパー	noun	supermarket
+レストラン	レストラン	noun	restaurant
+ショップ	ショップ	noun	shop
+コンビニ	コンビニ	noun	convenience store
+ドア	ドア	noun	door
+トイレ	トイレ	noun	restroom
+ベランダ	ベランダ	noun	veranda; balcony
+プール	プール	noun	pool
+ホテル	ホテル	noun	hotel
+ビル	ビル	noun	office building

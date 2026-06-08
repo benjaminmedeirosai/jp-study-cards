@@ -1,0 +1,12 @@
+# Landmarks & sights — famous places of interest in Japan.
+# Belongs here: specific attractions, temples, towers, parks, heritage sites.
+# Cities go in cities.tsv; stations in stations.tsv.
+kanji	hiragana	type	english
+富士山	ふじさん	proper-noun	Mount Fuji
+東京タワー	とうきょうタワー	proper-noun	Tokyo Tower
+東京スカイツリー	とうきょうスカイツリー	proper-noun	Tokyo Skytree
+金閣寺	きんかくじ	proper-noun	Kinkaku-ji (Golden Pavilion)
+清水寺	きよみずでら	proper-noun	Kiyomizu-dera
+上野動物園	うえのどうぶつえん	proper-noun	Ueno Zoo
+白川郷	しらかわごう	proper-noun	Shirakawa-go (historic village)
+東京ディズニーランド	とうきょうディズニーランド	proper-noun	Tokyo Disneyland

@@ -1,0 +1,14 @@
+# Anime / manga titles (作品名).
+# Belongs here: the name of a series/work (ゲゲゲの鬼太郎, ワンピース). A character
+# from within a work goes in anime-characters.tsv.
+kanji	hiragana	type	english
+ゲゲゲの鬼太郎	ゲゲゲのきたろう	proper-noun	GeGeGe no Kitaro
+鋼の錬金術師	はがねのれんきんじゅつし	proper-noun	Fullmetal Alchemist
+ドラえもん	ドラえもん	proper-noun	Doraemon
+ポケットモンスター	ポケットモンスター	proper-noun	Pokémon
+ワンピース	ワンピース	proper-noun	One Piece
+鬼滅の刃	きめつのやいば	proper-noun	Demon Slayer
+進撃の巨人	しんげきのきょじん	proper-noun	Attack on Titan
+ナルト	ナルト	proper-noun	Naruto
+ドラゴンボール	ドラゴンボール	proper-noun	Dragon Ball
+名探偵コナン	めいたんていコナン	proper-noun	Detective Conan

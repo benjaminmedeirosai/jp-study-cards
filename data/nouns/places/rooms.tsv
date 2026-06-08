@@ -1,0 +1,17 @@
+# Rooms (Nouns / Places).
+# Auto-grouped during the nouns reorg; refine membership as needed.
+kanji	hiragana	type	english
+包丁	ほうちょう	noun	kitchen knife
+台所	だいどころ	noun	kitchen
+玄関	げんかん	noun	entryway
+窓	まど	noun	window
+床	ゆか	noun	floor
+天井	てんじょう	noun	ceiling
+壁	かべ	noun	wall
+階段	かいだん	noun	stairs
+風呂	ふろ	noun	bath
+洗面所	せんめんじょ	noun	washroom; sink area
+廊下	ろうか	noun	hallway
+部屋	へや	noun	room
+寝室	しんしつ	noun	bedroom
+居間	いま	noun	living room

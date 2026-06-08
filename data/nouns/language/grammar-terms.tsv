@@ -1,0 +1,25 @@
+# Grammar Terms (Nouns / Language).
+# Auto-grouped during the nouns reorg; refine membership as needed.
+kanji	hiragana	type	english
+送り仮名	おくりがな	noun	kana suffixes after kanji
+ます形	ますけい	noun	polite verb form ending in masu
+ない形	ないけい	noun	negative verb form ending in nai
+て形	てけい	noun	te-form; connective verb form used for sequences, requests, and aspect
+た形	たけい	noun	past tense verb form ending in ta
+ら抜き言葉	らぬきことば	noun	ra-dropping speech; colloquial omission of ra in potential forms
+単独	たんどく	noun	standalone; independent (used to describe a kanji appearing alone, not in a compound)
+活用	かつよう	noun	inflection; conjugation of a word to express grammatical meaning
+活用形	かつようけい	noun	conjugated form; an inflected verb or adjective form
+語幹	ごかん	noun	word stem; the core part of a word before inflection
+語尾	ごび	noun	word ending; inflectional ending of a verb or adjective
+辞書形	じしょけい	noun	dictionary form; plain non-past form of a verb
+可能形	かのうけい	noun	potential form; expresses ability or possibility
+意向形	いこうけい	noun	volitional form; expresses intention or suggestion
+命令形	めいれいけい	noun	imperative form; used to give commands
+仮定形	かていけい	noun	conditional form; typically the ba form
+五段動詞	ごだんどうし	noun	godan verb; verb that conjugates across five vowel rows
+一段動詞	いちだんどうし	noun	ichidan verb; verb with a single stem used for conjugation
+他動詞	たどうし	noun	transitive verb; verb that takes a direct object
+自動詞	じどうし	noun	intransitive verb; verb that does not take a direct object
+五段	ごだん	noun	godan; five-step
+文法	ぶんぽう	noun	grammar

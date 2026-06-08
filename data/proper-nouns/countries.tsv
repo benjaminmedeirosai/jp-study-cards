@@ -1,0 +1,20 @@
+# Countries (国名).
+# Belongs here: country names (日本, アメリカ, ギリシャ). Foreign cities and
+# regions go in world-places.tsv. Most are katakana loanwords.
+kanji	hiragana	type	english
+日本	にほん	proper-noun	Japan
+アメリカ	アメリカ	proper-noun	United States
+中国	ちゅうごく	proper-noun	China
+韓国	かんこく	proper-noun	South Korea
+イギリス	イギリス	proper-noun	United Kingdom
+フランス	フランス	proper-noun	France
+ドイツ	ドイツ	proper-noun	Germany
+イタリア	イタリア	proper-noun	Italy
+スペイン	スペイン	proper-noun	Spain
+ロシア	ロシア	proper-noun	Russia
+インド	インド	proper-noun	India
+カナダ	カナダ	proper-noun	Canada
+オーストラリア	オーストラリア	proper-noun	Australia
+ブラジル	ブラジル	proper-noun	Brazil
+ギリシャ	ギリシャ	proper-noun	Greece
+エジプト	エジプト	proper-noun	Egypt
