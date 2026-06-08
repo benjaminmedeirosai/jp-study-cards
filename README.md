@@ -39,7 +39,7 @@ layout, TSV format, the kana split, classification rules, and comment headers.
 
 ## Offline
 
-The service worker (`sw.js`) is cache-first for any request under `/data/`, so
-`data/cards.json` stays available offline once the app has been visited. On
-activation it clears older app caches. Rebuilding the bundle serves fresh data
-on the next online load.
+The service worker (`sw.js`) is network-first for any request under `/data/`:
+every load fetches the latest `data/cards.json` from the server and refreshes
+the cache, falling back to the cache only when offline. A plain refresh always
+picks up a freshly built bundle; the cached copy keeps the app working offline.

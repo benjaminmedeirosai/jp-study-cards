@@ -222,9 +222,17 @@ export function renderCardPage() {
     return key && state.ttsSources[key] ? state.ttsSources[key] : "auto";
   }
 
+  // Browser TTS mis-reads counter/numeral kanji (e.g. 十六匹 → ひき instead of the
+  // correct ぴき), so in "auto" mode speak the curated reading for those types.
+  // Normal vocab stays on kanji in auto for better pitch-accent.
+  function autoPrefersReading(entry) {
+    return entry?.type === "counter" || entry?.type === "numeral";
+  }
+
   function getJapaneseSpeechText(entry) {
     const source = getCurrentTtsSource();
-    if (source === "hiragana") return text(entry, "hiragana") || text(entry, "kanji");
+    const useReading = source === "hiragana" || (source === "auto" && autoPrefersReading(entry));
+    if (useReading) return text(entry, "hiragana") || text(entry, "kanji");
     return text(entry, "kanji") || text(entry, "hiragana");
   }
 

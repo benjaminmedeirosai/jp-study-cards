@@ -19,15 +19,23 @@ self.addEventListener("activate", (event) => {
   );
 });
 
-// Cache-first for the card data so it stays available offline once visited.
+// Network-first for the card data: every load hits the server for the latest
+// build and refreshes the cache; the cache is only a fallback for when the
+// device is offline. The data is a single small bundle, so this is cheap and
+// means a plain refresh always picks up new decks.
 self.addEventListener("fetch", (event) => {
   if (event.request.method !== "GET" || !isDataRequest(event.request)) return;
   event.respondWith(
-    caches.open(DATA_CACHE_NAME)
-      .then((cache) => cache.match(event.request).then((cached) => cached || fetch(event.request).then(async (response) => {
+    caches.open(DATA_CACHE_NAME).then(async (cache) => {
+      try {
+        const response = await fetch(event.request);
         if (response.ok) await cache.put(event.request, response.clone());
         return response;
-      })))
-      .catch(() => caches.match(event.request))
+      } catch (err) {
+        const cached = await cache.match(event.request);
+        if (cached) return cached;
+        throw err;
+      }
+    })
   );
 });
