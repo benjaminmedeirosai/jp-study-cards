@@ -1,0 +1,23 @@
+# Suffixes (接尾辞) — bound morphemes that attach to the END of a word.
+# Belongs here: elements used after a stem (〜的, 〜化, 〜性, 〜者, 〜屋). A
+# front-attaching element goes in prefixes.tsv; a standalone kanji building
+# block goes in roots.tsv.
+kanji	hiragana	type	english
+屋	や	morpheme	shop; store; dealer; -er (suffix)
+長	ちょう	morpheme	chief; head; leader (suffix)
+的	てき	morpheme	-ic; -al; -ive (forms na-adjectives)
+化	か	morpheme	-ization; -ify; change into (suffix)
+性	せい	morpheme	-ness; -ity; nature; property (suffix)
+者	しゃ	morpheme	person; -er; -ist (suffix)
+員	いん	morpheme	member; staff; -er (suffix)
+家	か	morpheme	expert; -ist; specialist (suffix)
+中	ちゅう	morpheme	in; during; throughout; mid- (suffix)
+学	がく	morpheme	study of; -ology (suffix)
+語	ご	morpheme	language; word; -ese (suffix)
+費	ひ	morpheme	cost; expense; -fee (suffix)
+院	いん	morpheme	institution; temple (suffix)
+局	きょく	morpheme	bureau; office; station (suffix)
+場	じょう	morpheme	place; ground; site (suffix)
+風	ふう	morpheme	style; manner; -esque (suffix)
+さ	さ	morpheme	-ness (turns an adjective into a noun)
+み	み	morpheme	-ness; quality (nominalizing suffix)

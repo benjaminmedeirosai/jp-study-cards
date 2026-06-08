@@ -1,0 +1,23 @@
+# Qualities & description — physical/sensory qualities and general descriptors.
+# Belongs here: sensory/physical qualities (綺麗, 清潔, 滑らか, 静か, 新鮮),
+# and broad descriptors that don't fit another theme (変, 様々, 別, 急, 主).
+# This is the catch-all; prefer a more specific theme when one fits.
+kanji	hiragana	type	english
+滑らか	なめらか	na-adjective	smooth; fluent
+清らか	きよらか	na-adjective	pure; clean (poetic)
+綺麗	きれい	na-adjective	pretty; beautiful; clean
+清潔	せいけつ	na-adjective	clean; sanitary
+不思議	ふしぎ	na-adjective	mysterious; strange; wonder
+静か	しずか	na-adjective	quiet
+賑やか	にぎやか	na-adjective	lively; bustling
+新鮮	しんせん	na-adjective	fresh
+変	へん	na-adjective	strange; weird; odd
+別	べつ	na-adjective	separate; different; another
+急	きゅう	na-adjective	sudden; urgent; steep
+様々	さまざま	na-adjective	various; varied
+健康	けんこう	na-adjective	healthy; healthful
+主	おも	na-adjective	main; principal; chief
+盛ん	さかん	na-adjective	prosperous; thriving; popular
+有名	ゆうめい	na-adjective	famous; well-known
+丈夫	じょうぶ	na-adjective	sturdy; durable; robust
+平和	へいわ	na-adjective	peaceful

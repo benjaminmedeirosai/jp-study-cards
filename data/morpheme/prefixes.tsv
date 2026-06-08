@@ -1,0 +1,27 @@
+# Prefixes (接頭辞) — bound morphemes that attach to the FRONT of a word.
+# Belongs here: elements used before a stem to modify it (不〜, 無〜, 半〜, 再〜).
+# An end-attaching element goes in suffixes.tsv; a standalone kanji building
+# block goes in roots.tsv.
+kanji	hiragana	type	english
+不	ふ	morpheme	not; non- (negative prefix)
+無	む	morpheme	without; -less; un- (negative prefix)
+非	ひ	morpheme	non-; un- (negative prefix)
+未	み	morpheme	not yet; un- (prefix)
+半	はん	morpheme	half-
+両	りょう	morpheme	both; two (prefix)
+片	かた	morpheme	one-sided; one of a pair (prefix)
+仮	か	morpheme	temporary; provisional; tentative (prefix)
+漢	かん	morpheme	Han; Chinese; Sino- (prefix)
+再	さい	morpheme	re-; again (prefix)
+反	はん	morpheme	anti-; counter-; against (prefix)
+超	ちょう	morpheme	super-; ultra-; trans- (prefix)
+大	だい	morpheme	big; great; grand- (prefix)
+小	しょう	morpheme	small; minor- (prefix)
+新	しん	morpheme	new- (prefix)
+各	かく	morpheme	each; every (prefix)
+全	ぜん	morpheme	all; whole; entire (prefix)
+毎	まい	morpheme	every (prefix)
+最	さい	morpheme	most; -est (superlative prefix)
+副	ふく	morpheme	vice-; deputy; sub- (prefix)
+御	ご	morpheme	honorific prefix (also お)
+トランス	トランス	morpheme	trans-; across; beyond (loan prefix)

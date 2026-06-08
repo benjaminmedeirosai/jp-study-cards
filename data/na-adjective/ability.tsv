@@ -1,0 +1,9 @@
+# Ability — skill and competence at something.
+# Belongs here: being good/bad at a task (上手, 下手, 得意, 苦手) and effort
+# toward it (必死). General personality traits go in character.tsv.
+kanji	hiragana	type	english
+上手	じょうず	na-adjective	good at; skillful
+下手	へた	na-adjective	bad at; unskillful
+得意	とくい	na-adjective	good at; one's strong point
+苦手	にがて	na-adjective	poor at; not good with
+必死	ひっし	na-adjective	frantic; desperate

@@ -1,0 +1,22 @@
+# Character & manner — personality traits and social conduct.
+# Belongs here: how a person is or behaves toward others (真面目, 親切, 素直,
+# 失礼), including style of presentation (派手, 地味) and being a bother
+# (邪魔, 迷惑). Skill at a task goes in ability.tsv.
+kanji	hiragana	type	english
+真面目	まじめ	na-adjective	serious; earnest; diligent
+親切	しんせつ	na-adjective	kind; helpful
+慎重	しんちょう	na-adjective	careful; cautious
+丁寧	ていねい	na-adjective	polite; careful; courteous
+適当	てきとう	na-adjective	suitable; appropriate; half-hearted
+素直	すなお	na-adjective	obedient; honest; meek
+真剣	しんけん	na-adjective	serious; earnest
+邪魔	じゃま	na-adjective	hindrance; nuisance; in the way
+派手	はで	na-adjective	flashy; showy; gaudy
+地味	じみ	na-adjective	plain; sober; subdued
+迷惑	めいわく	na-adjective	trouble; nuisance; annoying
+失礼	しつれい	na-adjective	rude; impolite
+上品	じょうひん	na-adjective	elegant; refined
+下品	げひん	na-adjective	vulgar; coarse
+熱心	ねっしん	na-adjective	enthusiastic; eager; dedicated
+正直	しょうじき	na-adjective	honest; frank
+勝手	かって	na-adjective	selfish; arbitrary; as one pleases

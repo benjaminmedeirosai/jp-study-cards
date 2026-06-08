@@ -1,0 +1,13 @@
+# Taste & flavor.
+# Belongs here: flavors (甘い, 辛い, 苦い, 酸っぱい, しょっぱい) and overall
+# tastiness (美味しい, まずい). The kana-common おいしい lives in kana.tsv.
+kanji	hiragana	type	english
+美味しい	おいしい	i-adjective	delicious
+まずい	まずい	i-adjective	bad-tasting
+甘い	あまい	i-adjective	sweet
+辛い	からい	i-adjective	spicy; hot
+苦い	にがい	i-adjective	bitter
+酸っぱい	すっぱい	i-adjective	sour
+しょっぱい	しょっぱい	i-adjective	salty
+渋い	しぶい	i-adjective	astringent; bitter; (tasteful; refined)
+脂っこい	あぶらっこい	i-adjective	greasy; oily

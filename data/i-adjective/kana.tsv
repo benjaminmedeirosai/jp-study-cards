@@ -1,0 +1,10 @@
+# I-adjectives — kana-written forms.
+# Belongs here ONLY if the word genuinely appears in kana in real text
+# (かわいい, おいしい, すごい), not as a mechanical kana mirror of a kanji entry.
+# The kanji form stays in its themed file; the kana form lives here.
+kanji	hiragana	type	english
+かわいい	かわいい	i-adjective	cute
+おいしい	おいしい	i-adjective	delicious
+すごい	すごい	i-adjective	amazing; great
+うれしい	うれしい	i-adjective	happy; glad
+いい	いい	i-adjective	good (everyday form of 良い)

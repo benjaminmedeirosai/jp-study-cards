@@ -1,0 +1,12 @@
+# Na-adjectives — kana-written forms.
+# Belongs here ONLY if the word genuinely appears in kana in real text
+# (きれい, だめ, いや), not as a mechanical kana mirror of every kanji entry.
+# The kanji form stays in its themed file; the kana form lives here.
+kanji	hiragana	type	english
+きれい	きれい	na-adjective	pretty; beautiful; clean
+むだ	むだ	na-adjective	waste; useless; pointless
+まじめ	まじめ	na-adjective	serious; earnest; diligent
+にぎやか	にぎやか	na-adjective	lively; bustling
+だめ	だめ	na-adjective	no good; hopeless; not allowed
+ちっぽけ	ちっぽけ	na-adjective	tiny; insignificant
+いや	いや	na-adjective	unpleasant; disagreeable; reluctant

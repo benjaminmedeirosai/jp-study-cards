@@ -7,39 +7,39 @@ This repo intentionally avoids the larger Study Cards shell/configuration system
 ## Local Serve
 
 ```bash
-python3 -m http.server 4173
+node tools/dev-server.mjs
 ```
 
-Then open:
+Then open http://localhost:8124. The dev server sends `Cache-Control: no-store`,
+so the browser never serves stale JS/CSS while iterating (any static server
+works too, e.g. `python3 -m http.server`).
 
-```text
-http://localhost:4173
-```
+## Data
 
-## Generate Data
+Study data lives under `data/` as per-deck `.tsv` (and some legacy `.json`)
+files. They are the editable source of truth; the app fetches a single built
+bundle, `data/cards.json`, at startup.
 
-The lightweight data files are generated from the main repo source collection:
+The workflow:
 
-```bash
-node tools/generate-data.mjs
-```
+1. Edit a deck file, or add a new one (TSV header: `kanji  hiragana  type  english`).
+2. If you added/removed/moved a deck, update the manifest `data/index.json`.
+3. Rebuild the bundle:
 
-Override the source path when needed:
+   ```bash
+   node tools/bundle-data.mjs
+   ```
 
-```bash
-JP_WORDS_SOURCE=/path/to/japanese_words.json node tools/generate-data.mjs
-```
+**See [`data/AGENTS.md`](data/AGENTS.md) for the full data conventions** — folder
+layout, TSV format, the kana split, classification rules, and comment headers.
 
-The generator writes topic folders under `data/` and refreshes `data/index.json`. Each study record keeps only:
+> `tools/generate-data.mjs` is **legacy**: it regenerates `data/` from an
+> external source collection and overwrites the hand-curated TSV decks. Don't run
+> it against the curated data.
 
-```json
-{ "kanji": "食べ物", "hiragana": "たべもの", "type": "noun", "english": "food" }
-```
+## Offline
 
-## Offline Resync
-
-The service worker caches the app shell, `data/index.json`, and every deck file listed in the index. The app can request a full resync with a `RESYNC_CACHE` service-worker message.
-
-## Current Status
-
-Extraction scaffold plus regenerated lightweight data are ready. The next step is to port the Japanese study UI into `src/study/` and load decks through `/data/index.json`.
+The service worker (`sw.js`) is cache-first for any request under `/data/`, so
+`data/cards.json` stays available offline once the app has been visited. On
+activation it clears older app caches. Rebuilding the bundle serves fresh data
+on the next online load.

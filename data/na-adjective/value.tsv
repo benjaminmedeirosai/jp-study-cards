@@ -1,0 +1,26 @@
+# Value & importance — judging a thing's worth, rank, or quality.
+# Belongs here: importance/worth (重要, 大切, 無駄), evaluation and rank
+# (素敵, 最高, 最低, 完璧, 微妙). How a *person* feels goes in feelings.tsv.
+kanji	hiragana	type	english
+無駄	むだ	na-adjective	waste; useless; pointless
+重要	じゅうよう	na-adjective	important
+大切	たいせつ	na-adjective	important; valuable; precious
+大事	だいじ	na-adjective	important; valuable; serious
+特別	とくべつ	na-adjective	special
+素敵	すてき	na-adjective	lovely; wonderful; nice
+立派	りっぱ	na-adjective	splendid; fine; admirable
+豊か	ゆたか	na-adjective	abundant; rich; plentiful
+贅沢	ぜいたく	na-adjective	luxurious; extravagant
+完璧	かんぺき	na-adjective	perfect; flawless
+最高	さいこう	na-adjective	best; greatest; supreme
+最低	さいてい	na-adjective	worst; lowest; awful
+微妙	びみょう	na-adjective	delicate; subtle; iffy
+貧乏	びんぼう	na-adjective	poor; needy
+盛大	せいだい	na-adjective	grand; magnificent; on a large scale
+豪華	ごうか	na-adjective	luxurious; gorgeous; lavish
+高級	こうきゅう	na-adjective	high-class; high-grade; upscale
+重大	じゅうだい	na-adjective	serious; significant; grave
+深刻	しんこく	na-adjective	serious; grave
+最適	さいてき	na-adjective	optimal; best-suited
+有利	ゆうり	na-adjective	advantageous; favorable
+不利	ふり	na-adjective	disadvantageous; unfavorable

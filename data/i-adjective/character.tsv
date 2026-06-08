@@ -1,0 +1,31 @@
+# Character & evaluation — judging people and things.
+# Belongs here: personality (優しい, 厳しい, ずるい) and good/bad/interesting
+# judgments (良い, 悪い, 面白い, 凄い, 珍しい). One's own feelings go in
+# feelings.tsv. The kana-common かわいい/すごい live in kana.tsv.
+kanji	hiragana	type	english
+面白い	おもしろい	i-adjective	interesting; funny
+つまらない	つまらない	i-adjective	boring; dull
+優しい	やさしい	i-adjective	kind; gentle
+厳しい	きびしい	i-adjective	strict; severe
+正しい	ただしい	i-adjective	correct; right
+良い	よい	i-adjective	good
+悪い	わるい	i-adjective	bad
+凄い	すごい	i-adjective	amazing; awesome
+偉い	えらい	i-adjective	great; admirable
+美しい	うつくしい	i-adjective	beautiful
+可愛い	かわいい	i-adjective	cute
+ずるい	ずるい	i-adjective	sly; cunning; unfair
+ひどい	ひどい	i-adjective	terrible; awful; cruel
+うるさい	うるさい	i-adjective	noisy; annoying
+珍しい	めずらしい	i-adjective	rare; unusual
+詳しい	くわしい	i-adjective	detailed; knowledgeable
+怪しい	あやしい	i-adjective	suspicious; dubious
+頼もしい	たのもしい	i-adjective	reliable; dependable
+素晴らしい	すばらしい	i-adjective	wonderful; splendid
+賢い	かしこい	i-adjective	clever; smart; wise
+うまい	うまい	i-adjective	good at; skillful; tasty
+かっこいい	かっこいい	i-adjective	cool; stylish; good-looking
+大人しい	おとなしい	i-adjective	quiet; docile; well-behaved
+親しい	したしい	i-adjective	close; intimate; friendly
+だらしない	だらしない	i-adjective	sloppy; slovenly; undisciplined
+ださい	ださい	i-adjective	uncool; lame; tacky

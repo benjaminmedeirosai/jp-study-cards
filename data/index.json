@@ -6,610 +6,637 @@
       "id": "nouns/animals/animals",
       "label": "Animals",
       "category": "Nouns / Animals",
-      "path": "/data/nouns/animals/animals.tsv",
-      "count": 63
+      "path": "/data/nouns/animals/animals.tsv"
     },
     {
       "id": "nouns/animals/related",
       "label": "Animal Related",
       "category": "Nouns / Animals",
-      "path": "/data/nouns/animals/related.tsv",
-      "count": 12
+      "path": "/data/nouns/animals/related.tsv"
     },
     {
       "id": "nouns/animals/loanwords",
       "label": "Animal Loanwords",
       "category": "Nouns / Animals",
-      "path": "/data/nouns/animals/loanwords.tsv",
-      "count": 19
+      "path": "/data/nouns/animals/loanwords.tsv"
     },
     {
       "id": "nouns/food",
       "label": "Food",
       "category": "Nouns",
-      "path": "/data/nouns/food.json",
-      "count": 49
+      "path": "/data/nouns/food.json"
     },
     {
       "id": "nouns/places-buildings",
       "label": "Places & Buildings",
       "category": "Nouns",
-      "path": "/data/nouns/places-buildings.json",
-      "count": 51
+      "path": "/data/nouns/places-buildings.json"
     },
     {
       "id": "nouns/common-1",
       "label": "Nouns 1",
       "category": "Nouns",
-      "path": "/data/nouns/common-1.json",
-      "count": 50
+      "path": "/data/nouns/common-1.json"
     },
     {
       "id": "nouns/common-2",
       "label": "Nouns 2",
       "category": "Nouns",
-      "path": "/data/nouns/common-2.json",
-      "count": 50
+      "path": "/data/nouns/common-2.json"
     },
     {
       "id": "nouns/common-3",
       "label": "Nouns 3",
       "category": "Nouns",
-      "path": "/data/nouns/common-3.json",
-      "count": 50
+      "path": "/data/nouns/common-3.json"
     },
     {
       "id": "nouns/common-4",
       "label": "Nouns 4",
       "category": "Nouns",
-      "path": "/data/nouns/common-4.json",
-      "count": 50
+      "path": "/data/nouns/common-4.json"
     },
     {
       "id": "nouns/common-5",
       "label": "Nouns 5",
       "category": "Nouns",
-      "path": "/data/nouns/common-5.json",
-      "count": 50
+      "path": "/data/nouns/common-5.json"
     },
     {
       "id": "nouns/common-6",
       "label": "Nouns 6",
       "category": "Nouns",
-      "path": "/data/nouns/common-6.json",
-      "count": 50
+      "path": "/data/nouns/common-6.json"
     },
     {
       "id": "nouns/common-7",
       "label": "Nouns 7",
       "category": "Nouns",
-      "path": "/data/nouns/common-7.json",
-      "count": 50
+      "path": "/data/nouns/common-7.json"
     },
     {
       "id": "nouns/common-8",
       "label": "Nouns 8",
       "category": "Nouns",
-      "path": "/data/nouns/common-8.json",
-      "count": 50
+      "path": "/data/nouns/common-8.json"
     },
     {
       "id": "nouns/common-9",
       "label": "Nouns 9",
       "category": "Nouns",
-      "path": "/data/nouns/common-9.json",
-      "count": 50
+      "path": "/data/nouns/common-9.json"
     },
     {
       "id": "nouns/common-10",
       "label": "Nouns 10",
       "category": "Nouns",
-      "path": "/data/nouns/common-10.json",
-      "count": 50
+      "path": "/data/nouns/common-10.json"
     },
     {
       "id": "nouns/common-11",
       "label": "Nouns 11",
       "category": "Nouns",
-      "path": "/data/nouns/common-11.json",
-      "count": 50
+      "path": "/data/nouns/common-11.json"
     },
     {
       "id": "nouns/food/loanwords",
       "label": "Food Loanwords",
       "category": "Nouns / Food",
-      "path": "/data/nouns/food/loanwords.tsv",
-      "count": 15
+      "path": "/data/nouns/food/loanwords.tsv"
     },
     {
       "id": "nouns/objects/loanwords",
       "label": "Object Loanwords",
       "category": "Nouns / Objects",
-      "path": "/data/nouns/objects/loanwords.tsv",
-      "count": 10
+      "path": "/data/nouns/objects/loanwords.tsv"
     },
     {
       "id": "nouns/abstract/loanwords",
       "label": "Abstract Loanwords",
       "category": "Nouns / Abstract",
-      "path": "/data/nouns/abstract/loanwords.tsv",
-      "count": 10
+      "path": "/data/nouns/abstract/loanwords.tsv"
     },
     {
       "id": "nouns/body/loanwords",
       "label": "Body Loanwords",
       "category": "Nouns / Body",
-      "path": "/data/nouns/body/loanwords.tsv",
-      "count": 1
+      "path": "/data/nouns/body/loanwords.tsv"
     },
     {
       "id": "nouns/nature/loanwords",
       "label": "Nature Loanwords",
       "category": "Nouns / Nature",
-      "path": "/data/nouns/nature/loanwords.tsv",
-      "count": 1
+      "path": "/data/nouns/nature/loanwords.tsv"
     },
     {
       "id": "nouns/name-roots/loanwords",
       "label": "Name Root Loanwords",
       "category": "Nouns / Name Roots",
-      "path": "/data/nouns/name-roots/loanwords.tsv",
-      "count": 5
+      "path": "/data/nouns/name-roots/loanwords.tsv"
     },
     {
       "id": "nouns/people/people",
       "label": "People",
       "category": "Nouns / People",
-      "path": "/data/nouns/people/people.tsv",
-      "count": 12
+      "path": "/data/nouns/people/people.tsv"
     },
     {
       "id": "nouns/people/roles",
       "label": "Roles",
       "category": "Nouns / People",
-      "path": "/data/nouns/people/roles.tsv",
-      "count": 12
+      "path": "/data/nouns/people/roles.tsv"
     },
     {
       "id": "nouns/objects/household",
       "label": "Household Objects",
       "category": "Nouns / Objects",
-      "path": "/data/nouns/objects/household.tsv",
-      "count": 10
+      "path": "/data/nouns/objects/household.tsv"
     },
     {
       "id": "nouns/objects/tools",
       "label": "Tools",
       "category": "Nouns / Objects",
-      "path": "/data/nouns/objects/tools.tsv",
-      "count": 10
+      "path": "/data/nouns/objects/tools.tsv"
     },
     {
       "id": "nouns/places/locations",
       "label": "Locations",
       "category": "Nouns / Places",
-      "path": "/data/nouns/places/locations.tsv",
-      "count": 12
+      "path": "/data/nouns/places/locations.tsv"
     },
     {
       "id": "nouns/places/buildings",
       "label": "Buildings",
       "category": "Nouns / Places",
-      "path": "/data/nouns/places/buildings.tsv",
-      "count": 12
+      "path": "/data/nouns/places/buildings.tsv"
     },
     {
       "id": "nouns/technology/devices",
       "label": "Devices",
       "category": "Nouns / Technology",
-      "path": "/data/nouns/technology/devices.tsv",
-      "count": 2
+      "path": "/data/nouns/technology/devices.tsv"
     },
     {
       "id": "nouns/technology/device-loanwords",
       "label": "Device Loanwords",
       "category": "Nouns / Technology",
-      "path": "/data/nouns/technology/device-loanwords.tsv",
-      "count": 10
+      "path": "/data/nouns/technology/device-loanwords.tsv"
     },
     {
       "id": "nouns/technology/software-loanwords",
       "label": "Software Loanwords",
       "category": "Nouns / Technology",
-      "path": "/data/nouns/technology/software-loanwords.tsv",
-      "count": 12
+      "path": "/data/nouns/technology/software-loanwords.tsv"
     },
     {
       "id": "nouns/nature/weather",
       "label": "Weather",
       "category": "Nouns / Nature",
-      "path": "/data/nouns/nature/weather.tsv",
-      "count": 12
+      "path": "/data/nouns/nature/weather.tsv"
     },
     {
       "id": "nouns/nature/landscape",
       "label": "Landscape",
       "category": "Nouns / Nature",
-      "path": "/data/nouns/nature/landscape.tsv",
-      "count": 12
+      "path": "/data/nouns/nature/landscape.tsv"
     },
     {
       "id": "nouns/abstract/emotions",
       "label": "Emotions",
       "category": "Nouns / Abstract",
-      "path": "/data/nouns/abstract/emotions.tsv",
-      "count": 12
+      "path": "/data/nouns/abstract/emotions.tsv"
     },
     {
       "id": "nouns/abstract/concepts",
       "label": "Concepts",
       "category": "Nouns / Abstract",
-      "path": "/data/nouns/abstract/concepts.tsv",
-      "count": 12
+      "path": "/data/nouns/abstract/concepts.tsv"
     },
     {
       "id": "nouns/body/body-parts",
       "label": "Body Parts",
       "category": "Nouns / Body",
-      "path": "/data/nouns/body/body-parts.tsv",
-      "count": 12
+      "path": "/data/nouns/body/body-parts.tsv"
     },
     {
       "id": "nouns/time/time",
       "label": "Time",
       "category": "Nouns / Time",
-      "path": "/data/nouns/time/time.tsv",
-      "count": 12
+      "path": "/data/nouns/time/time.tsv"
     },
     {
       "id": "nouns/common-13",
       "label": "Nouns 13",
       "category": "Nouns",
-      "path": "/data/nouns/common-13.json",
-      "count": 50
+      "path": "/data/nouns/common-13.json"
     },
     {
       "id": "nouns/common-14",
       "label": "Nouns 14",
       "category": "Nouns",
-      "path": "/data/nouns/common-14.json",
-      "count": 50
+      "path": "/data/nouns/common-14.json"
     },
     {
       "id": "nouns/common-15",
       "label": "Nouns 15",
       "category": "Nouns",
-      "path": "/data/nouns/common-15.json",
-      "count": 50
+      "path": "/data/nouns/common-15.json"
     },
     {
       "id": "nouns/common-16",
       "label": "Nouns 16",
       "category": "Nouns",
-      "path": "/data/nouns/common-16.json",
-      "count": 50
+      "path": "/data/nouns/common-16.json"
     },
     {
       "id": "nouns/common-17",
       "label": "Nouns 17",
       "category": "Nouns",
-      "path": "/data/nouns/common-17.json",
-      "count": 50
+      "path": "/data/nouns/common-17.json"
     },
     {
       "id": "nouns/common-18",
       "label": "Nouns 18",
       "category": "Nouns",
-      "path": "/data/nouns/common-18.json",
-      "count": 50
+      "path": "/data/nouns/common-18.json"
     },
     {
       "id": "nouns/common-19",
       "label": "Nouns 19",
       "category": "Nouns",
-      "path": "/data/nouns/common-19.json",
-      "count": 50
+      "path": "/data/nouns/common-19.json"
     },
     {
       "id": "nouns/common-20",
       "label": "Nouns 20",
       "category": "Nouns",
-      "path": "/data/nouns/common-20.json",
-      "count": 50
+      "path": "/data/nouns/common-20.json"
     },
     {
       "id": "nouns/common-21",
       "label": "Nouns 21",
       "category": "Nouns",
-      "path": "/data/nouns/common-21.json",
-      "count": 50
+      "path": "/data/nouns/common-21.json"
     },
     {
       "id": "nouns/common-22",
       "label": "Nouns 22",
       "category": "Nouns",
-      "path": "/data/nouns/common-22.json",
-      "count": 9
+      "path": "/data/nouns/common-22.json"
     },
     {
       "id": "proper-nouns/prefectures",
       "label": "Prefectures",
       "category": "Proper Nouns",
-      "path": "/data/proper-nouns/prefectures.json",
-      "count": 47
+      "path": "/data/proper-nouns/prefectures.json"
     },
     {
       "id": "proper-nouns/cities-stations-places",
       "label": "Cities, Stations & Places",
       "category": "Proper Nouns",
-      "path": "/data/proper-nouns/cities-stations-places.json",
-      "count": 31
+      "path": "/data/proper-nouns/cities-stations-places.json"
     },
     {
       "id": "proper-nouns/brands-titles",
       "label": "Brands & Titles",
       "category": "Proper Nouns",
-      "path": "/data/proper-nouns/brands-titles.json",
-      "count": 4
+      "path": "/data/proper-nouns/brands-titles.json"
     },
     {
       "id": "proper-nouns/common-1",
       "label": "Proper Nouns 1",
       "category": "Proper Nouns",
-      "path": "/data/proper-nouns/common-1.json",
-      "count": 27
+      "path": "/data/proper-nouns/common-1.json"
     },
     {
       "id": "verbs/ichidan/common-1",
       "label": "Ichidan Verbs 1",
       "category": "Verbs / Ichidan",
-      "path": "/data/verbs/ichidan/common-1.json",
-      "count": 50
+      "path": "/data/verbs/ichidan/common-1.json"
     },
     {
       "id": "verbs/ichidan/common-2",
       "label": "Ichidan Verbs 2",
       "category": "Verbs / Ichidan",
-      "path": "/data/verbs/ichidan/common-2.json",
-      "count": 50
+      "path": "/data/verbs/ichidan/common-2.json"
     },
     {
       "id": "verbs/ichidan/common-3",
       "label": "Ichidan Verbs 3",
       "category": "Verbs / Ichidan",
-      "path": "/data/verbs/ichidan/common-3.json",
-      "count": 50
+      "path": "/data/verbs/ichidan/common-3.json"
     },
     {
       "id": "verbs/ichidan/common-4",
       "label": "Ichidan Verbs 4",
       "category": "Verbs / Ichidan",
-      "path": "/data/verbs/ichidan/common-4.json",
-      "count": 24
+      "path": "/data/verbs/ichidan/common-4.json"
     },
     {
       "id": "verbs/godan/u-ending",
       "label": "Godan u ending",
       "category": "Verbs / Godan",
-      "path": "/data/verbs/godan/u-ending.json",
-      "count": 44
+      "path": "/data/verbs/godan/u-ending.json"
     },
     {
       "id": "verbs/godan/ku-ending",
       "label": "Godan ku ending",
       "category": "Verbs / Godan",
-      "path": "/data/verbs/godan/ku-ending.json",
-      "count": 29
+      "path": "/data/verbs/godan/ku-ending.json"
     },
     {
       "id": "verbs/godan/gu-ending",
       "label": "Godan gu ending",
       "category": "Verbs / Godan",
-      "path": "/data/verbs/godan/gu-ending.json",
-      "count": 21
+      "path": "/data/verbs/godan/gu-ending.json"
     },
     {
       "id": "verbs/godan/su-ending",
       "label": "Godan su ending",
       "category": "Verbs / Godan",
-      "path": "/data/verbs/godan/su-ending.json",
-      "count": 26
+      "path": "/data/verbs/godan/su-ending.json"
     },
     {
       "id": "verbs/godan/tsu-ending",
       "label": "Godan tsu ending",
       "category": "Verbs / Godan",
-      "path": "/data/verbs/godan/tsu-ending.json",
-      "count": 5
+      "path": "/data/verbs/godan/tsu-ending.json"
     },
     {
       "id": "verbs/godan/nu-ending",
       "label": "Godan nu ending",
       "category": "Verbs / Godan",
-      "path": "/data/verbs/godan/nu-ending.json",
-      "count": 1
+      "path": "/data/verbs/godan/nu-ending.json"
     },
     {
       "id": "verbs/godan/bu-ending",
       "label": "Godan bu ending",
       "category": "Verbs / Godan",
-      "path": "/data/verbs/godan/bu-ending.json",
-      "count": 13
+      "path": "/data/verbs/godan/bu-ending.json"
     },
     {
       "id": "verbs/godan/mu-ending",
       "label": "Godan mu ending",
       "category": "Verbs / Godan",
-      "path": "/data/verbs/godan/mu-ending.json",
-      "count": 33
+      "path": "/data/verbs/godan/mu-ending.json"
     },
     {
       "id": "verbs/godan/ru-ending",
       "label": "Godan ru ending",
       "category": "Verbs / Godan",
-      "path": "/data/verbs/godan/ru-ending.json",
-      "count": 113
+      "path": "/data/verbs/godan/ru-ending.json"
     },
     {
       "id": "verbs/godan/other-ending",
       "label": "Godan other ending",
       "category": "Verbs / Godan",
-      "path": "/data/verbs/godan/other-ending.json",
-      "count": 133
+      "path": "/data/verbs/godan/other-ending.json"
     },
     {
       "id": "verbs/irregular/common",
       "label": "Irregular Verbs",
       "category": "Verbs / Irregular",
-      "path": "/data/verbs/irregular/common.json",
-      "count": 52
+      "path": "/data/verbs/irregular/common.json"
     },
     {
-      "id": "i-adjective/common-1",
-      "label": "I-adjectives 1",
-      "category": "Adjectives",
-      "path": "/data/i-adjective/common-1.json",
-      "count": 50
+      "id": "i-adjective/size",
+      "label": "Size & Quantity",
+      "category": "Adjectives / I-adjectives",
+      "path": "/data/i-adjective/size.tsv"
     },
     {
-      "id": "i-adjective/common-2",
-      "label": "I-adjectives 2",
-      "category": "Adjectives",
-      "path": "/data/i-adjective/common-2.json",
-      "count": 50
+      "id": "i-adjective/time-speed",
+      "label": "Time, Age & Speed",
+      "category": "Adjectives / I-adjectives",
+      "path": "/data/i-adjective/time-speed.tsv"
     },
     {
-      "id": "i-adjective/common-3",
-      "label": "I-adjectives 3",
-      "category": "Adjectives",
-      "path": "/data/i-adjective/common-3.json",
-      "count": 16
+      "id": "i-adjective/temperature",
+      "label": "Temperature",
+      "category": "Adjectives / I-adjectives",
+      "path": "/data/i-adjective/temperature.tsv"
     },
     {
-      "id": "na-adjective/common-1",
-      "label": "Na-adjectives 1",
-      "category": "Adjectives",
-      "path": "/data/na-adjective/common-1.json",
-      "count": 50
+      "id": "i-adjective/taste",
+      "label": "Taste",
+      "category": "Adjectives / I-adjectives",
+      "path": "/data/i-adjective/taste.tsv"
     },
     {
-      "id": "na-adjective/common-2",
-      "label": "Na-adjectives 2",
-      "category": "Adjectives",
-      "path": "/data/na-adjective/common-2.json",
-      "count": 11
+      "id": "i-adjective/colors",
+      "label": "Colors",
+      "category": "Adjectives / I-adjectives",
+      "path": "/data/i-adjective/colors.tsv"
+    },
+    {
+      "id": "i-adjective/feelings",
+      "label": "Feelings & Sensations",
+      "category": "Adjectives / I-adjectives",
+      "path": "/data/i-adjective/feelings.tsv"
+    },
+    {
+      "id": "i-adjective/character",
+      "label": "Character & Evaluation",
+      "category": "Adjectives / I-adjectives",
+      "path": "/data/i-adjective/character.tsv"
+    },
+    {
+      "id": "i-adjective/quality",
+      "label": "Quality & Condition",
+      "category": "Adjectives / I-adjectives",
+      "path": "/data/i-adjective/quality.tsv"
+    },
+    {
+      "id": "i-adjective/kana",
+      "label": "I-adjectives (kana)",
+      "category": "Adjectives / I-adjectives",
+      "path": "/data/i-adjective/kana.tsv"
+    },
+    {
+      "id": "na-adjective/feelings",
+      "label": "Feelings & States",
+      "category": "Adjectives / Na-adjectives",
+      "path": "/data/na-adjective/feelings.tsv"
+    },
+    {
+      "id": "na-adjective/value",
+      "label": "Value & Importance",
+      "category": "Adjectives / Na-adjectives",
+      "path": "/data/na-adjective/value.tsv"
+    },
+    {
+      "id": "na-adjective/character",
+      "label": "Character & Manner",
+      "category": "Adjectives / Na-adjectives",
+      "path": "/data/na-adjective/character.tsv"
+    },
+    {
+      "id": "na-adjective/ability",
+      "label": "Ability",
+      "category": "Adjectives / Na-adjectives",
+      "path": "/data/na-adjective/ability.tsv"
+    },
+    {
+      "id": "na-adjective/practical",
+      "label": "Practical & Difficulty",
+      "category": "Adjectives / Na-adjectives",
+      "path": "/data/na-adjective/practical.tsv"
+    },
+    {
+      "id": "na-adjective/certainty",
+      "label": "Certainty & Safety",
+      "category": "Adjectives / Na-adjectives",
+      "path": "/data/na-adjective/certainty.tsv"
+    },
+    {
+      "id": "na-adjective/qualities",
+      "label": "Qualities & Description",
+      "category": "Adjectives / Na-adjectives",
+      "path": "/data/na-adjective/qualities.tsv"
+    },
+    {
+      "id": "na-adjective/suffix-teki",
+      "label": "Suffix 〜的",
+      "category": "Adjectives / Na-adjectives",
+      "path": "/data/na-adjective/suffix-teki.tsv"
+    },
+    {
+      "id": "na-adjective/core-kana",
+      "label": "Na-adjectives (kana)",
+      "category": "Adjectives / Na-adjectives",
+      "path": "/data/na-adjective/core-kana.tsv"
+    },
+    {
+      "id": "na-adjective/colors",
+      "label": "Colors",
+      "category": "Adjectives / Na-adjectives",
+      "path": "/data/na-adjective/colors.tsv"
     },
     {
       "id": "adverb/common-1",
       "label": "Adverbs 1",
       "category": "Adverbs",
-      "path": "/data/adverb/common-1.json",
-      "count": 50
+      "path": "/data/adverb/common-1.json"
     },
     {
       "id": "adverb/common-2",
       "label": "Adverbs 2",
       "category": "Adverbs",
-      "path": "/data/adverb/common-2.json",
-      "count": 10
+      "path": "/data/adverb/common-2.json"
     },
     {
       "id": "counter/common-1",
       "label": "Counters 1",
       "category": "Counters",
-      "path": "/data/counter/common-1.json",
-      "count": 50
+      "path": "/data/counter/common-1.json"
     },
     {
       "id": "counter/common-2",
       "label": "Counters 2",
       "category": "Counters",
-      "path": "/data/counter/common-2.json",
-      "count": 50
+      "path": "/data/counter/common-2.json"
     },
     {
       "id": "counter/common-3",
       "label": "Counters 3",
       "category": "Counters",
-      "path": "/data/counter/common-3.json",
-      "count": 50
+      "path": "/data/counter/common-3.json"
     },
     {
       "id": "counter/common-4",
       "label": "Counters 4",
       "category": "Counters",
-      "path": "/data/counter/common-4.json",
-      "count": 41
+      "path": "/data/counter/common-4.json"
     },
     {
       "id": "expression/common-1",
       "label": "Expressions 1",
       "category": "Expressions",
-      "path": "/data/expression/common-1.json",
-      "count": 50
+      "path": "/data/expression/common-1.json"
     },
     {
       "id": "expression/common-2",
       "label": "Expressions 2",
       "category": "Expressions",
-      "path": "/data/expression/common-2.json",
-      "count": 50
+      "path": "/data/expression/common-2.json"
     },
     {
       "id": "expression/common-3",
       "label": "Expressions 3",
       "category": "Expressions",
-      "path": "/data/expression/common-3.json",
-      "count": 50
+      "path": "/data/expression/common-3.json"
     },
     {
       "id": "expression/common-4",
       "label": "Expressions 4",
       "category": "Expressions",
-      "path": "/data/expression/common-4.json",
-      "count": 31
+      "path": "/data/expression/common-4.json"
     },
     {
       "id": "descriptive-phrase/common-1",
       "label": "Descriptive Phrases 1",
       "category": "Expressions",
-      "path": "/data/descriptive-phrase/common-1.json",
-      "count": 25
+      "path": "/data/descriptive-phrase/common-1.json"
     },
     {
       "id": "particle/common-1",
       "label": "Particles 1",
       "category": "Grammar",
-      "path": "/data/particle/common-1.json",
-      "count": 14
+      "path": "/data/particle/common-1.json"
     },
     {
       "id": "conjunction/common-1",
       "label": "Conjunctions 1",
       "category": "Grammar",
-      "path": "/data/conjunction/common-1.json",
-      "count": 4
+      "path": "/data/conjunction/common-1.json"
+    },
+    {
+      "id": "grammar-pattern/appearance-sou",
+      "label": "Appearance (〜そう)",
+      "category": "Grammar",
+      "path": "/data/grammar-pattern/appearance-sou.tsv"
+    },
+    {
+      "id": "grammar-pattern/i-adjective-conjugation",
+      "label": "I-adjective Conjugation",
+      "category": "Grammar",
+      "path": "/data/grammar-pattern/i-adjective-conjugation.tsv"
+    },
+    {
+      "id": "grammar-pattern/derived-i-adjective",
+      "label": "Derived 〜やすい/〜にくい/〜っぽい",
+      "category": "Grammar",
+      "path": "/data/grammar-pattern/derived-i-adjective.tsv"
     },
     {
       "id": "numeral/common-1",
       "label": "Numerals 1",
       "category": "Numbers",
-      "path": "/data/numeral/common-1.json",
-      "count": 22
+      "path": "/data/numeral/common-1.json"
     },
     {
-      "id": "morpheme/common-1",
-      "label": "Morphemes 1",
-      "category": "Grammar",
-      "path": "/data/morpheme/common-1.json",
-      "count": 44
+      "id": "morpheme/prefixes",
+      "label": "Prefixes",
+      "category": "Grammar / Morphemes",
+      "path": "/data/morpheme/prefixes.tsv"
+    },
+    {
+      "id": "morpheme/suffixes",
+      "label": "Suffixes",
+      "category": "Grammar / Morphemes",
+      "path": "/data/morpheme/suffixes.tsv"
+    },
+    {
+      "id": "morpheme/roots",
+      "label": "Kanji Roots",
+      "category": "Grammar / Morphemes",
+      "path": "/data/morpheme/roots.tsv"
     },
     {
       "id": "phrase-sentence/common-1",
       "label": "Phrase Sentences 1",
       "category": "Expressions",
-      "path": "/data/phrase-sentence/common-1.json",
-      "count": 8
+      "path": "/data/phrase-sentence/common-1.json"
     }
   ]
 }
