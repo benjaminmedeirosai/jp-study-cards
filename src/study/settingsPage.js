@@ -7,6 +7,7 @@ import {
   VOICE_RATE_OPTIONS,
   SET_GROUPINGS,
   clampInt,
+  clampNum,
   normalizeSetGrouping,
   loadState,
   saveState,
@@ -98,6 +99,20 @@ export function renderSettingsPage() {
   const glossFontInput = makeFontSlider(state.glossFontScale);
   const hotkeyToggle = makeToggle("Hotkeys", state.showHotkeys);
   const glossToggle = makeToggle("Kanji gloss", state.showGloss);
+
+  // --- Autoplay delays (seconds) ------------------------------------------
+  function makeDelayInput(value) {
+    const input = document.createElement("input");
+    input.type = "number";
+    input.min = "0.5";
+    input.max = "60";
+    input.step = "0.5";
+    input.value = String(value);
+    return input;
+  }
+  const questionDelayInput = makeDelayInput(state.autoplayQuestionDelay);
+  const answerDelayInput = makeDelayInput(state.autoplayAnswerDelay);
+  const ttsEstimateToggle = makeToggle("Add estimated TTS delay", state.autoplayEstimateTts);
 
   // --- Japanese voice (Web Speech API voices for ja-*) --------------------
   const voiceSelect = document.createElement("select");
@@ -287,6 +302,18 @@ export function renderSettingsPage() {
     state.showGloss = glossToggle.input.checked;
     saveState(state);
   });
+  questionDelayInput.addEventListener("input", () => {
+    state.autoplayQuestionDelay = clampNum(questionDelayInput.value, 4, 0.5, 60);
+    saveState(state);
+  });
+  answerDelayInput.addEventListener("input", () => {
+    state.autoplayAnswerDelay = clampNum(answerDelayInput.value, 3, 0.5, 60);
+    saveState(state);
+  });
+  ttsEstimateToggle.input.addEventListener("change", () => {
+    state.autoplayEstimateTts = ttsEstimateToggle.input.checked;
+    saveState(state);
+  });
 
   const visibilityGroup = document.createElement("div");
   visibilityGroup.className = "settings-toggle-grid";
@@ -306,6 +333,10 @@ export function renderSettingsPage() {
     sectionHeading("Voice & speed"),
     fieldLabel("Japanese voice", voiceRow),
     fieldLabel("Voice speed", rateSelect),
+    sectionHeading("Autoplay"),
+    fieldLabel("Question delay (sec)", questionDelayInput),
+    fieldLabel("Answer delay (sec)", answerDelayInput),
+    ttsEstimateToggle.label,
     sectionHeading("Other"),
     visibilityGroup
   );

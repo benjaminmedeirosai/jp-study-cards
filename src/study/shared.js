@@ -31,6 +31,12 @@ export function clampInt(value, fallback, min, max) {
   return Math.max(min, Math.min(max, next));
 }
 
+export function clampNum(value, fallback, min, max) {
+  const next = Number(value);
+  if (!Number.isFinite(next)) return fallback;
+  return Math.max(min, Math.min(max, next));
+}
+
 export function normalizeSetGrouping(value) {
   if (value === "kanji-likeness") return "kanji-likeness-slotting";
   if (value === "hiragana-likeness") return "hiragana-likeness-slotting";
@@ -57,6 +63,9 @@ export function loadState() {
     voiceRate: Number.isFinite(Number(raw.voiceRate)) ? Math.min(2, Math.max(0.5, Number(raw.voiceRate))) : 0.9,
     showHotkeys: raw.showHotkeys === true,
     showGloss: raw.showGloss !== false,
+    autoplayQuestionDelay: clampNum(raw.autoplayQuestionDelay, 4, 0.5, 60),
+    autoplayAnswerDelay: clampNum(raw.autoplayAnswerDelay, 3, 0.5, 60),
+    autoplayEstimateTts: raw.autoplayEstimateTts !== false,
     audioSourceExpanded: raw.audioSourceExpanded !== false,
     visible: {
       kanji: visible.kanji !== false,

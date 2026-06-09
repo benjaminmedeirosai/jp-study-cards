@@ -234,11 +234,32 @@
 
 /* Mini rail: sound-source toggle | collapsible TTS picker | shuffle. */
 .tray-mini {
-  display: grid;
-  /* sound-toggle + picker (flush, as one control) | flexible gap | shuffle */
-  grid-template-columns: auto auto 1fr;
+  display: flex;
   align-items: center;
-  gap: 0;
+  gap: 8px;
+}
+
+/* Sound-toggle + picker, flush together as one control. */
+.tts-group {
+  display: flex;
+  align-items: center;
+  min-width: 0;
+}
+
+/* Autoplay sits with shuffle on the right; margin-left:auto pushes the pair
+   away from the sound group on the left. */
+.study-button.mini--play { margin-left: auto; }
+
+.study-button.mini--play svg {
+  width: 18px;
+  height: 18px;
+  fill: currentColor;
+}
+
+.study-button.mini--play.active {
+  color: #eff6ff;
+  border-color: var(--accent-border);
+  background: linear-gradient(180deg, rgba(96, 165, 250, 0.42), rgba(37, 99, 235, 0.34));
 }
 
 .study-button.mini {
@@ -270,7 +291,6 @@
 }
 
 .study-button.mini--shuffle {
-  justify-self: end;
   font-size: 22px;
   line-height: 1;
 }
@@ -281,7 +301,6 @@
 .tts-source {
   position: relative;
   display: grid;
-  justify-self: start;
   width: min(100%, 210px);
   margin-left: -1px;
   grid-template-columns: repeat(2, minmax(0, 1fr));

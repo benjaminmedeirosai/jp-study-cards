@@ -27,7 +27,9 @@ const ICONS = {
   prev: `<svg viewBox="0 0 24 24"><path d="M19 12H6"/><path d="M12 6l-6 6 6 6"/></svg>`,
   next: `<svg viewBox="0 0 24 24"><path d="M5 12h13"/><path d="M12 6l6 6-6 6"/></svg>`,
   eye: `<svg viewBox="0 0 24 24"><path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12z"/><circle cx="12" cy="12" r="3"/></svg>`,
-  eyeOff: `<svg viewBox="0 0 24 24"><path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12z"/><circle cx="12" cy="12" r="3"/><path d="M4 4l16 16"/></svg>`
+  eyeOff: `<svg viewBox="0 0 24 24"><path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12z"/><circle cx="12" cy="12" r="3"/><path d="M4 4l16 16"/></svg>`,
+  play: `<svg viewBox="0 0 24 24"><path d="M7 5l12 7-12 7z"/></svg>`,
+  pause: `<svg viewBox="0 0 24 24"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>`
 };
 
 // Split a "[漢: gloss | 漢: gloss]" breakdown into per-kanji segments for the
@@ -69,6 +71,8 @@ export function renderCardPage() {
   let revealed = false;
   let ttsExpanded = state.audioSourceExpanded;
   let renderVersion = 0;
+  let autoplaying = false;
+  let autoplayToken = 0;
 
   // --- Header -------------------------------------------------------------
   const top = document.createElement("header");
@@ -141,10 +145,17 @@ export function renderCardPage() {
   ttsKanjiBtn.dataset.value = "kanji";
   ttsReadingBtn.dataset.value = "hiragana";
   ttsSource.append(ttsKanjiBtn, ttsReadingBtn);
+  // Sound-source toggle + picker read as one control, so keep them grouped.
+  const ttsGroup = document.createElement("div");
+  ttsGroup.className = "tts-group";
+  ttsGroup.append(ttsToggleBtn, ttsSource);
+  const playBtn = button("Autoplay", "mini mini--play");
+  playBtn.innerHTML = `<span class="icon">${ICONS.play}</span>`;
+  playBtn.setAttribute("aria-label", "Start autoplay");
   const shuffleBtn = button("Shuffle", "mini mini--shuffle");
   shuffleBtn.innerHTML = "⇄";
   shuffleBtn.setAttribute("aria-label", "Shuffle current set");
-  trayMini.append(ttsToggleBtn, ttsSource, shuffleBtn);
+  trayMini.append(ttsGroup, playBtn, shuffleBtn);
 
   const trayMain = document.createElement("div");
   trayMain.className = "tray-main";
@@ -278,6 +289,7 @@ export function renderCardPage() {
     soundBtn.disabled = !entry;
     imagesBtn.disabled = !entry;
     shuffleBtn.disabled = setCards.length <= 1;
+    playBtn.disabled = !entry;
   }
 
   function renderCard() {
@@ -384,6 +396,77 @@ export function renderCardPage() {
     if (revealed) speakJapanese();
   }
 
+  // --- Autoplay -----------------------------------------------------------
+  // Loops: advance to the next card, wait the "question" delay, reveal the
+  // answer, wait the "answer" delay, repeat. Any real user gesture stops it
+  // (see the capture-phase listeners below); autoplay's own move()/reveal()
+  // calls are programmatic and never dispatch those events.
+  //
+  // The configured delays are gaps that begin once speech is expected to be
+  // done. Browser TTS exposes no reliable "finished" signal (onend is flaky;
+  // `speaking` can stay stuck true), so when "estimate TTS delay" is on we add
+  // an estimated speak duration (reading length × MS_PER_KANA) to a phase that
+  // speaks — the answer always, the question in voice mode. So a long word gets
+  // proportionally more time before advancing. Stopping bumps autoplayToken,
+  // which invalidates every pending sleep so in-flight cycles unwind.
+  function reflectAutoplay() {
+    playBtn.classList.toggle("active", autoplaying);
+    playBtn.querySelector(".icon").innerHTML = autoplaying ? ICONS.pause : ICONS.play;
+    playBtn.setAttribute("aria-pressed", autoplaying ? "true" : "false");
+    playBtn.setAttribute("aria-label", autoplaying ? "Stop autoplay" : "Start autoplay");
+  }
+
+  function stopAutoplay() {
+    if (!autoplaying) return;
+    autoplaying = false;
+    autoplayToken += 1; // invalidate any pending sleep/poll
+    reflectAutoplay();
+  }
+
+  // Resolves true after `ms`, or false if autoplay was stopped/superseded.
+  function autoplaySleep(ms, token) {
+    return new Promise((resolve) => {
+      setTimeout(() => resolve(autoplaying && token === autoplayToken), Math.max(0, ms));
+    });
+  }
+
+  // Rough estimate of how long the current card's reading takes to speak.
+  const MS_PER_KANA = 200;
+  function estimatedSpeechMs(entry) {
+    const reading = text(entry, "hiragana") || getJapaneseSpeechText(entry);
+    return [...reading].length * MS_PER_KANA;
+  }
+
+  // Wait the configured delay, plus an estimated speak time if this phase spoke
+  // and the estimate is enabled. Returns false if autoplay was stopped.
+  function autoplaySettle(spoke, delaySec, token) {
+    let ms = Math.max(0, delaySec) * 1000;
+    if (spoke && state.autoplayEstimateTts) ms += estimatedSpeechMs(currentEntry());
+    return autoplaySleep(ms, token);
+  }
+
+  async function autoplayCycle() {
+    const token = autoplayToken;
+    const live = () => autoplaying && token === autoplayToken && root.isConnected && setCards.length > 0;
+    while (live()) {
+      move(1); // next card, fresh question (speaks in voice mode)
+      if (!(await autoplaySettle(state.mode === "voice", state.autoplayQuestionDelay, token))) return;
+      if (!live()) return;
+      if (!revealed) reveal(); // show + speak the answer
+      const spokeAnswer = !!getJapaneseSpeechText(currentEntry());
+      if (!(await autoplaySettle(spokeAnswer, state.autoplayAnswerDelay, token))) return;
+    }
+  }
+
+  function toggleAutoplay() {
+    if (autoplaying) { stopAutoplay(); return; }
+    if (!setCards.length) return;
+    autoplaying = true;
+    autoplayToken += 1;
+    reflectAutoplay();
+    void autoplayCycle();
+  }
+
   function setTtsSource(value) {
     const entry = currentEntry();
     const key = entryKey(entry);
@@ -420,6 +503,7 @@ export function renderCardPage() {
     renderTray();
   });
   shuffleBtn.addEventListener("click", shuffleCurrentSet);
+  playBtn.addEventListener("click", toggleAutoplay);
   ttsKanjiBtn.addEventListener("click", () => setTtsSource("kanji"));
   ttsReadingBtn.addEventListener("click", () => setTtsSource("hiragana"));
   prevBtn.addEventListener("click", () => move(-1));
@@ -429,10 +513,22 @@ export function renderCardPage() {
   chatgptBtn.addEventListener("click", () => openSearchLink(LINK_TEMPLATES.chatgpt, currentEntry()));
   imagesBtn.addEventListener("click", () => openSearchLink(LINK_TEMPLATES.googleImages, currentEntry()));
 
+  // Any real user gesture (except on the play button itself) stops autoplay.
+  // Capture phase so it fires before the control's own handler. Autoplay's
+  // programmatic move()/reveal() don't dispatch these, so they never self-stop.
+  function onUserGesture(event) {
+    if (!autoplaying || playBtn.contains(event.target)) return;
+    stopAutoplay();
+  }
+  root.addEventListener("pointerdown", onUserGesture, true);
+  root.addEventListener("click", onUserGesture, true);
+  root.addEventListener("change", onUserGesture, true);
+
   function onKeydown(event) {
     if (!root.isConnected) { document.removeEventListener("keydown", onKeydown); return; }
     const tag = String(event.target?.tagName || "").toLowerCase();
     if (["input", "select", "textarea"].includes(tag) || event.target?.isContentEditable) return;
+    stopAutoplay();
     if (event.key === "ArrowLeft") { event.preventDefault(); move(-1); }
     else if (event.key === "ArrowRight") { event.preventDefault(); move(1); }
     else if (event.key === " " || event.key === "Enter") { event.preventDefault(); reveal(); }
