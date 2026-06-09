@@ -235,9 +235,10 @@
 /* Mini rail: sound-source toggle | collapsible TTS picker | shuffle. */
 .tray-mini {
   display: grid;
-  grid-template-columns: auto minmax(0, 1fr) auto;
+  /* sound-toggle + picker (flush, as one control) | flexible gap | shuffle */
+  grid-template-columns: auto auto 1fr;
   align-items: center;
-  gap: 8px;
+  gap: 0;
 }
 
 .study-button.mini {
@@ -269,15 +270,21 @@
 }
 
 .study-button.mini--shuffle {
+  justify-self: end;
   font-size: 22px;
   line-height: 1;
 }
 
-/* Segmented sound-source picker (Kanji / Auto / Hiragana). */
+/* Segmented sound-source picker (Kanji / Hiragana). Capped width and centered
+   in its track so it stays compact; the two columns are equal (1fr) so the
+   buttons always match each other. */
 .tts-source {
   position: relative;
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  justify-self: start;
+  width: min(100%, 210px);
+  margin-left: -1px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   overflow: hidden;
   border: 1px solid rgba(96, 165, 250, 0.26);
   border-radius: 999px;
@@ -292,15 +299,14 @@
   top: 3px;
   bottom: 3px;
   left: 3px;
-  width: calc((100% - 6px) / 3);
+  width: calc((100% - 6px) / 2);
   border-radius: 999px;
   background: linear-gradient(180deg, rgba(96, 165, 250, 0.9), rgba(37, 99, 235, 0.62));
   box-shadow: 0 4px 14px rgba(37, 99, 235, 0.28);
   transition: transform 0.18s ease;
 }
 
-.tts-source[data-selected="auto"]::before { transform: translateX(100%); }
-.tts-source[data-selected="hiragana"]::before { transform: translateX(200%); }
+.tts-source[data-selected="hiragana"]::before { transform: translateX(100%); }
 
 .tray.tts-collapsed .tts-source {
   opacity: 0;

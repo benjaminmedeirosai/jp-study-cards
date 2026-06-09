@@ -24,6 +24,14 @@ function goToCards() {
   location.hash = "#/";
 }
 
+// A divider + label that opens a group of related settings.
+function sectionHeading(label) {
+  const heading = document.createElement("div");
+  heading.className = "settings-section";
+  heading.textContent = label;
+  return heading;
+}
+
 // Resolve and load the cards of the currently-selected deck, for the live preview.
 async function loadActiveDeckCards(state) {
   const bundle = await loadBundle();
@@ -285,16 +293,20 @@ export function renderSettingsPage() {
   visibilityGroup.append(hotkeyToggle.label, glossToggle.label);
 
   content.append(
+    sectionHeading("Filter & sets"),
     queryField,
     fieldLabel("Set size", setSizeInput),
     fieldLabel("Set grouping", setGroupingInput),
     setPreview,
+    sectionHeading("Font sizes"),
     kanjiFontField,
     hiraganaFontField,
     englishFontField,
     glossFontField,
+    sectionHeading("Voice & speed"),
     fieldLabel("Japanese voice", voiceRow),
     fieldLabel("Voice speed", rateSelect),
+    sectionHeading("Other"),
     visibilityGroup
   );
 

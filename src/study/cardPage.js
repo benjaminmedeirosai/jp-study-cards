@@ -137,12 +137,10 @@ export function renderCardPage() {
   ttsSource.className = "tts-source";
   ttsSource.setAttribute("role", "radiogroup");
   const ttsKanjiBtn = button("Kanji", "tts-option");
-  const ttsAutoBtn = button("Auto", "tts-option");
   const ttsReadingBtn = button("Hiragana", "tts-option");
   ttsKanjiBtn.dataset.value = "kanji";
-  ttsAutoBtn.dataset.value = "auto";
   ttsReadingBtn.dataset.value = "hiragana";
-  ttsSource.append(ttsKanjiBtn, ttsAutoBtn, ttsReadingBtn);
+  ttsSource.append(ttsKanjiBtn, ttsReadingBtn);
   const shuffleBtn = button("Shuffle", "mini mini--shuffle");
   shuffleBtn.innerHTML = "⇄";
   shuffleBtn.setAttribute("aria-label", "Shuffle current set");
@@ -235,21 +233,24 @@ export function renderCardPage() {
     return setCards[state.currentIndex] || null;
   }
 
-  function getCurrentTtsSource() {
-    const key = entryKey(currentEntry());
-    return key && state.ttsSources[key] ? state.ttsSources[key] : "auto";
+  // The system default reading source for an entry. Browser TTS mis-reads
+  // counter/numeral kanji (e.g. 十六匹 → ひき instead of the correct ぴき), so those
+  // default to the curated hiragana; everything else defaults to kanji for
+  // better pitch-accent. The user can override per card (see setTtsSource).
+  function defaultTtsSource(entry) {
+    return entry?.type === "counter" || entry?.type === "numeral" ? "hiragana" : "kanji";
   }
 
-  // Browser TTS mis-reads counter/numeral kanji (e.g. 十六匹 → ひき instead of the
-  // correct ぴき), so in "auto" mode speak the curated reading for those types.
-  // Normal vocab stays on kanji in auto for better pitch-accent.
-  function autoPrefersReading(entry) {
-    return entry?.type === "counter" || entry?.type === "numeral";
+  // Effective source: the user's saved override for this card if any, else the
+  // system default. Always resolves to "kanji" or "hiragana".
+  function getCurrentTtsSource() {
+    const entry = currentEntry();
+    const saved = state.ttsSources[entryKey(entry)];
+    return saved === "kanji" || saved === "hiragana" ? saved : defaultTtsSource(entry);
   }
 
   function getJapaneseSpeechText(entry) {
-    const source = getCurrentTtsSource();
-    const useReading = source === "hiragana" || (source === "auto" && autoPrefersReading(entry));
+    const useReading = getCurrentTtsSource() === "hiragana";
     if (useReading) return text(entry, "hiragana") || text(entry, "kanji");
     return text(entry, "kanji") || text(entry, "hiragana");
   }
@@ -266,7 +267,7 @@ export function renderCardPage() {
     ttsToggleBtn.setAttribute("aria-expanded", ttsExpanded ? "true" : "false");
     ttsToggleBtn.disabled = !entry;
     ttsSource.dataset.selected = source;
-    for (const btn of [ttsKanjiBtn, ttsAutoBtn, ttsReadingBtn]) {
+    for (const btn of [ttsKanjiBtn, ttsReadingBtn]) {
       const selected = btn.dataset.value === source;
       btn.classList.toggle("active", selected);
       btn.setAttribute("role", "radio");
@@ -384,10 +385,13 @@ export function renderCardPage() {
   }
 
   function setTtsSource(value) {
-    const key = entryKey(currentEntry());
-    if (!key) return;
-    if (value === "kanji" || value === "hiragana") state.ttsSources[key] = value;
-    else delete state.ttsSources[key];
+    const entry = currentEntry();
+    const key = entryKey(entry);
+    if (!key || (value !== "kanji" && value !== "hiragana")) return;
+    // Persist only a deviation from the system default; choosing the default
+    // clears any prior override so the card falls back to it.
+    if (value === defaultTtsSource(entry)) delete state.ttsSources[key];
+    else state.ttsSources[key] = value;
     saveState(state);
     renderTray();
     speakJapanese();
@@ -417,7 +421,6 @@ export function renderCardPage() {
   });
   shuffleBtn.addEventListener("click", shuffleCurrentSet);
   ttsKanjiBtn.addEventListener("click", () => setTtsSource("kanji"));
-  ttsAutoBtn.addEventListener("click", () => setTtsSource("auto"));
   ttsReadingBtn.addEventListener("click", () => setTtsSource("hiragana"));
   prevBtn.addEventListener("click", () => move(-1));
   nextBtn.addEventListener("click", () => move(1));
