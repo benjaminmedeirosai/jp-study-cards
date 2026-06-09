@@ -1,0 +1,23 @@
+# label: Te-form Patterns (〜て)
+# Productive patterns built on the verb te-form: aspect, benefactive, and
+# permission/obligation (〜ている, 〜ておく, 〜てみる, 〜てくれる, 〜てもいい…).
+# The te-form conjugation itself lives in conjugation/verb/te-form.tsv;
+# non-te bound patterns go in sentence-patterns.tsv.
+kanji	hiragana	type	english
+〜ている	〜ている	expression	be doing; ongoing state/result
+〜てある	〜てある	expression	has been done (resultant state, intentional)
+〜ておく	〜ておく	expression	do in advance; do for later
+〜てしまう	〜てしまう	expression	do completely; do (regrettably)
+〜てみる	〜てみる	expression	try doing; do and see
+〜ていく	〜ていく	expression	go on doing; do and go (away from speaker)
+〜てくる	〜てくる	expression	come to do; do and come; has come to (gradual change)
+〜てから	〜てから	expression	after doing
+〜てください	〜てください	expression	please (do)
+〜てもいい	〜てもいい	expression	may (do); it's okay to do
+〜てはいけない	〜てはいけない	expression	must not (do)
+〜てほしい	〜てほしい	expression	want (someone) to do
+〜てくれる	〜てくれる	expression	do (for me/us) — giver acts
+〜てあげる	〜てあげる	expression	do (for someone) — speaker acts
+〜てもらう	〜てもらう	expression	have/get (someone) to do
+〜ても	〜ても	expression	even if (one does)
+〜てばかり	〜てばかり	expression	do nothing but; always doing

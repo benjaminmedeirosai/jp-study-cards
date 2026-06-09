@@ -1,28 +1,46 @@
 # Sentence patterns — productive grammar that attaches to a verb/noun/clause.
-# Belongs here: bound patterns shown with a 〜 placeholder (〜たい, 〜てしまう,
-# 〜べき, 〜ように) and core function words (だ, ている, という, ください).
-# Conjugation paradigms of a specific part of speech live in their own
-# *-conjugation decks; idiomatic set phrases go in expression/idioms.tsv.
+# Belongs here: bound patterns shown with a 〜 placeholder (〜たい, 〜べき,
+# 〜ように, 〜はず, modality 〜らしい/〜ようだ) and core function words (だ, という).
+# Te-form patterns (〜ている, 〜てしまう…) live in te-form.tsv; conjugation
+# paradigms of a part of speech live in their own conjugation/ decks; idiomatic
+# set phrases go in expression/idioms.tsv.
 kanji	hiragana	type	english	breakdown
 だ	だ	expression	plain copula — is; am; are
 〜たい	〜たい	expression	want to (do)
 〜たくない	〜たくない	expression	do not want to (do)
-〜ている	〜ている	expression	be doing; ongoing state/result
-〜てしまう	〜てしまう	expression	do completely; do (regrettably)
-〜てから	〜てから	expression	after doing
+〜たがる	〜たがる	expression	(third person) shows signs of wanting to (do)
 〜たら	〜たら	expression	if; when (after it happens)
 〜と	〜と	expression	when; if (natural consequence)
+〜ながら	〜ながら	expression	while (doing); at the same time as
+〜のに	〜のに	expression	even though; despite
+〜ため	〜ため	expression	because of; for the sake of
+〜ば〜ほど	〜ば〜ほど	expression	the more ... the more ...
+〜ところ	〜ところ	expression	about to / in the middle of / just did (stage of an action)
+〜まま	〜まま	expression	as it is; unchanged; while still
+〜たばかり	〜たばかり	expression	just (did); only just finished doing
 〜たことがある	〜たことがある	expression	have done before; have the experience of
 〜だった	〜だった	expression	was; were (plain past copula)
 〜という	〜という	expression	called; that says; the fact that
 〜ように	〜ように	expression	so that; in order to; like
 〜ないように	〜ないように	expression	so as not to; in order not to
-〜てください	〜てください	expression	please (do)
 〜ないでください	〜ないでください	expression	please do not (do)
-〜てはいけない	〜てはいけない	expression	must not (do)
 〜べき	〜べき	expression	should; ought to
+〜はず	〜はず	expression	should be; ought to be (expectation)
 〜しかない	〜しかない	expression	there is nothing but; have no choice but
 〜せいだ	〜せいだ	expression	it is because of; to blame on
+〜かもしれない	〜かもしれない	expression	might; may; perhaps
+〜だろう	〜だろう	expression	probably; I think; right?
+〜らしい	〜らしい	expression	seems; apparently; -like
+〜みたい	〜みたい	expression	looks like; seems like; resembles
+〜ようだ	〜ようだ	expression	seems; appears; like
+〜そうだ	〜そうだ	expression	I hear that; they say (hearsay — cf. appearance 〜そう)
+〜なければならない	〜なければならない	expression	must; have to
+〜なくてもいい	〜なくてもいい	expression	don't have to; need not
+〜たり〜たり	〜たり〜たり	expression	do things like ... and ... (representative actions)
+〜ことにする	〜ことにする	expression	decide to (do)
+〜ことになる	〜ことになる	expression	it has been decided that; turn out that
+〜ものだ	〜ものだ	expression	used to; should; that's how it is
+〜わけだ	〜わけだ	expression	no wonder; that's why; it means that
 〜よう	〜よう	expression	volitional — let's (do); intend to
 〜つもりだ	〜つもりだ	expression	intend to (do)
 〜ることが多い	〜ることがおおい	expression	often (do); it is often the case that	[多: many/much]
