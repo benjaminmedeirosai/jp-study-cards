@@ -1,77 +1,77 @@
 # label: Concepts / Expression & Perception
 # Communication, expression, reactions, and the senses — speech acts, sounds, smells, truth/secrecy.
-kanji	hiragana	type	english
-匂い	におい	noun	smell; odor
-注意書き	ちゅういがき	noun	caution note; fine print
+kanji	hiragana	type	english	breakdown
+匂い	におい	noun	smell; odor	[匂: smell/scent]
+注意書き	ちゅういがき	noun	caution note; fine print	[注: pour/note | 意: meaning/intent | 書: write]
 音	おと	noun	sound
 謎	なぞ	noun	mystery; riddle
-香り	かおり	noun	scent; fragrance
-真実	しんじつ	noun	truth; reality
-秘密	ひみつ	noun	secret
-偽物	にせもの	noun	fake; counterfeit; imitation
-虚偽	きょぎ	noun	falsehood; untruth
-兆候	ちょうこう	noun	sign; indication; symptom
-前兆	ぜんちょう	noun	omen; precursor; warning sign
-兆し	きざし	noun	sign; symptom; indication
-描写	びょうしゃ	noun	depiction; portrayal
-主張	しゅちょう	noun	assertion; claim; insistence
-絶叫	ぜっきょう	noun	scream; exclamation
-文句	もんく	noun	complaint; phrase; words
-脱帽	だつぼう	noun	taking off one's hat; admiration
-弁解	べんかい	noun	excuse; justification
-色彩	しきさい	noun	color; coloration
-納得	なっとく	noun	understanding; consent; being convinced
-悲鳴	ひめい	noun	scream; shriek
-憶測	おくそく	noun	speculation; guesswork
-掲示	けいじ	noun	notice; posting; bulletin
-提案	ていあん	noun	proposal; suggestion
-箇条書き	かじょうがき	noun	itemization; bullet points
-相槌	あいづち	noun	interjections showing one is listening
-反応	はんのう	noun	reaction; response
-要求	ようきゅう	noun	demand; request
-異議	いぎ	noun	objection; dissent
-皮肉	ひにく	noun	irony; sarcasm
-省略	しょうりゃく	noun	omission; abbreviation
-暴露	ばくろ	noun	exposure; disclosure
-お礼	おれい	noun	thanks; expression of gratitude
-神秘	しんぴ	noun	mystery; mysticism
-極秘	ごくひ	noun	top secret
-糸口	いとぐち	noun	clue; lead; thread
-督促	とくそく	noun	demand; dunning; pressing
-抜粋	ばっすい	noun	excerpt; extract
-悪臭	あくしゅう	noun	stench; foul smell
-批評	ひひょう	noun	criticism; review
-好評	こうひょう	noun	favorable reception; good reputation
-誇張	こちょう	noun	exaggeration
-誠意	せいい	noun	sincerity; good faith
-会談	かいだん	noun	talks; conference
-雑談	ざつだん	noun	chit-chat; small talk
-冗談	じょうだん	noun	joke; jest
-謎解き	なぞとき	noun	solving a riddle/mystery
-謝罪	しゃざい	noun	apology
-批判	ひはん	noun	criticism; critique
-謙遜	けんそん	noun	modesty; humility
-輝き	かがやき	noun	brilliance; radiance
-釘付け	くぎづけ	noun	being glued/riveted (to the spot)
-歓声	かんせい	noun	cheer; shout of joy
-暗闇	くらやみ	noun	darkness; the dark
-音響	おんきょう	noun	sound; acoustics
-反響	はんきょう	noun	echo; repercussion; response
-沈黙	ちんもく	noun	silence
-了解	りょうかい	noun	understanding; consent; roger
-警告	けいこく	noun	warning; caution
-静寂	せいじゃく	noun	silence; stillness
-予想	よそう	noun	prediction; expectation
-号泣	ごうきゅう	noun	wailing; crying loudly
-笑い	わらい	noun	laughter; laugh
-発表	はっぴょう	noun	announcement; presentation
-表現	ひょうげん	noun	expression; representation
-言い訳	いいわけ	noun	excuse; justification
-議論	ぎろん	noun	discussion; argument
-記載	きさい	noun	entry; statement; mention
-お辞儀	おじぎ	noun	bow (greeting)
-非難	ひなん	noun	criticism; blame
-騒音	そうおん	noun	noise
-暗黙	あんもく	noun	tacit; implicit
-紹介	しょうかい	noun	introduction; presentation
-気遣い	きづかい	noun	consideration; thoughtfulness
+香り	かおり	noun	scent; fragrance	[香: scent/fragrance]
+真実	しんじつ	noun	truth; reality	[真: true/real | 実: truth/fruit]
+秘密	ひみつ	noun	secret	[秘: secret | 密: dense/secret]
+偽物	にせもの	noun	fake; counterfeit; imitation	[偽: false/fake | 物: thing]
+虚偽	きょぎ	noun	falsehood; untruth	[虚: empty/false | 偽: false/fake]
+兆候	ちょうこう	noun	sign; indication; symptom	[兆: sign/omen | 候: signs/wait]
+前兆	ぜんちょう	noun	omen; precursor; warning sign	[前: before/front | 兆: sign/omen]
+兆し	きざし	noun	sign; symptom; indication	[兆: sign/omen]
+描写	びょうしゃ	noun	depiction; portrayal	[描: draw/depict | 写: copy/describe]
+主張	しゅちょう	noun	assertion; claim; insistence	[主: main/self | 張: stretch/assert]
+絶叫	ぜっきょう	noun	scream; exclamation	[絶: utmost/sever | 叫: shout/scream]
+文句	もんく	noun	complaint; phrase; words	[文: writing/sentence | 句: phrase/clause]
+脱帽	だつぼう	noun	taking off one's hat; admiration	[脱: remove/take off | 帽: hat/cap]
+弁解	べんかい	noun	excuse; justification	[弁: speak/explain | 解: untie/explain]
+色彩	しきさい	noun	color; coloration	[色: color | 彩: coloring/hue]
+納得	なっとく	noun	understanding; consent; being convinced	[納: accept/take in | 得: gain/obtain]
+悲鳴	ひめい	noun	scream; shriek	[悲: sad/grief | 鳴: cry/sound]
+憶測	おくそく	noun	speculation; guesswork	[憶: recall/conjecture | 測: measure/gauge]
+掲示	けいじ	noun	notice; posting; bulletin	[掲: post/display | 示: show/indicate]
+提案	ていあん	noun	proposal; suggestion	[提: propose/present | 案: plan/idea]
+箇条書き	かじょうがき	noun	itemization; bullet points	[箇: (counter) item | 条: article/clause | 書: write]
+相槌	あいづち	noun	interjections showing one is listening	[相: mutual/together | 槌: mallet/hammer]
+反応	はんのう	noun	reaction; response	[反: react/anti | 応: respond]
+要求	ようきゅう	noun	demand; request	[要: need/essential | 求: seek/request]
+異議	いぎ	noun	objection; dissent	[異: different | 議: discuss/deliberate]
+皮肉	ひにく	noun	irony; sarcasm	[皮: skin | 肉: flesh/meat]
+省略	しょうりゃく	noun	omission; abbreviation	[省: omit/reflect | 略: abbreviate/omit]
+暴露	ばくろ	noun	exposure; disclosure	[暴: violent/expose | 露: dew/reveal]
+お礼	おれい	noun	thanks; expression of gratitude	[礼: courtesy/thanks]
+神秘	しんぴ	noun	mystery; mysticism	[神: god/divine | 秘: secret/mystery]
+極秘	ごくひ	noun	top secret	[極: extreme/utmost | 秘: secret]
+糸口	いとぐち	noun	clue; lead; thread	[糸: thread | 口: mouth/opening]
+督促	とくそく	noun	demand; dunning; pressing	[督: oversee/urge | 促: urge/prompt]
+抜粋	ばっすい	noun	excerpt; extract	[抜: extract/pull out | 粋: essence/pure]
+悪臭	あくしゅう	noun	stench; foul smell	[悪: bad/evil | 臭: smell/stink]
+批評	ひひょう	noun	criticism; review	[批: criticize | 評: evaluate/comment]
+好評	こうひょう	noun	favorable reception; good reputation	[好: good/like | 評: evaluate/comment]
+誇張	こちょう	noun	exaggeration	[誇: boast/exaggerate | 張: stretch/exaggerate]
+誠意	せいい	noun	sincerity; good faith	[誠: sincerity | 意: meaning/intent]
+会談	かいだん	noun	talks; conference	[会: meet/gather | 談: talk/discuss]
+雑談	ざつだん	noun	chit-chat; small talk	[雑: miscellaneous | 談: talk/discuss]
+冗談	じょうだん	noun	joke; jest	[冗: redundant/superfluous | 談: talk/discuss]
+謎解き	なぞとき	noun	solving a riddle/mystery	[謎: riddle/mystery | 解: untie/solve]
+謝罪	しゃざい	noun	apology	[謝: apologize/thank | 罪: crime/guilt]
+批判	ひはん	noun	criticism; critique	[批: criticize | 判: judge/decide]
+謙遜	けんそん	noun	modesty; humility	[謙: humble/modest | 遜: humble/defer]
+輝き	かがやき	noun	brilliance; radiance	[輝: shine/sparkle]
+釘付け	くぎづけ	noun	being glued/riveted (to the spot)	[釘: nail | 付: attach]
+歓声	かんせい	noun	cheer; shout of joy	[歓: joy/delight | 声: voice/sound]
+暗闇	くらやみ	noun	darkness; the dark	[暗: dark | 闇: darkness]
+音響	おんきょう	noun	sound; acoustics	[音: sound | 響: echo/resound]
+反響	はんきょう	noun	echo; repercussion; response	[反: reflect/anti | 響: echo/resound]
+沈黙	ちんもく	noun	silence	[沈: sink/silent | 黙: silent/be quiet]
+了解	りょうかい	noun	understanding; consent; roger	[了: complete/understand | 解: untie/understand]
+警告	けいこく	noun	warning; caution	[警: warn/guard | 告: tell/announce]
+静寂	せいじゃく	noun	silence; stillness	[静: quiet/calm | 寂: lonely/still]
+予想	よそう	noun	prediction; expectation	[予: beforehand | 想: think/imagine]
+号泣	ごうきゅう	noun	wailing; crying loudly	[号: cry out/number | 泣: weep/cry]
+笑い	わらい	noun	laughter; laugh	[笑: laugh/smile]
+発表	はっぴょう	noun	announcement; presentation	[発: emit/announce | 表: surface/express]
+表現	ひょうげん	noun	expression; representation	[表: surface/express | 現: appear/present]
+言い訳	いいわけ	noun	excuse; justification	[言: say/word | 訳: reason/explanation]
+議論	ぎろん	noun	discussion; argument	[議: discuss/deliberate | 論: argue/theory]
+記載	きさい	noun	entry; statement; mention	[記: record/write | 載: load/record]
+お辞儀	おじぎ	noun	bow (greeting)	[辞: word/resign | 儀: ceremony/manner]
+非難	ひなん	noun	criticism; blame	[非: non-/blame | 難: difficult/blame]
+騒音	そうおん	noun	noise	[騒: noise/clamor | 音: sound]
+暗黙	あんもく	noun	tacit; implicit	[暗: dark/implicit | 黙: silent]
+紹介	しょうかい	noun	introduction; presentation	[紹: introduce | 介: mediate/help]
+気遣い	きづかい	noun	consideration; thoughtfulness	[気: spirit/feeling | 遣: send/use]

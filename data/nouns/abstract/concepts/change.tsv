@@ -1,53 +1,53 @@
 # label: Concepts / Change & Process
 # Change, motion, and physical processes — growth, increase/decrease, spread, and reactions.
-kanji	hiragana	type	english
-促進	そくしん	noun	promotion; acceleration
-回転	かいてん	noun	rotation; spinning
-回復	かいふく	noun	recovery; restoration
-成長	せいちょう	noun	growth; development
-変化	へんか	noun	change
-開始	かいし	noun	start; beginning
-終了	しゅうりょう	noun	end; finish
-停止	ていし	noun	halt; suspension; stop
-殺到	さっとう	noun	rush; flood (of people/requests)
-刷新	さっしん	noun	reform; renovation
-刺激	しげき	noun	stimulus; stimulation
-普及	ふきゅう	noun	spread; diffusion; popularization
-崩壊	ほうかい	noun	collapse; breakdown
-発射	はっしゃ	noun	launch; firing
-反射	はんしゃ	noun	reflection; reflex
-屈折	くっせつ	noun	refraction; bending
-展開	てんかい	noun	development; unfolding
-発展	はってん	noun	development; growth
-分岐	ぶんき	noun	branching; fork; divergence
-抽出	ちゅうしゅつ	noun	extraction
-拡散	かくさん	noun	diffusion; spreading
-拡張	かくちょう	noun	expansion; extension
-振動	しんどう	noun	vibration; oscillation
-衝撃	しょうげき	noun	impact; shock
-開放	かいほう	noun	opening up; liberalization
-解散	かいさん	noun	dissolution; breakup; disbanding
-上昇	じょうしょう	noun	rise; ascent; climb
-変更	へんこう	noun	change; alteration
-旋回	せんかい	noun	turning; circling; revolution
-歪み	ゆがみ	noun	distortion; warp
-沸騰	ふっとう	noun	boiling; seething
-波紋	はもん	noun	ripple; repercussions
-流行	りゅうこう	noun	trend; fashion; prevalence
-循環	じゅんかん	noun	circulation; cycle
-突破	とっぱ	noun	breakthrough; breaking through
-短縮	たんしゅく	noun	shortening; abbreviation
-縮小	しゅくしょう	noun	reduction; downsizing
-腐敗	ふはい	noun	decay; corruption
-蒸発	じょうはつ	noun	evaporation; disappearance
-衝突	しょうとつ	noun	collision; clash
-圧迫	あっぱく	noun	pressure; oppression
-逆転	ぎゃくてん	noun	reversal; turnaround
-蓄積	ちくせき	noun	accumulation; buildup
-下降	かこう	noun	descent; fall; decline
-亀裂	きれつ	noun	crack; fissure; rift
-低下	ていか	noun	decline; drop; deterioration
-継続	けいぞく	noun	continuation
-発達	はったつ	noun	development; growth
-吸収	きゅうしゅう	noun	absorption
-分裂	ぶんれつ	noun	division; split
+kanji	hiragana	type	english	breakdown
+促進	そくしん	noun	promotion; acceleration	[促: urge/prompt | 進: advance]
+回転	かいてん	noun	rotation; spinning	[回: turn/rotate | 転: revolve/turn]
+回復	かいふく	noun	recovery; restoration	[回: turn/return | 復: restore/return]
+成長	せいちょう	noun	growth; development	[成: become/achieve | 長: grow/long]
+変化	へんか	noun	change	[変: change | 化: transform]
+開始	かいし	noun	start; beginning	[開: open | 始: begin]
+終了	しゅうりょう	noun	end; finish	[終: end | 了: finish/complete]
+停止	ていし	noun	halt; suspension; stop	[停: stop/halt | 止: stop]
+殺到	さっとう	noun	rush; flood (of people/requests)	[殺: kill/intense | 到: arrive/reach]
+刷新	さっしん	noun	reform; renovation	[刷: print/brush | 新: new]
+刺激	しげき	noun	stimulus; stimulation	[刺: pierce/stab | 激: violent/intense]
+普及	ふきゅう	noun	spread; diffusion; popularization	[普: universal/general | 及: reach/extend]
+崩壊	ほうかい	noun	collapse; breakdown	[崩: crumble/collapse | 壊: break/destroy]
+発射	はっしゃ	noun	launch; firing	[発: emit/launch | 射: shoot]
+反射	はんしゃ	noun	reflection; reflex	[反: reverse/anti | 射: shoot]
+屈折	くっせつ	noun	refraction; bending	[屈: bend/yield | 折: fold/break]
+展開	てんかい	noun	development; unfolding	[展: unfold/expand | 開: open]
+発展	はってん	noun	development; growth	[発: emit/start | 展: unfold/expand]
+分岐	ぶんき	noun	branching; fork; divergence	[分: divide/part | 岐: fork/branch]
+抽出	ちゅうしゅつ	noun	extraction	[抽: extract/pull | 出: come out]
+拡散	かくさん	noun	diffusion; spreading	[拡: expand | 散: scatter]
+拡張	かくちょう	noun	expansion; extension	[拡: expand | 張: stretch/extend]
+振動	しんどう	noun	vibration; oscillation	[振: shake/swing | 動: move]
+衝撃	しょうげき	noun	impact; shock	[衝: collide/thrust | 撃: strike/attack]
+開放	かいほう	noun	opening up; liberalization	[開: open | 放: release]
+解散	かいさん	noun	dissolution; breakup; disbanding	[解: untie/dissolve | 散: scatter/disperse]
+上昇	じょうしょう	noun	rise; ascent; climb	[上: up/above | 昇: rise/ascend]
+変更	へんこう	noun	change; alteration	[変: change | 更: renew/further]
+旋回	せんかい	noun	turning; circling; revolution	[旋: revolve/rotate | 回: turn]
+歪み	ゆがみ	noun	distortion; warp	[歪: distort/warp]
+沸騰	ふっとう	noun	boiling; seething	[沸: boil | 騰: rise/soar]
+波紋	はもん	noun	ripple; repercussions	[波: wave | 紋: pattern/crest]
+流行	りゅうこう	noun	trend; fashion; prevalence	[流: flow | 行: go/proceed]
+循環	じゅんかん	noun	circulation; cycle	[循: circulate/follow | 環: ring/circle]
+突破	とっぱ	noun	breakthrough; breaking through	[突: thrust/pierce | 破: break/tear]
+短縮	たんしゅく	noun	shortening; abbreviation	[短: short | 縮: shrink/contract]
+縮小	しゅくしょう	noun	reduction; downsizing	[縮: shrink | 小: small]
+腐敗	ふはい	noun	decay; corruption	[腐: rot | 敗: spoil/defeat]
+蒸発	じょうはつ	noun	evaporation; disappearance	[蒸: steam/evaporate | 発: emit]
+衝突	しょうとつ	noun	collision; clash	[衝: collide | 突: thrust/pierce]
+圧迫	あっぱく	noun	pressure; oppression	[圧: pressure/press | 迫: press/urge]
+逆転	ぎゃくてん	noun	reversal; turnaround	[逆: reverse/inverse | 転: turn/revolve]
+蓄積	ちくせき	noun	accumulation; buildup	[蓄: store/accumulate | 積: pile/accumulate]
+下降	かこう	noun	descent; fall; decline	[下: down/below | 降: descend/fall]
+亀裂	きれつ	noun	crack; fissure; rift	[亀: tortoise/crack | 裂: split/tear]
+低下	ていか	noun	decline; drop; deterioration	[低: low | 下: down/fall]
+継続	けいぞく	noun	continuation	[継: inherit/continue | 続: continue]
+発達	はったつ	noun	development; growth	[発: emit/start | 達: reach/attain]
+吸収	きゅうしゅう	noun	absorption	[吸: suck/inhale | 収: collect/take in]
+分裂	ぶんれつ	noun	division; split	[分: divide/part | 裂: split/tear]

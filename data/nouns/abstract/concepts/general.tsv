@@ -1,87 +1,87 @@
 # label: Concepts / General Notions
 # General notions, pointers, scope, kinds, names, references — words that don't fit a more specific concepts sub-deck.
-kanji	hiragana	type	english
+kanji	hiragana	type	english	breakdown
 程	ほど	noun	about; approximately; extent/degree (approximation/extent marker)
-毒ガス	どくガス	noun	poison gas
+毒ガス	どくガス	noun	poison gas	[毒: poison]
 事	こと	noun	thing; matter; (nominalizer) the act/fact of ...
 何	なに	noun	what
 生	なま	noun	raw; fresh (noun/adjectival use)
 毒	どく	noun	poison; toxicity
-本体	ほんたい	noun	main body; base amount (before tax)
+本体	ほんたい	noun	main body; base amount (before tax)	[本: main/origin | 体: body]
 こと	こと	noun	thing; matter
 物	もの	noun	thing; item
-以外	いがい	noun	except; besides; other than
+以外	いがい	noun	except; besides; other than	[以: by means of/from | 外: outside]
 用	よう	noun	for use; purpose
 跡	あと	noun	trace; tracks; mark
 それ	それ	noun	that
 ため	ため	noun	for the sake of; because of
 ここ	ここ	noun	here
 何も	なにも	noun	nothing; not anything
-名前	なまえ	noun	name
-場合	ばあい	noun	case; situation
-命名	めいめい	noun	naming; christening
-万一	まんいち	noun	by any chance; (in case of) emergency
-仕方	しかた	noun	way; method; means
-その他	そのた	noun	et cetera; the rest
-用件	ようけん	noun	business; matter to attend to
-予備	よび	noun	spare; reserve; preliminary
-候補	こうほ	noun	candidate; prospect
-双方	そうほう	noun	both parties; both sides
-史上	しじょう	noun	in history; historical
-各自	かくじ	noun	each person; individually
-各種	かくしゅ	noun	various kinds; all sorts
-領域	りょういき	noun	domain; territory; field
-境界	きょうかい	noun	boundary; border
-忘れ物	わすれもの	noun	forgotten item; lost property
-選択肢	せんたくし	noun	option; choice
-使い捨て	つかいすて	noun	disposable; single-use
-背景	はいけい	noun	background; backdrop
-暫定	ざんてい	noun	provisional; tentative
-朱印	しゅいん	noun	red seal; temple stamp
-机上	きじょう	noun	on the desk; theoretical; on paper
-専門	せんもん	noun	speciality; field of expertise
-専用	せんよう	noun	exclusive use; dedicated
-滋養	じよう	noun	nourishment; nutrition
-対照	たいしょう	noun	contrast
-日程	にってい	noun	schedule; itinerary
-符号	ふごう	noun	sign; symbol; code
-箇所	かしょ	noun	place; part; spot
-粗品	そしな	noun	small gift; token present
-繋がり	つながり	noun	connection; link; relationship
-群れ	むれ	noun	group; herd; flock; swarm
-意義	いぎ	noun	significance; meaning
-一般	いっぱん	noun	general; ordinary; the public
-全般	ぜんぱん	noun	the whole; overall
+名前	なまえ	noun	name	[名: name | 前: front/before]
+場合	ばあい	noun	case; situation	[場: place | 合: fit/case]
+命名	めいめい	noun	naming; christening	[命: command/life | 名: name]
+万一	まんいち	noun	by any chance; (in case of) emergency	[万: ten thousand | 一: one]
+仕方	しかた	noun	way; method; means	[仕: do/serve | 方: way/direction]
+その他	そのた	noun	et cetera; the rest	[他: other]
+用件	ようけん	noun	business; matter to attend to	[用: use/business | 件: matter/case]
+予備	よび	noun	spare; reserve; preliminary	[予: beforehand | 備: prepare/equip]
+候補	こうほ	noun	candidate; prospect	[候: signs/wait | 補: supplement/fill]
+双方	そうほう	noun	both parties; both sides	[双: pair/both | 方: side/direction]
+史上	しじょう	noun	in history; historical	[史: history | 上: above/on]
+各自	かくじ	noun	each person; individually	[各: each | 自: self]
+各種	かくしゅ	noun	various kinds; all sorts	[各: each | 種: kind/type]
+領域	りょういき	noun	domain; territory; field	[領: territory/domain | 域: region/area]
+境界	きょうかい	noun	boundary; border	[境: boundary | 界: boundary/world]
+忘れ物	わすれもの	noun	forgotten item; lost property	[忘: forget | 物: thing]
+選択肢	せんたくし	noun	option; choice	[選: choose | 択: select | 肢: limb/branch]
+使い捨て	つかいすて	noun	disposable; single-use	[使: use | 捨: discard/throw away]
+背景	はいけい	noun	background; backdrop	[背: back | 景: scenery/view]
+暫定	ざんてい	noun	provisional; tentative	[暫: temporary/brief | 定: fix/determine]
+朱印	しゅいん	noun	red seal; temple stamp	[朱: vermilion/red | 印: seal/mark]
+机上	きじょう	noun	on the desk; theoretical; on paper	[机: desk | 上: above/on]
+専門	せんもん	noun	speciality; field of expertise	[専: exclusive/specialize | 門: gate/field]
+専用	せんよう	noun	exclusive use; dedicated	[専: exclusive/specialize | 用: use]
+滋養	じよう	noun	nourishment; nutrition	[滋: nourish/grow | 養: nurture/feed]
+対照	たいしょう	noun	contrast	[対: contrast/oppose | 照: shine/compare]
+日程	にってい	noun	schedule; itinerary	[日: day | 程: extent/schedule]
+符号	ふごう	noun	sign; symbol; code	[符: sign/token | 号: number/mark]
+箇所	かしょ	noun	place; part; spot	[箇: (counter) piece | 所: place]
+粗品	そしな	noun	small gift; token present	[粗: coarse/humble | 品: goods/article]
+繋がり	つながり	noun	connection; link; relationship	[繋: connect/tie]
+群れ	むれ	noun	group; herd; flock; swarm	[群: group/flock]
+意義	いぎ	noun	significance; meaning	[意: meaning/intent | 義: meaning/righteousness]
+一般	いっぱん	noun	general; ordinary; the public	[一: one | 般: kind/general]
+全般	ぜんぱん	noun	the whole; overall	[全: all/whole | 般: kind/general]
 荷	に	noun	load; cargo; burden
-萌え	もえ	noun	moe; endearing fascination (slang)
+萌え	もえ	noun	moe; endearing fascination (slang)	[萌: sprout/bud]
 式	しき	noun	ceremony; formula; expression
-複数	ふくすう	noun	plural; multiple
-重複	ちょうふく	noun	duplication; overlap
-詳細	しょうさい	noun	details; particulars
-足跡	あしあと	noun	footprint; track
+複数	ふくすう	noun	plural; multiple	[複: multiple/double | 数: number]
+重複	ちょうふく	noun	duplication; overlap	[重: overlap/heavy | 複: multiple/double]
+詳細	しょうさい	noun	details; particulars	[詳: detailed | 細: fine/detailed]
+足跡	あしあと	noun	footprint; track	[足: foot | 跡: trace/mark]
 逆	ぎゃく	noun	reverse; opposite; converse
-途端	とたん	noun	just as; the moment (something happens)
-用途	ようと	noun	use; purpose; application
-違い	ちがい	noun	difference; distinction
+途端	とたん	noun	just as; the moment (something happens)	[途: way/route | 端: edge/end]
+用途	ようと	noun	use; purpose; application	[用: use | 途: way/purpose]
+違い	ちがい	noun	difference; distinction	[違: differ/wrong]
 端	はし	noun	edge; end; tip
-錬金術	れんきんじゅつ	noun	alchemy
-印鑑	いんかん	noun	seal; personal stamp
-部門	ぶもん	noun	division; department; category
-隙間	すきま	noun	gap; crevice; opening
+錬金術	れんきんじゅつ	noun	alchemy	[錬: refine/temper | 金: gold/metal | 術: technique/art]
+印鑑	いんかん	noun	seal; personal stamp	[印: seal/mark | 鑑: model/specimen]
+部門	ぶもん	noun	division; department; category	[部: section/part | 門: gate/category]
+隙間	すきま	noun	gap; crevice; opening	[隙: gap/crevice | 間: interval/space]
 型	かた	noun	type; model; mold; pattern
-内容	ないよう	noun	content; substance
-役割	やくわり	noun	role; part; function
-普段	ふだん	noun	usual; everyday; ordinarily
+内容	ないよう	noun	content; substance	[内: inside | 容: contain/form]
+役割	やくわり	noun	role; part; function	[役: role/duty | 割: divide/portion]
+普段	ふだん	noun	usual; everyday; ordinarily	[普: ordinary/general | 段: step/grade]
 案	あん	noun	plan; idea; proposal
-次第	しだい	noun	depending on; as soon as; order
-種類	しゅるい	noun	kind; type; variety
-究極	きゅうきょく	noun	ultimate; extreme
-家紋	かもん	noun	family crest
-参考	さんこう	noun	reference; consultation
+次第	しだい	noun	depending on; as soon as; order	[次: next/order | 第: order/rank]
+種類	しゅるい	noun	kind; type; variety	[種: kind/seed | 類: kind/category]
+究極	きゅうきょく	noun	ultimate; extreme	[究: investigate/extreme | 極: extreme/utmost]
+家紋	かもん	noun	family crest	[家: house/family | 紋: crest/pattern]
+参考	さんこう	noun	reference; consultation	[参: refer/consult | 考: think/consider]
 訳	わけ	noun	reason; meaning; circumstance
-段階	だんかい	noun	stage; phase; step
-実際	じっさい	noun	reality; actuality; in practice
+段階	だんかい	noun	stage; phase; step	[段: step/grade | 階: floor/rank]
+実際	じっさい	noun	reality; actuality; in practice	[実: real/truth | 際: occasion/edge]
 善	ぜん	noun	good; virtue; goodness
-第一	だいいち	noun	first; foremost; number one
-常識	じょうしき	noun	common sense
+第一	だいいち	noun	first; foremost; number one	[第: order/rank | 一: one]
+常識	じょうしき	noun	common sense	[常: usual/normal | 識: knowledge/discern]
 票	ひょう	noun	vote; ballot

@@ -1,98 +1,98 @@
 # label: Concepts / Outcomes & Structure
 # Results, achievement, support, and the makeup of things — success/failure, provision, structure, quality.
-kanji	hiragana	type	english
-完了	かんりょう	noun	completion; complete
-失敗	しっぱい	noun	failure; mistake
-助け	たすけ	noun	help; assistance
-完結	かんけつ	noun	completion; finished (series)
-功業	こうぎょう	noun	great achievement; distinguished service
-補助	ほじょ	noun	assistance; support
-目標	もくひょう	noun	goal; target
-仕組み	しくみ	noun	mechanism; structure; system
-仕上げ	しあげ	noun	finishing; final touches
-優勝	ゆうしょう	noun	championship; overall victory
-優先	ゆうせん	noun	priority; precedence
-刊行	かんこう	noun	publication; issue
-到達	とうたつ	noun	attainment; reaching
-制御	せいぎょ	noun	control; regulation
-成功	せいこう	noun	success
-功績	こうせき	noun	achievement; meritorious deed
-勢い	いきおい	noun	momentum; force; vigor
-姿勢	しせい	noun	posture; stance; attitude
-基本	きほん	noun	basics; foundation
-基礎	きそ	noun	foundation; basis
-妥協	だきょう	noun	compromise
-技巧	ぎこう	noun	technique; skill; craftsmanship
-建設	けんせつ	noun	construction; building
-建築	けんちく	noun	architecture; construction
-得点	とくてん	noun	score; points scored
-念願	ねんがん	noun	long-cherished wish
-恩恵	おんけい	noun	benefit; blessing; favor
-選抜	せんばつ	noun	selection; choosing
-抱負	ほうふ	noun	aspiration; ambition; resolution
-開拓	かいたく	noun	pioneering; cultivation; development
-拠点	きょてん	noun	base; foothold
-推薦	すいせん	noun	recommendation
-提出	ていしゅつ	noun	submission; presentation
-提供	ていきょう	noun	offering; provision; sponsoring
-支援	しえん	noun	support; aid; assistance
-調整	ちょうせい	noun	adjustment; coordination
-援助	えんじょ	noun	aid; assistance
-応援	おうえん	noun	support; cheering on
-結束	けっそく	noun	unity; solidarity
-樹立	じゅりつ	noun	establishment (of a record)
-決定	けってい	noun	decision; determination
-解決	かいけつ	noun	solution; settlement
-才能	さいのう	noun	talent; ability
-戦略	せんりゃく	noun	strategy
-監視	かんし	noun	surveillance; monitoring
+kanji	hiragana	type	english	breakdown
+完了	かんりょう	noun	completion; complete	[完: complete | 了: finish/complete]
+失敗	しっぱい	noun	failure; mistake	[失: lose/fail | 敗: defeat/fail]
+助け	たすけ	noun	help; assistance	[助: help/save]
+完結	かんけつ	noun	completion; finished (series)	[完: complete | 結: tie/conclude]
+功業	こうぎょう	noun	great achievement; distinguished service	[功: achievement/merit | 業: work/deed]
+補助	ほじょ	noun	assistance; support	[補: supplement/aid | 助: help]
+目標	もくひょう	noun	goal; target	[目: eye/aim | 標: mark/target]
+仕組み	しくみ	noun	mechanism; structure; system	[仕: do/serve | 組: assemble/group]
+仕上げ	しあげ	noun	finishing; final touches	[仕: do/serve | 上: up/finish]
+優勝	ゆうしょう	noun	championship; overall victory	[優: superior/excellent | 勝: win]
+優先	ゆうせん	noun	priority; precedence	[優: superior/excellent | 先: ahead/prior]
+刊行	かんこう	noun	publication; issue	[刊: publish/print | 行: go/carry out]
+到達	とうたつ	noun	attainment; reaching	[到: arrive/reach | 達: reach/attain]
+制御	せいぎょ	noun	control; regulation	[制: control/system | 御: control/honorific]
+成功	せいこう	noun	success	[成: become/achieve | 功: achievement/merit]
+功績	こうせき	noun	achievement; meritorious deed	[功: achievement/merit | 績: achievement/results]
+勢い	いきおい	noun	momentum; force; vigor	[勢: force/momentum]
+姿勢	しせい	noun	posture; stance; attitude	[姿: figure/posture | 勢: force/stance]
+基本	きほん	noun	basics; foundation	[基: base/foundation | 本: origin/base]
+基礎	きそ	noun	foundation; basis	[基: base/foundation | 礎: cornerstone]
+妥協	だきょう	noun	compromise	[妥: compromise/peace | 協: cooperate]
+技巧	ぎこう	noun	technique; skill; craftsmanship	[技: skill/technique | 巧: skillful/clever]
+建設	けんせつ	noun	construction; building	[建: build | 設: establish/set up]
+建築	けんちく	noun	architecture; construction	[建: build | 築: construct/build]
+得点	とくてん	noun	score; points scored	[得: gain/obtain | 点: point/mark]
+念願	ねんがん	noun	long-cherished wish	[念: thought/wish | 願: wish/request]
+恩恵	おんけい	noun	benefit; blessing; favor	[恩: kindness/favor | 恵: blessing/grace]
+選抜	せんばつ	noun	selection; choosing	[選: choose/select | 抜: extract/select]
+抱負	ほうふ	noun	aspiration; ambition; resolution	[抱: embrace/hold | 負: bear/owe]
+開拓	かいたく	noun	pioneering; cultivation; development	[開: open | 拓: clear/cultivate]
+拠点	きょてん	noun	base; foothold	[拠: basis/foothold | 点: point/spot]
+推薦	すいせん	noun	recommendation	[推: recommend/push | 薦: recommend]
+提出	ていしゅつ	noun	submission; presentation	[提: present/submit | 出: go out/put out]
+提供	ていきょう	noun	offering; provision; sponsoring	[提: present/offer | 供: provide/offer]
+支援	しえん	noun	support; aid; assistance	[支: support/branch | 援: aid/help]
+調整	ちょうせい	noun	adjustment; coordination	[調: tune/adjust | 整: arrange/order]
+援助	えんじょ	noun	aid; assistance	[援: aid/help | 助: help]
+応援	おうえん	noun	support; cheering on	[応: respond | 援: aid/help]
+結束	けっそく	noun	unity; solidarity	[結: tie/bind | 束: bundle/bind]
+樹立	じゅりつ	noun	establishment (of a record)	[樹: tree/establish | 立: stand/establish]
+決定	けってい	noun	decision; determination	[決: decide | 定: fix/determine]
+解決	かいけつ	noun	solution; settlement	[解: untie/solve | 決: decide]
+才能	さいのう	noun	talent; ability	[才: talent/ability | 能: ability/capability]
+戦略	せんりゃく	noun	strategy	[戦: war/battle | 略: strategy/abbreviate]
+監視	かんし	noun	surveillance; monitoring	[監: oversee/watch | 視: see/watch]
 礎	いしずえ	noun	foundation; cornerstone
-過程	かてい	noun	process; course
-調節	ちょうせつ	noun	adjustment; regulation
-構築	こうちく	noun	construction; building (a system)
-統一	とういつ	noun	unification; unity
-構造	こうぞう	noun	structure; construction
-構成	こうせい	noun	composition; makeup
-形式	けいしき	noun	form; format; formality
-対策	たいさく	noun	countermeasure; measure
-策略	さくりゃく	noun	scheme; stratagem
-供給	きょうきゅう	noun	supply
-製造	せいぞう	noun	manufacturing; production
-製作	せいさく	noun	production; manufacture
-複製	ふくせい	noun	reproduction; duplicate
-褒美	ほうび	noun	reward; prize
-制覇	せいは	noun	conquest; championship
-評価	ひょうか	noun	evaluation; appraisal
-貢献	こうけん	noun	contribution
-責務	せきむ	noun	duty; obligation
-生産	せいさん	noun	production; manufacturing
-紡績	ぼうせき	noun	spinning (textiles)
-諦め	あきらめ	noun	resignation; giving up
+過程	かてい	noun	process; course	[過: pass/exceed | 程: extent/process]
+調節	ちょうせつ	noun	adjustment; regulation	[調: tune/adjust | 節: node/regulate]
+構築	こうちく	noun	construction; building (a system)	[構: construct/structure | 築: build/construct]
+統一	とういつ	noun	unification; unity	[統: unite/govern | 一: one]
+構造	こうぞう	noun	structure; construction	[構: construct/structure | 造: make/build]
+構成	こうせい	noun	composition; makeup	[構: construct/structure | 成: become/form]
+形式	けいしき	noun	form; format; formality	[形: shape/form | 式: form/style]
+対策	たいさく	noun	countermeasure; measure	[対: counter/face | 策: plan/measure]
+策略	さくりゃく	noun	scheme; stratagem	[策: plan/scheme | 略: strategy/scheme]
+供給	きょうきゅう	noun	supply	[供: provide/offer | 給: supply/provide]
+製造	せいぞう	noun	manufacturing; production	[製: manufacture | 造: make/build]
+製作	せいさく	noun	production; manufacture	[製: manufacture | 作: make/produce]
+複製	ふくせい	noun	reproduction; duplicate	[複: duplicate/multiple | 製: manufacture]
+褒美	ほうび	noun	reward; prize	[褒: praise/reward | 美: beauty/fine]
+制覇	せいは	noun	conquest; championship	[制: control/system | 覇: supremacy/champion]
+評価	ひょうか	noun	evaluation; appraisal	[評: evaluate/comment | 価: value/price]
+貢献	こうけん	noun	contribution	[貢: tribute/contribute | 献: offer/dedicate]
+責務	せきむ	noun	duty; obligation	[責: responsibility/blame | 務: duty/task]
+生産	せいさん	noun	production; manufacturing	[生: produce/live | 産: produce/give birth]
+紡績	ぼうせき	noun	spinning (textiles)	[紡: spin (thread) | 績: spinning/achievement]
+諦め	あきらめ	noun	resignation; giving up	[諦: give up/resign]
 賞	しょう	noun	prize; award
-賞品	しょうひん	noun	prize; award (item)
-迫力	はくりょく	noun	force; impact; intensity
-追跡	ついせき	noun	pursuit; tracking
-鍛錬	たんれん	noun	training; discipline; forging
-鑑定	かんてい	noun	appraisal; expert judgment
-入門	にゅうもん	noun	introduction; primer; entry
-頭脳	ずのう	noun	brains; intellect
-願い	ねがい	noun	wish; request; prayer
-冶金	やきん	noun	metallurgy
-志望	しぼう	noun	aspiration; choice; preference
-基盤	きばん	noun	foundation; base; infrastructure
-指導	しどう	noun	guidance; instruction; coaching
-連携	れんけい	noun	cooperation; coordination
-無敵	むてき	noun	invincibility; matchlessness
-欠点	けってん	noun	fault; weakness; defect
-腕前	うでまえ	noun	skill; ability; prowess
-記録	きろく	noun	record; documentation
-保護	ほご	noun	protection; conservation
-資格	しかく	noun	qualification; certification
+賞品	しょうひん	noun	prize; award (item)	[賞: prize/award | 品: goods/article]
+迫力	はくりょく	noun	force; impact; intensity	[迫: press/force | 力: power/force]
+追跡	ついせき	noun	pursuit; tracking	[追: chase/pursue | 跡: trace/track]
+鍛錬	たんれん	noun	training; discipline; forging	[鍛: forge/temper | 錬: refine/temper]
+鑑定	かんてい	noun	appraisal; expert judgment	[鑑: appraise/model | 定: fix/determine]
+入門	にゅうもん	noun	introduction; primer; entry	[入: enter | 門: gate/field]
+頭脳	ずのう	noun	brains; intellect	[頭: head | 脳: brain]
+願い	ねがい	noun	wish; request; prayer	[願: wish/request]
+冶金	やきん	noun	metallurgy	[冶: smelt/metallurgy | 金: metal/gold]
+志望	しぼう	noun	aspiration; choice; preference	[志: aspire/will | 望: hope/wish]
+基盤	きばん	noun	foundation; base; infrastructure	[基: base/foundation | 盤: board/base]
+指導	しどう	noun	guidance; instruction; coaching	[指: finger/point | 導: guide/lead]
+連携	れんけい	noun	cooperation; coordination	[連: link/connect | 携: carry/cooperate]
+無敵	むてき	noun	invincibility; matchlessness	[無: nothing/without | 敵: enemy]
+欠点	けってん	noun	fault; weakness; defect	[欠: lack | 点: point/mark]
+腕前	うでまえ	noun	skill; ability; prowess	[腕: arm/skill | 前: front/before]
+記録	きろく	noun	record; documentation	[記: record/write | 録: record]
+保護	ほご	noun	protection; conservation	[保: keep/protect | 護: protect/guard]
+資格	しかく	noun	qualification; certification	[資: resources/qualification | 格: status/standard]
 質	しつ	noun	quality; nature
-性質	せいしつ	noun	nature; property; disposition
-魅力	みりょく	noun	charm; appeal; attractiveness
-魅了	みりょう	noun	fascination; captivation
-介入	かいにゅう	noun	intervention
-創作	そうさく	noun	creation; original work
-導入	どうにゅう	noun	introduction; installation
-態度	たいど	noun	attitude; manner
+性質	せいしつ	noun	nature; property; disposition	[性: nature/gender | 質: quality/nature]
+魅力	みりょく	noun	charm; appeal; attractiveness	[魅: charm/fascinate | 力: power/force]
+魅了	みりょう	noun	fascination; captivation	[魅: charm/fascinate | 了: complete]
+介入	かいにゅう	noun	intervention	[介: mediate/intervene | 入: enter]
+創作	そうさく	noun	creation; original work	[創: create/originate | 作: make/produce]
+導入	どうにゅう	noun	introduction; installation	[導: guide/lead | 入: enter]
+態度	たいど	noun	attitude; manner	[態: state/attitude | 度: degree/measure]

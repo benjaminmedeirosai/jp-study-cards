@@ -1,57 +1,57 @@
 # label: Concepts / Activities & Tasks
 # Everyday actions, chores, logistics, and outings — concrete things one does.
-kanji	hiragana	type	english
-外出	がいしゅつ	noun	going out; outing
-掃除	そうじ	noun	cleaning
-洗濯	せんたく	noun	laundry
-休憩	きゅうけい	noun	rest; break
-借用	しゃくよう	noun	borrowing; loan (of an item)
-行列	ぎょうれつ	noun	queue; line; procession
-整列	せいれつ	noun	lining up; standing in a row
-収集	しゅうしゅう	noun	collecting; collection
-同伴	どうはん	noun	accompaniment; going together
-寝坊	ねぼう	noun	oversleeping; late riser
-塗装	とそう	noun	coating; painting (a surface)
-開封	かいふう	noun	opening (a letter/package)
-展示	てんじ	noun	exhibition; display
-出席	しゅっせき	noun	attendance; presence
-欠席	けっせき	noun	absence (from class/meeting)
-起床	きしょう	noun	getting up; rising
-恩返し	おんがえし	noun	repaying a kindness
-抽選	ちゅうせん	noun	lottery; drawing lots
-操作	そうさ	noun	operation; handling; manipulation
-整理	せいり	noun	organizing; tidying; sorting
+kanji	hiragana	type	english	breakdown
+外出	がいしゅつ	noun	going out; outing	[外: outside | 出: go out/exit]
+掃除	そうじ	noun	cleaning	[掃: sweep | 除: remove/exclude]
+洗濯	せんたく	noun	laundry	[洗: wash | 濯: rinse/wash]
+休憩	きゅうけい	noun	rest; break	[休: rest | 憩: rest/relax]
+借用	しゃくよう	noun	borrowing; loan (of an item)	[借: borrow | 用: use]
+行列	ぎょうれつ	noun	queue; line; procession	[行: go/line | 列: row/line]
+整列	せいれつ	noun	lining up; standing in a row	[整: arrange/order | 列: row/line]
+収集	しゅうしゅう	noun	collecting; collection	[収: collect/take in | 集: gather]
+同伴	どうはん	noun	accompaniment; going together	[同: same/together | 伴: accompany]
+寝坊	ねぼう	noun	oversleeping; late riser	[寝: sleep | 坊: lad/-er (familiar suffix)]
+塗装	とそう	noun	coating; painting (a surface)	[塗: paint/coat | 装: dress/equip]
+開封	かいふう	noun	opening (a letter/package)	[開: open | 封: seal]
+展示	てんじ	noun	exhibition; display	[展: unfold/display | 示: show/indicate]
+出席	しゅっせき	noun	attendance; presence	[出: go out/attend | 席: seat]
+欠席	けっせき	noun	absence (from class/meeting)	[欠: lack/absence | 席: seat]
+起床	きしょう	noun	getting up; rising	[起: rise/wake | 床: bed/floor]
+恩返し	おんがえし	noun	repaying a kindness	[恩: kindness/debt | 返: return]
+抽選	ちゅうせん	noun	lottery; drawing lots	[抽: draw/extract | 選: choose/select]
+操作	そうさ	noun	operation; handling; manipulation	[操: manipulate/handle | 作: make/do]
+整理	せいり	noun	organizing; tidying; sorting	[整: arrange/order | 理: order/reason]
 旅	たび	noun	trip; journey; travel
-暇つぶし	ひまつぶし	noun	killing time; pastime
-応募	おうぼ	noun	application; entry; subscription
-宿泊	しゅくはく	noun	lodging; staying overnight
-入浴	にゅうよく	noun	bathing; taking a bath
-自炊	じすい	noun	cooking for oneself
-募集	ぼしゅう	noun	recruitment; invitation to apply
-募金	ぼきん	noun	fundraising; collecting donations
-保留	ほりゅう	noun	reservation; putting on hold
-研磨	けんま	noun	polishing; grinding
-稼働	かどう	noun	operation (of a machine); being in use
-関与	かんよ	noun	involvement; participation
-署名	しょめい	noun	signature; signing
-散策	さんさく	noun	stroll; walk
-貯蔵	ちょぞう	noun	storage; preservation
-訪問	ほうもん	noun	visit; call
-迎え	むかえ	noun	meeting; greeting; picking up
-郵便	ゆうびん	noun	mail; postal service
-郵送	ゆうそう	noun	mailing; sending by post
-鍛冶	かじ	noun	blacksmithing; metalwork
-志願	しがん	noun	application; volunteering
-先駆け	さきがけ	noun	pioneer; forerunner
-駐在	ちゅうざい	noun	residence; being stationed
-帰宅	きたく	noun	returning home
-憩い	いこい	noun	rest; relaxation; repose
-交換	こうかん	noun	exchange; swap
-換気	かんき	noun	ventilation
-活動	かつどう	noun	activity; action
-派遣	はけん	noun	dispatch; temp staffing
-収納	しゅうのう	noun	storage; putting away
-脱出	だっしゅつ	noun	escape; breakout
-接触	せっしょく	noun	contact; touching
-遅刻	ちこく	noun	being late; tardiness
-配達	はいたつ	noun	delivery
+暇つぶし	ひまつぶし	noun	killing time; pastime	[暇: free time/leisure]
+応募	おうぼ	noun	application; entry; subscription	[応: respond | 募: recruit/solicit]
+宿泊	しゅくはく	noun	lodging; staying overnight	[宿: lodge/inn | 泊: stay overnight]
+入浴	にゅうよく	noun	bathing; taking a bath	[入: enter | 浴: bathe]
+自炊	じすい	noun	cooking for oneself	[自: self | 炊: cook (rice)]
+募集	ぼしゅう	noun	recruitment; invitation to apply	[募: recruit/solicit | 集: gather]
+募金	ぼきん	noun	fundraising; collecting donations	[募: recruit/solicit | 金: money]
+保留	ほりゅう	noun	reservation; putting on hold	[保: keep/preserve | 留: detain/retain]
+研磨	けんま	noun	polishing; grinding	[研: sharpen/polish | 磨: polish/grind]
+稼働	かどう	noun	operation (of a machine); being in use	[稼: earn/work | 働: work]
+関与	かんよ	noun	involvement; participation	[関: relate/concern | 与: give/take part]
+署名	しょめい	noun	signature; signing	[署: sign/office | 名: name]
+散策	さんさく	noun	stroll; walk	[散: stroll/scatter | 策: scheme/plan]
+貯蔵	ちょぞう	noun	storage; preservation	[貯: store/save | 蔵: storehouse]
+訪問	ほうもん	noun	visit; call	[訪: visit | 問: ask/inquire]
+迎え	むかえ	noun	meeting; greeting; picking up	[迎: welcome/greet]
+郵便	ゆうびん	noun	mail; postal service	[郵: post/mail | 便: convenience/service]
+郵送	ゆうそう	noun	mailing; sending by post	[郵: post/mail | 送: send]
+鍛冶	かじ	noun	blacksmithing; metalwork	[鍛: forge/temper | 冶: smelt/cast]
+志願	しがん	noun	application; volunteering	[志: aspire/will | 願: wish/request]
+先駆け	さきがけ	noun	pioneer; forerunner	[先: ahead/before | 駆: drive/rush]
+駐在	ちゅうざい	noun	residence; being stationed	[駐: stationed/park | 在: exist/be located]
+帰宅	きたく	noun	returning home	[帰: return | 宅: home/residence]
+憩い	いこい	noun	rest; relaxation; repose	[憩: rest/relax]
+交換	こうかん	noun	exchange; swap	[交: exchange/mix | 換: exchange/swap]
+換気	かんき	noun	ventilation	[換: exchange/swap | 気: air/spirit]
+活動	かつどう	noun	activity; action	[活: live/active | 動: move]
+派遣	はけん	noun	dispatch; temp staffing	[派: faction/dispatch | 遣: send/dispatch]
+収納	しゅうのう	noun	storage; putting away	[収: take in/collect | 納: store/put away]
+脱出	だっしゅつ	noun	escape; breakout	[脱: escape/remove | 出: go out]
+接触	せっしょく	noun	contact; touching	[接: touch/contact | 触: touch/feel]
+遅刻	ちこく	noun	being late; tardiness	[遅: late/slow | 刻: time/carve]
+配達	はいたつ	noun	delivery	[配: distribute/deliver | 達: reach/attain]

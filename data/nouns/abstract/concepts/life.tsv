@@ -1,66 +1,66 @@
 # label: Concepts / Life & Events
 # Life, existence, occasions, and events — including crises, disasters, and the situations/states they create.
-kanji	hiragana	type	english
+kanji	hiragana	type	english	breakdown
 命	いのち	noun	life
-困難	こんなん	noun	difficulty; hardship
-進路	しんろ	noun	course; future path
-人生	じんせい	noun	life
-危機	きき	noun	crisis
-事件	じけん	noun	incident; case (often criminal)
-世界	せかい	noun	world
-環境	かんきょう	noun	environment
-出生	しゅっしょう	noun	birth; being born (formal)
-永久	えいきゅう	noun	eternity; permanence
-欠乏	けつぼう	noun	deficiency; shortage
-停電	ていでん	noun	power outage; blackout
-反則	はんそく	noun	foul; rule violation
-苦労	くろう	noun	hardship; trouble; toil
-存在	そんざい	noun	existence; being
-滞在	たいざい	noun	stay; sojourn
-契機	けいき	noun	opportunity; turning point
-生存	せいぞん	noun	survival; existence
-孤立	こりつ	noun	isolation; being alone
-開幕	かいまく	noun	opening (of an event/season)
-忘年会	ぼうねんかい	noun	year-end party
-負担	ふたん	noun	burden; load
-青春	せいしゅん	noun	youth; springtime of life
-暮らし	くらし	noun	living; livelihood; daily life
-永遠	えいえん	noun	eternity; permanence
-永住	えいじゅう	noun	permanent residence
-混雑	こんざつ	noun	congestion; crowding
-混乱	こんらん	noun	confusion; disorder
-満員	まんいん	noun	full capacity; full house
-起源	きげん	noun	origin; beginning
-絶滅	ぜつめつ	noun	extinction
-留守	るす	noun	absence (from home); being out
-祝福	しゅくふく	noun	blessing
-お祝い	おいわい	noun	celebration; congratulatory gift
-落とし穴	おとしあな	noun	pitfall; trap
-緊急	きんきゅう	noun	emergency; urgency
-緊迫	きんぱく	noun	tension; strain
-侵入	しんにゅう	noun	intrusion; invasion; trespass
-被害	ひがい	noun	damage; harm
-障害	しょうがい	noun	obstacle; disability; disorder
-奇跡	きせき	noun	miracle
-歓迎	かんげい	noun	welcome; reception
-被災	ひさい	noun	suffering a disaster
-故障	こしょう	noun	breakdown; malfunction
-災害	さいがい	noun	disaster; calamity
-火災	かさい	noun	fire; conflagration
-災難	さいなん	noun	calamity; misfortune
-鯉のぼり	こいのぼり	noun	carp streamer (Children's Day)
-充実	じゅうじつ	noun	fullness; being complete/substantial
-悪夢	あくむ	noun	nightmare
-岐路	きろ	noun	crossroads; turning point
-幸運	こううん	noun	good luck; fortune
-招待	しょうたい	noun	invitation
-油断	ゆだん	noun	carelessness; negligence
-生活	せいかつ	noun	daily life; living
-状態	じょうたい	noun	state; condition
-状況	じょうきょう	noun	situation; circumstances
-登場	とうじょう	noun	appearance; entry (on stage)
-余裕	よゆう	noun	surplus; room; composure
-辛抱	しんぼう	noun	patience; endurance
-非常	ひじょう	noun	emergency; extraordinary
-体験	たいけん	noun	experience; firsthand experience
-事態	じたい	noun	situation; state of affairs
+困難	こんなん	noun	difficulty; hardship	[困: be troubled | 難: difficult/hardship]
+進路	しんろ	noun	course; future path	[進: advance | 路: road/path]
+人生	じんせい	noun	life	[人: person | 生: life/live]
+危機	きき	noun	crisis	[危: danger | 機: opportunity/moment]
+事件	じけん	noun	incident; case (often criminal)	[事: matter/affair | 件: matter/case]
+世界	せかい	noun	world	[世: world/era | 界: boundary/world]
+環境	かんきょう	noun	environment	[環: ring/surround | 境: boundary/situation]
+出生	しゅっしょう	noun	birth; being born (formal)	[出: come out | 生: birth/live]
+永久	えいきゅう	noun	eternity; permanence	[永: eternal | 久: long time]
+欠乏	けつぼう	noun	deficiency; shortage	[欠: lack | 乏: scarce/meager]
+停電	ていでん	noun	power outage; blackout	[停: stop | 電: electricity]
+反則	はんそく	noun	foul; rule violation	[反: against/violate | 則: rule]
+苦労	くろう	noun	hardship; trouble; toil	[苦: suffering/bitter | 労: labor/toil]
+存在	そんざい	noun	existence; being	[存: exist | 在: exist/be located]
+滞在	たいざい	noun	stay; sojourn	[滞: stay/stagnate | 在: be located]
+契機	けいき	noun	opportunity; turning point	[契: pledge/bond | 機: opportunity/moment]
+生存	せいぞん	noun	survival; existence	[生: live | 存: exist]
+孤立	こりつ	noun	isolation; being alone	[孤: solitary/alone | 立: stand]
+開幕	かいまく	noun	opening (of an event/season)	[開: open | 幕: curtain/act]
+忘年会	ぼうねんかい	noun	year-end party	[忘: forget | 年: year | 会: gathering/meeting]
+負担	ふたん	noun	burden; load	[負: bear/owe | 担: carry/bear]
+青春	せいしゅん	noun	youth; springtime of life	[青: blue/green/young | 春: spring]
+暮らし	くらし	noun	living; livelihood; daily life	[暮: live/spend (time)]
+永遠	えいえん	noun	eternity; permanence	[永: eternal | 遠: distant/far]
+永住	えいじゅう	noun	permanent residence	[永: eternal | 住: reside/live]
+混雑	こんざつ	noun	congestion; crowding	[混: mix | 雑: miscellaneous/crowd]
+混乱	こんらん	noun	confusion; disorder	[混: mix | 乱: disorder/chaos]
+満員	まんいん	noun	full capacity; full house	[満: full | 員: member/personnel]
+起源	きげん	noun	origin; beginning	[起: rise/begin | 源: source/origin]
+絶滅	ぜつめつ	noun	extinction	[絶: sever/extinct | 滅: perish/destroy]
+留守	るす	noun	absence (from home); being out	[留: detain/stay | 守: protect/guard]
+祝福	しゅくふく	noun	blessing	[祝: celebrate | 福: fortune/blessing]
+お祝い	おいわい	noun	celebration; congratulatory gift	[祝: celebrate]
+落とし穴	おとしあな	noun	pitfall; trap	[落: fall/drop | 穴: hole]
+緊急	きんきゅう	noun	emergency; urgency	[緊: tense/tight | 急: urgent/hurry]
+緊迫	きんぱく	noun	tension; strain	[緊: tense/tight | 迫: press/urge]
+侵入	しんにゅう	noun	intrusion; invasion; trespass	[侵: invade | 入: enter]
+被害	ひがい	noun	damage; harm	[被: suffer/receive | 害: harm/damage]
+障害	しょうがい	noun	obstacle; disability; disorder	[障: hinder/obstruct | 害: harm/damage]
+奇跡	きせき	noun	miracle	[奇: strange/wondrous | 跡: trace/mark]
+歓迎	かんげい	noun	welcome; reception	[歓: joy/delight | 迎: welcome/greet]
+被災	ひさい	noun	suffering a disaster	[被: suffer/receive | 災: disaster]
+故障	こしょう	noun	breakdown; malfunction	[故: cause/accident | 障: hinder/obstruct]
+災害	さいがい	noun	disaster; calamity	[災: disaster | 害: harm/damage]
+火災	かさい	noun	fire; conflagration	[火: fire | 災: disaster]
+災難	さいなん	noun	calamity; misfortune	[災: disaster | 難: difficulty/hardship]
+鯉のぼり	こいのぼり	noun	carp streamer (Children's Day)	[鯉: carp]
+充実	じゅうじつ	noun	fullness; being complete/substantial	[充: fill/allot | 実: fruit/substance]
+悪夢	あくむ	noun	nightmare	[悪: bad/evil | 夢: dream]
+岐路	きろ	noun	crossroads; turning point	[岐: fork/branch | 路: road/path]
+幸運	こううん	noun	good luck; fortune	[幸: happiness/fortune | 運: luck/carry]
+招待	しょうたい	noun	invitation	[招: invite/beckon | 待: wait/treat]
+油断	ゆだん	noun	carelessness; negligence	[油: oil | 断: cut off/decide]
+生活	せいかつ	noun	daily life; living	[生: live | 活: live/active]
+状態	じょうたい	noun	state; condition	[状: condition/form | 態: state/attitude]
+状況	じょうきょう	noun	situation; circumstances	[状: condition/form | 況: situation/condition]
+登場	とうじょう	noun	appearance; entry (on stage)	[登: climb/appear | 場: place/scene]
+余裕	よゆう	noun	surplus; room; composure	[余: surplus/extra | 裕: abundant/affluent]
+辛抱	しんぼう	noun	patience; endurance	[辛: bitter/hard | 抱: embrace/hold]
+非常	ひじょう	noun	emergency; extraordinary	[非: non-/not | 常: usual/normal]
+体験	たいけん	noun	experience; firsthand experience	[体: body | 験: test/experience]
+事態	じたい	noun	situation; state of affairs	[事: matter/affair | 態: state/condition]
