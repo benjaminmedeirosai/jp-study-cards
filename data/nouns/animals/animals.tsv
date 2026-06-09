@@ -1,4 +1,4 @@
-kanji	hiragana	type	english
+kanji	hiragana	type	english	breakdown
 犬	いぬ	noun	dog
 猫	ねこ	noun	cat
 鳥	とり	noun	bird
@@ -6,52 +6,52 @@ kanji	hiragana	type	english
 牛	うし	noun	cow; cattle
 馬	うま	noun	horse
 羊	ひつじ	noun	sheep
-蜥蜴	とかげ	noun	lizard
+蜥蜴	とかげ	noun	lizard	[蜥: lizard | 蜴: lizard]
 亀	かめ	noun	turtle; tortoise
 猿	さる	noun	monkey
 狐	きつね	noun	fox
 蛇	へび	noun	snake
 鳩	はと	noun	pigeon; dove
 豚	ぶた	noun	pig
-山羊	やぎ	noun	goat
+山羊	やぎ	noun	goat	[山: mountain | 羊: sheep]
 鶏	にわとり	noun	chicken
 兎	うさぎ	noun	rabbit
 蛙	かえる	noun	frog
 熊	くま	noun	bear
 虎	とら	noun	tiger
-獅子	しし	noun	lion
+獅子	しし	noun	lion	[獅: lion | 子: child/small]
 象	ぞう	noun	elephant
 鹿	しか	noun	deer
 狼	おおかみ	noun	wolf
 鼠	ねずみ	noun	mouse; rat
-子犬	こいぬ	noun	puppy
-番犬	ばんけん	noun	guard dog
-子猫	こねこ	noun	kitten
-野良猫	のらねこ	noun	stray cat
-小鳥	ことり	noun	small bird
-金魚	きんぎょ	noun	goldfish
-乳牛	にゅうぎゅう	noun	dairy cow
-子豚	こぶた	noun	piglet
-子羊	こひつじ	noun	lamb
-白兎	しろうさぎ	noun	white rabbit
-海亀	うみがめ	noun	sea turtle
-雨蛙	あまがえる	noun	tree frog
-白鼠	しろねずみ	noun	white mouse
-黒豹	くろひょう	noun	black panther
-人食い鮫	ひとくいざめ	noun	man-eating shark
-車海老	くるまえび	noun	kuruma prawn
-毛蟹	けがに	noun	hairy crab
-毒蛇	どくじゃ	noun	venomous snake
-蟻地獄	ありじごく	noun	antlion
-胡蝶	こちょう	noun	butterfly (poetic)
-伝書鳩	でんしょばと	noun	carrier pigeon
+子犬	こいぬ	noun	puppy	[子: child/young | 犬: dog]
+番犬	ばんけん	noun	guard dog	[番: guard/watch | 犬: dog]
+子猫	こねこ	noun	kitten	[子: child/young | 猫: cat]
+野良猫	のらねこ	noun	stray cat	[野: field/wild | 良: good | 猫: cat]
+小鳥	ことり	noun	small bird	[小: small | 鳥: bird]
+金魚	きんぎょ	noun	goldfish	[金: gold | 魚: fish]
+乳牛	にゅうぎゅう	noun	dairy cow	[乳: milk | 牛: cow]
+子豚	こぶた	noun	piglet	[子: child/young | 豚: pig]
+子羊	こひつじ	noun	lamb	[子: child/young | 羊: sheep]
+白兎	しろうさぎ	noun	white rabbit	[白: white | 兎: rabbit]
+海亀	うみがめ	noun	sea turtle	[海: sea | 亀: turtle]
+雨蛙	あまがえる	noun	tree frog	[雨: rain | 蛙: frog]
+白鼠	しろねずみ	noun	white mouse	[白: white | 鼠: mouse/rat]
+黒豹	くろひょう	noun	black panther	[黒: black | 豹: panther/leopard]
+人食い鮫	ひとくいざめ	noun	man-eating shark	[人: person | 食: eat | 鮫: shark]
+車海老	くるまえび	noun	kuruma prawn	[車: wheel/vehicle | 海: sea | 老: old]
+毛蟹	けがに	noun	hairy crab	[毛: hair/fur | 蟹: crab]
+毒蛇	どくじゃ	noun	venomous snake	[毒: poison | 蛇: snake]
+蟻地獄	ありじごく	noun	antlion	[蟻: ant | 地: ground | 獄: prison/hell]
+胡蝶	こちょう	noun	butterfly (poetic)	[胡: foreign/reckless | 蝶: butterfly]
+伝書鳩	でんしょばと	noun	carrier pigeon	[伝: convey/transmit | 書: write/letter | 鳩: pigeon]
 豹	ひょう	noun	leopard
-駱駝	らくだ	noun	camel
+駱駝	らくだ	noun	camel	[駱: camel | 駝: camel]
 イルカ	イルカ	noun	dolphin
 鯨	くじら	noun	whale
 鮫	さめ	noun	shark
 蛸	たこ	noun	octopus
-海老	えび	noun	shrimp
+海老	えび	noun	shrimp	[海: sea | 老: old]
 蟹	かに	noun	crab
 蜂	はち	noun	bee
 蟻	あり	noun	ant
@@ -60,18 +60,18 @@ kanji	hiragana	type	english
 蚊	か	noun	mosquito
 梟	ふくろう	noun	owl
 鷹	たか	noun	hawk
-孔雀	くじゃく	noun	peacock
+孔雀	くじゃく	noun	peacock	[孔: hole/cavity | 雀: sparrow]
 トラ	トラ	noun	tiger
-甲羅	こうら	noun	shell; carapace
+甲羅	こうら	noun	shell; carapace	[甲: shell/armor | 羅: gauze/spread]
 鴨	かも	noun	duck
 鯉	こい	noun	carp
 雀	すずめ	noun	sparrow
 黴	かび	noun	mold; mildew
-猟犬	りょうけん	noun	hunting dog
-雀蜂	すずめばち	noun	hornet
+猟犬	りょうけん	noun	hunting dog	[猟: hunting | 犬: dog]
+雀蜂	すずめばち	noun	hornet	[雀: sparrow | 蜂: bee]
 巣	す	noun	nest
-海月	くらげ	noun	jellyfish
+海月	くらげ	noun	jellyfish	[海: sea | 月: moon]
 虫	むし	noun	insect; bug; worm
-柴犬	しばいぬ	noun	Shiba Inu (dog breed)
-昆虫	こんちゅう	noun	insect
+柴犬	しばいぬ	noun	Shiba Inu (dog breed)	[柴: brushwood | 犬: dog]
+昆虫	こんちゅう	noun	insect	[昆: insect | 虫: insect/bug]
 蝶々	ちょうちょう	noun	butterfly

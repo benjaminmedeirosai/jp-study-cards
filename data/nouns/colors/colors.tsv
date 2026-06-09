@@ -1,42 +1,42 @@
 # Colors (Nouns / Colors).
 # Auto-grouped during the nouns reorg; refine membership as needed.
-kanji	hiragana	type	english
+kanji	hiragana	type	english	breakdown
 金	かね	noun	money; gold
 紺	こん	noun	navy blue; dark blue
 白	しろ	noun	white
 赤	あか	noun	red
 青	あお	noun	blue
-黄色	きいろ	noun	yellow
+黄色	きいろ	noun	yellow	[黄: yellow | 色: color]
 緑	みどり	noun	green
 黒	くろ	noun	black
-灰色	はいいろ	noun	gray
-茶色	ちゃいろ	noun	brown
+灰色	はいいろ	noun	gray	[灰: ash/gray | 色: color]
+茶色	ちゃいろ	noun	brown	[茶: tea/brown | 色: color]
 紫	むらさき	noun	purple
-桃色	ももいろ	noun	peach pink
-金色	きんいろ	noun	gold
-銀色	ぎんいろ	noun	silver
-黄金色	こがねいろ	noun	golden
-黄緑	きみどり	noun	yellow-green
-空色	そらいろ	noun	sky blue
-紅色	べにいろ	noun	crimson
-紺色	こんいろ	noun	navy blue
-山吹色	やまぶきいろ	noun	golden yellow
-若草色	わかくさいろ	noun	fresh green
-朱色	しゅいろ	noun	vermilion
-象牙色	ぞうげいろ	noun	ivory
-深緑	ふかみどり	noun	deep green
-水色	みずいろ	noun	light blue
-青紫	あおむらさき	noun	bluish purple
-青緑	あおみどり	noun	blue-green
-赤紫	あかむらさき	noun	reddish purple
-銅色	どういろ	noun	copper-colored
-虹色	にじいろ	noun	rainbow-colored
-乳白色	にゅうはくしょく	noun	milky white
-濃灰色	こいはいいろ	noun	dark gray
-薄灰色	うすはいいろ	noun	light gray
-肌色	はだいろ	noun	skin color
-萌黄色	もえぎいろ	noun	yellow-green
-藍色	あいいろ	noun	indigo
+桃色	ももいろ	noun	peach pink	[桃: peach | 色: color]
+金色	きんいろ	noun	gold	[金: gold | 色: color]
+銀色	ぎんいろ	noun	silver	[銀: silver | 色: color]
+黄金色	こがねいろ	noun	golden	[黄: yellow | 金: gold | 色: color]
+黄緑	きみどり	noun	yellow-green	[黄: yellow | 緑: green]
+空色	そらいろ	noun	sky blue	[空: sky | 色: color]
+紅色	べにいろ	noun	crimson	[紅: crimson/deep red | 色: color]
+紺色	こんいろ	noun	navy blue	[紺: navy blue | 色: color]
+山吹色	やまぶきいろ	noun	golden yellow	[山: mountain | 吹: blow | 色: color]
+若草色	わかくさいろ	noun	fresh green	[若: young | 草: grass | 色: color]
+朱色	しゅいろ	noun	vermilion	[朱: vermilion/cinnabar | 色: color]
+象牙色	ぞうげいろ	noun	ivory	[象: elephant | 牙: tusk/fang | 色: color]
+深緑	ふかみどり	noun	deep green	[深: deep | 緑: green]
+水色	みずいろ	noun	light blue	[水: water | 色: color]
+青紫	あおむらさき	noun	bluish purple	[青: blue | 紫: purple]
+青緑	あおみどり	noun	blue-green	[青: blue | 緑: green]
+赤紫	あかむらさき	noun	reddish purple	[赤: red | 紫: purple]
+銅色	どういろ	noun	copper-colored	[銅: copper | 色: color]
+虹色	にじいろ	noun	rainbow-colored	[虹: rainbow | 色: color]
+乳白色	にゅうはくしょく	noun	milky white	[乳: milk | 白: white | 色: color]
+濃灰色	こいはいいろ	noun	dark gray	[濃: thick/deep | 灰: ash/gray | 色: color]
+薄灰色	うすはいいろ	noun	light gray	[薄: thin/light | 灰: ash/gray | 色: color]
+肌色	はだいろ	noun	skin color	[肌: skin | 色: color]
+萌黄色	もえぎいろ	noun	yellow-green	[萌: sprout/bud | 黄: yellow | 色: color]
+藍色	あいいろ	noun	indigo	[藍: indigo | 色: color]
 色	いろ	noun	color
 藍	あい	noun	indigo
-濃紺	のうこん	noun	dark navy blue
+濃紺	のうこん	noun	dark navy blue	[濃: thick/deep | 紺: navy blue]

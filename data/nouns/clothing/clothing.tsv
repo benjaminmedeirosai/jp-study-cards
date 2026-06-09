@@ -1,18 +1,18 @@
 # Clothing (Nouns / Clothing).
 # Auto-grouped during the nouns reorg; refine membership as needed.
-kanji	hiragana	type	english
+kanji	hiragana	type	english	breakdown
 くつ	くつ	noun	shoes
 靴	くつ	noun	shoes
 服	ふく	noun	clothes
-上着	うわぎ	noun	jacket; outerwear
-帽子	ぼうし	noun	hat; cap
-制服	せいふく	noun	uniform
-草履	ぞうり	noun	zori; traditional sandals
-洋服	ようふく	noun	Western-style clothes
-木綿	もめん	noun	cotton (fabric)
-靴下	くつした	noun	socks
-革靴	かわぐつ	noun	leather shoes
-長靴	ながぐつ	noun	boots; rain boots
+上着	うわぎ	noun	jacket; outerwear	[上: upper/outer | 着: wear/clothing]
+帽子	ぼうし	noun	hat; cap	[帽: hat/cap | 子: child/small item]
+制服	せいふく	noun	uniform	[制: control/system | 服: clothes]
+草履	ぞうり	noun	zori; traditional sandals	[草: grass/straw | 履: footwear/wear on feet]
+洋服	ようふく	noun	Western-style clothes	[洋: Western/ocean | 服: clothes]
+木綿	もめん	noun	cotton (fabric)	[木: tree/wood | 綿: cotton]
+靴下	くつした	noun	socks	[靴: shoe | 下: under/below]
+革靴	かわぐつ	noun	leather shoes	[革: leather | 靴: shoe]
+長靴	ながぐつ	noun	boots; rain boots	[長: long | 靴: shoe]
 帯	おび	noun	obi; sash; belt
-衣服	いふく	noun	clothing; clothes
-浴衣	ゆかた	noun	yukata; light cotton kimono
+衣服	いふく	noun	clothing; clothes	[衣: garment/clothing | 服: clothes]
+浴衣	ゆかた	noun	yukata; light cotton kimono	[浴: bathe | 衣: garment]

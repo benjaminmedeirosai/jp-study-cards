@@ -1,18 +1,18 @@
-kanji	hiragana	type	english
-焼き鳥	やきとり	noun	grilled chicken; yakitori
-競馬	けいば	noun	horse racing
-馬車	ばしゃ	noun	horse-drawn carriage
-羊毛	ようもう	noun	wool
-養鶏	ようけい	noun	poultry farming
-猿山	さるやま	noun	monkey hill; zoo monkey enclosure
-虎柄	とらがら	noun	tiger pattern
-獅子舞	ししまい	noun	lion dance
-鹿肉	しかにく	noun	venison
-捕鯨	ほげい	noun	whaling
-蚊取り線香	かとりせんこう	noun	mosquito coil
-鷹狩り	たかがり	noun	falconry
-稚魚	ちぎょ	noun	fry; young fish
-害虫	がいちゅう	noun	harmful insect; pest
+kanji	hiragana	type	english	breakdown
+焼き鳥	やきとり	noun	grilled chicken; yakitori	[焼: grill/burn | 鳥: bird/chicken]
+競馬	けいば	noun	horse racing	[競: compete/race | 馬: horse]
+馬車	ばしゃ	noun	horse-drawn carriage	[馬: horse | 車: cart/vehicle]
+羊毛	ようもう	noun	wool	[羊: sheep | 毛: hair/wool]
+養鶏	ようけい	noun	poultry farming	[養: raise/rear | 鶏: chicken]
+猿山	さるやま	noun	monkey hill; zoo monkey enclosure	[猿: monkey | 山: mountain]
+虎柄	とらがら	noun	tiger pattern	[虎: tiger | 柄: pattern/handle]
+獅子舞	ししまい	noun	lion dance	[獅: lion | 子: child/small | 舞: dance]
+鹿肉	しかにく	noun	venison	[鹿: deer | 肉: meat/flesh]
+捕鯨	ほげい	noun	whaling	[捕: catch/capture | 鯨: whale]
+蚊取り線香	かとりせんこう	noun	mosquito coil	[蚊: mosquito | 取: take/catch | 線: line/thread | 香: incense/fragrance]
+鷹狩り	たかがり	noun	falconry	[鷹: hawk | 狩: hunt]
+稚魚	ちぎょ	noun	fry; young fish	[稚: young/immature | 魚: fish]
+害虫	がいちゅう	noun	harmful insect; pest	[害: harm/damage | 虫: insect/bug]
 雄	おす	noun	male (animal)
 鱗	うろこ	noun	scale (of a fish/reptile)
-尻尾	しっぽ	noun	tail
+尻尾	しっぽ	noun	tail	[尻: rear/buttocks | 尾: tail]

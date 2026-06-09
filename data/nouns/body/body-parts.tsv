@@ -1,16 +1,16 @@
-kanji	hiragana	type	english
+kanji	hiragana	type	english	breakdown
 額	ひたい	noun	forehead
 顎	あご	noun	jaw; chin
 頬	ほお	noun	cheek
 眉	まゆ	noun	eyebrow
-まつ毛	まつげ	noun	eyelash
+まつ毛	まつげ	noun	eyelash	[毛: hair]
 肘	ひじ	noun	elbow
 膝	ひざ	noun	knee
 踵	かかと	noun	heel
 爪	つめ	noun	nail; claw
-手首	てくび	noun	wrist
-足首	あしくび	noun	ankle
-背中	せなか	noun	back
+手首	てくび	noun	wrist	[手: hand | 首: neck]
+足首	あしくび	noun	ankle	[足: foot/leg | 首: neck]
+背中	せなか	noun	back	[背: back | 中: middle/inside]
 口	くち	noun	mouth
 耳	みみ	noun	ear
 首	くび	noun	neck
@@ -19,7 +19,7 @@ kanji	hiragana	type	english
 目	め	noun	eye; (counter) -th (place)
 血	ち	noun	blood
 腕	うで	noun	arm; (figurative) skill
-目玉	めだま	noun	eyeball
+目玉	めだま	noun	eyeball	[目: eye | 玉: ball/jewel]
 拳	こぶし	noun	fist
 のど	のど	noun	throat
 胸	むね	noun	chest
@@ -28,28 +28,28 @@ kanji	hiragana	type	english
 手	て	noun	hand; arm
 体	からだ	noun	body
 背	せ	noun	back
-指紋	しもん	noun	fingerprint
+指紋	しもん	noun	fingerprint	[指: finger | 紋: crest/pattern]
 掌	てのひら	noun	palm (of the hand)
-爪先	つまさき	noun	tiptoe; toes
+爪先	つまさき	noun	tiptoe; toes	[爪: nail/claw | 先: tip/ahead]
 牙	きば	noun	fang; tusk
-皮膚	ひふ	noun	skin
-眉毛	まゆげ	noun	eyebrow
-眉間	みけん	noun	space between the eyebrows; brow
-関節	かんせつ	noun	joint (of the body)
+皮膚	ひふ	noun	skin	[皮: skin/hide | 膚: skin]
+眉毛	まゆげ	noun	eyebrow	[眉: eyebrow | 毛: hair]
+眉間	みけん	noun	space between the eyebrows; brow	[眉: eyebrow | 間: interval/space]
+関節	かんせつ	noun	joint (of the body)	[関: connection/barrier | 節: joint/node]
 歯	は	noun	tooth
 肌	はだ	noun	skin
-素肌	すはだ	noun	bare skin
-鳥肌	とりはだ	noun	goosebumps
-四肢	しし	noun	the four limbs
-胸元	むなもと	noun	chest; the bosom
-体臭	たいしゅう	noun	body odor
+素肌	すはだ	noun	bare skin	[素: bare/plain | 肌: skin]
+鳥肌	とりはだ	noun	goosebumps	[鳥: bird | 肌: skin]
+四肢	しし	noun	the four limbs	[四: four | 肢: limb]
+胸元	むなもと	noun	chest; the bosom	[胸: chest | 元: base/origin]
+体臭	たいしゅう	noun	body odor	[体: body | 臭: smell/odor]
 鼻	はな	noun	nose
 脳	のう	noun	brain
-器官	きかん	noun	organ (of the body)
+器官	きかん	noun	organ (of the body)	[器: vessel/organ | 官: office/organ]
 指	ゆび	noun	finger
-血管	けっかん	noun	blood vessel
+血管	けっかん	noun	blood vessel	[血: blood | 管: tube/pipe]
 尻	しり	noun	buttocks; bottom; rear
-目尻	めじり	noun	outer corner of the eye
-血液	けつえき	noun	blood
+目尻	めじり	noun	outer corner of the eye	[目: eye | 尻: rear/corner]
+血液	けつえき	noun	blood	[血: blood | 液: fluid/liquid]
 骨	ほね	noun	bone
-骨格	こっかく	noun	skeleton; frame; build
+骨格	こっかく	noun	skeleton; frame; build	[骨: bone | 格: frame/structure]
