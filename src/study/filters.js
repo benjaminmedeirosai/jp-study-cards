@@ -9,8 +9,9 @@
 import { loadState, saveState } from "./shared.js";
 
 const SESSION_KEY = "jp-study-cards-session-v1";
-const MIN_MS = 60_000;            // must study ≥ 1 min to be remembered
+const MIN_MS = 10_000;            // must study ≥ 10s to be remembered
 const MAX_MS = 2 * 60 * 60_000;   // cap a single session (guards stale/idle)
+const PROTECT_MS = 5 * 60_000;    // ≥ 5 min of study is protected from eviction
 export const MAX_HISTORY = 20;
 
 // ---------------------------------------------------------------------------
@@ -63,6 +64,9 @@ export function endSession() {
 }
 
 // Accumulate ms onto an existing entry (or add it), refresh recency, cap length.
+// Eviction when over capacity: drop the oldest entry studied under PROTECT_MS
+// first (low-value), and only fall back to plain FIFO once every remaining
+// entry is at/over the protect threshold.
 function upsert(arr, key, value, fields) {
   const now = Date.now();
   const existing = arr.find((e) => e[key] === value);
@@ -73,8 +77,13 @@ function upsert(arr, key, value, fields) {
   } else {
     arr.push({ ...fields, at: now });
   }
-  arr.sort((a, b) => b.at - a.at);
-  if (arr.length > MAX_HISTORY) arr.length = MAX_HISTORY;
+  while (arr.length > MAX_HISTORY) {
+    const weak = arr.filter((e) => (e.ms || 0) < PROTECT_MS);
+    const pool = weak.length ? weak : arr;
+    let victim = pool[0];
+    for (const e of pool) if (e.at < victim.at) victim = e;
+    arr.splice(arr.indexOf(victim), 1);
+  }
 }
 
 // ---------------------------------------------------------------------------
