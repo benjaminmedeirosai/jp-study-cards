@@ -1,0 +1,30 @@
+# Sentence patterns — productive grammar that attaches to a verb/noun/clause.
+# Belongs here: bound patterns shown with a 〜 placeholder (〜たい, 〜てしまう,
+# 〜べき, 〜ように) and core function words (だ, ている, という, ください).
+# Conjugation paradigms of a specific part of speech live in their own
+# *-conjugation decks; idiomatic set phrases go in expression/idioms.tsv.
+kanji	hiragana	type	english
+だ	だ	expression	plain copula — is; am; are
+〜たい	〜たい	expression	want to (do)
+〜たくない	〜たくない	expression	do not want to (do)
+〜ている	〜ている	expression	be doing; ongoing state/result
+〜てしまう	〜てしまう	expression	do completely; do (regrettably)
+〜てから	〜てから	expression	after doing
+〜たら	〜たら	expression	if; when (after it happens)
+〜と	〜と	expression	when; if (natural consequence)
+〜たことがある	〜たことがある	expression	have done before; have the experience of
+〜だった	〜だった	expression	was; were (plain past copula)
+〜という	〜という	expression	called; that says; the fact that
+〜ように	〜ように	expression	so that; in order to; like
+〜ないように	〜ないように	expression	so as not to; in order not to
+〜てください	〜てください	expression	please (do)
+〜ないでください	〜ないでください	expression	please do not (do)
+〜てはいけない	〜てはいけない	expression	must not (do)
+〜べき	〜べき	expression	should; ought to
+〜しかない	〜しかない	expression	there is nothing but; have no choice but
+〜せいだ	〜せいだ	expression	it is because of; to blame on
+〜よう	〜よう	expression	volitional — let's (do); intend to
+〜つもりだ	〜つもりだ	expression	intend to (do)
+〜ることが多い	〜ることがおおい	expression	often (do); it is often the case that
+〜のは〜だ	〜のは〜だ	expression	the one/thing that ... is ... (cleft)
+〜になってから	〜になってから	expression	after becoming

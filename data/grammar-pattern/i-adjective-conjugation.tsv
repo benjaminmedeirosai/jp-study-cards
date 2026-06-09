@@ -1,7 +1,8 @@
 # I-adjective conjugation — the 〜い inflection paradigm.
 # Belongs here: conjugated forms of an i-adjective — negative (〜くない), past
-# (〜かった), past-negative (〜くなかった). Dictionary forms stay in the i-adjective
-# vocab decks; type stays i-adjective since these are just inflections.
+# (〜かった), past-negative (〜くなかった), plus te-form/conditionals on 高い as a
+# fuller paradigm. Dictionary forms stay in the i-adjective vocab decks; type
+# stays i-adjective since these are just inflections.
 kanji	hiragana	type	english
 高くない	たかくない	i-adjective	not high/tall/expensive
 高かった	たかかった	i-adjective	was high/tall/expensive
@@ -15,3 +16,8 @@ kanji	hiragana	type	english
 古くない	ふるくない	i-adjective	not old
 古かった	ふるかった	i-adjective	was old
 古くなかった	ふるくなかった	i-adjective	was not old
+高くて	たかくて	i-adjective	high/expensive and… (te-form)
+高ければ	たかければ	i-adjective	if (it is) high/expensive (ば-conditional)
+高かったら	たかかったら	i-adjective	if it was high/expensive (たら-conditional)
+高くなければ	たかくなければ	i-adjective	if (it is) not high/expensive
+高くなかったら	たかくなかったら	i-adjective	if it was not high/expensive

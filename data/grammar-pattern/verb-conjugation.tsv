@@ -1,0 +1,48 @@
+# Verb conjugation — one representative paradigm per class, not a per-verb drill.
+# Belongs here: the inflected forms (negative, past, te-form, conditional,
+# imperative, volitional, potential, passive, causative) shown on 行く (godan),
+# 食べる (ichidan), and the two irregulars する / 来る. Dictionary forms stay in
+# the verbs/ decks; type reflects the verb's class.
+kanji	hiragana	type	english
+行かない	いかない	godan-verb	(godan) negative — do not go
+行った	いった	godan-verb	(godan) past — went
+行かなかった	いかなかった	godan-verb	(godan) past negative — did not go
+行って	いって	godan-verb	(godan) te-form — go and…; please go
+行けば	いけば	godan-verb	(godan) ば-conditional — if (one) goes
+行ったら	いったら	godan-verb	(godan) たら-conditional — when/if (one) goes
+行け	いけ	godan-verb	(godan) imperative — go!
+行こう	いこう	godan-verb	(godan) volitional — let's go
+行ける	いける	godan-verb	(godan) potential — can go
+行かれる	いかれる	godan-verb	(godan) passive — be gone (to)
+行かせる	いかせる	godan-verb	(godan) causative — make/let go
+食べない	たべない	ichidan-verb	(ichidan) negative — do not eat
+食べた	たべた	ichidan-verb	(ichidan) past — ate
+食べなかった	たべなかった	ichidan-verb	(ichidan) past negative — did not eat
+食べて	たべて	ichidan-verb	(ichidan) te-form — eat and…; please eat
+食べれば	たべれば	ichidan-verb	(ichidan) ば-conditional — if (one) eats
+食べたら	たべたら	ichidan-verb	(ichidan) たら-conditional — when/if (one) eats
+食べろ	たべろ	ichidan-verb	(ichidan) imperative — eat!
+食べよう	たべよう	ichidan-verb	(ichidan) volitional — let's eat
+食べられる	たべられる	ichidan-verb	(ichidan) potential/passive — can eat; be eaten
+食べさせる	たべさせる	ichidan-verb	(ichidan) causative — make/let eat
+しない	しない	irregular-verb	(する) negative — do not do
+した	した	irregular-verb	(する) past — did
+しなかった	しなかった	irregular-verb	(する) past negative — did not do
+して	して	irregular-verb	(する) te-form — do and…; please do
+すれば	すれば	irregular-verb	(する) ば-conditional — if (one) does
+したら	したら	irregular-verb	(する) たら-conditional — when/if (one) does
+しろ	しろ	irregular-verb	(する) imperative — do!
+しよう	しよう	irregular-verb	(する) volitional — let's do
+できる	できる	irregular-verb	(する) potential — can do
+される	される	irregular-verb	(する) passive — be done
+させる	させる	irregular-verb	(する) causative — make/let do
+来ない	こない	irregular-verb	(来る) negative — do not come
+来た	きた	irregular-verb	(来る) past — came
+来なかった	こなかった	irregular-verb	(来る) past negative — did not come
+来て	きて	irregular-verb	(来る) te-form — come and…; please come
+来れば	くれば	irregular-verb	(来る) ば-conditional — if (one) comes
+来たら	きたら	irregular-verb	(来る) たら-conditional — when/if (one) comes
+来い	こい	irregular-verb	(来る) imperative — come!
+来よう	こよう	irregular-verb	(来る) volitional — let's come
+来られる	こられる	irregular-verb	(来る) potential/passive — can come; be visited
+来させる	こさせる	irregular-verb	(来る) causative — make/let come

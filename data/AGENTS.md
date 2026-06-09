@@ -129,13 +129,39 @@ chunked `common-N.json` decks into themed TSVs. The pattern, in order:
 9. **Delete the old `.json` files** and run the bundler.
 
 Done so far: `na-adjective`, `morpheme`, `i-adjective`, `numeral`, `counter`,
-`proper-nouns`, `nouns` (full — all common-N.json classified into ~24 domains).
+`proper-nouns`, `nouns` (full — all common-N.json classified into ~24 domains),
+`verbs`, `adverb`, `particle`, `conjunction`, `expression`. **All legacy
+`common-N.json` decks are migrated — `data/` is TSV-only.**
 
-Grammar note for those last two: **numerals** (一, 百…) are a noun subclass (数詞)
+Grammar note for numeral/counter: **numerals** (一, 百…) are a noun subclass (数詞)
 but keep `type: numeral`; **counters** (本, 枚…) are technically suffixes (助数詞)
 but keep `type: counter`. The counter decks are one file per counter (`hon.tsv`,
 `nin.tsv`…), each 1–N with irregular readings spelled out (一本 いっぽん, 二十歳
 はたち…) — edit the TSVs directly like any other deck.
+
+### Verbs — grouped by conjugation class, not meaning
+
+Verbs keep their grammatical structure rather than being re-themed: godan split
+one file per dictionary ending (`godan/u.tsv`, `ku.tsv`…`ru.tsv`), all ichidan in
+`ichidan/ichidan.tsv`, する/来る/する-compounds in `irregular/irregular.tsv`.
+**Vocab decks hold dictionary forms only.** The source `common-N`/`*-ending`
+JSON was riddled with conjugation drills (行かない, 行った, 行こう, 行ける, 行かせる…);
+those were stripped. Surface form can't tell a volitional 行こう from the verb 思う,
+so the reliable filter is the **english gloss**: dictionary entries read `to …`;
+conjugations read `let's…/can…/be…/make-let…` and were dropped (keep the humble
+verbs 差し上げる/申し上げる and できる, which are real lexical items).
+
+### Conjugation & pattern decks live in `grammar-pattern/`
+
+Inflection paradigms are taught with **one representative word**, not a per-word
+drill: `verb-conjugation` (行く/食べる/する/来る), `i-adjective-conjugation` (高い…),
+`na-adjective-conjugation` (便利). Productive bound grammar (〜たい, 〜てしまう,
+〜べき, だ, ている…) lives in `sentence-patterns` using a `〜` placeholder, not the
+old `Vたら`/`ブイたら` notation. Onomatopoeia (擬音語/擬態語) consolidated into
+`adverb/onomatopoeia.tsv` (katakana, same form in both columns). The
+`descriptive-phrase` and `phrase-sentence` folders were dissolved — they were
+mostly number+counter combos (redundant with the counter decks) and a few set
+phrases that moved to `expression/idioms.tsv`.
 
 ## After any change
 

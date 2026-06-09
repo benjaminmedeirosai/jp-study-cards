@@ -603,96 +603,6 @@
       "path": "/data/proper-nouns/greek-mythology.tsv"
     },
     {
-      "id": "verbs/ichidan/common-1",
-      "label": "Ichidan Verbs 1",
-      "category": "Verbs / Ichidan",
-      "path": "/data/verbs/ichidan/common-1.json"
-    },
-    {
-      "id": "verbs/ichidan/common-2",
-      "label": "Ichidan Verbs 2",
-      "category": "Verbs / Ichidan",
-      "path": "/data/verbs/ichidan/common-2.json"
-    },
-    {
-      "id": "verbs/ichidan/common-3",
-      "label": "Ichidan Verbs 3",
-      "category": "Verbs / Ichidan",
-      "path": "/data/verbs/ichidan/common-3.json"
-    },
-    {
-      "id": "verbs/ichidan/common-4",
-      "label": "Ichidan Verbs 4",
-      "category": "Verbs / Ichidan",
-      "path": "/data/verbs/ichidan/common-4.json"
-    },
-    {
-      "id": "verbs/godan/u-ending",
-      "label": "Godan u ending",
-      "category": "Verbs / Godan",
-      "path": "/data/verbs/godan/u-ending.json"
-    },
-    {
-      "id": "verbs/godan/ku-ending",
-      "label": "Godan ku ending",
-      "category": "Verbs / Godan",
-      "path": "/data/verbs/godan/ku-ending.json"
-    },
-    {
-      "id": "verbs/godan/gu-ending",
-      "label": "Godan gu ending",
-      "category": "Verbs / Godan",
-      "path": "/data/verbs/godan/gu-ending.json"
-    },
-    {
-      "id": "verbs/godan/su-ending",
-      "label": "Godan su ending",
-      "category": "Verbs / Godan",
-      "path": "/data/verbs/godan/su-ending.json"
-    },
-    {
-      "id": "verbs/godan/tsu-ending",
-      "label": "Godan tsu ending",
-      "category": "Verbs / Godan",
-      "path": "/data/verbs/godan/tsu-ending.json"
-    },
-    {
-      "id": "verbs/godan/nu-ending",
-      "label": "Godan nu ending",
-      "category": "Verbs / Godan",
-      "path": "/data/verbs/godan/nu-ending.json"
-    },
-    {
-      "id": "verbs/godan/bu-ending",
-      "label": "Godan bu ending",
-      "category": "Verbs / Godan",
-      "path": "/data/verbs/godan/bu-ending.json"
-    },
-    {
-      "id": "verbs/godan/mu-ending",
-      "label": "Godan mu ending",
-      "category": "Verbs / Godan",
-      "path": "/data/verbs/godan/mu-ending.json"
-    },
-    {
-      "id": "verbs/godan/ru-ending",
-      "label": "Godan ru ending",
-      "category": "Verbs / Godan",
-      "path": "/data/verbs/godan/ru-ending.json"
-    },
-    {
-      "id": "verbs/godan/other-ending",
-      "label": "Godan other ending",
-      "category": "Verbs / Godan",
-      "path": "/data/verbs/godan/other-ending.json"
-    },
-    {
-      "id": "verbs/irregular/common",
-      "label": "Irregular Verbs",
-      "category": "Verbs / Irregular",
-      "path": "/data/verbs/irregular/common.json"
-    },
-    {
       "id": "i-adjective/size",
       "label": "Size & Quantity",
       "category": "Adjectives / I-adjectives",
@@ -807,18 +717,6 @@
       "path": "/data/na-adjective/colors.tsv"
     },
     {
-      "id": "adverb/common-1",
-      "label": "Adverbs 1",
-      "category": "Adverbs",
-      "path": "/data/adverb/common-1.json"
-    },
-    {
-      "id": "adverb/common-2",
-      "label": "Adverbs 2",
-      "category": "Adverbs",
-      "path": "/data/adverb/common-2.json"
-    },
-    {
       "id": "numeral/digits",
       "label": "Digits & Place Values",
       "category": "Numbers",
@@ -921,48 +819,6 @@
       "path": "/data/counter/wari.tsv"
     },
     {
-      "id": "expression/common-1",
-      "label": "Expressions 1",
-      "category": "Expressions",
-      "path": "/data/expression/common-1.json"
-    },
-    {
-      "id": "expression/common-2",
-      "label": "Expressions 2",
-      "category": "Expressions",
-      "path": "/data/expression/common-2.json"
-    },
-    {
-      "id": "expression/common-3",
-      "label": "Expressions 3",
-      "category": "Expressions",
-      "path": "/data/expression/common-3.json"
-    },
-    {
-      "id": "expression/common-4",
-      "label": "Expressions 4",
-      "category": "Expressions",
-      "path": "/data/expression/common-4.json"
-    },
-    {
-      "id": "descriptive-phrase/common-1",
-      "label": "Descriptive Phrases 1",
-      "category": "Expressions",
-      "path": "/data/descriptive-phrase/common-1.json"
-    },
-    {
-      "id": "particle/common-1",
-      "label": "Particles 1",
-      "category": "Grammar",
-      "path": "/data/particle/common-1.json"
-    },
-    {
-      "id": "conjunction/common-1",
-      "label": "Conjunctions 1",
-      "category": "Grammar",
-      "path": "/data/conjunction/common-1.json"
-    },
-    {
       "id": "grammar-pattern/appearance-sou",
       "label": "Appearance (〜そう)",
       "category": "Grammar",
@@ -999,10 +855,136 @@
       "path": "/data/morpheme/roots.tsv"
     },
     {
-      "id": "phrase-sentence/common-1",
-      "label": "Phrase Sentences 1",
+      "id": "verbs/godan/u",
+      "label": "Godan 〜う",
+      "category": "Verbs / Godan",
+      "path": "/data/verbs/godan/u.tsv"
+    },
+    {
+      "id": "verbs/godan/ku",
+      "label": "Godan 〜く",
+      "category": "Verbs / Godan",
+      "path": "/data/verbs/godan/ku.tsv"
+    },
+    {
+      "id": "verbs/godan/gu",
+      "label": "Godan 〜ぐ",
+      "category": "Verbs / Godan",
+      "path": "/data/verbs/godan/gu.tsv"
+    },
+    {
+      "id": "verbs/godan/su",
+      "label": "Godan 〜す",
+      "category": "Verbs / Godan",
+      "path": "/data/verbs/godan/su.tsv"
+    },
+    {
+      "id": "verbs/godan/tsu",
+      "label": "Godan 〜つ",
+      "category": "Verbs / Godan",
+      "path": "/data/verbs/godan/tsu.tsv"
+    },
+    {
+      "id": "verbs/godan/nu",
+      "label": "Godan 〜ぬ",
+      "category": "Verbs / Godan",
+      "path": "/data/verbs/godan/nu.tsv"
+    },
+    {
+      "id": "verbs/godan/bu",
+      "label": "Godan 〜ぶ",
+      "category": "Verbs / Godan",
+      "path": "/data/verbs/godan/bu.tsv"
+    },
+    {
+      "id": "verbs/godan/mu",
+      "label": "Godan 〜む",
+      "category": "Verbs / Godan",
+      "path": "/data/verbs/godan/mu.tsv"
+    },
+    {
+      "id": "verbs/godan/ru",
+      "label": "Godan 〜る",
+      "category": "Verbs / Godan",
+      "path": "/data/verbs/godan/ru.tsv"
+    },
+    {
+      "id": "verbs/ichidan/ichidan",
+      "label": "Ichidan Verbs",
+      "category": "Verbs / Ichidan",
+      "path": "/data/verbs/ichidan/ichidan.tsv"
+    },
+    {
+      "id": "verbs/irregular/irregular",
+      "label": "Irregular Verbs",
+      "category": "Verbs / Irregular",
+      "path": "/data/verbs/irregular/irregular.tsv"
+    },
+    {
+      "id": "adverb/degree",
+      "label": "Degree & Quantity",
+      "category": "Adverbs",
+      "path": "/data/adverb/degree.tsv"
+    },
+    {
+      "id": "adverb/time-frequency",
+      "label": "Time & Frequency",
+      "category": "Adverbs",
+      "path": "/data/adverb/time-frequency.tsv"
+    },
+    {
+      "id": "adverb/manner",
+      "label": "Manner",
+      "category": "Adverbs",
+      "path": "/data/adverb/manner.tsv"
+    },
+    {
+      "id": "adverb/discourse",
+      "label": "Discourse & Sequence",
+      "category": "Adverbs",
+      "path": "/data/adverb/discourse.tsv"
+    },
+    {
+      "id": "adverb/onomatopoeia",
+      "label": "Onomatopoeia",
+      "category": "Adverbs",
+      "path": "/data/adverb/onomatopoeia.tsv"
+    },
+    {
+      "id": "particle/core",
+      "label": "Particles",
+      "category": "Grammar",
+      "path": "/data/particle/core.tsv"
+    },
+    {
+      "id": "conjunction/core",
+      "label": "Conjunctions",
+      "category": "Grammar",
+      "path": "/data/conjunction/core.tsv"
+    },
+    {
+      "id": "grammar-pattern/sentence-patterns",
+      "label": "Sentence Patterns",
+      "category": "Grammar",
+      "path": "/data/grammar-pattern/sentence-patterns.tsv"
+    },
+    {
+      "id": "grammar-pattern/na-adjective-conjugation",
+      "label": "Na-adjective Conjugation",
+      "category": "Grammar",
+      "path": "/data/grammar-pattern/na-adjective-conjugation.tsv"
+    },
+    {
+      "id": "grammar-pattern/verb-conjugation",
+      "label": "Verb Conjugation",
+      "category": "Grammar",
+      "path": "/data/grammar-pattern/verb-conjugation.tsv"
+    },
+    {
+      "id": "expression/idioms",
+      "label": "Idioms & Set Phrases",
       "category": "Expressions",
-      "path": "/data/phrase-sentence/common-1.json"
+      "path": "/data/expression/idioms.tsv"
     }
   ]
 }

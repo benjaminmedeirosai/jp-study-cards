@@ -1,0 +1,18 @@
+# Particles (助詞) — grammatical markers that attach to words/clauses.
+# Belongs here: case particles (は, が, を, に, で), plus common adverbial,
+# connective, and focus particles (だけ, まで, から, より, について).
+kanji	hiragana	type	english
+は	は	particle	topic marker
+が	が	particle	subject marker
+を	を	particle	direct-object marker
+に	に	particle	to; at; in (direction, time, location)
+で	で	particle	at; by; with (location of action, means)
+と	と	particle	and; with; (quotation); if/when
+や	や	particle	and; such as (non-exhaustive list)
+から	から	particle	from; since; because
+まで	まで	particle	until; up to; as far as
+より	より	particle	than; from
+だけ	だけ	particle	only; just
+について	について	particle	about; regarding; concerning
+ず	ず	particle	without doing (negative connective)
+ずに	ずに	particle	without doing

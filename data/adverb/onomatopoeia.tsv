@@ -1,0 +1,40 @@
+# Onomatopoeia — sound mimetics (擬音語) and manner/state mimetics (擬態語).
+# Belongs here: reduplicated/mimetic words like ドキドキ, キラキラ, ふわふわ.
+# Conventionally written in katakana; the same form sits in both columns.
+# Plain manner adverbs (ゆっくり) go in manner.tsv.
+kanji	hiragana	type	english
+ドキドキ	ドキドキ	adverb	heart pounding; nervous excitement
+ワクワク	ワクワク	adverb	excited anticipation
+キラキラ	キラキラ	adverb	sparkling; glittering
+ピカピカ	ピカピカ	adverb	shiny; brand-new; flashing
+ペコペコ	ペコペコ	adverb	very hungry; bowing repeatedly
+ガラガラ	ガラガラ	adverb	rattling; empty (of a place)
+バタバタ	バタバタ	adverb	flapping; hectic rushing around
+イライラ	イライラ	adverb	irritated; on edge
+ニコニコ	ニコニコ	adverb	smiling cheerfully
+ワンワン	ワンワン	adverb	woof-woof; dog barking
+ニャー	ニャー	adverb	meow; cat sound
+ゴロゴロ	ゴロゴロ	adverb	rumbling; lounging around
+コツコツ	コツコツ	adverb	tapping; steadily plugging away
+ボロボロ	ボロボロ	adverb	tattered; falling apart
+ピンポン	ピンポン	adverb	ding-dong; doorbell
+ジャーン	ジャーン	adverb	ta-da! dramatic reveal
+ドーン	ドーン	adverb	boom; big impact
+バーン	バーン	adverb	bang; explosive sound
+ズキズキ	ズキズキ	adverb	throbbing pain
+シーン	シーン	adverb	complete silence
+ベタベタ	ベタベタ	adverb	sticky; clingy
+フワフワ	フワフワ	adverb	fluffy; light; airy
+グチャグチャ	グチャグチャ	adverb	messy; mushy
+サラサラ	サラサラ	adverb	smooth; silky; flowing
+ザラザラ	ザラザラ	adverb	rough; gritty
+ビショビショ	ビショビショ	adverb	soaking wet
+カチカチ	カチカチ	adverb	clicking; stiff/hard
+ペラペラ	ペラペラ	adverb	fluent (speech); thin/flimsy
+ウロウロ	ウロウロ	adverb	wandering aimlessly
+チラチラ	チラチラ	adverb	glancing repeatedly; flickering
+ビリビリ	ビリビリ	adverb	tingling; electric jolt; ripping sound
+ベトベト	ベトベト	adverb	sticky; greasy
+ツヤツヤ	ツヤツヤ	adverb	glossy; lustrous
+シワシワ	シワシワ	adverb	wrinkled
+びっくり	びっくり	adverb	startled; with surprise

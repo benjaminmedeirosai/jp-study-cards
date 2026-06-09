@@ -16,9 +16,9 @@ works too, e.g. `python3 -m http.server`).
 
 ## Data
 
-Study data lives under `data/` as per-deck `.tsv` (and some legacy `.json`)
-files. They are the editable source of truth; the app fetches a single built
-bundle, `data/cards.json`, at startup.
+Study data lives under `data/` as per-deck `.tsv` files. They are the editable
+source of truth; the app fetches a single built bundle, `data/cards.json`, at
+startup.
 
 The workflow:
 
@@ -32,6 +32,12 @@ The workflow:
 
 **See [`data/AGENTS.md`](data/AGENTS.md) for the full data conventions** — folder
 layout, TSV format, the kana split, classification rules, and comment headers.
+
+To audit coverage, run `node tools/audit-data.mjs`. It writes two throwaway
+dev-reference reports to `tmp/` (gitignored): `kanji-coverage.json` (kanji
+appearing in fewer than three distinct words — i.e. characters that could use
+more coverage) and `duplicates.json` (word forms that occur in more than one
+place). Neither is committed or consumed by the app.
 
 > `tools/generate-data.mjs` is **legacy**: it regenerates `data/` from an
 > external source collection and overwrites the hand-curated TSV decks. Don't run
