@@ -421,13 +421,28 @@ export function renderCardPage() {
     if (!autoplaying) return;
     autoplaying = false;
     autoplayToken += 1; // invalidate any pending sleep/poll
+    cancelAutoplaySleep(); // clear the pending timer and settle its promise now
     reflectAutoplay();
+  }
+
+  // The single in-flight sleep timer (the cycle awaits one at a time). Tracked
+  // so stop/teardown can clear it instead of letting it fire into a dead state.
+  let sleepTimer = null;
+  let sleepResolve = null;
+  function cancelAutoplaySleep() {
+    if (sleepTimer !== null) { clearTimeout(sleepTimer); sleepTimer = null; }
+    if (sleepResolve) { const r = sleepResolve; sleepResolve = null; r(false); }
   }
 
   // Resolves true after `ms`, or false if autoplay was stopped/superseded.
   function autoplaySleep(ms, token) {
     return new Promise((resolve) => {
-      setTimeout(() => resolve(autoplaying && token === autoplayToken), Math.max(0, ms));
+      sleepResolve = resolve;
+      sleepTimer = setTimeout(() => {
+        sleepTimer = null;
+        sleepResolve = null;
+        resolve(autoplaying && token === autoplayToken);
+      }, Math.max(0, ms));
     });
   }
 
