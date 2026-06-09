@@ -1,25 +1,25 @@
 # label: Irregular Verbs
 # Irregular verbs — する and 来る, plus する-compound verbs (連絡する, 運転する…)
 # that inherit する's irregular conjugation. Dictionary forms only.
-kanji	hiragana	type	english
+kanji	hiragana	type	english	breakdown
 する	する	irregular-verb	to do
 びっくりする	びっくりする	irregular-verb	to be surprised
-注意する	ちゅういする	irregular-verb	to be careful; to pay attention
-連絡する	れんらくする	irregular-verb	to contact; to get in touch
-来る	くる	irregular-verb	to come
+注意する	ちゅういする	irregular-verb	to be careful; to pay attention	[注: focus/pour | 意: mind/intention]
+連絡する	れんらくする	irregular-verb	to contact; to get in touch	[連: connect/link | 絡: contact/entwine]
+来る	くる	irregular-verb	to come	[来: come]
 アクセスする	アクセスする	irregular-verb	to access
 サインインする	サインインする	irregular-verb	to sign in
 サブスクライブする	サブスクライブする	irregular-verb	to subscribe
 ログインする	ログインする	irregular-verb	to log in; sign in
-運転する	うんてんする	irregular-verb	to drive
-鑑賞する	かんしょうする	irregular-verb	to appreciate; to watch (art/film)
-再生する	さいせいする	irregular-verb	to play; to playback
-視聴する	しちょうする	irregular-verb	to watch; to view
-対戦する	たいせんする	irregular-verb	to compete; to face off
-挑戦する	ちょうせんする	irregular-verb	to challenge; to try
-挑発する	ちょうはつする	irregular-verb	to provoke
-登録する	とうろくする	irregular-verb	to register; subscribe
-認証する	にんしょうする	irregular-verb	to authenticate; verify identity
-説明する	せつめいする	irregular-verb	to explain
-予約する	よやくする	irregular-verb	to reserve; to book
-影響する	えいきょうする	irregular-verb	to influence; to affect
+運転する	うんてんする	irregular-verb	to drive	[運: carry/drive | 転: turn/revolve]
+鑑賞する	かんしょうする	irregular-verb	to appreciate; to watch (art/film)	[鑑: appreciate/discern | 賞: appreciate/prize]
+再生する	さいせいする	irregular-verb	to play; to playback	[再: again/re- | 生: produce/play]
+視聴する	しちょうする	irregular-verb	to watch; to view	[視: see/view | 聴: listen/hear]
+対戦する	たいせんする	irregular-verb	to compete; to face off	[対: versus/face | 戦: war/battle]
+挑戦する	ちょうせんする	irregular-verb	to challenge; to try	[挑: challenge/provoke | 戦: war/battle]
+挑発する	ちょうはつする	irregular-verb	to provoke	[挑: challenge/provoke | 発: emit/set off]
+登録する	とうろくする	irregular-verb	to register; subscribe	[登: register/ascend | 録: record]
+認証する	にんしょうする	irregular-verb	to authenticate; verify identity	[認: recognize/verify | 証: proof/certificate]
+説明する	せつめいする	irregular-verb	to explain	[説: explain/theory | 明: bright/clear]
+予約する	よやくする	irregular-verb	to reserve; to book	[予: beforehand | 約: promise/agreement]
+影響する	えいきょうする	irregular-verb	to influence; to affect	[影: shadow/influence | 響: resound/affect]

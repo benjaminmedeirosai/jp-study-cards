@@ -1,25 +1,25 @@
 # label: Godan 〜ぐ
 # Godan verbs — gu ending.
 # Godan verbs ending in 〜ぐ (泳ぐ, 急ぐ, 脱ぐ…). Dictionary forms only.
-kanji	hiragana	type	english
-泳ぐ	およぐ	godan-verb	to swim
-急ぐ	いそぐ	godan-verb	to hurry
-脱ぐ	ぬぐ	godan-verb	to take off (clothes)
-防ぐ	ふせぐ	godan-verb	to prevent; to defend
-稼ぐ	かせぐ	godan-verb	to earn (money)
-騒ぐ	さわぐ	godan-verb	to make noise; to make a fuss
-繋ぐ	つなぐ	godan-verb	to connect; to link
-注ぐ	そそぐ	godan-verb	to pour; to devote (effort)
-研ぐ	とぐ	godan-verb	to sharpen; to polish
-濯ぐ	すすぐ	godan-verb	to rinse
-嗅ぐ	かぐ	godan-verb	to smell; to sniff
-継ぐ	つぐ	godan-verb	to succeed; to inherit
-塞ぐ	ふさぐ	godan-verb	to block; to close up
-担ぐ	かつぐ	godan-verb	to shoulder; to carry
-剥ぐ	はぐ	godan-verb	to peel off
-仰ぐ	あおぐ	godan-verb	to look up (to); to revere
-漕ぐ	こぐ	godan-verb	to row; to pedal
-貢ぐ	みつぐ	godan-verb	to contribute; to support
-紡ぐ	つむぐ	godan-verb	to spin (thread); to weave; to build (a story)
-削ぐ	そぐ	godan-verb	to shave off; to pare down
+kanji	hiragana	type	english	breakdown
+泳ぐ	およぐ	godan-verb	to swim	[泳: swim]
+急ぐ	いそぐ	godan-verb	to hurry	[急: hurry/urgent]
+脱ぐ	ぬぐ	godan-verb	to take off (clothes)	[脱: take off/shed]
+防ぐ	ふせぐ	godan-verb	to prevent; to defend	[防: prevent/defend]
+稼ぐ	かせぐ	godan-verb	to earn (money)	[稼: earn]
+騒ぐ	さわぐ	godan-verb	to make noise; to make a fuss	[騒: make noise/clamor]
+繋ぐ	つなぐ	godan-verb	to connect; to link	[繋: connect/tie]
+注ぐ	そそぐ	godan-verb	to pour; to devote (effort)	[注: pour]
+研ぐ	とぐ	godan-verb	to sharpen; to polish	[研: sharpen/polish]
+濯ぐ	すすぐ	godan-verb	to rinse	[濯: rinse/wash]
+嗅ぐ	かぐ	godan-verb	to smell; to sniff	[嗅: smell/sniff]
+継ぐ	つぐ	godan-verb	to succeed; to inherit	[継: succeed/inherit]
+塞ぐ	ふさぐ	godan-verb	to block; to close up	[塞: block/obstruct]
+担ぐ	かつぐ	godan-verb	to shoulder; to carry	[担: shoulder/carry]
+剥ぐ	はぐ	godan-verb	to peel off	[剥: peel/strip]
+仰ぐ	あおぐ	godan-verb	to look up (to); to revere	[仰: look up/revere]
+漕ぐ	こぐ	godan-verb	to row; to pedal	[漕: row/paddle]
+貢ぐ	みつぐ	godan-verb	to contribute; to support	[貢: contribute/tribute]
+紡ぐ	つむぐ	godan-verb	to spin (thread); to weave; to build (a story)	[紡: spin (thread)]
+削ぐ	そぐ	godan-verb	to shave off; to pare down	[削: shave/pare]
 ぬぐ	ぬぐ	godan-verb	to take off; to remove

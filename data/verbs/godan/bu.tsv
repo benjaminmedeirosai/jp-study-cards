@@ -1,18 +1,18 @@
 # label: Godan 〜ぶ
 # Godan verbs — bu ending.
 # Godan verbs ending in 〜ぶ (遊ぶ, 飛ぶ, 呼ぶ…). Dictionary forms only.
-kanji	hiragana	type	english
-聞き及ぶ	ききおよぶ	godan-verb	to hear reports; to reach one's ears
-泣き叫ぶ	なきさけぶ	godan-verb	to cry out; to scream while crying
-遊ぶ	あそぶ	godan-verb	to play; to hang out; to have fun
-飛ぶ	とぶ	godan-verb	to fly; to jump; to go fast (e.g., time passes quickly)
-呼ぶ	よぶ	godan-verb	to call; to invite; to name
-運ぶ	はこぶ	godan-verb	to carry; to transport; to move (something)
-選ぶ	えらぶ	godan-verb	to choose; to select
-喜ぶ	よろこぶ	godan-verb	to be happy; to be delighted
-学ぶ	まなぶ	godan-verb	to learn; to study
-転ぶ	ころぶ	godan-verb	to fall down; to trip
-並ぶ	ならぶ	godan-verb	to be lined up
-及ぶ	およぶ	godan-verb	to reach; to extend to
-叫ぶ	さけぶ	godan-verb	to shout; to cry out
-跳ぶ	とぶ	godan-verb	to jump; to leap
+kanji	hiragana	type	english	breakdown
+聞き及ぶ	ききおよぶ	godan-verb	to hear reports; to reach one's ears	[聞: hear/listen | 及: reach/extend]
+泣き叫ぶ	なきさけぶ	godan-verb	to cry out; to scream while crying	[泣: cry/weep | 叫: shout/scream]
+遊ぶ	あそぶ	godan-verb	to play; to hang out; to have fun	[遊: play/amusement]
+飛ぶ	とぶ	godan-verb	to fly; to jump; to go fast (e.g., time passes quickly)	[飛: fly/leap]
+呼ぶ	よぶ	godan-verb	to call; to invite; to name	[呼: call/summon]
+運ぶ	はこぶ	godan-verb	to carry; to transport; to move (something)	[運: carry/transport]
+選ぶ	えらぶ	godan-verb	to choose; to select	[選: choose/select]
+喜ぶ	よろこぶ	godan-verb	to be happy; to be delighted	[喜: joy/delight]
+学ぶ	まなぶ	godan-verb	to learn; to study	[学: study/learn]
+転ぶ	ころぶ	godan-verb	to fall down; to trip	[転: roll/tumble]
+並ぶ	ならぶ	godan-verb	to be lined up	[並: line up/arrange]
+及ぶ	およぶ	godan-verb	to reach; to extend to	[及: reach/extend]
+叫ぶ	さけぶ	godan-verb	to shout; to cry out	[叫: shout/cry]
+跳ぶ	とぶ	godan-verb	to jump; to leap	[跳: jump/leap]

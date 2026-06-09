@@ -1,116 +1,116 @@
 # label: Godan 〜る
 # Godan verbs — ru ending.
 # Godan verbs ending in 〜る (送る, 上がる, 帰る…). Note: ichidan verbs also end in る — these are godan. Dictionary forms only.
-kanji	hiragana	type	english
-濁る	にごる	godan-verb	to become muddy; cloudy
-送る	おくる	godan-verb	to send
-見送る	みおくる	godan-verb	to see off; to postpone
-上がる	あがる	godan-verb	to rise; to go up
-生きる	いきる	godan-verb	to live
-語る	かたる	godan-verb	to narrate; to talk about
-下がる	さがる	godan-verb	to fall; to go down; to step back
-名乗る	なのる	godan-verb	to give one's name; to introduce oneself
-割り振る	わりふる	godan-verb	to allocate; to distribute
-立ち去る	たちさる	godan-verb	to leave; to depart
-聞き取る	ききとる	godan-verb	to catch (what someone says)
-見切る	みきる	godan-verb	to give up on; to judge/decide (from context)
-立ち寄る	たちよる	godan-verb	to drop by; to stop by
-持ち上がる	もちあがる	godan-verb	to be raised; to come up (issue/event)
-探し回る	さがしまわる	godan-verb	to search all over
-探り回る	さぐりまわる	godan-verb	to probe around; to snoop around
-歩き回る	あるきまわる	godan-verb	to walk around; go around
-飛び回る	とびまわる	godan-verb	to fly/visit around; go around (frequently)
-駆け回る	かけまわる	godan-verb	to run about; run around
-光る	ひかる	godan-verb	to shine; to glitter
-入る	はいる	godan-verb	to enter; to go in
-分かる	わかる	godan-verb	to understand; to know
-集まる	あつまる	godan-verb	to gather; to collect (intrans.)
-謝る	あやまる	godan-verb	to apologize
-伸びきる	のびきる	godan-verb	to stretch completely; to reach full extension
-怖がる	こわがる	godan-verb	to be afraid (of); to show fear
-舞い上がる	まいあがる	godan-verb	to soar; to rise up
+kanji	hiragana	type	english	breakdown
+濁る	にごる	godan-verb	to become muddy; cloudy	[濁: become muddy/turbid]
+送る	おくる	godan-verb	to send	[送: send]
+見送る	みおくる	godan-verb	to see off; to postpone	[見: see/look | 送: send/see off]
+上がる	あがる	godan-verb	to rise; to go up	[上: rise/up]
+生きる	いきる	godan-verb	to live	[生: live/life]
+語る	かたる	godan-verb	to narrate; to talk about	[語: narrate/tell]
+下がる	さがる	godan-verb	to fall; to go down; to step back	[下: fall/down]
+名乗る	なのる	godan-verb	to give one's name; to introduce oneself	[名: name | 乗: take on/board]
+割り振る	わりふる	godan-verb	to allocate; to distribute	[割: split/divide | 振: allot/distribute]
+立ち去る	たちさる	godan-verb	to leave; to depart	[立: stand | 去: leave/depart]
+聞き取る	ききとる	godan-verb	to catch (what someone says)	[聞: hear/listen | 取: take/catch]
+見切る	みきる	godan-verb	to give up on; to judge/decide (from context)	[見: see/look | 切: cut/decide]
+立ち寄る	たちよる	godan-verb	to drop by; to stop by	[立: stand | 寄: drop by/approach]
+持ち上がる	もちあがる	godan-verb	to be raised; to come up (issue/event)	[持: hold/carry | 上: rise/up]
+探し回る	さがしまわる	godan-verb	to search all over	[探: search | 回: turn/around]
+探り回る	さぐりまわる	godan-verb	to probe around; to snoop around	[探: probe/search | 回: turn/around]
+歩き回る	あるきまわる	godan-verb	to walk around; go around	[歩: walk | 回: turn/around]
+飛び回る	とびまわる	godan-verb	to fly/visit around; go around (frequently)	[飛: fly | 回: turn/around]
+駆け回る	かけまわる	godan-verb	to run about; run around	[駆: run/gallop | 回: turn/around]
+光る	ひかる	godan-verb	to shine; to glitter	[光: shine/light]
+入る	はいる	godan-verb	to enter; to go in	[入: enter]
+分かる	わかる	godan-verb	to understand; to know	[分: understand/divide]
+集まる	あつまる	godan-verb	to gather; to collect (intrans.)	[集: gather/collect]
+謝る	あやまる	godan-verb	to apologize	[謝: apologize/thank]
+伸びきる	のびきる	godan-verb	to stretch completely; to reach full extension	[伸: stretch/extend]
+怖がる	こわがる	godan-verb	to be afraid (of); to show fear	[怖: fear/scary]
+舞い上がる	まいあがる	godan-verb	to soar; to rise up	[舞: dance/flutter | 上: rise/up]
 なる	なる	godan-verb	to become
 ある	ある	godan-verb	to exist; there is
 こわがる	こわがる	godan-verb	to be afraid of
-走る	はしる	godan-verb	to run
-売る	うる	godan-verb	to sell
-眠る	ねむる	godan-verb	to sleep
-乗る	のる	godan-verb	to ride; to get on
-帰る	かえる	godan-verb	to return home
+走る	はしる	godan-verb	to run	[走: run]
+売る	うる	godan-verb	to sell	[売: sell]
+眠る	ねむる	godan-verb	to sleep	[眠: sleep]
+乗る	のる	godan-verb	to ride; to get on	[乗: ride/board]
+帰る	かえる	godan-verb	to return home	[帰: return home]
 ぶつかる	ぶつかる	godan-verb	to bump into; to collide
-回る	まわる	godan-verb	to turn; to go around; to rotate
-行きたがる	いきたがる	godan-verb	to want to go (third-person desire)
-作る	つくる	godan-verb	to make
-取る	とる	godan-verb	to take; to get (a prize)
-終わる	おわる	godan-verb	to finish
-切る	きる	godan-verb	to cut
-探る	さぐる	godan-verb	to probe; to investigate
-上る	のぼる	godan-verb	to go up; to climb
-通る	とおる	godan-verb	to pass through; to go along
-配る	くばる	godan-verb	to hand out; to distribute
-黙る	だまる	godan-verb	to fall silent; to keep quiet
-止まる	とまる	godan-verb	to stop
-高くなる	たかくなる	godan-verb	to become high/tall/expensive
-便利になる	べんりになる	godan-verb	to become convenient
-有名になる	ゆうめいになる	godan-verb	to become famous
-静かになる	しずかになる	godan-verb	to become quiet
-大変になる	たいへんになる	godan-verb	to become serious; tough
-安くなる	やすくなる	godan-verb	to become cheap
-新しくなる	あたらしくなる	godan-verb	to become new
-古くなる	ふるくなる	godan-verb	to become old
-写る	うつる	godan-verb	to be photographed; to come out (in a photo)
-刷る	する	godan-verb	to print
-塗る	ぬる	godan-verb	to paint; to spread on; to coat
-座る	すわる	godan-verb	to sit; to take a seat
-彩る	いろどる	godan-verb	to color; to decorate
-怒る	おこる	godan-verb	to get angry
-怒鳴る	どなる	godan-verb	to shout; to yell at
-戻る	もどる	godan-verb	to return; to go back
-振る	ふる	godan-verb	to wave; to shake; to swing
-捕まる	つかまる	godan-verb	to be caught; to be arrested
-掛かる	かかる	godan-verb	to take (time/money); to hang; to be caught
-操る	あやつる	godan-verb	to manipulate; to operate; to handle
-散る	ちる	godan-verb	to scatter; to fall (petals)
-散らかる	ちらかる	godan-verb	to be scattered; to be in a mess
-昇る	のぼる	godan-verb	to rise (sun); to ascend
-曇る	くもる	godan-verb	to become cloudy; to cloud over
-泊まる	とまる	godan-verb	to stay overnight; to lodge
-滑る	すべる	godan-verb	to slip; to slide; to glide
-募る	つのる	godan-verb	to grow intense; to recruit
-狩る	かる	godan-verb	to hunt
-狭まる	せばまる	godan-verb	to narrow; to close in
-異なる	ことなる	godan-verb	to differ; to vary
-破る	やぶる	godan-verb	to tear; to break; to defeat
-守る	まもる	godan-verb	to protect; to keep (a promise)
-締まる	しまる	godan-verb	to be shut; to be tightened
-繋がる	つながる	godan-verb	to be connected; to be linked
-翻る	ひるがえる	godan-verb	to flutter; to turn over; to change suddenly
-腐る	くさる	godan-verb	to rot; to go bad; to decay
-治る	なおる	godan-verb	to heal; to recover; to be cured
-誇る	ほこる	godan-verb	to be proud of; to boast
-迫る	せまる	godan-verb	to approach; to press; to urge
-鈍る	にぶる	godan-verb	to become dull; to weaken
-被る	かぶる	godan-verb	to wear (on the head); to suffer (loss)
-降る	ふる	godan-verb	to fall (rain, snow)
-煎る	いる	godan-verb	to roast; to parch
-頬張る	ほおばる	godan-verb	to stuff one's cheeks; to fill one's mouth
-削る	けずる	godan-verb	to shave; to cut down; to delete
-寄る	よる	godan-verb	to drop by; to approach; to gather
-悟る	さとる	godan-verb	to realize; to comprehend; to attain enlightenment
-折る	おる	godan-verb	to fold; to break; to snap
-残る	のこる	godan-verb	to remain; to be left over
-渡る	わたる	godan-verb	to cross; to go across
-測る	はかる	godan-verb	to measure; to gauge
-滞る	とどこおる	godan-verb	to be delayed; to stagnate; to fall into arrears
-盛り上がる	もりあがる	godan-verb	to get excited; to swell up; to liven up
-織る	おる	godan-verb	to weave
-触る	さわる	godan-verb	to touch; to feel
-載る	のる	godan-verb	to be published; to be listed; to appear (in print)
-造る	つくる	godan-verb	to make; to build; to manufacture
-釣る	つる	godan-verb	to fish; to catch (with a hook)
-鳴る	なる	godan-verb	to ring; to sound
-余る	あまる	godan-verb	to be left over; to be in excess
-創る	つくる	godan-verb	to create; to originate
-彫る	ほる	godan-verb	to carve; to engrave; to sculpt
-撮る	とる	godan-verb	to take (a photo); to film
-頑張る	がんばる	godan-verb	to do one's best; to persevere
+回る	まわる	godan-verb	to turn; to go around; to rotate	[回: turn/rotate]
+行きたがる	いきたがる	godan-verb	to want to go (third-person desire)	[行: go/travel]
+作る	つくる	godan-verb	to make	[作: make]
+取る	とる	godan-verb	to take; to get (a prize)	[取: take/get]
+終わる	おわる	godan-verb	to finish	[終: end/finish]
+切る	きる	godan-verb	to cut	[切: cut]
+探る	さぐる	godan-verb	to probe; to investigate	[探: probe/search]
+上る	のぼる	godan-verb	to go up; to climb	[上: rise/climb]
+通る	とおる	godan-verb	to pass through; to go along	[通: pass through]
+配る	くばる	godan-verb	to hand out; to distribute	[配: distribute/hand out]
+黙る	だまる	godan-verb	to fall silent; to keep quiet	[黙: be silent]
+止まる	とまる	godan-verb	to stop	[止: stop]
+高くなる	たかくなる	godan-verb	to become high/tall/expensive	[高: high/tall/expensive]
+便利になる	べんりになる	godan-verb	to become convenient	[便: convenience | 利: benefit/advantage]
+有名になる	ゆうめいになる	godan-verb	to become famous	[有: have/exist | 名: name/fame]
+静かになる	しずかになる	godan-verb	to become quiet	[静: quiet/calm]
+大変になる	たいへんになる	godan-verb	to become serious; tough	[大: big/greatly | 変: change/strange]
+安くなる	やすくなる	godan-verb	to become cheap	[安: cheap/at ease]
+新しくなる	あたらしくなる	godan-verb	to become new	[新: new]
+古くなる	ふるくなる	godan-verb	to become old	[古: old]
+写る	うつる	godan-verb	to be photographed; to come out (in a photo)	[写: be photographed/copy]
+刷る	する	godan-verb	to print	[刷: print]
+塗る	ぬる	godan-verb	to paint; to spread on; to coat	[塗: paint/coat]
+座る	すわる	godan-verb	to sit; to take a seat	[座: sit]
+彩る	いろどる	godan-verb	to color; to decorate	[彩: color/decorate]
+怒る	おこる	godan-verb	to get angry	[怒: anger]
+怒鳴る	どなる	godan-verb	to shout; to yell at	[怒: anger | 鳴: sound/cry]
+戻る	もどる	godan-verb	to return; to go back	[戻: return/go back]
+振る	ふる	godan-verb	to wave; to shake; to swing	[振: wave/shake]
+捕まる	つかまる	godan-verb	to be caught; to be arrested	[捕: be caught/seize]
+掛かる	かかる	godan-verb	to take (time/money); to hang; to be caught	[掛: hang/take (time)]
+操る	あやつる	godan-verb	to manipulate; to operate; to handle	[操: manipulate/handle]
+散る	ちる	godan-verb	to scatter; to fall (petals)	[散: scatter]
+散らかる	ちらかる	godan-verb	to be scattered; to be in a mess	[散: scatter]
+昇る	のぼる	godan-verb	to rise (sun); to ascend	[昇: rise/ascend]
+曇る	くもる	godan-verb	to become cloudy; to cloud over	[曇: become cloudy]
+泊まる	とまる	godan-verb	to stay overnight; to lodge	[泊: stay overnight]
+滑る	すべる	godan-verb	to slip; to slide; to glide	[滑: slip/slide]
+募る	つのる	godan-verb	to grow intense; to recruit	[募: grow intense/recruit]
+狩る	かる	godan-verb	to hunt	[狩: hunt]
+狭まる	せばまる	godan-verb	to narrow; to close in	[狭: narrow]
+異なる	ことなる	godan-verb	to differ; to vary	[異: differ/be different]
+破る	やぶる	godan-verb	to tear; to break; to defeat	[破: tear/break]
+守る	まもる	godan-verb	to protect; to keep (a promise)	[守: protect/keep]
+締まる	しまる	godan-verb	to be shut; to be tightened	[締: be tightened/shut]
+繋がる	つながる	godan-verb	to be connected; to be linked	[繋: connect/link]
+翻る	ひるがえる	godan-verb	to flutter; to turn over; to change suddenly	[翻: flutter/turn over]
+腐る	くさる	godan-verb	to rot; to go bad; to decay	[腐: rot/decay]
+治る	なおる	godan-verb	to heal; to recover; to be cured	[治: heal/recover]
+誇る	ほこる	godan-verb	to be proud of; to boast	[誇: be proud/boast]
+迫る	せまる	godan-verb	to approach; to press; to urge	[迫: approach/press]
+鈍る	にぶる	godan-verb	to become dull; to weaken	[鈍: become dull]
+被る	かぶる	godan-verb	to wear (on the head); to suffer (loss)	[被: wear (head)/suffer]
+降る	ふる	godan-verb	to fall (rain, snow)	[降: fall (rain)/descend]
+煎る	いる	godan-verb	to roast; to parch	[煎: roast/parch]
+頬張る	ほおばる	godan-verb	to stuff one's cheeks; to fill one's mouth	[頬: cheek | 張: stretch/fill]
+削る	けずる	godan-verb	to shave; to cut down; to delete	[削: shave/cut down]
+寄る	よる	godan-verb	to drop by; to approach; to gather	[寄: drop by/approach]
+悟る	さとる	godan-verb	to realize; to comprehend; to attain enlightenment	[悟: realize/comprehend]
+折る	おる	godan-verb	to fold; to break; to snap	[折: fold/break]
+残る	のこる	godan-verb	to remain; to be left over	[残: remain]
+渡る	わたる	godan-verb	to cross; to go across	[渡: cross/go across]
+測る	はかる	godan-verb	to measure; to gauge	[測: measure/gauge]
+滞る	とどこおる	godan-verb	to be delayed; to stagnate; to fall into arrears	[滞: be delayed/stagnate]
+盛り上がる	もりあがる	godan-verb	to get excited; to swell up; to liven up	[盛: flourish/swell | 上: rise/up]
+織る	おる	godan-verb	to weave	[織: weave]
+触る	さわる	godan-verb	to touch; to feel	[触: touch/feel]
+載る	のる	godan-verb	to be published; to be listed; to appear (in print)	[載: be published/listed]
+造る	つくる	godan-verb	to make; to build; to manufacture	[造: make/build]
+釣る	つる	godan-verb	to fish; to catch (with a hook)	[釣: fish/angle]
+鳴る	なる	godan-verb	to ring; to sound	[鳴: ring/sound]
+余る	あまる	godan-verb	to be left over; to be in excess	[余: be left over/surplus]
+創る	つくる	godan-verb	to create; to originate	[創: create/originate]
+彫る	ほる	godan-verb	to carve; to engrave; to sculpt	[彫: carve/engrave]
+撮る	とる	godan-verb	to take (a photo); to film	[撮: take (photo)/film]
+頑張る	がんばる	godan-verb	to do one's best; to persevere	[頑: stubborn/persist | 張: stretch/exert]

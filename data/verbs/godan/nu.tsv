@@ -1,5 +1,5 @@
 # label: Godan 〜ぬ
 # Godan verbs — nu ending.
 # Godan verbs ending in 〜ぬ (死ぬ — the only common one). Dictionary form only.
-kanji	hiragana	type	english
-死ぬ	しぬ	godan-verb	to die
+kanji	hiragana	type	english	breakdown
+死ぬ	しぬ	godan-verb	to die	[死: death/die]

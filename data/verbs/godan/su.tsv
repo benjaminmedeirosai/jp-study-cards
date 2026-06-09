@@ -1,50 +1,50 @@
 # label: Godan 〜す
 # Godan verbs — su ending.
 # Godan verbs ending in 〜す (話す, 出す, 返す…). Dictionary forms only.
-kanji	hiragana	type	english
-促す	うながす	godan-verb	to urge; to prompt
-話す	はなす	godan-verb	to talk
-外す	はずす	godan-verb	to remove; to take off; to unfasten
-書き直す	かきなおす	godan-verb	to rewrite; to correct writing
-聞き直す	ききなおす	godan-verb	to ask again; to check by asking
-見直す	みなおす	godan-verb	to review; to reconsider
-書き足す	かきたす	godan-verb	to add writing; to add a note
-飛び出す	とびだす	godan-verb	to jump out; to rush out
-逃げ出す	にげだす	godan-verb	to run away; to escape
-引き返す	ひきかえす	godan-verb	to go back; to return
-切り落とす	きりおとす	godan-verb	to cut off; to cut away
-聞き逃す	ききのがす	godan-verb	to miss hearing; to fail to catch (audio)
-取り戻す	とりもどす	godan-verb	to take back; regain
-持ち出す	もちだす	godan-verb	to take out; bring out
-聞き返す	ききかえす	godan-verb	to ask someone to repeat; to ask back
-読み返す	よみかえす	godan-verb	to reread; to read again
-繰り出す	くりだす	godan-verb	to unleash; to send out
-溢れ出す	あふれだす	godan-verb	to overflow; to pour out
+kanji	hiragana	type	english	breakdown
+促す	うながす	godan-verb	to urge; to prompt	[促: urge/prompt]
+話す	はなす	godan-verb	to talk	[話: talk/speak]
+外す	はずす	godan-verb	to remove; to take off; to unfasten	[外: remove/outside]
+書き直す	かきなおす	godan-verb	to rewrite; to correct writing	[書: write | 直: fix/redo]
+聞き直す	ききなおす	godan-verb	to ask again; to check by asking	[聞: hear/ask | 直: fix/redo]
+見直す	みなおす	godan-verb	to review; to reconsider	[見: see/look | 直: fix/redo]
+書き足す	かきたす	godan-verb	to add writing; to add a note	[書: write | 足: add/suffice]
+飛び出す	とびだす	godan-verb	to jump out; to rush out	[飛: fly/leap | 出: out/exit]
+逃げ出す	にげだす	godan-verb	to run away; to escape	[逃: escape/flee | 出: out/exit]
+引き返す	ひきかえす	godan-verb	to go back; to return	[引: pull | 返: return/reverse]
+切り落とす	きりおとす	godan-verb	to cut off; to cut away	[切: cut | 落: drop/fall]
+聞き逃す	ききのがす	godan-verb	to miss hearing; to fail to catch (audio)	[聞: hear/listen | 逃: miss/let escape]
+取り戻す	とりもどす	godan-verb	to take back; regain	[取: take | 戻: return/restore]
+持ち出す	もちだす	godan-verb	to take out; bring out	[持: hold/carry | 出: out/exit]
+聞き返す	ききかえす	godan-verb	to ask someone to repeat; to ask back	[聞: hear/ask | 返: return/reverse]
+読み返す	よみかえす	godan-verb	to reread; to read again	[読: read | 返: return/again]
+繰り出す	くりだす	godan-verb	to unleash; to send out	[繰: reel/repeat | 出: out/send out]
+溢れ出す	あふれだす	godan-verb	to overflow; to pour out	[溢: overflow | 出: out/pour out]
 ぶちかます	ぶちかます	godan-verb	to smash into; to let loose
-刺す	さす	godan-verb	to sting; to stab
-押す	おす	godan-verb	to push; to press
-回す	まわす	godan-verb	to turn; to spin; to rotate something
-探す	さがす	godan-verb	to search; to look for
-過ごす	すごす	godan-verb	to spend (time); to pass
-写す	うつす	godan-verb	to copy; to photograph
-剥がす	はがす	godan-verb	to peel off; to tear off
-壊す	こわす	godan-verb	to break; to destroy
-崩す	くずす	godan-verb	to break down; to demolish
-干す	ほす	godan-verb	to dry; to air out
-戻す	もどす	godan-verb	to put back; to return (something)
-放す	はなす	godan-verb	to release; to let go
-暮らす	くらす	godan-verb	to live; to get by
-照らす	てらす	godan-verb	to shine on; to illuminate
-甘やかす	あまやかす	godan-verb	to spoil; to pamper (a child)
-侵す	おかす	godan-verb	to invade; to violate; to encroach
-繰り返す	くりかえす	godan-verb	to repeat; to do over again
-蒸す	むす	godan-verb	to steam; to be humid
-治す	なおす	godan-verb	to cure; to heal
-覆す	くつがえす	godan-verb	to overturn; to overthrow
-追い越す	おいこす	godan-verb	to overtake; to pass
-犯す	おかす	godan-verb	to commit (a crime); to violate
-伸ばす	のばす	godan-verb	to extend; to stretch; to grow
-殺す	ころす	godan-verb	to kill
-渡す	わたす	godan-verb	to hand over; to pass
-試す	ためす	godan-verb	to try; to test
-離す	はなす	godan-verb	to separate; to keep apart
+刺す	さす	godan-verb	to sting; to stab	[刺: stab/pierce]
+押す	おす	godan-verb	to push; to press	[押: push/press]
+回す	まわす	godan-verb	to turn; to spin; to rotate something	[回: turn/rotate]
+探す	さがす	godan-verb	to search; to look for	[探: search/seek]
+過ごす	すごす	godan-verb	to spend (time); to pass	[過: pass/exceed]
+写す	うつす	godan-verb	to copy; to photograph	[写: copy/photograph]
+剥がす	はがす	godan-verb	to peel off; to tear off	[剥: peel/strip]
+壊す	こわす	godan-verb	to break; to destroy	[壊: break/destroy]
+崩す	くずす	godan-verb	to break down; to demolish	[崩: collapse/break down]
+干す	ほす	godan-verb	to dry; to air out	[干: dry]
+戻す	もどす	godan-verb	to put back; to return (something)	[戻: return/put back]
+放す	はなす	godan-verb	to release; to let go	[放: release/let go]
+暮らす	くらす	godan-verb	to live; to get by	[暮: live/spend (time)]
+照らす	てらす	godan-verb	to shine on; to illuminate	[照: illuminate/shine]
+甘やかす	あまやかす	godan-verb	to spoil; to pamper (a child)	[甘: sweet/indulge]
+侵す	おかす	godan-verb	to invade; to violate; to encroach	[侵: invade/encroach]
+繰り返す	くりかえす	godan-verb	to repeat; to do over again	[繰: reel/repeat | 返: return/again]
+蒸す	むす	godan-verb	to steam; to be humid	[蒸: steam]
+治す	なおす	godan-verb	to cure; to heal	[治: cure/heal]
+覆す	くつがえす	godan-verb	to overturn; to overthrow	[覆: overturn/cover]
+追い越す	おいこす	godan-verb	to overtake; to pass	[追: chase/pursue | 越: cross/exceed]
+犯す	おかす	godan-verb	to commit (a crime); to violate	[犯: crime/violate]
+伸ばす	のばす	godan-verb	to extend; to stretch; to grow	[伸: stretch/extend]
+殺す	ころす	godan-verb	to kill	[殺: kill]
+渡す	わたす	godan-verb	to hand over; to pass	[渡: hand over/cross]
+試す	ためす	godan-verb	to try; to test	[試: try/test]
+離す	はなす	godan-verb	to separate; to keep apart	[離: separate/part]

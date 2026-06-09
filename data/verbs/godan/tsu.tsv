@@ -1,12 +1,12 @@
 # label: Godan 〜つ
 # Godan verbs — tsu ending.
 # Godan verbs ending in 〜つ (待つ, 立つ, 持つ…). Dictionary forms only.
-kanji	hiragana	type	english
-断つ	たつ	godan-verb	to cut off; to put an end to
-持つ	もつ	godan-verb	to hold; to carry
-勝つ	かつ	godan-verb	to win
-待つ	まつ	godan-verb	to wait
-立つ	たつ	godan-verb	to stand
-巣立つ	すだつ	godan-verb	to leave the nest; to become independent
-撃つ	うつ	godan-verb	to shoot; to fire
-役立つ	やくだつ	godan-verb	to be useful; to be helpful
+kanji	hiragana	type	english	breakdown
+断つ	たつ	godan-verb	to cut off; to put an end to	[断: cut off/sever]
+持つ	もつ	godan-verb	to hold; to carry	[持: hold/carry]
+勝つ	かつ	godan-verb	to win	[勝: win/victory]
+待つ	まつ	godan-verb	to wait	[待: wait]
+立つ	たつ	godan-verb	to stand	[立: stand]
+巣立つ	すだつ	godan-verb	to leave the nest; to become independent	[巣: nest | 立: stand/leave]
+撃つ	うつ	godan-verb	to shoot; to fire	[撃: shoot/strike]
+役立つ	やくだつ	godan-verb	to be useful; to be helpful	[役: role/use | 立: stand/serve]

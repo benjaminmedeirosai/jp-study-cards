@@ -1,60 +1,60 @@
 # label: Godan 〜う
 # Godan verbs — u ending.
 # Godan verbs ending in 〜う (買う, 使う, 言う…). Dictionary forms only.
-kanji	hiragana	type	english
-買う	かう	godan-verb	to buy
-会う	あう	godan-verb	to meet
-話し合う	はなしあう	godan-verb	to discuss; to talk together
-語り合う	かたりあう	godan-verb	to talk together; exchange stories
-助け合う	たすけあう	godan-verb	to help each other
-分け合う	わけあう	godan-verb	to share; to divide among
-言い合う	いいあう	godan-verb	to tell each other; to argue/exchange words
-折り合う	おりあう	godan-verb	to compromise; to come to terms
-呼び合う	よびあう	godan-verb	to call to one another; to call each other
-触れ合う	ふれあう	godan-verb	to come into contact; to interact
-取り合う	とりあう	godan-verb	to compete for; to take in turns; to deal with
-協力し合う	きょうりょくしあう	godan-verb	to cooperate with one another
-出会う	であう	godan-verb	to meet (by chance)
-見失う	みうしなう	godan-verb	to lose sight of; to miss
-闘う	たたかう	godan-verb	to fight; to battle
-言う	いう	godan-verb	to say
-使う	つかう	godan-verb	to use
-洗う	あらう	godan-verb	to wash
-思う	おもう	godan-verb	to think
-向かう	むかう	godan-verb	to head toward
-失う	うしなう	godan-verb	to lose
-笑う	わらう	godan-verb	to smile; to laugh
-迷う	まよう	godan-verb	to hesitate; to be unsure
-通う	かよう	godan-verb	to commute to; to attend regularly
-覆う	おおう	godan-verb	to cover; to cloak
-争う	あらそう	godan-verb	to compete; to quarrel
-似合う	にあう	godan-verb	to suit; to look good on
-偽る	いつわる	godan-verb	to lie; to falsify; to deceive
-匂う	におう	godan-verb	to smell; to give off a scent
-伴う	ともなう	godan-verb	to accompany; to be accompanied by
-困る	こまる	godan-verb	to be troubled; to be at a loss
-妬む	ねたむ	godan-verb	to envy; to be jealous of
-嫌う	きらう	godan-verb	to dislike; to hate
-嫌がる	いやがる	godan-verb	to be reluctant; to hate doing
-屈む	かがむ	godan-verb	to bend down; to crouch
-微笑む	ほほえむ	godan-verb	to smile
-恵む	めぐむ	godan-verb	to bless; to give in charity
-悲しむ	かなしむ	godan-verb	to grieve; to feel sad
-憎む	にくむ	godan-verb	to hate; to detest
-拾う	ひろう	godan-verb	to pick up; to find
-整う	ととのう	godan-verb	to be in order; to be ready
-払う	はらう	godan-verb	to pay; to brush off
-涼む	すずむ	godan-verb	to cool off; to enjoy the cool air
-祝う	いわう	godan-verb	to celebrate; to congratulate
-構う	かまう	godan-verb	to mind; to care about; to look after
-羨む	うらやむ	godan-verb	to envy; to be jealous of
-賑わう	にぎわう	godan-verb	to be bustling; to be crowded
-追う	おう	godan-verb	to chase; to pursue; to follow
-逆らう	さからう	godan-verb	to oppose; to go against
-違う	ちがう	godan-verb	to differ; to be wrong
-願う	ねがう	godan-verb	to wish; to request; to pray
-酔う	よう	godan-verb	to get drunk; to feel sick (motion)
-歌う	うたう	godan-verb	to sing
-競う	きそう	godan-verb	to compete; to vie
-補う	おぎなう	godan-verb	to supplement; to make up for
-吸う	すう	godan-verb	to breathe in; to suck; to smoke
+kanji	hiragana	type	english	breakdown
+買う	かう	godan-verb	to buy	[買: buy]
+会う	あう	godan-verb	to meet	[会: meet]
+話し合う	はなしあう	godan-verb	to discuss; to talk together	[話: talk/speak | 合: together/join]
+語り合う	かたりあう	godan-verb	to talk together; exchange stories	[語: narrate/tell | 合: together/join]
+助け合う	たすけあう	godan-verb	to help each other	[助: help/aid | 合: together/join]
+分け合う	わけあう	godan-verb	to share; to divide among	[分: divide/share | 合: together/join]
+言い合う	いいあう	godan-verb	to tell each other; to argue/exchange words	[言: say/word | 合: together/join]
+折り合う	おりあう	godan-verb	to compromise; to come to terms	[折: fold/yield | 合: together/agree]
+呼び合う	よびあう	godan-verb	to call to one another; to call each other	[呼: call | 合: together/join]
+触れ合う	ふれあう	godan-verb	to come into contact; to interact	[触: touch/contact | 合: together/join]
+取り合う	とりあう	godan-verb	to compete for; to take in turns; to deal with	[取: take | 合: together/join]
+協力し合う	きょうりょくしあう	godan-verb	to cooperate with one another	[協: cooperate | 力: power/force | 合: together/join]
+出会う	であう	godan-verb	to meet (by chance)	[出: out/come out | 会: meet]
+見失う	みうしなう	godan-verb	to lose sight of; to miss	[見: see/look | 失: lose]
+闘う	たたかう	godan-verb	to fight; to battle	[闘: fight/struggle]
+言う	いう	godan-verb	to say	[言: say/word]
+使う	つかう	godan-verb	to use	[使: use/employ]
+洗う	あらう	godan-verb	to wash	[洗: wash]
+思う	おもう	godan-verb	to think	[思: think]
+向かう	むかう	godan-verb	to head toward	[向: face/toward]
+失う	うしなう	godan-verb	to lose	[失: lose]
+笑う	わらう	godan-verb	to smile; to laugh	[笑: laugh/smile]
+迷う	まよう	godan-verb	to hesitate; to be unsure	[迷: be lost/hesitate]
+通う	かよう	godan-verb	to commute to; to attend regularly	[通: pass/commute]
+覆う	おおう	godan-verb	to cover; to cloak	[覆: cover/conceal]
+争う	あらそう	godan-verb	to compete; to quarrel	[争: contend/quarrel]
+似合う	にあう	godan-verb	to suit; to look good on	[似: resemble | 合: match/together]
+偽る	いつわる	godan-verb	to lie; to falsify; to deceive	[偽: false/deceive]
+匂う	におう	godan-verb	to smell; to give off a scent	[匂: smell/scent]
+伴う	ともなう	godan-verb	to accompany; to be accompanied by	[伴: accompany]
+困る	こまる	godan-verb	to be troubled; to be at a loss	[困: trouble/distress]
+妬む	ねたむ	godan-verb	to envy; to be jealous of	[妬: envy/jealous]
+嫌う	きらう	godan-verb	to dislike; to hate	[嫌: dislike/hate]
+嫌がる	いやがる	godan-verb	to be reluctant; to hate doing	[嫌: dislike/hate]
+屈む	かがむ	godan-verb	to bend down; to crouch	[屈: bend/crouch]
+微笑む	ほほえむ	godan-verb	to smile	[微: faint/slight | 笑: laugh/smile]
+恵む	めぐむ	godan-verb	to bless; to give in charity	[恵: blessing/give]
+悲しむ	かなしむ	godan-verb	to grieve; to feel sad	[悲: sad/grief]
+憎む	にくむ	godan-verb	to hate; to detest	[憎: hate/detest]
+拾う	ひろう	godan-verb	to pick up; to find	[拾: pick up/gather]
+整う	ととのう	godan-verb	to be in order; to be ready	[整: be in order/arrange]
+払う	はらう	godan-verb	to pay; to brush off	[払: pay/brush off]
+涼む	すずむ	godan-verb	to cool off; to enjoy the cool air	[涼: cool/refreshing]
+祝う	いわう	godan-verb	to celebrate; to congratulate	[祝: celebrate]
+構う	かまう	godan-verb	to mind; to care about; to look after	[構: mind/concern]
+羨む	うらやむ	godan-verb	to envy; to be jealous of	[羨: envy]
+賑わう	にぎわう	godan-verb	to be bustling; to be crowded	[賑: bustle/be lively]
+追う	おう	godan-verb	to chase; to pursue; to follow	[追: chase/pursue]
+逆らう	さからう	godan-verb	to oppose; to go against	[逆: reverse/go against]
+違う	ちがう	godan-verb	to differ; to be wrong	[違: differ/be wrong]
+願う	ねがう	godan-verb	to wish; to request; to pray	[願: wish/request]
+酔う	よう	godan-verb	to get drunk; to feel sick (motion)	[酔: get drunk/intoxicate]
+歌う	うたう	godan-verb	to sing	[歌: song/sing]
+競う	きそう	godan-verb	to compete; to vie	[競: compete]
+補う	おぎなう	godan-verb	to supplement; to make up for	[補: supplement/make up]
+吸う	すう	godan-verb	to breathe in; to suck; to smoke	[吸: inhale/suck]

@@ -1,39 +1,39 @@
 # label: Godan 〜む
 # Godan verbs — mu ending.
 # Godan verbs ending in 〜む (読む, 飲む, 住む…). Dictionary forms only.
-kanji	hiragana	type	english
-読む	よむ	godan-verb	to read
-飲む	のむ	godan-verb	to drink
-休む	やすむ	godan-verb	to rest; to be absent
-生む	うむ	godan-verb	to give birth; to produce
-住む	すむ	godan-verb	to live; to reside
-頼む	たのむ	godan-verb	to request; to ask
-包む	つつむ	godan-verb	to wrap; to cover
-掴む	つかむ	godan-verb	to grasp; to seize
-組む	くむ	godan-verb	to assemble; to pair; to cross arms
-踏む	ふむ	godan-verb	to step on
-悩む	なやむ	godan-verb	to worry; to be troubled
-悔やむ	くやむ	godan-verb	to regret
-悼む	いたむ	godan-verb	to mourn
-噤む	つぐむ	godan-verb	to shut one’s mouth
-悔む	くやむ	godan-verb	to repent; to regret
-望む	のぞむ	godan-verb	to hope; to desire; to look out over; to face
-富む	とむ	godan-verb	to be rich in; to abound in
-歪む	ゆがむ	godan-verb	to warp; to become distorted
-滲む	にじむ	godan-verb	to blur; to smudge; to ooze
-縮む	ちぢむ	godan-verb	to shrink
-悄む	しょげむ	godan-verb	to be dejected; to lose heart
-止む	やむ	godan-verb	to stop (rain, sound)
-積む	つむ	godan-verb	to pile up; to load
-編む	あむ	godan-verb	to knit; to braid
-痛む	いたむ	godan-verb	to hurt; to feel pain
-恨む	うらむ	godan-verb	to resent; to hold a grudge
-睨む	にらむ	godan-verb	to glare at
-慎む	つつしむ	godan-verb	to be careful; to refrain
-傷む	いたむ	godan-verb	to spoil; to go bad (food)
-営む	いとなむ	godan-verb	to run (a business); to operate
-突き進む	つきすすむ	godan-verb	to push ahead; to charge forward
-進む	すすむ	godan-verb	to go forward; to advance
-挑む	いどむ	godan-verb	to challenge; to confront
-沈む	しずむ	godan-verb	to sink; to feel depressed
-刻む	きざむ	godan-verb	to mince; to carve; to engrave
+kanji	hiragana	type	english	breakdown
+読む	よむ	godan-verb	to read	[読: read]
+飲む	のむ	godan-verb	to drink	[飲: drink]
+休む	やすむ	godan-verb	to rest; to be absent	[休: rest]
+生む	うむ	godan-verb	to give birth; to produce	[生: bear/produce]
+住む	すむ	godan-verb	to live; to reside	[住: dwell/reside]
+頼む	たのむ	godan-verb	to request; to ask	[頼: rely/request]
+包む	つつむ	godan-verb	to wrap; to cover	[包: wrap]
+掴む	つかむ	godan-verb	to grasp; to seize	[掴: grasp/seize]
+組む	くむ	godan-verb	to assemble; to pair; to cross arms	[組: assemble/group]
+踏む	ふむ	godan-verb	to step on	[踏: step/tread]
+悩む	なやむ	godan-verb	to worry; to be troubled	[悩: worry/trouble]
+悔やむ	くやむ	godan-verb	to regret	[悔: regret]
+悼む	いたむ	godan-verb	to mourn	[悼: mourn]
+噤む	つぐむ	godan-verb	to shut one’s mouth	[噤: shut (mouth)]
+悔む	くやむ	godan-verb	to repent; to regret	[悔: regret]
+望む	のぞむ	godan-verb	to hope; to desire; to look out over; to face	[望: hope/desire]
+富む	とむ	godan-verb	to be rich in; to abound in	[富: wealth/abound]
+歪む	ゆがむ	godan-verb	to warp; to become distorted	[歪: warp/distort]
+滲む	にじむ	godan-verb	to blur; to smudge; to ooze	[滲: blur/ooze]
+縮む	ちぢむ	godan-verb	to shrink	[縮: shrink/reduce]
+悄む	しょげむ	godan-verb	to be dejected; to lose heart	[悄: dejected/dispirited]
+止む	やむ	godan-verb	to stop (rain, sound)	[止: stop]
+積む	つむ	godan-verb	to pile up; to load	[積: pile up/accumulate]
+編む	あむ	godan-verb	to knit; to braid	[編: knit/compile]
+痛む	いたむ	godan-verb	to hurt; to feel pain	[痛: pain/ache]
+恨む	うらむ	godan-verb	to resent; to hold a grudge	[恨: resent/grudge]
+睨む	にらむ	godan-verb	to glare at	[睨: glare]
+慎む	つつしむ	godan-verb	to be careful; to refrain	[慎: be prudent/refrain]
+傷む	いたむ	godan-verb	to spoil; to go bad (food)	[傷: spoil/damage]
+営む	いとなむ	godan-verb	to run (a business); to operate	[営: operate/run]
+突き進む	つきすすむ	godan-verb	to push ahead; to charge forward	[突: thrust/charge | 進: advance/proceed]
+進む	すすむ	godan-verb	to go forward; to advance	[進: advance/proceed]
+挑む	いどむ	godan-verb	to challenge; to confront	[挑: challenge/provoke]
+沈む	しずむ	godan-verb	to sink; to feel depressed	[沈: sink/submerge]
+刻む	きざむ	godan-verb	to mince; to carve; to engrave	[刻: carve/mince]

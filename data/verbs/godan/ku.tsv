@@ -1,51 +1,51 @@
 # label: Godan 〜く
 # Godan verbs — ku ending.
 # Godan verbs ending in 〜く (書く, 聞く, 歩く…). Dictionary forms only.
-kanji	hiragana	type	english
-食べ歩く	たべあるく	godan-verb	to eat one's way around (restaurants)
-飲み歩く	のみあるく	godan-verb	to drink and go around (bar hopping)
-聞く	きく	godan-verb	to ask; to hear
-書く	かく	godan-verb	to write
-空く	あく	godan-verb	to become empty; to be vacant
-開く（あく）	あく	godan-verb	to open; to become open (intransitive)
-行く	いく	godan-verb	to go
-歩く	あるく	godan-verb	to walk
-開く（ひらく）	ひらく	godan-verb	to open; to hold (an event)
-置く	おく	godan-verb	to put; to place
-着く	つく	godan-verb	to arrive
-付く	つく	godan-verb	to be attached; to stick
-続く	つづく	godan-verb	to continue
-働く	はたらく	godan-verb	to work
-届く	とどく	godan-verb	to reach; to be delivered
-泣く	なく	godan-verb	to cry
-焼く	やく	godan-verb	to bake; to grill; to burn
-叩く	たたく	godan-verb	to hit; to strike
-解く	とく	godan-verb	to solve; to untie
-効く	きく	godan-verb	to be effective
-磨く	みがく	godan-verb	to polish; to brush
-咲く	さく	godan-verb	to bloom
-抱く	だく	godan-verb	to hug; to hold
-描く	えがく	godan-verb	to draw; to depict; to picture
-近づく	ちかづく	godan-verb	to approach; to get near
-気づく	きづく	godan-verb	to notice; to realize
-落ち着く	おちつく	godan-verb	to calm down; to settle down
+kanji	hiragana	type	english	breakdown
+食べ歩く	たべあるく	godan-verb	to eat one's way around (restaurants)	[食: eat/food | 歩: walk]
+飲み歩く	のみあるく	godan-verb	to drink and go around (bar hopping)	[飲: drink | 歩: walk]
+聞く	きく	godan-verb	to ask; to hear	[聞: hear/ask]
+書く	かく	godan-verb	to write	[書: write]
+空く	あく	godan-verb	to become empty; to be vacant	[空: empty/vacant]
+開く（あく）	あく	godan-verb	to open; to become open (intransitive)	[開: open]
+行く	いく	godan-verb	to go	[行: go/travel]
+歩く	あるく	godan-verb	to walk	[歩: walk]
+開く（ひらく）	ひらく	godan-verb	to open; to hold (an event)	[開: open]
+置く	おく	godan-verb	to put; to place	[置: put/place]
+着く	つく	godan-verb	to arrive	[着: arrive]
+付く	つく	godan-verb	to be attached; to stick	[付: attach/stick]
+続く	つづく	godan-verb	to continue	[続: continue]
+働く	はたらく	godan-verb	to work	[働: work]
+届く	とどく	godan-verb	to reach; to be delivered	[届: reach/deliver]
+泣く	なく	godan-verb	to cry	[泣: cry/weep]
+焼く	やく	godan-verb	to bake; to grill; to burn	[焼: burn/grill]
+叩く	たたく	godan-verb	to hit; to strike	[叩: hit/strike]
+解く	とく	godan-verb	to solve; to untie	[解: solve/untie]
+効く	きく	godan-verb	to be effective	[効: effect/efficacy]
+磨く	みがく	godan-verb	to polish; to brush	[磨: polish/brush]
+咲く	さく	godan-verb	to bloom	[咲: bloom]
+抱く	だく	godan-verb	to hug; to hold	[抱: hug/embrace]
+描く	えがく	godan-verb	to draw; to depict; to picture	[描: draw/depict]
+近づく	ちかづく	godan-verb	to approach; to get near	[近: near/close]
+気づく	きづく	godan-verb	to notice; to realize	[気: feeling/awareness]
+落ち着く	おちつく	godan-verb	to calm down; to settle down	[落: fall/drop | 着: settle/attach]
 むく	むく	godan-verb	to peel
-傷つく	きずつく	godan-verb	to be hurt; to get wounded
-履く	はく	godan-verb	to wear (footwear, pants)
-抜く	ぬく	godan-verb	to pull out; to extract
-挽く	ひく	godan-verb	to grind (coffee, meat)
-敷く	しく	godan-verb	to spread out; to lay (bedding)
-沸く	わく	godan-verb	to boil; to grow excited
-炊く	たく	godan-verb	to cook (rice); to boil
-築く	きずく	godan-verb	to build; to construct; to establish
-裁く	さばく	godan-verb	to judge; to pass judgment
-輝く	かがやく	godan-verb	to shine; to sparkle; to glitter
-響く	ひびく	godan-verb	to resound; to echo
-吹く	ふく	godan-verb	to blow (wind/breath)
-懐く	なつく	godan-verb	to become attached to; to take to
-掃く	はく	godan-verb	to sweep
-聴く	きく	godan-verb	to listen (attentively)
-鳴く	なく	godan-verb	to cry; to chirp; to call (of an animal)
-導く	みちびく	godan-verb	to guide; to lead
-招く	まねく	godan-verb	to invite; to beckon; to bring about
-裂く	さく	godan-verb	to tear; to split; to rip
+傷つく	きずつく	godan-verb	to be hurt; to get wounded	[傷: wound/hurt]
+履く	はく	godan-verb	to wear (footwear, pants)	[履: wear (footwear)]
+抜く	ぬく	godan-verb	to pull out; to extract	[抜: pull out/extract]
+挽く	ひく	godan-verb	to grind (coffee, meat)	[挽: grind]
+敷く	しく	godan-verb	to spread out; to lay (bedding)	[敷: spread/lay]
+沸く	わく	godan-verb	to boil; to grow excited	[沸: boil]
+炊く	たく	godan-verb	to cook (rice); to boil	[炊: cook (rice)]
+築く	きずく	godan-verb	to build; to construct; to establish	[築: build/construct]
+裁く	さばく	godan-verb	to judge; to pass judgment	[裁: judge]
+輝く	かがやく	godan-verb	to shine; to sparkle; to glitter	[輝: shine/sparkle]
+響く	ひびく	godan-verb	to resound; to echo	[響: resound/echo]
+吹く	ふく	godan-verb	to blow (wind/breath)	[吹: blow]
+懐く	なつく	godan-verb	to become attached to; to take to	[懐: become attached/bosom]
+掃く	はく	godan-verb	to sweep	[掃: sweep]
+聴く	きく	godan-verb	to listen (attentively)	[聴: listen]
+鳴く	なく	godan-verb	to cry; to chirp; to call (of an animal)	[鳴: cry/chirp/sound]
+導く	みちびく	godan-verb	to guide; to lead	[導: guide/lead]
+招く	まねく	godan-verb	to invite; to beckon; to bring about	[招: invite/beckon]
+裂く	さく	godan-verb	to tear; to split; to rip	[裂: tear/split]
