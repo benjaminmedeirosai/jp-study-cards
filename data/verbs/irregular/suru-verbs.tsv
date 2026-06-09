@@ -1,0 +1,57 @@
+# label: Suru Verbs
+# する-compound verbs (名詞+する) — a noun (or loanword) plus する, inheriting
+# する's irregular conjugation. Dictionary forms only. The bare noun may also
+# appear in the nouns/ decks; the true irregulars する/来る live in irregular.tsv.
+kanji	hiragana	type	english	breakdown
+びっくりする	びっくりする	irregular-verb	to be surprised
+注意する	ちゅういする	irregular-verb	to be careful; to pay attention	[注: focus/pour | 意: mind/intention]
+連絡する	れんらくする	irregular-verb	to contact; to get in touch	[連: connect/link | 絡: contact/entwine]
+アクセスする	アクセスする	irregular-verb	to access
+サインインする	サインインする	irregular-verb	to sign in
+サブスクライブする	サブスクライブする	irregular-verb	to subscribe
+ログインする	ログインする	irregular-verb	to log in; sign in
+運転する	うんてんする	irregular-verb	to drive	[運: carry/drive | 転: turn/revolve]
+鑑賞する	かんしょうする	irregular-verb	to appreciate; to watch (art/film)	[鑑: appreciate/discern | 賞: appreciate/prize]
+再生する	さいせいする	irregular-verb	to play; to playback	[再: again/re- | 生: produce/play]
+視聴する	しちょうする	irregular-verb	to watch; to view	[視: see/view | 聴: listen/hear]
+対戦する	たいせんする	irregular-verb	to compete; to face off	[対: versus/face | 戦: war/battle]
+挑戦する	ちょうせんする	irregular-verb	to challenge; to try	[挑: challenge/provoke | 戦: war/battle]
+挑発する	ちょうはつする	irregular-verb	to provoke	[挑: challenge/provoke | 発: emit/set off]
+登録する	とうろくする	irregular-verb	to register; subscribe	[登: register/ascend | 録: record]
+認証する	にんしょうする	irregular-verb	to authenticate; verify identity	[認: recognize/verify | 証: proof/certificate]
+説明する	せつめいする	irregular-verb	to explain	[説: explain/theory | 明: bright/clear]
+予約する	よやくする	irregular-verb	to reserve; to book	[予: beforehand | 約: promise/agreement]
+影響する	えいきょうする	irregular-verb	to influence; to affect	[影: shadow/influence | 響: resound/affect]
+勉強する	べんきょうする	irregular-verb	to study	[勉: exertion/diligence | 強: strong]
+結婚する	けっこんする	irregular-verb	to marry; to get married	[結: tie/bind | 婚: marriage]
+電話する	でんわする	irregular-verb	to phone; to call	[電: electricity | 話: talk/speak]
+旅行する	りょこうする	irregular-verb	to travel; to take a trip	[旅: trip/travel | 行: go]
+料理する	りょうりする	irregular-verb	to cook	[料: materials/fee | 理: manage/reason]
+練習する	れんしゅうする	irregular-verb	to practice	[練: train/knead | 習: learn]
+散歩する	さんぽする	irregular-verb	to take a walk; to stroll	[散: scatter/stroll | 歩: walk]
+心配する	しんぱいする	irregular-verb	to worry; to be anxious	[心: heart/mind | 配: distribute/worry]
+準備する	じゅんびする	irregular-verb	to prepare; to get ready	[準: standard/prepare | 備: prepare/equip]
+掃除する	そうじする	irregular-verb	to clean; to tidy up	[掃: sweep | 除: remove/exclude]
+洗濯する	せんたくする	irregular-verb	to do the laundry	[洗: wash | 濯: rinse/wash]
+招待する	しょうたいする	irregular-verb	to invite	[招: invite/beckon | 待: wait/treat]
+経験する	けいけんする	irregular-verb	to experience	[経: pass through/manage | 験: test/experience]
+成功する	せいこうする	irregular-verb	to succeed	[成: become/achieve | 功: achievement/merit]
+失敗する	しっぱいする	irregular-verb	to fail; to make a mistake	[失: lose/fail | 敗: defeat/spoil]
+卒業する	そつぎょうする	irregular-verb	to graduate	[卒: graduate/finish | 業: work/study]
+質問する	しつもんする	irregular-verb	to ask a question	[質: substance/quality | 問: ask/inquire]
+約束する	やくそくする	irregular-verb	to promise	[約: promise | 束: bundle/bind]
+確認する	かくにんする	irregular-verb	to confirm; to check	[確: certain/confirm | 認: recognize/verify]
+報告する	ほうこくする	irregular-verb	to report	[報: report/repay | 告: tell/announce]
+参加する	さんかする	irregular-verb	to participate; to join	[参: participate/visit | 加: add]
+利用する	りようする	irregular-verb	to use; to make use of	[利: benefit/advantage | 用: use]
+紹介する	しょうかいする	irregular-verb	to introduce	[紹: introduce | 介: mediate/help]
+案内する	あんないする	irregular-verb	to guide; to show around	[案: plan/guide | 内: inside]
+想像する	そうぞうする	irregular-verb	to imagine	[想: think/imagine | 像: image/figure]
+解決する	かいけつする	irregular-verb	to solve; to settle	[解: untie/solve | 決: decide]
+賛成する	さんせいする	irregular-verb	to agree; to approve	[賛: approve/praise | 成: become/form]
+反対する	はんたいする	irregular-verb	to oppose; to object	[反: oppose/anti | 対: versus/face]
+我慢する	がまんする	irregular-verb	to endure; to put up with	[我: self/I | 慢: be conceited/lazy]
+緊張する	きんちょうする	irregular-verb	to be nervous; to feel tense	[緊: tense/tight | 張: stretch/strain]
+期待する	きたいする	irregular-verb	to expect; to look forward to	[期: period/term | 待: await]
+注文する	ちゅうもんする	irregular-verb	to order (food/goods)	[注: pour/order | 文: writing/sentence]
+運動する	うんどうする	irregular-verb	to exercise; to work out	[運: carry/move | 動: move]
