@@ -1,46 +1,46 @@
-kanji	hiragana	type	english
+kanji	hiragana	type	english	breakdown
 港	みなと	noun	harbor
-砂浜	すなはま	noun	sandy beach
-草原	そうげん	noun	grassland
-牧場	ぼくじょう	noun	pasture; ranch
-停留所	ていりゅうじょ	noun	bus stop
-歩道橋	ほどうきょう	noun	pedestrian bridge
-路地	ろじ	noun	alley
-広場	ひろば	noun	plaza
-団地	だんち	noun	housing complex
-遊歩道	ゆうほどう	noun	promenade; walking path
-商店街	しょうてんがい	noun	shopping street
-地下街	ちかがい	noun	underground shopping area
-海外	かいがい	noun	overseas; abroad
-地元	じもと	noun	local area; hometown
-観光客	かんこうきゃく	noun	tourist
-地域	ちいき	noun	region; area
-住所	じゅうしょ	noun	address
-地図	ちず	noun	map
-観光	かんこう	noun	sightseeing
-名所	めいしょ	noun	famous place; landmark
-場所	ばしょ	noun	place; location
-近所	きんじょ	noun	neighborhood; vicinity
-王国	おうこく	noun	kingdom
-都市	とし	noun	city (urban area)
+砂浜	すなはま	noun	sandy beach	[砂: sand | 浜: beach/shore]
+草原	そうげん	noun	grassland	[草: grass | 原: plain/field]
+牧場	ぼくじょう	noun	pasture; ranch	[牧: pasture/herd | 場: place/site]
+停留所	ていりゅうじょ	noun	bus stop	[停: stop/halt | 留: stay/remain | 所: place/spot]
+歩道橋	ほどうきょう	noun	pedestrian bridge	[歩: walk | 道: road/way | 橋: bridge]
+路地	ろじ	noun	alley	[路: road/path | 地: ground/area]
+広場	ひろば	noun	plaza	[広: wide/broad | 場: place/site]
+団地	だんち	noun	housing complex	[団: group/mass | 地: ground/site]
+遊歩道	ゆうほどう	noun	promenade; walking path	[遊: stroll/play | 歩: walk | 道: road/path]
+商店街	しょうてんがい	noun	shopping street	[商: commerce/trade | 店: store/shop | 街: street/town]
+地下街	ちかがい	noun	underground shopping area	[地: ground/earth | 下: below | 街: street/town]
+海外	かいがい	noun	overseas; abroad	[海: sea | 外: outside/abroad]
+地元	じもと	noun	local area; hometown	[地: ground/local | 元: origin/base]
+観光客	かんこうきゃく	noun	tourist	[観: view/watch | 光: light/scene | 客: guest/visitor]
+地域	ちいき	noun	region; area	[地: ground/area | 域: region/zone]
+住所	じゅうしょ	noun	address	[住: dwell/reside | 所: place/location]
+地図	ちず	noun	map	[地: ground/land | 図: diagram/map]
+観光	かんこう	noun	sightseeing	[観: view/watch | 光: light/scene]
+名所	めいしょ	noun	famous place; landmark	[名: name/famous | 所: place/spot]
+場所	ばしょ	noun	place; location	[場: place/site | 所: place/location]
+近所	きんじょ	noun	neighborhood; vicinity	[近: near/close | 所: place/area]
+王国	おうこく	noun	kingdom	[王: king | 国: country/nation]
+都市	とし	noun	city (urban area)	[都: capital/metropolis | 市: city/market]
 国	くに	noun	country
 町	まち	noun	town; city
 村	むら	noun	village
-外国	がいこく	noun	foreign country
-南口	みなみぐち	noun	south exit/entrance
-各地	かくち	noun	every area; various places
-区域	くいき	noun	zone; area; section
-国境	こっきょう	noun	national border
+外国	がいこく	noun	foreign country	[外: outside/foreign | 国: country/nation]
+南口	みなみぐち	noun	south exit/entrance	[南: south | 口: mouth/exit]
+各地	かくち	noun	every area; various places	[各: each/every | 地: ground/area]
+区域	くいき	noun	zone; area; section	[区: ward/section | 域: region/zone]
+国境	こっきょう	noun	national border	[国: country/nation | 境: boundary/border]
 州	しゅう	noun	state; province
-座席	ざせき	noun	seat
-敷地	しきち	noun	site; lot; premises
-西洋	せいよう	noun	the West; Western world
-穴場	あなば	noun	little-known good spot
-窓際	まどぎわ	noun	by the window
-農村	のうそん	noun	farming village
-故郷	こきょう	noun	hometown; birthplace
-郷土	きょうど	noun	homeland; native place; local
+座席	ざせき	noun	seat	[座: seat/sitting | 席: seat]
+敷地	しきち	noun	site; lot; premises	[敷: spread/lay | 地: ground/site]
+西洋	せいよう	noun	the West; Western world	[西: west | 洋: ocean/Western]
+穴場	あなば	noun	little-known good spot	[穴: hole/spot | 場: place/site]
+窓際	まどぎわ	noun	by the window	[窓: window | 際: edge/side]
+農村	のうそん	noun	farming village	[農: agriculture/farming | 村: village]
+故郷	こきょう	noun	hometown; birthplace	[故: old/origin | 郷: hometown/village]
+郷土	きょうど	noun	homeland; native place; local	[郷: hometown/village | 土: earth/soil]
 街	まち	noun	town; street; downtown
-街角	まちかど	noun	street corner
-迷路	めいろ	noun	maze; labyrinth
-近隣	きんりん	noun	neighborhood; vicinity
+街角	まちかど	noun	street corner	[街: street/town | 角: corner/angle]
+迷路	めいろ	noun	maze; labyrinth	[迷: lost/astray | 路: road/path]
+近隣	きんりん	noun	neighborhood; vicinity	[近: near/close | 隣: neighbor/next]

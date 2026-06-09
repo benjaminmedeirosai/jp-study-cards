@@ -1,14 +1,14 @@
 # Shops (Nouns / Places).
 # Auto-grouped during the nouns reorg; refine membership as needed.
-kanji	hiragana	type	english
-魚売り場	さかなうりば	noun	fish section
-売り場	うりば	noun	sales floor; section
-薬局	やっきょく	noun	pharmacy
+kanji	hiragana	type	english	breakdown
+魚売り場	さかなうりば	noun	fish section	[魚: fish | 売: sell | 場: place/area]
+売り場	うりば	noun	sales floor; section	[売: sell | 場: place/area]
+薬局	やっきょく	noun	pharmacy	[薬: medicine/drug | 局: bureau/office]
 店	みせ	noun	store
-注文	ちゅうもん	noun	order (at a restaurant)
-花屋	はなや	noun	flower shop
-魚屋	さかなや	noun	fish shop; fishmonger
-パン屋	パンや	noun	bakery
-床屋	とこや	noun	barbershop
-百貨店	ひゃっかてん	noun	department store
-居酒屋	いざかや	noun	izakaya; Japanese pub
+注文	ちゅうもん	noun	order (at a restaurant)	[注: order/focus | 文: writing/text]
+花屋	はなや	noun	flower shop	[花: flower | 屋: shop/store]
+魚屋	さかなや	noun	fish shop; fishmonger	[魚: fish | 屋: shop/store]
+パン屋	パンや	noun	bakery	[屋: shop/store]
+床屋	とこや	noun	barbershop	[床: floor/bed | 屋: shop/store]
+百貨店	ひゃっかてん	noun	department store	[百: hundred | 貨: goods/money | 店: store/shop]
+居酒屋	いざかや	noun	izakaya; Japanese pub	[居: reside/sit | 酒: sake/alcohol | 屋: shop/store]

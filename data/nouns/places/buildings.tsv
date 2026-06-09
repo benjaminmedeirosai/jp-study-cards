@@ -1,63 +1,63 @@
-kanji	hiragana	type	english
-体育館	たいいくかん	noun	gymnasium
-公民館	こうみんかん	noun	community center
+kanji	hiragana	type	english	breakdown
+体育館	たいいくかん	noun	gymnasium	[体: body | 育: raise/train | 館: hall/building]
+公民館	こうみんかん	noun	community center	[公: public | 民: people | 館: hall/building]
 寮	りょう	noun	dormitory
-倉庫	そうこ	noun	warehouse
-工場	こうじょう	noun	factory
-交番	こうばん	noun	police box
-消防署	しょうぼうしょ	noun	fire station
-裁判所	さいばんしょ	noun	courthouse
-市場	いちば	noun	market
-展望台	てんぼうだい	noun	observation deck
-灯台	とうだい	noun	lighthouse
-温室	おんしつ	noun	greenhouse
+倉庫	そうこ	noun	warehouse	[倉: storehouse | 庫: warehouse]
+工場	こうじょう	noun	factory	[工: craft/work | 場: place/site]
+交番	こうばん	noun	police box	[交: exchange/alternate | 番: watch/turn]
+消防署	しょうぼうしょ	noun	fire station	[消: extinguish/put out | 防: prevent/defend | 署: station/office]
+裁判所	さいばんしょ	noun	courthouse	[裁: judge/cut | 判: judge/seal | 所: place/office]
+市場	いちば	noun	market	[市: market/city | 場: place/site]
+展望台	てんぼうだい	noun	observation deck	[展: unfold/display | 望: view/hope | 台: stand/platform]
+灯台	とうだい	noun	lighthouse	[灯: lamp/light | 台: stand/platform]
+温室	おんしつ	noun	greenhouse	[温: warm | 室: room]
 宿	やど	noun	lodging; inn
-駐車場	ちゅうしゃじょう	noun	parking lot
-大学	だいがく	noun	university; college
+駐車場	ちゅうしゃじょう	noun	parking lot	[駐: park/station | 車: car/vehicle | 場: place/site]
+大学	だいがく	noun	university; college	[大: big/great | 学: study/learning]
 橋	はし	noun	bridge
-公園	こうえん	noun	park
-病院	びょういん	noun	hospital
-銀行	ぎんこう	noun	bank
-郵便局	ゆうびんきょく	noun	post office
-図書館	としょかん	noun	library
-美術館	びじゅつかん	noun	art museum
-映画館	えいがかん	noun	movie theater
-空港	くうこう	noun	airport
-会場	かいじょう	noun	venue; site
-入口	いりぐち	noun	entrance
-出口	でぐち	noun	exit
+公園	こうえん	noun	park	[公: public | 園: garden/park]
+病院	びょういん	noun	hospital	[病: illness/sick | 院: institution/building]
+銀行	ぎんこう	noun	bank	[銀: silver | 行: conduct/line]
+郵便局	ゆうびんきょく	noun	post office	[郵: mail/post | 便: post/convenience | 局: bureau/office]
+図書館	としょかん	noun	library	[図: diagram/figure | 書: book/write | 館: hall/building]
+美術館	びじゅつかん	noun	art museum	[美: beauty | 術: art/technique | 館: hall/building]
+映画館	えいがかん	noun	movie theater	[映: project/reflect | 画: picture/film | 館: hall/building]
+空港	くうこう	noun	airport	[空: sky/air | 港: harbor/port]
+会場	かいじょう	noun	venue; site	[会: meet/gather | 場: place/site]
+入口	いりぐち	noun	entrance	[入: enter | 口: mouth/opening]
+出口	でぐち	noun	exit	[出: out/exit | 口: mouth/opening]
 庭	にわ	noun	garden; yard
-学校	がっこう	noun	school
+学校	がっこう	noun	school	[学: study/learning | 校: school]
 家	いえ	noun	house; home
-建物	たてもの	noun	building
+建物	たてもの	noun	building	[建: build/construct | 物: thing/object]
 城	しろ	noun	castle
 うち	うち	noun	home; our place
-市役所	しやくしょ	noun	city hall
-神社	じんじゃ	noun	shrine
-神輿	みこし	noun	portable shrine
-休憩スペース	きゅうけいスペース	noun	rest area; break space
-自宅	じたく	noun	one's home; residence
-ご自宅	ごじたく	noun	your home; one's home (honorific)
+市役所	しやくしょ	noun	city hall	[市: city | 役: office/duty | 所: place/office]
+神社	じんじゃ	noun	shrine	[神: god/divine | 社: shrine/company]
+神輿	みこし	noun	portable shrine	[神: god/divine | 輿: palanquin/carriage]
+休憩スペース	きゅうけいスペース	noun	rest area; break space	[休: rest | 憩: rest/relax]
+自宅	じたく	noun	one's home; residence	[自: self/own | 宅: home/residence]
+ご自宅	ごじたく	noun	your home; one's home (honorific)	[自: self/own | 宅: home/residence]
 お寺	おてら	noun	temple (Buddhist)
-物件	ぶっけん	noun	property; real estate listing
-借家	しゃくや	noun	rented house
-博物館	はくぶつかん	noun	museum
-要塞	ようさい	noun	fortress; stronghold
-境内	けいだい	noun	precincts; shrine/temple grounds
-学生寮	がくせいりょう	noun	student dormitory
-庭園	ていえん	noun	garden; landscaped grounds
-回廊	かいろう	noun	corridor; cloister
-屋敷	やしき	noun	mansion; residence
-旅館	りょかん	noun	ryokan; Japanese inn
-更衣室	こういしつ	noun	changing room; locker room
-銭湯	せんとう	noun	public bathhouse
-監獄	かんごく	noun	prison; jail
-窓口	まどぐち	noun	service window; counter
-警察署	けいさつしょ	noun	police station
+物件	ぶっけん	noun	property; real estate listing	[物: thing/property | 件: matter/case]
+借家	しゃくや	noun	rented house	[借: borrow/rent | 家: house/home]
+博物館	はくぶつかん	noun	museum	[博: broad/exhibit | 物: thing/object | 館: hall/building]
+要塞	ようさい	noun	fortress; stronghold	[要: essential/key | 塞: fortress/block]
+境内	けいだい	noun	precincts; shrine/temple grounds	[境: boundary | 内: inside]
+学生寮	がくせいりょう	noun	student dormitory	[学: study | 生: student | 寮: dormitory]
+庭園	ていえん	noun	garden; landscaped grounds	[庭: garden/yard | 園: garden/park]
+回廊	かいろう	noun	corridor; cloister	[回: circuit/turn | 廊: corridor]
+屋敷	やしき	noun	mansion; residence	[屋: house/building | 敷: spread/grounds]
+旅館	りょかん	noun	ryokan; Japanese inn	[旅: travel/journey | 館: inn/building]
+更衣室	こういしつ	noun	changing room; locker room	[更: change/renew | 衣: garment/clothing | 室: room]
+銭湯	せんとう	noun	public bathhouse	[銭: coin/money | 湯: hot water/bath]
+監獄	かんごく	noun	prison; jail	[監: oversee/watch | 獄: prison]
+窓口	まどぐち	noun	service window; counter	[窓: window | 口: mouth/opening]
+警察署	けいさつしょ	noun	police station	[警: guard/alert | 察: observe/perceive | 署: station/office]
 蔵	くら	noun	storehouse; warehouse
-豪邸	ごうてい	noun	mansion; luxurious residence
-邸宅	ていたく	noun	mansion; residence
+豪邸	ごうてい	noun	mansion; luxurious residence	[豪: grand/luxurious | 邸: mansion/residence]
+邸宅	ていたく	noun	mansion; residence	[邸: mansion/residence | 宅: home/residence]
 門	もん	noun	gate
 倉	くら	noun	storehouse; warehouse
-食堂	しょくどう	noun	dining hall; cafeteria
+食堂	しょくどう	noun	dining hall; cafeteria	[食: food/eat | 堂: hall]
 階	かい	noun	floor; story (of a building)

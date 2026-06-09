@@ -1,24 +1,24 @@
 # Rooms (Nouns / Places).
 # Auto-grouped during the nouns reorg; refine membership as needed.
-kanji	hiragana	type	english
-包丁	ほうちょう	noun	kitchen knife
-台所	だいどころ	noun	kitchen
-玄関	げんかん	noun	entryway
+kanji	hiragana	type	english	breakdown
+包丁	ほうちょう	noun	kitchen knife	[包: wrap/cover | 丁: block/cleaver]
+台所	だいどころ	noun	kitchen	[台: stand/platform | 所: place/area]
+玄関	げんかん	noun	entryway	[玄: dark/profound | 関: gate/barrier]
 窓	まど	noun	window
 床	ゆか	noun	floor
-天井	てんじょう	noun	ceiling
+天井	てんじょう	noun	ceiling	[天: heaven/sky | 井: well]
 壁	かべ	noun	wall
-階段	かいだん	noun	stairs
-風呂	ふろ	noun	bath
-洗面所	せんめんじょ	noun	washroom; sink area
-廊下	ろうか	noun	hallway
-部屋	へや	noun	room
-寝室	しんしつ	noun	bedroom
-居間	いま	noun	living room
-風呂場	ふろば	noun	bathroom; bathing area
-露天風呂	ろてんぶろ	noun	open-air bath
-書斎	しょさい	noun	study; library (room)
-枕元	まくらもと	noun	bedside
-厨房	ちゅうぼう	noun	kitchen (commercial); galley
-浴室	よくしつ	noun	bathroom (for bathing)
-押し入れ	おしいれ	noun	closet; storage cupboard
+階段	かいだん	noun	stairs	[階: floor/story | 段: step/grade]
+風呂	ふろ	noun	bath	[風: wind | 呂: bath/(phonetic)]
+洗面所	せんめんじょ	noun	washroom; sink area	[洗: wash | 面: face | 所: place/area]
+廊下	ろうか	noun	hallway	[廊: corridor | 下: below/under]
+部屋	へや	noun	room	[部: part/section | 屋: room/house]
+寝室	しんしつ	noun	bedroom	[寝: sleep/lie | 室: room]
+居間	いま	noun	living room	[居: reside/sit | 間: room/space]
+風呂場	ふろば	noun	bathroom; bathing area	[風: wind | 呂: bath/(phonetic) | 場: place/site]
+露天風呂	ろてんぶろ	noun	open-air bath	[露: open/dew | 天: sky/heaven | 風: wind | 呂: bath/(phonetic)]
+書斎	しょさい	noun	study; library (room)	[書: write/book | 斎: study/room]
+枕元	まくらもと	noun	bedside	[枕: pillow | 元: base/beside]
+厨房	ちゅうぼう	noun	kitchen (commercial); galley	[厨: kitchen | 房: room/chamber]
+浴室	よくしつ	noun	bathroom (for bathing)	[浴: bathe | 室: room]
+押し入れ	おしいれ	noun	closet; storage cupboard	[押: push | 入: enter/put in]
