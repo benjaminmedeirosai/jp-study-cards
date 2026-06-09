@@ -80,6 +80,49 @@
   border-top: none;
 }
 
+/* Field with a narrow input + quick-pick chips on one line. */
+.preset-row {
+  display: flex;
+  align-items: stretch;
+  gap: 8px;
+}
+
+.preset-row .preset-input {
+  flex: 0 0 84px;
+  width: 84px;
+}
+
+.preset-chips {
+  flex: 1;
+  min-width: 0;
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(0, 1fr);
+  gap: 6px;
+}
+
+.preset-chip {
+  min-width: 0;
+  border: 1px solid rgba(96, 165, 250, 0.22);
+  border-radius: 9px;
+  background: linear-gradient(180deg, rgba(30, 41, 59, 0.5), rgba(15, 23, 42, 0.48));
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.preset-chip:hover {
+  border-color: var(--accent-border);
+  color: var(--text);
+}
+
+.preset-chip.active {
+  border-color: rgba(96, 165, 250, 0.72);
+  background: linear-gradient(180deg, rgba(96, 165, 250, 0.42), rgba(37, 99, 235, 0.34));
+  color: #eff6ff;
+}
+
 .settings-toggle-grid {
   display: grid;
   grid-template-columns: 1fr;

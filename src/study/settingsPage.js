@@ -33,6 +33,44 @@ function sectionHeading(label) {
   return heading;
 }
 
+// A labelled field where a narrow input sits beside quick-pick chips. Clicking
+// a chip writes its value into the input and fires `input`, so the field's
+// existing listener handles it — the chips and the box stay in sync, and the
+// chip matching the current value is highlighted.
+function makePresetField(labelText, input, presets, className = "") {
+  const field = document.createElement("div");
+  field.className = `study-field preset-field ${className}`.trim();
+  const span = document.createElement("span");
+  span.textContent = labelText;
+  const row = document.createElement("div");
+  row.className = "preset-row";
+  input.classList.add("preset-input");
+  const chips = document.createElement("div");
+  chips.className = "preset-chips";
+  const buttons = presets.map((value) => {
+    const chip = document.createElement("button");
+    chip.type = "button";
+    chip.className = "preset-chip";
+    chip.textContent = String(value);
+    chip.dataset.value = String(value);
+    chip.addEventListener("click", () => {
+      input.value = String(value);
+      input.dispatchEvent(new Event("input", { bubbles: true }));
+    });
+    return chip;
+  });
+  chips.append(...buttons);
+  row.append(input, chips);
+  field.append(span, row);
+  const syncActive = () => {
+    const current = String(input.value).trim();
+    for (const chip of buttons) chip.classList.toggle("active", chip.dataset.value === current);
+  };
+  input.addEventListener("input", syncActive);
+  syncActive();
+  return field;
+}
+
 // Resolve and load the cards of the currently-selected deck, for the live preview.
 async function loadActiveDeckCards(state) {
   const bundle = await loadBundle();
@@ -322,7 +360,7 @@ export function renderSettingsPage() {
   content.append(
     sectionHeading("Filter & sets"),
     queryField,
-    fieldLabel("Set size", setSizeInput),
+    makePresetField("Set size", setSizeInput, [5, 10, 15, 20, 50]),
     fieldLabel("Set grouping", setGroupingInput),
     setPreview,
     sectionHeading("Font sizes"),
@@ -334,8 +372,8 @@ export function renderSettingsPage() {
     fieldLabel("Japanese voice", voiceRow),
     fieldLabel("Voice speed", rateSelect),
     sectionHeading("Autoplay"),
-    fieldLabel("Question delay (sec)", questionDelayInput),
-    fieldLabel("Answer delay (sec)", answerDelayInput),
+    makePresetField("Question delay (sec)", questionDelayInput, [1, 1.5, 2, 3, 4]),
+    makePresetField("Answer delay (sec)", answerDelayInput, [1, 1.5, 2, 3, 4]),
     ttsEstimateToggle.label,
     sectionHeading("Other"),
     visibilityGroup
