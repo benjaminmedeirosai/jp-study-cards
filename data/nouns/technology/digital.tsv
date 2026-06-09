@@ -1,42 +1,42 @@
 # Digital (Nouns / Technology).
 # Auto-grouped during the nouns reorg; refine membership as needed.
-kanji	hiragana	type	english
-書き込み	かきこみ	noun	writing/posting (a comment)
+kanji	hiragana	type	english	breakdown
+書き込み	かきこみ	noun	writing/posting (a comment)	[書: write | 込: into/include]
 おすすめ	おすすめ	noun	recommendation; suggested (content)
 Wi-Fi	ワイファイ	noun	Wi-Fi; wireless internet
-お気に入り	おきにいり	noun	favorite; bookmarked item
-共有	きょうゆう	noun	share; sharing
-検索	けんさく	noun	search (noun); searching
-限定公開	げんていこうかい	noun	unlisted (limited visibility); limited public
-固定	こてい	noun	pin; fixed; sticking (e.g., pinned comment)
-公開	こうかい	noun	public; release; publishing
-更新	こうしん	noun	update; renewal; refresh
-削除	さくじょ	noun	deletion; remove
-切替	きりかえ	noun	switching; toggle; changeover
-接続	せつぞく	noun	connection; connecting
-送信	そうしん	noun	send; transmission
-追加	ついか	noun	add; addition
-通知	つうち	noun	notification; notice
-通報	つうほう	noun	report (to authorities/system); filing a report
-読み込み	よみこみ	noun	loading; reading in (data)
-非公開	ひこうかい	noun	private (not public)
-標準	ひょうじゅん	noun	standard; default
-表示	ひょうじ	noun	display; show
-並び替え	ならびかえ	noun	sort; reorder
-編集	へんしゅう	noun	edit; editing
-返信	へんしん	noun	reply; response
-保存	ほぞん	noun	save; saving
-利用規約	りようきやく	noun	terms of service; terms of use
-履歴	りれき	noun	history; log (viewing/search history)
-暗証	あんしょう	noun	PIN; passcode (secret code)
-印刷	いんさつ	noun	printing; print
-拡大	かくだい	noun	enlarge; zoom in
-権限	けんげん	noun	permission; authority (app permission)
-初期化	しょきか	noun	initialize; reset (to factory settings)
-省電力	しょうでんりょく	noun	power saving; low power
-同期	どうき	noun	sync; synchronization
-入力	にゅうりょく	noun	input; entry (text/data)
-認証	にんしょう	noun	authentication; verification
-復元	ふくげん	noun	restore; recovery
-壁紙	かべがみ	noun	wallpaper (phone/desktop background)
-設定	せってい	noun	settings; configuration
+お気に入り	おきにいり	noun	favorite; bookmarked item	[気: feeling/mind | 入: enter/put in]
+共有	きょうゆう	noun	share; sharing	[共: together/share | 有: have/exist]
+検索	けんさく	noun	search (noun); searching	[検: examine/inspect | 索: search/seek]
+限定公開	げんていこうかい	noun	unlisted (limited visibility); limited public	[限: limit | 定: fix/set | 公: public | 開: open/release]
+固定	こてい	noun	pin; fixed; sticking (e.g., pinned comment)	[固: fixed/hard | 定: fix/set]
+公開	こうかい	noun	public; release; publishing	[公: public | 開: open/release]
+更新	こうしん	noun	update; renewal; refresh	[更: renew/change | 新: new]
+削除	さくじょ	noun	deletion; remove	[削: cut/delete | 除: remove/exclude]
+切替	きりかえ	noun	switching; toggle; changeover	[切: cut/switch | 替: replace/exchange]
+接続	せつぞく	noun	connection; connecting	[接: contact/join | 続: continue/connect]
+送信	そうしん	noun	send; transmission	[送: send/transmit | 信: message/signal]
+追加	ついか	noun	add; addition	[追: pursue/add | 加: add/increase]
+通知	つうち	noun	notification; notice	[通: pass/communicate | 知: know/inform]
+通報	つうほう	noun	report (to authorities/system); filing a report	[通: pass/communicate | 報: report/inform]
+読み込み	よみこみ	noun	loading; reading in (data)	[読: read | 込: into/include]
+非公開	ひこうかい	noun	private (not public)	[非: non-/not | 公: public | 開: open/release]
+標準	ひょうじゅん	noun	standard; default	[標: mark/standard | 準: standard/level]
+表示	ひょうじ	noun	display; show	[表: show/surface | 示: indicate/show]
+並び替え	ならびかえ	noun	sort; reorder	[並: line up/arrange | 替: replace/swap]
+編集	へんしゅう	noun	edit; editing	[編: edit/compile | 集: gather/collect]
+返信	へんしん	noun	reply; response	[返: return/reply | 信: message/letter]
+保存	ほぞん	noun	save; saving	[保: keep/protect | 存: exist/preserve]
+利用規約	りようきやく	noun	terms of service; terms of use	[利: benefit/use | 用: use | 規: rule/standard | 約: promise/agreement]
+履歴	りれき	noun	history; log (viewing/search history)	[履: career/track | 歴: history/record]
+暗証	あんしょう	noun	PIN; passcode (secret code)	[暗: secret/dark | 証: proof/certificate]
+印刷	いんさつ	noun	printing; print	[印: seal/mark | 刷: print]
+拡大	かくだい	noun	enlarge; zoom in	[拡: expand/widen | 大: big/large]
+権限	けんげん	noun	permission; authority (app permission)	[権: authority/right | 限: limit/bound]
+初期化	しょきか	noun	initialize; reset (to factory settings)	[初: first/initial | 期: period/term | 化: -ize/change]
+省電力	しょうでんりょく	noun	power saving; low power	[省: save/omit | 電: electricity | 力: power/force]
+同期	どうき	noun	sync; synchronization	[同: same | 期: period/timing]
+入力	にゅうりょく	noun	input; entry (text/data)	[入: enter | 力: power/effort]
+認証	にんしょう	noun	authentication; verification	[認: recognize/verify | 証: proof/certificate]
+復元	ふくげん	noun	restore; recovery	[復: restore/return | 元: origin/base]
+壁紙	かべがみ	noun	wallpaper (phone/desktop background)	[壁: wall | 紙: paper]
+設定	せってい	noun	settings; configuration	[設: establish/set up | 定: fix/set]

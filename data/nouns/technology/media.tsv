@@ -1,19 +1,19 @@
 # Media (Nouns / Technology).
 # Auto-grouped during the nouns reorg; refine membership as needed.
-kanji	hiragana	type	english
-回数	かいすう	noun	number of times; frequency
-視聴	しちょう	noun	viewing; watching
-画質	がしつ	noun	image quality; video quality
-関連動画	かんれんどうが	noun	related videos
-急上昇	きゅうじょうしょう	noun	trending; rapidly rising (in popularity)
-大画面	だいがめん	noun	large screen; big display
-大型画面	おおがたがめん	noun	large-sized screen
-動画	どうが	noun	video; moving image
-字幕	じまく	noun	subtitles; captions
-自動再生	じどうさいせい	noun	autoplay (automatic playback)
-全画面	ぜんがめん	noun	full screen
-速度	そくど	noun	speed; playback speed
-音量	おんりょう	noun	volume (sound level)
-自動回転	じどうかいてん	noun	auto-rotate (screen rotation)
-着信音	ちゃくしんおん	noun	ringtone; incoming call sound
-画面	がめん	noun	screen
+kanji	hiragana	type	english	breakdown
+回数	かいすう	noun	number of times; frequency	[回: time/turn | 数: number/count]
+視聴	しちょう	noun	viewing; watching	[視: see/view | 聴: listen/hear]
+画質	がしつ	noun	image quality; video quality	[画: picture/image | 質: quality/substance]
+関連動画	かんれんどうが	noun	related videos	[関: relation/connect | 連: link/series | 動: move | 画: picture/image]
+急上昇	きゅうじょうしょう	noun	trending; rapidly rising (in popularity)	[急: sudden/rapid | 上: up/above | 昇: rise/ascend]
+大画面	だいがめん	noun	large screen; big display	[大: big/large | 画: picture/image | 面: surface/screen]
+大型画面	おおがたがめん	noun	large-sized screen	[大: big/large | 型: type/size | 画: picture/image | 面: surface/screen]
+動画	どうが	noun	video; moving image	[動: move/motion | 画: picture/image]
+字幕	じまく	noun	subtitles; captions	[字: character/letter | 幕: curtain/screen]
+自動再生	じどうさいせい	noun	autoplay (automatic playback)	[自: self/auto | 動: move | 再: again/re- | 生: produce/play]
+全画面	ぜんがめん	noun	full screen	[全: whole/full | 画: picture/image | 面: surface/screen]
+速度	そくど	noun	speed; playback speed	[速: fast/speed | 度: degree/measure]
+音量	おんりょう	noun	volume (sound level)	[音: sound | 量: quantity/amount]
+自動回転	じどうかいてん	noun	auto-rotate (screen rotation)	[自: self/auto | 動: move | 回: turn/rotate | 転: turn/revolve]
+着信音	ちゃくしんおん	noun	ringtone; incoming call sound	[着: arrive/incoming | 信: signal/message | 音: sound]
+画面	がめん	noun	screen	[画: picture/image | 面: surface/screen]

@@ -1,16 +1,16 @@
-kanji	hiragana	type	english
-充電器	じゅうでんき	noun	charger
-電源	でんげん	noun	power supply
-受像機	じゅぞうき	noun	television receiver
-探査機	たんさき	noun	probe; exploration craft
-残量	ざんりょう	noun	remaining amount (battery/data)
-無線	むせん	noun	wireless; radio (communication)
-携帯	けいたい	noun	mobile phone; cell phone
-携帯電話	けいたいでんわ	noun	cell phone
-充電	じゅうでん	noun	charging (a battery)
-電池	でんち	noun	battery
-原子炉	げんしろ	noun	nuclear reactor
-電波	でんぱ	noun	radio wave; signal
-内蔵	ないぞう	noun	built-in; internal
-端末	たんまつ	noun	terminal; device
-液晶	えきしょう	noun	liquid crystal; LCD
+kanji	hiragana	type	english	breakdown
+充電器	じゅうでんき	noun	charger	[充: fill/charge | 電: electricity | 器: device/vessel]
+電源	でんげん	noun	power supply	[電: electricity | 源: source/origin]
+受像機	じゅぞうき	noun	television receiver	[受: receive | 像: image/picture | 機: machine]
+探査機	たんさき	noun	probe; exploration craft	[探: search/probe | 査: investigate/inspect | 機: machine]
+残量	ざんりょう	noun	remaining amount (battery/data)	[残: remain/leftover | 量: quantity/amount]
+無線	むせん	noun	wireless; radio (communication)	[無: without/none | 線: line/wire]
+携帯	けいたい	noun	mobile phone; cell phone	[携: carry/portable | 帯: belt/carry]
+携帯電話	けいたいでんわ	noun	cell phone	[携: carry/portable | 帯: belt/carry | 電: electric | 話: talk/speak]
+充電	じゅうでん	noun	charging (a battery)	[充: fill/charge | 電: electricity]
+電池	でんち	noun	battery	[電: electricity | 池: pond/cell]
+原子炉	げんしろ	noun	nuclear reactor	[原: origin/atom | 子: particle/child | 炉: furnace/reactor]
+電波	でんぱ	noun	radio wave; signal	[電: electricity | 波: wave]
+内蔵	ないぞう	noun	built-in; internal	[内: inside/internal | 蔵: store/hold]
+端末	たんまつ	noun	terminal; device	[端: edge/end | 末: end/tip]
+液晶	えきしょう	noun	liquid crystal; LCD	[液: fluid/liquid | 晶: crystal]
