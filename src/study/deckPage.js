@@ -1,4 +1,5 @@
 import { loadState, saveState, buildDeckTree, listDecks, loadBundle, deckMatchCounts, button } from "./shared.js";
+import { historyDropdown, getFilterHistory, getDeckHistory, formatDuration, formatAgo } from "./filters.js";
 
 // Indentation per tree level, in px.
 const INDENT = 34;
@@ -68,13 +69,41 @@ export function renderDeckPage() {
   title.textContent = "Decks";
   top.append(backBtn, title);
 
-  // Shared filter — bound to state.query, so it matches the settings filter.
+  // Deck-name filter — narrows the list by deck/folder name (not card content).
+  const nameInput = document.createElement("input");
+  nameInput.type = "text";
+  nameInput.className = "decks-filter decks-name-filter";
+  nameInput.placeholder = "Filter decks…";
+  nameInput.autocomplete = "off";
+  let nameQuery = "";
+
+  // Card-content filter — bound to state.query, so it matches the settings filter.
   const filterInput = document.createElement("input");
   filterInput.type = "text";
   filterInput.className = "decks-filter";
   filterInput.placeholder = "Filter cards…";
   filterInput.autocomplete = "off";
   filterInput.value = state.query;
+
+  // History dropdowns: recently-studied decks, and recently-used card filters.
+  const nameWrap = historyDropdown(nameInput, {
+    getItems: () => getDeckHistory().map((h) => ({
+      primary: h.label || h.id,
+      meta: `studied ${formatDuration(h.ms)} · ${formatAgo(h.at)}`,
+      value: h.id
+    })),
+    onPick: (it) => selectDeck(it.value),
+    emptyText: "No decks studied yet"
+  });
+  const filterWrap = historyDropdown(filterInput, {
+    getItems: () => getFilterHistory().map((h) => ({
+      primary: h.q,
+      meta: `studied ${formatDuration(h.ms)} · ${formatAgo(h.at)}`,
+      value: h.q
+    })),
+    onPick: (it) => { filterInput.value = it.value; filterInput.dispatchEvent(new Event("input", { bubbles: true })); },
+    emptyText: "No filters studied yet"
+  });
 
   const list = document.createElement("div");
   list.className = "decks-list";
@@ -83,12 +112,17 @@ export function renderDeckPage() {
   empty.textContent = "Loading decks...";
   list.append(empty);
 
-  root.append(top, filterInput, list);
+  root.append(top, nameWrap, filterWrap, list);
 
   let tree = [];
   let bundle = null;
   let counts = new Map();
   const expanded = new Set();
+
+  nameInput.addEventListener("input", () => {
+    nameQuery = nameInput.value.trim().toLowerCase();
+    if (bundle) renderList();
+  });
 
   filterInput.addEventListener("input", () => {
     const next = filterInput.value.trim();
@@ -148,10 +182,21 @@ export function renderDeckPage() {
     return entry(contentRow(ICONS.file, deck.label, label, "deck-row--file"), useButton(deck.id, deck.label), depth);
   }
 
+  // --- Deck-name filtering ------------------------------------------------
+  // While `nameQuery` is set, the list is narrowed to deck/folder names that
+  // match (and the ancestors leading to them); a matched folder shows its whole
+  // subtree. This is independent of the card-content filter (state.query).
+  function nameHit(value) {
+    return String(value).toLowerCase().includes(nameQuery);
+  }
+  function subtreeNameMatch(node) {
+    return nameHit(node.name) || node.decks.some((deck) => nameHit(deck.label)) || node.children.some(subtreeNameMatch);
+  }
+
   // The folder's content row toggles expand/collapse on tap; the "Select" button
   // chooses the folder itself (all files beneath it) as the study target.
   function folderRow(node, path, depth) {
-    const isOpen = expanded.has(path);
+    const isOpen = nameQuery ? true : expanded.has(path);
     const toggle = contentRow(isOpen ? ICONS.folderOpen : ICONS.folder, node.name, countLabel(matchedInNode(node), countCards(node)), "deck-folder-toggle", true);
     toggle.setAttribute("aria-expanded", isOpen ? "true" : "false");
     toggle.addEventListener("click", () => {
@@ -162,18 +207,26 @@ export function renderDeckPage() {
     return entry(toggle, useButton(`folder:${path}`, `${node.name} folder`), depth);
   }
 
-  function renderNode(node, parentPath, depth, frag) {
+  function renderNode(node, parentPath, depth, frag, ancestorMatch = false) {
     const path = parentPath ? `${parentPath} / ${node.name}` : node.name;
+    const selfMatch = nameQuery ? nameHit(node.name) : false;
+    if (nameQuery && !ancestorMatch && !selfMatch && !subtreeNameMatch(node)) return;
     frag.append(folderRow(node, path, depth));
-    if (!expanded.has(path)) return;
-    for (const deck of node.decks) frag.append(fileRow(deck, depth + 1));
-    for (const child of node.children) renderNode(child, path, depth + 1, frag);
+    const open = nameQuery ? true : expanded.has(path);
+    if (!open) return;
+    const showAll = ancestorMatch || selfMatch; // a matched folder reveals its whole subtree
+    for (const deck of node.decks) {
+      if (!nameQuery || showAll || nameHit(deck.label)) frag.append(fileRow(deck, depth + 1));
+    }
+    for (const child of node.children) {
+      if (!nameQuery || showAll || subtreeNameMatch(child)) renderNode(child, path, depth + 1, frag, showAll);
+    }
   }
 
   // The "All decks" root folder: selecting it studies the whole collection;
   // expanding it reveals every top-level folder/deck beneath.
   function renderAllRow(frag) {
-    const isOpen = expanded.has(ALL_PATH);
+    const isOpen = nameQuery ? true : expanded.has(ALL_PATH);
     const matched = tree.reduce((sum, node) => sum + matchedInNode(node), 0);
     const total = tree.reduce((sum, node) => sum + countCards(node), 0);
     const toggle = contentRow(isOpen ? ICONS.folderOpen : ICONS.folder, "All decks", countLabel(matched, total), "deck-folder-toggle", true);
@@ -191,9 +244,18 @@ export function renderDeckPage() {
     counts = deckMatchCounts(bundle, state.query);
     const frag = document.createDocumentFragment();
     if (renderAllRow(frag)) {
-      for (const node of tree) renderNode(node, "", 1, frag);
+      for (const node of tree) {
+        if (!nameQuery || subtreeNameMatch(node)) renderNode(node, "", 1, frag, false);
+      }
     }
     list.innerHTML = "";
+    if (nameQuery && !frag.querySelector(".deck-row--file")) {
+      const none = document.createElement("div");
+      none.className = "decks-empty";
+      none.textContent = `No decks match “${nameInput.value.trim()}”`;
+      list.append(none);
+      return;
+    }
     list.append(frag);
   }
 

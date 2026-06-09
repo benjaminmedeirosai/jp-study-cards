@@ -1,5 +1,6 @@
 import { activeSetGrouping, computeDeckSets } from "./sets.js";
 import { speak, getVoicesForLang, onVoicesChanged } from "./speech.js";
+import { historyDropdown, getFilterHistory, formatDuration, formatAgo } from "./filters.js";
 
 const VOICE_SAMPLE = "こんにちは。これは音声のプレビューです。";
 import {
@@ -105,6 +106,16 @@ export function renderSettingsPage() {
   queryInput.autocomplete = "off";
   const queryField = fieldLabel("Filter", queryInput, "filter-field");
   const queryText = queryField.querySelector("span");
+  // History dropdown — moves queryInput into a wrapper, then back into the field.
+  queryField.append(historyDropdown(queryInput, {
+    getItems: () => getFilterHistory().map((h) => ({
+      primary: h.q,
+      meta: `studied ${formatDuration(h.ms)} · ${formatAgo(h.at)}`,
+      value: h.q
+    })),
+    onPick: (it) => { queryInput.value = it.value; queryInput.dispatchEvent(new Event("input", { bubbles: true })); },
+    emptyText: "No filters studied yet"
+  }));
 
   // --- Set size / grouping ------------------------------------------------
   const setSizeInput = document.createElement("input");

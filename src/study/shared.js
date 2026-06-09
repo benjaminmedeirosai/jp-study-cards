@@ -73,7 +73,9 @@ export function loadState() {
       hiragana: visible.hiragana !== false,
       english: visible.english !== false
     },
-    ttsSources: raw.ttsSources && typeof raw.ttsSources === "object" ? raw.ttsSources : {}
+    ttsSources: raw.ttsSources && typeof raw.ttsSources === "object" ? raw.ttsSources : {},
+    filterHistory: Array.isArray(raw.filterHistory) ? raw.filterHistory : [],
+    deckHistory: Array.isArray(raw.deckHistory) ? raw.deckHistory : []
   };
 }
 

@@ -1,5 +1,6 @@
 import { speak } from "./speech.js";
 import { buildSetOptions, activeSetGrouping, computeDeckSets } from "./sets.js";
+import { beginSession } from "./filters.js";
 import {
   MODES,
   LINK_TEMPLATES,
@@ -540,6 +541,9 @@ export function renderCardPage() {
     try {
       bundle = await loadBundle();
       await renderAll({ keepIndex: true });
+      // Start timing this study session (deck + active filter) for history.
+      const deck = currentDeck();
+      beginSession(state.deckId, deck ? deck.label : "", state.query);
       if (state.mode === "voice") speakJapanese();
     } catch (error) {
       empty.hidden = false;

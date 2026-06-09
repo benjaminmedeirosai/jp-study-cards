@@ -1,6 +1,7 @@
 import { renderCardPage } from "./study/cardPage.js";
 import { renderSettingsPage } from "./study/settingsPage.js";
 import { renderDeckPage } from "./study/deckPage.js";
+import { endSession, pauseSession, resumeSession } from "./study/filters.js";
 
 const app = document.getElementById("app");
 
@@ -21,6 +22,14 @@ async function registerServiceWorker() {
   }
 }
 
-window.addEventListener("hashchange", mount);
+// Close any open study session when leaving the card page (the card page
+// reopens one on mount). pagehide covers tab close/reload; visibility pauses
+// the timer so a backgrounded tab doesn't inflate study time.
+window.addEventListener("hashchange", () => { endSession(); mount(); });
+window.addEventListener("pagehide", () => { endSession(); });
+document.addEventListener("visibilitychange", () => {
+  if (document.hidden) pauseSession();
+  else resumeSession();
+});
 mount();
 void registerServiceWorker();
