@@ -1,13 +1,13 @@
 # Pronouns (Nouns / People).
 # Auto-grouped during the nouns reorg; refine membership as needed.
-kanji	hiragana	type	english
+kanji	hiragana	type	english	breakdown
 私	わたし	noun	I; me
 僕	ぼく	noun	I (used by males)
 己	おのれ	noun	oneself
 みんな	みんな	noun	everyone
 誰か	だれか	noun	someone
 彼	かれ	noun	he; him; boyfriend (context-dependent)
-彼女	かのじょ	noun	she; her; girlfriend (context-dependent)
+彼女	かのじょ	noun	she; her; girlfriend (context-dependent)	[彼: he/that one | 女: woman]
 俺	おれ	noun	I; me (rough masculine)
 奴	やつ	noun	guy; fellow
 私たち	わたしたち	noun	we; us

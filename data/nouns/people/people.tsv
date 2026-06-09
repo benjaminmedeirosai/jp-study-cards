@@ -1,70 +1,70 @@
-kanji	hiragana	type	english
-祖父	そふ	noun	grandfather
-曽祖母	そうそぼ	noun	great-grandmother
+kanji	hiragana	type	english	breakdown
+祖父	そふ	noun	grandfather	[祖: ancestor/grand- | 父: father]
+曽祖母	そうそぼ	noun	great-grandmother	[曽: great-(grand) | 祖: ancestor/grand- | 母: mother]
 甥	おい	noun	nephew
 姪	めい	noun	niece
-双子	ふたご	noun	twins
-親戚	しんせき	noun	relative
-隣人	りんじん	noun	neighbor
-同僚	どうりょう	noun	coworker
-先輩	せんぱい	noun	senior; mentor
-後輩	こうはい	noun	junior; protege
-恩人	おんじん	noun	benefactor
-知人	ちじん	noun	acquaintance
-友達	ともだち	noun	friend
+双子	ふたご	noun	twins	[双: pair/twin | 子: child]
+親戚	しんせき	noun	relative	[親: relative/parent | 戚: relative/kin]
+隣人	りんじん	noun	neighbor	[隣: neighbor/next | 人: person]
+同僚	どうりょう	noun	coworker	[同: same | 僚: colleague/official]
+先輩	せんぱい	noun	senior; mentor	[先: ahead/senior | 輩: fellow/companion]
+後輩	こうはい	noun	junior; protege	[後: after/junior | 輩: fellow/companion]
+恩人	おんじん	noun	benefactor	[恩: kindness/favor | 人: person]
+知人	ちじん	noun	acquaintance	[知: know/acquaintance | 人: person]
+友達	ともだち	noun	friend	[友: friend | 達: plural/reach]
 女	おんな	noun	woman
 男	おとこ	noun	man; male
 友	とも	noun	friend (literary/short form)
 人々	ひとびと	noun	people
-人混み	ひとごみ	noun	crowd
+人混み	ひとごみ	noun	crowd	[人: person | 混: mix/crowd]
 友だち	ともだち	noun	friend
-外国人	がいこくじん	noun	foreigner; foreign person
-仲間	なかま	noun	companion; teammate; friend (in-group)
+外国人	がいこくじん	noun	foreigner; foreign person	[外: outside/foreign | 国: country/nation | 人: person]
+仲間	なかま	noun	companion; teammate; friend (in-group)	[仲: relations/between | 間: interval/space]
 人	ひと	noun	person
 客	きゃく	noun	customer; guest
 敵	てき	noun	enemy
-味方	みかた	noun	ally; friend; your side
-他人	たにん	noun	stranger; other people
-他者	たしゃ	noun	others; another person
-仲良し	なかよし	noun	close friend; getting along well
-仲直り	なかなおり	noun	reconciliation; making up
+味方	みかた	noun	ally; friend; your side	[味: side/taste | 方: side/direction]
+他人	たにん	noun	stranger; other people	[他: other | 人: person]
+他者	たしゃ	noun	others; another person	[他: other | 者: person]
+仲良し	なかよし	noun	close friend; getting along well	[仲: relations/between | 良: good/fine]
+仲直り	なかなおり	noun	reconciliation; making up	[仲: relations/between | 直: fix/mend]
 仲	なか	noun	relationship; terms (between people)
-偉人	いじん	noun	great person; hero of history
-小僧	こぞう	noun	young boy; apprentice; brat
-億万長者	おくまんちょうじゃ	noun	billionaire; multimillionaire
-児童	じどう	noun	child; juvenile
-幼児	ようじ	noun	infant; small child
-主人	しゅじん	noun	husband; master; host
-主婦	しゅふ	noun	housewife; homemaker
-伴侶	はんりょ	noun	spouse; companion; partner
-奴隷	どれい	noun	slave
+偉人	いじん	noun	great person; hero of history	[偉: great/admirable | 人: person]
+小僧	こぞう	noun	young boy; apprentice; brat	[小: small/young | 僧: monk/lad]
+億万長者	おくまんちょうじゃ	noun	billionaire; multimillionaire	[億: hundred million | 万: ten thousand | 長: chief/elder | 者: person]
+児童	じどう	noun	child; juvenile	[児: child/infant | 童: child]
+幼児	ようじ	noun	infant; small child	[幼: young/infant | 児: child/infant]
+主人	しゅじん	noun	husband; master; host	[主: master/main | 人: person]
+主婦	しゅふ	noun	housewife; homemaker	[主: main/master | 婦: woman/wife]
+伴侶	はんりょ	noun	spouse; companion; partner	[伴: accompany | 侶: companion]
+奴隷	どれい	noun	slave	[奴: slave/fellow | 隷: slave/subordinate]
 姿	すがた	noun	figure; form; appearance
-容姿	ようし	noun	looks; appearance
-孤児	こじ	noun	orphan
-信徒	しんと	noun	believer; follower
-恩師	おんし	noun	one's former teacher; mentor
-民族	みんぞく	noun	ethnic group; people
-欲張り	よくばり	noun	greedy person; greed
-天才	てんさい	noun	genius
-相棒	あいぼう	noun	partner; buddy
-一匹狼	いっぴきおおかみ	noun	lone wolf; loner
-玄人	くろうと	noun	expert; professional
-甘党	あまとう	noun	person with a sweet tooth
-異性	いせい	noun	the opposite sex
-秀才	しゅうさい	noun	brilliant person; prodigy
-群衆	ぐんしゅう	noun	crowd; throng
-観衆	かんしゅう	noun	spectators; audience
-大衆	たいしゅう	noun	the masses; the general public
-覇者	はしゃ	noun	champion; supreme ruler
-富豪	ふごう	noun	wealthy person; magnate
-賢者	けんじゃ	noun	wise person; sage
-阿呆	あほう	noun	fool; idiot
-酔っ払い	よっぱらい	noun	drunk; drunkard
-婦人	ふじん	noun	woman; lady
-乗客	じょうきゃく	noun	passenger
-弟子	でし	noun	pupil; disciple; apprentice
-国民	こくみん	noun	citizen; the people; nation
-市民	しみん	noun	citizen; resident
-人種	じんしゅ	noun	race (of people)
-若者	わかもの	noun	young person; youth
-迷子	まいご	noun	lost child
+容姿	ようし	noun	looks; appearance	[容: form/appearance | 姿: figure/form]
+孤児	こじ	noun	orphan	[孤: alone/orphan | 児: child]
+信徒	しんと	noun	believer; follower	[信: faith/believe | 徒: follower/pupil]
+恩師	おんし	noun	one's former teacher; mentor	[恩: kindness/favor | 師: teacher/master]
+民族	みんぞく	noun	ethnic group; people	[民: people/folk | 族: tribe/family]
+欲張り	よくばり	noun	greedy person; greed	[欲: desire/greed | 張: stretch/assert]
+天才	てんさい	noun	genius	[天: heaven/innate | 才: talent]
+相棒	あいぼう	noun	partner; buddy	[相: mutual/partner | 棒: pole/sidekick]
+一匹狼	いっぴきおおかみ	noun	lone wolf; loner	[一: one | 匹: (counter) animal | 狼: wolf]
+玄人	くろうと	noun	expert; professional	[玄: expert/dark | 人: person]
+甘党	あまとう	noun	person with a sweet tooth	[甘: sweet | 党: faction/party]
+異性	いせい	noun	the opposite sex	[異: different/other | 性: sex/nature]
+秀才	しゅうさい	noun	brilliant person; prodigy	[秀: excel/outstanding | 才: talent]
+群衆	ぐんしゅう	noun	crowd; throng	[群: group/crowd | 衆: masses/multitude]
+観衆	かんしゅう	noun	spectators; audience	[観: view/watch | 衆: masses/multitude]
+大衆	たいしゅう	noun	the masses; the general public	[大: big/great | 衆: masses/multitude]
+覇者	はしゃ	noun	champion; supreme ruler	[覇: supremacy/champion | 者: person]
+富豪	ふごう	noun	wealthy person; magnate	[富: wealth | 豪: grand/magnate]
+賢者	けんじゃ	noun	wise person; sage	[賢: wise/clever | 者: person]
+阿呆	あほう	noun	fool; idiot	[阿: nook/(phonetic) | 呆: foolish/dazed]
+酔っ払い	よっぱらい	noun	drunk; drunkard	[酔: drunk/intoxicate | 払: pay/sweep]
+婦人	ふじん	noun	woman; lady	[婦: woman/wife | 人: person]
+乗客	じょうきゃく	noun	passenger	[乗: ride/board | 客: guest/customer]
+弟子	でし	noun	pupil; disciple; apprentice	[弟: younger brother/pupil | 子: child]
+国民	こくみん	noun	citizen; the people; nation	[国: country/nation | 民: people/folk]
+市民	しみん	noun	citizen; resident	[市: city/market | 民: people/folk]
+人種	じんしゅ	noun	race (of people)	[人: person | 種: kind/race]
+若者	わかもの	noun	young person; youth	[若: young | 者: person]
+迷子	まいご	noun	lost child	[迷: lost/astray | 子: child]

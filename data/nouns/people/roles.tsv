@@ -1,47 +1,47 @@
-kanji	hiragana	type	english
-医師	いし	noun	doctor
-看護師	かんごし	noun	nurse
-消防士	しょうぼうし	noun	firefighter
-警察官	けいさつかん	noun	police officer
-弁護士	べんごし	noun	lawyer
-料理人	りょうりにん	noun	cook; chef
-美容師	びようし	noun	hairdresser
-運転手	うんてんしゅ	noun	driver
-駅員	えきいん	noun	station attendant
-研究者	けんきゅうしゃ	noun	researcher
-翻訳者	ほんやくしゃ	noun	translator
-編集者	へんしゅうしゃ	noun	editor
+kanji	hiragana	type	english	breakdown
+医師	いし	noun	doctor	[医: medicine/doctor | 師: master/expert]
+看護師	かんごし	noun	nurse	[看: watch/nurse | 護: protect/guard | 師: master/expert]
+消防士	しょうぼうし	noun	firefighter	[消: extinguish/put out | 防: prevent/defend | 士: person/expert]
+警察官	けいさつかん	noun	police officer	[警: guard/alert | 察: observe/perceive | 官: official]
+弁護士	べんごし	noun	lawyer	[弁: argue/speak | 護: protect/defend | 士: person/expert]
+料理人	りょうりにん	noun	cook; chef	[料: ingredients/materials | 理: manage/prepare | 人: person]
+美容師	びようし	noun	hairdresser	[美: beauty | 容: form/looks | 師: master/expert]
+運転手	うんてんしゅ	noun	driver	[運: carry/drive | 転: turn/revolve | 手: hand/person]
+駅員	えきいん	noun	station attendant	[駅: station | 員: member/staff]
+研究者	けんきゅうしゃ	noun	researcher	[研: study/sharpen | 究: investigate/research | 者: person]
+翻訳者	ほんやくしゃ	noun	translator	[翻: translate/flip | 訳: translate/meaning | 者: person]
+編集者	へんしゅうしゃ	noun	editor	[編: edit/compile | 集: gather/collect | 者: person]
 王	おう	noun	king
 師	し	noun	master; teacher
-兵士	へいし	noun	soldier
-探偵	たんてい	noun	detective
-先生	せんせい	noun	teacher; instructor
-店員	てんいん	noun	clerk; store staff
-探検家	たんけんか	noun	explorer
-挑戦者	ちょうせんしゃ	noun	challenger
-官僚	かんりょう	noun	bureaucrat; government official
-閣僚	かくりょう	noun	cabinet minister
-僧侶	そうりょ	noun	monk; Buddhist priest
-高僧	こうそう	noun	high priest; eminent monk
-俳優	はいゆう	noun	actor; actress
-声優	せいゆう	noun	voice actor
-博士	はかせ	noun	doctor; PhD; expert
-司書	ししょ	noun	librarian
+兵士	へいし	noun	soldier	[兵: soldier/military | 士: person/warrior]
+探偵	たんてい	noun	detective	[探: search/probe | 偵: spy/investigate]
+先生	せんせい	noun	teacher; instructor	[先: ahead/before | 生: born/life]
+店員	てんいん	noun	clerk; store staff	[店: store/shop | 員: member/staff]
+探検家	たんけんか	noun	explorer	[探: search/probe | 検: examine/inspect | 家: expert/-ist]
+挑戦者	ちょうせんしゃ	noun	challenger	[挑: challenge/provoke | 戦: war/battle | 者: person]
+官僚	かんりょう	noun	bureaucrat; government official	[官: official | 僚: colleague/official]
+閣僚	かくりょう	noun	cabinet minister	[閣: cabinet/palace | 僚: colleague/official]
+僧侶	そうりょ	noun	monk; Buddhist priest	[僧: monk | 侶: companion]
+高僧	こうそう	noun	high priest; eminent monk	[高: high/eminent | 僧: monk]
+俳優	はいゆう	noun	actor; actress	[俳: actor/verse | 優: actor/superior]
+声優	せいゆう	noun	voice actor	[声: voice | 優: actor/superior]
+博士	はかせ	noun	doctor; PhD; expert	[博: broad/learned | 士: person/expert]
+司書	ししょ	noun	librarian	[司: manage/official | 書: book/write]
 お坊さん	おぼうさん	noun	Buddhist monk; priest
-警察	けいさつ	noun	police
-幹部	かんぶ	noun	executive; senior staff
-車掌	しゃしょう	noun	train conductor
-貴族	きぞく	noun	noble; aristocrat
-武士	ぶし	noun	samurai; warrior
-泥棒	どろぼう	noun	thief; burglar
-牧師	ぼくし	noun	pastor; minister
-猟師	りょうし	noun	hunter
-秘書	ひしょ	noun	secretary
-大統領	だいとうりょう	noun	president (of a country)
-歯医者	はいしゃ	noun	dentist
-犯人	はんにん	noun	criminal; culprit
-隊長	たいちょう	noun	captain; squad leader
-隊員	たいいん	noun	member (of a team/squad)
-首脳	しゅのう	noun	leader; head (of government)
-俳人	はいじん	noun	haiku poet
-歌手	かしゅ	noun	singer
+警察	けいさつ	noun	police	[警: guard/alert | 察: observe/perceive]
+幹部	かんぶ	noun	executive; senior staff	[幹: trunk/core | 部: section/department]
+車掌	しゃしょう	noun	train conductor	[車: car/vehicle | 掌: manage/palm]
+貴族	きぞく	noun	noble; aristocrat	[貴: noble/precious | 族: tribe/family]
+武士	ぶし	noun	samurai; warrior	[武: martial/military | 士: warrior/person]
+泥棒	どろぼう	noun	thief; burglar	[泥: mud | 棒: pole/stick]
+牧師	ぼくし	noun	pastor; minister	[牧: shepherd/pasture | 師: master/pastor]
+猟師	りょうし	noun	hunter	[猟: hunting | 師: master/expert]
+秘書	ひしょ	noun	secretary	[秘: secret | 書: write/document]
+大統領	だいとうりょう	noun	president (of a country)	[大: big/great | 統: govern/unite | 領: lead/domain]
+歯医者	はいしゃ	noun	dentist	[歯: tooth | 医: medicine/doctor | 者: person]
+犯人	はんにん	noun	criminal; culprit	[犯: crime/offense | 人: person]
+隊長	たいちょう	noun	captain; squad leader	[隊: squad/unit | 長: chief/leader]
+隊員	たいいん	noun	member (of a team/squad)	[隊: squad/unit | 員: member]
+首脳	しゅのう	noun	leader; head (of government)	[首: head/neck | 脳: brain]
+俳人	はいじん	noun	haiku poet	[俳: haiku/verse | 人: person]
+歌手	かしゅ	noun	singer	[歌: song/sing | 手: hand/person]

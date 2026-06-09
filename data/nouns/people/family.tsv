@@ -1,38 +1,38 @@
 # Family (Nouns / People).
 # Auto-grouped during the nouns reorg; refine membership as needed.
-kanji	hiragana	type	english
-子供	こども	noun	child; children
+kanji	hiragana	type	english	breakdown
+子供	こども	noun	child; children	[子: child | 供: attend/accompany]
 子ども	こども	noun	child
 子	こ	noun	child
-赤ちゃん	あかちゃん	noun	baby; infant
-赤ん坊	あかんぼう	noun	baby; infant
-親父	おやじ	noun	old man; (colloquial) father
-長男	ちょうなん	noun	eldest son
-長女	ちょうじょ	noun	eldest daughter
-次男	じなん	noun	second son
-三男	さんなん	noun	third son
-祖母	そぼ	noun	grandmother
+赤ちゃん	あかちゃん	noun	baby; infant	[赤: red/newborn]
+赤ん坊	あかんぼう	noun	baby; infant	[赤: red/newborn | 坊: boy/lad]
+親父	おやじ	noun	old man; (colloquial) father	[親: parent/intimate | 父: father]
+長男	ちょうなん	noun	eldest son	[長: eldest/long | 男: man/male]
+長女	ちょうじょ	noun	eldest daughter	[長: eldest/long | 女: woman/female]
+次男	じなん	noun	second son	[次: next/second | 男: man/male]
+三男	さんなん	noun	third son	[三: three | 男: man/male]
+祖母	そぼ	noun	grandmother	[祖: ancestor/grand- | 母: mother]
 童	わらべ	noun	child
 娘	むすめ	noun	daughter
-母親	ははおや	noun	mother
-家族	かぞく	noun	family
-両親	りょうしん	noun	parents
+母親	ははおや	noun	mother	[母: mother | 親: parent/intimate]
+家族	かぞく	noun	family	[家: house/family | 族: tribe/family]
+両親	りょうしん	noun	parents	[両: both | 親: parent/intimate]
 母	はは	noun	mother
 父	ちち	noun	father
 兄	あに	noun	older brother (my)
 姉	あね	noun	older sister (my)
 弟	おとうと	noun	younger brother
 妹	いもうと	noun	younger sister
-大人	おとな	noun	adult
-兄弟	きょうだい	noun	siblings; brothers
-兄貴	あにき	noun	older brother (casual); boss
-育児	いくじ	noun	childcare; child-rearing
-姉妹	しまい	noun	sisters
+大人	おとな	noun	adult	[大: big/grown | 人: person]
+兄弟	きょうだい	noun	siblings; brothers	[兄: older brother | 弟: younger brother]
+兄貴	あにき	noun	older brother (casual); boss	[兄: older brother | 貴: noble/honored]
+育児	いくじ	noun	childcare; child-rearing	[育: raise/rear | 児: child/infant]
+姉妹	しまい	noun	sisters	[姉: older sister | 妹: younger sister]
 お姉さん	おねえさん	noun	older sister
-家庭	かてい	noun	household; home; family
-親族	しんぞく	noun	relatives; kin
-曽祖父	そうそふ	noun	great-grandfather
+家庭	かてい	noun	household; home; family	[家: house/home | 庭: garden/home]
+親族	しんぞく	noun	relatives; kin	[親: relative/parent | 族: family/tribe]
+曽祖父	そうそふ	noun	great-grandfather	[曽: great-(grand) | 祖: ancestor/grand- | 父: father]
 妻	つま	noun	wife
-夫妻	ふさい	noun	husband and wife; married couple
-旦那	だんな	noun	husband; master; patron
-義妹	ぎまい	noun	younger sister-in-law
+夫妻	ふさい	noun	husband and wife; married couple	[夫: husband/man | 妻: wife]
+旦那	だんな	noun	husband; master; patron	[旦: daybreak/dawn | 那: that/which]
+義妹	ぎまい	noun	younger sister-in-law	[義: in-law/duty | 妹: younger sister]
