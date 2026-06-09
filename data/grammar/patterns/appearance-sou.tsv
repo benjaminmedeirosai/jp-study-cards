@@ -3,6 +3,7 @@
 # Belongs here: the 〜そう appearance form built from an i- or na-adjective stem
 # (高そう, 便利そう). They all inflect as na-adjectives, so type stays
 # na-adjective even though this is a grammar pattern, not core vocabulary.
+# Distinct from hearsay 〜そうだ (plain form + そうだ, "I hear ~") in sentence-patterns.tsv.
 kanji	hiragana	type	english	breakdown
 うれしそう	うれしそう	na-adjective	looking happy (〜そう, from うれしい)
 楽しそう	たのしそう	na-adjective	seems fun; looks enjoyable (〜そう, from 楽しい)	[楽: fun/enjoyment]
