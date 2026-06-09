@@ -103,15 +103,17 @@ export function renderCardPage() {
   const summaryGrouping = document.createElement("span");
   summaryGrouping.className = "card-summary-grouping";
   summary.append(summaryMain, summaryGrouping);
+  // Row 1: deck chooser (majority) + small Settings button at the top-right.
   const deckRow = document.createElement("div");
-  deckRow.className = "card-header-row deck-set-row";
+  deckRow.className = "card-header-row deck-settings-row";
+  deckRow.append(fieldLabel("Deck", deckButton), settingsBtn);
+  // Row 2: mode + set selectors, split 50/50.
   const setField = fieldLabel(`Set (${state.setSize})`, setSelect);
   const setFieldText = setField.querySelector("span");
-  deckRow.append(fieldLabel("Deck", deckButton), setField);
-  const settingsRow = document.createElement("div");
-  settingsRow.className = "card-header-row settings-row";
-  settingsRow.append(fieldLabel("Mode", modeSelect), settingsBtn);
-  top.append(deckRow, settingsRow, summary);
+  const modeSetRow = document.createElement("div");
+  modeSetRow.className = "card-header-row mode-set-row";
+  modeSetRow.append(fieldLabel("Mode", modeSelect), setField);
+  top.append(deckRow, modeSetRow, summary);
 
   // --- Card ---------------------------------------------------------------
   const card = document.createElement("article");

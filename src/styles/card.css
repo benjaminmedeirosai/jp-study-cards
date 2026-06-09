@@ -25,8 +25,9 @@
   min-width: 0;
 }
 
-.card-header-row.deck-set-row {
-  grid-template-columns: minmax(0, 1fr) minmax(86px, 0.42fr);
+.card-header-row.deck-settings-row {
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: end;
 }
 
 /* Deck chooser — a button (like Settings) that opens the deck page. */
@@ -78,8 +79,8 @@
   white-space: nowrap;
 }
 
-.card-header-row.settings-row {
-  grid-template-columns: minmax(92px, 1fr) minmax(92px, 0.65fr);
+.card-header-row.mode-set-row {
+  grid-template-columns: 1fr 1fr;
   align-items: end;
 }
 
@@ -471,14 +472,6 @@
 
 /* --- Responsive --------------------------------------------------------- */
 @media (max-width: 540px) {
-  .card-header-row.deck-set-row {
-    grid-template-columns: minmax(0, 1fr) minmax(76px, 0.4fr);
-  }
-
-  .card-header-row.settings-row {
-    grid-template-columns: minmax(96px, 1fr) minmax(92px, 0.72fr);
-  }
-
   .study-button.key {
     min-height: 64px;
   }
