@@ -1,6 +1,7 @@
-# label: Ichidan Verbs
-# Ichidan (る) verbs — 食べる, 見る, 起きる… the 一段 class whose stem stays fixed.
-# Dictionary forms only; conjugations live in grammar-pattern/verb-conjugation.
+# label: Ichidan Verbs (Simple)
+# Single-stem ichidan (一段) verbs — 食べる, 見る, 考える… Dictionary forms only;
+# verb+verb / noun+verb compounds live in compound.tsv; conjugations in
+# grammar-pattern/verb-conjugation.
 kanji	hiragana	type	english	breakdown
 見る	みる	ichidan-verb	to see; to look	[見: see/look]
 起きる	おきる	ichidan-verb	to wake up; to get up	[起: get up/rise]
@@ -52,41 +53,17 @@ kanji	hiragana	type	english	breakdown
 触れる	ふれる	ichidan-verb	to touch; to come into contact; to mention briefly	[触: touch/contact]
 生まれる	うまれる	ichidan-verb	to be born	[生: be born/life]
 聞こえる	きこえる	ichidan-verb	to be audible; to be heard	[聞: hear/listen]
-名付ける	なづける	ichidan-verb	to name; to give a name	[名: name | 付: attach/give]
 いる	いる	ichidan-verb	to exist (animate); to be (someone is here)
 できる	できる	ichidan-verb	to be able to; can do; to be made; to be completed
-片付ける	かたづける	ichidan-verb	to tidy up; to put in order; to clean up	[片: one side/tidy | 付: attach/put]
 付ける	つける	ichidan-verb	to attach; to add; to turn on (a light); to set (a rule/condition)	[付: attach/add]
 止める	とめる	ichidan-verb	to stop (something); to turn off; to park (a car)	[止: stop]
 取れる	とれる	ichidan-verb	to come off; to be removed; to be obtained/caught	[取: come off/take]
 掛ける	かける	ichidan-verb	to hang (something); to put on; to apply; to make a call	[掛: hang/apply]
-出かける	でかける	ichidan-verb	to go out; to leave (home) for a while	[出: go out/exit]
-見つける	みつける	ichidan-verb	to find; to discover	[見: see/find]
-飲み比べる	のみくらべる	ichidan-verb	to compare drinks; taste test	[飲: drink | 比: compare]
-買い替える	かいかえる	ichidan-verb	to replace by buying a new one	[買: buy | 替: replace/exchange]
-書き換える	かきかえる	ichidan-verb	to rewrite; to reword	[書: write | 換: exchange/replace]
-引き受ける	ひきうける	ichidan-verb	to take on; to undertake	[引: pull/take on | 受: receive/accept]
-見届ける	みとどける	ichidan-verb	to see something through; to witness to completion	[見: see/witness | 届: deliver/reach]
-取り替える	とりかえる	ichidan-verb	to exchange; to replace	[取: take | 替: replace/exchange]
-受け止める	うけとめる	ichidan-verb	to catch; to receive (emotion/information)	[受: receive | 止: stop/catch]
-取り入れる	とりいれる	ichidan-verb	to adopt; to incorporate	[取: take | 入: put in/adopt]
-試し見る	ためしみる	ichidan-verb	to try looking/try seeing (rare example)	[試: try/test | 見: see/look]
-話しかける	はなしかける	ichidan-verb	to address; to speak to someone	[話: talk/speak]
-持ち上げる	もちあげる	ichidan-verb	to lift up; to praise (colloquial)	[持: hold/carry | 上: lift/up]
-見合わせる	みあわせる	ichidan-verb	to postpone; to refrain after consideration	[見: see/look | 合: match/together]
-申し合わせる	もうしあわせる	ichidan-verb	to arrange/agree (by prior arrangement)	[申: state/say | 合: agree/together]
-差し上げる	さしあげる	ichidan-verb	humble form of 'to give' (polite compound)	[差: offer/insert | 上: up/give]
-引き上げる	ひきあげる	ichidan-verb	to pull up; to raise; to withdraw	[引: pull | 上: raise/up]
-申し上げる	もうしあげる	ichidan-verb	humble/polite say; to say (humble)	[申: state/say | 上: up (humble)]
-見つけ合わせる	みつけあわせる	ichidan-verb	to cross-check by finding/matching (rare example)	[見: see/find | 合: match/together]
 讃える	たたえる	ichidan-verb	to praise; to acclaim	[讃: praise/extol]
-押し寄せる	おしよせる	ichidan-verb	to surge toward; to press in	[押: push | 寄: approach/draw near]
-乗り越える	のりこえる	ichidan-verb	to overcome; to get over	[乗: ride/get on | 越: cross/exceed]
 掲げる	かかげる	ichidan-verb	to raise; to hold up	[掲: raise/hold up]
 化ける	ばける	ichidan-verb	to transform; to disguise oneself	[化: transform/change]
 かける	かける	ichidan-verb	to pour; to sprinkle; to hang
 しょげる	しょげる	ichidan-verb	to feel down; to be dejected
-見かける	みかける	ichidan-verb	to notice; to catch sight of	[見: see/notice]
 終わらせる	おわらせる	ichidan-verb	to finish; to bring to an end	[終: end/finish]
 入れる	いれる	ichidan-verb	to put in	[入: put in/enter]
 離れる	はなれる	ichidan-verb	to move away; to leave	[離: separate/leave]
@@ -95,24 +72,14 @@ kanji	hiragana	type	english	breakdown
 見える	みえる	ichidan-verb	to be visible; to be able to see	[見: see/be visible]
 外れる	はずれる	ichidan-verb	to come off; to be disconnected; to miss	[外: come off/outside]
 合わせる	あわせる	ichidan-verb	to match; to align	[合: match/align]
-走り過ぎる	はしりすぎる	ichidan-verb	to run/drive too fast; to overdo running	[走: run | 過: pass/exceed]
 増える	ふえる	ichidan-verb	to increase	[増: increase]
 居る	いる	ichidan-verb	to exist; to be present (animate)	[居: reside/be present]
 向ける	むける	ichidan-verb	to turn toward; to point at	[向: turn toward/face]
 鍛える	きたえる	ichidan-verb	to train; to forge	[鍛: train/forge]
 諦める	あきらめる	ichidan-verb	to give up; to abandon hope	[諦: give up/abandon]
-目覚める	めざめる	ichidan-verb	to awaken; to wake up	[目: eye | 覚: wake/awaken]
 すぎる	すぎる	ichidan-verb	to exceed; to be too much
 くれる	くれる	ichidan-verb	to give (to me/us)
 まとめる	まとめる	ichidan-verb	to gather together; to summarize
-高すぎる	たかすぎる	ichidan-verb	to be too high/tall/expensive	[高: high/tall/expensive]
-便利すぎる	べんりすぎる	ichidan-verb	to be too convenient	[便: convenience | 利: benefit/advantage]
-有名すぎる	ゆうめいすぎる	ichidan-verb	to be too famous	[有: have/exist | 名: name/fame]
-静かすぎる	しずかすぎる	ichidan-verb	to be too quiet	[静: quiet/calm]
-大変すぎる	たいへんすぎる	ichidan-verb	to be too serious; tough	[大: big/greatly | 変: change/strange]
-安すぎる	やすすぎる	ichidan-verb	to be too cheap	[安: cheap/at ease]
-新しすぎる	あたらしすぎる	ichidan-verb	to be too new	[新: new]
-古すぎる	ふるすぎる	ichidan-verb	to be too old	[古: old]
 備える	そなえる	ichidan-verb	to prepare for; to equip	[備: prepare/equip]
 剥がれる	はがれる	ichidan-verb	to peel off; to come off	[剥: peel/come off]
 努める	つとめる	ichidan-verb	to make an effort; to strive	[努: strive/exert]
@@ -128,7 +95,6 @@ kanji	hiragana	type	english	breakdown
 抱える	かかえる	ichidan-verb	to hold in one's arms; to be burdened with	[抱: hold/be burdened]
 拗ねる	すねる	ichidan-verb	to sulk; to be peevish	[拗: sulk/be twisted]
 捕まえる	つかまえる	ichidan-verb	to catch; to capture	[捕: catch/capture]
-見捨てる	みすてる	ichidan-verb	to abandon; to forsake	[見: see/look | 捨: abandon/discard]
 攻める	せめる	ichidan-verb	to attack; to assault	[攻: attack/assault]
 更ける	ふける	ichidan-verb	to grow late (night)	[更: grow late/renew]
 束ねる	たばねる	ichidan-verb	to bundle; to tie up	[束: bundle/tie]

@@ -1,0 +1,28 @@
+# label: Ichidan Verbs (Compound)
+# Compound ichidan (一段) verbs — verb-stem+verb (引き受ける, 取り替える) and
+# noun/prefix+verb (目覚める, 名付ける). Single-stem verbs live in simple.tsv.
+kanji	hiragana	type	english	breakdown
+名付ける	なづける	ichidan-verb	to name; to give a name	[名: name | 付: attach/give]
+片付ける	かたづける	ichidan-verb	to tidy up; to put in order; to clean up	[片: one side/tidy | 付: attach/put]
+出かける	でかける	ichidan-verb	to go out; to leave (home) for a while	[出: go out/exit]
+見つける	みつける	ichidan-verb	to find; to discover	[見: see/find]
+飲み比べる	のみくらべる	ichidan-verb	to compare drinks; taste test	[飲: drink | 比: compare]
+買い替える	かいかえる	ichidan-verb	to replace by buying a new one	[買: buy | 替: replace/exchange]
+書き換える	かきかえる	ichidan-verb	to rewrite; to reword	[書: write | 換: exchange/replace]
+引き受ける	ひきうける	ichidan-verb	to take on; to undertake	[引: pull/take on | 受: receive/accept]
+見届ける	みとどける	ichidan-verb	to see something through; to witness to completion	[見: see/witness | 届: deliver/reach]
+取り替える	とりかえる	ichidan-verb	to exchange; to replace	[取: take | 替: replace/exchange]
+受け止める	うけとめる	ichidan-verb	to catch; to receive (emotion/information)	[受: receive | 止: stop/catch]
+取り入れる	とりいれる	ichidan-verb	to adopt; to incorporate	[取: take | 入: put in/adopt]
+話しかける	はなしかける	ichidan-verb	to address; to speak to someone	[話: talk/speak]
+持ち上げる	もちあげる	ichidan-verb	to lift up; to praise (colloquial)	[持: hold/carry | 上: lift/up]
+見合わせる	みあわせる	ichidan-verb	to postpone; to refrain after consideration	[見: see/look | 合: match/together]
+申し合わせる	もうしあわせる	ichidan-verb	to arrange/agree (by prior arrangement)	[申: state/say | 合: agree/together]
+差し上げる	さしあげる	ichidan-verb	humble form of 'to give' (polite compound)	[差: offer/insert | 上: up/give]
+引き上げる	ひきあげる	ichidan-verb	to pull up; to raise; to withdraw	[引: pull | 上: raise/up]
+申し上げる	もうしあげる	ichidan-verb	humble/polite say; to say (humble)	[申: state/say | 上: up (humble)]
+押し寄せる	おしよせる	ichidan-verb	to surge toward; to press in	[押: push | 寄: approach/draw near]
+乗り越える	のりこえる	ichidan-verb	to overcome; to get over	[乗: ride/get on | 越: cross/exceed]
+見かける	みかける	ichidan-verb	to notice; to catch sight of	[見: see/notice]
+目覚める	めざめる	ichidan-verb	to awaken; to wake up	[目: eye | 覚: wake/awaken]
+見捨てる	みすてる	ichidan-verb	to abandon; to forsake	[見: see/look | 捨: abandon/discard]
