@@ -2,17 +2,17 @@
 # Landmarks & sights — famous places of interest in Japan.
 # Belongs here: specific attractions, temples, towers, parks, heritage sites.
 # Cities go in cities.tsv; stations in stations.tsv.
-kanji	hiragana	type	english
-富士山	ふじさん	proper-noun	Mount Fuji
-東京タワー	とうきょうタワー	proper-noun	Tokyo Tower
-東京スカイツリー	とうきょうスカイツリー	proper-noun	Tokyo Skytree
-金閣寺	きんかくじ	proper-noun	Kinkaku-ji (Golden Pavilion)
-清水寺	きよみずでら	proper-noun	Kiyomizu-dera
-上野動物園	うえのどうぶつえん	proper-noun	Ueno Zoo
-白川郷	しらかわごう	proper-noun	Shirakawa-go (historic village)
-東京ディズニーランド	とうきょうディズニーランド	proper-noun	Tokyo Disneyland
-伊豆	いず	proper-noun	Izu (peninsula)
-伊勢	いせ	proper-noun	Ise (city/shrine)
-本州	ほんしゅう	proper-noun	Honshu (main island)
-江戸	えど	proper-noun	Edo (old name for Tokyo)
-甲子園	こうしえん	proper-noun	Koshien (baseball stadium)
+kanji	hiragana	type	english	breakdown
+富士山	ふじさん	proper-noun	Mount Fuji	[富: wealth | 士: warrior/scholar | 山: mountain]
+東京タワー	とうきょうタワー	proper-noun	Tokyo Tower	[東: east | 京: capital]
+東京スカイツリー	とうきょうスカイツリー	proper-noun	Tokyo Skytree	[東: east | 京: capital]
+金閣寺	きんかくじ	proper-noun	Kinkaku-ji (Golden Pavilion)	[金: gold | 閣: pavilion | 寺: temple]
+清水寺	きよみずでら	proper-noun	Kiyomizu-dera	[清: pure | 水: water | 寺: temple]
+上野動物園	うえのどうぶつえん	proper-noun	Ueno Zoo	[上: above | 野: field | 動: move | 物: thing | 園: garden/park]
+白川郷	しらかわごう	proper-noun	Shirakawa-go (historic village)	[白: white | 川: river | 郷: hometown/village]
+東京ディズニーランド	とうきょうディズニーランド	proper-noun	Tokyo Disneyland	[東: east | 京: capital]
+伊豆	いず	proper-noun	Izu (peninsula)	[伊: (phonetic) | 豆: bean]
+伊勢	いせ	proper-noun	Ise (city/shrine)	[伊: (phonetic) | 勢: force/momentum]
+本州	ほんしゅう	proper-noun	Honshu (main island)	[本: origin/main | 州: province/state]
+江戸	えど	proper-noun	Edo (old name for Tokyo)	[江: inlet/bay | 戸: door/household]
+甲子園	こうしえん	proper-noun	Koshien (baseball stadium)	[甲: armor/first | 子: child | 園: garden]

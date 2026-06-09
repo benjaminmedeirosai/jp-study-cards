@@ -1,51 +1,51 @@
 # Prefectures (都道府県) — all 47 of Japan's prefectures.
 # Belongs here: the 47 administrative prefectures (〜県/〜都/〜道/〜府). Cities go
 # in cities.tsv. Order: north to south, by JIS prefecture code.
-kanji	hiragana	type	english
-北海道	ほっかいどう	proper-noun	Hokkaido
-青森県	あおもりけん	proper-noun	Aomori Prefecture
-岩手県	いわてけん	proper-noun	Iwate Prefecture
-宮城県	みやぎけん	proper-noun	Miyagi Prefecture
-秋田県	あきたけん	proper-noun	Akita Prefecture
-山形県	やまがたけん	proper-noun	Yamagata Prefecture
-福島県	ふくしまけん	proper-noun	Fukushima Prefecture
-茨城県	いばらきけん	proper-noun	Ibaraki Prefecture
-栃木県	とちぎけん	proper-noun	Tochigi Prefecture
-群馬県	ぐんまけん	proper-noun	Gunma Prefecture
-埼玉県	さいたまけん	proper-noun	Saitama Prefecture
-千葉県	ちばけん	proper-noun	Chiba Prefecture
-東京都	とうきょうと	proper-noun	Tokyo Metropolis
-神奈川県	かながわけん	proper-noun	Kanagawa Prefecture
-新潟県	にいがたけん	proper-noun	Niigata Prefecture
-富山県	とやまけん	proper-noun	Toyama Prefecture
-石川県	いしかわけん	proper-noun	Ishikawa Prefecture
-福井県	ふくいけん	proper-noun	Fukui Prefecture
-山梨県	やまなしけん	proper-noun	Yamanashi Prefecture
-長野県	ながのけん	proper-noun	Nagano Prefecture
-岐阜県	ぎふけん	proper-noun	Gifu Prefecture
-静岡県	しずおかけん	proper-noun	Shizuoka Prefecture
-愛知県	あいちけん	proper-noun	Aichi Prefecture
-三重県	みえけん	proper-noun	Mie Prefecture
-滋賀県	しがけん	proper-noun	Shiga Prefecture
-京都府	きょうとふ	proper-noun	Kyoto Prefecture
-大阪府	おおさかふ	proper-noun	Osaka Prefecture
-兵庫県	ひょうごけん	proper-noun	Hyogo Prefecture
-奈良県	ならけん	proper-noun	Nara Prefecture
-和歌山県	わかやまけん	proper-noun	Wakayama Prefecture
-鳥取県	とっとりけん	proper-noun	Tottori Prefecture
-島根県	しまねけん	proper-noun	Shimane Prefecture
-岡山県	おかやまけん	proper-noun	Okayama Prefecture
-広島県	ひろしまけん	proper-noun	Hiroshima Prefecture
-山口県	やまぐちけん	proper-noun	Yamaguchi Prefecture
-徳島県	とくしまけん	proper-noun	Tokushima Prefecture
-香川県	かがわけん	proper-noun	Kagawa Prefecture
-愛媛県	えひめけん	proper-noun	Ehime Prefecture
-高知県	こうちけん	proper-noun	Kochi Prefecture
-福岡県	ふくおかけん	proper-noun	Fukuoka Prefecture
-佐賀県	さがけん	proper-noun	Saga Prefecture
-長崎県	ながさきけん	proper-noun	Nagasaki Prefecture
-熊本県	くまもとけん	proper-noun	Kumamoto Prefecture
-大分県	おおいたけん	proper-noun	Oita Prefecture
-宮崎県	みやざきけん	proper-noun	Miyazaki Prefecture
-鹿児島県	かごしまけん	proper-noun	Kagoshima Prefecture
-沖縄県	おきなわけん	proper-noun	Okinawa Prefecture
+kanji	hiragana	type	english	breakdown
+北海道	ほっかいどう	proper-noun	Hokkaido	[北: north | 海: sea | 道: circuit/road]
+青森県	あおもりけん	proper-noun	Aomori Prefecture	[青: blue/green | 森: forest | 県: prefecture]
+岩手県	いわてけん	proper-noun	Iwate Prefecture	[岩: rock | 手: hand | 県: prefecture]
+宮城県	みやぎけん	proper-noun	Miyagi Prefecture	[宮: shrine/palace | 城: castle | 県: prefecture]
+秋田県	あきたけん	proper-noun	Akita Prefecture	[秋: autumn | 田: rice field | 県: prefecture]
+山形県	やまがたけん	proper-noun	Yamagata Prefecture	[山: mountain | 形: shape | 県: prefecture]
+福島県	ふくしまけん	proper-noun	Fukushima Prefecture	[福: fortune | 島: island | 県: prefecture]
+茨城県	いばらきけん	proper-noun	Ibaraki Prefecture	[茨: thorn/(place) | 城: castle | 県: prefecture]
+栃木県	とちぎけん	proper-noun	Tochigi Prefecture	[栃: horse chestnut | 木: tree | 県: prefecture]
+群馬県	ぐんまけん	proper-noun	Gunma Prefecture	[群: group/flock | 馬: horse | 県: prefecture]
+埼玉県	さいたまけん	proper-noun	Saitama Prefecture	[埼: cape/(place) | 玉: jewel/ball | 県: prefecture]
+千葉県	ちばけん	proper-noun	Chiba Prefecture	[千: thousand | 葉: leaf | 県: prefecture]
+東京都	とうきょうと	proper-noun	Tokyo Metropolis	[東: east | 京: capital | 都: metropolis]
+神奈川県	かながわけん	proper-noun	Kanagawa Prefecture	[神: god | 奈: (phonetic) | 川: river | 県: prefecture]
+新潟県	にいがたけん	proper-noun	Niigata Prefecture	[新: new | 潟: lagoon | 県: prefecture]
+富山県	とやまけん	proper-noun	Toyama Prefecture	[富: wealth | 山: mountain | 県: prefecture]
+石川県	いしかわけん	proper-noun	Ishikawa Prefecture	[石: stone | 川: river | 県: prefecture]
+福井県	ふくいけん	proper-noun	Fukui Prefecture	[福: fortune | 井: well | 県: prefecture]
+山梨県	やまなしけん	proper-noun	Yamanashi Prefecture	[山: mountain | 梨: pear | 県: prefecture]
+長野県	ながのけん	proper-noun	Nagano Prefecture	[長: long | 野: field | 県: prefecture]
+岐阜県	ぎふけん	proper-noun	Gifu Prefecture	[岐: fork/branch | 阜: hill | 県: prefecture]
+静岡県	しずおかけん	proper-noun	Shizuoka Prefecture	[静: quiet | 岡: hill | 県: prefecture]
+愛知県	あいちけん	proper-noun	Aichi Prefecture	[愛: love | 知: know | 県: prefecture]
+三重県	みえけん	proper-noun	Mie Prefecture	[三: three | 重: layer/heavy | 県: prefecture]
+滋賀県	しがけん	proper-noun	Shiga Prefecture	[滋: nourish/grow | 賀: congratulate | 県: prefecture]
+京都府	きょうとふ	proper-noun	Kyoto Prefecture	[京: capital | 都: metropolis | 府: urban prefecture]
+大阪府	おおさかふ	proper-noun	Osaka Prefecture	[大: big | 阪: slope | 府: urban prefecture]
+兵庫県	ひょうごけん	proper-noun	Hyogo Prefecture	[兵: soldier | 庫: warehouse | 県: prefecture]
+奈良県	ならけん	proper-noun	Nara Prefecture	[奈: (phonetic) | 良: good | 県: prefecture]
+和歌山県	わかやまけん	proper-noun	Wakayama Prefecture	[和: harmony | 歌: song | 山: mountain | 県: prefecture]
+鳥取県	とっとりけん	proper-noun	Tottori Prefecture	[鳥: bird | 取: take | 県: prefecture]
+島根県	しまねけん	proper-noun	Shimane Prefecture	[島: island | 根: root | 県: prefecture]
+岡山県	おかやまけん	proper-noun	Okayama Prefecture	[岡: hill | 山: mountain | 県: prefecture]
+広島県	ひろしまけん	proper-noun	Hiroshima Prefecture	[広: wide | 島: island | 県: prefecture]
+山口県	やまぐちけん	proper-noun	Yamaguchi Prefecture	[山: mountain | 口: mouth/entrance | 県: prefecture]
+徳島県	とくしまけん	proper-noun	Tokushima Prefecture	[徳: virtue | 島: island | 県: prefecture]
+香川県	かがわけん	proper-noun	Kagawa Prefecture	[香: fragrance | 川: river | 県: prefecture]
+愛媛県	えひめけん	proper-noun	Ehime Prefecture	[愛: love | 媛: beauty/(place) | 県: prefecture]
+高知県	こうちけん	proper-noun	Kochi Prefecture	[高: high | 知: know | 県: prefecture]
+福岡県	ふくおかけん	proper-noun	Fukuoka Prefecture	[福: fortune | 岡: hill | 県: prefecture]
+佐賀県	さがけん	proper-noun	Saga Prefecture	[佐: assist | 賀: congratulate | 県: prefecture]
+長崎県	ながさきけん	proper-noun	Nagasaki Prefecture	[長: long | 崎: cape/steep | 県: prefecture]
+熊本県	くまもとけん	proper-noun	Kumamoto Prefecture	[熊: bear | 本: origin/base | 県: prefecture]
+大分県	おおいたけん	proper-noun	Oita Prefecture	[大: big | 分: part/divide | 県: prefecture]
+宮崎県	みやざきけん	proper-noun	Miyazaki Prefecture	[宮: shrine/palace | 崎: cape/steep | 県: prefecture]
+鹿児島県	かごしまけん	proper-noun	Kagoshima Prefecture	[鹿: deer | 児: child | 島: island | 県: prefecture]
+沖縄県	おきなわけん	proper-noun	Okinawa Prefecture	[沖: offshore | 縄: rope | 県: prefecture]

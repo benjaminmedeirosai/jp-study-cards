@@ -2,18 +2,18 @@
 # Train stations (〜駅).
 # Belongs here: named railway stations. The bare place name (without 駅) goes in
 # cities.tsv. Most are major Tokyo/JR hub stations.
-kanji	hiragana	type	english
-東京駅	とうきょうえき	proper-noun	Tokyo Station
-新宿駅	しんじゅくえき	proper-noun	Shinjuku Station
-渋谷駅	しぶやえき	proper-noun	Shibuya Station
-品川駅	しながわえき	proper-noun	Shinagawa Station
-上野駅	うえのえき	proper-noun	Ueno Station
-池袋駅	いけぶくろえき	proper-noun	Ikebukuro Station
-秋葉原駅	あきはばらえき	proper-noun	Akihabara Station
-横浜駅	よこはまえき	proper-noun	Yokohama Station
-名古屋駅	なごやえき	proper-noun	Nagoya Station
-京都駅	きょうとえき	proper-noun	Kyoto Station
-大阪駅	おおさかえき	proper-noun	Osaka Station
-新大阪駅	しんおおさかえき	proper-noun	Shin-Osaka Station
-梅田駅	うめだえき	proper-noun	Umeda Station
-博多駅	はかたえき	proper-noun	Hakata Station
+kanji	hiragana	type	english	breakdown
+東京駅	とうきょうえき	proper-noun	Tokyo Station	[東: east | 京: capital | 駅: station]
+新宿駅	しんじゅくえき	proper-noun	Shinjuku Station	[新: new | 宿: lodge | 駅: station]
+渋谷駅	しぶやえき	proper-noun	Shibuya Station	[渋: astringent | 谷: valley | 駅: station]
+品川駅	しながわえき	proper-noun	Shinagawa Station	[品: goods/refinement | 川: river | 駅: station]
+上野駅	うえのえき	proper-noun	Ueno Station	[上: above | 野: field | 駅: station]
+池袋駅	いけぶくろえき	proper-noun	Ikebukuro Station	[池: pond | 袋: bag | 駅: station]
+秋葉原駅	あきはばらえき	proper-noun	Akihabara Station	[秋: autumn | 葉: leaf | 原: plain/field | 駅: station]
+横浜駅	よこはまえき	proper-noun	Yokohama Station	[横: side | 浜: beach/shore | 駅: station]
+名古屋駅	なごやえき	proper-noun	Nagoya Station	[名: name | 古: old | 屋: house/shop | 駅: station]
+京都駅	きょうとえき	proper-noun	Kyoto Station	[京: capital | 都: metropolis | 駅: station]
+大阪駅	おおさかえき	proper-noun	Osaka Station	[大: big | 阪: slope | 駅: station]
+新大阪駅	しんおおさかえき	proper-noun	Shin-Osaka Station	[新: new | 大: big | 阪: slope | 駅: station]
+梅田駅	うめだえき	proper-noun	Umeda Station	[梅: plum | 田: rice field | 駅: station]
+博多駅	はかたえき	proper-noun	Hakata Station	[博: broad | 多: many | 駅: station]

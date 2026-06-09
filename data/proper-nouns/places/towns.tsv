@@ -2,8 +2,8 @@
 # Towns & villages (町・村).
 # Belongs here: 〜町 (town) and 〜村 (village) municipalities, written with the
 # suffix so the geography type is clear. Cities (市) go in cities.tsv.
-kanji	hiragana	type	english
-箱根町	はこねまち	proper-noun	Hakone Town (hot-spring resort)
-軽井沢町	かるいざわまち	proper-noun	Karuizawa Town (resort)
-草津町	くさつまち	proper-noun	Kusatsu Town (hot-spring town)
-白川村	しらかわむら	proper-noun	Shirakawa Village (home of Shirakawa-go)
+kanji	hiragana	type	english	breakdown
+箱根町	はこねまち	proper-noun	Hakone Town (hot-spring resort)	[箱: box | 根: root | 町: town]
+軽井沢町	かるいざわまち	proper-noun	Karuizawa Town (resort)	[軽: light | 井: well | 沢: marsh | 町: town]
+草津町	くさつまち	proper-noun	Kusatsu Town (hot-spring town)	[草: grass | 津: harbor/port | 町: town]
+白川村	しらかわむら	proper-noun	Shirakawa Village (home of Shirakawa-go)	[白: white | 川: river | 村: village]

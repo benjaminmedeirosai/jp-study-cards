@@ -2,11 +2,11 @@
 # Brands & companies (ブランド・企業).
 # Belongs here: company, product, and service brand names (任天堂, YouTube).
 # Anime/manga titles go in anime-titles.tsv.
-kanji	hiragana	type	english
+kanji	hiragana	type	english	breakdown
 ジャンプ	ジャンプ	proper-noun	Jump (manga magazine)
 ジャンプ・コミックス	ジャンプ・コミックス	proper-noun	Jump Comics (manga imprint)
 YouTube	ユーチューブ	proper-noun	YouTube
-任天堂	にんてんどう	proper-noun	Nintendo
+任天堂	にんてんどう	proper-noun	Nintendo	[任: duty/entrust | 天: heaven/sky | 堂: hall]
 ソニー	ソニー	proper-noun	Sony
 トヨタ	トヨタ	proper-noun	Toyota
 ユニクロ	ユニクロ	proper-noun	Uniqlo

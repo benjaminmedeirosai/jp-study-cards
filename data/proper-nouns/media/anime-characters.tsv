@@ -2,10 +2,10 @@
 # Anime / manga characters (キャラクター).
 # Belongs here: a named character from a work. The work's title goes in
 # anime-titles.tsv (the source work is noted in parentheses).
-kanji	hiragana	type	english
-鬼太郎	きたろう	proper-noun	Kitaro (GeGeGe no Kitaro)
-目玉おやじ	めだまおやじ	proper-noun	Medama-Oyaji / Eyeball Father (GeGeGe no Kitaro)
+kanji	hiragana	type	english	breakdown
+鬼太郎	きたろう	proper-noun	Kitaro (GeGeGe no Kitaro)	[鬼: demon/ogre | 太: thick/big | 郎: son/man]
+目玉おやじ	めだまおやじ	proper-noun	Medama-Oyaji / Eyeball Father (GeGeGe no Kitaro)	[目: eye | 玉: ball/jewel]
 ピカチュウ	ピカチュウ	proper-noun	Pikachu (Pokémon)
-のび太	のびた	proper-noun	Nobita (Doraemon)
+のび太	のびた	proper-noun	Nobita (Doraemon)	[太: thick/big]
 ルフィ	ルフィ	proper-noun	Luffy (One Piece)
-悟空	ごくう	proper-noun	Goku (Dragon Ball)
+悟空	ごくう	proper-noun	Goku (Dragon Ball)	[悟: realize/enlighten | 空: sky/empty]

@@ -3,14 +3,14 @@
 # Belongs here: idiomatic phrases (背を向ける, 力を入れる), 四字熟語 (問答無用),
 # and common collocations (背が高い). Productive grammar patterns live in
 # grammar-pattern/sentence-patterns.tsv, not here.
-kanji	hiragana	type	english
-気をつける	きをつける	expression	to be careful; to take care
-力を入れる	ちからをいれる	expression	to put effort into; to focus on
-背を向ける	せをむける	expression	to turn one's back on; to ignore
-家を継ぐ	いえをつぐ	expression	to succeed to / carry on the family line
-出てくる	でてくる	expression	to appear; to come out; to show up
-背が高い	せがたかい	expression	to be tall (of a person)
-値段が高い	ねだんがたかい	expression	to be expensive
-問答無用	もんどうむよう	expression	no arguments; without discussion (四字熟語)
-狸寝入り	たぬきねいり	expression	playing possum; pretending to be asleep
-久しぶり	ひさしぶり	expression	it's been a while; long time no see
+kanji	hiragana	type	english	breakdown
+気をつける	きをつける	expression	to be careful; to take care	[気: spirit/care]
+力を入れる	ちからをいれる	expression	to put effort into; to focus on	[力: power/effort | 入: put in/enter]
+背を向ける	せをむける	expression	to turn one's back on; to ignore	[背: back | 向: turn toward/face]
+家を継ぐ	いえをつぐ	expression	to succeed to / carry on the family line	[家: house/family | 継: succeed/inherit]
+出てくる	でてくる	expression	to appear; to come out; to show up	[出: come out/exit]
+背が高い	せがたかい	expression	to be tall (of a person)	[背: back/height | 高: high/tall]
+値段が高い	ねだんがたかい	expression	to be expensive	[値: value/price | 段: step/grade | 高: high/expensive]
+問答無用	もんどうむよう	expression	no arguments; without discussion (四字熟語)	[問: ask | 答: answer | 無: without/no | 用: use/need]
+狸寝入り	たぬきねいり	expression	playing possum; pretending to be asleep	[狸: tanuki/raccoon dog | 寝: sleep | 入: enter]
+久しぶり	ひさしぶり	expression	it's been a while; long time no see	[久: long time]

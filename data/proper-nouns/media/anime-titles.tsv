@@ -2,14 +2,14 @@
 # Anime / manga titles (作品名).
 # Belongs here: the name of a series/work (ゲゲゲの鬼太郎, ワンピース). A character
 # from within a work goes in anime-characters.tsv.
-kanji	hiragana	type	english
-ゲゲゲの鬼太郎	ゲゲゲのきたろう	proper-noun	GeGeGe no Kitaro
-鋼の錬金術師	はがねのれんきんじゅつし	proper-noun	Fullmetal Alchemist
+kanji	hiragana	type	english	breakdown
+ゲゲゲの鬼太郎	ゲゲゲのきたろう	proper-noun	GeGeGe no Kitaro	[鬼: demon/ogre | 太: thick/big | 郎: son/man]
+鋼の錬金術師	はがねのれんきんじゅつし	proper-noun	Fullmetal Alchemist	[鋼: steel | 錬: refine/temper | 金: gold/metal | 術: art/technique | 師: master/expert]
 ドラえもん	ドラえもん	proper-noun	Doraemon
 ポケットモンスター	ポケットモンスター	proper-noun	Pokémon
 ワンピース	ワンピース	proper-noun	One Piece
-鬼滅の刃	きめつのやいば	proper-noun	Demon Slayer
-進撃の巨人	しんげきのきょじん	proper-noun	Attack on Titan
+鬼滅の刃	きめつのやいば	proper-noun	Demon Slayer	[鬼: demon/ogre | 滅: destroy/perish | 刃: blade]
+進撃の巨人	しんげきのきょじん	proper-noun	Attack on Titan	[進: advance | 撃: strike/attack | 巨: huge/giant | 人: person]
 ナルト	ナルト	proper-noun	Naruto
 ドラゴンボール	ドラゴンボール	proper-noun	Dragon Ball
-名探偵コナン	めいたんていコナン	proper-noun	Detective Conan
+名探偵コナン	めいたんていコナン	proper-noun	Detective Conan	[名: name/famous | 探: search/probe | 偵: spy/detective]

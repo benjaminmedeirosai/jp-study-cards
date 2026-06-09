@@ -3,105 +3,105 @@
 # Belongs here: surnames only. Given names go in first-names.tsv; no 〜さん suffix.
 # Note: this top-100 covers ~a third of the population (surnames are very
 # diverse); true 70% coverage would require several thousand names.
-kanji	hiragana	type	english
-佐藤	さとう	proper-noun	Sato
-鈴木	すずき	proper-noun	Suzuki
-高橋	たかはし	proper-noun	Takahashi
-田中	たなか	proper-noun	Tanaka
-伊藤	いとう	proper-noun	Ito
-渡辺	わたなべ	proper-noun	Watanabe
-山本	やまもと	proper-noun	Yamamoto
-中村	なかむら	proper-noun	Nakamura
-小林	こばやし	proper-noun	Kobayashi
-加藤	かとう	proper-noun	Kato
-吉田	よしだ	proper-noun	Yoshida
-山田	やまだ	proper-noun	Yamada
-佐々木	ささき	proper-noun	Sasaki
-山口	やまぐち	proper-noun	Yamaguchi
-松本	まつもと	proper-noun	Matsumoto
-井上	いのうえ	proper-noun	Inoue
-木村	きむら	proper-noun	Kimura
-林	はやし	proper-noun	Hayashi
-斎藤	さいとう	proper-noun	Saito
-清水	しみず	proper-noun	Shimizu
-山崎	やまざき	proper-noun	Yamazaki
-森	もり	proper-noun	Mori
-阿部	あべ	proper-noun	Abe
-池田	いけだ	proper-noun	Ikeda
-橋本	はしもと	proper-noun	Hashimoto
-山下	やました	proper-noun	Yamashita
-石川	いしかわ	proper-noun	Ishikawa
-中島	なかじま	proper-noun	Nakajima
-前田	まえだ	proper-noun	Maeda
-藤田	ふじた	proper-noun	Fujita
-後藤	ごとう	proper-noun	Goto
-小川	おがわ	proper-noun	Ogawa
-岡田	おかだ	proper-noun	Okada
-村上	むらかみ	proper-noun	Murakami
-長谷川	はせがわ	proper-noun	Hasegawa
-近藤	こんどう	proper-noun	Kondo
-石井	いしい	proper-noun	Ishii
-坂本	さかもと	proper-noun	Sakamoto
-遠藤	えんどう	proper-noun	Endo
-藤井	ふじい	proper-noun	Fujii
-青木	あおき	proper-noun	Aoki
-福田	ふくだ	proper-noun	Fukuda
-三浦	みうら	proper-noun	Miura
-西村	にしむら	proper-noun	Nishimura
-藤原	ふじわら	proper-noun	Fujiwara
-太田	おおた	proper-noun	Ota
-松田	まつだ	proper-noun	Matsuda
-原田	はらだ	proper-noun	Harada
-岡本	おかもと	proper-noun	Okamoto
-中野	なかの	proper-noun	Nakano
-中川	なかがわ	proper-noun	Nakagawa
-小野	おの	proper-noun	Ono
-田村	たむら	proper-noun	Tamura
-竹内	たけうち	proper-noun	Takeuchi
-金子	かねこ	proper-noun	Kaneko
-和田	わだ	proper-noun	Wada
-中山	なかやま	proper-noun	Nakayama
-石田	いしだ	proper-noun	Ishida
-上田	うえだ	proper-noun	Ueda
-森田	もりた	proper-noun	Morita
-原	はら	proper-noun	Hara
-柴田	しばた	proper-noun	Shibata
-酒井	さかい	proper-noun	Sakai
-工藤	くどう	proper-noun	Kudo
-横山	よこやま	proper-noun	Yokoyama
-宮崎	みやざき	proper-noun	Miyazaki
-宮本	みやもと	proper-noun	Miyamoto
-内田	うちだ	proper-noun	Uchida
-高木	たかぎ	proper-noun	Takagi
-安藤	あんどう	proper-noun	Ando
-島田	しまだ	proper-noun	Shimada
-谷口	たにぐち	proper-noun	Taniguchi
-大野	おおの	proper-noun	Ono (Ohno)
-高田	たかだ	proper-noun	Takada
-丸山	まるやま	proper-noun	Maruyama
-今井	いまい	proper-noun	Imai
-河野	こうの	proper-noun	Kono
-藤本	ふじもと	proper-noun	Fujimoto
-村田	むらた	proper-noun	Murata
-武田	たけだ	proper-noun	Takeda
-上野	うえの	proper-noun	Ueno
-杉山	すぎやま	proper-noun	Sugiyama
-増田	ますだ	proper-noun	Masuda
-小島	こじま	proper-noun	Kojima
-平野	ひらの	proper-noun	Hirano
-大塚	おおつか	proper-noun	Otsuka
-千葉	ちば	proper-noun	Chiba
-久保	くぼ	proper-noun	Kubo
-松井	まつい	proper-noun	Matsui
-岩崎	いわさき	proper-noun	Iwasaki
-木下	きのした	proper-noun	Kinoshita
-野口	のぐち	proper-noun	Noguchi
-松尾	まつお	proper-noun	Matsuo
-野村	のむら	proper-noun	Nomura
-菊地	きくち	proper-noun	Kikuchi
-佐野	さの	proper-noun	Sano
-渡部	わたなべ	proper-noun	Watanabe (Watabe)
-小松	こまつ	proper-noun	Komatsu
-新井	あらい	proper-noun	Arai
-海老原	えびはら	proper-noun	Ebihara (surname; name-root)
-沢村	さわむら	proper-noun	Sawamura (surname; name-root)
+kanji	hiragana	type	english	breakdown
+佐藤	さとう	proper-noun	Sato	[佐: assist | 藤: wisteria]
+鈴木	すずき	proper-noun	Suzuki	[鈴: bell | 木: tree]
+高橋	たかはし	proper-noun	Takahashi	[高: high | 橋: bridge]
+田中	たなか	proper-noun	Tanaka	[田: rice field | 中: middle]
+伊藤	いとう	proper-noun	Ito	[伊: that/(phonetic) | 藤: wisteria]
+渡辺	わたなべ	proper-noun	Watanabe	[渡: cross | 辺: area/edge]
+山本	やまもと	proper-noun	Yamamoto	[山: mountain | 本: origin/base]
+中村	なかむら	proper-noun	Nakamura	[中: middle | 村: village]
+小林	こばやし	proper-noun	Kobayashi	[小: small | 林: woods]
+加藤	かとう	proper-noun	Kato	[加: add | 藤: wisteria]
+吉田	よしだ	proper-noun	Yoshida	[吉: good luck | 田: rice field]
+山田	やまだ	proper-noun	Yamada	[山: mountain | 田: rice field]
+佐々木	ささき	proper-noun	Sasaki	[佐: assist | 木: tree]
+山口	やまぐち	proper-noun	Yamaguchi	[山: mountain | 口: mouth/entrance]
+松本	まつもと	proper-noun	Matsumoto	[松: pine | 本: origin/base]
+井上	いのうえ	proper-noun	Inoue	[井: well | 上: above/upper]
+木村	きむら	proper-noun	Kimura	[木: tree | 村: village]
+林	はやし	proper-noun	Hayashi	[林: woods/grove]
+斎藤	さいとう	proper-noun	Saito	[斎: purification | 藤: wisteria]
+清水	しみず	proper-noun	Shimizu	[清: pure/clear | 水: water]
+山崎	やまざき	proper-noun	Yamazaki	[山: mountain | 崎: cape/steep]
+森	もり	proper-noun	Mori	[森: forest]
+阿部	あべ	proper-noun	Abe	[阿: nook/(phonetic) | 部: section]
+池田	いけだ	proper-noun	Ikeda	[池: pond | 田: rice field]
+橋本	はしもと	proper-noun	Hashimoto	[橋: bridge | 本: origin/base]
+山下	やました	proper-noun	Yamashita	[山: mountain | 下: below/lower]
+石川	いしかわ	proper-noun	Ishikawa	[石: stone | 川: river]
+中島	なかじま	proper-noun	Nakajima	[中: middle | 島: island]
+前田	まえだ	proper-noun	Maeda	[前: front | 田: rice field]
+藤田	ふじた	proper-noun	Fujita	[藤: wisteria | 田: rice field]
+後藤	ごとう	proper-noun	Goto	[後: after/behind | 藤: wisteria]
+小川	おがわ	proper-noun	Ogawa	[小: small | 川: river]
+岡田	おかだ	proper-noun	Okada	[岡: hill | 田: rice field]
+村上	むらかみ	proper-noun	Murakami	[村: village | 上: above/upper]
+長谷川	はせがわ	proper-noun	Hasegawa	[長: long | 谷: valley | 川: river]
+近藤	こんどう	proper-noun	Kondo	[近: near | 藤: wisteria]
+石井	いしい	proper-noun	Ishii	[石: stone | 井: well]
+坂本	さかもと	proper-noun	Sakamoto	[坂: slope | 本: origin/base]
+遠藤	えんどう	proper-noun	Endo	[遠: far | 藤: wisteria]
+藤井	ふじい	proper-noun	Fujii	[藤: wisteria | 井: well]
+青木	あおき	proper-noun	Aoki	[青: blue/green | 木: tree]
+福田	ふくだ	proper-noun	Fukuda	[福: fortune/luck | 田: rice field]
+三浦	みうら	proper-noun	Miura	[三: three | 浦: bay/inlet]
+西村	にしむら	proper-noun	Nishimura	[西: west | 村: village]
+藤原	ふじわら	proper-noun	Fujiwara	[藤: wisteria | 原: plain/field]
+太田	おおた	proper-noun	Ota	[太: thick/big | 田: rice field]
+松田	まつだ	proper-noun	Matsuda	[松: pine | 田: rice field]
+原田	はらだ	proper-noun	Harada	[原: plain/field | 田: rice field]
+岡本	おかもと	proper-noun	Okamoto	[岡: hill | 本: origin/base]
+中野	なかの	proper-noun	Nakano	[中: middle | 野: field]
+中川	なかがわ	proper-noun	Nakagawa	[中: middle | 川: river]
+小野	おの	proper-noun	Ono	[小: small | 野: field]
+田村	たむら	proper-noun	Tamura	[田: rice field | 村: village]
+竹内	たけうち	proper-noun	Takeuchi	[竹: bamboo | 内: inside]
+金子	かねこ	proper-noun	Kaneko	[金: gold/metal | 子: child]
+和田	わだ	proper-noun	Wada	[和: harmony | 田: rice field]
+中山	なかやま	proper-noun	Nakayama	[中: middle | 山: mountain]
+石田	いしだ	proper-noun	Ishida	[石: stone | 田: rice field]
+上田	うえだ	proper-noun	Ueda	[上: above/upper | 田: rice field]
+森田	もりた	proper-noun	Morita	[森: forest | 田: rice field]
+原	はら	proper-noun	Hara	[原: plain/field]
+柴田	しばた	proper-noun	Shibata	[柴: brushwood | 田: rice field]
+酒井	さかい	proper-noun	Sakai	[酒: sake/alcohol | 井: well]
+工藤	くどう	proper-noun	Kudo	[工: craft/work | 藤: wisteria]
+横山	よこやま	proper-noun	Yokoyama	[横: side/horizontal | 山: mountain]
+宮崎	みやざき	proper-noun	Miyazaki	[宮: shrine/palace | 崎: cape/steep]
+宮本	みやもと	proper-noun	Miyamoto	[宮: shrine/palace | 本: origin/base]
+内田	うちだ	proper-noun	Uchida	[内: inside | 田: rice field]
+高木	たかぎ	proper-noun	Takagi	[高: high | 木: tree]
+安藤	あんどう	proper-noun	Ando	[安: peace/calm | 藤: wisteria]
+島田	しまだ	proper-noun	Shimada	[島: island | 田: rice field]
+谷口	たにぐち	proper-noun	Taniguchi	[谷: valley | 口: mouth/entrance]
+大野	おおの	proper-noun	Ono (Ohno)	[大: big/great | 野: field]
+高田	たかだ	proper-noun	Takada	[高: high | 田: rice field]
+丸山	まるやま	proper-noun	Maruyama	[丸: round/circle | 山: mountain]
+今井	いまい	proper-noun	Imai	[今: now | 井: well]
+河野	こうの	proper-noun	Kono	[河: river | 野: field]
+藤本	ふじもと	proper-noun	Fujimoto	[藤: wisteria | 本: origin/base]
+村田	むらた	proper-noun	Murata	[村: village | 田: rice field]
+武田	たけだ	proper-noun	Takeda	[武: martial/military | 田: rice field]
+上野	うえの	proper-noun	Ueno	[上: above/upper | 野: field]
+杉山	すぎやま	proper-noun	Sugiyama	[杉: cedar | 山: mountain]
+増田	ますだ	proper-noun	Masuda	[増: increase | 田: rice field]
+小島	こじま	proper-noun	Kojima	[小: small | 島: island]
+平野	ひらの	proper-noun	Hirano	[平: flat/level | 野: field]
+大塚	おおつか	proper-noun	Otsuka	[大: big/great | 塚: mound]
+千葉	ちば	proper-noun	Chiba	[千: thousand | 葉: leaf]
+久保	くぼ	proper-noun	Kubo	[久: long time | 保: protect/keep]
+松井	まつい	proper-noun	Matsui	[松: pine | 井: well]
+岩崎	いわさき	proper-noun	Iwasaki	[岩: rock | 崎: cape/steep]
+木下	きのした	proper-noun	Kinoshita	[木: tree | 下: below/lower]
+野口	のぐち	proper-noun	Noguchi	[野: field | 口: mouth/entrance]
+松尾	まつお	proper-noun	Matsuo	[松: pine | 尾: tail/end]
+野村	のむら	proper-noun	Nomura	[野: field | 村: village]
+菊地	きくち	proper-noun	Kikuchi	[菊: chrysanthemum | 地: ground/land]
+佐野	さの	proper-noun	Sano	[佐: assist | 野: field]
+渡部	わたなべ	proper-noun	Watanabe (Watabe)	[渡: cross | 部: section]
+小松	こまつ	proper-noun	Komatsu	[小: small | 松: pine]
+新井	あらい	proper-noun	Arai	[新: new | 井: well]
+海老原	えびはら	proper-noun	Ebihara (surname; name-root)	[海: sea | 老: old | 原: plain/field]
+沢村	さわむら	proper-noun	Sawamura (surname; name-root)	[沢: marsh/abundance | 村: village]
