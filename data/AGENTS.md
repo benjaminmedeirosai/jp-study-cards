@@ -149,13 +149,13 @@ Skip it (leave the cell blank) when a gloss adds nothing:
 
 ### Validating a gloss pass
 
-`tmp/check-gloss.mjs` (gitignored dev tool) reads `cards.json` and, for the deck
-ids matching a prefix, asserts every gloss segment is `漢: …` where 漢 is a single
-Han character actually present in the word, the value is bracketed, and contains
-a colon. Run the bundler first (the validator reads the built artifact):
+`tmp/tools/check-gloss.mjs` (gitignored dev script) reads `cards.json` and, for
+the deck ids matching a prefix, asserts every gloss segment is `漢: …` where 漢 is
+a single Han character actually present in the word, the value is bracketed, and
+contains a colon. Run the bundler first (the validator reads the built artifact):
 
 ```bash
-node tools/bundle-data.mjs && node tmp/check-gloss.mjs nouns/abstract/concepts
+node tools/bundle-data.mjs && node tmp/tools/check-gloss.mjs nouns/abstract/concepts
 ```
 
 It prints `glossed/total` per deck and a mismatch count — aim for **0
@@ -272,13 +272,19 @@ phrases that moved to `expression/idioms.tsv`.
 ## Coverage audit (filling kanji gaps)
 
 Once decks are migrated, the ongoing work is **broadening kanji coverage** so
-each character shows up in enough distinct words to be learnable. The tool:
+each character shows up in enough distinct words to be learnable. The tools:
 
 ```bash
-node tools/audit-data.mjs      # reads every deck, writes 3 reports to tmp/
+node tools/audit-data.mjs        # reads every deck, writes 3 reports to tmp/
+node tools/polysemy-audit.mjs    # checks high-value multi-sense/POS words are
+                                 # represented across the decks they should span
 ```
 
-`tmp/` is gitignored — these are throwaway dev-reference artifacts, never
+**Scripts vs. outputs convention.** Permanent, committed tooling lives in
+`tools/` (the bundler, the audits, the dev server). Everything under `tmp/` is
+gitignored: throwaway one-off dev scripts (a `wave.mjs`, a `split-*.mjs`, the
+`check-gloss.mjs` validator) go in **`tmp/tools/`**, and their generated reports
+land in **`tmp/` itself**. The reports are dev-reference artifacts, never
 committed and never consumed by the app:
 
 - **`tmp/kanji-coverage-1.json`** — kanji appearing in exactly **1** distinct word.
@@ -307,7 +313,7 @@ This is iterative and **reviewed one wave at a time** — do not batch silently:
 3. **Slot into existing themed decks** (reuse categories; match each word's
    meaning to a deck per the classification principles above). Verbs go to the
    conjugation-class deck for their dictionary ending; pick the right `type`.
-4. **Apply via a throwaway `tmp/wave.mjs`**: an array of
+4. **Apply via a throwaway `tmp/tools/wave.mjs`**: an array of
    `[deckId, kanji, hiragana, type, english]`, which dedups every form against
    all existing entries (skip collisions), groups by file, and appends. This
    keeps readings/placement reviewable in one place and prevents duplicates.
