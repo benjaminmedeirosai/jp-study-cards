@@ -149,13 +149,13 @@ Skip it (leave the cell blank) when a gloss adds nothing:
 
 ### Validating a gloss pass
 
-`tmp/tools/check-gloss.mjs` (gitignored dev script) reads `cards.json` and, for
-the deck ids matching a prefix, asserts every gloss segment is `漢: …` where 漢 is
-a single Han character actually present in the word, the value is bracketed, and
-contains a colon. Run the bundler first (the validator reads the built artifact):
+`tools/check-gloss.mjs` reads `cards.json` and, for the deck ids matching a
+prefix, asserts every gloss segment is `漢: …` where 漢 is a single Han character
+actually present in the word, the value is bracketed, and contains a colon. Run
+the bundler first (the validator reads the built artifact):
 
 ```bash
-node tools/bundle-data.mjs && node tmp/tools/check-gloss.mjs nouns/abstract/concepts
+node tools/bundle-data.mjs && node tools/check-gloss.mjs nouns/abstract/concepts
 ```
 
 It prints `glossed/total` per deck and a mismatch count — aim for **0
@@ -278,12 +278,13 @@ each character shows up in enough distinct words to be learnable. The tools:
 node tools/audit-data.mjs        # reads every deck, writes 3 reports to tmp/
 node tools/polysemy-audit.mjs    # checks high-value multi-sense/POS words are
                                  # represented across the decks they should span
+node tools/check-gloss.mjs       # validates breakdown glosses (see below)
 ```
 
 **Scripts vs. outputs convention.** Permanent, committed tooling lives in
-`tools/` (the bundler, the audits, the dev server). Everything under `tmp/` is
-gitignored: throwaway one-off dev scripts (a `wave.mjs`, a `split-*.mjs`, the
-`check-gloss.mjs` validator) go in **`tmp/tools/`**, and their generated reports
+`tools/` (the bundler, the audits, the gloss validator, the dev server).
+Everything under `tmp/` is gitignored: throwaway one-off dev scripts (a
+`wave.mjs`, a `split-*.mjs`) go in **`tmp/tools/`**, and their generated reports
 land in **`tmp/` itself**. The reports are dev-reference artifacts, never
 committed and never consumed by the app:
 
