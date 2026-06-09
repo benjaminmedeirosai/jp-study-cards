@@ -1,26 +1,26 @@
 # Directions (Nouns / Position).
 # Auto-grouped during the nouns reorg; refine membership as needed.
-kanji	hiragana	type	english
-後ろ	うしろ	noun	back; behind
-近く	ちかく	noun	nearby; vicinity
-遠く	とおく	noun	far away; distance
-向こう	むこう	noun	over there; the other side
-周り	まわり	noun	around; surroundings
-半ば	なかば	noun	middle; halfway
-片方	かたほう	noun	one side; one of a pair
+kanji	hiragana	type	english	breakdown
+後ろ	うしろ	noun	back; behind	[後: behind/after]
+近く	ちかく	noun	nearby; vicinity	[近: near/close]
+遠く	とおく	noun	far away; distance	[遠: far/distant]
+向こう	むこう	noun	over there; the other side	[向: face/toward]
+周り	まわり	noun	around; surroundings	[周: circumference/around]
+半ば	なかば	noun	middle; halfway	[半: half]
+片方	かたほう	noun	one side; one of a pair	[片: one-side | 方: side/direction]
 西	にし	noun	west
 先	さき	noun	ahead; previous; future
 東	ひがし	noun	east
 南	みなみ	noun	south
 後	あと	noun	after; later
-外側	そとがわ	noun	outside; outer side
+外側	そとがわ	noun	outside; outer side	[外: outside | 側: side]
 間	あいだ	noun	interval; while; during
-真ん中	まんなか	noun	middle; center
-真上	まうえ	noun	directly above
-位置	いち	noun	position; location
-途中	とちゅう	noun	on the way; halfway
-方向	ほうこう	noun	direction
-左右	さゆう	noun	left and right
+真ん中	まんなか	noun	middle; center	[真: true/directly | 中: middle/center]
+真上	まうえ	noun	directly above	[真: true/directly | 上: above/up]
+位置	いち	noun	position; location	[位: rank/position | 置: place/put]
+途中	とちゅう	noun	on the way; halfway	[途: way/route | 中: middle/midway]
+方向	ほうこう	noun	direction	[方: direction/side | 向: face/toward]
+左右	さゆう	noun	left and right	[左: left | 右: right]
 右	みぎ	noun	right
 左	ひだり	noun	left
 前	まえ	noun	front; before
@@ -31,13 +31,13 @@ kanji	hiragana	type	english
 隣	となり	noun	next door; next to
 角	かど	noun	corner
 内	うち	noun	home; my house; inside
-仰向け	あおむけ	noun	lying face-up; on one's back
-内側	うちがわ	noun	inside; inner side
-右側	みぎがわ	noun	right side
-左側	ひだりがわ	noun	left side
-両側	りょうがわ	noun	both sides
-東南	とうなん	noun	southeast
-中央	ちゅうおう	noun	center; middle
-周辺	しゅうへん	noun	surroundings; vicinity
-辺り	あたり	noun	vicinity; neighborhood; around
-先頭	せんとう	noun	front; lead; head
+仰向け	あおむけ	noun	lying face-up; on one's back	[仰: look up | 向: face/toward]
+内側	うちがわ	noun	inside; inner side	[内: inside | 側: side]
+右側	みぎがわ	noun	right side	[右: right | 側: side]
+左側	ひだりがわ	noun	left side	[左: left | 側: side]
+両側	りょうがわ	noun	both sides	[両: both | 側: side]
+東南	とうなん	noun	southeast	[東: east | 南: south]
+中央	ちゅうおう	noun	center; middle	[中: middle/center | 央: center]
+周辺	しゅうへん	noun	surroundings; vicinity	[周: around/circumference | 辺: vicinity/edge]
+辺り	あたり	noun	vicinity; neighborhood; around	[辺: vicinity/edge]
+先頭	せんとう	noun	front; lead; head	[先: ahead/tip | 頭: head]

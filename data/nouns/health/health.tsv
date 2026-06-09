@@ -1,60 +1,60 @@
 # Health (Nouns / Health).
 # Auto-grouped during the nouns reorg; refine membership as needed.
-kanji	hiragana	type	english
-漢方	かんぽう	noun	Chinese medicine; traditional medicine
-注射	ちゅうしゃ	noun	injection
+kanji	hiragana	type	english	breakdown
+漢方	かんぽう	noun	Chinese medicine; traditional medicine	[漢: Chinese/Han | 方: method/direction]
+注射	ちゅうしゃ	noun	injection	[注: pour/inject | 射: shoot]
 薬	くすり	noun	medicine
-医者	いしゃ	noun	doctor
-病気	びょうき	noun	illness
+医者	いしゃ	noun	doctor	[医: medicine/doctor | 者: person]
+病気	びょうき	noun	illness	[病: illness/sick | 気: spirit/energy]
 熱	ねつ	noun	fever; heat
-健康	けんこう	noun	health
-運動	うんどう	noun	exercise; physical activity
+健康	けんこう	noun	health	[健: healthy/robust | 康: ease/wellbeing]
+運動	うんどう	noun	exercise; physical activity	[運: carry/move | 動: move/motion]
 傷	きず	noun	wound; scratch; injury
-負傷	ふしょう	noun	injury; being wounded
-火傷	やけど	noun	burn (injury)
-副作用	ふくさよう	noun	side effect
-疲労	ひろう	noun	fatigue; exhaustion
-嗅覚	きゅうかく	noun	sense of smell
-寒気	さむけ	noun	chills; the shivers
-体操	たいそう	noun	gymnastics; physical exercises
-食欲	しょくよく	noun	appetite
-炎症	えんしょう	noun	inflammation
-疲れ	つかれ	noun	tiredness; fatigue
-症状	しょうじょう	noun	symptoms
-重症	じゅうしょう	noun	serious illness; severe case
-看病	かんびょう	noun	nursing (a sick person)
-目眩	めまい	noun	dizziness; vertigo
-歯磨き	はみがき	noun	toothbrushing
-血糖値	けっとうち	noun	blood sugar level
-歯科	しか	noun	dentistry
-耳鼻科	じびか	noun	ear, nose, and throat (ENT) clinic
-脂肪	しぼう	noun	fat; body fat
-治療	ちりょう	noun	medical treatment
-虫歯	むしば	noun	tooth decay; cavity
-献血	けんけつ	noun	blood donation
-出産	しゅっさん	noun	childbirth; delivery
-医療	いりょう	noun	medical care; healthcare
-療養	りょうよう	noun	recuperation; medical treatment
-診療	しんりょう	noun	medical examination and treatment
-贅肉	ぜいにく	noun	excess flesh; flab
-退院	たいいん	noun	leaving the hospital; discharge
-風邪	かぜ	noun	cold (illness)
-診察	しんさつ	noun	medical examination; consultation
-診断	しんだん	noun	diagnosis
-頭痛	ずつう	noun	headache
-麻酔	ますい	noun	anesthesia
-麻薬	まやく	noun	narcotics; illegal drugs
-鼻血	はなぢ	noun	nosebleed
-鼻水	はなみず	noun	runny nose; nasal mucus
-脳卒中	のうそっちゅう	noun	stroke; cerebral apoplexy
-二日酔い	ふつかよい	noun	hangover
-具合	ぐあい	noun	condition; state of health
-錠剤	じょうざい	noun	tablet; pill
-包帯	ほうたい	noun	bandage
-呼吸	こきゅう	noun	breathing; respiration
-血液型	けつえきがた	noun	blood type
-骨折	こっせつ	noun	bone fracture
-検査	けんさ	noun	inspection; examination; test
-内科	ないか	noun	internal medicine
-聴覚	ちょうかく	noun	sense of hearing
-介護	かいご	noun	nursing care; caregiving
+負傷	ふしょう	noun	injury; being wounded	[負: bear/sustain | 傷: wound/injury]
+火傷	やけど	noun	burn (injury)	[火: fire | 傷: wound/injury]
+副作用	ふくさよう	noun	side effect	[副: secondary/side | 作: make/act | 用: use/effect]
+疲労	ひろう	noun	fatigue; exhaustion	[疲: tired/fatigue | 労: labor/toil]
+嗅覚	きゅうかく	noun	sense of smell	[嗅: smell/sniff | 覚: sense/perceive]
+寒気	さむけ	noun	chills; the shivers	[寒: cold | 気: feeling/air]
+体操	たいそう	noun	gymnastics; physical exercises	[体: body | 操: handle/exercise]
+食欲	しょくよく	noun	appetite	[食: food/eat | 欲: desire/appetite]
+炎症	えんしょう	noun	inflammation	[炎: flame/inflammation | 症: symptom/illness]
+疲れ	つかれ	noun	tiredness; fatigue	[疲: tired/fatigue]
+症状	しょうじょう	noun	symptoms	[症: symptom/illness | 状: condition/state]
+重症	じゅうしょう	noun	serious illness; severe case	[重: heavy/grave | 症: symptom/illness]
+看病	かんびょう	noun	nursing (a sick person)	[看: watch over/nurse | 病: illness]
+目眩	めまい	noun	dizziness; vertigo	[目: eye | 眩: dizzy/dazzle]
+歯磨き	はみがき	noun	toothbrushing	[歯: tooth | 磨: polish/brush]
+血糖値	けっとうち	noun	blood sugar level	[血: blood | 糖: sugar | 値: value/level]
+歯科	しか	noun	dentistry	[歯: tooth | 科: department/field]
+耳鼻科	じびか	noun	ear, nose, and throat (ENT) clinic	[耳: ear | 鼻: nose | 科: department/field]
+脂肪	しぼう	noun	fat; body fat	[脂: fat/grease | 肪: fat]
+治療	ちりょう	noun	medical treatment	[治: cure/heal | 療: heal/treat]
+虫歯	むしば	noun	tooth decay; cavity	[虫: insect/bug | 歯: tooth]
+献血	けんけつ	noun	blood donation	[献: offer/donate | 血: blood]
+出産	しゅっさん	noun	childbirth; delivery	[出: out/exit | 産: birth/produce]
+医療	いりょう	noun	medical care; healthcare	[医: medicine | 療: heal/treat]
+療養	りょうよう	noun	recuperation; medical treatment	[療: heal/treat | 養: nurture/recuperate]
+診療	しんりょう	noun	medical examination and treatment	[診: examine/diagnose | 療: heal/treat]
+贅肉	ぜいにく	noun	excess flesh; flab	[贅: excess/luxury | 肉: flesh/meat]
+退院	たいいん	noun	leaving the hospital; discharge	[退: leave/retreat | 院: institution/hospital]
+風邪	かぜ	noun	cold (illness)	[風: wind | 邪: evil/ailment]
+診察	しんさつ	noun	medical examination; consultation	[診: examine/diagnose | 察: observe/perceive]
+診断	しんだん	noun	diagnosis	[診: examine/diagnose | 断: judge/decide]
+頭痛	ずつう	noun	headache	[頭: head | 痛: pain/ache]
+麻酔	ますい	noun	anesthesia	[麻: numb/hemp | 酔: intoxicate/drunk]
+麻薬	まやく	noun	narcotics; illegal drugs	[麻: narcotic/hemp | 薬: medicine/drug]
+鼻血	はなぢ	noun	nosebleed	[鼻: nose | 血: blood]
+鼻水	はなみず	noun	runny nose; nasal mucus	[鼻: nose | 水: water]
+脳卒中	のうそっちゅう	noun	stroke; cerebral apoplexy	[脳: brain | 卒: sudden | 中: hit/within]
+二日酔い	ふつかよい	noun	hangover	[二: two | 日: day | 酔: intoxicate/drunk]
+具合	ぐあい	noun	condition; state of health	[具: condition/tool | 合: fit/join]
+錠剤	じょうざい	noun	tablet; pill	[錠: tablet/lock | 剤: dose/medication]
+包帯	ほうたい	noun	bandage	[包: wrap | 帯: band/belt]
+呼吸	こきゅう	noun	breathing; respiration	[呼: exhale/call | 吸: inhale/suck]
+血液型	けつえきがた	noun	blood type	[血: blood | 液: fluid/liquid | 型: type/mold]
+骨折	こっせつ	noun	bone fracture	[骨: bone | 折: break/fold]
+検査	けんさ	noun	inspection; examination; test	[検: examine/inspect | 査: investigate/check]
+内科	ないか	noun	internal medicine	[内: inside/internal | 科: department/field]
+聴覚	ちょうかく	noun	sense of hearing	[聴: listen/hear | 覚: sense/perceive]
+介護	かいご	noun	nursing care; caregiving	[介: care/mediate | 護: protect/guard]

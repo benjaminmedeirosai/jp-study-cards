@@ -1,40 +1,40 @@
 # Transport (Nouns / Transportation).
 # Auto-grouped during the nouns reorg; refine membership as needed.
-kanji	hiragana	type	english
-飛行	ひこう	noun	flight; flying; aviation
-一泊	いっぱく	noun	one night stay
-機内	きない	noun	onboard (an aircraft); inside the airplane
-電車	でんしゃ	noun	train
-地下鉄	ちかてつ	noun	subway
+kanji	hiragana	type	english	breakdown
+飛行	ひこう	noun	flight; flying; aviation	[飛: fly | 行: go/conduct]
+一泊	いっぱく	noun	one night stay	[一: one | 泊: overnight stay]
+機内	きない	noun	onboard (an aircraft); inside the airplane	[機: machine/aircraft | 内: inside]
+電車	でんしゃ	noun	train	[電: electricity | 車: car/vehicle]
+地下鉄	ちかてつ	noun	subway	[地: ground/earth | 下: below | 鉄: iron/railway]
 車	くるま	noun	car
-自転車	じてんしゃ	noun	bicycle
+自転車	じてんしゃ	noun	bicycle	[自: self | 転: turn/revolve | 車: car/vehicle]
 道	みち	noun	road; way
-交差点	こうさてん	noun	intersection
-信号	しんごう	noun	traffic light; signal
-切符	きっぷ	noun	ticket
-事故	じこ	noun	accident
-散歩	さんぽ	noun	walk; stroll
-旅行	りょこう	noun	travel; trip
-出発	しゅっぱつ	noun	departure
-到着	とうちゃく	noun	arrival
-飛行機	ひこうき	noun	airplane
-交通	こうつう	noun	traffic; transportation
-渋滞	じゅうたい	noun	traffic jam
-事故現場	じこげんば	noun	accident site
-運転	うんてん	noun	driving; operation
+交差点	こうさてん	noun	intersection	[交: cross/intersect | 差: cross/difference | 点: point/spot]
+信号	しんごう	noun	traffic light; signal	[信: signal/trust | 号: sign/number]
+切符	きっぷ	noun	ticket	[切: cut | 符: token/tally]
+事故	じこ	noun	accident	[事: matter/affair | 故: incident/reason]
+散歩	さんぽ	noun	walk; stroll	[散: scatter/disperse | 歩: walk/step]
+旅行	りょこう	noun	travel; trip	[旅: travel/journey | 行: go/conduct]
+出発	しゅっぱつ	noun	departure	[出: out/exit | 発: depart/emit]
+到着	とうちゃく	noun	arrival	[到: arrive/reach | 着: arrive/attach]
+飛行機	ひこうき	noun	airplane	[飛: fly | 行: go/conduct | 機: machine/craft]
+交通	こうつう	noun	traffic; transportation	[交: cross/exchange | 通: pass/traffic]
+渋滞	じゅうたい	noun	traffic jam	[渋: congest/astringent | 滞: stagnate/delay]
+事故現場	じこげんば	noun	accident site	[事: matter/affair | 故: incident/reason | 現: present/appear | 場: place/site]
+運転	うんてん	noun	driving; operation	[運: carry/operate | 転: turn/revolve]
 駅	えき	noun	station
-駅前	えきまえ	noun	in front of the station
-バス停	ばすてい	noun	bus stop
-列車	れっしゃ	noun	train
-新幹線	しんかんせん	noun	Shinkansen; bullet train
-徒歩	とほ	noun	on foot; walking
-滑走路	かっそうろ	noun	runway
-環状線	かんじょうせん	noun	loop line (railway)
-貨物	かもつ	noun	freight; cargo
-踏切	ふみきり	noun	railroad crossing
-送迎	そうげい	noun	pickup and drop-off; transfer
-着陸	ちゃくりく	noun	landing (aircraft)
-駐車	ちゅうしゃ	noun	parking
-改札	かいさつ	noun	ticket gate; ticket inspection
-標識	ひょうしき	noun	sign; marker; road sign
-高速	こうそく	noun	high speed; expressway
+駅前	えきまえ	noun	in front of the station	[駅: station | 前: front/before]
+バス停	ばすてい	noun	bus stop	[停: stop/halt]
+列車	れっしゃ	noun	train	[列: row/line | 車: car/vehicle]
+新幹線	しんかんせん	noun	Shinkansen; bullet train	[新: new | 幹: trunk/main | 線: line/track]
+徒歩	とほ	noun	on foot; walking	[徒: on foot/mere | 歩: walk/step]
+滑走路	かっそうろ	noun	runway	[滑: slide/glide | 走: run | 路: road/path]
+環状線	かんじょうせん	noun	loop line (railway)	[環: ring/loop | 状: shape/form | 線: line/track]
+貨物	かもつ	noun	freight; cargo	[貨: goods/freight | 物: thing/goods]
+踏切	ふみきり	noun	railroad crossing	[踏: step/tread | 切: cut]
+送迎	そうげい	noun	pickup and drop-off; transfer	[送: send/see off | 迎: welcome/meet]
+着陸	ちゃくりく	noun	landing (aircraft)	[着: arrive/land | 陸: land]
+駐車	ちゅうしゃ	noun	parking	[駐: park/station | 車: car/vehicle]
+改札	かいさつ	noun	ticket gate; ticket inspection	[改: check/revise | 札: ticket/tag]
+標識	ひょうしき	noun	sign; marker; road sign	[標: mark/sign | 識: recognize/discern]
+高速	こうそく	noun	high speed; expressway	[高: high | 速: fast/speed]

@@ -1,15 +1,15 @@
 # Study (Nouns / Language).
 # Auto-grouped during the nouns reorg; refine membership as needed.
-kanji	hiragana	type	english
-文学	ぶんがく	noun	literature
-地理	ちり	noun	geography
-言語	げんご	noun	language
-言葉	ことば	noun	word; language
-日本語	にほんご	noun	Japanese (language)
-英語	えいご	noun	English (language)
-語学	ごがく	noun	language study
-勉学	べんがく	noun	study; learning
-世界史	せかいし	noun	world history
-関西弁	かんさいべん	noun	Kansai dialect
-略語	りゃくご	noun	abbreviation; acronym
-翻訳	ほんやく	noun	translation
+kanji	hiragana	type	english	breakdown
+文学	ぶんがく	noun	literature	[文: writing/literature | 学: study/learning]
+地理	ちり	noun	geography	[地: ground/earth | 理: principle/logic]
+言語	げんご	noun	language	[言: say/word | 語: word/language]
+言葉	ことば	noun	word; language	[言: say/word | 葉: leaf]
+日本語	にほんご	noun	Japanese (language)	[日: sun/Japan | 本: origin/book | 語: word/language]
+英語	えいご	noun	English (language)	[英: England/excellent | 語: word/language]
+語学	ごがく	noun	language study	[語: word/language | 学: study/learning]
+勉学	べんがく	noun	study; learning	[勉: effort/strive | 学: study/learning]
+世界史	せかいし	noun	world history	[世: world/generation | 界: boundary/world | 史: history]
+関西弁	かんさいべん	noun	Kansai dialect	[関: barrier/gateway | 西: west | 弁: dialect/speech]
+略語	りゃくご	noun	abbreviation; acronym	[略: abbreviate/omit | 語: word/language]
+翻訳	ほんやく	noun	translation	[翻: translate/turn over | 訳: translate/meaning]
