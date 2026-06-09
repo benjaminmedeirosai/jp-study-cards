@@ -23,13 +23,23 @@ data/<…folders…>/<deck>.tsv      ← the ONLY source of truth (folders + nam
 
 ## File format
 
-New decks are **TSV** (tab-separated). Header is required and must be exactly:
+New decks are **TSV** (tab-separated). Header is required and must start with
+exactly these four columns:
 
 ```
 kanji	hiragana	type	english
 ```
 
-- One entry per line, tab-separated, four columns only.
+An optional **fifth `breakdown` column** carries the kanji gloss (see
+[Kanji gloss](#kanji-gloss-breakdown-column)). Add it to the header only when the
+deck uses it:
+
+```
+kanji	hiragana	type	english	breakdown
+変化	へんか	noun	change	[変: change | 化: transform]
+```
+
+- One entry per line, tab-separated, four columns (or five with `breakdown`).
 - For words written in kana, put the kana form in **both** `kanji` and
   `hiragana` (e.g. `プリン	プリン	noun	custard pudding`).
 - Legacy `.json` decks (array of `{kanji, hiragana, type, english}`) still work;
@@ -78,9 +88,18 @@ data/adjectives/na-adjectives/qualities.tsv
 
 - Mirror the category you want in the app right in the folder tree. The current
   top groups: `adjectives/{i-adjectives,na-adjectives}/`, `adverbs/`,
-  `expressions/`, `grammar/` (+ `grammar/morphemes/`), `nouns/<domain>/`,
+  `expressions/`, `grammar/` (+ `grammar/morphemes/`), `nouns/<group>/`,
   `numbers/` (+ `numbers/counters/`), `proper-nouns/<places|world|names|media|
   mythology>/`, `verbs/<godan|ichidan|irregular>/`.
+- **Nouns are organized into 7 meaning groups** (was ~23 flat domains):
+  `world` (animals, nature), `people` (people files + `body/`, `health/`),
+  `society` (business, education, communication, language, media), `places`
+  (places files + `position/`, `transportation/`), `things` (objects, clothing,
+  food, technology, colors), `abstract` (`concepts/` folder split into themed
+  subfiles + emotions, logic, mind, measurement, inquiry, conflict, society,
+  loanwords, `time/`), and `culture` (mythology, gaming, name-roots). Eponymous
+  groups (people, places) keep their files at the group root to avoid
+  "People / People" doubling; others nest one level deeper.
 - A deck sitting directly in a top folder (e.g. `numbers/digits.tsv`,
   `grammar/sentence-patterns.tsv`) gets a single-segment category ("Numbers",
   "Grammar"). Nest it one level deeper to make a subcategory.
@@ -88,6 +107,62 @@ data/adjectives/na-adjectives/qualities.tsv
 - Folder/file names are lowercase-kebab. Use `# label:` (above) when the display
   name needs more than the filename can carry. **No counts anywhere** — they're
   derived from the rows at build time.
+
+## Kanji gloss (`breakdown` column)
+
+The optional 5th column gives a per-kanji gloss so a learner can see what each
+character contributes to the word. Format is a bracketed, ` | `-separated list,
+one element per **kanji**, each `漢: meaning/contribution`:
+
+```
+順番	じゅんばん	noun	order; sequence	[順: order/sequence | 番: number/turn]
+歪み	ゆがみ	noun	distortion; warp	[歪: distort/warp]
+```
+
+- **Only kanji are glossed.** Okurigana and kana are skipped — `歪み` glosses just
+  `歪`; `真っ赤` glosses `真` and `赤`, not the っ. A mixed kanji+kana/katakana word
+  glosses only its kanji (`毒ガス` → `[毒: poison]`).
+- The bundler carries `breakdown` only when the header declares it **and** the
+  cell is non-empty, so leaving a row's gloss blank keeps `cards.json` lean.
+
+### When to gloss vs. skip
+
+Gloss it when the breakdown teaches something:
+
+- **Multi-kanji compounds** — always (変化, 順番, 太平洋…).
+- **Single kanji written with okurigana** — yes, because the okurigana obscures
+  the kanji (繋がり → `[繋: connect/tie]`, 願い → `[願: wish/request]`).
+- **Name/place kanji** — yes; gloss meanings (etymological for surnames), and
+  gloss the geography suffixes 市/県/区/駅/町/村 (新宿駅 → `…| 駅: station`).
+- **〜的** → `的: -ic/-al/-ive`.
+
+Skip it (leave the cell blank) when a gloss adds nothing:
+
+- **Single-kanji entries whose gloss equals the English** (水, 山, 本, 音, 謎, 命,
+  旅, 質…). The card already shows the meaning.
+- **Pure kana / katakana** entries and whole kana/katakana files (loanwords,
+  onomatopoeia, `*-kana.tsv`, core-kana) — nothing to break down.
+- **Counters and numerals** — the reading drill is the point, not the kanji.
+- **Morpheme decks** (prefixes/suffixes/particles) — the English already *is* the
+  per-morpheme gloss.
+- **Iteration mark** 々 is not a kanji — don't gloss it.
+
+### Validating a gloss pass
+
+`tmp/check-gloss.mjs` (gitignored dev tool) reads `cards.json` and, for the deck
+ids matching a prefix, asserts every gloss segment is `漢: …` where 漢 is a single
+Han character actually present in the word, the value is bracketed, and contains
+a colon. Run the bundler first (the validator reads the built artifact):
+
+```bash
+node tools/bundle-data.mjs && node tmp/check-gloss.mjs nouns/abstract/concepts
+```
+
+It prints `glossed/total` per deck and a mismatch count — aim for **0
+mismatches** (the glossed<total gap is just the intentional skips above). When
+rewriting large files by hand, also diff entry signatures
+(`kanji\thiragana\tenglish`, sorted) against the pre-edit baseline to prove no
+rows were dropped — hand-rewrites are the main way rows go missing.
 
 ## Classification principles
 
