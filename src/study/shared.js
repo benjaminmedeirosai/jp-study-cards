@@ -13,7 +13,8 @@ export const MODES = [
   { id: "kanji", label: "Kanji" },
   { id: "english", label: "English" },
   { id: "hiragana", label: "Hiragana" },
-  { id: "voice", label: "Voice" }
+  { id: "voice", label: "Voice" },
+  { id: "show-all", label: "Show All" }
 ];
 export const SET_GROUPINGS = [
   { id: "kanji-alpha", label: "Alphabetical (kanji)", shortLabel: "漢 A-Z", key: "kanji", type: "alpha" },
@@ -49,11 +50,13 @@ export function loadState() {
     kanjiFontScale: clampInt(raw.kanjiFontScale, 100, 50, 150),
     hiraganaFontScale: clampInt(raw.hiraganaFontScale, 100, 50, 150),
     englishFontScale: clampInt(raw.englishFontScale, 100, 50, 150),
+    glossFontScale: clampInt(raw.glossFontScale, 100, 50, 150),
     currentIndex: clampInt(raw.currentIndex, 0, 0, 100000),
     query: String(raw.query || "").trim(),
     jpVoice: String(raw.jpVoice || ""),
     voiceRate: Number.isFinite(Number(raw.voiceRate)) ? Math.min(2, Math.max(0.5, Number(raw.voiceRate))) : 0.9,
     showHotkeys: raw.showHotkeys === true,
+    showGloss: raw.showGloss !== false,
     audioSourceExpanded: raw.audioSourceExpanded !== false,
     visible: {
       kanji: visible.kanji !== false,
@@ -252,6 +255,7 @@ export function fieldLabel(labelText, input, className = "") {
 export function makeSelect(items, value) {
   const select = document.createElement("select");
   for (const item of items) {
+    if (item.separator) { select.append(document.createElement("hr")); continue; }
     const option = document.createElement("option");
     option.value = item.value;
     option.textContent = item.label;

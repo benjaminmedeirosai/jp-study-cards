@@ -30,6 +30,17 @@ const ICONS = {
   eyeOff: `<svg viewBox="0 0 24 24"><path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12z"/><circle cx="12" cy="12" r="3"/><path d="M4 4l16 16"/></svg>`
 };
 
+// Split a "[漢: gloss | 漢: gloss]" breakdown into per-kanji segments for the
+// top-right gloss slot. Tolerates a missing pair of brackets.
+function glossSegments(breakdown) {
+  return String(breakdown || "")
+    .trim()
+    .replace(/^\[|\]$/g, "")
+    .split("|")
+    .map((segment) => segment.trim())
+    .filter(Boolean);
+}
+
 function keyButton(label, className, svg, hotkey = "") {
   const el = document.createElement("button");
   el.type = "button";
@@ -73,7 +84,12 @@ export function renderCardPage() {
   deckButtonLabel.textContent = "All cards";
   deckButton.append(deckButtonIcon, deckButtonLabel);
   const setSelect = makeSelect([], state.setId);
-  const modeSelect = makeSelect(MODES.map((mode) => ({ value: mode.id, label: mode.label })), state.mode);
+  const modeItems = [
+    { value: "show-all", label: "Show All" },
+    { separator: true },
+    ...MODES.filter((mode) => mode.id !== "show-all").map((mode) => ({ value: mode.id, label: mode.label }))
+  ];
+  const modeSelect = makeSelect(modeItems, state.mode);
   const settingsBtn = button("Settings", "settings-open", "⚙");
   const summary = document.createElement("div");
   summary.className = "card-summary";
@@ -103,7 +119,9 @@ export function renderCardPage() {
   cardMain.className = "card-slot card-main";
   const cardEnglish = document.createElement("div");
   cardEnglish.className = "card-slot card-english";
-  card.append(cardType, cardReading, cardMain, cardEnglish);
+  const cardGloss = document.createElement("div");
+  cardGloss.className = "card-slot card-gloss";
+  card.append(cardType, cardReading, cardMain, cardEnglish, cardGloss);
 
   // --- Bottom tray: mini rail above 6 main buttons ------------------------
   const tray = document.createElement("section");
@@ -293,14 +311,26 @@ export function renderCardPage() {
     card.style.setProperty("--japanese-main-font-scale", String(state.kanjiFontScale / 100));
     card.style.setProperty("--japanese-reading-font-scale", String(state.hiraganaFontScale / 100));
     card.style.setProperty("--japanese-english-font-scale", String(state.englishFontScale / 100));
+    card.style.setProperty("--japanese-gloss-font-scale", String(state.glossFontScale / 100));
     cardType.textContent = type;
     cardMain.textContent = mainText;
     cardReading.textContent = hiragana;
     cardEnglish.textContent = english;
+    const showFront = revealed || state.mode === "show-all";
     setSlotVisible(cardType, state.visible.type && !!type);
-    setSlotVisible(cardMain, (revealed ? state.visible.kanji : state.mode === "kanji") && !!mainText);
-    setSlotVisible(cardReading, (revealed ? state.visible.hiragana : state.mode === "hiragana") && !!hiragana);
-    setSlotVisible(cardEnglish, (revealed ? state.visible.english : state.mode === "english") && !!english);
+    setSlotVisible(cardMain, (showFront ? state.visible.kanji : state.mode === "kanji") && !!mainText);
+    setSlotVisible(cardReading, (showFront ? state.visible.hiragana : state.mode === "hiragana") && !!hiragana);
+    setSlotVisible(cardEnglish, (showFront ? state.visible.english : state.mode === "english") && !!english);
+    // Kanji gloss: top-right, one line per kanji. Shown only when enabled, the
+    // entry has a breakdown, and the answer is visible (show-all or revealed).
+    const segments = glossSegments(text(entry, "breakdown"));
+    cardGloss.replaceChildren(...segments.map((segment) => {
+      const line = document.createElement("div");
+      line.className = "card-gloss-line";
+      line.textContent = segment;
+      return line;
+    }));
+    setSlotVisible(cardGloss, state.showGloss && showFront && segments.length > 0);
     revealBtn.querySelector(".icon").innerHTML = revealed ? ICONS.eyeOff : ICONS.eye;
     revealBtn.setAttribute("aria-label", revealed ? "Hide answer" : "Reveal answer");
     renderTray();

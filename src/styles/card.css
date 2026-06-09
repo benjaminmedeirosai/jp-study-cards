@@ -172,6 +172,19 @@
   line-height: 1.15;
 }
 
+.card-slot.card-gloss {
+  top: 18px;
+  right: 18px;
+  max-width: 50%;
+  display: grid;
+  gap: 3px;
+  text-align: right;
+  color: var(--muted);
+  font-size: calc(clamp(11px, 2.4vw, 14px) * var(--japanese-gloss-font-scale, 1));
+  font-weight: 400;
+  line-height: 1.25;
+}
+
 .card-slot.card-reading {
   top: calc(50% + (clamp(30.93px, 11.73vw, 70.4px) * var(--japanese-main-font-scale, 1) * 0.58));
   left: 50%;

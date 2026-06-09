@@ -54,9 +54,17 @@ function parseTsv(source, file) {
   if (!REQUIRED_HEADERS.every((header, index) => headers[index] === header)) {
     throw new Error(`${file}: expected TSV header ${REQUIRED_HEADERS.join("\\t")}`);
   }
+  const hasBreakdown = headers[REQUIRED_HEADERS.length] === "breakdown";
   const entries = lines.slice(1).map((line) => {
     const fields = line.split("\t");
-    return Object.fromEntries(REQUIRED_HEADERS.map((header, index) => [header, (fields[index] || "").trim()]));
+    const entry = Object.fromEntries(REQUIRED_HEADERS.map((header, index) => [header, (fields[index] || "").trim()]));
+    // Optional 5th column: per-kanji gloss "[漢: contribution | 漢: …]".
+    // Only carried through when present and non-empty, so cards.json stays lean.
+    if (hasBreakdown) {
+      const breakdown = (fields[REQUIRED_HEADERS.length] || "").trim();
+      if (breakdown) entry.breakdown = breakdown;
+    }
+    return entry;
   });
   return { label, entries };
 }

@@ -87,7 +87,9 @@ export function renderSettingsPage() {
   const kanjiFontInput = makeFontSlider(state.kanjiFontScale);
   const hiraganaFontInput = makeFontSlider(state.hiraganaFontScale);
   const englishFontInput = makeFontSlider(state.englishFontScale);
+  const glossFontInput = makeFontSlider(state.glossFontScale);
   const hotkeyToggle = makeToggle("Hotkeys", state.showHotkeys);
+  const glossToggle = makeToggle("Kanji gloss", state.showGloss);
 
   // --- Japanese voice (Web Speech API voices for ja-*) --------------------
   const voiceSelect = document.createElement("select");
@@ -248,6 +250,7 @@ export function renderSettingsPage() {
   const kanjiFontField = fieldLabel(`Kanji size ${state.kanjiFontScale}%`, kanjiFontInput);
   const hiraganaFontField = fieldLabel(`Hiragana size ${state.hiraganaFontScale}%`, hiraganaFontInput);
   const englishFontField = fieldLabel(`English size ${state.englishFontScale}%`, englishFontInput);
+  const glossFontField = fieldLabel(`Kanji gloss size ${state.glossFontScale}%`, glossFontInput);
   function wireFontScale(input, field, key, label) {
     input.addEventListener("input", () => {
       state[key] = clampInt(input.value, FONT_MAX, FONT_MIN, FONT_MAX);
@@ -258,6 +261,7 @@ export function renderSettingsPage() {
   wireFontScale(kanjiFontInput, kanjiFontField, "kanjiFontScale", "Kanji");
   wireFontScale(hiraganaFontInput, hiraganaFontField, "hiraganaFontScale", "Hiragana");
   wireFontScale(englishFontInput, englishFontField, "englishFontScale", "English");
+  wireFontScale(glossFontInput, glossFontField, "glossFontScale", "Kanji gloss");
 
   voiceSelect.addEventListener("change", () => {
     state.jpVoice = voiceSelect.value;
@@ -271,10 +275,14 @@ export function renderSettingsPage() {
     state.showHotkeys = hotkeyToggle.input.checked;
     saveState(state);
   });
+  glossToggle.input.addEventListener("change", () => {
+    state.showGloss = glossToggle.input.checked;
+    saveState(state);
+  });
 
   const visibilityGroup = document.createElement("div");
   visibilityGroup.className = "settings-toggle-grid";
-  visibilityGroup.append(hotkeyToggle.label);
+  visibilityGroup.append(hotkeyToggle.label, glossToggle.label);
 
   content.append(
     queryField,
@@ -284,6 +292,7 @@ export function renderSettingsPage() {
     kanjiFontField,
     hiraganaFontField,
     englishFontField,
+    glossFontField,
     fieldLabel("Japanese voice", voiceRow),
     fieldLabel("Voice speed", rateSelect),
     visibilityGroup
