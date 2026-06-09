@@ -1,22 +1,22 @@
 # Fruits (Nouns / Food).
 # Auto-grouped during the nouns reorg; refine membership as needed.
-kanji	hiragana	type	english
+kanji	hiragana	type	english	breakdown
 ぶどう	ぶどう	noun	grapes
-橙色	だいだいいろ	noun	orange
+橙色	だいだいいろ	noun	orange	[橙: bitter orange | 色: color]
 りんご	りんご	noun	apple
-桜色	さくらいろ	noun	cherry blossom pink
+桜色	さくらいろ	noun	cherry blossom pink	[桜: cherry blossom | 色: color]
 みかん	みかん	noun	mandarin orange
-果物	くだもの	noun	fruit
-林檎	りんご	noun	apple
-葡萄	ぶどう	noun	grapes
+果物	くだもの	noun	fruit	[果: fruit | 物: thing/object]
+林檎	りんご	noun	apple	[林: woods/grove | 檎: apple]
+葡萄	ぶどう	noun	grapes	[葡: grape | 萄: grape]
 苺	いちご	noun	strawberries
 梨	なし	noun	Japanese pear
-洋梨	ようなし	noun	(western) pear
+洋梨	ようなし	noun	(western) pear	[洋: Western/ocean | 梨: pear]
 柿	かき	noun	persimmon
 さくらんぼ	さくらんぼ	noun	cherry (fruit)
-西瓜	すいか	noun	watermelon
-干し柿	ほしがき	noun	dried persimmon
+西瓜	すいか	noun	watermelon	[西: west | 瓜: melon/gourd]
+干し柿	ほしがき	noun	dried persimmon	[干: dry | 柿: persimmon]
 桃	もも	noun	peach
-白桃	はくとう	noun	white peach
+白桃	はくとう	noun	white peach	[白: white | 桃: peach]
 梅	うめ	noun	plum; ume
 橙	だいだい	noun	bitter orange; daidai

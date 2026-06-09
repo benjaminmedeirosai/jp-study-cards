@@ -1,13 +1,13 @@
 # Drinks (Nouns / Food).
 # Auto-grouped during the nouns reorg; refine membership as needed.
-kanji	hiragana	type	english
+kanji	hiragana	type	english	breakdown
 お茶	おちゃ	noun	tea
-飲み物	のみもの	noun	drink; beverage
-牛乳	ぎゅうにゅう	noun	milk
-生クリーム	なまクリーム	noun	heavy cream
-炭酸水	たんさんすい	noun	sparkling water
-紅茶	こうちゃ	noun	black tea
+飲み物	のみもの	noun	drink; beverage	[飲: drink | 物: thing/goods]
+牛乳	ぎゅうにゅう	noun	milk	[牛: cow | 乳: milk]
+生クリーム	なまクリーム	noun	heavy cream	[生: raw/fresh]
+炭酸水	たんさんすい	noun	sparkling water	[炭: carbon/charcoal | 酸: acid | 水: water]
+紅茶	こうちゃ	noun	black tea	[紅: crimson/red | 茶: tea]
 酒	さけ	noun	sake; alcohol
-日本酒	にほんしゅ	noun	sake; Japanese rice wine
-麦茶	むぎちゃ	noun	barley tea
-煎茶	せんちゃ	noun	sencha; green tea
+日本酒	にほんしゅ	noun	sake; Japanese rice wine	[日: sun/Japan | 本: origin/book | 酒: sake/alcohol]
+麦茶	むぎちゃ	noun	barley tea	[麦: wheat/barley | 茶: tea]
+煎茶	せんちゃ	noun	sencha; green tea	[煎: roast/decoct | 茶: tea]

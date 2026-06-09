@@ -1,10 +1,10 @@
 # label: Meat & Seafood
 # Meat & Seafood (Nouns / Food).
 # Auto-grouped during the nouns reorg; refine membership as needed.
-kanji	hiragana	type	english
+kanji	hiragana	type	english	breakdown
 さけ	さけ	noun	salmon
 肉	にく	noun	meat
-鶏肉	とりにく	noun	chicken meat
-牛肉	ぎゅうにく	noun	beef
-豚肉	ぶたにく	noun	pork
-霜降り	しもふり	noun	marbled meat; frost-like pattern
+鶏肉	とりにく	noun	chicken meat	[鶏: chicken | 肉: meat/flesh]
+牛肉	ぎゅうにく	noun	beef	[牛: cow | 肉: meat/flesh]
+豚肉	ぶたにく	noun	pork	[豚: pig | 肉: meat/flesh]
+霜降り	しもふり	noun	marbled meat; frost-like pattern	[霜: frost | 降: fall/descend]

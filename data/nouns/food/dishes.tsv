@@ -1,11 +1,11 @@
 # Dishes (Nouns / Food).
 # Auto-grouped during the nouns reorg; refine membership as needed.
-kanji	hiragana	type	english
+kanji	hiragana	type	english	breakdown
 もんじゃ	もんじゃ	noun	monjayaki (Tokyo-style griddle dish)
-豆腐	とうふ	noun	tofu
-納豆	なっとう	noun	natto
-刺身	さしみ	noun	sashimi
-卵焼き	たまごやき	noun	rolled omelet
+豆腐	とうふ	noun	tofu	[豆: bean | 腐: ferment/rot]
+納豆	なっとう	noun	natto	[納: store/settle | 豆: bean]
+刺身	さしみ	noun	sashimi	[刺: pierce/stab | 身: body/flesh]
+卵焼き	たまごやき	noun	rolled omelet	[卵: egg | 焼: grill/bake]
 ゆで卵	ゆでたまご	noun	boiled egg
-珍味	ちんみ	noun	delicacy
-中華	ちゅうか	noun	Chinese (food/style)
+珍味	ちんみ	noun	delicacy	[珍: rare/curious | 味: flavor/taste]
+中華	ちゅうか	noun	Chinese (food/style)	[中: middle/China | 華: splendor/China]

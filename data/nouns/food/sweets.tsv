@@ -1,10 +1,10 @@
 # Sweets (Nouns / Food).
 # Auto-grouped during the nouns reorg; refine membership as needed.
-kanji	hiragana	type	english
-お菓子	おかし	noun	sweets; snacks
-桜餅	さくらもち	noun	sakura mochi (cherry-leaf rice cake)
+kanji	hiragana	type	english	breakdown
+お菓子	おかし	noun	sweets; snacks	[菓: confection/sweet | 子: child/small item]
+桜餅	さくらもち	noun	sakura mochi (cherry-leaf rice cake)	[桜: cherry blossom | 餅: rice cake/mochi]
 かき氷	かきごおり	noun	shaved ice
-菓子	かし	noun	sweets; confectionery
-和菓子	わがし	noun	Japanese sweets
-煎餅	せんべい	noun	rice cracker; senbei
-駄菓子	だがし	noun	cheap sweets; penny candy
+菓子	かし	noun	sweets; confectionery	[菓: confection/sweet | 子: child/small item]
+和菓子	わがし	noun	Japanese sweets	[和: Japanese/harmony | 菓: confection/sweet | 子: child/small item]
+煎餅	せんべい	noun	rice cracker; senbei	[煎: roast/parch | 餅: rice cake/mochi]
+駄菓子	だがし	noun	cheap sweets; penny candy	[駄: cheap/poor | 菓: confection/sweet | 子: child/small item]

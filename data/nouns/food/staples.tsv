@@ -1,11 +1,11 @@
 # Staples (Nouns / Food).
 # Auto-grouped during the nouns reorg; refine membership as needed.
-kanji	hiragana	type	english
+kanji	hiragana	type	english	breakdown
 ご飯	ごはん	noun	rice; meal
 米	こめ	noun	rice (uncooked)
 卵	たまご	noun	eggs
-生卵	なまたまご	noun	raw egg
-玄米	げんまい	noun	brown rice
+生卵	なまたまご	noun	raw egg	[生: raw/fresh | 卵: egg]
+玄米	げんまい	noun	brown rice	[玄: dark/unrefined | 米: rice]
 餅	もち	noun	rice cake; mochi
 麦	むぎ	noun	wheat; barley
-小麦	こむぎ	noun	wheat
+小麦	こむぎ	noun	wheat	[小: small | 麦: wheat/barley]

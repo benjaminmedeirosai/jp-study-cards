@@ -1,13 +1,13 @@
 # Vegetables (Nouns / Food).
 # Auto-grouped during the nouns reorg; refine membership as needed.
-kanji	hiragana	type	english
+kanji	hiragana	type	english	breakdown
 じゃがいも	じゃがいも	noun	potato
 にんじん	にんじん	noun	carrot
 葱	ねぎ	noun	green onion; scallion
-野菜	やさい	noun	vegetables
-人参	にんじん	noun	carrot
-玉葱	たまねぎ	noun	onion
-胡瓜	きゅうり	noun	cucumber
-蓮根	れんこん	noun	lotus root
-南瓜	かぼちゃ	noun	pumpkin; squash
-白菜	はくさい	noun	napa cabbage; Chinese cabbage
+野菜	やさい	noun	vegetables	[野: field/wild | 菜: vegetable/greens]
+人参	にんじん	noun	carrot	[人: person | 参: ginseng/visit]
+玉葱	たまねぎ	noun	onion	[玉: ball/round | 葱: onion/scallion]
+胡瓜	きゅうり	noun	cucumber	[胡: foreign | 瓜: melon/gourd]
+蓮根	れんこん	noun	lotus root	[蓮: lotus | 根: root]
+南瓜	かぼちゃ	noun	pumpkin; squash	[南: south | 瓜: melon/gourd]
+白菜	はくさい	noun	napa cabbage; Chinese cabbage	[白: white | 菜: vegetable/greens]

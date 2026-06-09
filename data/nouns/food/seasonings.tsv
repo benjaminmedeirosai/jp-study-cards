@@ -1,22 +1,22 @@
 # Seasonings (Nouns / Food).
 # Auto-grouped during the nouns reorg; refine membership as needed.
-kanji	hiragana	type	english
-蜜蜂	みつばち	noun	honeybee
-砂糖	さとう	noun	sugar
+kanji	hiragana	type	english	breakdown
+蜜蜂	みつばち	noun	honeybee	[蜜: honey/nectar | 蜂: bee]
+砂糖	さとう	noun	sugar	[砂: sand | 糖: sugar]
 塩	しお	noun	salt
 油	あぶら	noun	oil
-蜂蜜	はちみつ	noun	honey
-醤油	しょうゆ	noun	soy sauce
+蜂蜜	はちみつ	noun	honey	[蜂: bee | 蜜: honey/nectar]
+醤油	しょうゆ	noun	soy sauce	[醤: sauce/paste | 油: oil]
 みりん	みりん	noun	sweet cooking sake (mirin)
-胡椒	こしょう	noun	pepper (ground)
+胡椒	こしょう	noun	pepper (ground)	[胡: foreign | 椒: pepper plant]
 わさび	わさび	noun	wasabi
-胡麻	ごま	noun	sesame (seeds)
-塩分	えんぶん	noun	salt content
-食塩	しょくえん	noun	table salt
-梅干し	うめぼし	noun	pickled plum
-山椒	さんしょう	noun	Japanese pepper; sansho
-小麦粉	こむぎこ	noun	wheat flour
-糖分	とうぶん	noun	sugar content
-昆布	こんぶ	noun	kelp; kombu
+胡麻	ごま	noun	sesame (seeds)	[胡: foreign | 麻: hemp/sesame]
+塩分	えんぶん	noun	salt content	[塩: salt | 分: portion/content]
+食塩	しょくえん	noun	table salt	[食: food/eat | 塩: salt]
+梅干し	うめぼし	noun	pickled plum	[梅: plum/ume | 干: dry]
+山椒	さんしょう	noun	Japanese pepper; sansho	[山: mountain | 椒: pepper plant]
+小麦粉	こむぎこ	noun	wheat flour	[小: small | 麦: wheat/barley | 粉: powder/flour]
+糖分	とうぶん	noun	sugar content	[糖: sugar | 分: portion/content]
+昆布	こんぶ	noun	kelp; kombu	[昆: kelp | 布: spread/cloth]
 蜜	みつ	noun	nectar; honey; syrup
-辛口	からくち	noun	spicy; dry (sake); harsh
+辛口	からくち	noun	spicy; dry (sake); harsh	[辛: spicy/hot | 口: mouth/taste]

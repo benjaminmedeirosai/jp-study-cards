@@ -1,16 +1,16 @@
 # Meals (Nouns / Food).
 # Auto-grouped during the nouns reorg; refine membership as needed.
-kanji	hiragana	type	english
-食べ物	たべもの	noun	food
-夕飯	ゆうはん	noun	evening meal; dinner
-昼ご飯	ひるごはん	noun	lunch
-料理	りょうり	noun	cooking; cuisine
-朝食	ちょうしょく	noun	breakfast
-昼食	ちゅうしょく	noun	lunch
-夕食	ゆうしょく	noun	dinner
+kanji	hiragana	type	english	breakdown
+食べ物	たべもの	noun	food	[食: eat/food | 物: thing/goods]
+夕飯	ゆうはん	noun	evening meal; dinner	[夕: evening | 飯: meal/cooked rice]
+昼ご飯	ひるごはん	noun	lunch	[昼: noon/daytime | 飯: meal/cooked rice]
+料理	りょうり	noun	cooking; cuisine	[料: materials/ingredients | 理: manage/prepare]
+朝食	ちょうしょく	noun	breakfast	[朝: morning | 食: food/eat]
+昼食	ちゅうしょく	noun	lunch	[昼: noon/daytime | 食: food/eat]
+夕食	ゆうしょく	noun	dinner	[夕: evening | 食: food/eat]
 味	あじ	noun	taste; flavor
-食事	しょくじ	noun	meal
-飲食	いんしょく	noun	eating and drinking
-弁当	べんとう	noun	boxed lunch; bento
-献立	こんだて	noun	menu; meal plan
-軽食	けいしょく	noun	light meal; snack
+食事	しょくじ	noun	meal	[食: food/eat | 事: matter/affair]
+飲食	いんしょく	noun	eating and drinking	[飲: drink | 食: food/eat]
+弁当	べんとう	noun	boxed lunch; bento	[弁: prepare/manage | 当: apt/proper]
+献立	こんだて	noun	menu; meal plan	[献: offer/present | 立: stand/set up]
+軽食	けいしょく	noun	light meal; snack	[軽: light | 食: food/eat]
