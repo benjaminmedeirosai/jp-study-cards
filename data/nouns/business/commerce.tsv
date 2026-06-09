@@ -1,45 +1,43 @@
 # Commerce (Nouns / Business).
 # Auto-grouped during the nouns reorg; refine membership as needed.
-kanji	hiragana	type	english
-手続き	てつづき	noun	procedure; process
-買い物	かいもの	noun	shopping
-広告	こうこく	noun	advertisement
-加入	かにゅう	noun	joining; enrollment; membership
-新品	しんぴん	noun	new item; brand-new (condition)
-中古	ちゅうこ	noun	used; secondhand
-買い物リスト	かいものリスト	noun	shopping list
-計画	けいかく	noun	plan
-登録	とうろく	noun	registration; subscription
-報告	ほうこく	noun	report; reporting
-予約	よやく	noun	reservation
-予定	よてい	noun	plan; schedule
-無料	むりょう	noun	free of charge
-案内	あんない	noun	guidance; information
-連絡	れんらく	noun	contact; communication
-約束	やくそく	noun	promise
-相談	そうだん	noun	consultation; advice
-準備	じゅんび	noun	preparation
-理由書	りゆうしょ	noun	written statement of reasons
-書類	しょるい	noun	documents; paperwork
-身分証	みぶんしょう	noun	ID card; identification
-番号	ばんごう	noun	number; ID number
-番号札	ばんごうふだ	noun	number ticket; queue ticket
-申込	もうしこみ	noun	application; sign-up
-受付	うけつけ	noun	reception; front desk
-番号順	ばんごうじゅん	noun	numerical order
-列	れつ	noun	line; queue
-順番	じゅんばん	noun	turn; order
-確認	かくにん	noun	confirmation; check
-部屋代	へやだい	noun	room charge
-協会	きょうかい	noun	association; society
-商品	しょうひん	noun	goods; merchandise
-商売	しょうばい	noun	business; trade
-商業	しょうぎょう	noun	commerce; business
-在庫	ざいこ	noun	stock; inventory
-支店	してん	noun	branch (office/store)
-出荷	しゅっか	noun	shipment; shipping out
-入荷	にゅうか	noun	arrival of goods; restocking
-製品	せいひん	noun	product; manufactured goods
-閉店	へいてん	noun	closing (a shop); store closure
-闇市	やみいち	noun	black market
-伝票	でんぴょう	noun	slip; voucher; sales chit
+kanji	hiragana	type	english	breakdown
+手続き	てつづき	noun	procedure; process	[手: hand | 続: continue/proceed]
+買い物	かいもの	noun	shopping	[買: buy | 物: thing/goods]
+広告	こうこく	noun	advertisement	[広: wide/broad | 告: tell/announce]
+加入	かにゅう	noun	joining; enrollment; membership	[加: add/join | 入: enter]
+新品	しんぴん	noun	new item; brand-new (condition)	[新: new | 品: goods/article]
+中古	ちゅうこ	noun	used; secondhand	[中: middle/used | 古: old]
+買い物リスト	かいものリスト	noun	shopping list	[買: buy | 物: thing/goods]
+計画	けいかく	noun	plan	[計: plan/measure | 画: plan/stroke]
+登録	とうろく	noun	registration; subscription	[登: register/ascend | 録: record]
+報告	ほうこく	noun	report; reporting	[報: report/inform | 告: tell/announce]
+予約	よやく	noun	reservation	[予: beforehand | 約: promise/agreement]
+予定	よてい	noun	plan; schedule	[予: beforehand | 定: decide/fixed]
+無料	むりょう	noun	free of charge	[無: without/none | 料: fee/charge]
+案内	あんない	noun	guidance; information	[案: plan/guide | 内: inside]
+連絡	れんらく	noun	contact; communication	[連: connect/link | 絡: contact/entwine]
+約束	やくそく	noun	promise	[約: promise | 束: bundle/bind]
+相談	そうだん	noun	consultation; advice	[相: mutual/aspect | 談: talk/discuss]
+準備	じゅんび	noun	preparation	[準: prepare/standard | 備: equip/prepare]
+理由書	りゆうしょ	noun	written statement of reasons	[理: reason/logic | 由: reason/cause | 書: write/document]
+書類	しょるい	noun	documents; paperwork	[書: write/document | 類: kind/sort]
+身分証	みぶんしょう	noun	ID card; identification	[身: body/self | 分: part/status | 証: proof/certificate]
+番号	ばんごう	noun	number; ID number	[番: number/turn | 号: number/mark]
+番号札	ばんごうふだ	noun	number ticket; queue ticket	[番: number/turn | 号: number/mark | 札: tag/ticket]
+申込	もうしこみ	noun	application; sign-up	[申: state/apply | 込: into/include]
+受付	うけつけ	noun	reception; front desk	[受: receive | 付: attach/affix]
+番号順	ばんごうじゅん	noun	numerical order	[番: number/turn | 号: number/mark | 順: order/sequence]
+確認	かくにん	noun	confirmation; check	[確: certain/confirm | 認: recognize/acknowledge]
+部屋代	へやだい	noun	room charge	[部: section/part | 屋: room/shop | 代: fee/charge]
+協会	きょうかい	noun	association; society	[協: cooperate | 会: meet/association]
+商品	しょうひん	noun	goods; merchandise	[商: commerce/trade | 品: goods/article]
+商売	しょうばい	noun	business; trade	[商: commerce/trade | 売: sell]
+商業	しょうぎょう	noun	commerce; business	[商: commerce/trade | 業: business/trade]
+在庫	ざいこ	noun	stock; inventory	[在: exist/be | 庫: warehouse/storehouse]
+支店	してん	noun	branch (office/store)	[支: branch/support | 店: store/shop]
+出荷	しゅっか	noun	shipment; shipping out	[出: out/exit | 荷: load/cargo]
+入荷	にゅうか	noun	arrival of goods; restocking	[入: enter | 荷: load/cargo]
+製品	せいひん	noun	product; manufactured goods	[製: manufacture/made | 品: goods/article]
+閉店	へいてん	noun	closing (a shop); store closure	[閉: close/shut | 店: store/shop]
+闇市	やみいち	noun	black market	[闇: darkness | 市: market/city]
+伝票	でんぴょう	noun	slip; voucher; sales chit	[伝: convey/transmit | 票: slip/ballot]

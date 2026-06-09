@@ -1,29 +1,29 @@
 # Gaming (Nouns / Gaming).
 # Auto-grouped during the nouns reorg; refine membership as needed.
-kanji	hiragana	type	english
+kanji	hiragana	type	english	breakdown
 氷	こおり	noun	ice (type); ice
-遊び	あそび	noun	play; playing
-音楽ゲーム	おんがくゲーム	noun	music rhythm game
-進化	しんか	noun	evolution; (game) evolution/upgrade
-格闘	かくとう	noun	fighting (type); hand-to-hand combat
-地面	じめん	noun	ground (type); ground/earth
-点数	てんすう	noun	score; points
-規則	きそく	noun	rule; regulation
-柔道	じゅうどう	noun	judo
-武道	ぶどう	noun	martial arts
-決勝	けっしょう	noun	final (round/match)
-水泳	すいえい	noun	swimming
-背泳ぎ	せおよぎ	noun	backstroke
-海水浴	かいすいよく	noun	sea bathing; swimming in the sea
-鉄棒	てつぼう	noun	horizontal bar (gymnastics); iron rod
-狩猟	しゅりょう	noun	hunting
-守備	しゅび	noun	defense; fielding
-竹刀	しない	noun	bamboo sword (kendo)
-縄跳び	なわとび	noun	jump rope; skipping
+遊び	あそび	noun	play; playing	[遊: play/amusement]
+音楽ゲーム	おんがくゲーム	noun	music rhythm game	[音: sound | 楽: music/pleasure]
+進化	しんか	noun	evolution; (game) evolution/upgrade	[進: advance/progress | 化: change/-ization]
+格闘	かくとう	noun	fighting (type); hand-to-hand combat	[格: status/grapple | 闘: fight/struggle]
+地面	じめん	noun	ground (type); ground/earth	[地: ground/earth | 面: surface/face]
+点数	てんすう	noun	score; points	[点: point/dot | 数: number/count]
+規則	きそく	noun	rule; regulation	[規: standard/rule | 則: rule/law]
+柔道	じゅうどう	noun	judo	[柔: soft/gentle | 道: way/path]
+武道	ぶどう	noun	martial arts	[武: martial/military | 道: way/path]
+決勝	けっしょう	noun	final (round/match)	[決: decide | 勝: win/victory]
+水泳	すいえい	noun	swimming	[水: water | 泳: swim]
+背泳ぎ	せおよぎ	noun	backstroke	[背: back | 泳: swim]
+海水浴	かいすいよく	noun	sea bathing; swimming in the sea	[海: sea | 水: water | 浴: bathe]
+鉄棒	てつぼう	noun	horizontal bar (gymnastics); iron rod	[鉄: iron | 棒: pole/bar]
+狩猟	しゅりょう	noun	hunting	[狩: hunt | 猟: hunting/game]
+守備	しゅび	noun	defense; fielding	[守: defend/protect | 備: prepare/equip]
+竹刀	しない	noun	bamboo sword (kendo)	[竹: bamboo | 刀: sword/blade]
+縄跳び	なわとび	noun	jump rope; skipping	[縄: rope | 跳: jump/leap]
 謎々	なぞなぞ	noun	riddle
-剣道	けんどう	noun	kendo
-登山	とざん	noun	mountain climbing
-競技	きょうぎ	noun	competition; sporting event
-試合	しあい	noun	match; game; bout
-釣り	つり	noun	fishing; angling
-投手	とうしゅ	noun	pitcher (baseball)
+剣道	けんどう	noun	kendo	[剣: sword | 道: way/path]
+登山	とざん	noun	mountain climbing	[登: climb/ascend | 山: mountain]
+競技	きょうぎ	noun	competition; sporting event	[競: compete | 技: skill/technique]
+試合	しあい	noun	match; game; bout	[試: try/test | 合: join/match]
+釣り	つり	noun	fishing; angling	[釣: fishing/angle]
+投手	とうしゅ	noun	pitcher (baseball)	[投: throw/pitch | 手: hand/person]

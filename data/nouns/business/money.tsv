@@ -1,45 +1,45 @@
 # Money (Nouns / Business).
 # Auto-grouped during the nouns reorg; refine membership as needed.
-kanji	hiragana	type	english
+kanji	hiragana	type	english	breakdown
 お金	おかね	noun	money
-お釣り	おつり	noun	change (money)
-送料	そうりょう	noun	shipping fee; postage
+お釣り	おつり	noun	change (money)	[釣: angle/give change]
+送料	そうりょう	noun	shipping fee; postage	[送: send/dispatch | 料: fee/charge]
 銭	ぜに	noun	money; coins; small change
-貿易	ぼうえき	noun	trade
+貿易	ぼうえき	noun	trade	[貿: trade | 易: exchange/trade]
 税	ぜい	noun	tax
-特売	とくばい	noun	special sale
-会計	かいけい	noun	bill; accounting
-財布	さいふ	noun	wallet
-保険	ほけん	noun	insurance
-料金	りょうきん	noun	fee; charge
-値段	ねだん	noun	price
-領収書	りょうしゅうしょ	noun	receipt
-売買	ばいばい	noun	trade; buying and selling
-借金	しゃっきん	noun	debt; loan
-収入	しゅうにゅう	noun	income; earnings
-巨額	きょがく	noun	huge sum (of money)
-振り込み	ふりこみ	noun	bank transfer; deposit
-支払い	しはらい	noun	payment
-払い戻し	はらいもどし	noun	refund; repayment
-旅費	りょひ	noun	travel expenses
-景気	けいき	noun	business conditions; the economy
-硬貨	こうか	noun	coin
-礼金	れいきん	noun	key money (to a landlord)
-税金	ぜいきん	noun	tax
-消費税	しょうひぜい	noun	consumption tax
-関税	かんぜい	noun	tariff; customs duty
-節約	せつやく	noun	economizing; saving
-給与	きゅうよ	noun	salary; wages; allowance
-給料	きゅうりょう	noun	salary; wages; pay
-財産	ざいさん	noun	property; assets; fortune
-通貨	つうか	noun	currency
-貯金	ちょきん	noun	savings; saving money
-貯蓄	ちょちく	noun	savings; accumulation
-賞金	しょうきん	noun	prize money; cash award
-高騰	こうとう	noun	sharp price rise; surge
-予算	よさん	noun	budget
-投資	とうし	noun	investment
-小銭	こぜに	noun	small change; coins
-金銭	きんせん	noun	money; cash
-金額	きんがく	noun	amount of money; sum
-小遣い	こづかい	noun	pocket money; allowance
+特売	とくばい	noun	special sale	[特: special | 売: sell]
+会計	かいけい	noun	bill; accounting	[会: meet/gather | 計: count/account]
+財布	さいふ	noun	wallet	[財: wealth/property | 布: cloth]
+保険	ほけん	noun	insurance	[保: protect/keep | 険: risk/steep]
+料金	りょうきん	noun	fee; charge	[料: fee/charge | 金: money]
+値段	ねだん	noun	price	[値: value/price | 段: step/grade]
+領収書	りょうしゅうしょ	noun	receipt	[領: receive/domain | 収: receive/collect | 書: write/document]
+売買	ばいばい	noun	trade; buying and selling	[売: sell | 買: buy]
+借金	しゃっきん	noun	debt; loan	[借: borrow | 金: money]
+収入	しゅうにゅう	noun	income; earnings	[収: collect/income | 入: enter]
+巨額	きょがく	noun	huge sum (of money)	[巨: huge/giant | 額: amount/sum]
+振り込み	ふりこみ	noun	bank transfer; deposit	[振: swing/transfer | 込: into/include]
+支払い	しはらい	noun	payment	[支: pay/branch | 払: pay/sweep away]
+払い戻し	はらいもどし	noun	refund; repayment	[払: pay/sweep | 戻: return/refund]
+旅費	りょひ	noun	travel expenses	[旅: travel/journey | 費: expense/cost]
+景気	けいき	noun	business conditions; the economy	[景: scene/condition | 気: spirit/mood]
+硬貨	こうか	noun	coin	[硬: hard | 貨: money/goods]
+礼金	れいきん	noun	key money (to a landlord)	[礼: courtesy/gratitude | 金: money]
+税金	ぜいきん	noun	tax	[税: tax | 金: money]
+消費税	しょうひぜい	noun	consumption tax	[消: consume/spend | 費: expense/cost | 税: tax]
+関税	かんぜい	noun	tariff; customs duty	[関: barrier/customs | 税: tax]
+節約	せつやく	noun	economizing; saving	[節: thrift/moderation | 約: economize/promise]
+給与	きゅうよ	noun	salary; wages; allowance	[給: supply/pay | 与: give/grant]
+給料	きゅうりょう	noun	salary; wages; pay	[給: supply/pay | 料: fee/charge]
+財産	ざいさん	noun	property; assets; fortune	[財: wealth/property | 産: produce/property]
+通貨	つうか	noun	currency	[通: pass/circulate | 貨: money/goods]
+貯金	ちょきん	noun	savings; saving money	[貯: save/store | 金: money]
+貯蓄	ちょちく	noun	savings; accumulation	[貯: save/store | 蓄: accumulate/store]
+賞金	しょうきん	noun	prize money; cash award	[賞: prize/award | 金: money]
+高騰	こうとう	noun	sharp price rise; surge	[高: high | 騰: rise/soar]
+予算	よさん	noun	budget	[予: beforehand | 算: calculate/count]
+投資	とうし	noun	investment	[投: throw/invest | 資: capital/resources]
+小銭	こぜに	noun	small change; coins	[小: small | 銭: coin/money]
+金銭	きんせん	noun	money; cash	[金: money/gold | 銭: coin/money]
+金額	きんがく	noun	amount of money; sum	[金: money/gold | 額: amount/sum]
+小遣い	こづかい	noun	pocket money; allowance	[小: small | 遣: use/dispatch]

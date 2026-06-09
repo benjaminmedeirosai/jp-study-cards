@@ -1,18 +1,18 @@
 # Communication (Nouns / Communication).
 # Auto-grouped during the nouns reorg; refine membership as needed.
-kanji	hiragana	type	english
-答え	こたえ	noun	answer
-挨拶	あいさつ	noun	greeting; to greet
-喝采	かっさい	noun	applause; cheers
-発言	はつげん	noun	remark; statement
-話題	わだい	noun	topic
-一言	ひとこと	noun	a word; a brief remark
-通信	つうしん	noun	communication; data connection; telecoms
-手紙	てがみ	noun	letter
+kanji	hiragana	type	english	breakdown
+答え	こたえ	noun	answer	[答: answer/reply]
+挨拶	あいさつ	noun	greeting; to greet	[挨: greet | 拶: greet]
+喝采	かっさい	noun	applause; cheers	[喝: shout | 采: cheer/applause]
+発言	はつげん	noun	remark; statement	[発: emit/issue | 言: say/word]
+話題	わだい	noun	topic	[話: talk/speak | 題: topic/title]
+一言	ひとこと	noun	a word; a brief remark	[一: one | 言: word/say]
+通信	つうしん	noun	communication; data connection; telecoms	[通: pass/communicate | 信: message/trust]
+手紙	てがみ	noun	letter	[手: hand | 紙: paper]
 声	こえ	noun	voice
-質問	しつもん	noun	question (to ask)
-注意	ちゅうい	noun	attention; caution
-説明	せつめい	noun	explanation
-電話番号	でんわばんごう	noun	phone number
-会話	かいわ	noun	conversation
-電話	でんわ	noun	telephone; phone call
+質問	しつもん	noun	question (to ask)	[質: substance/quality | 問: ask/question]
+注意	ちゅうい	noun	attention; caution	[注: focus/pour | 意: mind/intention]
+説明	せつめい	noun	explanation	[説: explain/theory | 明: bright/clear]
+電話番号	でんわばんごう	noun	phone number	[電: electric | 話: talk | 番: number/turn | 号: number/mark]
+会話	かいわ	noun	conversation	[会: meet/gather | 話: talk/speak]
+電話	でんわ	noun	telephone; phone call	[電: electricity | 話: talk/speak]

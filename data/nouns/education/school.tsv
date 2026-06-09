@@ -1,36 +1,36 @@
 # School (Nouns / Education).
 # Auto-grouped during the nouns reorg; refine membership as needed.
-kanji	hiragana	type	english
-訓練	くんれん	noun	training; drill
-資料	しりょう	noun	materials; reference materials
-学生	がくせい	noun	student
-宿題	しゅくだい	noun	homework
-試験	しけん	noun	exam
-計算	けいさん	noun	calculation
-勉強	べんきょう	noun	study
-学習	がくしゅう	noun	learning; study
-生徒	せいと	noun	student (pupil; esp. school)
-入学	にゅうがく	noun	entrance to school; matriculation
-中学校	ちゅうがっこう	noun	junior high school; middle school
-高校生	こうこうせい	noun	high school student
-小学生	しょうがくせい	noun	elementary school student
-幼稚園	ようちえん	noun	kindergarten; preschool
-校庭	こうてい	noun	schoolyard; school grounds
-担任	たんにん	noun	homeroom teacher
-専攻	せんこう	noun	major; field of study
-留学	りゅうがく	noun	studying abroad
-同窓会	どうそうかい	noun	alumni reunion
-在籍	ざいせき	noun	enrollment; being registered
-学級	がっきゅう	noun	class (in school)
-上級	じょうきゅう	noun	advanced level; upper grade
-成績	せいせき	noun	grades; results; performance
-給食	きゅうしょく	noun	school lunch
-講義	こうぎ	noun	lecture (university)
-講座	こうざ	noun	course; lecture series
-受講	じゅこう	noun	attending a course/lecture
-卒業	そつぎょう	noun	graduation
-卒業式	そつぎょうしき	noun	graduation ceremony
-教育	きょういく	noun	education
-教室	きょうしつ	noun	classroom
-私立	しりつ	noun	private (school/institution)
-落第	らくだい	noun	failing (a grade/exam)
+kanji	hiragana	type	english	breakdown
+訓練	くんれん	noun	training; drill	[訓: instruction/lesson | 練: train/refine]
+資料	しりょう	noun	materials; reference materials	[資: resources/capital | 料: materials/fee]
+学生	がくせい	noun	student	[学: study/learning | 生: student/life]
+宿題	しゅくだい	noun	homework	[宿: lodge/dwell | 題: problem/topic]
+試験	しけん	noun	exam	[試: test/try | 験: test/verify]
+計算	けいさん	noun	calculation	[計: measure/plan | 算: calculate/count]
+勉強	べんきょう	noun	study	[勉: effort/strive | 強: strong/force]
+学習	がくしゅう	noun	learning; study	[学: study/learning | 習: learn/practice]
+生徒	せいと	noun	student (pupil; esp. school)	[生: student/life | 徒: pupil/follower]
+入学	にゅうがく	noun	entrance to school; matriculation	[入: enter | 学: study/school]
+中学校	ちゅうがっこう	noun	junior high school; middle school	[中: middle | 学: study/school | 校: school]
+高校生	こうこうせい	noun	high school student	[高: high | 校: school | 生: student]
+小学生	しょうがくせい	noun	elementary school student	[小: small/elementary | 学: study/school | 生: student]
+幼稚園	ようちえん	noun	kindergarten; preschool	[幼: young/infant | 稚: immature | 園: garden/institution]
+校庭	こうてい	noun	schoolyard; school grounds	[校: school | 庭: garden/yard]
+担任	たんにん	noun	homeroom teacher	[担: carry/take charge | 任: duty/appointment]
+専攻	せんこう	noun	major; field of study	[専: specialize | 攻: study/attack]
+留学	りゅうがく	noun	studying abroad	[留: stay/remain | 学: study/school]
+同窓会	どうそうかい	noun	alumni reunion	[同: same | 窓: window | 会: meeting/association]
+在籍	ざいせき	noun	enrollment; being registered	[在: exist/be | 籍: register/enrollment]
+学級	がっきゅう	noun	class (in school)	[学: study/school | 級: class/grade]
+上級	じょうきゅう	noun	advanced level; upper grade	[上: upper/above | 級: class/grade]
+成績	せいせき	noun	grades; results; performance	[成: achieve/become | 績: results/achievement]
+給食	きゅうしょく	noun	school lunch	[給: supply/provide | 食: food/eat]
+講義	こうぎ	noun	lecture (university)	[講: lecture | 義: meaning/principle]
+講座	こうざ	noun	course; lecture series	[講: lecture | 座: seat/gathering]
+受講	じゅこう	noun	attending a course/lecture	[受: receive | 講: lecture]
+卒業	そつぎょう	noun	graduation	[卒: graduate/finish | 業: studies/work]
+卒業式	そつぎょうしき	noun	graduation ceremony	[卒: graduate/finish | 業: studies/work | 式: ceremony/style]
+教育	きょういく	noun	education	[教: teach | 育: raise/educate]
+教室	きょうしつ	noun	classroom	[教: teach | 室: room]
+私立	しりつ	noun	private (school/institution)	[私: private/I | 立: establish/stand]
+落第	らくだい	noun	failing (a grade/exam)	[落: fall/drop | 第: order/grade]

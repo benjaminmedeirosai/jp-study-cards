@@ -1,41 +1,41 @@
 # Work (Nouns / Business).
 # Auto-grouped during the nouns reorg; refine membership as needed.
-kanji	hiragana	type	english
-社長	しゃちょう	noun	company president
-部長	ぶちょう	noun	department head
-家業	かぎょう	noun	family business
-上司	じょうし	noun	boss; supervisor
-農業	のうぎょう	noun	agriculture
-経費	けいひ	noun	expenses; costs
-組織	そしき	noun	organization (group/system)
-人材	じんざい	noun	personnel; human resources; talented person
-社員教育	しゃいんきょういく	noun	employee training
-管理	かんり	noun	management; control; administration
-人手	ひとで	noun	manpower; hands (workers)
-会社	かいしゃ	noun	company
-社員	しゃいん	noun	employee
-仕事	しごと	noun	work; job
-練習	れんしゅう	noun	practice; training
-契約	けいやく	noun	contract
-会議	かいぎ	noun	meeting; conference
-休業	きゅうぎょう	noun	suspension of business; closed
-労働	ろうどう	noun	labor; manual work
-共働き	ともばたらき	noun	dual-income (both spouses work)
-名刺	めいし	noun	business card
-副業	ふくぎょう	noun	side job; second occupation
-勤務	きんむ	noun	work; service; duty
-出勤	しゅっきん	noun	going to work; attendance
-履歴書	りれきしょ	noun	résumé; CV
-担当	たんとう	noun	being in charge; person responsible
-昇進	しょうしん	noun	promotion (in rank)
-休暇	きゅうか	noun	vacation; leave; holiday
-求人	きゅうじん	noun	job offer; help wanted
-遊牧	ゆうぼく	noun	nomadism; pastoral nomadism
-出稼ぎ	でかせぎ	noun	working away from home
-稲作	いなさく	noun	rice cultivation
-業績	ぎょうせき	noun	achievements; business results
-産業	さんぎょう	noun	industry
-農家	のうか	noun	farmer; farmhouse
-引退	いんたい	noun	retirement (from a career)
-経営	けいえい	noun	management; administration
-残業	ざんぎょう	noun	overtime work
+kanji	hiragana	type	english	breakdown
+社長	しゃちょう	noun	company president	[社: company/shrine | 長: chief/head]
+部長	ぶちょう	noun	department head	[部: section/department | 長: chief/head]
+家業	かぎょう	noun	family business	[家: house/family | 業: business/trade]
+上司	じょうし	noun	boss; supervisor	[上: upper/above | 司: official/manage]
+農業	のうぎょう	noun	agriculture	[農: agriculture/farming | 業: business/trade]
+経費	けいひ	noun	expenses; costs	[経: manage/pass through | 費: expense/cost]
+組織	そしき	noun	organization (group/system)	[組: group/assemble | 織: weave/organize]
+人材	じんざい	noun	personnel; human resources; talented person	[人: person | 材: material/talent]
+社員教育	しゃいんきょういく	noun	employee training	[社: company | 員: member/staff | 教: teach | 育: raise/educate]
+管理	かんり	noun	management; control; administration	[管: control/pipe | 理: manage/reason]
+人手	ひとで	noun	manpower; hands (workers)	[人: person | 手: hand]
+会社	かいしゃ	noun	company	[会: meet/association | 社: company/shrine]
+社員	しゃいん	noun	employee	[社: company | 員: member/staff]
+仕事	しごと	noun	work; job	[仕: serve/do | 事: matter/affair]
+練習	れんしゅう	noun	practice; training	[練: train/refine | 習: learn/practice]
+契約	けいやく	noun	contract	[契: pledge/contract | 約: promise/agreement]
+会議	かいぎ	noun	meeting; conference	[会: meet/gather | 議: discuss/deliberate]
+休業	きゅうぎょう	noun	suspension of business; closed	[休: rest/holiday | 業: business/trade]
+労働	ろうどう	noun	labor; manual work	[労: labor/toil | 働: work]
+共働き	ともばたらき	noun	dual-income (both spouses work)	[共: together/joint | 働: work]
+名刺	めいし	noun	business card	[名: name | 刺: card/stab]
+副業	ふくぎょう	noun	side job; second occupation	[副: secondary/vice | 業: business/trade]
+勤務	きんむ	noun	work; service; duty	[勤: work/diligence | 務: duty/service]
+出勤	しゅっきん	noun	going to work; attendance	[出: out/exit | 勤: work/attend]
+履歴書	りれきしょ	noun	résumé; CV	[履: career/footwear | 歴: history/record | 書: write/document]
+担当	たんとう	noun	being in charge; person responsible	[担: carry/take charge | 当: in charge/apt]
+昇進	しょうしん	noun	promotion (in rank)	[昇: rise/ascend | 進: advance/progress]
+休暇	きゅうか	noun	vacation; leave; holiday	[休: rest/holiday | 暇: leisure/free time]
+求人	きゅうじん	noun	job offer; help wanted	[求: seek/request | 人: person]
+遊牧	ゆうぼく	noun	nomadism; pastoral nomadism	[遊: wander/play | 牧: pasture/herd]
+出稼ぎ	でかせぎ	noun	working away from home	[出: out/away | 稼: earn/work]
+稲作	いなさく	noun	rice cultivation	[稲: rice plant | 作: make/cultivate]
+業績	ぎょうせき	noun	achievements; business results	[業: business/work | 績: results/achievement]
+産業	さんぎょう	noun	industry	[産: produce/industry | 業: business/trade]
+農家	のうか	noun	farmer; farmhouse	[農: agriculture/farming | 家: house/family]
+引退	いんたい	noun	retirement (from a career)	[引: pull/withdraw | 退: retreat/retire]
+経営	けいえい	noun	management; administration	[経: manage/pass | 営: operate/run]
+残業	ざんぎょう	noun	overtime work	[残: remain/leftover | 業: business/work]
