@@ -4,21 +4,21 @@
 # (〜かった), past-negative (〜くなかった), plus te-form/conditionals on 高い as a
 # fuller paradigm. Dictionary forms stay in the i-adjective vocab decks; type
 # stays i-adjective since these are just inflections.
-kanji	hiragana	type	english
-高くない	たかくない	i-adjective	not high/tall/expensive
-高かった	たかかった	i-adjective	was high/tall/expensive
-高くなかった	たかくなかった	i-adjective	was not high/tall/expensive
-安くない	やすくない	i-adjective	not cheap
-安かった	やすかった	i-adjective	was cheap
-安くなかった	やすくなかった	i-adjective	was not cheap
-新しくない	あたらしくない	i-adjective	not new
-新しかった	あたらしかった	i-adjective	was new
-新しくなかった	あたらしくなかった	i-adjective	was not new
-古くない	ふるくない	i-adjective	not old
-古かった	ふるかった	i-adjective	was old
-古くなかった	ふるくなかった	i-adjective	was not old
-高くて	たかくて	i-adjective	high/expensive and… (te-form)
-高ければ	たかければ	i-adjective	if (it is) high/expensive (ば-conditional)
-高かったら	たかかったら	i-adjective	if it was high/expensive (たら-conditional)
-高くなければ	たかくなければ	i-adjective	if (it is) not high/expensive
-高くなかったら	たかくなかったら	i-adjective	if it was not high/expensive
+kanji	hiragana	type	english	breakdown
+高くない	たかくない	i-adjective	not high/tall/expensive	[高: high/tall/expensive]
+高かった	たかかった	i-adjective	was high/tall/expensive	[高: high/tall/expensive]
+高くなかった	たかくなかった	i-adjective	was not high/tall/expensive	[高: high/tall/expensive]
+安くない	やすくない	i-adjective	not cheap	[安: cheap/at ease]
+安かった	やすかった	i-adjective	was cheap	[安: cheap/at ease]
+安くなかった	やすくなかった	i-adjective	was not cheap	[安: cheap/at ease]
+新しくない	あたらしくない	i-adjective	not new	[新: new]
+新しかった	あたらしかった	i-adjective	was new	[新: new]
+新しくなかった	あたらしくなかった	i-adjective	was not new	[新: new]
+古くない	ふるくない	i-adjective	not old	[古: old]
+古かった	ふるかった	i-adjective	was old	[古: old]
+古くなかった	ふるくなかった	i-adjective	was not old	[古: old]
+高くて	たかくて	i-adjective	high/expensive and… (te-form)	[高: high/tall/expensive]
+高ければ	たかければ	i-adjective	if (it is) high/expensive (ば-conditional)	[高: high/tall/expensive]
+高かったら	たかかったら	i-adjective	if it was high/expensive (たら-conditional)	[高: high/tall/expensive]
+高くなければ	たかくなければ	i-adjective	if (it is) not high/expensive	[高: high/tall/expensive]
+高くなかったら	たかくなかったら	i-adjective	if it was not high/expensive	[高: high/tall/expensive]

@@ -2,17 +2,17 @@
 # Degree & quantity adverbs — how much / to what extent.
 # Belongs here: intensifiers and amount words (とても, 全然, 少し, たくさん).
 # Time/frequency words go in time-frequency.tsv; manner words in manner.tsv.
-kanji	hiragana	type	english
-全然	ぜんぜん	adverb	(not) at all
-絶対	ぜったい	adverb	absolutely; definitely
-特に	とくに	adverb	especially; particularly
-本当に	ほんとうに	adverb	really; truly
-沢山	たくさん	adverb	a lot; many; much
-少し	すこし	adverb	a little
-大分	だいぶ	adverb	considerably; greatly
+kanji	hiragana	type	english	breakdown
+全然	ぜんぜん	adverb	(not) at all	[全: all/entirely | 然: -like/state]
+絶対	ぜったい	adverb	absolutely; definitely	[絶: utmost/sever | 対: versus/pair]
+特に	とくに	adverb	especially; particularly	[特: special/particular]
+本当に	ほんとうに	adverb	really; truly	[本: origin/true | 当: apt/correct]
+沢山	たくさん	adverb	a lot; many; much	[沢: abundance/marsh | 山: mountain]
+少し	すこし	adverb	a little	[少: few/little]
+大分	だいぶ	adverb	considerably; greatly	[大: big/much | 分: part/portion]
 なかなか	なかなか	adverb	quite; fairly; (not) easily
 ずっと	ずっと	adverb	by far; much more; the whole time
 よく	よく	adverb	well; a lot; often
 ギリギリ	ギリギリ	adverb	just barely; right to the limit
-何でも	なんでも	adverb	anything; everything
-丁度	ちょうど	adverb	exactly; just; precisely
+何でも	なんでも	adverb	anything; everything	[何: what/how many]
+丁度	ちょうど	adverb	exactly; just; precisely	[丁: exact/even | 度: degree/measure]

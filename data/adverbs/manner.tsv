@@ -2,9 +2,9 @@
 # Belongs here: non-onomatopoeic manner words (ゆっくり, じっと, 正々堂々).
 # Sound/state mimetics go in onomatopoeia.tsv. Adjective 〜く/〜に forms (早く,
 # 静かに) are conjugations — they live in the adjective decks, not here.
-kanji	hiragana	type	english
+kanji	hiragana	type	english	breakdown
 ゆっくり	ゆっくり	adverb	slowly; at ease
 じっと	じっと	adverb	still; motionlessly; intently
-人知れず	ひとしれず	adverb	secretly; unnoticed
-正々堂々	せいせいどうどう	adverb	fair and square; openly and honorably
-敢えて	あえて	adverb	daringly; deliberately; venturing to
+人知れず	ひとしれず	adverb	secretly; unnoticed	[人: person | 知: know/awareness]
+正々堂々	せいせいどうどう	adverb	fair and square; openly and honorably	[正: correct/upright | 堂: hall/dignified]
+敢えて	あえて	adverb	daringly; deliberately; venturing to	[敢: daring/bold]

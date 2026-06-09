@@ -2,20 +2,20 @@
 # Time & frequency adverbs — when / how often.
 # Belongs here: timing and repetition words (すぐ, まだ, もう, 何度も, 突然).
 # Pure amount words go in degree.tsv; manner-of-action in manner.tsv.
-kanji	hiragana	type	english
-必ず	かならず	adverb	surely; without fail
-急に	きゅうに	adverb	suddenly
-未だ	まだ	adverb	still; not yet
-直ぐ	すぐ	adverb	right away; immediately
+kanji	hiragana	type	english	breakdown
+必ず	かならず	adverb	surely; without fail	[必: certainly/without fail]
+急に	きゅうに	adverb	suddenly	[急: sudden/hurry]
+未だ	まだ	adverb	still; not yet	[未: not yet/un-]
+直ぐ	すぐ	adverb	right away; immediately	[直: direct/immediate]
 もう	もう	adverb	already; any more
-何度も	なんども	adverb	many times; repeatedly
-暫く	しばらく	adverb	for a while
-又	また	adverb	again; also
-突然	とつぜん	adverb	suddenly
-常に	つねに	adverb	always; constantly
+何度も	なんども	adverb	many times; repeatedly	[何: how many/what | 度: times/degree]
+暫く	しばらく	adverb	for a while	[暫: a while/temporarily]
+又	また	adverb	again; also	[又: again/also]
+突然	とつぜん	adverb	suddenly	[突: sudden/thrust | 然: -like/state]
+常に	つねに	adverb	always; constantly	[常: always/constant]
 やっと	やっと	adverb	at last; finally
-今でも	いまでも	adverb	even now; still
-昔から	むかしから	adverb	from long ago; since old times
-毎朝	まいあさ	adverb	every morning
-滅多に	めったに	adverb	rarely; seldom (with negative)
-一旦	いったん	adverb	once; for the time being
+今でも	いまでも	adverb	even now; still	[今: now/present]
+昔から	むかしから	adverb	from long ago; since old times	[昔: long ago/former]
+毎朝	まいあさ	adverb	every morning	[毎: every | 朝: morning]
+滅多に	めったに	adverb	rarely; seldom (with negative)	[滅: seldom/perish | 多: many/much]
+一旦	いったん	adverb	once; for the time being	[一: one/once | 旦: daybreak/morning]

@@ -3,7 +3,7 @@
 # 〜べき, 〜ように) and core function words (だ, ている, という, ください).
 # Conjugation paradigms of a specific part of speech live in their own
 # *-conjugation decks; idiomatic set phrases go in expression/idioms.tsv.
-kanji	hiragana	type	english
+kanji	hiragana	type	english	breakdown
 だ	だ	expression	plain copula — is; am; are
 〜たい	〜たい	expression	want to (do)
 〜たくない	〜たくない	expression	do not want to (do)
@@ -25,6 +25,6 @@ kanji	hiragana	type	english
 〜せいだ	〜せいだ	expression	it is because of; to blame on
 〜よう	〜よう	expression	volitional — let's (do); intend to
 〜つもりだ	〜つもりだ	expression	intend to (do)
-〜ることが多い	〜ることがおおい	expression	often (do); it is often the case that
+〜ることが多い	〜ることがおおい	expression	often (do); it is often the case that	[多: many/much]
 〜のは〜だ	〜のは〜だ	expression	the one/thing that ... is ... (cleft)
 〜になってから	〜になってから	expression	after becoming

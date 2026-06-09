@@ -3,14 +3,14 @@
 # Belongs here: the 〜そう appearance form built from an i- or na-adjective stem
 # (高そう, 便利そう). They all inflect as na-adjectives, so type stays
 # na-adjective even though this is a grammar pattern, not core vocabulary.
-kanji	hiragana	type	english
+kanji	hiragana	type	english	breakdown
 うれしそう	うれしそう	na-adjective	looking happy (〜そう, from うれしい)
-楽しそう	たのしそう	na-adjective	seems fun; looks enjoyable (〜そう, from 楽しい)
-高そう	たかそう	na-adjective	looks high/tall/expensive (〜そう, from 高い)
-安そう	やすそう	na-adjective	looks cheap (〜そう, from 安い)
-新しそう	あたらしそう	na-adjective	looks new (〜そう, from 新しい)
-古そう	ふるそう	na-adjective	looks old (〜そう, from 古い)
-便利そう	べんりそう	na-adjective	looks convenient (〜そう, from 便利)
-有名そう	ゆうめいそう	na-adjective	looks famous (〜そう, from 有名)
-静かそう	しずかそう	na-adjective	looks quiet (〜そう, from 静か)
-大変そう	たいへんそう	na-adjective	looks serious; tough (〜そう, from 大変)
+楽しそう	たのしそう	na-adjective	seems fun; looks enjoyable (〜そう, from 楽しい)	[楽: fun/enjoyment]
+高そう	たかそう	na-adjective	looks high/tall/expensive (〜そう, from 高い)	[高: high/tall/expensive]
+安そう	やすそう	na-adjective	looks cheap (〜そう, from 安い)	[安: cheap/at ease]
+新しそう	あたらしそう	na-adjective	looks new (〜そう, from 新しい)	[新: new]
+古そう	ふるそう	na-adjective	looks old (〜そう, from 古い)	[古: old]
+便利そう	べんりそう	na-adjective	looks convenient (〜そう, from 便利)	[便: convenience | 利: benefit/advantage]
+有名そう	ゆうめいそう	na-adjective	looks famous (〜そう, from 有名)	[有: have/exist | 名: name/fame]
+静かそう	しずかそう	na-adjective	looks quiet (〜そう, from 静か)	[静: quiet/calm]
+大変そう	たいへんそう	na-adjective	looks serious; tough (〜そう, from 大変)	[大: big/greatly | 変: change/strange]
