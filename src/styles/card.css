@@ -110,12 +110,12 @@
 
 /* Gear button in the header (navigates to the settings page). */
 .study-button.settings-open {
-  height: 36px;
-  grid-auto-flow: column;
-  grid-template-columns: 18px minmax(0, 1fr);
+  display: inline-flex;
+  align-items: center;
   justify-content: center;
-  gap: 6px;
-  padding: 0 10px;
+  height: 36px;
+  gap: 7px;
+  padding: 0 14px;
   border: 1px solid rgba(148, 163, 184, 0.28);
   border-radius: 7px;
   background: rgba(15, 23, 42, 0.55);
@@ -128,7 +128,21 @@
   background: rgba(30, 41, 59, 0.72);
 }
 
-.study-button.settings-open .icon { font-size: 16px; }
+.study-button.settings-open .icon {
+  display: inline-flex;
+  flex: 0 0 auto;
+  color: var(--accent);
+}
+
+.study-button.settings-open .icon svg {
+  width: 18px;
+  height: 18px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
 
 /* --- Flashcard ---------------------------------------------------------- */
 .card {
