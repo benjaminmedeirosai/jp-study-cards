@@ -42,10 +42,6 @@ and `kanji-coverage-2.json` (kanji appearing in only one / two distinct words â€
 characters that could use more coverage) and `duplicates.json` (word forms that
 occur in more than one place). None are committed or consumed by the app.
 
-> `tools/generate-data.mjs` is **legacy**: it regenerates `data/` from an
-> external source collection and overwrites the hand-curated TSV decks. Don't run
-> it against the curated data.
-
 ## Offline
 
 The service worker (`sw.js`) is network-first for any request under `/data/`:

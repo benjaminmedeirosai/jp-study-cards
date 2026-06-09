@@ -20,9 +20,6 @@ data/<…folders…>/<deck>.tsv      ← the ONLY source of truth (folders + nam
 - The app builds its category tree purely from the `category` strings in
   `cards.json` (`src/study/shared.js`); it never sees the folder layout. Because
   the bundler derives `category` *from* the folders, the two can't drift.
-- ⚠️ `tools/generate-data.mjs` is **legacy and obsolete** — it predates this
-  model and writes a `data/index.json` manifest that no longer exists. Do **not**
-  run it; it would clobber the curated tree.
 
 ## File format
 
