@@ -517,8 +517,13 @@ export function renderCardPage() {
   // Any real user gesture (except on the play button itself) stops autoplay.
   // Capture phase so it fires before the control's own handler. Autoplay's
   // programmatic move()/reveal() don't dispatch these, so they never self-stop.
+  // Only an actual interactive control stops autoplay — clicking bare card area
+  // (or empty tray space) leaves it running. The play button toggles itself.
+  const INTERACTIVE = 'button, a[href], select, input, textarea, [role="button"]';
   function onUserGesture(event) {
-    if (!autoplaying || playBtn.contains(event.target)) return;
+    if (!autoplaying) return;
+    const control = event.target?.closest?.(INTERACTIVE);
+    if (!control || playBtn.contains(control)) return;
     stopAutoplay();
   }
   root.addEventListener("pointerdown", onUserGesture, true);
