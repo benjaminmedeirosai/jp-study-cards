@@ -1,30 +1,30 @@
 # label: Mind & Faculties
 # Mind & Faculties — Inner mental faculties and human attributes — memory, willpower, ability, spirit (記憶, 能力, 精神). Emotions go in emotions.tsv.
-kanji	hiragana	type	english
-考え	かんがえ	noun	thought; idea
+kanji	hiragana	type	english	breakdown
+考え	かんがえ	noun	thought; idea	[考: think/consider]
 魂	たましい	noun	soul; spirit
 力	ちから	noun	power; strength; ability
 技	わざ	noun	technique; skill; move (in fighting/games)
-技術	ぎじゅつ	noun	technology; skill
-信頼	しんらい	noun	trust; confidence
-記憶	きおく	noun	memory; recollection
-精神	せいしん	noun	mind; spirit; mentality
-能力	のうりょく	noun	ability; capability; power (skill)
-意見	いけん	noun	opinion
+技術	ぎじゅつ	noun	technology; skill	[技: skill/technique | 術: art/technique]
+信頼	しんらい	noun	trust; confidence	[信: trust/believe | 頼: rely/trust]
+記憶	きおく	noun	memory; recollection	[記: record/note | 憶: remember/recall]
+精神	せいしん	noun	mind; spirit; mentality	[精: spirit/refined | 神: spirit/god]
+能力	のうりょく	noun	ability; capability; power (skill)	[能: ability | 力: power/strength]
+意見	いけん	noun	opinion	[意: mind/intention | 見: view/opinion]
 心	こころ	noun	heart; mind
 夢	ゆめ	noun	dream
-経験	けいけん	noun	experience
-努力	どりょく	noun	effort
-空想	くうそう	noun	fantasy; daydream
-自己	じこ	noun	self; oneself
-物忘れ	ものわすれ	noun	forgetfulness
-知恵	ちえ	noun	wisdom; wit
-反省	はんせい	noun	reflection; self-examination; remorse
+経験	けいけん	noun	experience	[経: pass through/manage | 験: test/experience]
+努力	どりょく	noun	effort	[努: strive/exert | 力: power/effort]
+空想	くうそう	noun	fantasy; daydream	[空: empty/sky | 想: idea/imagine]
+自己	じこ	noun	self; oneself	[自: self | 己: oneself]
+物忘れ	ものわすれ	noun	forgetfulness	[物: thing | 忘: forget]
+知恵	ちえ	noun	wisdom; wit	[知: know/wisdom | 恵: blessing/wisdom]
+反省	はんせい	noun	reflection; self-examination; remorse	[反: reflect/oppose | 省: reflect/examine]
 志	こころざし	noun	will; ambition; intention
-意志	いし	noun	will; volition; determination
-霊感	れいかん	noun	inspiration; sixth sense
-想像	そうぞう	noun	imagination
-思考	しこう	noun	thought; thinking
-創造	そうぞう	noun	creation
-知識	ちしき	noun	knowledge
-意識	いしき	noun	consciousness; awareness
+意志	いし	noun	will; volition; determination	[意: mind/intention | 志: will/ambition]
+霊感	れいかん	noun	inspiration; sixth sense	[霊: spirit/soul | 感: feeling/sense]
+想像	そうぞう	noun	imagination	[想: idea/imagine | 像: image]
+思考	しこう	noun	thought; thinking	[思: think | 考: think/consider]
+創造	そうぞう	noun	creation	[創: create/originate | 造: make/build]
+知識	ちしき	noun	knowledge	[知: know | 識: knowledge/discern]
+意識	いしき	noun	consciousness; awareness	[意: mind/intention | 識: consciousness/discern]

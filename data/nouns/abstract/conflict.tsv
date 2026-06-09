@@ -1,46 +1,46 @@
 # label: Conflict & Combat
 # Conflict & Combat — Battle, victory/defeat, and fighting concepts (戦い, 勝利, 復讐, 任務). People (enemy/ally) go in people/.
-kanji	hiragana	type	english
-必勝	ひっしょう	noun	certain victory
-圧勝	あっしょう	noun	overwhelming victory
-鉄拳	てっけん	noun	iron fist
-執行	しっこう	noun	execution; carrying out
-敗北	はいぼく	noun	defeat; loss
-解放	かいほう	noun	liberation; release; setting free
-最強	さいきょう	noun	strongest; invincible (colloq.)
-支配	しはい	noun	control; rule; domination
-勝利	しょうり	noun	victory
-戦い	たたかい	noun	battle; fight; struggle
-戦争	せんそう	noun	war
-任務	にんむ	noun	mission; duty; assignment
-復讐	ふくしゅう	noun	revenge
-挑戦	ちょうせん	noun	challenge; undertaking
-挑発	ちょうはつ	noun	provocation; provoking
-挽回	ばんかい	noun	recovery; making up for a loss or mistake
+kanji	hiragana	type	english	breakdown
+必勝	ひっしょう	noun	certain victory	[必: certain/sure | 勝: win/victory]
+圧勝	あっしょう	noun	overwhelming victory	[圧: pressure/overwhelm | 勝: win/victory]
+鉄拳	てっけん	noun	iron fist	[鉄: iron | 拳: fist]
+執行	しっこう	noun	execution; carrying out	[執: take/carry out | 行: conduct/do]
+敗北	はいぼく	noun	defeat; loss	[敗: defeat/lose | 北: north/flee]
+解放	かいほう	noun	liberation; release; setting free	[解: release/undo | 放: release/let go]
+最強	さいきょう	noun	strongest; invincible (colloq.)	[最: most/-est | 強: strong]
+支配	しはい	noun	control; rule; domination	[支: branch/control | 配: distribute/arrange]
+勝利	しょうり	noun	victory	[勝: win/victory | 利: benefit/advantage]
+戦い	たたかい	noun	battle; fight; struggle	[戦: war/battle]
+戦争	せんそう	noun	war	[戦: war/battle | 争: contend/strife]
+任務	にんむ	noun	mission; duty; assignment	[任: duty/appoint | 務: duty/service]
+復讐	ふくしゅう	noun	revenge	[復: return/again | 讐: revenge/enemy]
+挑戦	ちょうせん	noun	challenge; undertaking	[挑: challenge/provoke | 戦: war/battle]
+挑発	ちょうはつ	noun	provocation; provoking	[挑: challenge/provoke | 発: emit/set off]
+挽回	ばんかい	noun	recovery; making up for a loss or mistake	[挽: pull/recover | 回: turn/return]
 喝	かつ	noun	shout; sharp yell
-怪力	かいりき	noun	superhuman strength
-競争	きょうそう	noun	competition
-論争	ろんそう	noun	dispute; controversy
-破壊	はかい	noun	destruction; demolition
-逮捕	たいほ	noun	arrest; apprehension
-攻撃	こうげき	noun	attack; offense
-武器	ぶき	noun	weapon
-反乱	はんらん	noun	rebellion; revolt
-大砲	たいほう	noun	cannon; artillery
-鉄砲	てっぽう	noun	gun; firearm
-暴力	ぼうりょく	noun	violence
-侵略	しんりゃく	noun	invasion; aggression
-犯罪	はんざい	noun	crime
-軍隊	ぐんたい	noun	army; military; troops
-軍事	ぐんじ	noun	military affairs
-海軍	かいぐん	noun	navy
-退治	たいじ	noun	extermination; subjugation
-拳銃	けんじゅう	noun	handgun; pistol
-銃声	じゅうせい	noun	gunshot; report of a gun
-部隊	ぶたい	noun	unit; corps; troops
-偵察	ていさつ	noun	reconnaissance; scouting
-兵器	へいき	noun	weapon; arms
-防御	ぼうぎょ	noun	defense; protection
-殺人	さつじん	noun	murder; homicide
-戦闘	せんとう	noun	battle; combat
-手錠	てじょう	noun	handcuffs
+怪力	かいりき	noun	superhuman strength	[怪: strange/mysterious | 力: power/strength]
+競争	きょうそう	noun	competition	[競: compete | 争: contend/strife]
+論争	ろんそう	noun	dispute; controversy	[論: argue/theory | 争: contend/dispute]
+破壊	はかい	noun	destruction; demolition	[破: break/tear | 壊: destroy/break]
+逮捕	たいほ	noun	arrest; apprehension	[逮: apprehend/catch | 捕: catch/seize]
+攻撃	こうげき	noun	attack; offense	[攻: attack | 撃: strike/attack]
+武器	ぶき	noun	weapon	[武: martial/military | 器: device/weapon]
+反乱	はんらん	noun	rebellion; revolt	[反: anti/oppose | 乱: disorder/revolt]
+大砲	たいほう	noun	cannon; artillery	[大: big/large | 砲: cannon/gun]
+鉄砲	てっぽう	noun	gun; firearm	[鉄: iron | 砲: gun/cannon]
+暴力	ぼうりょく	noun	violence	[暴: violent/rough | 力: power/force]
+侵略	しんりゃく	noun	invasion; aggression	[侵: invade/encroach | 略: strategy/seize]
+犯罪	はんざい	noun	crime	[犯: crime/violate | 罪: crime/sin]
+軍隊	ぐんたい	noun	army; military; troops	[軍: army/military | 隊: squad/unit]
+軍事	ぐんじ	noun	military affairs	[軍: army/military | 事: matter/affair]
+海軍	かいぐん	noun	navy	[海: sea | 軍: army/military]
+退治	たいじ	noun	extermination; subjugation	[退: repel/drive back | 治: govern/quell]
+拳銃	けんじゅう	noun	handgun; pistol	[拳: fist | 銃: gun/firearm]
+銃声	じゅうせい	noun	gunshot; report of a gun	[銃: gun/firearm | 声: voice/sound]
+部隊	ぶたい	noun	unit; corps; troops	[部: section/unit | 隊: squad/corps]
+偵察	ていさつ	noun	reconnaissance; scouting	[偵: spy/scout | 察: observe/perceive]
+兵器	へいき	noun	weapon; arms	[兵: soldier/arms | 器: device/weapon]
+防御	ぼうぎょ	noun	defense; protection	[防: prevent/defend | 御: defend/control]
+殺人	さつじん	noun	murder; homicide	[殺: kill | 人: person]
+戦闘	せんとう	noun	battle; combat	[戦: war/battle | 闘: fight/struggle]
+手錠	てじょう	noun	handcuffs	[手: hand | 錠: lock/cuff]

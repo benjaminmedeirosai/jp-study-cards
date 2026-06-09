@@ -1,76 +1,76 @@
 # label: Society & Values
 # Society & Values — Social, ethical, legal, and cultural concepts (責任, 権利, 法律, 文化).
-kanji	hiragana	type	english
-公平	こうへい	noun	fairness
-責任	せきにん	noun	responsibility
-権利	けんり	noun	right; entitlement
-義務	ぎむ	noun	duty; obligation
-習慣	しゅうかん	noun	habit; custom
-価値	かち	noun	value
-平和	へいわ	noun	peace
-伝統	でんとう	noun	tradition
+kanji	hiragana	type	english	breakdown
+公平	こうへい	noun	fairness	[公: public/fair | 平: level/fair]
+責任	せきにん	noun	responsibility	[責: blame/duty | 任: duty/responsibility]
+権利	けんり	noun	right; entitlement	[権: authority/right | 利: benefit/advantage]
+義務	ぎむ	noun	duty; obligation	[義: duty/righteousness | 務: duty/service]
+習慣	しゅうかん	noun	habit; custom	[習: learn/habit | 慣: accustom/habit]
+価値	かち	noun	value	[価: price/value | 値: value/worth]
+平和	へいわ	noun	peace	[平: peace/level | 和: harmony/peace]
+伝統	でんとう	noun	tradition	[伝: transmit/tradition | 統: unite/lineage]
 悪	あく	noun	evil
-文化	ぶんか	noun	culture
-法律	ほうりつ	noun	law
-命令	めいれい	noun	order; command
-法令	ほうれい	noun	law; ordinance
-指令	しれい	noun	directive; instructions
-信仰	しんこう	noun	faith; belief
-地位	ちい	noun	status; position; standing
-評判	ひょうばん	noun	reputation; fame
-制度	せいど	noun	system; institution
-勢力	せいりょく	noun	influence; power
-協力	きょうりょく	noun	cooperation
-協調	きょうちょう	noun	cooperation; harmony
-幕府	ばくふ	noun	shogunate
-規律	きりつ	noun	discipline; order; rules
-道徳	どうとく	noun	morality; morals
-美徳	びとく	noun	virtue
-慣習	かんしゅう	noun	custom; convention
-条約	じょうやく	noun	treaty; pact
-条例	じょうれい	noun	ordinance; bylaw
-風潮	ふうちょう	noun	trend; tide of the times
-交流	こうりゅう	noun	exchange; interaction
-政党	せいとう	noun	political party
-与党	よとう	noun	ruling party
-野党	やとう	noun	opposition party
-保守	ほしゅ	noun	conservatism; maintenance
-礼儀	れいぎ	noun	manners; etiquette
-戸籍	こせき	noun	family register
-国籍	こくせき	noun	nationality
-階級	かいきゅう	noun	class; rank; hierarchy
-縄文	じょうもん	noun	Jomon period
-儀式	ぎしき	noun	ceremony; ritual
-行儀	ぎょうぎ	noun	manners; behavior
-政治	せいじ	noun	politics; government
-政府	せいふ	noun	government
-政策	せいさく	noun	policy
-正義	せいぎ	noun	justice; righteousness
-義理	ぎり	noun	obligation; sense of duty
-結婚式	けっこんしき	noun	wedding ceremony
-衆議院	しゅうぎいん	noun	House of Representatives
-裁判	さいばん	noun	trial; judgment
-独裁	どくさい	noun	dictatorship
-財政	ざいせい	noun	finance; financial affairs
-文化財	ぶんかざい	noun	cultural property
-結婚	けっこん	noun	marriage
-離婚	りこん	noun	divorce
-婚約	こんやく	noun	engagement (to marry)
+文化	ぶんか	noun	culture	[文: writing/culture | 化: change/-ize]
+法律	ほうりつ	noun	law	[法: law/method | 律: law/rule]
+命令	めいれい	noun	order; command	[命: command/life | 令: order/command]
+法令	ほうれい	noun	law; ordinance	[法: law | 令: order/decree]
+指令	しれい	noun	directive; instructions	[指: point/direct | 令: order/command]
+信仰	しんこう	noun	faith; belief	[信: faith/believe | 仰: look up/revere]
+地位	ちい	noun	status; position; standing	[地: ground/standing | 位: rank/place]
+評判	ひょうばん	noun	reputation; fame	[評: evaluate/criticize | 判: judge/seal]
+制度	せいど	noun	system; institution	[制: system/control | 度: degree/system]
+勢力	せいりょく	noun	influence; power	[勢: force/momentum | 力: power/force]
+協力	きょうりょく	noun	cooperation	[協: cooperate | 力: power/force]
+協調	きょうちょう	noun	cooperation; harmony	[協: cooperate | 調: harmonize/tune]
+幕府	ばくふ	noun	shogunate	[幕: curtain/shogunate | 府: government/office]
+規律	きりつ	noun	discipline; order; rules	[規: rule/standard | 律: law/discipline]
+道徳	どうとく	noun	morality; morals	[道: way/path | 徳: virtue]
+美徳	びとく	noun	virtue	[美: beauty | 徳: virtue]
+慣習	かんしゅう	noun	custom; convention	[慣: accustom/habit | 習: learn/habit]
+条約	じょうやく	noun	treaty; pact	[条: clause/article | 約: promise/agreement]
+条例	じょうれい	noun	ordinance; bylaw	[条: clause/article | 例: example/precedent]
+風潮	ふうちょう	noun	trend; tide of the times	[風: wind/trend | 潮: tide/current]
+交流	こうりゅう	noun	exchange; interaction	[交: exchange/mix | 流: flow/current]
+政党	せいとう	noun	political party	[政: politics/government | 党: party/faction]
+与党	よとう	noun	ruling party	[与: give/participate | 党: party/faction]
+野党	やとう	noun	opposition party	[野: field/opposition | 党: party/faction]
+保守	ほしゅ	noun	conservatism; maintenance	[保: keep/protect | 守: protect/defend]
+礼儀	れいぎ	noun	manners; etiquette	[礼: courtesy/manners | 儀: ceremony/etiquette]
+戸籍	こせき	noun	family register	[戸: door/household | 籍: register/record]
+国籍	こくせき	noun	nationality	[国: country/nation | 籍: register/record]
+階級	かいきゅう	noun	class; rank; hierarchy	[階: floor/rank | 級: class/grade]
+縄文	じょうもん	noun	Jomon period	[縄: rope/cord | 文: pattern/writing]
+儀式	ぎしき	noun	ceremony; ritual	[儀: ceremony/rite | 式: ceremony/style]
+行儀	ぎょうぎ	noun	manners; behavior	[行: conduct/go | 儀: manners/ceremony]
+政治	せいじ	noun	politics; government	[政: politics/government | 治: govern/rule]
+政府	せいふ	noun	government	[政: politics/government | 府: government/office]
+政策	せいさく	noun	policy	[政: politics/government | 策: plan/policy]
+正義	せいぎ	noun	justice; righteousness	[正: correct/right | 義: righteousness/justice]
+義理	ぎり	noun	obligation; sense of duty	[義: duty/righteousness | 理: reason/principle]
+結婚式	けっこんしき	noun	wedding ceremony	[結: tie/bind | 婚: marriage | 式: ceremony/style]
+衆議院	しゅうぎいん	noun	House of Representatives	[衆: masses/public | 議: deliberate/discuss | 院: institution/house]
+裁判	さいばん	noun	trial; judgment	[裁: judge/cut | 判: judge/seal]
+独裁	どくさい	noun	dictatorship	[独: alone/sole | 裁: judge/rule]
+財政	ざいせい	noun	finance; financial affairs	[財: wealth/finance | 政: government/administration]
+文化財	ぶんかざい	noun	cultural property	[文: writing/culture | 化: change/-ize | 財: wealth/property]
+結婚	けっこん	noun	marriage	[結: tie/bind | 婚: marriage]
+離婚	りこん	noun	divorce	[離: separate/part | 婚: marriage]
+婚約	こんやく	noun	engagement (to marry)	[婚: marriage | 約: promise/agreement]
 罪	つみ	noun	crime; sin; guilt
-無罪	むざい	noun	innocence; not guilty
-違反	いはん	noun	violation; breach
-防犯	ぼうはん	noun	crime prevention
-保障	ほしょう	noun	guarantee; security
-革命	かくめい	noun	revolution
-改革	かいかく	noun	reform
-改善	かいぜん	noun	improvement; betterment
-改正	かいせい	noun	revision; amendment
-団体	だんたい	noun	group; organization; party
-寄付	きふ	noun	donation; contribution
-差別	さべつ	noun	discrimination
-権力	けんりょく	noun	power; authority
-人権	じんけん	noun	human rights
-貧困	ひんこん	noun	poverty
-年賀状	ねんがじょう	noun	New Year's greeting card
-内閣	ないかく	noun	cabinet (government)
-投票	とうひょう	noun	voting; ballot
+無罪	むざい	noun	innocence; not guilty	[無: without/non- | 罪: crime/guilt]
+違反	いはん	noun	violation; breach	[違: differ/violate | 反: oppose/against]
+防犯	ぼうはん	noun	crime prevention	[防: prevent/defend | 犯: crime/offense]
+保障	ほしょう	noun	guarantee; security	[保: keep/protect | 障: guarantee/obstruct]
+革命	かくめい	noun	revolution	[革: reform/leather | 命: life/mandate]
+改革	かいかく	noun	reform	[改: reform/revise | 革: reform/change]
+改善	かいぜん	noun	improvement; betterment	[改: reform/revise | 善: good/improve]
+改正	かいせい	noun	revision; amendment	[改: reform/revise | 正: correct/right]
+団体	だんたい	noun	group; organization; party	[団: group/body | 体: body/organization]
+寄付	きふ	noun	donation; contribution	[寄: donate/draw near | 付: attach/give]
+差別	さべつ	noun	discrimination	[差: difference/discriminate | 別: separate/distinguish]
+権力	けんりょく	noun	power; authority	[権: authority/power | 力: power/force]
+人権	じんけん	noun	human rights	[人: person | 権: rights/authority]
+貧困	ひんこん	noun	poverty	[貧: poor/needy | 困: trouble/distress]
+年賀状	ねんがじょう	noun	New Year's greeting card	[年: year | 賀: congratulate | 状: letter/condition]
+内閣	ないかく	noun	cabinet (government)	[内: inside/internal | 閣: cabinet/palace]
+投票	とうひょう	noun	voting; ballot	[投: throw/cast | 票: ballot/vote]

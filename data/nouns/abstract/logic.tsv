@@ -1,33 +1,33 @@
 # label: Logic & Reasoning
 # Logic & Reasoning — Reasoning, argument, and cause/effect — purpose, evidence, conclusion, reason (目的, 証拠, 結果).
-kanji	hiragana	type	english
-目的	もくてき	noun	purpose
-手段	しゅだん	noun	means; method
-前提	ぜんてい	noun	premise
-帰結	きけつ	noun	consequence
-証拠	しょうこ	noun	evidence
-仮説	かせつ	noun	hypothesis
-仮定	かてい	noun	assumption; hypothesis
-結論	けつろん	noun	conclusion
-選択	せんたく	noun	choice; selection
-概要	がいよう	noun	overview; summary
-情報	じょうほう	noun	information
-意味	いみ	noun	meaning
-問題	もんだい	noun	problem; question
+kanji	hiragana	type	english	breakdown
+目的	もくてき	noun	purpose	[目: eye/aim | 的: target/-ive]
+手段	しゅだん	noun	means; method	[手: hand/means | 段: step/grade]
+前提	ぜんてい	noun	premise	[前: before/front | 提: present/propose]
+帰結	きけつ	noun	consequence	[帰: return/result | 結: tie/conclude]
+証拠	しょうこ	noun	evidence	[証: proof/evidence | 拠: basis/grounds]
+仮説	かせつ	noun	hypothesis	[仮: provisional/hypothetical | 説: theory/explain]
+仮定	かてい	noun	assumption; hypothesis	[仮: provisional/hypothetical | 定: fix/set]
+結論	けつろん	noun	conclusion	[結: tie/conclude | 論: argue/theory]
+選択	せんたく	noun	choice; selection	[選: choose/select | 択: choose/pick]
+概要	がいよう	noun	overview; summary	[概: outline/general | 要: essential/summary]
+情報	じょうほう	noun	information	[情: feeling/info | 報: report/inform]
+意味	いみ	noun	meaning	[意: mind/intention | 味: flavor/meaning]
+問題	もんだい	noun	problem; question	[問: ask/question | 題: topic/problem]
 例	れい	noun	example
-理由	りゆう	noun	reason
-方法	ほうほう	noun	method; way
-結果	けっか	noun	result
-原因	げんいん	noun	cause
-条件	じょうけん	noun	condition; terms
-類似	るいじ	noun	similarity; resemblance
-判断	はんだん	noun	judgment; decision
-法則	ほうそく	noun	law; rule (of nature)
-原則	げんそく	noun	principle; general rule
-要因	よういん	noun	factor; main cause
-因果	いんが	noun	cause and effect; karma
-概念	がいねん	noun	concept; notion
-根拠	こんきょ	noun	basis; grounds; foundation
-区別	くべつ	noun	distinction; differentiation
-比較	ひかく	noun	comparison
-理論	りろん	noun	theory
+理由	りゆう	noun	reason	[理: reason/logic | 由: reason/cause]
+方法	ほうほう	noun	method; way	[方: method/direction | 法: law/method]
+結果	けっか	noun	result	[結: tie/form | 果: result/fruit]
+原因	げんいん	noun	cause	[原: origin/source | 因: cause/factor]
+条件	じょうけん	noun	condition; terms	[条: clause/article | 件: matter/case]
+類似	るいじ	noun	similarity; resemblance	[類: kind/sort | 似: resemble]
+判断	はんだん	noun	judgment; decision	[判: judge/seal | 断: judge/cut]
+法則	ほうそく	noun	law; rule (of nature)	[法: law/method | 則: rule/law]
+原則	げんそく	noun	principle; general rule	[原: origin/principle | 則: rule/law]
+要因	よういん	noun	factor; main cause	[要: essential/key | 因: cause/factor]
+因果	いんが	noun	cause and effect; karma	[因: cause/factor | 果: result/effect]
+概念	がいねん	noun	concept; notion	[概: outline/general | 念: thought/idea]
+根拠	こんきょ	noun	basis; grounds; foundation	[根: root/basis | 拠: basis/grounds]
+区別	くべつ	noun	distinction; differentiation	[区: division/section | 別: separate/distinguish]
+比較	ひかく	noun	comparison	[比: compare/ratio | 較: compare]
+理論	りろん	noun	theory	[理: reason/logic | 論: argue/theory]

@@ -1,43 +1,43 @@
-kanji	hiragana	type	english
-喜び	よろこび	noun	joy
-緊張	きんちょう	noun	tension; nervousness
-期待	きたい	noun	expectation
-不安	ふあん	noun	anxiety
-嫉妬	しっと	noun	jealousy
-誇り	ほこり	noun	pride
-後悔	こうかい	noun	regret
-憧れ	あこがれ	noun	admiration; longing
-寂しさ	さびしさ	noun	loneliness
-満足	まんぞく	noun	satisfaction
+kanji	hiragana	type	english	breakdown
+喜び	よろこび	noun	joy	[喜: joy/delight]
+緊張	きんちょう	noun	tension; nervousness	[緊: tense/tight | 張: stretch/tension]
+期待	きたい	noun	expectation	[期: period/expect | 待: wait/await]
+不安	ふあん	noun	anxiety	[不: not/un- | 安: ease/peace]
+嫉妬	しっと	noun	jealousy	[嫉: envy/jealous | 妬: jealous/envy]
+誇り	ほこり	noun	pride	[誇: pride/boast]
+後悔	こうかい	noun	regret	[後: after/behind | 悔: regret]
+憧れ	あこがれ	noun	admiration; longing	[憧: long for/yearn]
+寂しさ	さびしさ	noun	loneliness	[寂: lonely/quiet]
+満足	まんぞく	noun	satisfaction	[満: full/satisfy | 足: foot/suffice]
 恥	はじ	noun	shame
-苛立ち	いらだち	noun	irritation
-気持ち	きもち	noun	feeling
+苛立ち	いらだち	noun	irritation	[苛: irritate/harsh | 立: stand/rise]
+気持ち	きもち	noun	feeling	[気: feeling/spirit | 持: hold/have]
 運	うん	noun	luck; fortune
 鬱	うつ	noun	depression; gloom
-覚悟	かくご	noun	resolve; readiness
-孤独	こどく	noun	solitude; loneliness
-やる気	やるき	noun	motivation; willingness
-気分	きぶん	noun	feeling; mood
-運命	うんめい	noun	fate; destiny
-絶望	ぜつぼう	noun	despair; hopelessness
-怒り	いかり	noun	anger; rage
-希望	きぼう	noun	hope; wish
-勇気	ゆうき	noun	courage; bravery
-困惑	こんわく	noun	bewilderment; perplexity
-執着	しゅうちゃく	noun	attachment; obsession
-機嫌	きげん	noun	mood; temper; humor
-激怒	げきど	noun	fury; rage
-記念	きねん	noun	commemoration; memento
-恨み	うらみ	noun	grudge; resentment
-悩み	なやみ	noun	worry; trouble; problem
-苦悩	くのう	noun	anguish; suffering
-憎しみ	にくしみ	noun	hatred; enmity
-欲望	よくぼう	noun	desire; craving
-不満	ふまん	noun	dissatisfaction; discontent
-度胸	どきょう	noun	courage; nerve; guts
-衝動	しょうどう	noun	impulse; urge
-感謝	かんしゃ	noun	gratitude; thanks
-好奇心	こうきしん	noun	curiosity
-歓喜	かんき	noun	delight; great joy
-恐怖	きょうふ	noun	fear; terror; dread
-笑顔	えがお	noun	smiling face; smile
+覚悟	かくご	noun	resolve; readiness	[覚: awaken/realize | 悟: realize/enlighten]
+孤独	こどく	noun	solitude; loneliness	[孤: alone/orphan | 独: alone/single]
+やる気	やるき	noun	motivation; willingness	[気: feeling/motivation]
+気分	きぶん	noun	feeling; mood	[気: feeling/mood | 分: portion/state]
+運命	うんめい	noun	fate; destiny	[運: fortune/fate | 命: life/fate]
+絶望	ぜつぼう	noun	despair; hopelessness	[絶: cut off/utmost | 望: hope/wish]
+怒り	いかり	noun	anger; rage	[怒: anger/rage]
+希望	きぼう	noun	hope; wish	[希: hope/rare | 望: hope/wish]
+勇気	ゆうき	noun	courage; bravery	[勇: courage/brave | 気: spirit/energy]
+困惑	こんわく	noun	bewilderment; perplexity	[困: trouble/perplex | 惑: confusion/bewilder]
+執着	しゅうちゃく	noun	attachment; obsession	[執: cling/grasp | 着: attach/adhere]
+機嫌	きげん	noun	mood; temper; humor	[機: occasion/mood | 嫌: mood/dislike]
+激怒	げきど	noun	fury; rage	[激: intense/violent | 怒: anger/rage]
+記念	きねん	noun	commemoration; memento	[記: record/note | 念: thought/feeling]
+恨み	うらみ	noun	grudge; resentment	[恨: resentment/grudge]
+悩み	なやみ	noun	worry; trouble; problem	[悩: worry/trouble]
+苦悩	くのう	noun	anguish; suffering	[苦: suffering/bitter | 悩: anguish/worry]
+憎しみ	にくしみ	noun	hatred; enmity	[憎: hatred/detest]
+欲望	よくぼう	noun	desire; craving	[欲: desire/want | 望: hope/wish]
+不満	ふまん	noun	dissatisfaction; discontent	[不: not/un- | 満: full/satisfy]
+度胸	どきょう	noun	courage; nerve; guts	[度: degree/measure | 胸: chest/heart]
+衝動	しょうどう	noun	impulse; urge	[衝: collide/impulse | 動: move/motion]
+感謝	かんしゃ	noun	gratitude; thanks	[感: feeling/sense | 謝: thank/apologize]
+好奇心	こうきしん	noun	curiosity	[好: like/fond | 奇: strange/curious | 心: heart/mind]
+歓喜	かんき	noun	delight; great joy	[歓: joy/delight | 喜: joy/glad]
+恐怖	きょうふ	noun	fear; terror; dread	[恐: fear/dread | 怖: fear/scary]
+笑顔	えがお	noun	smiling face; smile	[笑: laugh/smile | 顔: face]

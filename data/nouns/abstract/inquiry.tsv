@@ -1,18 +1,18 @@
 # label: Inquiry & Research
 # Inquiry & Research — Research, searching, and exploration concepts (研究, 探索, 探知).
-kanji	hiragana	type	english
-研究	けんきゅう	noun	research; study
-探し物	さがしもの	noun	lost item; something one is looking for
-探求	たんきゅう	noun	pursuit; inquiry
-探査	たんさ	noun	survey; probe; exploration
-探索	たんさく	noun	search; exploration
-探知	たんち	noun	detection
-探訪	たんぼう	noun	visit; exploration tour
-観察	かんさつ	noun	observation
-推察	すいさつ	noun	guess; conjecture
-推測	すいそく	noun	guess; conjecture
-推理	すいり	noun	reasoning; deduction
-調査	ちょうさ	noun	investigation; survey
-観測	かんそく	noun	observation; survey
-科学	かがく	noun	science
-実験	じっけん	noun	experiment
+kanji	hiragana	type	english	breakdown
+研究	けんきゅう	noun	research; study	[研: study/sharpen | 究: investigate/research]
+探し物	さがしもの	noun	lost item; something one is looking for	[探: search/seek | 物: thing/object]
+探求	たんきゅう	noun	pursuit; inquiry	[探: search/seek | 求: seek/request]
+探査	たんさ	noun	survey; probe; exploration	[探: search/probe | 査: investigate/inspect]
+探索	たんさく	noun	search; exploration	[探: search/probe | 索: search/seek]
+探知	たんち	noun	detection	[探: search/probe | 知: know/perceive]
+探訪	たんぼう	noun	visit; exploration tour	[探: search/probe | 訪: visit]
+観察	かんさつ	noun	observation	[観: view/watch | 察: observe/perceive]
+推察	すいさつ	noun	guess; conjecture	[推: infer/push | 察: observe/perceive]
+推測	すいそく	noun	guess; conjecture	[推: infer/push | 測: measure/gauge]
+推理	すいり	noun	reasoning; deduction	[推: infer/push | 理: reason/logic]
+調査	ちょうさ	noun	investigation; survey	[調: investigate/tune | 査: investigate/inspect]
+観測	かんそく	noun	observation; survey	[観: view/watch | 測: measure/observe]
+科学	かがく	noun	science	[科: department/field | 学: study/learning]
+実験	じっけん	noun	experiment	[実: real/actual | 験: test/verify]

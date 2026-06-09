@@ -1,52 +1,52 @@
 # label: Measurement & Space
 # Measurement & Space — Dimensions, quantity, and spatial extent — size, length, width, volume, limits (高さ, 空間, 半分).
-kanji	hiragana	type	english
-全部	ぜんぶ	noun	all; entirely
-多く	おおく	noun	many; much; in large numbers
-高さ	たかさ	noun	height
-大きさ	おおきさ	noun	size
-重さ	おもさ	noun	weight
-長さ	ながさ	noun	length
+kanji	hiragana	type	english	breakdown
+全部	ぜんぶ	noun	all; entirely	[全: whole/all | 部: part/section]
+多く	おおく	noun	many; much; in large numbers	[多: many/much]
+高さ	たかさ	noun	height	[高: high/tall]
+大きさ	おおきさ	noun	size	[大: big/large]
+重さ	おもさ	noun	weight	[重: heavy]
+長さ	ながさ	noun	length	[長: long]
 倍	ばい	noun	double
-光沢	こうたく	noun	gloss; shine
+光沢	こうたく	noun	gloss; shine	[光: light/shine | 沢: gloss/marsh]
 隙	すき	noun	opening; gap; vulnerability
-限界	げんかい	noun	limit; boundary
+限界	げんかい	noun	limit; boundary	[限: limit | 界: boundary/realm]
 穴	あな	noun	hole
-表面	ひょうめん	noun	surface
-一番	いちばん	noun	number one; the most
-一周	いっしゅう	noun	one lap; one circuit
-一部	いちぶ	noun	one part; a portion
-制限	せいげん	noun	restriction; limit
-明るさ	あかるさ	noun	brightness
+表面	ひょうめん	noun	surface	[表: surface/show | 面: surface/face]
+一番	いちばん	noun	number one; the most	[一: one | 番: number/turn]
+一周	いっしゅう	noun	one lap; one circuit	[一: one | 周: lap/circumference]
+一部	いちぶ	noun	one part; a portion	[一: one | 部: part/section]
+制限	せいげん	noun	restriction; limit	[制: control/restrict | 限: limit]
+明るさ	あかるさ	noun	brightness	[明: bright/light]
 形	かたち	noun	shape; form
 幅	はば	noun	width; breadth
-以上	いじょう	noun	more than; above; that's all
-以下	いか	noun	less than; below
-半分	はんぶん	noun	half; one half
-空間	くうかん	noun	space (physical/three-dimensional); room
-単位	たんい	noun	unit; credit (academic)
-順位	じゅんい	noun	ranking; order
-倍率	ばいりつ	noun	magnification; ratio
-倍増	ばいぞう	noun	doubling; sharp increase
-厚さ	あつさ	noun	thickness
-基準	きじゅん	noun	standard; criterion
-密度	みつど	noun	density
-寒さ	さむさ	noun	coldness; the cold
-掛け算	かけざん	noun	multiplication
-満点	まんてん	noun	perfect score; full marks
-確率	かくりつ	noun	probability
-効率	こうりつ	noun	efficiency
-程度	ていど	noun	degree; extent; level
-統計	とうけい	noun	statistics
-奇数	きすう	noun	odd number
+以上	いじょう	noun	more than; above; that's all	[以: by means of/than | 上: above/up]
+以下	いか	noun	less than; below	[以: by means of/than | 下: below/down]
+半分	はんぶん	noun	half; one half	[半: half | 分: part/portion]
+空間	くうかん	noun	space (physical/three-dimensional); room	[空: empty/space | 間: interval/space]
+単位	たんい	noun	unit; credit (academic)	[単: single/unit | 位: rank/place]
+順位	じゅんい	noun	ranking; order	[順: order/sequence | 位: rank/place]
+倍率	ばいりつ	noun	magnification; ratio	[倍: times/multiple | 率: rate/ratio]
+倍増	ばいぞう	noun	doubling; sharp increase	[倍: times/double | 増: increase]
+厚さ	あつさ	noun	thickness	[厚: thick]
+基準	きじゅん	noun	standard; criterion	[基: base/foundation | 準: standard/level]
+密度	みつど	noun	density	[密: dense/close | 度: degree/measure]
+寒さ	さむさ	noun	coldness; the cold	[寒: cold]
+掛け算	かけざん	noun	multiplication	[掛: multiply/hang | 算: calculate/count]
+満点	まんてん	noun	perfect score; full marks	[満: full | 点: point/mark]
+確率	かくりつ	noun	probability	[確: certain/sure | 率: rate/ratio]
+効率	こうりつ	noun	efficiency	[効: effect/efficacy | 率: rate/ratio]
+程度	ていど	noun	degree; extent; level	[程: extent/degree | 度: degree/measure]
+統計	とうけい	noun	statistics	[統: unite/govern | 計: count/measure]
+奇数	きすう	noun	odd number	[奇: odd/strange | 数: number/count]
 丈	たけ	noun	length; height; stature
 差	さ	noun	difference; gap
-暑さ	あつさ	noun	the heat; hotness
-算数	さんすう	noun	arithmetic; math (elementary)
-若さ	わかさ	noun	youth; youthfulness
-角度	かくど	noun	angle
-三角	さんかく	noun	triangle
-速さ	はやさ	noun	speed; quickness
+暑さ	あつさ	noun	the heat; hotness	[暑: hot (weather)]
+算数	さんすう	noun	arithmetic; math (elementary)	[算: calculate/count | 数: number/math]
+若さ	わかさ	noun	youth; youthfulness	[若: young]
+角度	かくど	noun	angle	[角: angle/corner | 度: degree/measure]
+三角	さんかく	noun	triangle	[三: three | 角: angle/corner]
+速さ	はやさ	noun	speed; quickness	[速: fast/speed]
 量	りょう	noun	quantity; amount; volume
-大量	たいりょう	noun	large quantity; mass
-距離	きょり	noun	distance
+大量	たいりょう	noun	large quantity; mass	[大: big/large | 量: quantity/amount]
+距離	きょり	noun	distance	[距: distance | 離: separate/distance]
