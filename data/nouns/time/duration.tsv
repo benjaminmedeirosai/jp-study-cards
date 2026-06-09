@@ -1,8 +1,8 @@
 # Duration (Nouns / Time).
 # Auto-grouped during the nouns reorg; refine membership as needed.
-kanji	hiragana	type	english
-老い	おい	noun	old age
+kanji	hiragana	type	english	breakdown
+老い	おい	noun	old age	[老: old age/aged]
 時	とき	noun	time; moment
 とき	とき	noun	time; when
-時刻	じこく	noun	time (clock time)
-時間	じかん	noun	time; hour
+時刻	じこく	noun	time (clock time)	[時: time/hour | 刻: moment/engrave]
+時間	じかん	noun	time; hour	[時: time/hour | 間: interval/space]

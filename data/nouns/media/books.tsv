@@ -1,56 +1,56 @@
 # Books (Nouns / Media).
 # Auto-grouped during the nouns reorg; refine membership as needed.
-kanji	hiragana	type	english
-定価	ていか	noun	list price; fixed retail price
-古本	ふるほん	noun	used book
-昔話	むかしばなし	noun	folktale; old story
-物語	ものがたり	noun	story
-画集	がしゅう	noun	art book; collection of illustrations
-外伝	がいでん	noun	side story; spinoff tale
-完全版	かんぜんばん	noun	complete edition
-原作	げんさく	noun	original work; source material
-限定版	げんていばん	noun	limited edition
-作者	さくしゃ	noun	author; creator
-紙版	かみばん	noun	print edition (paper version)
-重版	じゅうはん	noun	reprint (additional printing)
-出版社	しゅっぱんしゃ	noun	publishing company; publisher
-初版	しょはん	noun	first edition; first printing
-新刊	しんかん	noun	new release (book/volume)
+kanji	hiragana	type	english	breakdown
+定価	ていか	noun	list price; fixed retail price	[定: fix/set | 価: price/value]
+古本	ふるほん	noun	used book	[古: old | 本: book/origin]
+昔話	むかしばなし	noun	folktale; old story	[昔: old times | 話: story/talk]
+物語	ものがたり	noun	story	[物: thing | 語: narrate/word]
+画集	がしゅう	noun	art book; collection of illustrations	[画: picture/drawing | 集: collect/gather]
+外伝	がいでん	noun	side story; spinoff tale	[外: outside/extra | 伝: tale/transmit]
+完全版	かんぜんばん	noun	complete edition	[完: complete | 全: whole | 版: edition/printing]
+原作	げんさく	noun	original work; source material	[原: origin/original | 作: work/make]
+限定版	げんていばん	noun	limited edition	[限: limit | 定: fix/set | 版: edition/printing]
+作者	さくしゃ	noun	author; creator	[作: make/create | 者: person]
+紙版	かみばん	noun	print edition (paper version)	[紙: paper | 版: edition/printing]
+重版	じゅうはん	noun	reprint (additional printing)	[重: repeat/heavy | 版: edition/printing]
+出版社	しゅっぱんしゃ	noun	publishing company; publisher	[出: out/publish | 版: edition/printing | 社: company]
+初版	しょはん	noun	first edition; first printing	[初: first | 版: edition/printing]
+新刊	しんかん	noun	new release (book/volume)	[新: new | 刊: publish/print]
 話	はなし	noun	talk; story; topic
-新装版	しんそうばん	noun	newly designed edition; reissue with new cover/layout
-全巻	ぜんかん	noun	all volumes (entire series set)
-全巻セット	ぜんかんせっと	noun	complete set (all volumes)
-単行本	たんこうぼん	noun	collected volume; tankobon
-探検	たんけん	noun	exploration; expedition
-電子書籍	でんししょせき	noun	e-book; electronic book
-電子版	でんしばん	noun	digital edition
-同人誌	どうじんし	noun	doujinshi; fan/self-published comic
-特装版	とくそうばん	noun	special edition (with extras)
-日本語版	にほんごばん	noun	Japanese-language edition
-番外編	ばんがいへん	noun	extra chapter; special side episode
-文庫版	ぶんこばん	noun	bunko edition (pocket paperback format)
-漫画	まんが	noun	manga; comic
-連載	れんさい	noun	serialization; serialized publication
-辞書	じしょ	noun	dictionary
+新装版	しんそうばん	noun	newly designed edition; reissue with new cover/layout	[新: new | 装: dress/decorate | 版: edition/printing]
+全巻	ぜんかん	noun	all volumes (entire series set)	[全: whole/all | 巻: volume/reel]
+全巻セット	ぜんかんせっと	noun	complete set (all volumes)	[全: whole/all | 巻: volume/reel]
+単行本	たんこうぼん	noun	collected volume; tankobon	[単: single | 行: line/go | 本: book/origin]
+探検	たんけん	noun	exploration; expedition	[探: search/seek | 検: examine/inspect]
+電子書籍	でんししょせき	noun	e-book; electronic book	[電: electric | 子: element/child | 書: write/book | 籍: register/book]
+電子版	でんしばん	noun	digital edition	[電: electric | 子: element/child | 版: edition/printing]
+同人誌	どうじんし	noun	doujinshi; fan/self-published comic	[同: same | 人: person | 誌: magazine/record]
+特装版	とくそうばん	noun	special edition (with extras)	[特: special | 装: decorate/equip | 版: edition/printing]
+日本語版	にほんごばん	noun	Japanese-language edition	[日: sun/Japan | 本: origin/book | 語: language | 版: edition/printing]
+番外編	ばんがいへん	noun	extra chapter; special side episode	[番: number/turn | 外: outside/extra | 編: compile/edit]
+文庫版	ぶんこばん	noun	bunko edition (pocket paperback format)	[文: writing/text | 庫: storehouse | 版: edition/printing]
+漫画	まんが	noun	manga; comic	[漫: cartoon/random | 画: picture/drawing]
+連載	れんさい	noun	serialization; serialized publication	[連: continuous/link | 載: publish/load]
+辞書	じしょ	noun	dictionary	[辞: word/term | 書: write/book]
 本	ほん	noun	book
-新聞	しんぶん	noun	newspaper
-雑誌	ざっし	noun	magazine
-歴史	れきし	noun	history
-読書	どくしょ	noun	reading (books)
-本屋	ほんや	noun	bookstore; bookshop
-書店	しょてん	noun	bookstore
-古本屋	ふるほんや	noun	used bookstore
-作家	さっか	noun	writer; author
-俳句	はいく	noun	haiku (poem)
-週刊誌	しゅうかんし	noun	weekly magazine
-朝刊	ちょうかん	noun	morning newspaper
-執筆	しっぴつ	noun	writing (as an author)
-掲載	けいさい	noun	publication (in print); running (an article)
-書簡	しょかん	noun	letter; correspondence
-絵本	えほん	noun	picture book
-文献	ぶんけん	noun	literature; references; documents
-図鑑	ずかん	noun	illustrated reference book; encyclopedia
-著者	ちょしゃ	noun	author; writer
-著作	ちょさく	noun	literary work; writing
-目次	もくじ	noun	table of contents
-記事	きじ	noun	article; news story
+新聞	しんぶん	noun	newspaper	[新: new | 聞: hear/news]
+雑誌	ざっし	noun	magazine	[雑: miscellaneous | 誌: magazine/record]
+歴史	れきし	noun	history	[歴: history/passage | 史: history]
+読書	どくしょ	noun	reading (books)	[読: read | 書: book/write]
+本屋	ほんや	noun	bookstore; bookshop	[本: book/origin | 屋: shop/store]
+書店	しょてん	noun	bookstore	[書: book/write | 店: store/shop]
+古本屋	ふるほんや	noun	used bookstore	[古: old | 本: book/origin | 屋: shop/store]
+作家	さっか	noun	writer; author	[作: make/create | 家: expert/-ist]
+俳句	はいく	noun	haiku (poem)	[俳: haiku/verse | 句: phrase/clause]
+週刊誌	しゅうかんし	noun	weekly magazine	[週: week | 刊: publish/print | 誌: magazine/record]
+朝刊	ちょうかん	noun	morning newspaper	[朝: morning | 刊: publish/edition]
+執筆	しっぴつ	noun	writing (as an author)	[執: take/hold | 筆: brush/writing]
+掲載	けいさい	noun	publication (in print); running (an article)	[掲: post/display | 載: publish/load]
+書簡	しょかん	noun	letter; correspondence	[書: write/letter | 簡: letter/brief]
+絵本	えほん	noun	picture book	[絵: picture/drawing | 本: book/origin]
+文献	ぶんけん	noun	literature; references; documents	[文: writing/text | 献: document/offer]
+図鑑	ずかん	noun	illustrated reference book; encyclopedia	[図: diagram/figure | 鑑: reference/specimen]
+著者	ちょしゃ	noun	author; writer	[著: author/write | 者: person]
+著作	ちょさく	noun	literary work; writing	[著: author/write | 作: work/make]
+目次	もくじ	noun	table of contents	[目: item/eye | 次: order/next]
+記事	きじ	noun	article; news story	[記: record/write | 事: matter/affair]

@@ -1,15 +1,15 @@
-kanji	hiragana	type	english
-早朝	そうちょう	noun	early morning
-夕暮れ	ゆうぐれ	noun	dusk
-夜半	やはん	noun	midnight
-夜明け	よあけ	noun	dawn
-月末	げつまつ	noun	end of the month
-月初	げっしょ	noun	beginning of the month
-年末	ねんまつ	noun	end of the year
-年始	ねんし	noun	beginning of the year
-営業日	えいぎょうび	noun	business day
-祝日	しゅくじつ	noun	holiday
-締切	しめきり	noun	deadline
-期限	きげん	noun	time limit; due date
-午前	ごぜん	noun	morning; a.m.
-正午	しょうご	noun	noon; midday
+kanji	hiragana	type	english	breakdown
+早朝	そうちょう	noun	early morning	[早: early | 朝: morning]
+夕暮れ	ゆうぐれ	noun	dusk	[夕: evening | 暮: dusk/nightfall]
+夜半	やはん	noun	midnight	[夜: night | 半: half]
+夜明け	よあけ	noun	dawn	[夜: night | 明: bright/dawn]
+月末	げつまつ	noun	end of the month	[月: month/moon | 末: end]
+月初	げっしょ	noun	beginning of the month	[月: month/moon | 初: first/beginning]
+年末	ねんまつ	noun	end of the year	[年: year | 末: end]
+年始	ねんし	noun	beginning of the year	[年: year | 始: begin/start]
+営業日	えいぎょうび	noun	business day	[営: operate/run | 業: business | 日: day]
+祝日	しゅくじつ	noun	holiday	[祝: celebrate | 日: day]
+締切	しめきり	noun	deadline	[締: tighten/close | 切: cut]
+期限	きげん	noun	time limit; due date	[期: period/term | 限: limit/bound]
+午前	ごぜん	noun	morning; a.m.	[午: noon | 前: before/front]
+正午	しょうご	noun	noon; midday	[正: exact/correct | 午: noon]

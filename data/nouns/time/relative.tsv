@@ -1,19 +1,19 @@
 # Relative (Nouns / Time).
 # Auto-grouped during the nouns reorg; refine membership as needed.
-kanji	hiragana	type	english
-最近	さいきん	noun	recently; lately
-休み	やすみ	noun	rest; holiday; break
+kanji	hiragana	type	english	breakdown
+最近	さいきん	noun	recently; lately	[最: most/-est | 近: near/recent]
+休み	やすみ	noun	rest; holiday; break	[休: rest/holiday]
 次	つぎ	noun	next
 昔	むかし	noun	old times; long ago
 ころ	ころ	noun	around; about that time
-食後	しょくご	noun	after a meal
-未来	みらい	noun	future
-今回	こんかい	noun	this time
-過去	かこ	noun	the past
-現在	げんざい	noun	the present; current time/status
-古代	こだい	noun	ancient times; antiquity
-最後	さいご	noun	last; end
-最初	さいしょ	noun	first; beginning
-久々	ひさびさ	noun	after a long time
-昨年	さくねん	noun	last year
-昨夜	さくや	noun	last night
+食後	しょくご	noun	after a meal	[食: food/meal | 後: after/behind]
+未来	みらい	noun	future	[未: not yet/future | 来: come]
+今回	こんかい	noun	this time	[今: now/this | 回: time/turn]
+過去	かこ	noun	the past	[過: pass/exceed | 去: past/leave]
+現在	げんざい	noun	the present; current time/status	[現: present/appear | 在: exist/be]
+古代	こだい	noun	ancient times; antiquity	[古: old/ancient | 代: era/generation]
+最後	さいご	noun	last; end	[最: most/-est | 後: after/last]
+最初	さいしょ	noun	first; beginning	[最: most/-est | 初: first/beginning]
+久々	ひさびさ	noun	after a long time	[久: long time]
+昨年	さくねん	noun	last year	[昨: previous/last | 年: year]
+昨夜	さくや	noun	last night	[昨: previous/last | 夜: night]

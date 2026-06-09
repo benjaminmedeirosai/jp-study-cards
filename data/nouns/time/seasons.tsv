@@ -1,16 +1,16 @@
 # Seasons (Nouns / Time).
 # Auto-grouped during the nouns reorg; refine membership as needed.
-kanji	hiragana	type	english
-季節	きせつ	noun	season
+kanji	hiragana	type	english	breakdown
+季節	きせつ	noun	season	[季: season | 節: season/node]
 春	はる	noun	spring
 夏	なつ	noun	summer
 秋	あき	noun	autumn; fall
 冬	ふゆ	noun	winter
-冬休み	ふゆやすみ	noun	winter break; winter vacation
-真冬	まふゆ	noun	midwinter; dead of winter
-夏休み	なつやすみ	noun	summer break; summer vacation
-真夏	まなつ	noun	midsummer; height of summer
-初夏	しょか	noun	early summer
-四季	しき	noun	the four seasons
-春休み	はるやすみ	noun	spring break
-初春	しょしゅん	noun	early spring
+冬休み	ふゆやすみ	noun	winter break; winter vacation	[冬: winter | 休: rest/break]
+真冬	まふゆ	noun	midwinter; dead of winter	[真: true/mid | 冬: winter]
+夏休み	なつやすみ	noun	summer break; summer vacation	[夏: summer | 休: rest/break]
+真夏	まなつ	noun	midsummer; height of summer	[真: true/mid | 夏: summer]
+初夏	しょか	noun	early summer	[初: first/early | 夏: summer]
+四季	しき	noun	the four seasons	[四: four | 季: season]
+春休み	はるやすみ	noun	spring break	[春: spring | 休: rest/break]
+初春	しょしゅん	noun	early spring	[初: first/early | 春: spring]

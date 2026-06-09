@@ -1,36 +1,36 @@
 # Entertainment (Nouns / Media).
 # Auto-grouped during the nouns reorg; refine membership as needed.
-kanji	hiragana	type	english
-番組	ばんぐみ	noun	(program) TV program
-映像	えいぞう	noun	visual footage; imagery
-写真	しゃしん	noun	photo; picture
-映画	えいが	noun	movie; film
-音楽	おんがく	noun	music
+kanji	hiragana	type	english	breakdown
+番組	ばんぐみ	noun	(program) TV program	[番: turn/program | 組: group/set]
+映像	えいぞう	noun	visual footage; imagery	[映: project/reflect | 像: image/statue]
+写真	しゃしん	noun	photo; picture	[写: copy/photograph | 真: true/real]
+映画	えいが	noun	movie; film	[映: project/reflect | 画: picture/drawing]
+音楽	おんがく	noun	music	[音: sound | 楽: music/pleasure]
 歌	うた	noun	song
-似顔絵	にがおえ	noun	portrait; likeness drawing
-主役	しゅやく	noun	leading role; protagonist
+似顔絵	にがおえ	noun	portrait; likeness drawing	[似: resemble | 顔: face | 絵: picture/drawing]
+主役	しゅやく	noun	leading role; protagonist	[主: main/master | 役: role/duty]
 劇	げき	noun	play; drama
-演劇	えんげき	noun	theater; drama
-喜劇	きげき	noun	comedy
-司会	しかい	noun	master of ceremonies; hosting
-尺八	しゃくはち	noun	shakuhachi (bamboo flute)
+演劇	えんげき	noun	theater; drama	[演: perform/act | 劇: drama/play]
+喜劇	きげき	noun	comedy	[喜: joy/glad | 劇: drama/play]
+司会	しかい	noun	master of ceremonies; hosting	[司: manage/official | 会: meeting/gather]
+尺八	しゃくはち	noun	shakuhachi (bamboo flute)	[尺: shaku/measure | 八: eight]
 幕	まく	noun	curtain; act (of a play)
-旋律	せんりつ	noun	melody
-悲劇	ひげき	noun	tragedy
-放送	ほうそう	noun	broadcast; broadcasting
-演奏	えんそう	noun	musical performance
-講演	こうえん	noun	lecture; talk
-漫才	まんざい	noun	manzai (comic duo routine)
-伴奏	ばんそう	noun	musical accompaniment
-監督	かんとく	noun	director; coach; supervisor
-音符	おんぷ	noun	musical note
+旋律	せんりつ	noun	melody	[旋: revolve/turn | 律: rhythm/law]
+悲劇	ひげき	noun	tragedy	[悲: sad/grief | 劇: drama/play]
+放送	ほうそう	noun	broadcast; broadcasting	[放: release/broadcast | 送: send/transmit]
+演奏	えんそう	noun	musical performance	[演: perform/act | 奏: play music]
+講演	こうえん	noun	lecture; talk	[講: lecture | 演: perform/present]
+漫才	まんざい	noun	manzai (comic duo routine)	[漫: comic/random | 才: talent]
+伴奏	ばんそう	noun	musical accompaniment	[伴: accompany | 奏: play music]
+監督	かんとく	noun	director; coach; supervisor	[監: oversee/watch | 督: supervise/command]
+音符	おんぷ	noun	musical note	[音: sound | 符: mark/symbol]
 絵	え	noun	picture; drawing
-絵画	かいが	noun	painting; picture
-鍵盤	けんばん	noun	keyboard (musical); keys
-彫刻	ちょうこく	noun	sculpture; carving
-撮影	さつえい	noun	photography; filming
-中継	ちゅうけい	noun	relay broadcast; live coverage
-録画	ろくが	noun	video recording
-録音	ろくおん	noun	audio recording
-木彫り	きぼり	noun	wood carving
-実況	じっきょう	noun	live broadcast; live commentary
+絵画	かいが	noun	painting; picture	[絵: picture/drawing | 画: picture/drawing]
+鍵盤	けんばん	noun	keyboard (musical); keys	[鍵: key | 盤: board/disc]
+彫刻	ちょうこく	noun	sculpture; carving	[彫: carve/engrave | 刻: engrave/carve]
+撮影	さつえい	noun	photography; filming	[撮: photograph/take | 影: shadow/image]
+中継	ちゅうけい	noun	relay broadcast; live coverage	[中: middle/relay | 継: relay/succeed]
+録画	ろくが	noun	video recording	[録: record | 画: picture/image]
+録音	ろくおん	noun	audio recording	[録: record | 音: sound]
+木彫り	きぼり	noun	wood carving	[木: tree/wood | 彫: carve/engrave]
+実況	じっきょう	noun	live broadcast; live commentary	[実: real/actual | 況: condition/situation]

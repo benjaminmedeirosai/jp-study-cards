@@ -1,21 +1,21 @@
 # Yokai (Nouns / Mythology).
 # Auto-grouped during the nouns reorg; refine membership as needed.
-kanji	hiragana	type	english
+kanji	hiragana	type	english	breakdown
 鬼	おに	noun	oni; demon ogre
-妖怪	ようかい	noun	yokai; supernatural monster/ghost
-河童	かっぱ	noun	kappa (water yokai)
-天狗	てんぐ	noun	tengu (mountain/demon-like yokai)
-一反木綿	いったんもめん	noun	Ittan-momen (a cloth-like yokai)
-塗り壁	ぬりかべ	noun	Nurukabe (wall-like yokai)
+妖怪	ようかい	noun	yokai; supernatural monster/ghost	[妖: bewitching/spirit | 怪: strange/mystery]
+河童	かっぱ	noun	kappa (water yokai)	[河: river | 童: child]
+天狗	てんぐ	noun	tengu (mountain/demon-like yokai)	[天: heaven/sky | 狗: dog]
+一反木綿	いったんもめん	noun	Ittan-momen (a cloth-like yokai)	[一: one | 反: bolt (cloth)/anti | 木: tree/wood | 綿: cotton]
+塗り壁	ぬりかべ	noun	Nurukabe (wall-like yokai)	[塗: paint/plaster | 壁: wall]
 狸	たぬき	noun	tanuki; raccoon dog yokai
-雪女	ゆきおんな	noun	snow woman; winter spirit
-ろくろ首	ろくろくび	noun	long-necked woman yokai
+雪女	ゆきおんな	noun	snow woman; winter spirit	[雪: snow | 女: woman/female]
+ろくろ首	ろくろくび	noun	long-necked woman yokai	[首: neck]
 ぬらりひょん	ぬらりひょん	noun	mysterious elder yokai; leader-like figure
-百目	どうもく	noun	hundred-eyed yokai
-一つ目小僧	ひとつめこぞう	noun	one-eyed monk boy yokai
-化け猫	ばけねこ	noun	monster cat; transformed cat spirit
-猫又	ねこまた	noun	fork-tailed cat yokai
-絡新婦	じょろうぐも	noun	spider woman yokai
+百目	どうもく	noun	hundred-eyed yokai	[百: hundred | 目: eye]
+一つ目小僧	ひとつめこぞう	noun	one-eyed monk boy yokai	[一: one | 目: eye | 小: small | 僧: monk/priest]
+化け猫	ばけねこ	noun	monster cat; transformed cat spirit	[化: change/transform | 猫: cat]
+猫又	ねこまた	noun	fork-tailed cat yokai	[猫: cat | 又: again/fork]
+絡新婦	じょろうぐも	noun	spider woman yokai	[絡: entwine/connect | 新: new | 婦: woman/wife]
 のっぺらぼう	のっぺらぼう	noun	faceless ghost
-妖狐	ようこ	noun	fox spirit
-座敷童子	ざしきわらし	noun	house child spirit; brings fortune
+妖狐	ようこ	noun	fox spirit	[妖: bewitching/spirit | 狐: fox]
+座敷童子	ざしきわらし	noun	house child spirit; brings fortune	[座: seat/sitting | 敷: spread/lay | 童: child | 子: child]

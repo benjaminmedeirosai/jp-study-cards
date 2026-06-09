@@ -1,16 +1,16 @@
 # Creatures (Nouns / Mythology).
 # Auto-grouped during the nouns reorg; refine membership as needed.
-kanji	hiragana	type	english
+kanji	hiragana	type	english	breakdown
 神	かみ	noun	god; deity
 竜	りゅう	noun	dragon
-悪魔	あくま	noun	demon; devil
-天使	てんし	noun	angel
-魔王	まおう	noun	demon king
-勇者	ゆうしゃ	noun	hero (brave hero, esp. fantasy RPG)
-神々	かみがみ	noun	gods
-英雄	えいゆう	noun	hero
-妖精	ようせい	noun	fairy; fairy (type)
-怪竜	かいりゅう	noun	strange/monster dragon (name-root)
-仙人	せんにん	noun	hermit; immortal sage
-巨人	きょじん	noun	giant
-幽霊	ゆうれい	noun	ghost; apparition
+悪魔	あくま	noun	demon; devil	[悪: bad/evil | 魔: demon/magic]
+天使	てんし	noun	angel	[天: heaven/sky | 使: messenger/envoy]
+魔王	まおう	noun	demon king	[魔: demon/magic | 王: king]
+勇者	ゆうしゃ	noun	hero (brave hero, esp. fantasy RPG)	[勇: courage/brave | 者: person]
+神々	かみがみ	noun	gods	[神: god/divine]
+英雄	えいゆう	noun	hero	[英: hero/brilliant | 雄: heroic/male]
+妖精	ようせい	noun	fairy; fairy (type)	[妖: bewitching/spirit | 精: spirit/essence]
+怪竜	かいりゅう	noun	strange/monster dragon (name-root)	[怪: strange/monster | 竜: dragon]
+仙人	せんにん	noun	hermit; immortal sage	[仙: hermit/immortal | 人: person]
+巨人	きょじん	noun	giant	[巨: huge/giant | 人: person]
+幽霊	ゆうれい	noun	ghost; apparition	[幽: dim/otherworldly | 霊: spirit/soul]

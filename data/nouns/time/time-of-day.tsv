@@ -1,10 +1,10 @@
 # label: Time of Day
 # Time of Day (Nouns / Time).
 # Auto-grouped during the nouns reorg; refine membership as needed.
-kanji	hiragana	type	english
-午後	ごご	noun	afternoon (p.m.)
-真夜中	まよなか	noun	midnight; dead of night
-夕方	ゆうがた	noun	evening; late afternoon
+kanji	hiragana	type	english	breakdown
+午後	ごご	noun	afternoon (p.m.)	[午: noon | 後: after/behind]
+真夜中	まよなか	noun	midnight; dead of night	[真: true/dead | 夜: night | 中: middle]
+夕方	ゆうがた	noun	evening; late afternoon	[夕: evening | 方: direction/time]
 今	いま	noun	now
 朝	あさ	noun	morning
 昼	ひる	noun	daytime; noon
