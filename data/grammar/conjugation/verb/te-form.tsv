@@ -1,0 +1,9 @@
+# label: Verb — Te-form (〜て)
+# One te-form example per verb class — godan (行く), ichidan (食べる),
+# and the irregulars する / 来る. Add more verb roots here to broaden the form.
+# Dictionary forms live in verbs/; this deck is the conjugation paradigm.
+kanji	hiragana	type	english	breakdown
+行って	いって	godan-verb	(godan) te-form — go and…; please go	[行: go/travel]
+食べて	たべて	ichidan-verb	(ichidan) te-form — eat and…; please eat	[食: eat/food]
+して	して	irregular-verb	(する) te-form — do and…; please do
+来て	きて	irregular-verb	(来る) te-form — come and…; please come	[来: come]

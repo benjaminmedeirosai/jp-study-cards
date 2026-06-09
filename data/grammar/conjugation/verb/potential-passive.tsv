@@ -1,0 +1,11 @@
+# label: Verb — Potential & Passive (〜eる / 〜られる)
+# One potential-passive example per verb class — godan (行く), ichidan (食べる),
+# and the irregulars する / 来る. Add more verb roots here to broaden the form.
+# Dictionary forms live in verbs/; this deck is the conjugation paradigm.
+kanji	hiragana	type	english	breakdown
+行ける	いける	godan-verb	(godan) potential — can go	[行: go/travel]
+行かれる	いかれる	godan-verb	(godan) passive — be gone (to)	[行: go/travel]
+食べられる	たべられる	ichidan-verb	(ichidan) potential/passive — can eat; be eaten	[食: eat/food]
+できる	できる	irregular-verb	(する) potential — can do
+される	される	irregular-verb	(する) passive — be done
+来られる	こられる	irregular-verb	(来る) potential/passive — can come; be visited	[来: come]

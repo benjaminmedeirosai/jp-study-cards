@@ -1,0 +1,9 @@
+# label: Verb — Past Negative (〜なかった)
+# One past-negative example per verb class — godan (行く), ichidan (食べる),
+# and the irregulars する / 来る. Add more verb roots here to broaden the form.
+# Dictionary forms live in verbs/; this deck is the conjugation paradigm.
+kanji	hiragana	type	english	breakdown
+行かなかった	いかなかった	godan-verb	(godan) past negative — did not go	[行: go/travel]
+食べなかった	たべなかった	ichidan-verb	(ichidan) past negative — did not eat	[食: eat/food]
+しなかった	しなかった	irregular-verb	(する) past negative — did not do
+来なかった	こなかった	irregular-verb	(来る) past negative — did not come	[来: come]

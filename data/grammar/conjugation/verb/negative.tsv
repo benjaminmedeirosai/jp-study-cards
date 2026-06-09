@@ -1,0 +1,9 @@
+# label: Verb — Negative (〜ない)
+# One negative example per verb class — godan (行く), ichidan (食べる),
+# and the irregulars する / 来る. Add more verb roots here to broaden the form.
+# Dictionary forms live in verbs/; this deck is the conjugation paradigm.
+kanji	hiragana	type	english	breakdown
+行かない	いかない	godan-verb	(godan) negative — do not go	[行: go/travel]
+食べない	たべない	ichidan-verb	(ichidan) negative — do not eat	[食: eat/food]
+しない	しない	irregular-verb	(する) negative — do not do
+来ない	こない	irregular-verb	(来る) negative — do not come	[来: come]

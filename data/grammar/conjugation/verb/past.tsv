@@ -1,0 +1,9 @@
+# label: Verb — Past (〜た)
+# One past example per verb class — godan (行く), ichidan (食べる),
+# and the irregulars する / 来る. Add more verb roots here to broaden the form.
+# Dictionary forms live in verbs/; this deck is the conjugation paradigm.
+kanji	hiragana	type	english	breakdown
+行った	いった	godan-verb	(godan) past — went	[行: go/travel]
+食べた	たべた	ichidan-verb	(ichidan) past — ate	[食: eat/food]
+した	した	irregular-verb	(する) past — did
+来た	きた	irregular-verb	(来る) past — came	[来: come]

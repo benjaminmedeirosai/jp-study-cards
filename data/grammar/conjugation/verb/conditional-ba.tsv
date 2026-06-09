@@ -1,0 +1,9 @@
+# label: Verb — Conditional (〜ば)
+# One conditional-ba example per verb class — godan (行く), ichidan (食べる),
+# and the irregulars する / 来る. Add more verb roots here to broaden the form.
+# Dictionary forms live in verbs/; this deck is the conjugation paradigm.
+kanji	hiragana	type	english	breakdown
+行けば	いけば	godan-verb	(godan) ば-conditional — if (one) goes	[行: go/travel]
+食べれば	たべれば	ichidan-verb	(ichidan) ば-conditional — if (one) eats	[食: eat/food]
+すれば	すれば	irregular-verb	(する) ば-conditional — if (one) does
+来れば	くれば	irregular-verb	(来る) ば-conditional — if (one) comes	[来: come]

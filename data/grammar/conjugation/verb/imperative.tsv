@@ -1,0 +1,9 @@
+# label: Verb — Imperative
+# One imperative example per verb class — godan (行く), ichidan (食べる),
+# and the irregulars する / 来る. Add more verb roots here to broaden the form.
+# Dictionary forms live in verbs/; this deck is the conjugation paradigm.
+kanji	hiragana	type	english	breakdown
+行け	いけ	godan-verb	(godan) imperative — go!	[行: go/travel]
+食べろ	たべろ	ichidan-verb	(ichidan) imperative — eat!	[食: eat/food]
+しろ	しろ	irregular-verb	(する) imperative — do!
+来い	こい	irregular-verb	(来る) imperative — come!	[来: come]

@@ -1,0 +1,9 @@
+# label: Verb — Conditional (〜たら)
+# One conditional-tara example per verb class — godan (行く), ichidan (食べる),
+# and the irregulars する / 来る. Add more verb roots here to broaden the form.
+# Dictionary forms live in verbs/; this deck is the conjugation paradigm.
+kanji	hiragana	type	english	breakdown
+行ったら	いったら	godan-verb	(godan) たら-conditional — when/if (one) goes	[行: go/travel]
+食べたら	たべたら	ichidan-verb	(ichidan) たら-conditional — when/if (one) eats	[食: eat/food]
+したら	したら	irregular-verb	(する) たら-conditional — when/if (one) does
+来たら	きたら	irregular-verb	(来る) たら-conditional — when/if (one) comes	[来: come]

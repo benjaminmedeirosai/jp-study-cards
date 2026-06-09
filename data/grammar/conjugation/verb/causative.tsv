@@ -1,0 +1,9 @@
+# label: Verb — Causative (〜せる / 〜させる)
+# One causative example per verb class — godan (行く), ichidan (食べる),
+# and the irregulars する / 来る. Add more verb roots here to broaden the form.
+# Dictionary forms live in verbs/; this deck is the conjugation paradigm.
+kanji	hiragana	type	english	breakdown
+行かせる	いかせる	godan-verb	(godan) causative — make/let go	[行: go/travel]
+食べさせる	たべさせる	ichidan-verb	(ichidan) causative — make/let eat	[食: eat/food]
+させる	させる	irregular-verb	(する) causative — make/let do
+来させる	こさせる	irregular-verb	(来る) causative — make/let come	[来: come]

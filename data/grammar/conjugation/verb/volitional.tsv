@@ -1,0 +1,9 @@
+# label: Verb — Volitional (〜う / 〜よう)
+# One volitional example per verb class — godan (行く), ichidan (食べる),
+# and the irregulars する / 来る. Add more verb roots here to broaden the form.
+# Dictionary forms live in verbs/; this deck is the conjugation paradigm.
+kanji	hiragana	type	english	breakdown
+行こう	いこう	godan-verb	(godan) volitional — let's go	[行: go/travel]
+食べよう	たべよう	ichidan-verb	(ichidan) volitional — let's eat	[食: eat/food]
+しよう	しよう	irregular-verb	(する) volitional — let's do
+来よう	こよう	irregular-verb	(来る) volitional — let's come	[来: come]
