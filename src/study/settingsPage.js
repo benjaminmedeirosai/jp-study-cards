@@ -383,8 +383,8 @@ export function renderSettingsPage() {
     fieldLabel("Japanese voice", voiceRow),
     fieldLabel("Voice speed", rateSelect),
     sectionHeading("Autoplay"),
-    makePresetField("Question delay (sec)", questionDelayInput, [1, 1.5, 2, 3, 4]),
-    makePresetField("Answer delay (sec)", answerDelayInput, [1, 1.5, 2, 3, 4]),
+    makePresetField("Question delay (sec)", questionDelayInput, [0.5, 1, 1.5, 2, 3]),
+    makePresetField("Answer delay (sec)", answerDelayInput, [0.5, 1, 1.5, 2, 3]),
     ttsEstimateToggle.label,
     sectionHeading("Other"),
     visibilityGroup
