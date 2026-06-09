@@ -7,3 +7,13 @@ kanji	hiragana	type	english	breakdown
 食べない	たべない	ichidan-verb	(ichidan) negative — do not eat	[食: eat/food]
 しない	しない	irregular-verb	(する) negative — do not do
 来ない	こない	irregular-verb	(来る) negative — do not come	[来: come]
+買わない	かわない	godan-verb	(godan) negative — do not buy	[買: buy]
+書かない	かかない	godan-verb	(godan) negative — do not write	[書: write]
+泳がない	およがない	godan-verb	(godan) negative — do not swim	[泳: swim]
+話さない	はなさない	godan-verb	(godan) negative — do not speak	[話: speak/talk]
+待たない	またない	godan-verb	(godan) negative — do not wait	[待: wait]
+死なない	しなない	godan-verb	(godan) negative — do not die	[死: die]
+遊ばない	あそばない	godan-verb	(godan) negative — do not play	[遊: play]
+飲まない	のまない	godan-verb	(godan) negative — do not drink	[飲: drink]
+取らない	とらない	godan-verb	(godan) negative — do not take	[取: take]
+見ない	みない	ichidan-verb	(ichidan) negative — do not see	[見: see/look]

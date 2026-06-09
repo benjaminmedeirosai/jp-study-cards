@@ -7,3 +7,13 @@ kanji	hiragana	type	english	breakdown
 食べたら	たべたら	ichidan-verb	(ichidan) たら-conditional — when/if (one) eats	[食: eat/food]
 したら	したら	irregular-verb	(する) たら-conditional — when/if (one) does
 来たら	きたら	irregular-verb	(来る) たら-conditional — when/if (one) comes	[来: come]
+買ったら	かったら	godan-verb	(godan) たら-conditional — when/if (one) buys	[買: buy]
+書いたら	かいたら	godan-verb	(godan) たら-conditional — when/if (one) writes	[書: write]
+泳いだら	およいだら	godan-verb	(godan) たら-conditional — when/if (one) swims	[泳: swim]
+話したら	はなしたら	godan-verb	(godan) たら-conditional — when/if (one) speaks	[話: speak/talk]
+待ったら	まったら	godan-verb	(godan) たら-conditional — when/if (one) waits	[待: wait]
+死んだら	しんだら	godan-verb	(godan) たら-conditional — when/if (one) dies	[死: die]
+遊んだら	あそんだら	godan-verb	(godan) たら-conditional — when/if (one) plays	[遊: play]
+飲んだら	のんだら	godan-verb	(godan) たら-conditional — when/if (one) drinks	[飲: drink]
+取ったら	とったら	godan-verb	(godan) たら-conditional — when/if (one) takes	[取: take]
+見たら	みたら	ichidan-verb	(ichidan) たら-conditional — when/if (one) sees	[見: see/look]

@@ -7,3 +7,13 @@ kanji	hiragana	type	english	breakdown
 食べた	たべた	ichidan-verb	(ichidan) past — ate	[食: eat/food]
 した	した	irregular-verb	(する) past — did
 来た	きた	irregular-verb	(来る) past — came	[来: come]
+買った	かった	godan-verb	(godan) past — bought	[買: buy]
+書いた	かいた	godan-verb	(godan) past — wrote	[書: write]
+泳いだ	およいだ	godan-verb	(godan) past — swam	[泳: swim]
+話した	はなした	godan-verb	(godan) past — spoke	[話: speak/talk]
+待った	まった	godan-verb	(godan) past — waited	[待: wait]
+死んだ	しんだ	godan-verb	(godan) past — died	[死: die]
+遊んだ	あそんだ	godan-verb	(godan) past — played	[遊: play]
+飲んだ	のんだ	godan-verb	(godan) past — drank	[飲: drink]
+取った	とった	godan-verb	(godan) past — took	[取: take]
+見た	みた	ichidan-verb	(ichidan) past — saw	[見: see/look]
