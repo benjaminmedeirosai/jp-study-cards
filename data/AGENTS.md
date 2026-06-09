@@ -249,14 +249,18 @@ drill. Verb conjugation is sliced **by form** under `grammar/conjugation/verb/`
 verb classes (godan covering every dictionary ending う/く/ぐ/す/つ/ぬ/ぶ/む/る,
 ichidan, and the irregulars する/来る). Add a verb root to broaden a form deck;
 generate the conjugations by rule (euphonic 音便 tables) rather than hand-typing.
-Adjective paradigms stay as single decks (`i-adjective-conjugation` 高い…,
-`na-adjective-conjugation` 便利).
+Adjective paradigms stay as single decks alongside it:
+`grammar/conjugation/i-adjective.tsv` (高い…) and
+`grammar/conjugation/na-adjective.tsv` (便利).
 
-Productive bound grammar uses a `〜` placeholder (not the old `Vたら`/`ブイたら`
-notation): the **te-form family** (〜ている, 〜ておく, 〜てみる, 〜てくれる, 〜てもいい…)
-lives in `grammar/te-form.tsv`; all other bound patterns (〜たい, 〜べき, 〜のに,
-〜はず, modality 〜らしい/〜ようだ…) and core function words (だ, 〜という) in
-`grammar/sentence-patterns.tsv`. Onomatopoeia (擬音語/擬態語) consolidated into
+Productive bound grammar lives under `grammar/patterns/` with a `〜` placeholder
+(not the old `Vたら`/`ブイたら` notation): the **te-form family** (〜ている, 〜ておく,
+〜てみる, 〜てくれる, 〜てもいい…) in `patterns/te-form.tsv`; all other bound patterns
+(〜たい, 〜べき, 〜のに, 〜はず, modality 〜らしい/〜ようだ…) and core function words
+(だ, 〜という) in `patterns/sentence-patterns.tsv`; the 〜そう appearance forms in
+`patterns/appearance-sou.tsv` and 〜やすい/〜にくい/〜っぽい in
+`patterns/derived-i-adjective.tsv`. Particles, conjunctions, and `morphemes/`
+stay at the `grammar/` root. Onomatopoeia (擬音語/擬態語) consolidated into
 `adverb/onomatopoeia.tsv` (katakana, same form in both columns). The
 `descriptive-phrase` and `phrase-sentence` folders were dissolved — they were
 mostly number+counter combos (redundant with the counter decks) and a few set
