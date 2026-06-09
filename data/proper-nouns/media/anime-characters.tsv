@@ -1,0 +1,11 @@
+# label: Anime & Manga Characters
+# Anime / manga characters (キャラクター).
+# Belongs here: a named character from a work. The work's title goes in
+# anime-titles.tsv (the source work is noted in parentheses).
+kanji	hiragana	type	english
+鬼太郎	きたろう	proper-noun	Kitaro (GeGeGe no Kitaro)
+目玉おやじ	めだまおやじ	proper-noun	Medama-Oyaji / Eyeball Father (GeGeGe no Kitaro)
+ピカチュウ	ピカチュウ	proper-noun	Pikachu (Pokémon)
+のび太	のびた	proper-noun	Nobita (Doraemon)
+ルフィ	ルフィ	proper-noun	Luffy (One Piece)
+悟空	ごくう	proper-noun	Goku (Dragon Ball)

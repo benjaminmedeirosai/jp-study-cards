@@ -1,0 +1,39 @@
+# label: Quality & Condition
+# Quality & condition — physical qualities and states of things.
+# Belongs here: brightness (明るい, 暗い), texture/firmness (硬い, 柔らかい,
+# 鋭い), cleanliness (汚い, 臭い), difficulty (難しい, 易しい), and states like
+# 忙しい, 危ない, 騒がしい. Size goes in size.tsv; people/judgments in character.tsv.
+kanji	hiragana	type	english
+清い	きよい	i-adjective	pure; clean
+強い	つよい	i-adjective	strong
+弱い	よわい	i-adjective	weak
+明るい	あかるい	i-adjective	bright; cheerful
+暗い	くらい	i-adjective	dark; gloomy
+難しい	むずかしい	i-adjective	difficult
+易しい	やさしい	i-adjective	easy (rare kanji)
+忙しい	いそがしい	i-adjective	busy
+汚い	きたない	i-adjective	dirty
+臭い	くさい	i-adjective	smelly
+危ない	あぶない	i-adjective	dangerous
+硬い	かたい	i-adjective	hard (solid; firm)
+固い	かたい	i-adjective	solid; firm; tight
+柔らかい	やわらかい	i-adjective	soft
+鋭い	するどい	i-adjective	sharp; keen
+鈍い	にぶい	i-adjective	dull; blunt; slow
+眩しい	まぶしい	i-adjective	dazzling; glaring
+粗い	あらい	i-adjective	coarse; rough
+弱々しい	よわよわしい	i-adjective	feeble; frail
+きつい	きつい	i-adjective	tight; harsh; tough
+騒がしい	さわがしい	i-adjective	noisy; boisterous
+忙しない	せわしない	i-adjective	restless; hectic
+激しい	はげしい	i-adjective	intense; violent; fierce
+貧しい	まずしい	i-adjective	poor; needy
+険しい	けわしい	i-adjective	steep; rugged; stern
+濃い	こい	i-adjective	thick; dense; strong (color/flavor)
+もったいない	もったいない	i-adjective	wasteful; too good to waste
+乏しい	とぼしい	i-adjective	scarce; meager
+幅広い	はばひろい	i-adjective	wide-ranging; broad
+拙い	つたない	i-adjective	clumsy; unskillful; poor
+軟らかい	やわらかい	i-adjective	soft; tender
+著しい	いちじるしい	i-adjective	remarkable; striking; marked
+薄暗い	うすぐらい	i-adjective	dim; gloomy

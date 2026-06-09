@@ -17,38 +17,18 @@ import path from "node:path";
 
 const repoRoot = path.resolve(import.meta.dirname, "..");
 const dataRoot = path.join(repoRoot, "data");
-const REQUIRED_HEADERS = ["kanji", "hiragana", "type", "english"];
 const OUT_DIR = path.join(repoRoot, "tmp");
-
-// Same TSV parsing as bundle-data.mjs: skip blanks and `#` comment lines.
-function parseTsv(source, file) {
-  const lines = source
-    .replace(/\r\n?/g, "\n")
-    .split("\n")
-    .filter((line) => line.trim() && !line.trimStart().startsWith("#"));
-  if (!lines.length) return [];
-  const headers = lines[0].split("\t").map((header) => header.trim());
-  if (!REQUIRED_HEADERS.every((header, index) => headers[index] === header)) {
-    throw new Error(`${file}: expected TSV header ${REQUIRED_HEADERS.join("\\t")}`);
-  }
-  return lines.slice(1).map((line) => {
-    const fields = line.split("\t");
-    return Object.fromEntries(REQUIRED_HEADERS.map((header, index) => [header, (fields[index] || "").trim()]));
-  });
-}
 
 const isHan = (ch) => /\p{Script=Han}/u.test(ch);
 const hanChars = (str) => [...str].filter(isHan);
 
-// --- Load every entry referenced by index.json, tagged with its source file ---
-const index = JSON.parse(await fs.readFile(path.join(dataRoot, "index.json"), "utf8"));
+// --- Load every entry from the built bundle, tagged with its deck ---
+// (data/cards.json is the bundler's output; run bundle-data.mjs first.)
+const bundle = JSON.parse(await fs.readFile(path.join(dataRoot, "cards.json"), "utf8"));
 const entries = [];
-for (const deck of index.decks || []) {
-  const rel = String(deck.path).replace(/^\/data\//, "");
-  const raw = await fs.readFile(path.join(dataRoot, rel), "utf8");
-  const rows = rel.endsWith(".tsv") ? parseTsv(raw, rel) : JSON.parse(raw);
-  for (const row of rows) {
-    entries.push({ ...row, file: rel, deckId: deck.id });
+for (const deck of bundle.decks || []) {
+  for (const row of deck.entries || []) {
+    entries.push({ ...row, file: deck.id, deckId: deck.id });
   }
 }
 
@@ -89,7 +69,7 @@ await fs.writeFile(cov1Path, JSON.stringify(coverage1, null, 2) + "\n");
 await fs.writeFile(cov2Path, JSON.stringify(coverage2, null, 2) + "\n");
 await fs.writeFile(dupPath, JSON.stringify(duplicates, null, 2) + "\n");
 
-console.log(`Audited ${entries.length} entries across ${index.decks.length} decks (${kanjiToWords.size} distinct kanji).`);
+console.log(`Audited ${entries.length} entries across ${bundle.decks.length} decks (${kanjiToWords.size} distinct kanji).`);
 console.log(`Kanji in exactly 1 word: ${coverage1.length} → ${cov1Path}`);
 console.log(`Kanji in exactly 2 words: ${coverage2.length} → ${cov2Path}`);
 console.log(`Duplicates: ${duplicates.length} word forms occur in 2+ places → ${dupPath}`);

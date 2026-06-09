@@ -1,0 +1,22 @@
+# label: Digits & Place Values
+# Numbers — digits and place values (Sino-Japanese 数字).
+# Belongs here: 0-9 and the powers of ten (十, 百, 千, 万, 億, 兆). Formal
+# document forms (大字) live in formal.tsv.
+kanji	hiragana	type	english
+ゼロ	ゼロ	numeral	zero
+零	れい	numeral	zero (reading れい)
+一	いち	numeral	one
+二	に	numeral	two
+三	さん	numeral	three
+四	よん	numeral	four
+五	ご	numeral	five
+六	ろく	numeral	six
+七	なな	numeral	seven
+八	はち	numeral	eight
+九	きゅう	numeral	nine
+十	じゅう	numeral	ten
+百	ひゃく	numeral	hundred
+千	せん	numeral	thousand
+万	まん	numeral	ten thousand
+億	おく	numeral	hundred million
+兆	ちょう	numeral	trillion

@@ -6,20 +6,23 @@ reorganizing, or reclassifying decks.
 ## Pipeline (how data flows)
 
 ```
-per-deck files (.tsv or .json)   ← editable source of truth
-        │
-   data/index.json               ← hand-curated manifest (lists every deck)
-        │  node tools/bundle-data.mjs
+data/<…folders…>/<deck>.tsv      ← the ONLY source of truth (folders + names)
+        │  node tools/bundle-data.mjs   (walks the tree, derives everything)
         ▼
    data/cards.json                ← built runtime artifact (app fetches this once)
 ```
 
-- **Edit the per-deck files**, then update `index.json`, then run
-  `node tools/bundle-data.mjs`.
+- **There is no manifest.** `bundle-data.mjs` walks `data/` and derives each
+  deck's `id`, `category`, `label`, and `count` from its location and name
+  (see [Folder layout](#folder-layout)). To add a deck, drop a `.tsv` in the
+  right folder; to recategorize, move/rename it. Then run the bundler.
 - `data/cards.json` is **generated** — never hand-edit it.
-- ⚠️ `tools/generate-data.mjs` is **legacy**. It wipes `data/` and rebuilds JSON
-  decks from an external source collection, destroying the hand-curated TSVs.
-  Do **not** run it against the curated data.
+- The app builds its category tree purely from the `category` strings in
+  `cards.json` (`src/study/shared.js`); it never sees the folder layout. Because
+  the bundler derives `category` *from* the folders, the two can't drift.
+- ⚠️ `tools/generate-data.mjs` is **legacy and obsolete** — it predates this
+  model and writes a `data/index.json` manifest that no longer exists. Do **not**
+  run it; it would clobber the curated tree.
 
 ## File format
 
@@ -50,33 +53,44 @@ kanji	hiragana	type	english
 元気	げんき	na-adjective	healthy; energetic; fine; well
 ```
 
+### Label override (`# label:`)
+
+The deck's display name defaults to its title-cased filename
+(`meat-seafood.tsv` → "Meat Seafood"). When the real label needs characters a
+filename can't hold — symbols, kanji, ampersands — give it a `# label:` line in
+the header and the bundler uses that verbatim instead:
+
+```
+# label: 〜本 (long objects)
+# The 〜本 counter, 1–20 with the geminating/rendaku readings.
+kanji	hiragana	type	english
+一本	いっぽん	counter	one (long cylindrical object)
+```
+
 ## Folder layout
 
+**The folder path IS the category, and the filename IS the label.** The bundler
+title-cases each folder segment (splitting on `-`) and joins them with ` / `:
+
 ```
-data/<part-of-speech>/<domain>/<subcategory>.tsv
+data/adjectives/na-adjectives/qualities.tsv
+     └──────────── category ───────────┘ └ label
+  → category "Adjectives / Na Adjectives", label "Qualities", id
+    "adjectives/na-adjectives/qualities"
 ```
 
-- The deck `id` is the path minus extension (e.g. `nouns/food/loanwords`).
+- Mirror the category you want in the app right in the folder tree. The current
+  top groups: `adjectives/{i-adjectives,na-adjectives}/`, `adverbs/`,
+  `expressions/`, `grammar/` (+ `grammar/morphemes/`), `nouns/<domain>/`,
+  `numbers/` (+ `numbers/counters/`), `proper-nouns/<places|world|names|media|
+  mythology>/`, `verbs/<godan|ichidan|irregular>/`.
+- A deck sitting directly in a top folder (e.g. `numbers/digits.tsv`,
+  `grammar/sentence-patterns.tsv`) gets a single-segment category ("Numbers",
+  "Grammar"). Nest it one level deeper to make a subcategory.
 - Group by meaning, not by arbitrary 50-card chunks (`common-1`, `common-2`…).
-  The old chunked JSON files are what we're migrating away from.
-
-### `index.json` entry shape
-
-```json
-{
-  "id": "na-adjective/core",
-  "label": "Na-adjectives",
-  "category": "Adjectives / Na-adjectives",
-  "path": "/data/na-adjective/core.tsv"
-}
-```
-
-- `category` uses `"Parent / Child"` to nest a deck under a subheading
-  (e.g. `"Nouns / Food"`, `"Adjectives / Na-adjectives"`). Plain `"Grammar"`
-  for top-level groups.
-- **No `count` field.** Card counts are derived from the data files by
-  `bundle-data.mjs` and written into `cards.json`. `index.json` only records
-  which decks exist and where — never hand-maintain counts.
+- Folder/file names are lowercase-kebab. Use `# label:` (above) when the display
+  name needs more than the filename can carry. **No counts anywhere** — they're
+  derived from the rows at build time.
 
 ## Classification principles
 
@@ -124,9 +138,10 @@ chunked `common-N.json` decks into themed TSVs. The pattern, in order:
 6. **Add a `#` comment header** to every new TSV saying what belongs in it.
 7. **Add more common words** as fits each theme — the goal is good coverage of
    the part of speech, not just whatever the source happened to contain.
-8. **Update `index.json`**: remove the old `common-N` entries, add the new decks.
-   Themed decks use a `"<Parent> / <Child>"` category to nest together.
-9. **Delete the old `.json` files** and run the bundler.
+8. **Place the new decks** in folders that spell out the category you want
+   (e.g. `data/adjectives/na-adjectives/`); add a `# label:` line where the
+   display name needs symbols/kanji.
+9. **Delete the old files** and run the bundler — the tree is the manifest.
 
 Done so far: `na-adjective`, `morpheme`, `i-adjective`, `numeral`, `counter`,
 `proper-nouns`, `nouns` (full — all common-N.json classified into ~24 domains),

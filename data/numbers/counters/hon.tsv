@@ -1,0 +1,24 @@
+# label: 〜本 (long objects)
+# Counter 〜本 (long objects) — counts long cylindrical objects.
+# Irregular: 1 いっぽん, 3 さんぼん, 6 ろっぽん, 8 はっぽん, 10 じゅっぽん (repeats at 11-, 20).
+kanji	hiragana	type	english
+一本	いっぽん	counter	1 long cylindrical objects
+二本	にほん	counter	2 long cylindrical objects
+三本	さんぼん	counter	3 long cylindrical objects
+四本	よんほん	counter	4 long cylindrical objects
+五本	ごほん	counter	5 long cylindrical objects
+六本	ろっぽん	counter	6 long cylindrical objects
+七本	ななほん	counter	7 long cylindrical objects
+八本	はっぽん	counter	8 long cylindrical objects
+九本	きゅうほん	counter	9 long cylindrical objects
+十本	じゅっぽん	counter	10 long cylindrical objects
+十一本	じゅういっぽん	counter	11 long cylindrical objects
+十二本	じゅうにほん	counter	12 long cylindrical objects
+十三本	じゅうさんぼん	counter	13 long cylindrical objects
+十四本	じゅうよんほん	counter	14 long cylindrical objects
+十五本	じゅうごほん	counter	15 long cylindrical objects
+十六本	じゅうろっぽん	counter	16 long cylindrical objects
+十七本	じゅうななほん	counter	17 long cylindrical objects
+十八本	じゅうはっぽん	counter	18 long cylindrical objects
+十九本	じゅうきゅうほん	counter	19 long cylindrical objects
+二十本	にじゅっぽん	counter	20 long cylindrical objects

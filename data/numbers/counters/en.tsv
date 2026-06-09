@@ -1,0 +1,24 @@
+# label: 〜円 (yen)
+# Counter 〜円 (yen) — counts yen.
+# Regular except 4 よえん (14 じゅうよえん).
+kanji	hiragana	type	english
+一円	いちえん	counter	1 yen
+二円	にえん	counter	2 yen
+三円	さんえん	counter	3 yen
+四円	よえん	counter	4 yen
+五円	ごえん	counter	5 yen
+六円	ろくえん	counter	6 yen
+七円	ななえん	counter	7 yen
+八円	はちえん	counter	8 yen
+九円	きゅうえん	counter	9 yen
+十円	じゅうえん	counter	10 yen
+十一円	じゅういちえん	counter	11 yen
+十二円	じゅうにえん	counter	12 yen
+十三円	じゅうさんえん	counter	13 yen
+十四円	じゅうよえん	counter	14 yen
+十五円	じゅうごえん	counter	15 yen
+十六円	じゅうろくえん	counter	16 yen
+十七円	じゅうななえん	counter	17 yen
+十八円	じゅうはちえん	counter	18 yen
+十九円	じゅうきゅうえん	counter	19 yen
+二十円	にじゅうえん	counter	20 yen

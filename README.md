@@ -16,15 +16,18 @@ works too, e.g. `python3 -m http.server`).
 
 ## Data
 
-Study data lives under `data/` as per-deck `.tsv` files. They are the editable
-source of truth; the app fetches a single built bundle, `data/cards.json`, at
-startup.
+Study data lives under `data/` as per-deck `.tsv` files, and the **folder tree is
+the source of truth** — there's no manifest. A deck's category, label, and id are
+derived from its path and filename (`data/adjectives/na-adjectives/qualities.tsv`
+→ category "Adjectives / Na Adjectives", label "Qualities"). The app fetches a
+single built bundle, `data/cards.json`, at startup.
 
 The workflow:
 
-1. Edit a deck file, or add a new one (TSV header: `kanji  hiragana  type  english`).
-2. If you added/removed/moved a deck, update the manifest `data/index.json`.
-3. Rebuild the bundle:
+1. Add/edit a `.tsv` deck (header: `kanji  hiragana  type  english`). Put it in a
+   folder that spells out the category you want; the filename becomes the label
+   (override with a `# label:` header line for symbols/kanji).
+2. Rebuild the bundle:
 
    ```bash
    node tools/bundle-data.mjs
@@ -33,11 +36,11 @@ The workflow:
 **See [`data/AGENTS.md`](data/AGENTS.md) for the full data conventions** — folder
 layout, TSV format, the kana split, classification rules, and comment headers.
 
-To audit coverage, run `node tools/audit-data.mjs`. It writes two throwaway
-dev-reference reports to `tmp/` (gitignored): `kanji-coverage.json` (kanji
-appearing in fewer than three distinct words — i.e. characters that could use
-more coverage) and `duplicates.json` (word forms that occur in more than one
-place). Neither is committed or consumed by the app.
+To audit coverage, run `node tools/audit-data.mjs` (after building). It writes
+throwaway dev-reference reports to `tmp/` (gitignored): `kanji-coverage-1.json`
+and `kanji-coverage-2.json` (kanji appearing in only one / two distinct words —
+characters that could use more coverage) and `duplicates.json` (word forms that
+occur in more than one place). None are committed or consumed by the app.
 
 > `tools/generate-data.mjs` is **legacy**: it regenerates `data/` from an
 > external source collection and overwrites the hand-curated TSV decks. Don't run

@@ -1,0 +1,29 @@
+# label: Size & Quantity
+# Size, distance & quantity — physical extent and amount.
+# Belongs here: dimensions (大きい, 広い, 厚い), distance (近い, 遠い), amount
+# (多い, 少ない), shape (丸い), and the high/low/cheap/expensive cluster
+# (高い, 安い). Age and speed go in time-speed.tsv.
+kanji	hiragana	type	english
+長い	ながい	i-adjective	long
+短い	みじかい	i-adjective	short
+高い	たかい	i-adjective	tall; high; expensive
+安い	やすい	i-adjective	cheap; inexpensive
+低い	ひくい	i-adjective	low; short (height)
+広い	ひろい	i-adjective	wide; spacious
+狭い	せまい	i-adjective	narrow; cramped
+大きい	おおきい	i-adjective	big; large
+小さい	ちいさい	i-adjective	small
+多い	おおい	i-adjective	many; a lot
+少ない	すくない	i-adjective	few; little
+近い	ちかい	i-adjective	near; close
+遠い	とおい	i-adjective	far; distant
+重い	おもい	i-adjective	heavy
+軽い	かるい	i-adjective	light (weight)
+細い	ほそい	i-adjective	thin; slender
+太い	ふとい	i-adjective	thick; fat
+深い	ふかい	i-adjective	deep
+浅い	あさい	i-adjective	shallow
+厚い	あつい	i-adjective	thick (flat objects)
+薄い	うすい	i-adjective	thin; pale; weak (flavor)
+丸い	まるい	i-adjective	round
+四角い	しかくい	i-adjective	square

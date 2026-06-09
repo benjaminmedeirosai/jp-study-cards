@@ -1,0 +1,23 @@
+# label: Feelings & States
+# Feelings & states — how someone feels and what they like.
+# Belongs here: emotions and mental/physical states (元気, 心配, 退屈, 幸せ),
+# plus likes/dislikes (好き, 嫌い). Not evaluations of a thing's worth — those
+# go in value.tsv.
+kanji	hiragana	type	english
+平気	へいき	na-adjective	calm; composed; alright
+元気	げんき	na-adjective	healthy; energetic; fine; well
+大丈夫	だいじょうぶ	na-adjective	okay; all right; safe
+安心	あんしん	na-adjective	peace of mind
+好き	すき	na-adjective	fond of; to like
+大好き	だいすき	na-adjective	love; like a lot
+嫌い	きらい	na-adjective	disliked; hated
+暇	ひま	na-adjective	free (time); idle; bored
+残念	ざんねん	na-adjective	regrettable; disappointing; too bad
+心配	しんぱい	na-adjective	worried; anxious
+退屈	たいくつ	na-adjective	boring; tedious; dull
+幸せ	しあわせ	na-adjective	happy; fortunate
+不安	ふあん	na-adjective	anxious; uneasy; insecure
+夢中	むちゅう	na-adjective	absorbed; engrossed; crazy about
+不幸	ふこう	na-adjective	unhappy; unfortunate
+不快	ふかい	na-adjective	unpleasant; uncomfortable; displeasing
+憂鬱	ゆううつ	na-adjective	melancholy; depressed; gloomy
