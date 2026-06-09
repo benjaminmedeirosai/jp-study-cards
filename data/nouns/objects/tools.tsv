@@ -1,39 +1,39 @@
-kanji	hiragana	type	english
-金槌	かなづち	noun	hammer
+kanji	hiragana	type	english	breakdown
+金槌	かなづち	noun	hammer	[金: metal/gold | 槌: mallet/hammer]
 釘	くぎ	noun	nail
 鋸	のこぎり	noun	saw
-巻尺	まきじゃく	noun	tape measure
-梯子	はしご	noun	ladder
-作業台	さぎょうだい	noun	workbench
-砥石	といし	noun	whetstone
-接着剤	せっちゃくざい	noun	adhesive; glue
-懐中電灯	かいちゅうでんとう	noun	flashlight
-安全眼鏡	あんぜんめがね	noun	safety glasses
-機械	きかい	noun	machine
-探知機	たんちき	noun	detector
-部品	ぶひん	noun	parts; components
-道具	どうぐ	noun	tool
-万年筆	まんねんひつ	noun	fountain pen
-設備	せつび	noun	facilities; equipment
-装備	そうび	noun	equipment; gear
-日本刀	にほんとう	noun	Japanese sword
-短刀	たんとう	noun	short sword; dagger
+巻尺	まきじゃく	noun	tape measure	[巻: roll/wind | 尺: measure/ruler]
+梯子	はしご	noun	ladder	[梯: ladder | 子: child/small item]
+作業台	さぎょうだい	noun	workbench	[作: make/work | 業: work/task | 台: stand/platform]
+砥石	といし	noun	whetstone	[砥: whetstone/grind | 石: stone]
+接着剤	せっちゃくざい	noun	adhesive; glue	[接: contact/join | 着: attach/adhere | 剤: agent/preparation]
+懐中電灯	かいちゅうでんとう	noun	flashlight	[懐: bosom/pocket | 中: middle/inside | 電: electricity | 灯: lamp/light]
+安全眼鏡	あんぜんめがね	noun	safety glasses	[安: safe/at ease | 全: whole/complete | 眼: eye | 鏡: mirror/lens]
+機械	きかい	noun	machine	[機: machine | 械: device/contraption]
+探知機	たんちき	noun	detector	[探: search/probe | 知: know/perceive | 機: machine]
+部品	ぶひん	noun	parts; components	[部: part/section | 品: goods/article]
+道具	どうぐ	noun	tool	[道: way/means | 具: tool/implement]
+万年筆	まんねんひつ	noun	fountain pen	[万: ten thousand | 年: year | 筆: brush/pen]
+設備	せつび	noun	facilities; equipment	[設: establish/set up | 備: equip/prepare]
+装備	そうび	noun	equipment; gear	[装: equip/dress | 備: equip/prepare]
+日本刀	にほんとう	noun	Japanese sword	[日: sun/Japan | 本: origin/book | 刀: sword/blade]
+短刀	たんとう	noun	short sword; dagger	[短: short | 刀: sword/blade]
 刃	は	noun	blade; edge
-刃物	はもの	noun	bladed tool; cutlery
-判子	はんこ	noun	seal; name stamp
-双眼鏡	そうがんきょう	noun	binoculars
-顕微鏡	けんびきょう	noun	microscope
-朱肉	しゅにく	noun	red ink pad (for seals)
-器械	きかい	noun	instrument; apparatus
+刃物	はもの	noun	bladed tool; cutlery	[刃: blade/edge | 物: thing/object]
+判子	はんこ	noun	seal; name stamp	[判: seal/stamp | 子: child/small item]
+双眼鏡	そうがんきょう	noun	binoculars	[双: pair/twin | 眼: eye | 鏡: mirror/lens]
+顕微鏡	けんびきょう	noun	microscope	[顕: manifest/reveal | 微: tiny/minute | 鏡: mirror/lens]
+朱肉	しゅにく	noun	red ink pad (for seals)	[朱: vermilion/cinnabar | 肉: flesh/pad]
+器械	きかい	noun	instrument; apparatus	[器: device/vessel | 械: device/contraption]
 槌	つち	noun	mallet; hammer
 棒	ぼう	noun	stick; pole; rod
-爪切り	つめきり	noun	nail clippers
-看板	かんばん	noun	signboard; sign
-釣り竿	つりざお	noun	fishing rod
+爪切り	つめきり	noun	nail clippers	[爪: nail/claw | 切: cut]
+看板	かんばん	noun	signboard; sign	[看: watch/observe | 板: board/plank]
+釣り竿	つりざお	noun	fishing rod	[釣: fishing/angle | 竿: pole/rod]
 筒	つつ	noun	tube; cylinder; pipe
-水筒	すいとう	noun	water bottle; canteen
+水筒	すいとう	noun	water bottle; canteen	[水: water | 筒: tube/cylinder]
 栓	せん	noun	stopper; plug; cork
-栓抜き	せんぬき	noun	bottle opener
-円盤	えんばん	noun	disk; discus
+栓抜き	せんぬき	noun	bottle opener	[栓: stopper/plug | 抜: pull out/extract]
+円盤	えんばん	noun	disk; discus	[円: circle/round | 盤: disc/board]
 筆	ふで	noun	writing brush
-鉛筆	えんぴつ	noun	pencil
+鉛筆	えんぴつ	noun	pencil	[鉛: lead (metal) | 筆: brush/pen]

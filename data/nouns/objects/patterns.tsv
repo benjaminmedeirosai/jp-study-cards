@@ -1,9 +1,9 @@
 # Patterns (Nouns / Objects).
 # Auto-grouped during the nouns reorg; refine membership as needed.
-kanji	hiragana	type	english
-縞模様	しまもよう	noun	striped pattern
-水玉模様	みずたまもよう	noun	polka-dot pattern
-チェック柄	チェックがら	noun	checkered pattern
-花柄	はながら	noun	floral pattern
-無地	むじ	noun	plain; solid color (no pattern)
+kanji	hiragana	type	english	breakdown
+縞模様	しまもよう	noun	striped pattern	[縞: stripe | 模: pattern/model | 様: manner/appearance]
+水玉模様	みずたまもよう	noun	polka-dot pattern	[水: water | 玉: ball/dot | 模: pattern/model | 様: manner/appearance]
+チェック柄	チェックがら	noun	checkered pattern	[柄: pattern/handle]
+花柄	はながら	noun	floral pattern	[花: flower | 柄: pattern/handle]
+無地	むじ	noun	plain; solid color (no pattern)	[無: without/none | 地: ground/base]
 縞	しま	noun	stripe

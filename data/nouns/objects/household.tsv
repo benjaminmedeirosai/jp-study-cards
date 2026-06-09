@@ -1,14 +1,14 @@
-kanji	hiragana	type	english
-掃除機	そうじき	noun	vacuum cleaner
-洗濯機	せんたくき	noun	washing machine
-加湿器	かしつき	noun	humidifier
-炊飯器	すいはんき	noun	rice cooker
-湯沸かし	ゆわかし	noun	kettle
-まな板	まないた	noun	cutting board
-照明	しょうめい	noun	lighting
+kanji	hiragana	type	english	breakdown
+掃除機	そうじき	noun	vacuum cleaner	[掃: sweep | 除: remove/exclude | 機: machine]
+洗濯機	せんたくき	noun	washing machine	[洗: wash | 濯: rinse/wash | 機: machine]
+加湿器	かしつき	noun	humidifier	[加: add | 湿: moist/damp | 器: device/vessel]
+炊飯器	すいはんき	noun	rice cooker	[炊: cook (rice) | 飯: cooked rice/meal | 器: device/vessel]
+湯沸かし	ゆわかし	noun	kettle	[湯: hot water | 沸: boil]
+まな板	まないた	noun	cutting board	[板: board/plank]
+照明	しょうめい	noun	lighting	[照: illuminate/shine | 明: bright/light]
 枕	まくら	noun	pillow
-物干し竿	ものほしざお	noun	clothes-drying pole
-洗面台	せんめんだい	noun	washstand
+物干し竿	ものほしざお	noun	clothes-drying pole	[物: thing | 干: dry | 竿: pole/rod]
+洗面台	せんめんだい	noun	washstand	[洗: wash | 面: face | 台: stand/platform]
 砲	ほう	noun	cannon; artillery gun
 銃	じゅう	noun	gun; firearm
 刀	かたな	noun	katana; sword (Japanese-style)
@@ -16,64 +16,64 @@ kanji	hiragana	type	english
 玉	たま	noun	ball; sphere; jewel
 凧	たこ	noun	kite (homophone)
 鎌	かま	noun	sickle; scythe-like blade
-仮面	かめん	noun	mask
+仮面	かめん	noun	mask	[仮: false/provisional | 面: face/mask]
 糸	いと	noun	thread
 紙	かみ	noun	paper
 箱	はこ	noun	box
 布	ぬの	noun	cloth
-米袋	こめぶくろ	noun	rice sack
+米袋	こめぶくろ	noun	rice sack	[米: rice | 袋: bag/sack]
 ひも	ひも	noun	string; cord; lace
 席	せき	noun	seat
 かご	かご	noun	basket
 ぬいぐるみ	ぬいぐるみ	noun	stuffed toy; plush
 かばん	かばん	noun	bag
-模型	もけい	noun	model; miniature; mock-up
+模型	もけい	noun	model; miniature; mock-up	[模: model/imitate | 型: mold/type]
 袋	ふくろ	noun	bag
-腕時計	うでどけい	noun	wristwatch
+腕時計	うでどけい	noun	wristwatch	[腕: arm | 時: time | 計: measure/gauge]
 皿	さら	noun	plate; dish
-茶碗	ちゃわん	noun	rice bowl
+茶碗	ちゃわん	noun	rice bowl	[茶: tea | 碗: bowl]
 箸	はし	noun	chopsticks
-冷蔵庫	れいぞうこ	noun	refrigerator
+冷蔵庫	れいぞうこ	noun	refrigerator	[冷: cold/chill | 蔵: store/storehouse | 庫: warehouse]
 鍋	なべ	noun	pot
-洗剤	せんざい	noun	detergent
-布団	ふとん	noun	futon; bedding
+洗剤	せんざい	noun	detergent	[洗: wash | 剤: agent/preparation]
+布団	ふとん	noun	futon; bedding	[布: cloth | 団: round/mass]
 机	つくえ	noun	desk
-椅子	いす	noun	chair
-本棚	ほんだな	noun	bookshelf
-水道	すいどう	noun	water supply; plumbing
-電気	でんき	noun	electricity; light; electric power
+椅子	いす	noun	chair	[椅: chair | 子: child/small item]
+本棚	ほんだな	noun	bookshelf	[本: book/origin | 棚: shelf/rack]
+水道	すいどう	noun	water supply; plumbing	[水: water | 道: way/conduit]
+電気	でんき	noun	electricity; light; electric power	[電: electricity | 気: energy/spirit]
 鍵	かぎ	noun	key; lock
 傘	かさ	noun	umbrella
-眼鏡	めがね	noun	glasses
-時計	とけい	noun	clock; watch
-荷物	にもつ	noun	luggage; baggage
-切手	きって	noun	stamp
-雨傘	あまがさ	noun	umbrella (for rain)
-日傘	ひがさ	noun	parasol; sunshade
-傘立て	かさたて	noun	umbrella stand
-封筒	ふうとう	noun	envelope
+眼鏡	めがね	noun	glasses	[眼: eye | 鏡: mirror/lens]
+時計	とけい	noun	clock; watch	[時: time | 計: measure/gauge]
+荷物	にもつ	noun	luggage; baggage	[荷: load/cargo | 物: thing/goods]
+切手	きって	noun	stamp	[切: cut | 手: hand]
+雨傘	あまがさ	noun	umbrella (for rain)	[雨: rain | 傘: umbrella]
+日傘	ひがさ	noun	parasol; sunshade	[日: sun/day | 傘: umbrella]
+傘立て	かさたて	noun	umbrella stand	[傘: umbrella | 立: stand/set up]
+封筒	ふうとう	noun	envelope	[封: seal/close | 筒: tube/cylinder]
 戸	と	noun	door; sliding door
-戸棚	とだな	noun	cupboard; cabinet
-雨戸	あまど	noun	storm shutter; rain door
-暖房	だんぼう	noun	heating
-暖炉	だんろ	noun	fireplace; hearth
-冷房	れいぼう	noun	air conditioning (cooling)
-灰皿	はいざら	noun	ashtray
-小皿	こざら	noun	small plate; saucer
-大皿	おおざら	noun	large plate; platter
-割り箸	わりばし	noun	disposable chopsticks
-箸置き	はしおき	noun	chopstick rest
-口紅	くちべに	noun	lipstick
-耳栓	みみせん	noun	earplugs
-肘掛け	ひじかけ	noun	armrest
+戸棚	とだな	noun	cupboard; cabinet	[戸: door | 棚: shelf/cupboard]
+雨戸	あまど	noun	storm shutter; rain door	[雨: rain | 戸: door]
+暖房	だんぼう	noun	heating	[暖: warm | 房: room/chamber]
+暖炉	だんろ	noun	fireplace; hearth	[暖: warm | 炉: hearth/furnace]
+冷房	れいぼう	noun	air conditioning (cooling)	[冷: cold/chill | 房: room/chamber]
+灰皿	はいざら	noun	ashtray	[灰: ash | 皿: plate/dish]
+小皿	こざら	noun	small plate; saucer	[小: small | 皿: plate/dish]
+大皿	おおざら	noun	large plate; platter	[大: big/large | 皿: plate/dish]
+割り箸	わりばし	noun	disposable chopsticks	[割: split/divide | 箸: chopsticks]
+箸置き	はしおき	noun	chopstick rest	[箸: chopsticks | 置: place/rest]
+口紅	くちべに	noun	lipstick	[口: mouth | 紅: crimson/rouge]
+耳栓	みみせん	noun	earplugs	[耳: ear | 栓: plug/stopper]
+肘掛け	ひじかけ	noun	armrest	[肘: elbow | 掛: hang/rest]
 鈴	すず	noun	bell
-風鈴	ふうりん	noun	wind chime
-土鍋	どなべ	noun	earthenware pot; clay pot
-障子	しょうじ	noun	shoji; paper sliding door
-家具	かぐ	noun	furniture
+風鈴	ふうりん	noun	wind chime	[風: wind | 鈴: bell]
+土鍋	どなべ	noun	earthenware pot; clay pot	[土: earth/clay | 鍋: pot]
+障子	しょうじ	noun	shoji; paper sliding door	[障: screen/obstruct | 子: child/small item]
+家具	かぐ	noun	furniture	[家: house/home | 具: tool/implement]
 棚	たな	noun	shelf; rack
-灯り	あかり	noun	light; lamp
-ゴミ箱	ゴミばこ	noun	trash can; wastebasket
-蛇口	じゃぐち	noun	faucet; tap
+灯り	あかり	noun	light; lamp	[灯: lamp/light]
+ゴミ箱	ゴミばこ	noun	trash can; wastebasket	[箱: box]
+蛇口	じゃぐち	noun	faucet; tap	[蛇: snake | 口: mouth/opening]
 錠	じょう	noun	lock; tablet (medicine)
-招き猫	まねきねこ	noun	beckoning cat (figurine)
+招き猫	まねきねこ	noun	beckoning cat (figurine)	[招: invite/beckon | 猫: cat]

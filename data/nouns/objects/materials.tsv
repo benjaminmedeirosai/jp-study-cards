@@ -1,33 +1,33 @@
 # Materials (Nouns / Objects).
 # Auto-grouped during the nouns reorg; refine membership as needed.
-kanji	hiragana	type	english
+kanji	hiragana	type	english	breakdown
 鋼	はがね	noun	steel
-鋼管	こうかん	noun	steel pipe
-鋼材	こうざい	noun	steel materials; structural steel
-鋼鉄	こうてつ	noun	steel
-鋼板	こうばん	noun	steel plate; sheet steel
-製鋼	せいこう	noun	steelmaking; steel production
-厚紙	あつがみ	noun	cardboard; thick paper
+鋼管	こうかん	noun	steel pipe	[鋼: steel | 管: pipe/tube]
+鋼材	こうざい	noun	steel materials; structural steel	[鋼: steel | 材: material/timber]
+鋼鉄	こうてつ	noun	steel	[鋼: steel | 鉄: iron]
+鋼板	こうばん	noun	steel plate; sheet steel	[鋼: steel | 板: board/plate]
+製鋼	せいこう	noun	steelmaking; steel production	[製: manufacture/make | 鋼: steel]
+厚紙	あつがみ	noun	cardboard; thick paper	[厚: thick | 紙: paper]
 束	たば	noun	bundle; bunch; sheaf
 炭	すみ	noun	charcoal
-木炭	もくたん	noun	charcoal (for art/fuel)
-瀬戸物	せともの	noun	earthenware; china
-象牙	ぞうげ	noun	ivory
-毛皮	けがわ	noun	fur; pelt
+木炭	もくたん	noun	charcoal (for art/fuel)	[木: tree/wood | 炭: charcoal]
+瀬戸物	せともの	noun	earthenware; china	[瀬: shoal/rapids | 戸: door | 物: thing]
+象牙	ぞうげ	noun	ivory	[象: elephant | 牙: tusk/fang]
+毛皮	けがわ	noun	fur; pelt	[毛: hair/fur | 皮: skin/hide]
 粉	こな	noun	powder; flour
-粉末	ふんまつ	noun	powder
-毛糸	けいと	noun	wool; knitting yarn
+粉末	ふんまつ	noun	powder	[粉: powder | 末: end/fine powder]
+毛糸	けいと	noun	wool; knitting yarn	[毛: hair/wool | 糸: thread/yarn]
 綿	わた	noun	cotton; padding
 縄	なわ	noun	rope; cord
 脂	あぶら	noun	fat; grease
-樹脂	じゅし	noun	resin
+樹脂	じゅし	noun	resin	[樹: tree | 脂: fat/resin]
 銅	どう	noun	copper
-銅像	どうぞう	noun	bronze statue
+銅像	どうぞう	noun	bronze statue	[銅: copper/bronze | 像: statue/image]
 麻	あさ	noun	hemp; linen
 革	かわ	noun	leather; hide
-材料	ざいりょう	noun	material; ingredient
-木材	もくざい	noun	wood; lumber; timber
-織物	おりもの	noun	textile; fabric
+材料	ざいりょう	noun	material; ingredient	[材: material/timber | 料: materials/fee]
+木材	もくざい	noun	wood; lumber; timber	[木: tree/wood | 材: material/timber]
+織物	おりもの	noun	textile; fabric	[織: weave | 物: thing/goods]
 銀	ぎん	noun	silver
-液体	えきたい	noun	liquid
+液体	えきたい	noun	liquid	[液: fluid/liquid | 体: body/form]
 鉛	なまり	noun	lead (metal)
