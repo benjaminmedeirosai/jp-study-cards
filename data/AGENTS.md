@@ -163,6 +163,67 @@ old `Vたら`/`ブイたら` notation. Onomatopoeia (擬音語/擬態語) consol
 mostly number+counter combos (redundant with the counter decks) and a few set
 phrases that moved to `expression/idioms.tsv`.
 
+## Coverage audit (filling kanji gaps)
+
+Once decks are migrated, the ongoing work is **broadening kanji coverage** so
+each character shows up in enough distinct words to be learnable. The tool:
+
+```bash
+node tools/audit-data.mjs      # reads every deck, writes 3 reports to tmp/
+```
+
+`tmp/` is gitignored — these are throwaway dev-reference artifacts, never
+committed and never consumed by the app:
+
+- **`tmp/kanji-coverage-1.json`** — kanji appearing in exactly **1** distinct word.
+- **`tmp/kanji-coverage-2.json`** — kanji appearing in exactly **2** distinct words.
+- **`tmp/duplicates.json`** — word forms (kanji+reading) that occur in 2+ places.
+  Each entry lists every occurrence (file, deck, type, english). **Dups are
+  tolerated** — they're intentional dual-POS words (健康 noun + na-adjective),
+  surnames that double as nouns (森), or conjugation-example restatements
+  (できる). This report is just visibility, not a to-do list.
+
+### The goal: a 3-distinct-word floor per kanji
+
+Each kanji should appear in **at least 3 distinct words** across the data, so
+`kanji-coverage-1`/`-2` are the worklist. Lift them by adding common vocabulary.
+
+### The wave process (how we actually do it, with the user)
+
+This is iterative and **reviewed one wave at a time** — do not batch silently:
+
+1. **Pick a chunk** (~40–48) off the top of `kanji-coverage-1.json`, skipping
+   known dead-ends (see below).
+2. **Choose words by depth, common-first.** For each kanji, pick genuinely
+   common vocab — **N4 → N3 → N2 priority**. Only reach into rarer/N1 words when
+   a kanji can't otherwise clear 3. A shared compound counts for both its kanji
+   (姉妹 lifts both 姉 and 妹), so add it once.
+3. **Slot into existing themed decks** (reuse categories; match each word's
+   meaning to a deck per the classification principles above). Verbs go to the
+   conjugation-class deck for their dictionary ending; pick the right `type`.
+4. **Apply via a throwaway `tmp/wave.mjs`**: an array of
+   `[deckId, kanji, hiragana, type, english]`, which dedups every form against
+   all existing entries (skip collisions), groups by file, and appends. This
+   keeps readings/placement reviewable in one place and prevents duplicates.
+5. **Rebuild + re-audit**: `node tools/bundle-data.mjs && node tools/audit-data.mjs`.
+   Confirm the singleton count dropped and no *new* duplicates appeared. Adding
+   compounds introduces their own rarer kanji, so the singleton count falls by
+   less than the chunk size — that cascade is expected; later waves catch them.
+6. **Present the wave for review** (kanji → words → deck), flag judgment calls,
+   and **pause**. Commit every couple of approved waves.
+
+### Dead-ends — leave at 1–2, don't pad
+
+Some kanji genuinely have no common 3rd word. **Do not force them to 3** with
+obscure compounds — leave them and move on. The irreducible tail is:
+
+- **Given-name kanji** (亮, 悠, 拓, 樹 when only a name) and **place-only kanji**
+  (埼, 媛, 栃, 幌).
+- **Pronouns / single-word items** that *are* the whole word (俺, 僕, 奴).
+- **Bound kanji** that occur in only one common compound (曖/昧 → 曖昧, 椅 →
+  椅子, 梯 → 梯子, 拶/挨 → 挨拶, 戚 → 親戚, 嫉 → 嫉妬).
+- **Usually-kana words** (梟=フクロウ, 凧, 嬉しい's 嬉).
+
 ## After any change
 
 Run the bundler and sanity-check the affected decks:
