@@ -1,8 +1,9 @@
 import { loadState, saveState, buildDeckTree, listDecks, loadBundle, deckMatchCounts, button } from "./shared.js";
 import { historyDropdown, getFilterHistory, getDeckHistory, formatDuration, formatAgo } from "./filters.js";
 
-// Indentation per tree level, in px.
-const INDENT = 34;
+// Indentation per tree level, in px. Half an icon width — kept modest so the
+// per-row "studied" meta has room.
+const INDENT = 17;
 
 // Sentinel path for the synthetic "All decks" root folder (won't collide with
 // any real category path, which are slash-delimited).
@@ -44,13 +45,23 @@ function countBadge(value) {
   return span;
 }
 
-// The content box of an entry (icon + label + count). Interactive only for
-// folder toggles; file/All-cards rows are display-only (selection is the button).
-function contentRow(svg, name, total, extraClass = "", interactive = false) {
+function metaSpan(value) {
+  const span = document.createElement("span");
+  span.className = "deck-row-meta";
+  span.textContent = value;
+  return span;
+}
+
+// The content box of an entry (icon + label + [meta] + count). Interactive only
+// for folder toggles; file/All-cards rows are display-only (selection is the
+// button). `meta` (studied time · ago) is shown only when non-empty.
+function contentRow(svg, name, total, extraClass = "", interactive = false, meta = "") {
   const el = document.createElement(interactive ? "button" : "div");
   if (interactive) el.type = "button";
   el.className = `deck-row${extraClass ? ` ${extraClass}` : ""}`;
-  el.append(iconSpan(svg), labelSpan(name), countBadge(total));
+  el.append(iconSpan(svg), labelSpan(name));
+  if (meta) el.append(metaSpan(meta));
+  el.append(countBadge(total));
   return el;
 }
 
@@ -117,7 +128,15 @@ export function renderDeckPage() {
   let tree = [];
   let bundle = null;
   let counts = new Map();
+  let historyById = new Map();
   const expanded = new Set();
+
+  // Per-record "studied <dur> · <ago>", shown only for an id that was studied
+  // *directly* (its own history entry). Never rolled up from children.
+  function metaFor(id) {
+    const h = historyById.get(id);
+    return h ? `${formatDuration(h.ms)} · ${formatAgo(h.at)}` : "";
+  }
 
   nameInput.addEventListener("input", () => {
     nameQuery = nameInput.value.trim().toLowerCase();
@@ -179,7 +198,7 @@ export function renderDeckPage() {
 
   function fileRow(deck, depth) {
     const label = countLabel(counts.get(deck.id) || 0, Number(deck.count || 0));
-    return entry(contentRow(ICONS.file, deck.label, label, "deck-row--file"), useButton(deck.id, deck.label), depth);
+    return entry(contentRow(ICONS.file, deck.label, label, "deck-row--file", false, metaFor(deck.id)), useButton(deck.id, deck.label), depth);
   }
 
   // --- Deck-name filtering ------------------------------------------------
@@ -197,7 +216,7 @@ export function renderDeckPage() {
   // chooses the folder itself (all files beneath it) as the study target.
   function folderRow(node, path, depth) {
     const isOpen = nameQuery ? true : expanded.has(path);
-    const toggle = contentRow(isOpen ? ICONS.folderOpen : ICONS.folder, node.name, countLabel(matchedInNode(node), countCards(node)), "deck-folder-toggle", true);
+    const toggle = contentRow(isOpen ? ICONS.folderOpen : ICONS.folder, node.name, countLabel(matchedInNode(node), countCards(node)), "deck-folder-toggle", true, metaFor(`folder:${path}`));
     toggle.setAttribute("aria-expanded", isOpen ? "true" : "false");
     toggle.addEventListener("click", () => {
       if (expanded.has(path)) expanded.delete(path);
@@ -229,7 +248,7 @@ export function renderDeckPage() {
     const isOpen = nameQuery ? true : expanded.has(ALL_PATH);
     const matched = tree.reduce((sum, node) => sum + matchedInNode(node), 0);
     const total = tree.reduce((sum, node) => sum + countCards(node), 0);
-    const toggle = contentRow(isOpen ? ICONS.folderOpen : ICONS.folder, "All decks", countLabel(matched, total), "deck-folder-toggle", true);
+    const toggle = contentRow(isOpen ? ICONS.folderOpen : ICONS.folder, "All decks", countLabel(matched, total), "deck-folder-toggle", true, metaFor("all"));
     toggle.setAttribute("aria-expanded", isOpen ? "true" : "false");
     toggle.addEventListener("click", () => {
       if (expanded.has(ALL_PATH)) expanded.delete(ALL_PATH);
@@ -242,6 +261,7 @@ export function renderDeckPage() {
 
   function renderList() {
     counts = deckMatchCounts(bundle, state.query);
+    historyById = new Map(getDeckHistory().map((h) => [h.id, h]));
     const frag = document.createDocumentFragment();
     if (renderAllRow(frag)) {
       for (const node of tree) {

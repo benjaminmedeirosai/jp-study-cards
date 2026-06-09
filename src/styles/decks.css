@@ -167,6 +167,15 @@
   white-space: nowrap;
 }
 
+.deck-row-meta {
+  flex: 0 0 auto;
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 500;
+  white-space: nowrap;
+  opacity: 0.85;
+}
+
 .deck-row-count {
   flex: 0 0 auto;
   color: var(--muted);
