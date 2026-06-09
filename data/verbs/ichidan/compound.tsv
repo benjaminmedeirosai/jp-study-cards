@@ -1,6 +1,7 @@
 # label: Ichidan Verbs (Compound)
 # Compound ichidan (一段) verbs — verb-stem+verb (引き受ける, 取り替える) and
-# noun/prefix+verb (目覚める, 名付ける). Single-stem verbs live in simple.tsv.
+# noun/prefix+verb (目覚める, 名付ける). Single-stem verbs live in the
+# transitive/ and intransitive/ subfolders.
 kanji	hiragana	type	english	breakdown
 名付ける	なづける	ichidan-verb	to name; to give a name	[名: name | 付: attach/give]
 片付ける	かたづける	ichidan-verb	to tidy up; to put in order; to clean up	[片: one side/tidy | 付: attach/put]

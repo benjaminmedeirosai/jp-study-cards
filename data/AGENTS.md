@@ -229,10 +229,13 @@ but keep `type: counter`. The counter decks are one file per counter (`hon.tsv`,
 ### Verbs — grouped by conjugation class, not meaning
 
 Verbs keep their grammatical structure rather than being re-themed: godan split
-one file per dictionary ending (`godan/u.tsv`, `ku.tsv`…`ru.tsv`); ichidan split
-by structure into `ichidan/simple.tsv` (single-stem 食べる/見る) and
-`ichidan/compound.tsv` (verb+verb / noun+verb 引き受ける/目覚める) since they can't
-split by ending; する/来る/する-compounds in `irregular/irregular.tsv`.
+one file per dictionary ending (`godan/u.tsv`, `ku.tsv`…`ru.tsv`); ichidan can't
+split by ending (all end in る), so it splits by structure: `ichidan/compound.tsv`
+(verb+verb / noun+verb 引き受ける/目覚める), and single-stem verbs further by
+transitivity then theme — `ichidan/transitive/{handling,mind}.tsv` and
+`ichidan/intransitive/{motion,change,experience}.tsv`. The two true irregulars
+are in `irregular/irregular.tsv` (する/来る); 名詞+する compounds inherit する's
+conjugation and live in `irregular/suru-verbs.tsv`.
 **Vocab decks hold dictionary forms only.** The source `common-N`/`*-ending`
 JSON was riddled with conjugation drills (行かない, 行った, 行こう, 行ける, 行かせる…);
 those were stripped. Surface form can't tell a volitional 行こう from the verb 思う,
