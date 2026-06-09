@@ -229,8 +229,10 @@ but keep `type: counter`. The counter decks are one file per counter (`hon.tsv`,
 ### Verbs — grouped by conjugation class, not meaning
 
 Verbs keep their grammatical structure rather than being re-themed: godan split
-one file per dictionary ending (`godan/u.tsv`, `ku.tsv`…`ru.tsv`), all ichidan in
-`ichidan/ichidan.tsv`, する/来る/する-compounds in `irregular/irregular.tsv`.
+one file per dictionary ending (`godan/u.tsv`, `ku.tsv`…`ru.tsv`); ichidan split
+by structure into `ichidan/simple.tsv` (single-stem 食べる/見る) and
+`ichidan/compound.tsv` (verb+verb / noun+verb 引き受ける/目覚める) since they can't
+split by ending; する/来る/する-compounds in `irregular/irregular.tsv`.
 **Vocab decks hold dictionary forms only.** The source `common-N`/`*-ending`
 JSON was riddled with conjugation drills (行かない, 行った, 行こう, 行ける, 行かせる…);
 those were stripped. Surface form can't tell a volitional 行こう from the verb 思う,
@@ -238,13 +240,23 @@ so the reliable filter is the **english gloss**: dictionary entries read `to …
 conjugations read `let's…/can…/be…/make-let…` and were dropped (keep the humble
 verbs 差し上げる/申し上げる and できる, which are real lexical items).
 
-### Conjugation & pattern decks live in `grammar-pattern/`
+### Conjugation & pattern decks live in `grammar/`
 
-Inflection paradigms are taught with **one representative word**, not a per-word
-drill: `verb-conjugation` (行く/食べる/する/来る), `i-adjective-conjugation` (高い…),
-`na-adjective-conjugation` (便利). Productive bound grammar (〜たい, 〜てしまう,
-〜べき, だ, ている…) lives in `sentence-patterns` using a `〜` placeholder, not the
-old `Vたら`/`ブイたら` notation. Onomatopoeia (擬音語/擬態語) consolidated into
+Inflection paradigms are taught as the **transformation rule**, not a per-word
+drill. Verb conjugation is sliced **by form** under `grammar/conjugation/verb/`
+— one deck per form (`past.tsv`, `te-form.tsv`, `negative.tsv`,
+`potential-passive.tsv`, `causative.tsv`…), each showing the same form across
+verb classes (godan covering every dictionary ending う/く/ぐ/す/つ/ぬ/ぶ/む/る,
+ichidan, and the irregulars する/来る). Add a verb root to broaden a form deck;
+generate the conjugations by rule (euphonic 音便 tables) rather than hand-typing.
+Adjective paradigms stay as single decks (`i-adjective-conjugation` 高い…,
+`na-adjective-conjugation` 便利).
+
+Productive bound grammar uses a `〜` placeholder (not the old `Vたら`/`ブイたら`
+notation): the **te-form family** (〜ている, 〜ておく, 〜てみる, 〜てくれる, 〜てもいい…)
+lives in `grammar/te-form.tsv`; all other bound patterns (〜たい, 〜べき, 〜のに,
+〜はず, modality 〜らしい/〜ようだ…) and core function words (だ, 〜という) in
+`grammar/sentence-patterns.tsv`. Onomatopoeia (擬音語/擬態語) consolidated into
 `adverb/onomatopoeia.tsv` (katakana, same form in both columns). The
 `descriptive-phrase` and `phrase-sentence` folders were dissolved — they were
 mostly number+counter combos (redundant with the counter decks) and a few set
