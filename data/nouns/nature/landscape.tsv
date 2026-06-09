@@ -1,30 +1,30 @@
-kanji	hiragana	type	english
-渓谷	けいこく	noun	valley; ravine
-峡谷	きょうこく	noun	gorge; canyon
+kanji	hiragana	type	english	breakdown
+渓谷	けいこく	noun	valley; ravine	[渓: mountain stream | 谷: valley]
+峡谷	きょうこく	noun	gorge; canyon	[峡: gorge/strait | 谷: valley]
 滝	たき	noun	waterfall
-湿地	しっち	noun	wetland
-砂漠	さばく	noun	desert
-半島	はんとう	noun	peninsula
+湿地	しっち	noun	wetland	[湿: damp/moist | 地: ground/land]
+砂漠	さばく	noun	desert	[砂: sand | 漠: desert/vast]
+半島	はんとう	noun	peninsula	[半: half | 島: island]
 岬	みさき	noun	cape; headland
-入江	いりえ	noun	cove; inlet
-丘陵	きゅうりょう	noun	hills
-高原	こうげん	noun	plateau; highland
-火山	かざん	noun	volcano
+入江	いりえ	noun	cove; inlet	[入: enter | 江: inlet/bay]
+丘陵	きゅうりょう	noun	hills	[丘: hill | 陵: hill/mound]
+高原	こうげん	noun	plateau; highland	[高: high | 原: plain/field]
+火山	かざん	noun	volcano	[火: fire | 山: mountain]
 島	しま	noun	island
 丘	おか	noun	hill
-砂丘	さきゅう	noun	sand dune
-南極	なんきょく	noun	South Pole; Antarctic
+砂丘	さきゅう	noun	sand dune	[砂: sand | 丘: hill]
+南極	なんきょく	noun	South Pole; Antarctic	[南: south | 極: pole/extreme]
 坂	さか	noun	slope; hill
-坂道	さかみち	noun	sloping road; hill road
-海峡	かいきょう	noun	strait; channel
-風景	ふうけい	noun	scenery; landscape
-氷河	ひょうが	noun	glacier
+坂道	さかみち	noun	sloping road; hill road	[坂: slope/hill | 道: road/way]
+海峡	かいきょう	noun	strait; channel	[海: sea | 峡: strait/gorge]
+風景	ふうけい	noun	scenery; landscape	[風: scene/wind | 景: scene/view]
+氷河	ひょうが	noun	glacier	[氷: ice | 河: river]
 沖	おき	noun	open sea; offshore
-沖合	おきあい	noun	offshore; the offing
-浅瀬	あさせ	noun	shallows; shoal
-渓流	けいりゅう	noun	mountain stream
-湖畔	こはん	noun	lakeside; lakeshore
-滝つぼ	たきつぼ	noun	plunge basin under a waterfall
-陸地	りくち	noun	land; dry land
-大陸	たいりく	noun	continent
-地盤	じばん	noun	ground; foundation; base
+沖合	おきあい	noun	offshore; the offing	[沖: offshore/open sea | 合: join/meet]
+浅瀬	あさせ	noun	shallows; shoal	[浅: shallow | 瀬: shoal/rapids]
+渓流	けいりゅう	noun	mountain stream	[渓: mountain stream | 流: flow/current]
+湖畔	こはん	noun	lakeside; lakeshore	[湖: lake | 畔: shore/edge]
+滝つぼ	たきつぼ	noun	plunge basin under a waterfall	[滝: waterfall]
+陸地	りくち	noun	land; dry land	[陸: land | 地: ground/land]
+大陸	たいりく	noun	continent	[大: big/great | 陸: land/continent]
+地盤	じばん	noun	ground; foundation; base	[地: ground/earth | 盤: board/base]

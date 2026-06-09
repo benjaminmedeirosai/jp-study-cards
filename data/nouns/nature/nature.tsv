@@ -1,6 +1,6 @@
 # Nature (Nouns / Nature).
 # Auto-grouped during the nouns reorg; refine membership as needed.
-kanji	hiragana	type	english
+kanji	hiragana	type	english	breakdown
 天	てん	noun	heaven; sky (conceptual)
 土	つち	noun	soil; earth
 種	たね	noun	seed; kind; variety
@@ -13,10 +13,10 @@ kanji	hiragana	type	english
 岩	いわ	noun	rock (type); rock
 石	いし	noun	stone; rock
 蕾	つぼみ	noun	bud (flower bud)
-汚泥	おでい	noun	mud; mire
+汚泥	おでい	noun	mud; mire	[汚: dirty/filthy | 泥: mud]
 河	かわ	noun	river
-花粉	かふん	noun	pollen
-景色	けしき	noun	scenery; view
+花粉	かふん	noun	pollen	[花: flower | 粉: powder/pollen]
+景色	けしき	noun	scenery; view	[景: scene/view | 色: color/appearance]
 礫	つぶて	noun	stone (thrown); gravel
 雨	あめ	noun	rain
 雪	ゆき	noun	snow
@@ -25,7 +25,7 @@ kanji	hiragana	type	english
 雲	くも	noun	cloud
 星	ほし	noun	star
 月	つき	noun	moon; month
-太陽	たいよう	noun	sun
+太陽	たいよう	noun	sun	[太: great/thick | 陽: sun/positive]
 山	やま	noun	mountain
 川	かわ	noun	river
 海	うみ	noun	sea; ocean
@@ -37,47 +37,47 @@ kanji	hiragana	type	english
 花	はな	noun	flower; blossom
 草	くさ	noun	grass; weeds; vegetation
 葉	は	noun	leaf
-自然	しぜん	noun	nature
-空気	くうき	noun	air; atmosphere
+自然	しぜん	noun	nature	[自: self | 然: -like/state]
+空気	くうき	noun	air; atmosphere	[空: sky/empty | 気: air/spirit]
 水	みず	noun	water
-水仙	すいせん	noun	daffodil; narcissus
-冬眠	とうみん	noun	hibernation
-収穫	しゅうかく	noun	harvest; crop; yield
-干潮	かんちょう	noun	low tide; ebb tide
+水仙	すいせん	noun	daffodil; narcissus	[水: water | 仙: hermit/immortal]
+冬眠	とうみん	noun	hibernation	[冬: winter | 眠: sleep]
+収穫	しゅうかく	noun	harvest; crop; yield	[収: collect/gather | 穫: harvest/reap]
+干潮	かんちょう	noun	low tide; ebb tide	[干: ebb/dry | 潮: tide]
 幹	みき	noun	tree trunk
-星座	せいざ	noun	constellation
-微生物	びせいぶつ	noun	microorganism; microbe
+星座	せいざ	noun	constellation	[星: star | 座: seat/constellation]
+微生物	びせいぶつ	noun	microorganism; microbe	[微: tiny/slight | 生: life | 物: thing/object]
 桜	さくら	noun	cherry blossom; cherry tree
-夜桜	よざくら	noun	cherry blossoms viewed at night
-樹木	じゅもく	noun	trees; woody plants
-氷山	ひょうざん	noun	iceberg
+夜桜	よざくら	noun	cherry blossoms viewed at night	[夜: night | 桜: cherry blossom]
+樹木	じゅもく	noun	trees; woody plants	[樹: tree | 木: tree/wood]
+氷山	ひょうざん	noun	iceberg	[氷: ice | 山: mountain]
 泥	どろ	noun	mud
-津波	つなみ	noun	tsunami
+津波	つなみ	noun	tsunami	[津: harbor/port | 波: wave]
 湯	ゆ	noun	hot water
-熱湯	ねっとう	noun	boiling water
-資源	しげん	noun	resources; natural resources
+熱湯	ねっとう	noun	boiling water	[熱: heat/hot | 湯: hot water]
+資源	しげん	noun	resources; natural resources	[資: resources/capital | 源: source/origin]
 源	みなもと	noun	source; origin
-干潟	ひがた	noun	tidal flat; mudflat
+干潟	ひがた	noun	tidal flat; mudflat	[干: ebb/dry | 潟: lagoon/tidal flat]
 潮	しお	noun	tide; ocean current
-満潮	まんちょう	noun	high tide
-火炎	かえん	noun	flames; blaze
-石炭	せきたん	noun	coal
+満潮	まんちょう	noun	high tide	[満: full | 潮: tide]
+火炎	かえん	noun	flames; blaze	[火: fire | 炎: flame/blaze]
+石炭	せきたん	noun	coal	[石: stone | 炭: coal/charcoal]
 波	なみ	noun	wave
-稲穂	いなほ	noun	ear of rice
+稲穂	いなほ	noun	ear of rice	[稲: rice plant | 穂: ear/grain head]
 竹	たけ	noun	bamboo
-竹林	ちくりん	noun	bamboo grove
-紅葉	こうよう	noun	autumn leaves; turning red
+竹林	ちくりん	noun	bamboo grove	[竹: bamboo | 林: woods/grove]
+紅葉	こうよう	noun	autumn leaves; turning red	[紅: crimson/red | 葉: leaf]
 稲	いね	noun	rice plant
 茨	いばら	noun	thorn; bramble
 菊	きく	noun	chrysanthemum
-蒸気	じょうき	noun	steam; vapor
+蒸気	じょうき	noun	steam; vapor	[蒸: steam | 気: air/vapor]
 虹	にじ	noun	rainbow
-公害	こうがい	noun	pollution; environmental damage
-農薬	のうやく	noun	agricultural chemical; pesticide
-惑星	わくせい	noun	planet
-星空	ほしぞら	noun	starry sky
+公害	こうがい	noun	pollution; environmental damage	[公: public | 害: harm/damage]
+農薬	のうやく	noun	agricultural chemical; pesticide	[農: agriculture/farming | 薬: medicine/chemical]
+惑星	わくせい	noun	planet	[惑: wander/confuse | 星: star]
+星空	ほしぞら	noun	starry sky	[星: star | 空: sky]
 杉	すぎ	noun	cedar; Japanese cedar
-石油	せきゆ	noun	petroleum; oil
-酸素	さんそ	noun	oxygen
-銀河	ぎんが	noun	galaxy; the Milky Way
-結晶	けっしょう	noun	crystal; crystallization
+石油	せきゆ	noun	petroleum; oil	[石: stone/mineral | 油: oil]
+酸素	さんそ	noun	oxygen	[酸: oxygen/acid | 素: element]
+銀河	ぎんが	noun	galaxy; the Milky Way	[銀: silver | 河: river]
+結晶	けっしょう	noun	crystal; crystallization	[結: form/tie | 晶: crystal/sparkle]
