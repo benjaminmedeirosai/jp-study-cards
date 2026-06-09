@@ -1,12 +1,12 @@
 # Colors — i-adjective color words (those ending in 〜い).
 # Belongs here: color adjectives (赤い, 青い, 黄色い…). Color nouns (緑, 紫)
 # and the 真っ〜 na-adjective intensifiers live in their own decks.
-kanji	hiragana	type	english
-赤い	あかい	i-adjective	red
-青い	あおい	i-adjective	blue
-白い	しろい	i-adjective	white
-黒い	くろい	i-adjective	black
-黄色い	きいろい	i-adjective	yellow
-茶色い	ちゃいろい	i-adjective	brown
-青白い	あおじろい	i-adjective	pale; pallid
-蒼い	あおい	i-adjective	deep blue; ashen
+kanji	hiragana	type	english	breakdown
+赤い	あかい	i-adjective	red	[赤: red]
+青い	あおい	i-adjective	blue	[青: blue]
+白い	しろい	i-adjective	white	[白: white]
+黒い	くろい	i-adjective	black	[黒: black]
+黄色い	きいろい	i-adjective	yellow	[黄: yellow | 色: color]
+茶色い	ちゃいろい	i-adjective	brown	[茶: tea/brown | 色: color]
+青白い	あおじろい	i-adjective	pale; pallid	[青: blue/pale | 白: white]
+蒼い	あおい	i-adjective	deep blue; ashen	[蒼: deep blue/pale]

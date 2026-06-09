@@ -3,23 +3,23 @@
 # Belongs here: any X的 word (積極的, 効果的, 一般的). They attach 的 to a noun
 # stem and inflect as na-adjectives (的な / 的に). Grouped by this shared form
 # rather than by meaning; a plain na-adjective goes in a themed deck instead.
-kanji	hiragana	type	english
-積極的	せっきょくてき	na-adjective	proactive; positive; assertive
-消極的	しょうきょくてき	na-adjective	passive; reluctant
-理想的	りそうてき	na-adjective	ideal
-現実的	げんじつてき	na-adjective	realistic; practical
-個人的	こじんてき	na-adjective	personal; individual
-国際的	こくさいてき	na-adjective	international
-具体的	ぐたいてき	na-adjective	concrete; specific
-抽象的	ちゅうしょうてき	na-adjective	abstract
-魅力的	みりょくてき	na-adjective	attractive; charming
-効果的	こうかてき	na-adjective	effective
-劇的	げきてき	na-adjective	dramatic
-印象的	いんしょうてき	na-adjective	impressive; striking
-基本的	きほんてき	na-adjective	basic; fundamental
-一般的	いっぱんてき	na-adjective	general; common
-本格的	ほんかくてき	na-adjective	authentic; full-scale; genuine
-人工的	じんこうてき	na-adjective	artificial; man-made
-理性的	りせいてき	na-adjective	rational; level-headed
-感情的	かんじょうてき	na-adjective	emotional
-魅惑的	みわくてき	na-adjective	fascinating; captivating
+kanji	hiragana	type	english	breakdown
+積極的	せっきょくてき	na-adjective	proactive; positive; assertive	[積: accumulate/pile | 極: extreme/utmost | 的: -ive/-al]
+消極的	しょうきょくてき	na-adjective	passive; reluctant	[消: extinguish/recede | 極: extreme/utmost | 的: -ive/-al]
+理想的	りそうてき	na-adjective	ideal	[理: reason/principle | 想: idea/conception | 的: -al/-ic]
+現実的	げんじつてき	na-adjective	realistic; practical	[現: present/actual | 実: real/truth | 的: -al/-ic]
+個人的	こじんてき	na-adjective	personal; individual	[個: individual/single | 人: person | 的: -al/personal]
+国際的	こくさいてき	na-adjective	international	[国: country/nation | 際: boundary/between | 的: -al/-ic]
+具体的	ぐたいてき	na-adjective	concrete; specific	[具: concrete/equip | 体: body/form | 的: -ic/-al]
+抽象的	ちゅうしょうてき	na-adjective	abstract	[抽: extract/draw out | 象: figure/image | 的: -ic/-al]
+魅力的	みりょくてき	na-adjective	attractive; charming	[魅: charm/fascinate | 力: power/force | 的: -ive/-al]
+効果的	こうかてき	na-adjective	effective	[効: effect/efficacy | 果: result/outcome | 的: -ive/-al]
+劇的	げきてき	na-adjective	dramatic	[劇: drama/intense | 的: -ic/-al]
+印象的	いんしょうてき	na-adjective	impressive; striking	[印: mark/impression | 象: image/figure | 的: -ive/-al]
+基本的	きほんてき	na-adjective	basic; fundamental	[基: base/foundation | 本: origin/root | 的: -ic/-al]
+一般的	いっぱんてき	na-adjective	general; common	[一: one/general | 般: sort/general | 的: -ic/-al]
+本格的	ほんかくてき	na-adjective	authentic; full-scale; genuine	[本: true/genuine | 格: standard/status | 的: -al/-ic]
+人工的	じんこうてき	na-adjective	artificial; man-made	[人: person/man | 工: craft/labor | 的: -al/-made]
+理性的	りせいてき	na-adjective	rational; level-headed	[理: reason/logic | 性: nature/quality | 的: -al/-ic]
+感情的	かんじょうてき	na-adjective	emotional	[感: feeling/sense | 情: emotion/feeling | 的: -al/-ic]
+魅惑的	みわくてき	na-adjective	fascinating; captivating	[魅: charm/fascinate | 惑: bewitch/allure | 的: -ive/-al]

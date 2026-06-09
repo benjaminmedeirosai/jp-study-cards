@@ -3,21 +3,21 @@
 # Belongs here: emotions and mental/physical states (元気, 心配, 退屈, 幸せ),
 # plus likes/dislikes (好き, 嫌い). Not evaluations of a thing's worth — those
 # go in value.tsv.
-kanji	hiragana	type	english
-平気	へいき	na-adjective	calm; composed; alright
-元気	げんき	na-adjective	healthy; energetic; fine; well
-大丈夫	だいじょうぶ	na-adjective	okay; all right; safe
-安心	あんしん	na-adjective	peace of mind
-好き	すき	na-adjective	fond of; to like
-大好き	だいすき	na-adjective	love; like a lot
-嫌い	きらい	na-adjective	disliked; hated
-暇	ひま	na-adjective	free (time); idle; bored
-残念	ざんねん	na-adjective	regrettable; disappointing; too bad
-心配	しんぱい	na-adjective	worried; anxious
-退屈	たいくつ	na-adjective	boring; tedious; dull
-幸せ	しあわせ	na-adjective	happy; fortunate
-不安	ふあん	na-adjective	anxious; uneasy; insecure
-夢中	むちゅう	na-adjective	absorbed; engrossed; crazy about
-不幸	ふこう	na-adjective	unhappy; unfortunate
-不快	ふかい	na-adjective	unpleasant; uncomfortable; displeasing
-憂鬱	ゆううつ	na-adjective	melancholy; depressed; gloomy
+kanji	hiragana	type	english	breakdown
+平気	へいき	na-adjective	calm; composed; alright	[平: calm/level | 気: spirit/mood]
+元気	げんき	na-adjective	healthy; energetic; fine; well	[元: origin/source | 気: spirit/energy]
+大丈夫	だいじょうぶ	na-adjective	okay; all right; safe	[大: big/great | 丈: stature/strength | 夫: man]
+安心	あんしん	na-adjective	peace of mind	[安: at ease/calm | 心: heart/mind]
+好き	すき	na-adjective	fond of; to like	[好: like/fond]
+大好き	だいすき	na-adjective	love; like a lot	[大: big/greatly | 好: like/fond]
+嫌い	きらい	na-adjective	disliked; hated	[嫌: dislike/hate]
+暇	ひま	na-adjective	free (time); idle; bored	[暇: free time/leisure]
+残念	ざんねん	na-adjective	regrettable; disappointing; too bad	[残: remaining/regret | 念: thought/feeling]
+心配	しんぱい	na-adjective	worried; anxious	[心: heart/mind | 配: distribute/concern]
+退屈	たいくつ	na-adjective	boring; tedious; dull	[退: recede/withdraw | 屈: bend/be daunted]
+幸せ	しあわせ	na-adjective	happy; fortunate	[幸: happiness/fortune]
+不安	ふあん	na-adjective	anxious; uneasy; insecure	[不: not/un- | 安: ease/peace]
+夢中	むちゅう	na-adjective	absorbed; engrossed; crazy about	[夢: dream | 中: middle/within]
+不幸	ふこう	na-adjective	unhappy; unfortunate	[不: not/un- | 幸: happiness/fortune]
+不快	ふかい	na-adjective	unpleasant; uncomfortable; displeasing	[不: not/un- | 快: pleasant/comfort]
+憂鬱	ゆううつ	na-adjective	melancholy; depressed; gloomy	[憂: grief/melancholy | 鬱: gloom/depression]

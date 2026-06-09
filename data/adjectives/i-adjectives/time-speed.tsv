@@ -2,12 +2,12 @@
 # Time, age & speed — newness, age, and how fast/early something is.
 # Belongs here: new/old (新しい, 古い), young (若い), early/late (早い, 遅い),
 # and speed (速い, 素早い). Note 早い (early) vs 速い (fast) — same reading.
-kanji	hiragana	type	english
-新しい	あたらしい	i-adjective	new
-古い	ふるい	i-adjective	old (not new)
-若い	わかい	i-adjective	young
-早い	はやい	i-adjective	early
-速い	はやい	i-adjective	fast; quick (speed)
-遅い	おそい	i-adjective	late; slow
-素早い	すばやい	i-adjective	quick; nimble
-幼い	おさない	i-adjective	young; childish
+kanji	hiragana	type	english	breakdown
+新しい	あたらしい	i-adjective	new	[新: new]
+古い	ふるい	i-adjective	old (not new)	[古: old]
+若い	わかい	i-adjective	young	[若: young]
+早い	はやい	i-adjective	early	[早: early]
+速い	はやい	i-adjective	fast; quick (speed)	[速: fast/quick]
+遅い	おそい	i-adjective	late; slow	[遅: late/slow]
+素早い	すばやい	i-adjective	quick; nimble	[素: bare/plain | 早: early/quick]
+幼い	おさない	i-adjective	young; childish	[幼: young/infant]

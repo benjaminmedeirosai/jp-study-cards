@@ -1,13 +1,13 @@
 # Temperature — hot and cold.
 # Belongs here: weather and touch temperature (暑い, 寒い, 涼しい, 冷たい,
 # 熱い). Note 温かい (warm food/touch) vs 暖かい (warm weather) — same reading.
-kanji	hiragana	type	english
-暑い	あつい	i-adjective	hot (weather)
-寒い	さむい	i-adjective	cold (weather)
-涼しい	すずしい	i-adjective	cool (pleasant)
-温かい	あたたかい	i-adjective	warm (to the touch; food)
-暖かい	あたたかい	i-adjective	warm (weather)
-冷たい	つめたい	i-adjective	cold (to the touch)
-熱い	あつい	i-adjective	hot (to the touch)
+kanji	hiragana	type	english	breakdown
+暑い	あつい	i-adjective	hot (weather)	[暑: hot (weather)]
+寒い	さむい	i-adjective	cold (weather)	[寒: cold (weather)]
+涼しい	すずしい	i-adjective	cool (pleasant)	[涼: cool/refreshing]
+温かい	あたたかい	i-adjective	warm (to the touch; food)	[温: warm]
+暖かい	あたたかい	i-adjective	warm (weather)	[暖: warm (weather)]
+冷たい	つめたい	i-adjective	cold (to the touch)	[冷: cold/chilly]
+熱い	あつい	i-adjective	hot (to the touch)	[熱: hot/heat]
 ぬるい	ぬるい	i-adjective	lukewarm; tepid
-蒸し暑い	むしあつい	i-adjective	humid; muggy
+蒸し暑い	むしあつい	i-adjective	humid; muggy	[蒸: steam/sultry | 暑: hot (weather)]

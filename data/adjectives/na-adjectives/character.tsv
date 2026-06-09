@@ -3,51 +3,51 @@
 # Belongs here: how a person is or behaves toward others (真面目, 親切, 素直,
 # 失礼), including style of presentation (派手, 地味) and being a bother
 # (邪魔, 迷惑). Skill at a task goes in ability.tsv.
-kanji	hiragana	type	english
-真面目	まじめ	na-adjective	serious; earnest; diligent
-親切	しんせつ	na-adjective	kind; helpful
-慎重	しんちょう	na-adjective	careful; cautious
-丁寧	ていねい	na-adjective	polite; careful; courteous
-適当	てきとう	na-adjective	suitable; appropriate; half-hearted
-素直	すなお	na-adjective	obedient; honest; meek
-真剣	しんけん	na-adjective	serious; earnest
-邪魔	じゃま	na-adjective	hindrance; nuisance; in the way
-派手	はで	na-adjective	flashy; showy; gaudy
-地味	じみ	na-adjective	plain; sober; subdued
-迷惑	めいわく	na-adjective	trouble; nuisance; annoying
-失礼	しつれい	na-adjective	rude; impolite
-上品	じょうひん	na-adjective	elegant; refined
-下品	げひん	na-adjective	vulgar; coarse
-熱心	ねっしん	na-adjective	enthusiastic; eager; dedicated
-正直	しょうじき	na-adjective	honest; frank
-勝手	かって	na-adjective	selfish; arbitrary; as one pleases
-勇敢	ゆうかん	na-adjective	brave; courageous
-勤勉	きんべん	na-adjective	diligent; hardworking
-厳重	げんじゅう	na-adjective	strict; tight; rigorous
-厳格	げんかく	na-adjective	strict; stern; rigid
-親密	しんみつ	na-adjective	intimate; close
-利己的	りこてき	na-adjective	selfish; egoistic
-果敢	かかん	na-adjective	bold; resolute; determined
-浅はか	あさはか	na-adjective	shallow; thoughtless; foolish
-漠然	ばくぜん	na-adjective	vague; obscure
-散漫	さんまん	na-adjective	distracted; rambling; diffuse
-乱暴	らんぼう	na-adjective	violent; rough; reckless
-率直	そっちょく	na-adjective	frank; candid; straightforward
-強硬	きょうこう	na-adjective	firm; hard-line; unyielding
-純粋	じゅんすい	na-adjective	pure; genuine
-純情	じゅんじょう	na-adjective	pure-hearted; naive
-不純	ふじゅん	na-adjective	impure
-綿密	めんみつ	na-adjective	meticulous; detailed
-粋	いき	na-adjective	chic; stylish; refined
-謙虚	けんきょ	na-adjective	humble; modest
-誠実	せいじつ	na-adjective	sincere; honest; faithful
-軟弱	なんじゃく	na-adjective	weak; spineless; flabby
-邪悪	じゃあく	na-adjective	evil; wicked
-鈍感	どんかん	na-adjective	insensitive; thick-skinned
-冗長	じょうちょう	na-adjective	redundant; verbose; tediously long
-極端	きょくたん	na-adjective	extreme
-頑固	がんこ	na-adjective	stubborn; obstinate
-活発	かっぱつ	na-adjective	lively; active; energetic
-気軽	きがる	na-adjective	carefree; easygoing; casual
-陽気	ようき	na-adjective	cheerful; merry
-善良	ぜんりょう	na-adjective	good; virtuous; honest
+kanji	hiragana	type	english	breakdown
+真面目	まじめ	na-adjective	serious; earnest; diligent	[真: true/genuine | 面: face/surface | 目: eye]
+親切	しんせつ	na-adjective	kind; helpful	[親: intimate/kind | 切: earnest/keen]
+慎重	しんちょう	na-adjective	careful; cautious	[慎: prudent/discreet | 重: heavy/grave]
+丁寧	ていねい	na-adjective	polite; careful; courteous	[丁: careful/exact | 寧: calm/polite]
+適当	てきとう	na-adjective	suitable; appropriate; half-hearted	[適: suitable/fit | 当: apt/appropriate]
+素直	すなお	na-adjective	obedient; honest; meek	[素: plain/natural | 直: straight/honest]
+真剣	しんけん	na-adjective	serious; earnest	[真: true/genuine | 剣: sword]
+邪魔	じゃま	na-adjective	hindrance; nuisance; in the way	[邪: evil/harmful | 魔: demon/obstacle]
+派手	はで	na-adjective	flashy; showy; gaudy	[派: faction/style | 手: hand]
+地味	じみ	na-adjective	plain; sober; subdued	[地: ground/plain | 味: flavor/taste]
+迷惑	めいわく	na-adjective	trouble; nuisance; annoying	[迷: lost/perplexed | 惑: confusion/bewilder]
+失礼	しつれい	na-adjective	rude; impolite	[失: lose/lack | 礼: courtesy/manners]
+上品	じょうひん	na-adjective	elegant; refined	[上: upper/high | 品: refinement/grace]
+下品	げひん	na-adjective	vulgar; coarse	[下: lower/base | 品: refinement/grace]
+熱心	ねっしん	na-adjective	enthusiastic; eager; dedicated	[熱: heat/passion | 心: heart/mind]
+正直	しょうじき	na-adjective	honest; frank	[正: correct/upright | 直: straight/honest]
+勝手	かって	na-adjective	selfish; arbitrary; as one pleases	[勝: win/prevail | 手: hand]
+勇敢	ゆうかん	na-adjective	brave; courageous	[勇: courage/brave | 敢: daring/bold]
+勤勉	きんべん	na-adjective	diligent; hardworking	[勤: diligence/work | 勉: effort/strive]
+厳重	げんじゅう	na-adjective	strict; tight; rigorous	[厳: strict/stern | 重: heavy/grave]
+厳格	げんかく	na-adjective	strict; stern; rigid	[厳: strict/stern | 格: standard/rule]
+親密	しんみつ	na-adjective	intimate; close	[親: intimate/close | 密: close/dense]
+利己的	りこてき	na-adjective	selfish; egoistic	[利: benefit/profit | 己: self/oneself | 的: -ic/-ive]
+果敢	かかん	na-adjective	bold; resolute; determined	[果: carry out/resolute | 敢: daring/bold]
+浅はか	あさはか	na-adjective	shallow; thoughtless; foolish	[浅: shallow/superficial]
+漠然	ばくぜん	na-adjective	vague; obscure	[漠: vague/vast | 然: -like/state]
+散漫	さんまん	na-adjective	distracted; rambling; diffuse	[散: scatter/disperse | 漫: rambling/aimless]
+乱暴	らんぼう	na-adjective	violent; rough; reckless	[乱: disorder/chaos | 暴: violent/rough]
+率直	そっちょく	na-adjective	frank; candid; straightforward	[率: frank/lead | 直: straight/honest]
+強硬	きょうこう	na-adjective	firm; hard-line; unyielding	[強: strong/firm | 硬: hard/rigid]
+純粋	じゅんすい	na-adjective	pure; genuine	[純: pure/genuine | 粋: pure/unmixed]
+純情	じゅんじょう	na-adjective	pure-hearted; naive	[純: pure/innocent | 情: emotion/feeling]
+不純	ふじゅん	na-adjective	impure	[不: not/un- | 純: pure]
+綿密	めんみつ	na-adjective	meticulous; detailed	[綿: detailed/thorough | 密: close/dense]
+粋	いき	na-adjective	chic; stylish; refined	[粋: chic/refined]
+謙虚	けんきょ	na-adjective	humble; modest	[謙: modest/humble | 虚: empty/void]
+誠実	せいじつ	na-adjective	sincere; honest; faithful	[誠: sincerity | 実: truth/real]
+軟弱	なんじゃく	na-adjective	weak; spineless; flabby	[軟: soft/flabby | 弱: weak]
+邪悪	じゃあく	na-adjective	evil; wicked	[邪: evil/wicked | 悪: bad/evil]
+鈍感	どんかん	na-adjective	insensitive; thick-skinned	[鈍: dull/blunt | 感: feeling/sense]
+冗長	じょうちょう	na-adjective	redundant; verbose; tediously long	[冗: redundant/superfluous | 長: long]
+極端	きょくたん	na-adjective	extreme	[極: extreme/utmost | 端: edge/end]
+頑固	がんこ	na-adjective	stubborn; obstinate	[頑: stubborn/obstinate | 固: hard/firm]
+活発	かっぱつ	na-adjective	lively; active; energetic	[活: lively/active | 発: emit/burst]
+気軽	きがる	na-adjective	carefree; easygoing; casual	[気: spirit/mood | 軽: light/casual]
+陽気	ようき	na-adjective	cheerful; merry	[陽: sunny/positive | 気: spirit/mood]
+善良	ぜんりょう	na-adjective	good; virtuous; honest	[善: good/virtuous | 良: good/fine]

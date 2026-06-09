@@ -2,33 +2,33 @@
 # Value & importance — judging a thing's worth, rank, or quality.
 # Belongs here: importance/worth (重要, 大切, 無駄), evaluation and rank
 # (素敵, 最高, 最低, 完璧, 微妙). How a *person* feels goes in feelings.tsv.
-kanji	hiragana	type	english
-無駄	むだ	na-adjective	waste; useless; pointless
-重要	じゅうよう	na-adjective	important
-大切	たいせつ	na-adjective	important; valuable; precious
-大事	だいじ	na-adjective	important; valuable; serious
-特別	とくべつ	na-adjective	special
-素敵	すてき	na-adjective	lovely; wonderful; nice
-立派	りっぱ	na-adjective	splendid; fine; admirable
-豊か	ゆたか	na-adjective	abundant; rich; plentiful
-贅沢	ぜいたく	na-adjective	luxurious; extravagant
-完璧	かんぺき	na-adjective	perfect; flawless
-最高	さいこう	na-adjective	best; greatest; supreme
-最低	さいてい	na-adjective	worst; lowest; awful
-微妙	びみょう	na-adjective	delicate; subtle; iffy
-貧乏	びんぼう	na-adjective	poor; needy
-盛大	せいだい	na-adjective	grand; magnificent; on a large scale
-豪華	ごうか	na-adjective	luxurious; gorgeous; lavish
-高級	こうきゅう	na-adjective	high-class; high-grade; upscale
-重大	じゅうだい	na-adjective	serious; significant; grave
-深刻	しんこく	na-adjective	serious; grave
-最適	さいてき	na-adjective	optimal; best-suited
-有利	ゆうり	na-adjective	advantageous; favorable
-不利	ふり	na-adjective	disadvantageous; unfavorable
-希少	きしょう	na-adjective	rare; scarce
-零細	れいさい	na-adjective	tiny; small-scale (business)
-駄目	だめ	na-adjective	no good; useless; not allowed
-豊富	ほうふ	na-adjective	abundant; plentiful
-貴重	きちょう	na-adjective	precious; valuable
-余分	よぶん	na-adjective	extra; surplus; spare
-余計	よけい	na-adjective	unnecessary; superfluous; even more
+kanji	hiragana	type	english	breakdown
+無駄	むだ	na-adjective	waste; useless; pointless	[無: without/none | 駄: useless/worthless]
+重要	じゅうよう	na-adjective	important	[重: heavy/grave | 要: essential/need]
+大切	たいせつ	na-adjective	important; valuable; precious	[大: big/great | 切: earnest/crucial]
+大事	だいじ	na-adjective	important; valuable; serious	[大: big/great | 事: matter/affair]
+特別	とくべつ	na-adjective	special	[特: special/particular | 別: separate/distinct]
+素敵	すてき	na-adjective	lovely; wonderful; nice	[素: element/plain | 敵: rival/match]
+立派	りっぱ	na-adjective	splendid; fine; admirable	[立: stand/establish | 派: faction/group]
+豊か	ゆたか	na-adjective	abundant; rich; plentiful	[豊: abundant/rich]
+贅沢	ぜいたく	na-adjective	luxurious; extravagant	[贅: luxury/excess | 沢: abundance/marsh]
+完璧	かんぺき	na-adjective	perfect; flawless	[完: complete | 璧: jade disc/flawless gem]
+最高	さいこう	na-adjective	best; greatest; supreme	[最: most/-est | 高: high]
+最低	さいてい	na-adjective	worst; lowest; awful	[最: most/-est | 低: low]
+微妙	びみょう	na-adjective	delicate; subtle; iffy	[微: slight/subtle | 妙: subtle/exquisite]
+貧乏	びんぼう	na-adjective	poor; needy	[貧: poor/needy | 乏: scarce/lacking]
+盛大	せいだい	na-adjective	grand; magnificent; on a large scale	[盛: flourish/grand | 大: big/grand]
+豪華	ごうか	na-adjective	luxurious; gorgeous; lavish	[豪: grand/lavish | 華: splendor/flower]
+高級	こうきゅう	na-adjective	high-class; high-grade; upscale	[高: high | 級: class/grade]
+重大	じゅうだい	na-adjective	serious; significant; grave	[重: heavy/grave | 大: big/great]
+深刻	しんこく	na-adjective	serious; grave	[深: deep | 刻: engrave/grave]
+最適	さいてき	na-adjective	optimal; best-suited	[最: most/-est | 適: suitable/optimal]
+有利	ゆうり	na-adjective	advantageous; favorable	[有: have/exist | 利: benefit/advantage]
+不利	ふり	na-adjective	disadvantageous; unfavorable	[不: not/un- | 利: benefit/advantage]
+希少	きしょう	na-adjective	rare; scarce	[希: rare/scarce | 少: few/little]
+零細	れいさい	na-adjective	tiny; small-scale (business)	[零: tiny/fraction | 細: fine/small]
+駄目	だめ	na-adjective	no good; useless; not allowed	[駄: useless/no good | 目: eye/point]
+豊富	ほうふ	na-adjective	abundant; plentiful	[豊: abundant/rich | 富: wealth/abundance]
+貴重	きちょう	na-adjective	precious; valuable	[貴: precious/noble | 重: heavy/valued]
+余分	よぶん	na-adjective	extra; surplus; spare	[余: surplus/excess | 分: part/portion]
+余計	よけい	na-adjective	unnecessary; superfluous; even more	[余: surplus/excess | 計: measure/count]

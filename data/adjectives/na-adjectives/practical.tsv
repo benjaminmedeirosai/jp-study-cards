@@ -3,17 +3,17 @@
 # Belongs here: convenience (便利, 不便), ease vs. difficulty (簡単, 複雑,
 # 単純, 大変), and freedom/comfort (自由, 楽). Certainty/safety go in
 # certainty.tsv.
-kanji	hiragana	type	english
-便利	べんり	na-adjective	convenient; useful
-不便	ふべん	na-adjective	inconvenient
-簡単	かんたん	na-adjective	easy; simple
-複雑	ふくざつ	na-adjective	complicated; complex
-単純	たんじゅん	na-adjective	simple; uncomplicated
-自由	じゆう	na-adjective	free; freedom
-楽	らく	na-adjective	easy; comfortable
-大変	たいへん	na-adjective	tough; hard; serious; very (adverbial use also common)
-高め	たかめ	na-adjective	rather high; on the high side
-不自由	ふじゆう	na-adjective	restricted; inconvenient; lacking freedom
-快適	かいてき	na-adjective	comfortable; pleasant
-容易	ようい	na-adjective	easy; simple
-多忙	たぼう	na-adjective	very busy; hectic
+kanji	hiragana	type	english	breakdown
+便利	べんり	na-adjective	convenient; useful	[便: convenience | 利: benefit/advantage]
+不便	ふべん	na-adjective	inconvenient	[不: not/un- | 便: convenience]
+簡単	かんたん	na-adjective	easy; simple	[簡: simple/brief | 単: single/simple]
+複雑	ふくざつ	na-adjective	complicated; complex	[複: multiple/compound | 雑: miscellaneous/jumbled]
+単純	たんじゅん	na-adjective	simple; uncomplicated	[単: single/simple | 純: pure/plain]
+自由	じゆう	na-adjective	free; freedom	[自: self/oneself | 由: from/reason]
+楽	らく	na-adjective	easy; comfortable	[楽: ease/comfort]
+大変	たいへん	na-adjective	tough; hard; serious; very (adverbial use also common)	[大: big/greatly | 変: change/strange]
+高め	たかめ	na-adjective	rather high; on the high side	[高: high]
+不自由	ふじゆう	na-adjective	restricted; inconvenient; lacking freedom	[不: not/un- | 自: self/oneself | 由: from/reason]
+快適	かいてき	na-adjective	comfortable; pleasant	[快: pleasant/comfort | 適: suitable/fit]
+容易	ようい	na-adjective	easy; simple	[容: allow/accommodate | 易: easy/simple]
+多忙	たぼう	na-adjective	very busy; hectic	[多: many/much | 忙: busy]

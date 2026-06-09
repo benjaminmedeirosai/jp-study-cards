@@ -1,16 +1,16 @@
 # Ability — skill and competence at something.
 # Belongs here: being good/bad at a task (上手, 下手, 得意, 苦手) and effort
 # toward it (必死). General personality traits go in character.tsv.
-kanji	hiragana	type	english
-上手	じょうず	na-adjective	good at; skillful
-下手	へた	na-adjective	bad at; unskillful
-得意	とくい	na-adjective	good at; one's strong point
-苦手	にがて	na-adjective	poor at; not good with
-必死	ひっし	na-adjective	frantic; desperate
-万能	ばんのう	na-adjective	almighty; all-purpose
-優秀	ゆうしゅう	na-adjective	excellent; superior
-巧妙	こうみょう	na-adjective	clever; skillful; ingenious
-巧み	たくみ	na-adjective	skillful; adept
-稚拙	ちせつ	na-adjective	clumsy; unskilled
-賢明	けんめい	na-adjective	wise; sensible; prudent
-精密	せいみつ	na-adjective	precise; exact; detailed
+kanji	hiragana	type	english	breakdown
+上手	じょうず	na-adjective	good at; skillful	[上: upper/superior | 手: hand/skill]
+下手	へた	na-adjective	bad at; unskillful	[下: lower/poor | 手: hand/skill]
+得意	とくい	na-adjective	good at; one's strong point	[得: gain/proficient | 意: mind/feeling]
+苦手	にがて	na-adjective	poor at; not good with	[苦: bitter/hard | 手: hand/skill]
+必死	ひっし	na-adjective	frantic; desperate	[必: certainly/inevitably | 死: death]
+万能	ばんのう	na-adjective	almighty; all-purpose	[万: ten thousand/all | 能: ability/capable]
+優秀	ゆうしゅう	na-adjective	excellent; superior	[優: superior/excellent | 秀: excel/outstanding]
+巧妙	こうみょう	na-adjective	clever; skillful; ingenious	[巧: skillful/adept | 妙: clever/exquisite]
+巧み	たくみ	na-adjective	skillful; adept	[巧: skill/craft]
+稚拙	ちせつ	na-adjective	clumsy; unskilled	[稚: childish/immature | 拙: clumsy/unskilled]
+賢明	けんめい	na-adjective	wise; sensible; prudent	[賢: wise/clever | 明: bright/clear]
+精密	せいみつ	na-adjective	precise; exact; detailed	[精: refined/precise | 密: dense/close]
