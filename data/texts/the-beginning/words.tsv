@@ -1,0 +1,61 @@
+# label: The Beginning — Words
+# Every distinct word from the Japanese lines in sentences.tsv, in the EXACT
+# surface form it appears (conjugated/derived forms are their own entries),
+# deduped, in line order. Bare case/binding particles omitted; meaningful
+# grammar/copula kept. Studyable in the card UI.
+kanji	hiragana	type	english	breakdown
+でも	でも	conjunction	but; even so
+譲れない	ゆずれない	verb	cannot give up; cannot yield (negative potential of 譲る)	[譲: yield/cede]
+もの	もの	noun	thing; the thing that... (nominalizer)
+握った	にぎった	verb	grasped; gripped (past of 握る)	[握: grip/grasp]
+この	この	pre-noun	this
+手	て	noun	hand
+離さない	はなさない	verb	won't let go (negative of 離す)	[離: separate/release]
+狂おしい	くるおしい	i-adjective	maddening; crazed	[狂: mad/crazy]
+ほど	ほど	particle	to the extent of; as much as
+刹那	せつな	noun	instant; fleeting moment
+艶麗	えんれい	na-adjective	alluring; gorgeous	[艶: charm/luster | 麗: beautiful/lovely]
+愁い	うれい	noun	sorrow; grief	[愁: grief/sorrow]
+含んだ	ふくんだ	verb	contained; laced with (past of 含む)	[含: contain/include]
+閃光	せんこう	noun	flash of light	[閃: flash/glint | 光: light]
+眼光	がんこう	noun	glint in the eye; piercing gaze	[眼: eye | 光: light]
+感覚的	かんかくてき	na-adjective	sensory; perceptual	[感: feel/sense | 覚: perceive/awake | 的: -ic/-al]
+衝動	しょうどう	noun	impulse; urge	[衝: collide/thrust | 動: move]
+何も	なにも	expression	nothing; not anything (with a negative)
+ない	ない	i-adjective	not; nonexistent; there isn't
+ように	ように	particle	as if; like; in such a way that
+映ってる	うつってる	verb	is reflected; is showing (〜ている of 映る)	[映: reflect/project]
+だけ	だけ	particle	only; just
+ただ	ただ	adverb	merely; just; only
+隠せない	かくせない	verb	cannot hide (negative potential of 隠す)	[隠: hide/conceal]
+飾った	かざった	verb	decorated; dressed up (past of 飾る)	[飾: decorate/adorn]
+見せかけてる	みせかけてる	verb	is feigning; putting on a show (〜ている of 見せかける)	[見: see/show]
+悲しみ	かなしみ	noun	sadness; sorrow	[悲: sad/grief]
+切なさ	せつなさ	noun	aching longing; heartache	[切: keen/earnest]
+くだけて	くだけて	verb	shattering; breaking up (te-form of 砕ける)
+泣いて	ないて	verb	crying (te-form of 泣く)	[泣: cry/weep]
+咲いて	さいて	verb	blooming (te-form of 咲く)	[咲: bloom/blossom]
+散った	ちった	verb	scattered; fell (past of 散る)	[散: scatter/disperse]
+思い	おもい	noun	feelings; thoughts	[思: think/feel]
+このまま	このまま	expression	as it is; like this
+まだ	まだ	adverb	still; (not) yet
+終わらせる	おわらせる	verb	to bring to an end (causative of 終わる)	[終: end/finish]
+事	こと	noun	thing; matter
+出来ない	できない	verb	cannot; be unable to (negative of 出来る)	[出: come out | 来: come]
+でしょ	でしょ	copula	right?; isn't it (colloquial でしょう)
+何度	なんど	noun	how many times; many times	[何: what | 度: degree/times]
+くたばりそう	くたばりそう	verb	seems about to drop dead (〜そう of くたばる)
+朽ち果てよう	くちはてよう	verb	even if (I) rot away (volitional of 朽ち果てる)	[朽: rot/decay | 果: end/bear fruit]
+とも	とも	particle	even if; even though
+終わり	おわり	noun	end; ending	[終: end/finish]
+握りしめた	にぎりしめた	verb	gripped tightly (past of 握りしめる)	[握: grip/grasp]
+失わぬ	うしなわぬ	verb	so as not to lose (classical negative of 失う)	[失: lose]
+広げれば	ひろげれば	verb	if (I) open/spread (conditional of 広げる)	[広: wide/spread]
+こぼれ落ちそう	こぼれおちそう	verb	seems to spill and fall (〜そう of こぼれ落ちる)	[落: fall/drop]
+失う	うしなう	verb	to lose	[失: lose]
+など	など	particle	and so on; etc.
+なかった	なかった	verb	there wasn't; had none (past of ない)
+日々	ひび	noun	days; day after day	[日: day/sun]
+惰性	だせい	noun	inertia; force of habit	[惰: laziness/inertia | 性: nature/property]
+捨てて	すてて	verb	throwing away; casting off (te-form of 捨てる)	[捨: discard/throw away]
+君	きみ	pronoun	you
