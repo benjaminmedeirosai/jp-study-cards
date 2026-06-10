@@ -207,8 +207,95 @@
   line-height: 1.25;
 }
 
+/* Each gloss line is a <button> so its kanji is individually tappable; strip the
+   native button chrome and inherit the slot's look. */
+.card-gloss-line {
+  display: block;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  text-align: right;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.card-gloss-line:hover,
+.card-gloss-line:focus-visible {
+  color: var(--text);
+  outline: none;
+}
+
+/* Tap menu for a gloss line: a small anchored popover over a click-catching
+   backdrop. */
+.gloss-menu-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+}
+
+.gloss-menu {
+  position: fixed;
+  z-index: 51;
+  min-width: 210px;
+  max-width: min(300px, calc(100vw - 16px));
+  display: grid;
+  gap: 5px;
+  padding: 8px;
+  border: 1px solid rgba(96, 165, 250, 0.3);
+  border-radius: 12px;
+  background: rgba(15, 23, 42, 0.98);
+  box-shadow: 0 14px 36px rgba(0, 0, 0, 0.55);
+}
+
+.gloss-menu-head {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  padding: 2px 6px 8px;
+  margin-bottom: 2px;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.18);
+}
+
+.gloss-menu-kanji {
+  flex: 0 0 auto;
+  font-size: 24px;
+  line-height: 1;
+  color: var(--text);
+}
+
+.gloss-menu-gloss {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.gloss-menu-item {
+  text-align: left;
+  padding: 11px 10px;
+  border: 1px solid rgba(96, 165, 250, 0.22);
+  border-radius: 8px;
+  background: linear-gradient(180deg, rgba(30, 41, 59, 0.5), rgba(15, 23, 42, 0.48));
+  color: var(--text);
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.gloss-menu-item:hover,
+.gloss-menu-item:focus-visible {
+  border-color: var(--accent-border);
+  outline: none;
+}
+
 .card-slot.card-reading {
-  top: calc(50% + (var(--japanese-main-font-size, 67px) * 0.58));
+  top: calc(40% + (var(--japanese-main-font-size, 67px) * 0.58));
   left: 50%;
   width: calc(100% - 48px);
   transform: translateX(-50%);
@@ -221,10 +308,14 @@
 }
 
 .card-slot.card-main {
-  top: 50%;
+  /* Bottom-anchored just above the reading's top line (which sits at the shared
+     40% anchor + 0.58·size), minus the small gap kanji has from line-height
+     (~0.51·size). Wrapped lines grow upward instead of spilling into the
+     reading. The 40% anchor sits ~10% of card height above center. */
+  bottom: calc(60% - var(--japanese-main-font-size, 67px) * 0.51);
   left: 50%;
   width: calc(100% - 48px);
-  transform: translate(-50%, -50%);
+  transform: translateX(-50%);
   text-align: center;
   font-family: var(--japanese-main-font-family, inherit);
   font-size: var(--japanese-main-font-size, 67px);

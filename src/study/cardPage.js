@@ -1,6 +1,7 @@
 import { speak } from "./speech.js";
 import { buildSetOptions, activeSetGrouping, computeDeckSets } from "./sets.js";
-import { beginSession } from "./filters.js";
+import { beginSession, endSession, sessionQualifies } from "./filters.js";
+import { openOverlay, pushCardsURL, replaceCardsURL } from "./router.js";
 import {
   MODES,
   LINK_TEMPLATES,
@@ -43,6 +44,12 @@ function glossSegments(breakdown) {
     .split("|")
     .map((segment) => segment.trim())
     .filter(Boolean);
+}
+
+// The kanji a gloss segment is about — the part before the "落: gloss" colon
+// (half- or full-width). Falls back to the whole trimmed segment.
+function glossKanji(segment) {
+  return String(segment).split(/[:：]/)[0].trim();
 }
 
 function keyButton(label, className, svg, hotkey = "") {
@@ -187,7 +194,7 @@ export function renderCardPage() {
   chooseDeckBtn.type = "button";
   chooseDeckBtn.className = "card-empty-action";
   chooseDeckBtn.textContent = "Choose a deck";
-  chooseDeckBtn.addEventListener("click", () => { location.hash = "#/decks"; });
+  chooseDeckBtn.addEventListener("click", () => openOverlay("decks"));
   empty.append(emptyMsg, chooseDeckBtn);
   root.append(top, card, empty, tray);
 
@@ -352,9 +359,13 @@ export function renderCardPage() {
     // entry has a breakdown, and the answer is visible (show-all or revealed).
     const segments = glossSegments(text(entry, "breakdown"));
     cardGloss.replaceChildren(...segments.map((segment) => {
-      const line = document.createElement("div");
+      const kanji = glossKanji(segment);
+      const line = document.createElement("button");
+      line.type = "button";
       line.className = "card-gloss-line";
       line.textContent = segment;
+      line.setAttribute("aria-label", `Find words with ${kanji}`);
+      line.addEventListener("click", () => openGlossMenu(kanji, segment, line));
       return line;
     }));
     setSlotVisible(cardGloss, state.showGloss && showFront && segments.length > 0);
@@ -371,6 +382,96 @@ export function renderCardPage() {
     updateSetControl();
     renderCard();
     saveState(state);
+  }
+
+  // --- Kanji gloss tap menu -----------------------------------------------
+  // Tapping a gloss line offers to find other words with that kanji — either by
+  // filtering the current deck in place, or via the deck selector (which carries
+  // the filter, letting the user switch to All decks or any other deck).
+  let glossMenu = null;
+  function closeGlossMenu() {
+    if (!glossMenu) return;
+    document.removeEventListener("keydown", glossMenu.onKey, true);
+    window.removeEventListener("popstate", closeGlossMenu);
+    glossMenu.backdrop.remove();
+    glossMenu.menu.remove();
+    glossMenu = null;
+  }
+  function applyKanjiFilter(kanji) {
+    state.query = kanji;
+    state.setId = "all";
+    state.currentIndex = 0;
+    saveState(state);
+  }
+  function openGlossMenu(kanji, glossText, anchor) {
+    closeGlossMenu();
+    const backdrop = document.createElement("div");
+    backdrop.className = "gloss-menu-backdrop";
+    const menu = document.createElement("div");
+    menu.className = "gloss-menu";
+    menu.setAttribute("role", "menu");
+
+    const head = document.createElement("div");
+    head.className = "gloss-menu-head";
+    const kanjiEl = document.createElement("span");
+    kanjiEl.className = "gloss-menu-kanji";
+    kanjiEl.textContent = kanji;
+    const glossEl = document.createElement("span");
+    glossEl.className = "gloss-menu-gloss";
+    glossEl.textContent = glossText.replace(/^[^:：]*[:：]\s*/, "");
+    head.append(kanjiEl, glossEl);
+
+    const filterBtn = document.createElement("button");
+    filterBtn.type = "button";
+    filterBtn.className = "gloss-menu-item";
+    filterBtn.textContent = `Filter this deck by ${kanji}`;
+    const chooseBtn = document.createElement("button");
+    chooseBtn.type = "button";
+    chooseBtn.className = "gloss-menu-item";
+    chooseBtn.textContent = `Find ${kanji} in another deck…`;
+    menu.append(head, filterBtn, chooseBtn);
+    document.body.append(backdrop, menu);
+
+    // Position below the tapped line, clamped to the viewport; flip above if it
+    // would overflow the bottom.
+    const r = anchor.getBoundingClientRect();
+    const mw = menu.offsetWidth;
+    const mh = menu.offsetHeight;
+    const left = Math.max(8, Math.min(r.right - mw, window.innerWidth - mw - 8));
+    let top = r.bottom + 6;
+    if (top + mh > window.innerHeight - 8) top = Math.max(8, r.top - mh - 6);
+    menu.style.left = `${left}px`;
+    menu.style.top = `${top}px`;
+
+    const onKey = (event) => {
+      if (event.key === "Escape") { event.preventDefault(); event.stopImmediatePropagation(); closeGlossMenu(); }
+    };
+    document.addEventListener("keydown", onKey, true);
+    window.addEventListener("popstate", closeGlossMenu);
+    glossMenu = { backdrop, menu, onKey };
+
+    backdrop.addEventListener("click", closeGlossMenu);
+    // Filter in place: a new (deck, filter) is a back entry only once the prior
+    // one was studied long enough (same gate as the filter history).
+    filterBtn.addEventListener("click", async () => {
+      const remember = sessionQualifies();
+      closeGlossMenu();
+      endSession();
+      applyKanjiFilter(kanji);
+      await renderAll();
+      const deck = currentDeck();
+      beginSession(state.deckId, deck ? deck.label : "", state.query);
+      remember ? pushCardsURL() : replaceCardsURL();
+    });
+    // Same filter, then open the deck picker (carrying it) to switch decks.
+    chooseBtn.addEventListener("click", () => {
+      const remember = sessionQualifies();
+      closeGlossMenu();
+      applyKanjiFilter(kanji);
+      remember ? pushCardsURL() : replaceCardsURL();
+      openOverlay("decks");
+    });
+    filterBtn.focus();
   }
 
   // --- Interactions -------------------------------------------------------
@@ -509,7 +610,7 @@ export function renderCardPage() {
     speakJapanese();
   }
 
-  deckButton.addEventListener("click", () => { location.hash = "#/decks"; });
+  deckButton.addEventListener("click", () => openOverlay("decks"));
   setSelect.addEventListener("change", () => {
     // Only the selected set changed — re-slice, no re-sort/re-grouping.
     state.setId = setSelect.value;
@@ -524,7 +625,7 @@ export function renderCardPage() {
     renderCard();
     if (state.mode === "voice") speakJapanese();
   });
-  settingsBtn.addEventListener("click", () => { location.hash = "#/settings"; });
+  settingsBtn.addEventListener("click", () => openOverlay("settings"));
   ttsToggleBtn.addEventListener("click", () => {
     ttsExpanded = !ttsExpanded;
     state.audioSourceExpanded = ttsExpanded;

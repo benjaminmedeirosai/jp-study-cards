@@ -33,6 +33,21 @@ export function beginSession(deckId, label, query) {
   writeSession({ deckId: id, label: String(label || ""), query: q, startedAt: Date.now(), accumMs: 0, hidden: !!document.hidden });
 }
 
+// Elapsed study time of the open session, in ms (0 if none). Same accounting
+// endSession uses, so callers can apply the identical MIN_MS gate.
+export function sessionElapsedMs() {
+  const s = readSession();
+  if (!s) return 0;
+  const ms = (s.accumMs || 0) + (s.hidden ? 0 : Date.now() - s.startedAt);
+  return Number.isFinite(ms) ? ms : 0;
+}
+
+// True once the open session has been studied long enough to be worth
+// remembering — the same threshold that gates the filter/deck history lists.
+export function sessionQualifies() {
+  return sessionElapsedMs() >= MIN_MS;
+}
+
 // Pause/resume so a backgrounded tab doesn't inflate study time.
 export function pauseSession() {
   const s = readSession();

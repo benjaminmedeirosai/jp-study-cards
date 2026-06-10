@@ -1,5 +1,6 @@
 import { loadState, saveState, buildDeckTree, listDecks, loadBundle, deckMatchCounts, button } from "./shared.js";
 import { historyDropdown, getFilterHistory, getDeckHistory, formatDuration, formatAgo } from "./filters.js";
+import { chooseDeck, closeOverlay } from "./router.js";
 
 // Indentation per tree level, in px. Half an icon width — kept modest so the
 // per-row "studied" meta has room.
@@ -10,10 +11,6 @@ const ICONS = {
   folderOpen: `<svg viewBox="0 0 24 24"><path d="m6 14 1.45-2.9A2 2 0 0 1 9.24 10H20a2 2 0 0 1 1.94 2.5l-1.55 6a2 2 0 0 1-1.94 1.5H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h3.9a2 2 0 0 1 1.69.9l.81 1.2a2 2 0 0 0 1.67.9H18a2 2 0 0 1 2 2v2"/></svg>`,
   file: `<svg viewBox="0 0 24 24"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/></svg>`
 };
-
-function goToCards() {
-  location.hash = "#/";
-}
 
 function countCards(node) {
   return node.decks.reduce((sum, deck) => sum + Number(deck.count || 0), 0)
@@ -149,14 +146,10 @@ export function renderDeckPage() {
     if (bundle) renderList();
   });
 
+  // Choosing a deck navigates to the cards view for it (the router records the
+  // deck change as a back entry and closes this picker).
   function selectDeck(id) {
-    if (id !== state.deckId) {
-      state.deckId = id;
-      state.setId = "all";
-      state.currentIndex = 0;
-      saveState(state);
-    }
-    goToCards();
+    chooseDeck(id);
   }
 
   // A "Select" / "Selected" button that chooses `id` as the study target.
@@ -284,14 +277,14 @@ export function renderDeckPage() {
     }
   }
 
-  backBtn.addEventListener("click", goToCards);
+  backBtn.addEventListener("click", closeOverlay);
 
   // Escape closes the page (back to cards). An open filter dropdown swallows
   // Escape in the capture phase (see historyDropdown), so this only fires when
   // no dropdown is open. Self-removes once the page is detached.
   function onEscClose(event) {
     if (!root.isConnected) { document.removeEventListener("keydown", onEscClose); return; }
-    if (event.key === "Escape") { event.preventDefault(); goToCards(); }
+    if (event.key === "Escape") { event.preventDefault(); closeOverlay(); }
   }
   document.addEventListener("keydown", onEscClose);
 

@@ -1,6 +1,7 @@
 import { activeSetGrouping, computeDeckSets } from "./sets.js";
 import { speak, getVoicesForLang, onVoicesChanged } from "./speech.js";
 import { historyDropdown, getFilterHistory, formatDuration, formatAgo } from "./filters.js";
+import { closeOverlay } from "./router.js";
 
 const VOICE_SAMPLE = "こんにちは。これは音声のプレビューです。";
 import {
@@ -25,10 +26,6 @@ import {
   makeSelect,
   makeToggle
 } from "./shared.js";
-
-function goToCards() {
-  location.hash = "#/";
-}
 
 // A divider + label that opens a group of related settings.
 function sectionHeading(label) {
@@ -459,7 +456,7 @@ export function renderSettingsPage() {
   updateSettingsPreview();
 
   // --- Wiring -------------------------------------------------------------
-  backBtn.addEventListener("click", goToCards);
+  backBtn.addEventListener("click", closeOverlay);
   // Settings apply immediately, so there is nothing to submit.
   form.addEventListener("submit", (event) => event.preventDefault());
 
@@ -468,7 +465,7 @@ export function renderSettingsPage() {
   // no dropdown is open. Self-removes once the page is detached.
   function onEscClose(event) {
     if (!root.isConnected) { document.removeEventListener("keydown", onEscClose); return; }
-    if (event.key === "Escape") { event.preventDefault(); goToCards(); }
+    if (event.key === "Escape") { event.preventDefault(); closeOverlay(); }
   }
   document.addEventListener("keydown", onEscClose);
 
