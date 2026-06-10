@@ -114,7 +114,9 @@ export function renderCardPage() {
   const setFieldText = setField.querySelector("span");
   const modeSetRow = document.createElement("div");
   modeSetRow.className = "card-header-row mode-set-row";
-  modeSetRow.append(fieldLabel("Mode", modeSelect), setField);
+  // Set on the left (wide, aligned under the Deck field), Mode on the right
+  // (narrow, under Settings).
+  modeSetRow.append(setField, fieldLabel("Mode", modeSelect));
   top.append(deckRow, modeSetRow, summary);
 
   // --- Card ---------------------------------------------------------------
