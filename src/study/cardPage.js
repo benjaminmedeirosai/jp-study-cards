@@ -305,13 +305,13 @@ export function renderCardPage() {
     const entry = currentEntry();
     const total = setCards.length;
     const deck = currentDeck();
-    const activeSet = setOptions.find((set) => set.id === state.setId) || setOptions[0];
     empty.hidden = total > 0;
     card.hidden = total === 0;
     tray.hidden = total === 0;
     const filter = String(state.query || "").trim();
+    // The set is shown by the Set selector above, so it's omitted here.
     summaryMain.textContent = deck
-      ? `${deckBreadcrumb(deck)} / ${activeSet?.summaryLabel || "Whole deck"}${filter ? ` · filter “${filter}”` : ""}`
+      ? `${deckBreadcrumb(deck)}${filter ? ` · filter “${filter}”` : ""}`
       : "";
     summaryGrouping.textContent = deck ? activeSetGrouping(state.setGrouping).shortLabel : "";
     prevBtn.disabled = total <= 1;
