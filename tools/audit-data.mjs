@@ -27,6 +27,11 @@ const hanChars = (str) => [...str].filter(isHan);
 const bundle = JSON.parse(await fs.readFile(path.join(dataRoot, "cards.json"), "utf8"));
 const entries = [];
 for (const deck of bundle.decks || []) {
+  // Reading-text word lists (texts/<slug>/words) are surface-form reading aids,
+  // not vocab-coverage decks — they hold conjugated forms and intentionally
+  // repeat common words across passages, so they'd pollute the coverage and
+  // duplicate reports. Exclude them; this audit is about the words/ tree.
+  if (deck.id.startsWith("texts/")) continue;
   for (const row of deck.entries || []) {
     entries.push({ ...row, file: deck.id, deckId: deck.id });
   }

@@ -18,7 +18,10 @@ const GROUPS = {
   "noun ⇄ suru-verb": ["勉強", "練習", "経験", "成功", "失敗", "成長", "変化", "発展", "影響", "信頼"],
 };
 
-const decks = c.decks;
+// Skip reading-text word lists (texts/<slug>/words) — they're surface-form
+// reading aids that repeat common words across passages, not part of the
+// vocab-coverage picture this audit reasons about.
+const decks = c.decks.filter((d) => !d.id.startsWith("texts/"));
 function occurrences(form) {
   const hits = [];
   for (const d of decks) for (const e of d.entries) {

@@ -321,6 +321,12 @@ node tools/polysemy-audit.mjs    # checks high-value multi-sense/POS words are
 node tools/check-gloss.mjs       # validates breakdown glosses (see below)
 ```
 
+`audit-data` and `polysemy-audit` **exclude the `texts/` tree** — reading-text
+word lists are surface-form aids that repeat common words across passages, so
+they'd pollute the coverage and duplicate reports. They reason about the
+`words/` tree only. (`check-gloss` still validates `texts/` glosses — pass a
+`texts/` prefix to scope it there.)
+
 **Scripts vs. outputs convention.** Permanent, committed tooling lives in
 `tools/` (the bundler, the audits, the gloss validator, the dev server).
 Everything under `tmp/` is gitignored: throwaway one-off dev scripts (a
