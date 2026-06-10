@@ -285,6 +285,16 @@ export function renderDeckPage() {
   }
 
   backBtn.addEventListener("click", goToCards);
+
+  // Escape closes the page (back to cards). An open filter dropdown swallows
+  // Escape in the capture phase (see historyDropdown), so this only fires when
+  // no dropdown is open. Self-removes once the page is detached.
+  function onEscClose(event) {
+    if (!root.isConnected) { document.removeEventListener("keydown", onEscClose); return; }
+    if (event.key === "Escape") { event.preventDefault(); goToCards(); }
+  }
+  document.addEventListener("keydown", onEscClose);
+
   void initialize();
   return root;
 }

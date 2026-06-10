@@ -141,12 +141,16 @@ export function historyDropdown(input, { getItems, onPick, emptyText = "Nothing 
   wrap.append(input, btn, panel);
 
   const onDocPointer = (e) => { if (!wrap.contains(e.target)) close(); };
+  // Capture-phase Escape: closes the panel and stops the event before it can
+  // reach a page-level handler (so Esc closes the dropdown, not the page).
+  const onDocKey = (e) => { if (e.key === "Escape" && !panel.hidden) { e.stopPropagation(); close(); } };
 
   function close() {
     if (panel.hidden) return;
     panel.hidden = true;
     btn.setAttribute("aria-expanded", "false");
     document.removeEventListener("pointerdown", onDocPointer, true);
+    document.removeEventListener("keydown", onDocKey, true);
   }
 
   function open() {
@@ -176,9 +180,9 @@ export function historyDropdown(input, { getItems, onPick, emptyText = "Nothing 
     panel.hidden = false;
     btn.setAttribute("aria-expanded", "true");
     document.addEventListener("pointerdown", onDocPointer, true);
+    document.addEventListener("keydown", onDocKey, true);
   }
 
   btn.addEventListener("click", () => { panel.hidden ? open() : close(); });
-  input.addEventListener("keydown", (e) => { if (e.key === "Escape") close(); });
   return wrap;
 }
