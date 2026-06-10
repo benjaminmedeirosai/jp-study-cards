@@ -5,6 +5,92 @@ const STORAGE_KEY = "jp-study-cards-state-v1";
 export const DEFAULT_SET_SIZE = 20;
 export const FONT_SCALE_OPTIONS = [10, 20, 35, 50, 75, 100, 125, 150, 200, 250];
 export const VOICE_RATE_OPTIONS = [0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.25, 1.5, 1.75, 2];
+
+// Japanese-text font choices. These are candidate *system* font families that
+// may or may not be installed on a given device (no web downloads) — so the
+// settings dropdown only lists the ones detected as available here (see
+// availableFonts). `family` is the exact name we probe and request; `generic`
+// is the CSS fallback bucket. The "default" entry inherits the card font.
+export const FONT_FAMILIES = [
+  { id: "default", label: "Default", family: "", generic: "" },
+  // Cross-platform staples
+  { id: "mincho-yu", label: "Yu Mincho (serif)", family: "Yu Mincho", generic: "serif" },
+  { id: "mincho-hiragino", label: "Hiragino Mincho (serif)", family: "Hiragino Mincho ProN", generic: "serif" },
+  { id: "mincho-ms", label: "MS Mincho (serif)", family: "MS Mincho", generic: "serif" },
+  { id: "gothic-yu", label: "Yu Gothic (sans)", family: "Yu Gothic", generic: "sans-serif" },
+  { id: "gothic-hiragino", label: "Hiragino Kaku Gothic (sans)", family: "Hiragino Kaku Gothic ProN", generic: "sans-serif" },
+  { id: "gothic-meiryo", label: "Meiryo (sans)", family: "Meiryo", generic: "sans-serif" },
+  { id: "gothic-ms", label: "MS Gothic (sans)", family: "MS Gothic", generic: "sans-serif" },
+  { id: "maru-hiragino", label: "Hiragino Maru Gothic (round)", family: "Hiragino Maru Gothic ProN", generic: "sans-serif" },
+  // Textbook / handwriting styles
+  { id: "klee", label: "Klee (textbook)", family: "Klee One", generic: "serif" },
+  { id: "kyokasho-yu", label: "Yu Kyokasho (textbook)", family: "YuKyokasho", generic: "serif" },
+  { id: "kyokasho-ud", label: "UD Digi Kyokasho (textbook)", family: "UD Digi Kyokasho NK-R", generic: "sans-serif" },
+  { id: "kaisho", label: "Kaisho (brush)", family: "Toppan Bunkyu Midashi Mincho", generic: "serif" },
+  // Display / novelty (the "weird TV" ones — device-dependent)
+  { id: "pop", label: "Sōei Kaku Pop (pop)", family: "HGSoeiKakupoptai", generic: "sans-serif" },
+  { id: "creative", label: "Sōei Pres. (display)", family: "HGSoeiPresenceEB", generic: "sans-serif" },
+  { id: "marugo", label: "HG Maru Gothic (round)", family: "HGMaruGothicMPRO", generic: "sans-serif" }
+];
+
+// CSS font-family for a saved font id; "inherit" (the card default) for the
+// "default" choice or any unknown id.
+export function fontStack(id) {
+  const font = FONT_FAMILIES.find((f) => f.id === id);
+  return font && font.family ? `"${font.family}", ${font.generic}` : "inherit";
+}
+
+function normalizeFont(value) {
+  return FONT_FAMILIES.some((f) => f.id === value) ? value : "default";
+}
+
+// --- Font sizes --------------------------------------------------------------
+// Sizes are absolute pixels, exposed directly — the number IS the rendered size,
+// so the same value on any slot (kanji, reading, english, gloss) renders the
+// same size. The slider moves in even steps but the px values grow geometrically
+// across the range, so each notch is a constant *ratio* (~14%) rather than a
+// constant +Npx — equal perceived change at the small and large ends alike.
+export const FONT_PX_MIN = 8;
+export const FONT_PX_MAX = 192;
+export const FONT_PX_STEPS = 24;
+const FONT_PX_RATIO = FONT_PX_MAX / FONT_PX_MIN;
+// Default sizes, each landing exactly on a step (see fontStepToPx) so the slider
+// starts pinned and a first nudge doesn't jump. Kanji largest, then reading,
+// english, gloss.
+export const FONT_PX_DEFAULTS = { kanji: 67, hiragana: 34, english: 30, gloss: 16 };
+export function fontStepToPx(step) {
+  const s = clampInt(step, 0, 0, FONT_PX_STEPS);
+  return Math.round(FONT_PX_MIN * Math.pow(FONT_PX_RATIO, s / FONT_PX_STEPS));
+}
+export function fontPxToStep(px) {
+  const p = clampNum(px, FONT_PX_MIN, FONT_PX_MIN, FONT_PX_MAX);
+  return Math.round(FONT_PX_STEPS * (Math.log(p / FONT_PX_MIN) / Math.log(FONT_PX_RATIO)));
+}
+
+// --- System font detection ---------------------------------------------------
+// Canvas width-comparison probe: a family that is actually installed renders the
+// sample at a different width than the generic baseline it falls back to. We test
+// against all three generics so a font close to one is still caught by another.
+let _fontProbeCtx = null;
+const FONT_PROBE_TEXT = "あいうえお漢字ガギグ日本語ABCabc012";
+const FONT_PROBE_BASES = ["monospace", "serif", "sans-serif"];
+function probeWidth(fontFamily) {
+  if (!_fontProbeCtx) _fontProbeCtx = document.createElement("canvas").getContext("2d");
+  _fontProbeCtx.font = `72px ${fontFamily}`;
+  return _fontProbeCtx.measureText(FONT_PROBE_TEXT).width;
+}
+export function isFontAvailable(family) {
+  if (!family) return true;
+  return FONT_PROBE_BASES.some((base) => probeWidth(`"${family}", ${base}`) !== probeWidth(base));
+}
+
+// The font choices to actually offer: "default" plus every candidate detected on
+// this device, plus any ids in `keepIds` (e.g. the current selection) so a saved
+// pick never silently vanishes even if detection misses it.
+export function availableFonts(keepIds = []) {
+  const keep = new Set(keepIds);
+  return FONT_FAMILIES.filter((font) => !font.family || keep.has(font.id) || isFontAvailable(font.family));
+}
 export const LINK_TEMPLATES = {
   chatgpt: "https://chat.openai.com/?q=",
   googleImages: "https://www.google.com/search?tbm=isch&q="
@@ -53,10 +139,14 @@ export function loadState() {
     mode: MODES.some((mode) => mode.id === raw.mode) ? raw.mode : "kanji",
     setSize: clampInt(raw.setSize, DEFAULT_SET_SIZE, 5, 100),
     setGrouping: normalizeSetGrouping(raw.setGrouping),
-    kanjiFontScale: clampInt(raw.kanjiFontScale, 100, 50, 150),
-    hiraganaFontScale: clampInt(raw.hiraganaFontScale, 100, 50, 150),
-    englishFontScale: clampInt(raw.englishFontScale, 100, 50, 150),
-    glossFontScale: clampInt(raw.glossFontScale, 100, 50, 150),
+    kanjiFontPx: clampInt(raw.kanjiFontPx, FONT_PX_DEFAULTS.kanji, FONT_PX_MIN, FONT_PX_MAX),
+    hiraganaFontPx: clampInt(raw.hiraganaFontPx, FONT_PX_DEFAULTS.hiragana, FONT_PX_MIN, FONT_PX_MAX),
+    englishFontPx: clampInt(raw.englishFontPx, FONT_PX_DEFAULTS.english, FONT_PX_MIN, FONT_PX_MAX),
+    glossFontPx: clampInt(raw.glossFontPx, FONT_PX_DEFAULTS.gloss, FONT_PX_MIN, FONT_PX_MAX),
+    kanjiFont: normalizeFont(raw.kanjiFont),
+    hiraganaFont: normalizeFont(raw.hiraganaFont),
+    kanjiBold: raw.kanjiBold === true,
+    hiraganaBold: raw.hiraganaBold === true,
     currentIndex: clampInt(raw.currentIndex, 0, 0, 100000),
     query: String(raw.query || "").trim(),
     jpVoice: String(raw.jpVoice || ""),

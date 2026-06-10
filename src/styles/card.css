@@ -202,20 +202,21 @@
   gap: 3px;
   text-align: right;
   color: var(--muted);
-  font-size: calc(clamp(11px, 2.4vw, 14px) * var(--japanese-gloss-font-scale, 1));
+  font-size: var(--japanese-gloss-font-size, 16px);
   font-weight: 400;
   line-height: 1.25;
 }
 
 .card-slot.card-reading {
-  top: calc(50% + (clamp(30.93px, 11.73vw, 70.4px) * var(--japanese-main-font-scale, 1) * 0.58));
+  top: calc(50% + (var(--japanese-main-font-size, 67px) * 0.58));
   left: 50%;
   width: calc(100% - 48px);
   transform: translateX(-50%);
   text-align: center;
   color: var(--muted);
-  font-size: calc(clamp(18px, 6vw, 34px) * var(--japanese-reading-font-scale, 1));
-  font-weight: 400;
+  font-family: var(--japanese-reading-font-family, inherit);
+  font-size: var(--japanese-reading-font-size, 34px);
+  font-weight: var(--japanese-reading-font-weight, 400);
   line-height: 1.15;
 }
 
@@ -225,8 +226,9 @@
   width: calc(100% - 48px);
   transform: translate(-50%, -50%);
   text-align: center;
-  font-size: calc(clamp(30.93px, 11.73vw, 70.4px) * var(--japanese-main-font-scale, 1));
-  font-weight: 400;
+  font-family: var(--japanese-main-font-family, inherit);
+  font-size: var(--japanese-main-font-size, 67px);
+  font-weight: var(--japanese-main-font-weight, 400);
   line-height: 1.02;
   text-shadow: 0 0 14px rgba(96, 165, 250, 0.08);
 }
@@ -240,7 +242,7 @@
   place-items: center;
   text-align: center;
   color: var(--text);
-  font-size: calc(clamp(18px, 5vw, 28px) * var(--japanese-english-font-scale, 1));
+  font-size: var(--japanese-english-font-size, 30px);
   font-weight: 400;
   line-height: 1.22;
   padding-top: 14px;

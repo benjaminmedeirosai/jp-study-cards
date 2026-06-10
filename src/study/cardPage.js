@@ -7,6 +7,7 @@ import {
   loadState,
   saveState,
   text,
+  fontStack,
   entryKey,
   openSearchLink,
   loadBundle,
@@ -330,10 +331,14 @@ export function renderCardPage() {
     const english = text(entry, "english");
     const type = text(entry, "type");
     const mainText = kanji || hiragana || "-";
-    card.style.setProperty("--japanese-main-font-scale", String(state.kanjiFontScale / 100));
-    card.style.setProperty("--japanese-reading-font-scale", String(state.hiraganaFontScale / 100));
-    card.style.setProperty("--japanese-english-font-scale", String(state.englishFontScale / 100));
-    card.style.setProperty("--japanese-gloss-font-scale", String(state.glossFontScale / 100));
+    card.style.setProperty("--japanese-main-font-size", `${state.kanjiFontPx}px`);
+    card.style.setProperty("--japanese-reading-font-size", `${state.hiraganaFontPx}px`);
+    card.style.setProperty("--japanese-english-font-size", `${state.englishFontPx}px`);
+    card.style.setProperty("--japanese-gloss-font-size", `${state.glossFontPx}px`);
+    card.style.setProperty("--japanese-main-font-family", fontStack(state.kanjiFont));
+    card.style.setProperty("--japanese-reading-font-family", fontStack(state.hiraganaFont));
+    card.style.setProperty("--japanese-main-font-weight", state.kanjiBold ? "700" : "400");
+    card.style.setProperty("--japanese-reading-font-weight", state.hiraganaBold ? "700" : "400");
     cardType.textContent = type;
     cardMain.textContent = mainText;
     cardReading.textContent = hiragana;

@@ -7,6 +7,10 @@ import {
   DEFAULT_SET_SIZE,
   VOICE_RATE_OPTIONS,
   SET_GROUPINGS,
+  availableFonts,
+  FONT_PX_STEPS,
+  fontStepToPx,
+  fontPxToStep,
   clampInt,
   clampNum,
   normalizeSetGrouping,
@@ -129,25 +133,62 @@ export function renderSettingsPage() {
     state.setGrouping
   );
 
-  // --- Font scales (sliders, 50–150% in 5% steps) ------------------------
-  const FONT_MIN = 50;
-  const FONT_MAX = 150;
-  function makeFontSlider(value) {
+  // --- Font sizes (sliders, absolute px) ----------------------------------
+  // The number shown IS the rendered px size, identical across slots, so the
+  // same value renders the same size everywhere. The bar moves in even steps
+  // but px grows geometrically (constant ratio per notch) — see fontStepToPx.
+  function makeFontSlider(px) {
     const input = document.createElement("input");
     input.type = "range";
     input.className = "font-slider";
-    input.min = String(FONT_MIN);
-    input.max = String(FONT_MAX);
-    input.step = "5";
-    input.value = String(clampInt(value, FONT_MAX, FONT_MIN, FONT_MAX));
+    input.min = "0";
+    input.max = String(FONT_PX_STEPS);
+    input.step = "1";
+    input.value = String(fontPxToStep(px));
     return input;
   }
-  const kanjiFontInput = makeFontSlider(state.kanjiFontScale);
-  const hiraganaFontInput = makeFontSlider(state.hiraganaFontScale);
-  const englishFontInput = makeFontSlider(state.englishFontScale);
-  const glossFontInput = makeFontSlider(state.glossFontScale);
+  const kanjiFontInput = makeFontSlider(state.kanjiFontPx);
+  const hiraganaFontInput = makeFontSlider(state.hiraganaFontPx);
+  const englishFontInput = makeFontSlider(state.englishFontPx);
+  const glossFontInput = makeFontSlider(state.glossFontPx);
   const hotkeyToggle = makeToggle("Hotkeys", state.showHotkeys);
   const glossToggle = makeToggle("Kanji gloss", state.showGloss);
+
+  // --- Font families (only those installed on this device) ----------------
+  // Each option previews itself in its own font; the current pick is kept even
+  // if detection misses it, so a saved choice never disappears.
+  function makeFontSelect(currentId) {
+    const fonts = availableFonts([currentId]);
+    const select = makeSelect(fonts.map((font) => ({ value: font.id, label: font.label })), currentId);
+    for (const option of select.options) {
+      const font = fonts.find((f) => f.id === option.value);
+      if (font && font.family) option.style.fontFamily = `"${font.family}", ${font.generic}`;
+    }
+    return select;
+  }
+  const kanjiFontFamilyInput = makeFontSelect(state.kanjiFont);
+  const hiraganaFontFamilyInput = makeFontSelect(state.hiraganaFont);
+  // A bold "B" toggle button that highlights when on, matching the preset-chip
+  // active style used elsewhere.
+  function makeBoldToggle(active) {
+    const btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "bold-toggle";
+    btn.innerHTML = `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15.6 10.79c.97-.67 1.65-1.77 1.65-2.79 0-2.26-1.75-4-4-4H7v14h7.04c2.09 0 3.71-1.7 3.71-3.79 0-1.52-.86-2.82-2.15-3.42zM10 6.5h3c.83 0 1.5.67 1.5 1.5s-.67 1.5-1.5 1.5h-3v-3zm3.5 9H10v-3h3.5c.83 0 1.5.67 1.5 1.5s-.67 1.5-1.5 1.5z"/></svg>`;
+    btn.setAttribute("aria-label", "Bold");
+    btn.setAttribute("aria-pressed", String(!!active));
+    btn.classList.toggle("active", !!active);
+    return btn;
+  }
+  const kanjiBoldBtn = makeBoldToggle(state.kanjiBold);
+  const hiraganaBoldBtn = makeBoldToggle(state.hiraganaBold);
+  // Each font row: the family dropdown + its Bold toggle, side by side.
+  function fontFamilyRow(select, boldBtn) {
+    const row = document.createElement("div");
+    row.className = "font-family-row";
+    row.append(select, boldBtn);
+    return row;
+  }
 
   // --- Autoplay delays (seconds) ------------------------------------------
   function makeDelayInput(value) {
@@ -318,22 +359,41 @@ export function renderSettingsPage() {
     updateSettingsPreview();
   });
 
-  // Font sizes apply immediately; the field label echoes the current percentage.
-  const kanjiFontField = fieldLabel(`Kanji size ${state.kanjiFontScale}%`, kanjiFontInput);
-  const hiraganaFontField = fieldLabel(`Hiragana size ${state.hiraganaFontScale}%`, hiraganaFontInput);
-  const englishFontField = fieldLabel(`English size ${state.englishFontScale}%`, englishFontInput);
-  const glossFontField = fieldLabel(`Kanji gloss size ${state.glossFontScale}%`, glossFontInput);
+  // Font sizes apply immediately; the field label echoes the current px size.
+  const kanjiFontField = fieldLabel(`Kanji size ${state.kanjiFontPx}px`, kanjiFontInput);
+  const hiraganaFontField = fieldLabel(`Hiragana size ${state.hiraganaFontPx}px`, hiraganaFontInput);
+  const englishFontField = fieldLabel(`English size ${state.englishFontPx}px`, englishFontInput);
+  const glossFontField = fieldLabel(`Kanji gloss size ${state.glossFontPx}px`, glossFontInput);
   function wireFontScale(input, field, key, label) {
     input.addEventListener("input", () => {
-      state[key] = clampInt(input.value, FONT_MAX, FONT_MIN, FONT_MAX);
-      field.querySelector("span").textContent = `${label} size ${state[key]}%`;
+      state[key] = fontStepToPx(input.value);
+      field.querySelector("span").textContent = `${label} size ${state[key]}px`;
       saveState(state);
     });
   }
-  wireFontScale(kanjiFontInput, kanjiFontField, "kanjiFontScale", "Kanji");
-  wireFontScale(hiraganaFontInput, hiraganaFontField, "hiraganaFontScale", "Hiragana");
-  wireFontScale(englishFontInput, englishFontField, "englishFontScale", "English");
-  wireFontScale(glossFontInput, glossFontField, "glossFontScale", "Kanji gloss");
+  wireFontScale(kanjiFontInput, kanjiFontField, "kanjiFontPx", "Kanji");
+  wireFontScale(hiraganaFontInput, hiraganaFontField, "hiraganaFontPx", "Hiragana");
+  wireFontScale(englishFontInput, englishFontField, "englishFontPx", "English");
+  wireFontScale(glossFontInput, glossFontField, "glossFontPx", "Kanji gloss");
+
+  kanjiFontFamilyInput.addEventListener("change", () => {
+    state.kanjiFont = kanjiFontFamilyInput.value;
+    saveState(state);
+  });
+  hiraganaFontFamilyInput.addEventListener("change", () => {
+    state.hiraganaFont = hiraganaFontFamilyInput.value;
+    saveState(state);
+  });
+  function wireBold(btn, key) {
+    btn.addEventListener("click", () => {
+      state[key] = !state[key];
+      btn.classList.toggle("active", state[key]);
+      btn.setAttribute("aria-pressed", String(state[key]));
+      saveState(state);
+    });
+  }
+  wireBold(kanjiBoldBtn, "kanjiBold");
+  wireBold(hiraganaBoldBtn, "hiraganaBold");
 
   voiceSelect.addEventListener("change", () => {
     state.jpVoice = voiceSelect.value;
@@ -374,7 +434,9 @@ export function renderSettingsPage() {
     makePresetField("Set size", setSizeInput, [5, 10, 15, 20, 50]),
     fieldLabel("Set grouping", setGroupingInput),
     setPreview,
-    sectionHeading("Font sizes"),
+    sectionHeading("Fonts"),
+    fieldLabel("Kanji font", fontFamilyRow(kanjiFontFamilyInput, kanjiBoldBtn)),
+    fieldLabel("Hiragana font", fontFamilyRow(hiraganaFontFamilyInput, hiraganaBoldBtn)),
     kanjiFontField,
     hiraganaFontField,
     englishFontField,

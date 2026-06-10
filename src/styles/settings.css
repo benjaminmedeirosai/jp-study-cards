@@ -142,6 +142,46 @@
   cursor: pointer;
 }
 
+/* Font picker row: the family dropdown + an inline Bold toggle. */
+.font-family-row {
+  display: flex;
+  align-items: stretch;
+  gap: 6px;
+}
+
+.font-family-row select { flex: 1; min-width: 0; }
+
+/* Bold toggle: a square bold-"B" icon button that highlights when on, reusing
+   the preset-chip active treatment for consistency. */
+.bold-toggle {
+  flex: 0 0 auto;
+  display: grid;
+  place-items: center;
+  width: 40px;
+  border: 1px solid rgba(96, 165, 250, 0.22);
+  border-radius: 9px;
+  background: linear-gradient(180deg, rgba(30, 41, 59, 0.5), rgba(15, 23, 42, 0.48));
+  color: var(--muted);
+  cursor: pointer;
+}
+
+.bold-toggle svg {
+  width: 20px;
+  height: 20px;
+  fill: currentColor;
+}
+
+.bold-toggle:hover {
+  border-color: var(--accent-border);
+  color: var(--text);
+}
+
+.bold-toggle.active {
+  border-color: rgba(96, 165, 250, 0.72);
+  background: linear-gradient(180deg, rgba(96, 165, 250, 0.42), rgba(37, 99, 235, 0.34));
+  color: #eff6ff;
+}
+
 /* Japanese voice picker: select + a Preview button. */
 .voice-row {
   display: flex;
