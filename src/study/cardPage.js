@@ -105,19 +105,21 @@ export function renderCardPage() {
   const summaryGrouping = document.createElement("span");
   summaryGrouping.className = "card-summary-grouping";
   summary.append(summaryMain, summaryGrouping);
-  // Row 1: deck chooser (majority) + small Settings button at the top-right.
-  const deckRow = document.createElement("div");
-  deckRow.className = "card-header-row deck-settings-row";
-  deckRow.append(fieldLabel("Deck", deckButton), settingsBtn);
-  // Row 2: mode + set selectors, split 50/50.
+  // Header controls live in ONE 2×2 grid so the columns share tracks: Deck and
+  // Set sit in the same wide left column (identical width, left edges aligned),
+  // Settings and Mode in the same narrow right column.
+  //   Row 1: Deck | Settings   Row 2: Set | Mode
   const setField = fieldLabel(`Set (${state.setSize})`, setSelect);
   const setFieldText = setField.querySelector("span");
-  const modeSetRow = document.createElement("div");
-  modeSetRow.className = "card-header-row mode-set-row";
-  // Set on the left (wide, aligned under the Deck field), Mode on the right
-  // (narrow, under Settings).
-  modeSetRow.append(setField, fieldLabel("Mode", modeSelect));
-  top.append(deckRow, modeSetRow, summary);
+  const headerControls = document.createElement("div");
+  headerControls.className = "card-header-grid";
+  headerControls.append(
+    fieldLabel("Deck", deckButton),
+    settingsBtn,
+    setField,
+    fieldLabel("Mode", modeSelect)
+  );
+  top.append(headerControls, summary);
 
   // --- Card ---------------------------------------------------------------
   const card = document.createElement("article");

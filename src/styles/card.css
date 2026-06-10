@@ -23,15 +23,17 @@
   gap: 6px;
 }
 
-.card-header-row {
+/* The 2×2 header grid: Deck | Settings on row 1, Set | Mode on row 2. One grid
+   (not two rows) so the columns share tracks — Deck and Set get the same wide
+   left column, Settings and Mode the same narrow right column. minmax(0, …) so
+   a long <select> option can't blow the row past the viewport; the right column
+   is `auto` (sized to the wider of Settings / Mode, both short). */
+.card-header-grid {
   display: grid;
-  gap: 6px;
-  min-width: 0;
-}
-
-.card-header-row.deck-settings-row {
   grid-template-columns: minmax(0, 1fr) auto;
+  gap: 6px;
   align-items: end;
+  min-width: 0;
 }
 
 /* Deck chooser — a button (like Settings) that opens the deck page. */
@@ -81,15 +83,6 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-}
-
-.card-header-row.mode-set-row {
-  /* minmax(0, …) (not a bare 1fr = minmax(auto,1fr)) so a long <select> option
-     can't set a wide min-content and blow the row past the viewport. Set ~75%
-     on the left (under the Deck field, and it carries the long labels), Mode
-     ~25% on the right (under Settings). */
-  grid-template-columns: minmax(0, 3fr) minmax(0, 1fr);
-  align-items: end;
 }
 
 .card-summary {
