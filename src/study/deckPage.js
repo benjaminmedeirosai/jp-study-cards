@@ -5,10 +5,6 @@ import { historyDropdown, getFilterHistory, getDeckHistory, formatDuration, form
 // per-row "studied" meta has room.
 const INDENT = 17;
 
-// Sentinel path for the synthetic "All decks" root folder (won't collide with
-// any real category path, which are slash-delimited).
-const ALL_PATH = "::all::";
-
 const ICONS = {
   folder: `<svg viewBox="0 0 24 24"><path d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z"/></svg>`,
   folderOpen: `<svg viewBox="0 0 24 24"><path d="m6 14 1.45-2.9A2 2 0 0 1 9.24 10H20a2 2 0 0 1 1.94 2.5l-1.55 6a2 2 0 0 1-1.94 1.5H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h3.9a2 2 0 0 1 1.69.9l.81 1.2a2 2 0 0 0 1.67.9H18a2 2 0 0 1 2 2v2"/></svg>`,
@@ -242,31 +238,12 @@ export function renderDeckPage() {
     }
   }
 
-  // The "All decks" root folder: selecting it studies the whole collection;
-  // expanding it reveals every top-level folder/deck beneath.
-  function renderAllRow(frag) {
-    const isOpen = nameQuery ? true : expanded.has(ALL_PATH);
-    const matched = tree.reduce((sum, node) => sum + matchedInNode(node), 0);
-    const total = tree.reduce((sum, node) => sum + countCards(node), 0);
-    const toggle = contentRow(isOpen ? ICONS.folderOpen : ICONS.folder, "All decks", countLabel(matched, total), "deck-folder-toggle", true, metaFor("all"));
-    toggle.setAttribute("aria-expanded", isOpen ? "true" : "false");
-    toggle.addEventListener("click", () => {
-      if (expanded.has(ALL_PATH)) expanded.delete(ALL_PATH);
-      else expanded.add(ALL_PATH);
-      renderList();
-    });
-    frag.append(entry(toggle, useButton("all", "All decks"), 0));
-    return isOpen;
-  }
-
   function renderList() {
     counts = deckMatchCounts(bundle, state.query);
     historyById = new Map(getDeckHistory().map((h) => [h.id, h]));
     const frag = document.createDocumentFragment();
-    if (renderAllRow(frag)) {
-      for (const node of tree) {
-        if (!nameQuery || subtreeNameMatch(node)) renderNode(node, "", 1, frag, false);
-      }
+    for (const node of tree) {
+      if (!nameQuery || subtreeNameMatch(node)) renderNode(node, "", 0, frag, false);
     }
     list.innerHTML = "";
     if (nameQuery && !frag.querySelector(".deck-row--file")) {
@@ -281,8 +258,6 @@ export function renderDeckPage() {
 
   // Expand the folders leading to (and including) the current selection.
   function seedExpanded(index) {
-    // The All-decks root starts open so its folders are visible.
-    expanded.add(ALL_PATH);
     const sel = state.deckId;
     let segments = [];
     if (sel.startsWith("folder:")) {
