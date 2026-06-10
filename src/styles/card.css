@@ -100,6 +100,12 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  /* Clip the FRONT of the breadcrumb, not the tail — the most specific part
+     (deck / set) stays visible (e.g. "…— Words / Mixed(18) (18)"). rtl moves
+     the ellipsis to the start; the text is all LTR/neutral so reading order is
+     unchanged. text-align:left keeps it flush with the left edge. */
+  direction: rtl;
+  text-align: left;
 }
 
 .card-summary-grouping {
