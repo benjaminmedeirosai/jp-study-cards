@@ -80,14 +80,18 @@ kanji	hiragana	type	english
 title-cases each folder segment (splitting on `-`) and joins them with ` / `:
 
 ```
-data/adjectives/na-adjectives/qualities.tsv
-     └──────────── category ───────────┘ └ label
-  → category "Adjectives / Na Adjectives", label "Qualities", id
-    "adjectives/na-adjectives/qualities"
+data/words/adjectives/na-adjectives/qualities.tsv
+     └─────────────── category ──────────────┘ └ label
+  → category "Words / Adjectives / Na Adjectives", label "Qualities", id
+    "words/adjectives/na-adjectives/qualities"
 ```
 
+- **Two top-level trees.** All vocabulary decks live under `data/words/`
+  (category root "Words"); reading passages live under `data/texts/` (see
+  [Reading texts](#reading-texts)). Everything below is about the `words/` tree
+  unless noted.
 - Mirror the category you want in the app right in the folder tree. The current
-  top groups: `adjectives/{i-adjectives,na-adjectives}/`, `adverbs/`,
+  `words/` top groups: `adjectives/{i-adjectives,na-adjectives}/`, `adverbs/`,
   `expressions/`, `grammar/` (+ `grammar/morphemes/`), `nouns/<group>/`,
   `numbers/` (+ `numbers/counters/`), `proper-nouns/<places|world|names|media|
   mythology>/`, `verbs/<godan|ichidan|irregular>/`.
@@ -107,6 +111,40 @@ data/adjectives/na-adjectives/qualities.tsv
 - Folder/file names are lowercase-kebab. Use `# label:` (above) when the display
   name needs more than the filename can carry. **No counts anywhere** — they're
   derived from the rows at build time.
+
+## Reading texts
+
+A **reading text** is a short passage you study as a unit: learn its words as
+flashcards, then try to read the sentences with the blob as reference. Each one
+is a folder under `data/texts/<slug>/` with exactly three files:
+
+```
+data/texts/intro-japan/
+  blob.txt        ← the passage, one paragraph of raw Japanese (reference only)
+  sentences.tsv   ← the blob split into sentences  (japanese / reading / english)
+  words.tsv       ← every distinct word from the sentences (a normal deck)
+```
+
+- **`blob.txt`** — the whole passage as plain text (no header). Reference only;
+  the bundler stores it trimmed.
+- **`sentences.tsv`** — one row per sentence, in blob order. Header is
+  `japanese<TAB>reading<TAB>english` (NOT the deck header). `# label:` and `#`
+  comments work like any deck; the `# label:` here names the whole text set.
+  `japanese` is the sentence exactly as in the blob; `reading` is full kana;
+  `english` is the translation.
+- **`words.tsv`** — an ordinary deck (standard `kanji/hiragana/type/english
+  [breakdown]` header, gloss + comment-header rules all apply). It still appears
+  in `decks` and is studyable in the normal card UI. List every distinct word
+  **in the exact surface form it appears** in the sentences — conjugated and
+  continuative forms (あり, あります, できます) are their own entries, particles
+  included — deduped, in blob order.
+
+The bundler folds `blob.txt` + `sentences.tsv` into a separate **`texts`** array
+in `cards.json` (one entry per folder: `{id, label, category:"Texts", blob,
+sentences, wordsDeckId}`), while `words.tsv` flows through as a normal deck whose
+id is referenced by `wordsDeckId`. Add a passage by dropping a new
+`data/texts/<slug>/` folder with these three files and rebuilding. The reading
+view that consumes the `texts` array is not built yet — this is the data layer.
 
 ## Kanji gloss (`breakdown` column)
 
@@ -155,7 +193,7 @@ actually present in the word, the value is bracketed, and contains a colon. Run
 the bundler first (the validator reads the built artifact):
 
 ```bash
-node tools/bundle-data.mjs && node tools/check-gloss.mjs nouns/abstract/concepts
+node tools/bundle-data.mjs && node tools/check-gloss.mjs words/nouns/abstract/concepts
 ```
 
 It prints `glossed/total` per deck and a mismatch count — aim for **0
@@ -211,7 +249,7 @@ chunked `common-N.json` decks into themed TSVs. The pattern, in order:
 7. **Add more common words** as fits each theme — the goal is good coverage of
    the part of speech, not just whatever the source happened to contain.
 8. **Place the new decks** in folders that spell out the category you want
-   (e.g. `data/adjectives/na-adjectives/`); add a `# label:` line where the
+   (e.g. `data/words/adjectives/na-adjectives/`); add a `# label:` line where the
    display name needs symbols/kanji.
 9. **Delete the old files** and run the bundler — the tree is the manifest.
 

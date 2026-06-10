@@ -1,0 +1,43 @@
+# label: Intro to Japan — Words
+# Every distinct word from sentences.tsv, in the EXACT surface form it appears
+# (so conjugated/continuative forms like あり・あります・できます are their own
+# entries). Standard deck — studyable in the normal card UI. Order follows the
+# blob. A word that repeats across sentences appears once.
+kanji	hiragana	type	english	breakdown
+日本	にほん	noun	Japan	[日: sun/day | 本: origin/main]
+は	は	particle	(topic marker)
+東アジア	ひがしアジア	noun	East Asia	[東: east]
+に	に	particle	(location/direction/time marker)
+ある	ある	verb	to be; to exist (inanimate)
+島国	しまぐに	noun	island country	[島: island | 国: country]
+です	です	copula	to be (polite)
+首都	しゅと	noun	capital city	[首: neck/head | 都: capital/metropolis]
+東京	とうきょう	proper-noun	Tokyo	[東: east | 京: capital]
+で	で	particle	at; in; by (means/place of an action)
+最も	もっとも	adverb	most; the most	[最: most]
+大きな	おおきな	adjective	big; large	[大: big]
+都市	とし	noun	city	[都: metropolis | 市: city]
+美しい	うつくしい	i-adjective	beautiful	[美: beautiful]
+自然	しぜん	noun	nature	[自: self | 然: -ness/state]
+や	や	particle	and (non-exhaustive list)
+長い	ながい	i-adjective	long	[長: long]
+歴史	れきし	noun	history	[歴: course/passage | 史: history]
+が	が	particle	(subject marker)
+あり	あり	verb	there is; and (連用形 of ある)
+四季	しき	noun	the four seasons	[四: four | 季: season]
+を	を	particle	(direct-object marker)
+楽しむ	たのしむ	verb	to enjoy	[楽: enjoy/pleasure]
+こと	こと	noun	thing; act (nominalizer)
+できます	できます	verb	can do; to be able to (polite of できる)
+寿司	すし	noun	sushi	[寿: longevity | 司: officiate/manage]
+ラーメン	ラーメン	noun	ramen
+など	など	particle	and so on; etc.
+の	の	particle	(possessive/connective)
+日本料理	にほんりょうり	noun	Japanese cuisine	[日: sun/day | 本: origin/main | 料: materials/fee | 理: manage/reason]
+世界中	せかいじゅう	noun	all over the world	[世: world/generation | 界: boundary/world | 中: throughout]
+人気	にんき	noun	popularity	[人: person | 気: spirit/feeling]
+あります	あります	verb	there is; to exist (polite of ある)
+技術	ぎじゅつ	noun	technology; technique	[技: skill | 術: technique/art]
+アニメ	アニメ	noun	anime
+でも	でも	particle	even; but; also
+有名	ゆうめい	na-adjective	famous	[有: have/exist | 名: name]
