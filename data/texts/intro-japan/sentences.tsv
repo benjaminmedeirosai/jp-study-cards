@@ -1,9 +1,9 @@
 # label: Intro to Japan
 # Sentence breakdown of blob.txt — one row per sentence, in reading order.
-# Columns: japanese (as in the blob) / reading (full kana) / english.
-japanese	reading	english
-日本は東アジアにある島国です。	にほんは ひがしアジアに ある しまぐにです。	Japan is an island country in East Asia.
-首都は東京で、日本で最も大きな都市です。	しゅとは とうきょうで、にほんで もっとも おおきな としです。	The capital is Tokyo, the largest city in Japan.
-日本には美しい自然や長い歴史があり、四季を楽しむことができます。	にほんには うつくしい しぜんや ながい れきしが あり、しきを たのしむ ことが できます。	Japan has beautiful nature and a long history, and you can enjoy the four seasons.
-寿司やラーメンなどの日本料理は世界中で人気があります。	すしや ラーメンなどの にほんりょうりは せかいじゅうで にんきが あります。	Japanese cuisine such as sushi and ramen is popular all over the world.
-日本は技術やアニメでも有名です。	にほんは ぎじゅつや アニメでも ゆうめいです。	Japan is also famous for technology and anime.
+# Columns: japanese (as in the blob) / english.
+japanese	english
+日本は東アジアにある島国です。	Japan is an island country in East Asia.
+首都は東京で、日本で最も大きな都市です。	The capital is Tokyo, the largest city in Japan.
+日本には美しい自然や長い歴史があり、四季を楽しむことができます。	Japan has beautiful nature and a long history, and you can enjoy the four seasons.
+寿司やラーメンなどの日本料理は世界中で人気があります。	Japanese cuisine such as sushi and ramen is popular all over the world.
+日本は技術やアニメでも有名です。	Japan is also famous for technology and anime.

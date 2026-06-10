@@ -30,7 +30,7 @@ import path from "node:path";
 const repoRoot = path.resolve(import.meta.dirname, "..");
 const dataRoot = path.join(repoRoot, "data");
 const REQUIRED_HEADERS = ["kanji", "hiragana", "type", "english"];
-const SENTENCE_HEADERS = ["japanese", "reading", "english"];
+const SENTENCE_HEADERS = ["japanese", "english"];
 
 // "na-adjectives" -> "Na Adjectives"; "food" -> "Food"
 function titleCase(segment) {
@@ -76,7 +76,7 @@ function parseTsv(source, file) {
 }
 
 // Parse a texts/<slug>/sentences.tsv: same comment/`# label:` rules as a deck,
-// but a `japanese / reading / english` header — one row per sentence.
+// but a `japanese / english` header — one row per sentence.
 function parseSentences(source, file) {
   let label = null;
   const lines = [];

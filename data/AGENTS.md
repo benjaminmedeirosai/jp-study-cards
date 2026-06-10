@@ -121,17 +121,16 @@ is a folder under `data/texts/<slug>/` with exactly three files:
 ```
 data/texts/intro-japan/
   blob.txt        ← the passage, one paragraph of raw Japanese (reference only)
-  sentences.tsv   ← the blob split into sentences  (japanese / reading / english)
+  sentences.tsv   ← the blob split into sentences  (japanese / english)
   words.tsv       ← every distinct word from the sentences (a normal deck)
 ```
 
 - **`blob.txt`** — the whole passage as plain text (no header). Reference only;
   the bundler stores it trimmed.
 - **`sentences.tsv`** — one row per sentence, in blob order. Header is
-  `japanese<TAB>reading<TAB>english` (NOT the deck header). `# label:` and `#`
-  comments work like any deck; the `# label:` here names the whole text set.
-  `japanese` is the sentence exactly as in the blob; `reading` is full kana;
-  `english` is the translation.
+  `japanese<TAB>english` (NOT the deck header). `# label:` and `#` comments work
+  like any deck; the `# label:` here names the whole text set. `japanese` is the
+  sentence exactly as in the blob; `english` is the translation.
 - **`words.tsv`** — an ordinary deck (standard `kanji/hiragana/type/english
   [breakdown]` header, gloss + comment-header rules all apply). It still appears
   in `decks` and is studyable in the normal card UI. List every distinct word
