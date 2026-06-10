@@ -1,27 +1,22 @@
 # label: Discovering Japan — Words
 # Every distinct word from sentences.tsv, in the EXACT surface form it appears
-# (conjugated/derived forms like 楽しめます・見られます・深く are their own entries,
-# particles included), deduped, in blob order. Standard deck — studyable in the
-# normal card UI.
+# (conjugated/derived forms like 楽しめます・見られます・深く are their own entries),
+# deduped, in blob order. Bare case/binding particles (は・が・を・に・な…) are
+# omitted as noise; meaningful grammar/copula (ように・でしょう…) is kept.
 kanji	hiragana	type	english	breakdown
 日本	にほん	noun	Japan	[日: sun/day | 本: origin/main]
-は	は	particle	(topic marker)
 魅力的	みりょくてき	na-adjective	fascinating; attractive	[魅: charm/fascinate | 力: power | 的: -ic/-al]
-な	な	particle	(attributive of な-adjectives)
 国	くに	noun	country
 です	です	copula	to be (polite)
 代表的	だいひょうてき	na-adjective	representative; typical	[代: substitute/represent | 表: surface/express | 的: -ic/-al]
 都市	とし	noun	city	[都: metropolis | 市: city]
-に	に	particle	(location/direction/time marker)
 東京	とうきょう	proper-noun	Tokyo	[東: east | 京: capital]
 京都	きょうと	proper-noun	Kyoto	[京: capital | 都: metropolis]
 大阪	おおさか	proper-noun	Osaka	[大: big | 阪: slope/hillside]
 など	など	particle	and so on; etc.
-が	が	particle	(subject marker)
 あります	あります	verb	there is; to exist (polite of ある)
 また	また	conjunction	also; moreover; again
 人気	にんき	noun	popularity	[人: person | 気: spirit/feeling]
-の	の	particle	(possessive/connective)
 料理	りょうり	noun	dish; cuisine	[料: materials/fee | 理: manage/reason]
 として	として	particle	as; in the role of
 寿司	すし	noun	sushi	[寿: longevity | 司: officiate/manage]
@@ -30,9 +25,7 @@ kanji	hiragana	type	english	breakdown
 挙げられます	あげられます	verb	to be cited; can be listed (passive/potential of 挙げる, polite)	[挙: raise/cite]
 観光客	かんこうきゃく	noun	tourist; sightseer	[観: view/observe | 光: light | 客: guest/customer]
 神社	じんじゃ	noun	shrine (Shinto)	[神: god/deity | 社: shrine/company]
-や	や	particle	and (non-exhaustive list)
 お寺	おてら	noun	temple (Buddhist)	[寺: temple]
-を	を	particle	(direct-object marker)
 訪れる	おとずれる	verb	to visit	[訪: visit/call on]
 温泉	おんせん	noun	hot spring	[温: warm | 泉: spring/fountain]
 楽しむ	たのしむ	verb	to enjoy	[楽: enjoy/pleasure]
@@ -59,7 +52,6 @@ kanji	hiragana	type	english	breakdown
 ように	ように	particle	as; like; in such a way that
 実際	じっさい	noun	reality; actuality; (実際に) actually	[実: real/truth | 際: occasion/edge]
 こと	こと	noun	thing; act (nominalizer)
-で	で	particle	by; with; by means of
 魅力	みりょく	noun	charm; appeal; fascination	[魅: charm/fascinate | 力: power]
 より	より	particle	than; more
 深く	ふかく	adverb	deeply (連用形 of 深い)	[深: deep]

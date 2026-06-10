@@ -134,9 +134,12 @@ data/texts/intro-japan/
 - **`words.tsv`** — an ordinary deck (standard `kanji/hiragana/type/english
   [breakdown]` header, gloss + comment-header rules all apply). It still appears
   in `decks` and is studyable in the normal card UI. List every distinct word
-  **in the exact surface form it appears** in the sentences — conjugated and
-  continuative forms (あり, あります, できます) are their own entries, particles
-  included — deduped, in blob order.
+  **in the exact surface form it appears** in the sentences — conjugated/derived
+  forms (あり, あります, できます, 深く) are their own entries — deduped, in blob
+  order. **Omit bare case/binding particles** (は・が・を・に・へ・で・と・も・の・
+  や・か and the attributive な) — single-kana glue is noise. **Keep** meaningful
+  multi-token grammar and copula/auxiliary forms (ように, でしょう, として,
+  といった, という, です) and the contentful particles (など, でも, より).
 
 The bundler folds `blob.txt` + `sentences.tsv` into a separate **`texts`** array
 in `cards.json` (one entry per folder: `{id, label, category:"Texts", blob,
