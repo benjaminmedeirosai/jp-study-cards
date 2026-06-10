@@ -16,6 +16,10 @@
 /* --- Header ------------------------------------------------------------- */
 .card-top {
   display: grid;
+  /* minmax(0, 1fr) so the single column fills the available width instead of
+     growing to the widest child's max-content (the breadcrumb summary is a
+     long nowrap line) — otherwise the header overflows the viewport. */
+  grid-template-columns: minmax(0, 1fr);
   gap: 6px;
 }
 
@@ -80,7 +84,10 @@
 }
 
 .card-header-row.mode-set-row {
-  grid-template-columns: 1fr 1fr;
+  /* minmax(0, …) (not a bare 1fr = minmax(auto,1fr)) so a long <select> option
+     can't set a wide min-content and blow the row past the viewport. Mode gets
+     ~25%, Set ~75% (Set's labels are the long ones). */
+  grid-template-columns: minmax(0, 1fr) minmax(0, 3fr);
   align-items: end;
 }
 

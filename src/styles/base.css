@@ -36,6 +36,10 @@ button, input, select { font: inherit; }
   height: 100dvh;
   min-height: 0;
   display: grid;
+  /* Single column pinned to the available width — minmax(0,1fr) (not the
+     default auto) so no wide child (e.g. a <select> with long options) can
+     expand the column and push content off-screen. */
+  grid-template-columns: minmax(0, 1fr);
   gap: 10px;
   padding: 10px;
   overflow: hidden;
