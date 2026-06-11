@@ -1,10 +1,10 @@
-# Animals — common animal nouns.
+# Animals — common animal nouns. The definite article shows each noun's gender.
 spanish	type	english
-perro	noun	dog
-gato	noun	cat
-caballo	noun	horse
-pájaro	noun	bird
-pez	noun	fish
-vaca	noun	cow
-ratón	noun	mouse
-conejo	noun	rabbit
+el perro	noun	dog
+el gato	noun	cat
+el caballo	noun	horse
+el pájaro	noun	bird
+el pez	noun	fish
+la vaca	noun	cow
+el ratón	noun	mouse
+el conejo	noun	rabbit

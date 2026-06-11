@@ -1,11 +1,13 @@
-# Food — common food & drink nouns.
+# Food — common food nouns. The definite article shows each noun's gender.
+# Note: "el agua" — agua is feminine but takes el in the singular for euphony.
+# Drinks go in drinks.tsv; fruits & vegetables in fruits-vegetables.tsv.
 spanish	type	english
-pan	noun	bread
-agua	noun	water
-leche	noun	milk
-queso	noun	cheese
-manzana	noun	apple
-huevo	noun	egg
-carne	noun	meat
-arroz	noun	rice
-café	noun	coffee
+el pan	noun	bread
+el agua	noun	water
+la leche	noun	milk
+el queso	noun	cheese
+la manzana	noun	apple
+el huevo	noun	egg
+la carne	noun	meat
+el arroz	noun	rice
+el café	noun	coffee

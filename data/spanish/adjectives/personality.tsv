@@ -1,0 +1,15 @@
+# Personality & character — what someone is like.
+# Temporary feelings (happy, tired) go in feelings.tsv.
+spanish	type	english
+amable	adjective	kind
+simpático	adjective	nice; friendly
+antipático	adjective	unfriendly
+inteligente	adjective	intelligent; smart
+tonto	adjective	silly; dumb
+valiente	adjective	brave
+tímido	adjective	shy
+generoso	adjective	generous
+egoísta	adjective	selfish
+trabajador	adjective	hardworking
+perezoso	adjective	lazy
+honesto	adjective	honest

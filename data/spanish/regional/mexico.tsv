@@ -1,0 +1,14 @@
+# label: Vocabulary (Mexico)
+# Mexico/LatAm's preferred word where everyday vocabulary diverges by region.
+# Each row pairs with a Spain counterpart in regional/spain.tsv. Nouns carry the
+# article (gender); adjectives stay bare. SAMPLE for review.
+spanish	type	english
+el carro	noun	car
+la computadora	noun	computer
+el celular	noun	cellphone
+el jugo	noun	juice
+la papa	noun	potato
+el camión	noun	bus
+el boleto	noun	ticket
+los lentes	noun	glasses
+enojado	adjective	angry

@@ -1,0 +1,15 @@
+# Regular -er verbs (2nd conjugation), dictionary/infinitive form.
+# Irregular/stem-changing -er verbs (poder, querer, volver...) go in irregular.tsv.
+spanish	type	english
+comer	verb	to eat
+beber	verb	to drink
+leer	verb	to read
+aprender	verb	to learn
+comprender	verb	to understand
+correr	verb	to run
+vender	verb	to sell
+creer	verb	to believe
+deber	verb	should; to owe
+responder	verb	to respond; to reply
+romper	verb	to break
+meter	verb	to put in; to insert

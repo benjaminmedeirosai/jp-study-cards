@@ -1,0 +1,10 @@
+# Drinks — beverages. The definite article shows each noun's gender.
+# Basic agua/leche/café live in food.tsv.
+# Note: "juice" splits regionally — jugo (LatAm) / zumo (Spain); see regional/.
+spanish	type	english
+el té	noun	tea
+el vino	noun	wine
+la cerveza	noun	beer
+el refresco	noun	soft drink; soda
+el batido	noun	milkshake
+la limonada	noun	lemonade

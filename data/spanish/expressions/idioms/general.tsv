@@ -1,0 +1,14 @@
+# Idioms — pan-Hispanic figurative expressions understood across the Spanish-
+# speaking world. Region-locked idioms/slang go in sibling files (spain.tsv,
+# mexico.tsv, ...). English gives the meaning, not a word-for-word translation.
+spanish	type	english
+estar en las nubes	idiom	to have one's head in the clouds; to be distracted
+costar un ojo de la cara	idiom	to cost an arm and a leg
+tomar el pelo	idiom	to pull someone's leg; to tease
+no tener pelos en la lengua	idiom	to be very outspoken
+ser pan comido	idiom	to be a piece of cake; very easy
+meter la pata	idiom	to put one's foot in it; to mess up
+echar una mano	idiom	to lend a hand
+estar como pez en el agua	idiom	to be in one's element
+más vale tarde que nunca	idiom	better late than never
+dar en el clavo	idiom	to hit the nail on the head

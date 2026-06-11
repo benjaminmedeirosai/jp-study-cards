@@ -1,0 +1,17 @@
+# Family — relatives. General people (man, woman, friend) go in people.tsv.
+# The definite article shows each noun's gender.
+spanish	type	english
+el hermano	noun	brother
+la hermana	noun	sister
+el hijo	noun	son
+la hija	noun	daughter
+el abuelo	noun	grandfather
+la abuela	noun	grandmother
+el tío	noun	uncle
+la tía	noun	aunt
+el primo	noun	cousin (male)
+la prima	noun	cousin (female)
+el esposo	noun	husband
+la esposa	noun	wife
+el nieto	noun	grandson
+el sobrino	noun	nephew

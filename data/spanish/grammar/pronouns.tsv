@@ -1,0 +1,20 @@
+# Pronouns — subject and common object/possessive forms.
+# Note: vosotros (Spain) vs ustedes (LatAm) for plural "you"; voseo (vos) used in
+# Argentina and parts of Central America. Both are included so learners see them.
+spanish	type	english
+yo	pronoun	I
+tú	pronoun	you (informal)
+usted	pronoun	you (formal)
+él	pronoun	he
+ella	pronoun	she
+nosotros	pronoun	we
+vosotros	pronoun	you all (Spain, informal)
+ustedes	pronoun	you all
+ellos	pronoun	they (masculine)
+ellas	pronoun	they (feminine)
+me	pronoun	me
+te	pronoun	you (object)
+nos	pronoun	us
+se	pronoun	oneself; himself; herself
+mío	pronoun	mine
+tuyo	pronoun	yours

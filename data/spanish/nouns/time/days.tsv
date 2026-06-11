@@ -1,0 +1,10 @@
+# Days of the week (not capitalized in Spanish). All masculine; "el" also means
+# "on" — el lunes = on Monday.
+spanish	type	english
+el lunes	noun	Monday
+el martes	noun	Tuesday
+el miércoles	noun	Wednesday
+el jueves	noun	Thursday
+el viernes	noun	Friday
+el sábado	noun	Saturday
+el domingo	noun	Sunday

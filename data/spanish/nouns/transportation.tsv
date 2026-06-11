@@ -1,0 +1,11 @@
+# Transportation — ways to get around. The definite article shows each noun's gender.
+# Note: several diverge regionally — car (coche/carro), bus (autobús/camión),
+# ticket (billete/boleto); the neutral/unambiguous ones are here, variants in regional/.
+spanish	type	english
+el tren	noun	train
+el avión	noun	airplane
+el barco	noun	boat; ship
+la bicicleta	noun	bicycle
+la motocicleta	noun	motorcycle
+el taxi	noun	taxi
+el metro	noun	subway; metro

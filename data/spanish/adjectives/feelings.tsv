@@ -1,0 +1,16 @@
+# Feelings & states — how someone feels right now (often used with estar).
+# Lasting character traits go in personality.tsv.
+# Note: "angry" splits regionally — enojado (LatAm) / enfadado (Spain); see regional/.
+spanish	type	english
+feliz	adjective	happy
+triste	adjective	sad
+contento	adjective	glad; pleased
+enojado	adjective	angry
+cansado	adjective	tired
+aburrido	adjective	bored
+nervioso	adjective	nervous
+asustado	adjective	scared
+preocupado	adjective	worried
+emocionado	adjective	excited
+orgulloso	adjective	proud
+enfermo	adjective	sick; ill

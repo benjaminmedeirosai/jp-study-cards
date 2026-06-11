@@ -1,0 +1,15 @@
+# Months of the year (not capitalized in Spanish). All masculine, but used
+# WITHOUT an article ("en enero", not "el enero") — so no article is shown here.
+spanish	type	english
+enero	noun	January
+febrero	noun	February
+marzo	noun	March
+abril	noun	April
+mayo	noun	May
+junio	noun	June
+julio	noun	July
+agosto	noun	August
+septiembre	noun	September
+octubre	noun	October
+noviembre	noun	November
+diciembre	noun	December

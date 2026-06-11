@@ -1,0 +1,15 @@
+# Time units & periods (nouns). The definite article shows each noun's gender.
+# Time adverbs (now, today, soon) go in adverbs/time.tsv.
+spanish	type	english
+el día	noun	day
+la semana	noun	week
+el mes	noun	month
+el año	noun	year
+la hora	noun	hour
+el minuto	noun	minute
+el segundo	noun	second
+el momento	noun	moment
+la mañana	noun	morning
+la tarde	noun	afternoon; evening
+la noche	noun	night
+el fin de semana	noun	weekend

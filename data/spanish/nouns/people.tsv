@@ -1,10 +1,11 @@
-# People — common people & family nouns.
+# People — common people nouns. The definite article shows each noun's gender.
+# Family relatives go in family.tsv.
 spanish	type	english
-hombre	noun	man
-mujer	noun	woman
-niño	noun	boy; child
-niña	noun	girl
-amigo	noun	friend
-familia	noun	family
-madre	noun	mother
-padre	noun	father
+el hombre	noun	man
+la mujer	noun	woman
+el niño	noun	boy; child
+la niña	noun	girl
+el amigo	noun	friend
+la familia	noun	family
+la madre	noun	mother
+el padre	noun	father

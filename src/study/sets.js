@@ -9,6 +9,16 @@ function localeFor() {
   return (activeLibrary().tts.lang || "en").split("-")[0];
 }
 
+// Spanish nouns carry the definite article ("el perro", "la casa") to teach
+// gender, but the article must not drive alphabetic sort or letter-likeness —
+// otherwise every masculine noun buckets under "e" and every feminine under
+// "l". Strip a leading article before keying. Locale-gated, so other languages
+// (and Spanish non-nouns that have no article) are untouched.
+const LEADING_ARTICLE = /^(?:el|la|los|las)\s+/i;
+function collationValue(value) {
+  return localeFor() === "es" ? value.replace(LEADING_ARTICLE, "") : value;
+}
+
 const MIXED_KEY_DETAIL_LIMIT = 6;
 
 // Single-entry memo of the last grouping result, shared by the card page and the
@@ -49,9 +59,10 @@ export function sortCardsForSets(cards, groupingId) {
   const primaryField = fieldName("primary");
   const locale = localeFor();
   return [...cards].sort((a, b) => {
-    const aValue = text(a, field);
-    const bValue = text(b, field);
-    return aValue.localeCompare(bValue, locale) || text(a, primaryField).localeCompare(text(b, primaryField), locale);
+    const aValue = collationValue(text(a, field));
+    const bValue = collationValue(text(b, field));
+    return aValue.localeCompare(bValue, locale)
+      || collationValue(text(a, primaryField)).localeCompare(collationValue(text(b, primaryField)), locale);
   });
 }
 
@@ -98,7 +109,7 @@ function likenessKeys(entry, grouping) {
   const value = text(entry, fieldName(grouping.slot) || fieldName("primary"));
   if (grouping.unit === "han") return hanKeys(value);
   if (grouping.unit === "kana") return kanaKeys(value);
-  return letterKeys(value);
+  return letterKeys(collationValue(value));
 }
 
 function buildLikenessKeyGroups(cards, grouping) {

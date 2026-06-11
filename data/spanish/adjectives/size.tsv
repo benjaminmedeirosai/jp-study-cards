@@ -1,0 +1,13 @@
+# Size & dimension — how big, long, or thick something is.
+# General good/bad/pretty go in qualities.tsv; tall/short (alto/bajo) live there too.
+spanish	type	english
+largo	adjective	long
+corto	adjective	short
+ancho	adjective	wide
+estrecho	adjective	narrow
+grueso	adjective	thick
+fino	adjective	thin; fine
+profundo	adjective	deep
+enorme	adjective	huge; enormous
+gordo	adjective	fat
+delgado	adjective	thin; slim

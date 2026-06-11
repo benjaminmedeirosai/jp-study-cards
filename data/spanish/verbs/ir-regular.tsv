@@ -1,0 +1,15 @@
+# Regular -ir verbs (3rd conjugation), dictionary/infinitive form.
+# Irregular/stem-changing -ir verbs (dormir, pedir, sentir, venir...) go in irregular.tsv.
+spanish	type	english
+vivir	verb	to live
+escribir	verb	to write
+abrir	verb	to open
+recibir	verb	to receive
+subir	verb	to go up; to climb
+decidir	verb	to decide
+permitir	verb	to allow; to permit
+describir	verb	to describe
+existir	verb	to exist
+sufrir	verb	to suffer
+añadir	verb	to add
+ocurrir	verb	to happen; to occur

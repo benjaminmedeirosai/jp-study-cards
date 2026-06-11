@@ -1,0 +1,14 @@
+# label: Vocabulary (Spain)
+# Spain's preferred word where everyday vocabulary diverges by region. Each row
+# pairs with a LatAm counterpart in regional/mexico.tsv. Nouns carry the article
+# (gender); adjectives stay bare. SAMPLE for review.
+spanish	type	english
+el coche	noun	car
+el ordenador	noun	computer
+el móvil	noun	cellphone
+el zumo	noun	juice
+la patata	noun	potato
+el autobús	noun	bus
+el billete	noun	ticket
+las gafas	noun	glasses
+enfadado	adjective	angry

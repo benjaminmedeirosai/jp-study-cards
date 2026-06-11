@@ -1,0 +1,14 @@
+# Time adverbs — when. Time nouns (day, hour, week) go in nouns/time/units.tsv.
+spanish	type	english
+ahora	adverb	now
+hoy	adverb	today
+ayer	adverb	yesterday
+mañana	adverb	tomorrow
+antes	adverb	before
+después	adverb	after; afterward
+luego	adverb	later; then
+pronto	adverb	soon
+temprano	adverb	early
+tarde	adverb	late
+todavía	adverb	still; yet
+ya	adverb	already; now

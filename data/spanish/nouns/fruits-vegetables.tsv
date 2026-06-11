@@ -1,0 +1,17 @@
+# Fruits & vegetables. The definite article shows each noun's gender.
+# manzana (apple) lives in food.tsv.
+# Note: "potato" splits regionally — papa (LatAm) / patata (Spain); see regional/.
+spanish	type	english
+la naranja	noun	orange
+la pera	noun	pear
+la uva	noun	grape
+la fresa	noun	strawberry
+el limón	noun	lemon
+la piña	noun	pineapple
+la sandía	noun	watermelon
+el tomate	noun	tomato
+la lechuga	noun	lettuce
+la zanahoria	noun	carrot
+la cebolla	noun	onion
+el ajo	noun	garlic
+el maíz	noun	corn
