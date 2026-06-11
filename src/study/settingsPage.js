@@ -207,13 +207,15 @@ export function renderSettingsPage() {
   const answerDelayInput = makeDelayInput(state.autoplayAnswerDelay);
   const ttsEstimateToggle = makeToggle("Add estimated TTS delay", state.autoplayEstimateTts);
 
-  // --- Japanese voice (Web Speech API voices for ja-*) --------------------
+  // --- Voice (Web Speech API voices for the active library's language) ----
+  const library = activeLibrary();
+  const voiceLangPrefix = (library.tts.lang || "en").split("-")[0];
   const voiceSelect = document.createElement("select");
   function populateVoices() {
-    const desired = voiceSelect.options.length ? voiceSelect.value : state.jpVoice;
+    const desired = voiceSelect.options.length ? voiceSelect.value : state.voice;
     voiceSelect.innerHTML = "";
     const items = [{ value: "", label: "Auto (device default)" }];
-    for (const voice of getVoicesForLang("ja")) items.push({ value: voice.name, label: `${voice.name} · ${voice.lang}` });
+    for (const voice of getVoicesForLang(voiceLangPrefix)) items.push({ value: voice.name, label: `${voice.name} · ${voice.lang}` });
     for (const item of items) {
       const option = document.createElement("option");
       option.value = item.value;
@@ -238,7 +240,7 @@ export function renderSettingsPage() {
   voicePreviewBtn.className = "voice-preview";
   voicePreviewBtn.setAttribute("aria-label", "Preview voice");
   voicePreviewBtn.innerHTML = `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 5l12 7-12 7z"/></svg><span>Preview</span>`;
-  voicePreviewBtn.addEventListener("click", () => speak(VOICE_SAMPLE, { lang: "ja-JP", voiceName: voiceSelect.value, rate: Number(rateSelect.value) }));
+  voicePreviewBtn.addEventListener("click", () => speak(library.voiceSample || VOICE_SAMPLE, { lang: library.tts.lang, voiceName: voiceSelect.value, rate: Number(rateSelect.value) }));
   const voiceRow = document.createElement("div");
   voiceRow.className = "voice-row";
   voiceRow.append(voiceSelect, voicePreviewBtn);
@@ -363,10 +365,11 @@ export function renderSettingsPage() {
   });
 
   // Font sizes apply immediately; the field label echoes the current px size.
-  const kanjiFontField = fieldLabel(`Kanji size ${state.kanjiFontPx}px`, kanjiFontInput);
-  const hiraganaFontField = fieldLabel(`Hiragana size ${state.hiraganaFontPx}px`, hiraganaFontInput);
+  const L = library.labels;
+  const kanjiFontField = fieldLabel(`${L.primary} size ${state.kanjiFontPx}px`, kanjiFontInput);
+  const hiraganaFontField = fieldLabel(`${L.reading || "Reading"} size ${state.hiraganaFontPx}px`, hiraganaFontInput);
   const englishFontField = fieldLabel(`English size ${state.englishFontPx}px`, englishFontInput);
-  const glossFontField = fieldLabel(`Kanji gloss size ${state.glossFontPx}px`, glossFontInput);
+  const glossFontField = fieldLabel(`${L.gloss || "Gloss"} size ${state.glossFontPx}px`, glossFontInput);
   function wireFontScale(input, field, key, label) {
     input.addEventListener("input", () => {
       state[key] = fontStepToPx(input.value);
@@ -374,10 +377,10 @@ export function renderSettingsPage() {
       saveState(state);
     });
   }
-  wireFontScale(kanjiFontInput, kanjiFontField, "kanjiFontPx", "Kanji");
-  wireFontScale(hiraganaFontInput, hiraganaFontField, "hiraganaFontPx", "Hiragana");
+  wireFontScale(kanjiFontInput, kanjiFontField, "kanjiFontPx", L.primary);
+  wireFontScale(hiraganaFontInput, hiraganaFontField, "hiraganaFontPx", L.reading || "Reading");
   wireFontScale(englishFontInput, englishFontField, "englishFontPx", "English");
-  wireFontScale(glossFontInput, glossFontField, "glossFontPx", "Kanji gloss");
+  wireFontScale(glossFontInput, glossFontField, "glossFontPx", L.gloss || "Gloss");
 
   kanjiFontFamilyInput.addEventListener("change", () => {
     state.kanjiFont = kanjiFontFamilyInput.value;
@@ -399,7 +402,7 @@ export function renderSettingsPage() {
   wireBold(hiraganaBoldBtn, "hiraganaBold");
 
   voiceSelect.addEventListener("change", () => {
-    state.jpVoice = voiceSelect.value;
+    state.voice = voiceSelect.value;
     saveState(state);
   });
   rateSelect.addEventListener("change", () => {
@@ -439,17 +442,17 @@ export function renderSettingsPage() {
     fieldLabel("Set grouping", setGroupingInput),
     setPreview,
     sectionHeading("Fonts"),
-    fieldLabel("Kanji font", fontFamilyRow(kanjiFontFamilyInput, kanjiBoldBtn)),
-    // Reading (hiragana) font controls only for libraries with a reading field.
-    ...(activeLibrary().fields.reading
-      ? [fieldLabel("Hiragana font", fontFamilyRow(hiraganaFontFamilyInput, hiraganaBoldBtn))] : []),
+    fieldLabel(`${L.primary} font`, fontFamilyRow(kanjiFontFamilyInput, kanjiBoldBtn)),
+    // Reading font controls only for libraries with a reading field.
+    ...(library.fields.reading
+      ? [fieldLabel(`${L.reading} font`, fontFamilyRow(hiraganaFontFamilyInput, hiraganaBoldBtn))] : []),
     kanjiFontField,
-    ...(activeLibrary().fields.reading ? [hiraganaFontField] : []),
+    ...(library.fields.reading ? [hiraganaFontField] : []),
     englishFontField,
     // Gloss size only for libraries with the gloss feature.
-    ...(activeLibrary().features.gloss ? [glossFontField] : []),
+    ...(library.features.gloss ? [glossFontField] : []),
     sectionHeading("Voice & speed"),
-    fieldLabel("Japanese voice", voiceRow),
+    fieldLabel(`${library.label} voice`, voiceRow),
     fieldLabel("Voice speed", rateSelect),
     sectionHeading("Autoplay"),
     makePresetField("Question delay (sec)", questionDelayInput, [0.5, 1, 1.5, 2, 3]),

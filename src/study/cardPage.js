@@ -313,7 +313,7 @@ export function renderCardPage() {
 
   function speakStudy() {
     const value = studySpeechText(currentEntry());
-    if (value) speak(value, { lang: activeLibrary().tts.lang, voiceName: state.jpVoice, rate: state.voiceRate });
+    if (value) speak(value, { lang: activeLibrary().tts.lang, voiceName: state.voice, rate: state.voiceRate });
   }
 
   function renderTray() {
@@ -632,11 +632,14 @@ export function renderCardPage() {
     });
   }
 
-  // Rough estimate of how long the current card's reading takes to speak.
-  const MS_PER_KANA = 200;
+  // Rough estimate of how long the current card takes to speak, using the
+  // active library's estimate config (which field to count + ms per char):
+  // Japanese counts reading morae (~200ms each); Spanish counts word characters
+  // (~75ms each, since Latin letters run faster than morae).
   function estimatedSpeechMs(entry) {
-    const reading = readingText(entry) || studySpeechText(entry);
-    return [...reading].length * MS_PER_KANA;
+    const est = activeLibrary().tts.estimate || { source: "primary", msPerUnit: 200 };
+    const value = est.source === "reading" ? (readingText(entry) || studySpeechText(entry)) : studySpeechText(entry);
+    return [...value].length * est.msPerUnit;
   }
 
   // Wait the configured delay, plus an estimated speak time if this phase spoke

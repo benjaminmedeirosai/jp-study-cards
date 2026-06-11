@@ -22,8 +22,13 @@ export const LIBRARIES = [
     label: "Japanese",
     short: "日本語",
     data: "data/japanese/cards.json",
-    tts: { lang: "ja-JP" },
+    // `estimate` drives the autoplay TTS-duration guess: count chars of `source`
+    // (reading morae for Japanese) × `msPerUnit`.
+    tts: { lang: "ja-JP", estimate: { source: "reading", msPerUnit: 200 } },
+    voiceSample: "こんにちは。これは音声のプレビューです。",
     fields: { primary: "kanji", reading: "hiragana", translation: "english", type: "type", gloss: "breakdown" },
+    // Nouns for the settings font controls, per logical slot.
+    labels: { primary: "Kanji", reading: "Hiragana", gloss: "Kanji gloss" },
     modeIds: ["kanji", "english", "hiragana", "voice", "show-all"],
     groupingIds: [
       "kanji-alpha", "hiragana-alpha",
@@ -37,8 +42,11 @@ export const LIBRARIES = [
     label: "Spanish",
     short: "ES",
     data: "data/spanish/cards.json",
-    tts: { lang: "es-ES" },
+    // Latin words run faster per character than Japanese morae.
+    tts: { lang: "es-ES", estimate: { source: "primary", msPerUnit: 75 } },
+    voiceSample: "Hola. Esta es una vista previa de la voz.",
     fields: { primary: "spanish", reading: null, translation: "english", type: "type", gloss: null },
+    labels: { primary: "Word" },
     modeIds: ["spanish", "english", "voice"],
     groupingIds: ["primary-alpha", "primary-likeness-slotting", "primary-likeness-grouping"],
     features: { soundSource: false, gloss: false, texts: false }

@@ -9,7 +9,7 @@ const STATE_VERSION = 2;
 // else in `state` is global (fonts, voice, UI prefs) and shared across libraries.
 const LIBRARY_KEYS = [
   "deckId", "setId", "currentIndex", "query", "mode", "setGrouping",
-  "ttsSources", "deckHistory", "filterHistory"
+  "voice", "ttsSources", "deckHistory", "filterHistory"
 ];
 export const DEFAULT_SET_SIZE = 20;
 export const FONT_SCALE_OPTIONS = [10, 20, 35, 50, 75, 100, 125, 150, 200, 250];
@@ -178,20 +178,32 @@ let currentLibraryId = null;
 function readStore() {
   let stored = {};
   try { stored = JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}"); } catch {}
-  if (stored && stored.version === STATE_VERSION && stored.libraries) return stored;
-  const library = {};
-  const global = { ...stored };
-  for (const key of LIBRARY_KEYS) {
-    if (key in stored) library[key] = stored[key];
-    delete global[key];
+  let store;
+  if (stored && stored.version === STATE_VERSION && stored.libraries) {
+    store = stored;
+  } else {
+    const library = {};
+    const global = { ...stored };
+    for (const key of LIBRARY_KEYS) {
+      if (key in stored) library[key] = stored[key];
+      delete global[key];
+    }
+    delete global.version; delete global.libraryId; delete global.libraries;
+    store = {
+      version: STATE_VERSION,
+      libraryId: normalizeLibraryId(stored.libraryId || DEFAULT_LIBRARY_ID),
+      global,
+      libraries: { [DEFAULT_LIBRARY_ID]: library }
+    };
   }
-  delete global.version; delete global.libraryId; delete global.libraries;
-  return {
-    version: STATE_VERSION,
-    libraryId: normalizeLibraryId(stored.libraryId || DEFAULT_LIBRARY_ID),
-    global,
-    libraries: { [DEFAULT_LIBRARY_ID]: library }
-  };
+  // Legacy `jpVoice` (a former global, now the per-library `voice`) → migrate
+  // it into the Japanese library slice, one-time.
+  if (store.global && "jpVoice" in store.global) {
+    const jp = (store.libraries[DEFAULT_LIBRARY_ID] = store.libraries[DEFAULT_LIBRARY_ID] || {});
+    if (!("voice" in jp)) jp.voice = store.global.jpVoice;
+    delete store.global.jpVoice;
+  }
+  return store;
 }
 
 export function activeLibrary() {
@@ -234,7 +246,7 @@ export function loadState() {
     hiraganaBold: raw.hiraganaBold === true,
     currentIndex: clampInt(raw.currentIndex, 0, 0, 100000),
     query: String(raw.query || "").trim(),
-    jpVoice: String(raw.jpVoice || ""),
+    voice: String(raw.voice || ""),
     voiceRate: Number.isFinite(Number(raw.voiceRate)) ? Math.min(2, Math.max(0.5, Number(raw.voiceRate))) : 1,
     showHotkeys: raw.showHotkeys === true,
     showGloss: raw.showGloss !== false,
