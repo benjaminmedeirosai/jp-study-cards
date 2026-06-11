@@ -16,6 +16,7 @@ import {
   clampInt,
   clampNum,
   normalizeSetGrouping,
+  activeLibrary,
   loadState,
   saveState,
   text,
@@ -126,8 +127,12 @@ export function renderSettingsPage() {
   setSizeInput.max = "100";
   setSizeInput.step = "5";
   setSizeInput.value = String(state.setSize);
+  // Only the groupings the active library offers.
+  const offeredGroupings = activeLibrary().groupingIds
+    .map((id) => SET_GROUPINGS.find((grouping) => grouping.id === id))
+    .filter(Boolean);
   const setGroupingInput = makeSelect(
-    SET_GROUPINGS.map((grouping) => ({ value: grouping.id, label: grouping.label })),
+    offeredGroupings.map((grouping) => ({ value: grouping.id, label: grouping.label })),
     state.setGrouping
   );
 
@@ -348,7 +353,7 @@ export function renderSettingsPage() {
   });
   setGroupingInput.addEventListener("change", () => {
     const previous = state.setGrouping;
-    state.setGrouping = SET_GROUPINGS.some((grouping) => grouping.id === setGroupingInput.value) ? setGroupingInput.value : SET_GROUPINGS[0].id;
+    state.setGrouping = normalizeSetGrouping(setGroupingInput.value);
     if (state.setGrouping !== previous) {
       state.setId = "all";
       state.currentIndex = 0;
@@ -424,7 +429,8 @@ export function renderSettingsPage() {
 
   const visibilityGroup = document.createElement("div");
   visibilityGroup.className = "settings-toggle-grid";
-  visibilityGroup.append(hotkeyToggle.label, glossToggle.label);
+  // The gloss toggle only applies to libraries with the gloss feature (Japanese).
+  visibilityGroup.append(hotkeyToggle.label, ...(activeLibrary().features.gloss ? [glossToggle.label] : []));
 
   content.append(
     sectionHeading("Filter & sets"),
@@ -434,11 +440,14 @@ export function renderSettingsPage() {
     setPreview,
     sectionHeading("Fonts"),
     fieldLabel("Kanji font", fontFamilyRow(kanjiFontFamilyInput, kanjiBoldBtn)),
-    fieldLabel("Hiragana font", fontFamilyRow(hiraganaFontFamilyInput, hiraganaBoldBtn)),
+    // Reading (hiragana) font controls only for libraries with a reading field.
+    ...(activeLibrary().fields.reading
+      ? [fieldLabel("Hiragana font", fontFamilyRow(hiraganaFontFamilyInput, hiraganaBoldBtn))] : []),
     kanjiFontField,
-    hiraganaFontField,
+    ...(activeLibrary().fields.reading ? [hiraganaFontField] : []),
     englishFontField,
-    glossFontField,
+    // Gloss size only for libraries with the gloss feature.
+    ...(activeLibrary().features.gloss ? [glossFontField] : []),
     sectionHeading("Voice & speed"),
     fieldLabel("Japanese voice", voiceRow),
     fieldLabel("Voice speed", rateSelect),

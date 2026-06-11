@@ -1,7 +1,13 @@
 // Pure set-building engine: sorting, likeness slotting, and likeness grouping.
 // No DOM, no app state — just card arrays in, set-option descriptors out.
 
-import { text, searchText, DEFAULT_SET_SIZE, SET_GROUPINGS } from "./shared.js";
+import { text, searchText, fieldName, activeLibrary, DEFAULT_SET_SIZE, SET_GROUPINGS } from "./shared.js";
+
+// Collation locale for the active library (e.g. "ja", "es"). Used for all the
+// sort tie-breaks so non-Japanese libraries sort by their own rules.
+function localeFor() {
+  return (activeLibrary().tts.lang || "en").split("-")[0];
+}
 
 const MIXED_KEY_DETAIL_LIMIT = 6;
 
@@ -39,15 +45,28 @@ export function activeSetGrouping(groupingId) {
 
 export function sortCardsForSets(cards, groupingId) {
   const grouping = activeSetGrouping(groupingId);
+  const field = fieldName(grouping.slot) || fieldName("primary");
+  const primaryField = fieldName("primary");
+  const locale = localeFor();
   return [...cards].sort((a, b) => {
-    const aValue = text(a, grouping.key);
-    const bValue = text(b, grouping.key);
-    return aValue.localeCompare(bValue, "ja") || text(a, "kanji").localeCompare(text(b, "kanji"), "ja");
+    const aValue = text(a, field);
+    const bValue = text(b, field);
+    return aValue.localeCompare(bValue, locale) || text(a, primaryField).localeCompare(text(b, primaryField), locale);
   });
 }
 
-function kanjiKeys(entry) {
-  return [...new Set([...text(entry, "kanji")].filter((char) => /\p{Script=Han}/u.test(char)))];
+function hanKeys(value) {
+  return [...new Set([...value].filter((char) => /\p{Script=Han}/u.test(char)))];
+}
+
+// Latin-letter likeness: bigrams of the word's letters (lowercased), so words
+// sharing letter sequences cluster — the Spanish analogue of kana likeness.
+function letterKeys(value) {
+  const letters = [...value.toLowerCase()].filter((char) => /\p{Letter}/u.test(char));
+  if (letters.length <= 1) return letters;
+  const keys = [];
+  for (let index = 0; index < letters.length - 1; index += 1) keys.push(letters[index] + letters[index + 1]);
+  return [...new Set(keys)];
 }
 
 // Small/combining kana (yōon ゃゅょ, small vowels ぁぃぅぇぉ, sokuon っ, ゎゕゖ) and
@@ -65,16 +84,21 @@ function hiraganaUnits(value) {
   return units;
 }
 
-function hiraganaKeys(entry) {
-  const units = hiraganaUnits(text(entry, "hiragana"));
+function kanaKeys(value) {
+  const units = hiraganaUnits(value);
   if (units.length <= 1) return units;
   const keys = [];
   for (let index = 0; index < units.length - 1; index += 1) keys.push(units[index] + units[index + 1]);
   return [...new Set(keys)];
 }
 
+// Likeness keys for an entry, by the grouping's `unit` extractor applied to its
+// slot's field (han chars, kana mora-bigrams, or Latin letter-bigrams).
 function likenessKeys(entry, grouping) {
-  return grouping.key === "kanji" ? kanjiKeys(entry) : hiraganaKeys(entry);
+  const value = text(entry, fieldName(grouping.slot) || fieldName("primary"));
+  if (grouping.unit === "han") return hanKeys(value);
+  if (grouping.unit === "kana") return kanaKeys(value);
+  return letterKeys(value);
 }
 
 function buildLikenessKeyGroups(cards, grouping) {
@@ -87,7 +111,7 @@ function buildLikenessKeyGroups(cards, grouping) {
   });
   return [...groups.entries()]
     .map(([key, indexes]) => ({ key, indexes }))
-    .sort((a, b) => b.indexes.length - a.indexes.length || a.key.localeCompare(b.key, "ja"));
+    .sort((a, b) => b.indexes.length - a.indexes.length || a.key.localeCompare(b.key, localeFor()));
 }
 
 function mixedKeyLabel(indexes, cards, grouping) {
@@ -99,7 +123,7 @@ function mixedKeyLabel(indexes, cards, grouping) {
   }
   const labels = [...counts.entries()]
     .filter(([, count]) => count > 1)
-    .sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0], "ja"))
+    .sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0], localeFor()))
     .map(([key, count]) => `${key}(${count})`);
   if (labels.length > MIXED_KEY_DETAIL_LIMIT) return `Mixed(${indexes.length})`;
   const retainedKeys = new Set([...counts.entries()].filter(([, count]) => count > 1).map(([key]) => key));
@@ -303,7 +327,7 @@ function buildGroupingSetOptions(cards, setSize, grouping) {
       const indexes = [...bin.indexSet].sort((a, b) => a - b);
       return { indexes, label: binLabel(bin, indexes), count: indexes.length };
     })
-    .sort((a, b) => b.count - a.count || a.label.localeCompare(b.label, "ja"))
+    .sort((a, b) => b.count - a.count || a.label.localeCompare(b.label, localeFor()))
     .map((bin, index) => {
       const setCards = bin.indexes.map((cardIndex) => cards[cardIndex]);
       const fullLabel = `${bin.label} (${setCards.length})`;

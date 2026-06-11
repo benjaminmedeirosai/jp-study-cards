@@ -31,8 +31,18 @@ export const LIBRARIES = [
       "hiragana-likeness-slotting", "hiragana-likeness-grouping"
     ],
     features: { soundSource: true, gloss: true, texts: true }
+  },
+  {
+    id: "spanish",
+    label: "Spanish",
+    short: "ES",
+    data: "data/spanish/cards.json",
+    tts: { lang: "es-ES" },
+    fields: { primary: "spanish", reading: null, translation: "english", type: "type", gloss: null },
+    modeIds: ["spanish", "english", "voice"],
+    groupingIds: ["primary-alpha", "primary-likeness-slotting", "primary-likeness-grouping"],
+    features: { soundSource: false, gloss: false, texts: false }
   }
-  // Spanish appended in Phase 2.
 ];
 
 export const DEFAULT_LIBRARY_ID = "japanese";

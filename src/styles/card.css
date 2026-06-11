@@ -399,6 +399,9 @@
   align-items: center;
   min-width: 0;
 }
+/* `display: flex` above would otherwise override the `hidden` attribute used to
+   drop the sound-source picker for libraries without it (e.g. Spanish). */
+.tts-group[hidden] { display: none; }
 
 /* Autoplay sits with shuffle on the right; margin-left:auto pushes the pair
    away from the sound group on the left. */

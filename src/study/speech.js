@@ -11,7 +11,12 @@ export function speak(text, options = {}) {
 
   const voices = window.speechSynthesis.getVoices?.() || [];
   const langPrefix = utterance.lang.split("-")[0].toLowerCase();
-  const preferred = options.voiceName ? voices.find((item) => item.name === options.voiceName) : null;
+  // Honor a saved voice name ONLY when it matches the utterance language, so a
+  // stored Japanese voice never gets used for, say, a Spanish utterance — it
+  // falls back to a language-matched voice instead.
+  const preferred = options.voiceName
+    ? voices.find((item) => item.name === options.voiceName && String(item.lang || "").toLowerCase().startsWith(langPrefix))
+    : null;
   const voice = preferred
     || voices.find((item) => String(item.lang || "").toLowerCase() === utterance.lang.toLowerCase())
     || voices.find((item) => String(item.lang || "").toLowerCase().startsWith(langPrefix));

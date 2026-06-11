@@ -124,20 +124,29 @@ export const LINK_TEMPLATES = {
   chatgpt: "https://chat.openai.com/?q=",
   googleImages: "https://www.google.com/search?tbm=isch&q="
 };
+// A mode's `slot` is the logical field it puts on the question side (front).
+// voice/show-all have no front field. Libraries pick which modes they offer.
 export const MODES = [
-  { id: "kanji", label: "Kanji" },
-  { id: "english", label: "English" },
-  { id: "hiragana", label: "Hiragana" },
+  { id: "kanji", label: "Kanji", slot: "primary" },
+  { id: "english", label: "English", slot: "translation" },
+  { id: "hiragana", label: "Hiragana", slot: "reading" },
   { id: "voice", label: "Voice" },
-  { id: "show-all", label: "Show All" }
+  { id: "show-all", label: "Show All" },
+  { id: "spanish", label: "Spanish", slot: "primary" }
 ];
+// `slot` = which logical field this groups/sorts by; `unit` = the likeness
+// extractor for the slotting/grouping variants (han chars, kana units, or Latin
+// letters). Libraries pick which groupings they offer.
 export const SET_GROUPINGS = [
-  { id: "kanji-alpha", label: "Alphabetical (kanji)", shortLabel: "漢 A-Z", key: "kanji", type: "alpha" },
-  { id: "hiragana-alpha", label: "Alphabetical (hiragana)", shortLabel: "かな A-Z", key: "hiragana", type: "alpha" },
-  { id: "kanji-likeness-slotting", label: "Kanji - likeness slotting", shortLabel: "漢 slot", key: "kanji", type: "slotting" },
-  { id: "kanji-likeness-grouping", label: "Kanji - likeness grouping *", shortLabel: "漢 group", key: "kanji", type: "grouping" },
-  { id: "hiragana-likeness-slotting", label: "Hiragana - likeness slotting", shortLabel: "かな slot", key: "hiragana", type: "slotting" },
-  { id: "hiragana-likeness-grouping", label: "Hiragana - likeness grouping *", shortLabel: "かな group", key: "hiragana", type: "grouping" }
+  { id: "kanji-alpha", label: "Alphabetical (kanji)", shortLabel: "漢 A-Z", slot: "primary", type: "alpha" },
+  { id: "hiragana-alpha", label: "Alphabetical (hiragana)", shortLabel: "かな A-Z", slot: "reading", type: "alpha" },
+  { id: "kanji-likeness-slotting", label: "Kanji - likeness slotting", shortLabel: "漢 slot", slot: "primary", type: "slotting", unit: "han" },
+  { id: "kanji-likeness-grouping", label: "Kanji - likeness grouping *", shortLabel: "漢 group", slot: "primary", type: "grouping", unit: "han" },
+  { id: "hiragana-likeness-slotting", label: "Hiragana - likeness slotting", shortLabel: "かな slot", slot: "reading", type: "slotting", unit: "kana" },
+  { id: "hiragana-likeness-grouping", label: "Hiragana - likeness grouping *", shortLabel: "かな group", slot: "reading", type: "grouping", unit: "kana" },
+  { id: "primary-alpha", label: "Alphabetical", shortLabel: "A-Z", slot: "primary", type: "alpha" },
+  { id: "primary-likeness-slotting", label: "Letter - likeness slotting", shortLabel: "A slot", slot: "primary", type: "slotting", unit: "letter" },
+  { id: "primary-likeness-grouping", label: "Letter - likeness grouping *", shortLabel: "A group", slot: "primary", type: "grouping", unit: "letter" }
 ];
 
 export function clampInt(value, fallback, min, max) {
@@ -153,9 +162,10 @@ export function clampNum(value, fallback, min, max) {
 }
 
 export function normalizeSetGrouping(value) {
-  if (value === "kanji-likeness") return "kanji-likeness-slotting";
-  if (value === "hiragana-likeness") return "hiragana-likeness-slotting";
-  return SET_GROUPINGS.some((grouping) => grouping.id === value) ? value : "kanji-alpha";
+  if (value === "kanji-likeness") value = "kanji-likeness-slotting";
+  if (value === "hiragana-likeness") value = "hiragana-likeness-slotting";
+  const allowed = activeLibrary().groupingIds;
+  return allowed.includes(value) ? value : allowed[0];
 }
 
 // The active library id (seeded from storage). Drives activeLibrary() and which
@@ -211,7 +221,7 @@ export function loadState() {
     libraryId,
     deckId: String(raw.deckId || ""),
     setId: String(raw.setId || "all"),
-    mode: MODES.some((mode) => mode.id === raw.mode) ? raw.mode : "kanji",
+    mode: activeLibrary().modeIds.includes(raw.mode) ? raw.mode : activeLibrary().modeIds[0],
     setSize: clampInt(raw.setSize, DEFAULT_SET_SIZE, 5, 100),
     setGrouping: normalizeSetGrouping(raw.setGrouping),
     kanjiFontPx: clampInt(raw.kanjiFontPx, FONT_PX_DEFAULTS.kanji, FONT_PX_MIN, FONT_PX_MAX),
@@ -265,16 +275,32 @@ export function text(entry, key) {
   return String(entry?.[key] ?? "").trim();
 }
 
+// Field-mapping accessors: read an entry's logical slot (primary/reading/
+// translation/type/gloss) via the active library's `fields` map, so the rest of
+// the app stays language-agnostic. A slot the library doesn't have → "".
+export function fieldName(slot) {
+  return activeLibrary().fields[slot] || null;
+}
+export function fieldText(entry, slot) {
+  const name = fieldName(slot);
+  return name ? text(entry, name) : "";
+}
+export const primaryText = (entry) => fieldText(entry, "primary");
+export const readingText = (entry) => fieldText(entry, "reading");
+export const translationText = (entry) => fieldText(entry, "translation");
+export const glossText = (entry) => fieldText(entry, "gloss");
+export const typeText = (entry) => fieldText(entry, "type");
+
 export function entryKey(entry) {
-  return [text(entry, "kanji"), text(entry, "hiragana"), text(entry, "english")].join("|");
+  return [primaryText(entry), readingText(entry), translationText(entry)].join("|");
 }
 
 export function searchText(entry) {
-  return [entry?.kanji, entry?.hiragana, entry?.english, entry?.type].join(" ").toLowerCase();
+  return [primaryText(entry), readingText(entry), translationText(entry), typeText(entry)].join(" ").toLowerCase();
 }
 
 export function studySearchText(entry) {
-  return text(entry, "kanji") || text(entry, "hiragana") || text(entry, "english");
+  return primaryText(entry) || readingText(entry) || translationText(entry);
 }
 
 export function openSearchLink(template, entry) {

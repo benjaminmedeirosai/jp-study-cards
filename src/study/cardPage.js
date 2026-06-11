@@ -18,7 +18,13 @@ import {
   soundOptionsIcon,
   fieldLabel,
   makeSelect,
-  setSlotVisible
+  setSlotVisible,
+  activeLibrary,
+  primaryText,
+  readingText,
+  translationText,
+  glossText,
+  typeText
 } from "./shared.js";
 
 // Stroked, single-color icons for the six main tray buttons — same visual
@@ -97,10 +103,13 @@ export function renderCardPage() {
   deckButtonLabel.textContent = "All cards";
   deckButton.append(deckButtonIcon, deckButtonLabel);
   const setSelect = makeSelect([], state.setId);
+  // Only the active library's modes, "Show All" first (when offered) above a
+  // separator, then the field modes in the library's declared order.
+  const modeLabel = (id) => (MODES.find((mode) => mode.id === id) || {}).label || id;
+  const offeredModeIds = activeLibrary().modeIds;
   const modeItems = [
-    { value: "show-all", label: "Show All" },
-    { separator: true },
-    ...MODES.filter((mode) => mode.id !== "show-all").map((mode) => ({ value: mode.id, label: mode.label }))
+    ...(offeredModeIds.includes("show-all") ? [{ value: "show-all", label: "Show All" }, { separator: true }] : []),
+    ...offeredModeIds.filter((id) => id !== "show-all").map((id) => ({ value: id, label: modeLabel(id) }))
   ];
   const modeSelect = makeSelect(modeItems, state.mode);
   // Library selector — compact globe button that opens the library picker.
@@ -174,6 +183,9 @@ export function renderCardPage() {
   const ttsGroup = document.createElement("div");
   ttsGroup.className = "tts-group";
   ttsGroup.append(ttsToggleBtn, ttsSource);
+  // The kanji/hiragana source picker only applies to libraries with the
+  // sound-source feature; hide it entirely otherwise (e.g. Spanish).
+  ttsGroup.hidden = !activeLibrary().features.soundSource;
   const playBtn = button("Autoplay", "mini mini--play");
   playBtn.innerHTML = `<span class="icon">${ICONS.play}</span>`;
   playBtn.setAttribute("aria-label", "Start autoplay");
@@ -269,31 +281,37 @@ export function renderCardPage() {
     return setCards[state.currentIndex] || null;
   }
 
-  // The system default reading source for an entry. Browser TTS mis-reads
-  // counter/numeral kanji (e.g. 十六匹 → ひき instead of the correct ぴき), so those
-  // default to the curated hiragana; everything else defaults to kanji for
-  // better pitch-accent. The user can override per card (see setTtsSource).
+  // The system default reading source for an entry (only libraries with the
+  // sound-source feature, e.g. Japanese). Browser TTS mis-reads counter/numeral
+  // kanji (e.g. 十六匹 → ひき instead of the correct ぴき), so those default to the
+  // curated reading; everything else defaults to the primary form for better
+  // pitch-accent. The user can override per card (see setTtsSource).
   function defaultTtsSource(entry) {
     return entry?.type === "counter" || entry?.type === "numeral" ? "hiragana" : "kanji";
   }
 
   // Effective source: the user's saved override for this card if any, else the
-  // system default. Always resolves to "kanji" or "hiragana".
+  // system default. Always resolves to "kanji" (primary) or "hiragana" (reading).
   function getCurrentTtsSource() {
     const entry = currentEntry();
     const saved = state.ttsSources[entryKey(entry)];
     return saved === "kanji" || saved === "hiragana" ? saved : defaultTtsSource(entry);
   }
 
-  function getJapaneseSpeechText(entry) {
+  // The text to speak for an entry. With the sound-source feature, the user can
+  // choose reading vs primary; otherwise just speak the primary form.
+  function studySpeechText(entry) {
+    if (!activeLibrary().features.soundSource) {
+      return primaryText(entry) || readingText(entry) || translationText(entry);
+    }
     const useReading = getCurrentTtsSource() === "hiragana";
-    if (useReading) return text(entry, "hiragana") || text(entry, "kanji");
-    return text(entry, "kanji") || text(entry, "hiragana");
+    if (useReading) return readingText(entry) || primaryText(entry);
+    return primaryText(entry) || readingText(entry);
   }
 
-  function speakJapanese() {
-    const value = getJapaneseSpeechText(currentEntry());
-    if (value) speak(value, { lang: "ja-JP", voiceName: state.jpVoice, rate: state.voiceRate });
+  function speakStudy() {
+    const value = studySpeechText(currentEntry());
+    if (value) speak(value, { lang: activeLibrary().tts.lang, voiceName: state.jpVoice, rate: state.voiceRate });
   }
 
   function renderTray() {
@@ -337,15 +355,15 @@ export function renderCardPage() {
       const noDeck = !deck;
       emptyMsg.textContent = noDeck
         ? "No deck selected."
-        : (bundle ? "No cards match this deck or filter." : "Loading Japanese words...");
+        : (bundle ? "No cards match this deck or filter." : "Loading cards...");
       chooseDeckBtn.hidden = !noDeck;
       return;
     }
-    const kanji = text(entry, "kanji");
-    const hiragana = text(entry, "hiragana");
-    const english = text(entry, "english");
-    const type = text(entry, "type");
-    const mainText = kanji || hiragana || "-";
+    const primary = primaryText(entry);
+    const reading = readingText(entry);
+    const translation = translationText(entry);
+    const type = typeText(entry);
+    const mainText = primary || reading || "-";
     card.style.setProperty("--japanese-main-font-size", `${state.kanjiFontPx}px`);
     card.style.setProperty("--japanese-reading-font-size", `${state.hiraganaFontPx}px`);
     card.style.setProperty("--japanese-english-font-size", `${state.englishFontPx}px`);
@@ -356,16 +374,21 @@ export function renderCardPage() {
     card.style.setProperty("--japanese-reading-font-weight", state.hiraganaBold ? "700" : "400");
     cardType.textContent = type;
     cardMain.textContent = mainText;
-    cardReading.textContent = hiragana;
-    cardEnglish.textContent = english;
+    cardReading.textContent = reading;
+    cardEnglish.textContent = translation;
+    // The active mode's `slot` is the field shown on the FRONT (question side);
+    // once revealed / in show-all every (present) field shows, gated by the
+    // per-field visibility toggles. Mapping slot→visibility key keeps the
+    // existing kanji/hiragana/english toggles working for any library.
+    const frontSlot = (MODES.find((m) => m.id === state.mode) || {}).slot;
     const showFront = revealed || state.mode === "show-all";
     setSlotVisible(cardType, state.visible.type && !!type);
-    setSlotVisible(cardMain, (showFront ? state.visible.kanji : state.mode === "kanji") && !!mainText);
-    setSlotVisible(cardReading, (showFront ? state.visible.hiragana : state.mode === "hiragana") && !!hiragana);
-    setSlotVisible(cardEnglish, (showFront ? state.visible.english : state.mode === "english") && !!english);
-    // Kanji gloss: top-right, one line per kanji. Shown only when enabled, the
-    // entry has a breakdown, and the answer is visible (show-all or revealed).
-    const segments = glossSegments(text(entry, "breakdown"));
+    setSlotVisible(cardMain, (showFront ? state.visible.kanji : frontSlot === "primary") && !!mainText);
+    setSlotVisible(cardReading, (showFront ? state.visible.hiragana : frontSlot === "reading") && !!reading);
+    setSlotVisible(cardEnglish, (showFront ? state.visible.english : frontSlot === "translation") && !!translation);
+    // Gloss: top-right, one line per kanji. Only for libraries with the gloss
+    // feature, when the entry has a gloss and the answer is visible.
+    const segments = activeLibrary().features.gloss ? glossSegments(glossText(entry)) : [];
     cardGloss.replaceChildren(...segments.map((segment) => {
       const kanji = glossKanji(segment);
       const line = document.createElement("button");
@@ -528,7 +551,7 @@ export function renderCardPage() {
     revealed = false;
     saveState(state);
     renderCard();
-    if (state.mode === "voice") speakJapanese();
+    if (state.mode === "voice") speakStudy();
   }
 
   function shuffleCurrentSet() {
@@ -548,14 +571,14 @@ export function renderCardPage() {
     revealed = false;
     saveState(state);
     renderCard();
-    if (state.mode === "voice") speakJapanese();
+    if (state.mode === "voice") speakStudy();
   }
 
   function reveal() {
     if (!currentEntry()) return;
     revealed = !revealed;
     renderCard();
-    if (revealed) speakJapanese();
+    if (revealed) speakStudy();
   }
 
   // --- Autoplay -----------------------------------------------------------
@@ -610,7 +633,7 @@ export function renderCardPage() {
   // Rough estimate of how long the current card's reading takes to speak.
   const MS_PER_KANA = 200;
   function estimatedSpeechMs(entry) {
-    const reading = text(entry, "hiragana") || getJapaneseSpeechText(entry);
+    const reading = readingText(entry) || studySpeechText(entry);
     return [...reading].length * MS_PER_KANA;
   }
 
@@ -630,7 +653,7 @@ export function renderCardPage() {
       if (!(await autoplaySettle(state.mode === "voice", state.autoplayQuestionDelay, token))) return;
       if (!live()) return;
       if (!revealed) reveal(); // show + speak the answer
-      const spokeAnswer = !!getJapaneseSpeechText(currentEntry());
+      const spokeAnswer = !!studySpeechText(currentEntry());
       if (!(await autoplaySettle(spokeAnswer, state.autoplayAnswerDelay, token))) return;
     }
   }
@@ -654,7 +677,7 @@ export function renderCardPage() {
     else state.ttsSources[key] = value;
     saveState(state);
     renderTray();
-    speakJapanese();
+    speakStudy();
   }
 
   deckButton.addEventListener("click", () => openOverlay("decks"));
@@ -670,7 +693,7 @@ export function renderCardPage() {
     revealed = false;
     saveState(state);
     renderCard();
-    if (state.mode === "voice") speakJapanese();
+    if (state.mode === "voice") speakStudy();
   });
   settingsBtn.addEventListener("click", () => openOverlay("settings"));
   libraryBtn.addEventListener("click", () => openOverlay("library"));
@@ -687,7 +710,7 @@ export function renderCardPage() {
   prevBtn.addEventListener("click", () => move(-1));
   nextBtn.addEventListener("click", () => move(1));
   revealBtn.addEventListener("click", reveal);
-  soundBtn.addEventListener("click", speakJapanese);
+  soundBtn.addEventListener("click", speakStudy);
   chatgptBtn.addEventListener("click", () => openSearchLink(LINK_TEMPLATES.chatgpt, currentEntry()));
   imagesBtn.addEventListener("click", () => openSearchLink(LINK_TEMPLATES.googleImages, currentEntry()));
 
@@ -715,7 +738,7 @@ export function renderCardPage() {
     if (event.key === "ArrowLeft") { event.preventDefault(); move(-1); }
     else if (event.key === "ArrowRight") { event.preventDefault(); move(1); }
     else if (event.key === " " || event.key === "Enter") { event.preventDefault(); reveal(); }
-    else if (event.key.toLowerCase() === "s") { event.preventDefault(); speakJapanese(); }
+    else if (event.key.toLowerCase() === "s") { event.preventDefault(); speakStudy(); }
   }
   document.addEventListener("keydown", onKeydown);
 
@@ -726,7 +749,7 @@ export function renderCardPage() {
       // Start timing this study session (deck + active filter) for history.
       const deck = currentDeck();
       beginSession(state.deckId, deck ? deck.label : "", state.query);
-      if (state.mode === "voice") speakJapanese();
+      if (state.mode === "voice") speakStudy();
     } catch (error) {
       empty.hidden = false;
       empty.textContent = `Could not load Japanese words: ${error.message || error}`;
