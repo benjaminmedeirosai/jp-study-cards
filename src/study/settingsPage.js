@@ -159,9 +159,12 @@ export function renderSettingsPage() {
 
   // --- Font families (only those installed on this device) ----------------
   // Each option previews itself in its own font; the current pick is kept even
-  // if detection misses it, so a saved choice never disappears.
+  // if detection misses it, so a saved choice never disappears. A library may
+  // restrict the catalogue via `fontIds` (e.g. Spanish → a couple generics).
   function makeFontSelect(currentId) {
-    const fonts = availableFonts([currentId]);
+    const allowed = activeLibrary().fontIds;
+    const fonts = availableFonts([currentId])
+      .filter((font) => !allowed || allowed.includes(font.id) || font.id === currentId);
     const select = makeSelect(fonts.map((font) => ({ value: font.id, label: font.label })), currentId);
     for (const option of select.options) {
       const stack = fontStack(option.value);

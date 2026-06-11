@@ -47,6 +47,10 @@ export const LIBRARIES = [
     voiceSample: "Hola. Esta es una vista previa de la voz.",
     fields: { primary: "spanish", reading: null, translation: "english", type: "type", gloss: null },
     labels: { primary: "Word" },
+    // Latin-script languages don't need the CJK font catalogue — just a couple
+    // of generic system faces. (Omit `fontIds` to offer the full list, as
+    // Japanese does.)
+    fontIds: ["default", "sys-sans", "sys-serif"],
     modeIds: ["spanish", "english", "voice"],
     groupingIds: ["primary-alpha", "primary-likeness-slotting", "primary-likeness-grouping"],
     features: { soundSource: false, gloss: false, texts: false }

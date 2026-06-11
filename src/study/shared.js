@@ -9,6 +9,7 @@ const STATE_VERSION = 2;
 // else in `state` is global (fonts, voice, UI prefs) and shared across libraries.
 const LIBRARY_KEYS = [
   "deckId", "setId", "currentIndex", "query", "mode", "setGrouping",
+  "kanjiFont", "hiraganaFont", "kanjiBold", "hiraganaBold",
   "voice", "ttsSources", "deckHistory", "filterHistory"
 ];
 export const DEFAULT_SET_SIZE = 20;
@@ -196,12 +197,20 @@ function readStore() {
       libraries: { [DEFAULT_LIBRARY_ID]: library }
     };
   }
-  // Legacy `jpVoice` (a former global, now the per-library `voice`) → migrate
-  // it into the Japanese library slice, one-time.
-  if (store.global && "jpVoice" in store.global) {
+  // Former globals that are really per-library (Japanese): font family/bold and
+  // the voice (renamed jpVoice→voice). Migrate each into the Japanese slice once.
+  if (store.global) {
     const jp = (store.libraries[DEFAULT_LIBRARY_ID] = store.libraries[DEFAULT_LIBRARY_ID] || {});
-    if (!("voice" in jp)) jp.voice = store.global.jpVoice;
-    delete store.global.jpVoice;
+    if ("jpVoice" in store.global) {
+      if (!("voice" in jp)) jp.voice = store.global.jpVoice;
+      delete store.global.jpVoice;
+    }
+    for (const key of ["kanjiFont", "hiraganaFont", "kanjiBold", "hiraganaBold"]) {
+      if (key in store.global) {
+        if (!(key in jp)) jp[key] = store.global[key];
+        delete store.global[key];
+      }
+    }
   }
   return store;
 }
