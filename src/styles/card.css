@@ -117,13 +117,16 @@
   white-space: nowrap;
 }
 
-/* Right-column row 1: the Library + Settings buttons side by side. */
-.header-actions {
+/* Left-column row 1: the Library globe sits to the left of the Deck field.
+   Bottom-aligned so the icon button lines up with the Deck button (the field
+   has its "Deck" caption above). */
+.header-deck-row {
   display: flex;
-  align-items: stretch;
+  align-items: end;
   gap: 6px;
+  min-width: 0;
 }
-.header-actions .settings-open { flex: 1; min-width: 0; }
+.header-deck-row .study-field { flex: 1; min-width: 0; }
 
 /* Globe button in the header (opens the library picker). Compact/icon-only. */
 .study-button.library-open {

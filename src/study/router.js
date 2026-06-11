@@ -7,8 +7,10 @@
 // opening one pushes an entry so the browser/OS back button closes it, and you
 // never land *on* one by going back from cards (they only exist while open).
 //
-// The URL hash carries the cards state: `#/?deck=<id>&q=<filter>`; overlays are
-// `#/settings` / `#/decks`. history.state mirrors it for popstate restores.
+// The URL hash carries the cards state: `#/?lib=<library>&deck=<id>&q=<filter>` —
+// (library, deck, filter) is the navigable "page", so back/forward moves between
+// libraries too. Overlays are `#/settings` / `#/decks` / `#/library`.
+// history.state mirrors the hash for popstate restores.
 
 import { renderCardPage } from "./cardPage.js";
 import { renderSettingsPage } from "./settingsPage.js";
@@ -18,15 +20,22 @@ import { loadState, saveState, setLibrary } from "./shared.js";
 import { endSession } from "./filters.js";
 
 const app = document.getElementById("app");
-let view = "cards"; // "cards" | "settings" | "decks"
+let view = "cards"; // "cards" | "settings" | "decks" | "library"
 
 // --- URL <-> state ----------------------------------------------------------
-function cardsHash(deck, q) {
+function cardsHash(lib, deck, q) {
   const params = new URLSearchParams();
+  if (lib) params.set("lib", lib);
   if (deck) params.set("deck", deck);
   if (q) params.set("q", q);
   const search = params.toString();
   return `#/${search ? `?${search}` : ""}`;
+}
+
+// The current live cards state, as a history.state object + matching hash.
+function cardsEntry() {
+  const s = loadState();
+  return { state: { view: "cards", lib: s.libraryId, deck: s.deckId, q: s.query }, hash: cardsHash(s.libraryId, s.deckId, s.query) };
 }
 
 function parseHash() {
@@ -36,12 +45,14 @@ function parseHash() {
   if (hash.startsWith("#/library")) return { view: "library" };
   const qi = hash.indexOf("?");
   const params = new URLSearchParams(qi >= 0 ? hash.slice(qi + 1) : "");
-  return { view: "cards", deck: params.get("deck") || "", q: params.get("q") || "" };
+  return { view: "cards", lib: params.get("lib") || "", deck: params.get("deck") || "", q: params.get("q") || "" };
 }
 
-// Write a (deck, filter) into localStorage as the live cards state, resetting the
-// transient set/card position (a deck or filter change always starts fresh).
-function applyCardsState(deck, q) {
+// Make (library, deck, filter) the live cards state, resetting the transient
+// set/card position (a library/deck/filter change always starts fresh). Switches
+// the active library first so deck/filter land in that library's own slice.
+function applyCardsState(lib, deck, q) {
+  if (lib) setLibrary(lib);
   const state = loadState();
   state.deckId = String(deck || "");
   state.query = String(q || "");
@@ -63,12 +74,12 @@ function mount() {
 // The card page applies the filter and re-renders in place; these just record
 // the new state in history so back/forward can return to it.
 export function pushCardsURL() {
-  const s = loadState();
-  history.pushState({ view: "cards", deck: s.deckId, q: s.query }, "", cardsHash(s.deckId, s.query));
+  const { state, hash } = cardsEntry();
+  history.pushState(state, "", hash);
 }
 export function replaceCardsURL() {
-  const s = loadState();
-  history.replaceState({ view: "cards", deck: s.deckId, q: s.query }, "", cardsHash(s.deckId, s.query));
+  const { state, hash } = cardsEntry();
+  history.replaceState(state, "", hash);
 }
 
 // --- Overlays ---------------------------------------------------------------
@@ -89,20 +100,21 @@ export function closeOverlay() {
 // cards state, so it sits above the pre-overlay cards entry (which stays as the
 // back target) and the picker doesn't linger in history.
 export function chooseDeck(deckId) {
-  applyCardsState(deckId, loadState().query);
-  view = "cards";
   const s = loadState();
-  history.replaceState({ view: "cards", deck: s.deckId, q: s.query }, "", cardsHash(s.deckId, s.query));
+  applyCardsState(s.libraryId, deckId, s.query);
+  view = "cards";
+  replaceCardsURL();
   mount();
 }
 
 // Choose a library from the Library overlay: switch the active library, then
-// replace the modal entry with that library's own cards state (deck/filter).
+// replace the modal entry with that library's own saved cards state (its deck/
+// filter). The pre-overlay entry stays below as the back target, so back/forward
+// navigates between libraries.
 export function chooseLibrary(libraryId) {
   setLibrary(libraryId);
   view = "cards";
-  const s = loadState();
-  history.replaceState({ view: "cards", deck: s.deckId, q: s.query }, "", cardsHash(s.deckId, s.query));
+  replaceCardsURL();
   mount();
 }
 
@@ -126,8 +138,9 @@ function onPopState(event) {
     mount();
     return;
   }
-  // Genuine back/forward between cards states: restore that snapshot.
-  applyCardsState(target.deck, target.q);
+  // Genuine back/forward between cards states: restore that snapshot (including
+  // its library, so back/forward switches libraries).
+  applyCardsState(target.lib, target.deck, target.q);
   view = "cards";
   mount();
 }
@@ -135,21 +148,23 @@ function onPopState(event) {
 export function startRouter() {
   const parsed = parseHash();
   if (parsed.view === "cards") {
-    // A deep link to a DIFFERENT (deck, filter) than the saved one seeds fresh
-    // cards state (resetting the transient set/index). A plain reload, whose URL
-    // merely mirrors the saved state, resumes set/index from localStorage —
+    // A deep link to a DIFFERENT (library, deck, filter) than the saved one seeds
+    // fresh cards state (resetting the transient set/index). A plain reload, whose
+    // URL merely mirrors the saved state, resumes set/index from localStorage —
     // applyCardsState would otherwise reset them. Either way normalize the pair.
     const saved = loadState();
-    if (location.hash.includes("?") && (parsed.deck !== saved.deckId || parsed.q !== saved.query)) {
-      applyCardsState(parsed.deck, parsed.q);
+    const differs = parsed.deck !== saved.deckId || parsed.q !== saved.query
+      || (parsed.lib && parsed.lib !== saved.libraryId);
+    if (location.hash.includes("?") && differs) {
+      applyCardsState(parsed.lib || saved.libraryId, parsed.deck, parsed.q);
     }
     view = "cards";
     replaceCardsURL();
   } else {
     // Deep-linked straight to an overlay: seed a cards base beneath it so back
     // closes the overlay to cards rather than exiting the app.
-    const s = loadState();
-    history.replaceState({ view: "cards", deck: s.deckId, q: s.query }, "", cardsHash(s.deckId, s.query));
+    const { state, hash } = cardsEntry();
+    history.replaceState(state, "", hash);
     view = parsed.view;
     history.pushState({ view: parsed.view }, "", `#/${parsed.view}`);
   }
