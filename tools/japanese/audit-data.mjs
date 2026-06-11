@@ -15,8 +15,8 @@
 import fs from "node:fs/promises";
 import path from "node:path";
 
-const repoRoot = path.resolve(import.meta.dirname, "..");
-const dataRoot = path.join(repoRoot, "data");
+const repoRoot = path.resolve(import.meta.dirname, "..", "..");
+const dataRoot = path.join(repoRoot, "data", "japanese");
 const OUT_DIR = path.join(repoRoot, "tmp");
 
 const isHan = (ch) => /\p{Script=Han}/u.test(ch);

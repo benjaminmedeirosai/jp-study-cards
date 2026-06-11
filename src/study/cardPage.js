@@ -103,9 +103,17 @@ export function renderCardPage() {
     ...MODES.filter((mode) => mode.id !== "show-all").map((mode) => ({ value: mode.id, label: mode.label }))
   ];
   const modeSelect = makeSelect(modeItems, state.mode);
+  // Library selector — compact globe button that opens the library picker.
+  const libraryBtn = button("Library", "library-open", "🌐");
+  libraryBtn.setAttribute("aria-label", "Choose library");
+  libraryBtn.querySelector(".icon").innerHTML =
+    `<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>`;
   const settingsBtn = button("Settings", "settings-open", "⚙");
   settingsBtn.querySelector(".icon").innerHTML =
     `<svg viewBox="0 0 24 24"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></svg>`;
+  const headerActions = document.createElement("div");
+  headerActions.className = "header-actions";
+  headerActions.append(libraryBtn, settingsBtn);
   const summary = document.createElement("div");
   summary.className = "card-summary";
   const summaryMain = document.createElement("span");
@@ -123,7 +131,7 @@ export function renderCardPage() {
   headerControls.className = "card-header-grid";
   headerControls.append(
     fieldLabel("Deck", deckButton),
-    settingsBtn,
+    headerActions,
     setField,
     fieldLabel("Mode", modeSelect)
   );
@@ -665,6 +673,7 @@ export function renderCardPage() {
     if (state.mode === "voice") speakJapanese();
   });
   settingsBtn.addEventListener("click", () => openOverlay("settings"));
+  libraryBtn.addEventListener("click", () => openOverlay("library"));
   ttsToggleBtn.addEventListener("click", () => {
     ttsExpanded = !ttsExpanded;
     state.audioSourceExpanded = ttsExpanded;

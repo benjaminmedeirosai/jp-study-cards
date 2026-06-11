@@ -3,11 +3,11 @@
 // with its type + english, so gaps (a word that *should* span senses/POS but
 // only appears once) are visible.
 //
-// Usage:  node tools/polysemy-audit.mjs      (reads data/cards.json)
+// Usage:  node tools/japanese/polysemy-audit.mjs   (reads data/japanese/cards.json)
 // Extend the GROUPS map below with more candidate words as coverage grows.
 import fs from "node:fs";
 
-const c = JSON.parse(fs.readFileSync("data/cards.json", "utf8"));
+const c = JSON.parse(fs.readFileSync("data/japanese/cards.json", "utf8"));
 
 // Candidates grouped by the kind of multi-representation they *should* have.
 const GROUPS = {

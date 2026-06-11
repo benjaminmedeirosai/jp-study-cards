@@ -2,9 +2,9 @@
 // all): every segment must be `漢: …` with 漢 a single Han char present in the
 // word, bracketed, and containing a colon. Prints glossed/total per deck and a
 // mismatch count (aim for 0). Rebuild the bundle first:
-//   node tools/bundle-data.mjs && node tools/check-gloss.mjs <prefix>
+//   node tools/bundle-data.mjs japanese && node tools/japanese/check-gloss.mjs <prefix>
 import fs from "node:fs/promises";
-const b = JSON.parse(await fs.readFile(new URL("../data/cards.json", import.meta.url), "utf8"));
+const b = JSON.parse(await fs.readFile(new URL("../../data/japanese/cards.json", import.meta.url), "utf8"));
 const prefix = process.argv[2] || "";
 const isHan = (c) => /\p{Script=Han}/u.test(c);
 const decks = b.decks.filter((d) => d.id.startsWith(prefix));

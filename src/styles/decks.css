@@ -155,6 +155,15 @@
 
 .deck-row--file { background: rgba(15, 23, 42, 0.26); }
 
+/* Library picker rows: a language "short" badge (日本語 / ES) + the label. */
+.library-short {
+  flex: 0 0 auto;
+  min-width: 2.6em;
+  color: var(--accent);
+  font-weight: 600;
+  font-size: 13px;
+}
+
 .deck-icon {
   flex: 0 0 auto;
   display: grid;

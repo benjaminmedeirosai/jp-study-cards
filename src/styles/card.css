@@ -117,6 +117,43 @@
   white-space: nowrap;
 }
 
+/* Right-column row 1: the Library + Settings buttons side by side. */
+.header-actions {
+  display: flex;
+  align-items: stretch;
+  gap: 6px;
+}
+.header-actions .settings-open { flex: 1; min-width: 0; }
+
+/* Globe button in the header (opens the library picker). Compact/icon-only. */
+.study-button.library-open {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  width: 40px;
+  height: 36px;
+  padding: 0;
+  border: 1px solid rgba(148, 163, 184, 0.28);
+  border-radius: 7px;
+  background: rgba(15, 23, 42, 0.55);
+}
+.study-button.library-open:hover {
+  border-color: var(--accent-border);
+  background: rgba(30, 41, 59, 0.72);
+}
+.study-button.library-open .text { display: none; }
+.study-button.library-open .icon { display: inline-flex; color: var(--accent); }
+.study-button.library-open .icon svg {
+  width: 18px;
+  height: 18px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
 /* Gear button in the header (navigates to the settings page). */
 .study-button.settings-open {
   display: inline-flex;

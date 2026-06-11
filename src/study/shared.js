@@ -1,7 +1,16 @@
 // Shared state, data loading, and DOM helpers.
 // Pure set-building algorithms live in ./sets.js.
 
+import { getLibrary, normalizeLibraryId, DEFAULT_LIBRARY_ID } from "./libraries.js";
+
 const STORAGE_KEY = "jp-study-cards-state-v1";
+const STATE_VERSION = 2;
+// Keys that belong to the active library (isolated per language). Everything
+// else in `state` is global (fonts, voice, UI prefs) and shared across libraries.
+const LIBRARY_KEYS = [
+  "deckId", "setId", "currentIndex", "query", "mode", "setGrouping",
+  "ttsSources", "deckHistory", "filterHistory"
+];
 export const DEFAULT_SET_SIZE = 20;
 export const FONT_SCALE_OPTIONS = [10, 20, 35, 50, 75, 100, 125, 150, 200, 250];
 export const VOICE_RATE_OPTIONS = [0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.25, 1.5, 1.75, 2];
@@ -149,11 +158,57 @@ export function normalizeSetGrouping(value) {
   return SET_GROUPINGS.some((grouping) => grouping.id === value) ? value : "kanji-alpha";
 }
 
+// The active library id (seeded from storage). Drives activeLibrary() and which
+// per-library slice loadState/saveState read & write.
+let currentLibraryId = null;
+
+// Read the persisted store, migrating the legacy flat v1 blob into the v2
+// { version, libraryId, global, libraries } shape (lossless: existing keys land
+// under global / libraries.japanese).
+function readStore() {
+  let stored = {};
+  try { stored = JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}"); } catch {}
+  if (stored && stored.version === STATE_VERSION && stored.libraries) return stored;
+  const library = {};
+  const global = { ...stored };
+  for (const key of LIBRARY_KEYS) {
+    if (key in stored) library[key] = stored[key];
+    delete global[key];
+  }
+  delete global.version; delete global.libraryId; delete global.libraries;
+  return {
+    version: STATE_VERSION,
+    libraryId: normalizeLibraryId(stored.libraryId || DEFAULT_LIBRARY_ID),
+    global,
+    libraries: { [DEFAULT_LIBRARY_ID]: library }
+  };
+}
+
+export function activeLibrary() {
+  return getLibrary(currentLibraryId || readStore().libraryId);
+}
+
+// Switch the active library (persists the choice; next loadState reads its slice).
+export function setLibrary(id) {
+  const libraryId = normalizeLibraryId(id);
+  const store = readStore();
+  store.libraryId = libraryId;
+  store.libraries = store.libraries || {};
+  if (!store.libraries[libraryId]) store.libraries[libraryId] = {};
+  try { localStorage.setItem(STORAGE_KEY, JSON.stringify(store)); } catch {}
+  currentLibraryId = libraryId;
+}
+
 export function loadState() {
-  let raw = {};
-  try { raw = JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}"); } catch {}
+  const store = readStore();
+  const libraryId = normalizeLibraryId(store.libraryId);
+  currentLibraryId = libraryId;
+  // Flatten global + the active library's slice so the rest of the app keeps
+  // using a single `state.foo` object (persistence is split; memory isn't).
+  const raw = { ...store.global, ...(store.libraries[libraryId] || {}) };
   const visible = raw.visible && typeof raw.visible === "object" ? raw.visible : {};
   return {
+    libraryId,
     deckId: String(raw.deckId || ""),
     setId: String(raw.setId || "all"),
     mode: MODES.some((mode) => mode.id === raw.mode) ? raw.mode : "kanji",
@@ -190,7 +245,20 @@ export function loadState() {
 }
 
 export function saveState(state) {
-  try { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); } catch {}
+  const store = readStore();
+  const libraryId = normalizeLibraryId(state.libraryId || currentLibraryId || store.libraryId);
+  store.libraryId = libraryId;
+  store.global = store.global || {};
+  store.libraries = store.libraries || {};
+  const library = store.libraries[libraryId] || {};
+  for (const [key, value] of Object.entries(state)) {
+    if (key === "libraryId") continue;
+    if (LIBRARY_KEYS.includes(key)) library[key] = value;
+    else store.global[key] = value;
+  }
+  store.libraries[libraryId] = library;
+  currentLibraryId = libraryId;
+  try { localStorage.setItem(STORAGE_KEY, JSON.stringify(store)); } catch {}
 }
 
 export function text(entry, key) {
@@ -218,20 +286,22 @@ export function openSearchLink(template, entry) {
 // Data loading (one bundled file, cached for the page lifetime)
 // ---------------------------------------------------------------------------
 
-let bundlePromise = null;
+// Cached per data path, so switching library fetches the right bundle and each
+// is fetched at most once per page. Paths have no leading slash, so they resolve
+// under any base path (e.g. a GitHub Pages project subpath like /jp-study-cards/).
+const bundlePromises = new Map();
 
-// No leading slash, so it resolves under any base path (e.g. a GitHub Pages
-// project subpath like /jp-study-cards/).
 export function loadBundle() {
-  if (!bundlePromise) {
-    bundlePromise = fetch("data/cards.json")
+  const url = activeLibrary().data;
+  if (!bundlePromises.has(url)) {
+    bundlePromises.set(url, fetch(url)
       .then((response) => {
-        if (!response.ok) throw new Error(`data/cards.json: ${response.status}`);
+        if (!response.ok) throw new Error(`${url}: ${response.status}`);
         return response.json();
       })
-      .catch((error) => { bundlePromise = null; throw error; });
+      .catch((error) => { bundlePromises.delete(url); throw error; }));
   }
-  return bundlePromise;
+  return bundlePromises.get(url);
 }
 
 export function listDecks(bundle) {
@@ -282,15 +352,15 @@ export function resolveDeck(bundle, deckId) {
 
 // Per-deck count of entries matching `query`, cached by query so callers (the
 // deck page) only recompute when the filter actually changed since last time.
-let matchCache = { query: null, counts: null };
+let matchCache = { bundle: null, query: null, counts: null };
 export function deckMatchCounts(bundle, query) {
   const q = String(query || "").trim().toLowerCase();
-  if (matchCache.query === q && matchCache.counts) return matchCache.counts;
+  if (matchCache.bundle === bundle && matchCache.query === q && matchCache.counts) return matchCache.counts;
   const counts = new Map();
   for (const deck of listDecks(bundle)) {
     counts.set(deck.id, q ? (deck.entries || []).filter((entry) => searchText(entry).includes(q)).length : Number(deck.count || 0));
   }
-  matchCache = { query: q, counts };
+  matchCache = { bundle, query: q, counts };
   return counts;
 }
 

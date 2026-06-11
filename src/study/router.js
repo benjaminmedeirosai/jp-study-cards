@@ -13,7 +13,8 @@
 import { renderCardPage } from "./cardPage.js";
 import { renderSettingsPage } from "./settingsPage.js";
 import { renderDeckPage } from "./deckPage.js";
-import { loadState, saveState } from "./shared.js";
+import { renderLibraryPage } from "./libraryPage.js";
+import { loadState, saveState, setLibrary } from "./shared.js";
 import { endSession } from "./filters.js";
 
 const app = document.getElementById("app");
@@ -32,6 +33,7 @@ function parseHash() {
   const hash = location.hash || "#/";
   if (hash.startsWith("#/settings")) return { view: "settings" };
   if (hash.startsWith("#/decks")) return { view: "decks" };
+  if (hash.startsWith("#/library")) return { view: "library" };
   const qi = hash.indexOf("?");
   const params = new URLSearchParams(qi >= 0 ? hash.slice(qi + 1) : "");
   return { view: "cards", deck: params.get("deck") || "", q: params.get("q") || "" };
@@ -53,6 +55,7 @@ function mount() {
   app.innerHTML = "";
   if (view === "settings") app.append(renderSettingsPage());
   else if (view === "decks") app.append(renderDeckPage());
+  else if (view === "library") app.append(renderLibraryPage());
   else app.append(renderCardPage()); // the card page opens its own study session on mount
 }
 
@@ -93,17 +96,28 @@ export function chooseDeck(deckId) {
   mount();
 }
 
+// Choose a library from the Library overlay: switch the active library, then
+// replace the modal entry with that library's own cards state (deck/filter).
+export function chooseLibrary(libraryId) {
+  setLibrary(libraryId);
+  view = "cards";
+  const s = loadState();
+  history.replaceState({ view: "cards", deck: s.deckId, q: s.query }, "", cardsHash(s.deckId, s.query));
+  mount();
+}
+
 // --- popstate ---------------------------------------------------------------
+const OVERLAY_VIEWS = ["settings", "decks", "library"];
 function onPopState(event) {
   endSession();
   const target = event.state || parseHash();
-  if (target.view === "settings" || target.view === "decks") {
+  if (OVERLAY_VIEWS.includes(target.view)) {
     // Going forward into an overlay (e.g. re-opening a just-closed one).
     view = target.view;
     mount();
     return;
   }
-  if (view === "settings" || view === "decks") {
+  if (OVERLAY_VIEWS.includes(view)) {
     // Backing out of an overlay: close it and show cards reflecting the current
     // live state (so a filter edited inside the overlay is honored), normalizing
     // the entry we landed on to match.
