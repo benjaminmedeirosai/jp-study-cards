@@ -121,9 +121,14 @@ function onPopState(event) {
 export function startRouter() {
   const parsed = parseHash();
   if (parsed.view === "cards") {
-    // A deep link with params seeds the cards state; otherwise resume from
-    // localStorage. Either way normalize the URL/state pair.
-    if (location.hash.includes("?")) applyCardsState(parsed.deck, parsed.q);
+    // A deep link to a DIFFERENT (deck, filter) than the saved one seeds fresh
+    // cards state (resetting the transient set/index). A plain reload, whose URL
+    // merely mirrors the saved state, resumes set/index from localStorage —
+    // applyCardsState would otherwise reset them. Either way normalize the pair.
+    const saved = loadState();
+    if (location.hash.includes("?") && (parsed.deck !== saved.deckId || parsed.q !== saved.query)) {
+      applyCardsState(parsed.deck, parsed.q);
+    }
     view = "cards";
     replaceCardsURL();
   } else {

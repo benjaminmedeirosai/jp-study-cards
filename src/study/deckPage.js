@@ -109,6 +109,41 @@ export function renderDeckPage() {
     emptyText: "No filters studied yet"
   });
 
+  // Studied-recency chips: a single-select group that narrows the list by how
+  // long ago each deck/folder was last studied. "all" is the unfiltered default;
+  // the rest are non-overlapping windows on the deck-history `at` timestamp.
+  // Independent of the two text filters.
+  const STUDIED_FILTERS = [
+    { id: "all", label: "All" },
+    { id: "lt6h", label: "<6h" },
+    { id: "6to24h", label: "6–24h" },
+    { id: "1to2d", label: "1–2d" },
+    { id: "2to3d", label: "2–3d" },
+    { id: "older", label: "Older" }
+  ];
+  let studiedFilter = "all";
+  const studiedChips = document.createElement("div");
+  studiedChips.className = "decks-studied-chips";
+  const studiedButtons = STUDIED_FILTERS.map((filter) => {
+    const chip = document.createElement("button");
+    chip.type = "button";
+    chip.className = `preset-chip decks-studied-chip${filter.id === studiedFilter ? " active" : ""}`;
+    chip.dataset.value = filter.id;
+    chip.textContent = filter.label;
+    chip.setAttribute("aria-pressed", filter.id === studiedFilter ? "true" : "false");
+    chip.addEventListener("click", () => {
+      studiedFilter = filter.id;
+      for (const button of studiedButtons) {
+        const on = button.dataset.value === studiedFilter;
+        button.classList.toggle("active", on);
+        button.setAttribute("aria-pressed", on ? "true" : "false");
+      }
+      if (bundle) renderList();
+    });
+    return chip;
+  });
+  studiedChips.append(...studiedButtons);
+
   const list = document.createElement("div");
   list.className = "decks-list";
   const empty = document.createElement("div");
@@ -116,7 +151,7 @@ export function renderDeckPage() {
   empty.textContent = "Loading decks...";
   list.append(empty);
 
-  root.append(top, nameWrap, filterWrap, list);
+  root.append(top, nameWrap, filterWrap, studiedChips, list);
 
   let tree = [];
   let bundle = null;
@@ -201,10 +236,39 @@ export function renderDeckPage() {
     return nameHit(node.name) || node.decks.some((deck) => nameHit(deck.label)) || node.children.some(subtreeNameMatch);
   }
 
+  // --- Studied-recency filtering ------------------------------------------
+  // A history entry matches the active chip when its last-studied age falls in
+  // that window ("all" matches everything, incl. never-studied). A subtree is
+  // shown when it (or anything beneath it) matches, so matching files stay
+  // reachable through their ancestors. Ages use the entry's `at` timestamp.
+  const HOUR = 3600_000;
+  const DAY = 24 * HOUR;
+  function matchesRecency(entry) {
+    if (!entry) return false;
+    const age = Date.now() - entry.at;
+    switch (studiedFilter) {
+      case "lt6h": return age < 6 * HOUR;
+      case "6to24h": return age >= 6 * HOUR && age < DAY;
+      case "1to2d": return age >= DAY && age < 2 * DAY;
+      case "2to3d": return age >= 2 * DAY && age < 3 * DAY;
+      case "older": return age >= 3 * DAY;
+      default: return true;
+    }
+  }
+  function deckMatchesStudied(deck) {
+    return studiedFilter === "all" || matchesRecency(historyById.get(deck.id));
+  }
+  function subtreeMatchesStudied(node, path) {
+    if (studiedFilter === "all") return true;
+    return matchesRecency(historyById.get(`folder:${path}`))
+      || node.decks.some((deck) => matchesRecency(historyById.get(deck.id)))
+      || node.children.some((child) => subtreeMatchesStudied(child, `${path} / ${child.name}`));
+  }
+
   // The folder's content row toggles expand/collapse on tap; the "Select" button
   // chooses the folder itself (all files beneath it) as the study target.
   function folderRow(node, path, depth) {
-    const isOpen = nameQuery ? true : expanded.has(path);
+    const isOpen = (nameQuery || studiedFilter !== "all") ? true : expanded.has(path);
     const toggle = contentRow(isOpen ? ICONS.folderOpen : ICONS.folder, node.name, countLabel(matchedInNode(node), countCards(node)), "deck-folder-toggle", true, metaFor(`folder:${path}`));
     toggle.setAttribute("aria-expanded", isOpen ? "true" : "false");
     toggle.addEventListener("click", () => {
@@ -219,11 +283,13 @@ export function renderDeckPage() {
     const path = parentPath ? `${parentPath} / ${node.name}` : node.name;
     const selfMatch = nameQuery ? nameHit(node.name) : false;
     if (nameQuery && !ancestorMatch && !selfMatch && !subtreeNameMatch(node)) return;
+    if (studiedFilter !== "all" && !subtreeMatchesStudied(node, path)) return;
     frag.append(folderRow(node, path, depth));
-    const open = nameQuery ? true : expanded.has(path);
+    const open = (nameQuery || studiedFilter !== "all") ? true : expanded.has(path);
     if (!open) return;
     const showAll = ancestorMatch || selfMatch; // a matched folder reveals its whole subtree
     for (const deck of node.decks) {
+      if (studiedFilter !== "all" && !deckMatchesStudied(deck)) continue;
       if (!nameQuery || showAll || nameHit(deck.label)) frag.append(fileRow(deck, depth + 1));
     }
     for (const child of node.children) {
@@ -239,10 +305,12 @@ export function renderDeckPage() {
       if (!nameQuery || subtreeNameMatch(node)) renderNode(node, "", 0, frag, false);
     }
     list.innerHTML = "";
-    if (nameQuery && !frag.querySelector(".deck-row--file")) {
+    if ((nameQuery || studiedFilter !== "all") && !frag.querySelector(".deck-row--file")) {
       const none = document.createElement("div");
       none.className = "decks-empty";
-      none.textContent = `No decks match “${nameInput.value.trim()}”`;
+      none.textContent = nameQuery
+        ? `No decks match “${nameInput.value.trim()}”`
+        : "No decks studied in that window";
       list.append(none);
       return;
     }

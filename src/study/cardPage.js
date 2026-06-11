@@ -403,6 +403,21 @@ export function renderCardPage() {
     state.currentIndex = 0;
     saveState(state);
   }
+
+  // The top-level "root deck" containing the current selection — the first
+  // category segment, as a folder target (e.g. "Texts" → "folder:Texts").
+  // null when nothing is selected, on "All decks", or when the current target
+  // already IS that root (so the gloss menu doesn't offer a redundant option).
+  function currentDeckRoot() {
+    const id = state.deckId;
+    if (!id || id === "all") return null;
+    const segments = id.startsWith("folder:")
+      ? id.slice("folder:".length).split("/")
+      : String(currentDeck()?.category || "").split("/");
+    const root = segments.map((part) => part.trim()).filter(Boolean)[0];
+    if (!root || `folder:${root}` === id) return null;
+    return { id: `folder:${root}`, label: root };
+  }
   function openGlossMenu(kanji, glossText, anchor) {
     closeGlossMenu();
     const backdrop = document.createElement("div");
@@ -425,11 +440,21 @@ export function renderCardPage() {
     filterBtn.type = "button";
     filterBtn.className = "gloss-menu-item";
     filterBtn.textContent = `Filter this deck by ${kanji}`;
+    // Middle option: filter the whole root deck (the top-level folder) in place,
+    // a quick widen-the-net step without opening the deck selector.
+    const root = currentDeckRoot();
+    let rootBtn = null;
+    if (root) {
+      rootBtn = document.createElement("button");
+      rootBtn.type = "button";
+      rootBtn.className = "gloss-menu-item";
+      rootBtn.textContent = `Filter ${root.label} deck by ${kanji}`;
+    }
     const chooseBtn = document.createElement("button");
     chooseBtn.type = "button";
     chooseBtn.className = "gloss-menu-item";
     chooseBtn.textContent = `Find ${kanji} in another deck…`;
-    menu.append(head, filterBtn, chooseBtn);
+    menu.append(head, filterBtn, ...(rootBtn ? [rootBtn] : []), chooseBtn);
     document.body.append(backdrop, menu);
 
     // Position below the tapped line, clamped to the viewport; flip above if it
@@ -463,6 +488,20 @@ export function renderCardPage() {
       beginSession(state.deckId, deck ? deck.label : "", state.query);
       remember ? pushCardsURL() : replaceCardsURL();
     });
+    // Switch to the root deck and apply the filter, in place (no deck picker).
+    if (rootBtn) {
+      rootBtn.addEventListener("click", async () => {
+        const remember = sessionQualifies();
+        closeGlossMenu();
+        endSession();
+        state.deckId = root.id;
+        applyKanjiFilter(kanji);
+        await renderAll();
+        const deck = currentDeck();
+        beginSession(state.deckId, deck ? deck.label : "", state.query);
+        remember ? pushCardsURL() : replaceCardsURL();
+      });
+    }
     // Same filter, then open the deck picker (carrying it) to switch decks.
     chooseBtn.addEventListener("click", () => {
       const remember = sessionQualifies();

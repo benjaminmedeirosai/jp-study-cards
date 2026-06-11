@@ -4,14 +4,30 @@
    per tree depth in deckPage.js. */
 
 .decks-page {
-  grid-template-rows: auto auto auto minmax(0, 1fr);
+  grid-template-rows: auto auto auto auto minmax(0, 1fr);
 }
 
 .decks-top,
 .decks-page > .filter-wrap,
+.decks-studied-chips,
 .decks-list {
   width: min(100%, 520px);
   margin: 0 auto;
+}
+
+/* Single-select chip row that narrows the list by how long ago each deck was
+   last studied. Reuses .preset-chip (from settings) for the chip look; wraps to
+   a second line on narrow screens rather than squeezing. */
+.decks-studied-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.decks-studied-chip {
+  flex: 1 1 auto;
+  min-height: 34px;
+  padding: 0 10px;
 }
 
 .decks-filter {

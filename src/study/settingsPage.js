@@ -9,6 +9,7 @@ import {
   VOICE_RATE_OPTIONS,
   SET_GROUPINGS,
   availableFonts,
+  fontStack,
   FONT_PX_STEPS,
   fontStepToPx,
   fontPxToStep,
@@ -158,8 +159,8 @@ export function renderSettingsPage() {
     const fonts = availableFonts([currentId]);
     const select = makeSelect(fonts.map((font) => ({ value: font.id, label: font.label })), currentId);
     for (const option of select.options) {
-      const font = fonts.find((f) => f.id === option.value);
-      if (font && font.family) option.style.fontFamily = `"${font.family}", ${font.generic}`;
+      const stack = fontStack(option.value);
+      if (stack !== "inherit") option.style.fontFamily = stack;
     }
     return select;
   }

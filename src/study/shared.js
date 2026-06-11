@@ -10,9 +10,22 @@ export const VOICE_RATE_OPTIONS = [0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.25, 1.5, 1
 // may or may not be installed on a given device (no web downloads) — so the
 // settings dropdown only lists the ones detected as available here (see
 // availableFonts). `family` is the exact name we probe and request; `generic`
-// is the CSS fallback bucket. The "default" entry inherits the card font.
+// is the CSS fallback bucket; optional `alt` lists extra family names the same
+// font ships under on other platforms (each is probed/requested too). The
+// "default" entry inherits the card font; entries with no `family` but a
+// `generic` are the always-offered generic buckets (no detection needed).
 export const FONT_FAMILIES = [
   { id: "default", label: "Default", family: "", generic: "" },
+  // Generic system buckets — always offered, since there's no named family to
+  // detect. On Android/Chrome (e.g. Samsung), where none of the named families
+  // below are installed, these still give a real serif-vs-sans choice: the OS
+  // maps them to its bundled Noto Sans/Serif CJK JP for Japanese text.
+  { id: "sys-sans", label: "System Sans", family: "", generic: "sans-serif" },
+  { id: "sys-serif", label: "System Serif", family: "", generic: "serif" },
+  // Noto — Android's bundled Japanese fonts (also common via Google Fonts).
+  // `alt` covers the on-device family name ("… CJK JP") vs the subset name.
+  { id: "noto-sans-jp", label: "Noto Sans JP (sans)", family: "Noto Sans JP", generic: "sans-serif", alt: ["Noto Sans CJK JP"] },
+  { id: "noto-serif-jp", label: "Noto Serif JP (serif)", family: "Noto Serif JP", generic: "serif", alt: ["Noto Serif CJK JP"] },
   // Cross-platform staples
   { id: "mincho-yu", label: "Yu Mincho (serif)", family: "Yu Mincho", generic: "serif" },
   { id: "mincho-hiragino", label: "Hiragino Mincho (serif)", family: "Hiragino Mincho ProN", generic: "serif" },
@@ -33,11 +46,15 @@ export const FONT_FAMILIES = [
   { id: "marugo", label: "HG Maru Gothic (round)", family: "HGMaruGothicMPRO", generic: "sans-serif" }
 ];
 
-// CSS font-family for a saved font id; "inherit" (the card default) for the
-// "default" choice or any unknown id.
+// CSS font-family for a saved font id: the named family (plus any `alt` names)
+// ahead of its generic bucket; the generic alone for the generic-bucket entries;
+// "inherit" (the card default) for "default" or any unknown id.
 export function fontStack(id) {
   const font = FONT_FAMILIES.find((f) => f.id === id);
-  return font && font.family ? `"${font.family}", ${font.generic}` : "inherit";
+  if (!font) return "inherit";
+  const names = [font.family, ...(font.alt || [])].filter(Boolean);
+  if (names.length) return `${names.map((n) => `"${n}"`).join(", ")}, ${font.generic}`;
+  return font.generic || "inherit";
 }
 
 function normalizeFont(value) {
@@ -57,7 +74,7 @@ const FONT_PX_RATIO = FONT_PX_MAX / FONT_PX_MIN;
 // Default sizes, each landing exactly on a step (see fontStepToPx) so the slider
 // starts pinned and a first nudge doesn't jump. Kanji largest, then reading,
 // english, gloss.
-export const FONT_PX_DEFAULTS = { kanji: 67, hiragana: 34, english: 30, gloss: 16 };
+export const FONT_PX_DEFAULTS = { kanji: 67, hiragana: 34, english: 18, gloss: 16 };
 export function fontStepToPx(step) {
   const s = clampInt(step, 0, 0, FONT_PX_STEPS);
   return Math.round(FONT_PX_MIN * Math.pow(FONT_PX_RATIO, s / FONT_PX_STEPS));
@@ -89,7 +106,10 @@ export function isFontAvailable(family) {
 // pick never silently vanishes even if detection misses it.
 export function availableFonts(keepIds = []) {
   const keep = new Set(keepIds);
-  return FONT_FAMILIES.filter((font) => !font.family || keep.has(font.id) || isFontAvailable(font.family));
+  return FONT_FAMILIES.filter((font) =>
+    !font.family
+    || keep.has(font.id)
+    || [font.family, ...(font.alt || [])].some(isFontAvailable));
 }
 export const LINK_TEMPLATES = {
   chatgpt: "https://chat.openai.com/?q=",
@@ -150,11 +170,11 @@ export function loadState() {
     currentIndex: clampInt(raw.currentIndex, 0, 0, 100000),
     query: String(raw.query || "").trim(),
     jpVoice: String(raw.jpVoice || ""),
-    voiceRate: Number.isFinite(Number(raw.voiceRate)) ? Math.min(2, Math.max(0.5, Number(raw.voiceRate))) : 0.9,
+    voiceRate: Number.isFinite(Number(raw.voiceRate)) ? Math.min(2, Math.max(0.5, Number(raw.voiceRate))) : 1,
     showHotkeys: raw.showHotkeys === true,
     showGloss: raw.showGloss !== false,
-    autoplayQuestionDelay: clampNum(raw.autoplayQuestionDelay, 4, 0.5, 60),
-    autoplayAnswerDelay: clampNum(raw.autoplayAnswerDelay, 3, 0.5, 60),
+    autoplayQuestionDelay: clampNum(raw.autoplayQuestionDelay, 2, 0.5, 60),
+    autoplayAnswerDelay: clampNum(raw.autoplayAnswerDelay, 1.5, 0.5, 60),
     autoplayEstimateTts: raw.autoplayEstimateTts !== false,
     audioSourceExpanded: raw.audioSourceExpanded !== false,
     visible: {
