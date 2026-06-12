@@ -74,7 +74,9 @@ export const LIBRARIES = [
     // Filtering by a radical or component matches any kanji whose radical or
     // components contain it, so the tap-menu filter works on these fields too.
     searchKeys: ["kanji", "onyomi", "kunyomi", "meaning", "radical", "radical-name", "components"],
-    features: { soundSource: true, gloss: false, texts: false }
+    // multiReading: the readings are 、-separated lists, so the "read all
+    // readings vs just the first" voice toggle is meaningful here.
+    features: { soundSource: true, gloss: false, texts: false, multiReading: true }
   },
   {
     id: "spanish",

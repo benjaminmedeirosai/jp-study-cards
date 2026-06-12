@@ -295,17 +295,19 @@ export function renderCardPage() {
   }
 
   // The spoken text for a given sound-source value: each option names the entry
-  // fields it reads. For multi-reading/okurigana kanji fields, speak the FIRST
-  // listed reading with the okurigana dot stripped (やす.む → やすむ), and join the
-  // selected fields with 、 (so "Both" says 音 then 訓). Plain word fields (no 、,
-  // no dot) pass through unchanged.
-  function readingHead(value) {
-    return String(value || "").split("、")[0].replace(/\./g, "").trim();
+  // fields it reads. Each field's value is a 、-separated reading list; we strip
+  // okurigana dots (やす.む → やすむ) and, per the "read all readings" setting, keep
+  // either just the first (most common) or every reading. Selected fields are
+  // joined with 、 (so "Both" says 音 then 訓). Plain word fields (no 、, no dot)
+  // pass through unchanged either way.
+  function readingForms(value) {
+    const forms = String(value || "").split("、").map((form) => form.replace(/\./g, "").trim()).filter(Boolean);
+    return state.voiceAllReadings ? forms : forms.slice(0, 1);
   }
   function speechForSource(entry, value) {
     const opt = soundSources.find((o) => o.value === value);
     if (!opt) return "";
-    return opt.keys.map((key) => readingHead(text(entry, key))).filter(Boolean).join("、");
+    return opt.keys.flatMap((key) => readingForms(text(entry, key))).join("、");
   }
 
   // The system default sound source for an entry. Japanese words: browser TTS

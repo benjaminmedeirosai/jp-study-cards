@@ -265,6 +265,10 @@ export function loadState() {
     autoplayQuestionDelay: clampNum(raw.autoplayQuestionDelay, 2, 0.5, 60),
     autoplayAnswerDelay: clampNum(raw.autoplayAnswerDelay, 1.5, 0.5, 60),
     autoplayEstimateTts: raw.autoplayEstimateTts !== false,
+    // Voice reads only the first reading of each type by default (most common);
+    // on → read every 、-separated reading. Only meaningful for multi-reading
+    // schemas (kanji); harmless elsewhere.
+    voiceAllReadings: raw.voiceAllReadings === true,
     audioSourceExpanded: raw.audioSourceExpanded !== false,
     visible: {
       kanji: visible.kanji !== false,
