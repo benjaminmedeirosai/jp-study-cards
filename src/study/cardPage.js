@@ -449,6 +449,16 @@ export function renderCardPage() {
   // lines (reading), the meaning (translation), strokes·grade (type), and the
   // radical + components in the tap-menu gloss area. Radical/components and
   // strokes are answer-side (shown with the rest on reveal / show-all).
+  // Display transform for the reading lines: the data marks okurigana with a dot
+  // (あ.く); show it parenthesized (あ（く）) so the kanji's reading vs the trailing
+  // kana reads clearly. Per 、-separated reading; readings with no dot are
+  // unchanged. (TTS reads the raw field and strips the dot separately.)
+  function displayReading(value) {
+    return String(value || "").split("、").map((reading) => {
+      const dot = reading.indexOf(".");
+      return dot === -1 ? reading : `${reading.slice(0, dot)}（${reading.slice(dot + 1)}）`;
+    }).join("、");
+  }
   function readingLine(tag, value) {
     const line = document.createElement("div");
     line.className = "card-reading-line";
@@ -485,8 +495,8 @@ export function renderCardPage() {
 
     cardMain.textContent = character || "-";
     cardReading.replaceChildren(...[
-      onyomi ? readingLine("音", onyomi) : null,
-      kunyomi ? readingLine("訓", kunyomi) : null
+      onyomi ? readingLine("音", displayReading(onyomi)) : null,
+      kunyomi ? readingLine("訓", displayReading(kunyomi)) : null
     ].filter(Boolean));
     cardEnglish.textContent = meaning;
     cardType.textContent = [strokes && `${strokes}画`, grade && `学年${grade}`].filter(Boolean).join(" · ");
