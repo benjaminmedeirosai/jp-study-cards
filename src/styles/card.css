@@ -349,6 +349,23 @@
   line-height: 1.15;
 }
 
+/* Kanji schema: the reading slot holds two stacked lines (音 on / 訓 kun), each a
+   small tag + the reading. The slot is already centered. */
+.card-reading-line {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 8px;
+}
+.card-reading-tag {
+  flex: 0 0 auto;
+  font-size: 0.62em;
+  font-weight: 600;
+  color: var(--accent);
+  font-family: system-ui, sans-serif;
+}
+.card-reading-val { min-width: 0; }
+
 .card-slot.card-main {
   /* Bottom-anchored just above the reading's top line (which sits at the shared
      40% anchor + 0.58·size), minus the small gap kanji has from line-height
@@ -472,6 +489,12 @@
   transition: opacity 0.16s ease, visibility 0.16s ease;
 }
 
+/* Three-option variant (kanji schema: On'yomi / Kun'yomi / Both). */
+.tts-source[data-count="3"] {
+  width: min(100%, 246px);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
 .tts-source::before {
   content: "";
   position: absolute;
@@ -484,8 +507,13 @@
   box-shadow: 0 4px 14px rgba(37, 99, 235, 0.28);
   transition: transform 0.18s ease;
 }
+.tts-source[data-count="3"]::before { width: calc((100% - 6px) / 3); }
 
-.tts-source[data-selected="hiragana"]::before { transform: translateX(100%); }
+/* Pill slides one slot per position. Second slot: hiragana (words) / kunyomi
+   (kanji); third slot: both (kanji). On'yomi/Kanji are the resting position. */
+.tts-source[data-selected="hiragana"]::before,
+.tts-source[data-selected="kunyomi"]::before { transform: translateX(100%); }
+.tts-source[data-selected="both"]::before { transform: translateX(200%); }
 
 .tray.tts-collapsed .tts-source {
   opacity: 0;

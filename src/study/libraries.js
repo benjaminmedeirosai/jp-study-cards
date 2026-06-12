@@ -22,6 +22,9 @@ export const LIBRARIES = [
     label: "Japanese",
     short: "日本語",
     data: "data/japanese/cards.json",
+    // The Japanese bundle holds both word decks and kanji decks; this library is
+    // the WORD schema, so it only shows decks of kind "word" (see listDecks).
+    deckKind: "word",
     // `estimate` drives the autoplay TTS-duration guess: count chars of `source`
     // (reading morae for Japanese) × `msPerUnit`.
     tts: { lang: "ja-JP", estimate: { source: "reading", msPerUnit: 200 } },
@@ -35,13 +38,50 @@ export const LIBRARIES = [
       "kanji-likeness-slotting", "kanji-likeness-grouping",
       "hiragana-likeness-slotting", "hiragana-likeness-grouping"
     ],
+    // The sound-source picker options (value + button label + the entry fields
+    // its speech reads). Word study: speak the kanji word or its kana reading.
+    soundSources: [
+      { value: "kanji", label: "Kanji", keys: ["kanji"] },
+      { value: "hiragana", label: "Hiragana", keys: ["hiragana"] }
+    ],
     features: { soundSource: true, gloss: true, texts: true }
+  },
+  {
+    // Per-character kanji study — its own schema/library so its modes, settings,
+    // fonts, voice and sound-source choice are independent of the word decks
+    // (same per-library state split as Spanish). Shares the Japanese bundle but
+    // shows only kind:"kanji" decks. The card layout is rendered specially
+    // (on/kun reading lines; radical + components in the tap-menu area).
+    id: "japanese-kanji",
+    label: "Japanese Kanji",
+    short: "漢字",
+    data: "data/japanese/cards.json",
+    deckKind: "kanji",
+    tts: { lang: "ja-JP", estimate: { source: "primary", msPerUnit: 200 } },
+    voiceSample: "こんにちは。これは音声のプレビューです。",
+    // reading→onyomi is nominal (for entryKey/estimate); the card renders both
+    // onyomi and kunyomi. type/gloss have no kanji equivalent.
+    fields: { primary: "kanji", reading: "onyomi", translation: "meaning", type: null, gloss: null },
+    labels: { primary: "Kanji", reading: "Reading" },
+    modeIds: ["kanji", "meaning", "reading", "show-all"],
+    groupingIds: ["kanji-alpha"],
+    // Sound source: on'yomi, kun'yomi, or both (speaks 音 then 訓).
+    soundSources: [
+      { value: "onyomi", label: "On'yomi", keys: ["onyomi"] },
+      { value: "kunyomi", label: "Kun'yomi", keys: ["kunyomi"] },
+      { value: "both", label: "Both", keys: ["onyomi", "kunyomi"] }
+    ],
+    // Filtering by a radical or component matches any kanji whose radical or
+    // components contain it, so the tap-menu filter works on these fields too.
+    searchKeys: ["kanji", "onyomi", "kunyomi", "meaning", "radical", "radical-name", "components"],
+    features: { soundSource: true, gloss: false, texts: false }
   },
   {
     id: "spanish",
     label: "Spanish",
     short: "ES",
     data: "data/spanish/cards.json",
+    deckKind: "word",
     // Latin words run faster per character than Japanese morae.
     tts: { lang: "es-ES", estimate: { source: "primary", msPerUnit: 75 } },
     voiceSample: "Hola. Esta es una vista previa de la voz.",

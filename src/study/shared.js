@@ -133,7 +133,10 @@ export const MODES = [
   { id: "hiragana", label: "Hiragana", slot: "reading" },
   { id: "voice", label: "Voice" },
   { id: "show-all", label: "Show All" },
-  { id: "spanish", label: "Spanish", slot: "primary" }
+  { id: "spanish", label: "Spanish", slot: "primary" },
+  // Kanji-schema modes: prompt with the meaning or the readings, recall the char.
+  { id: "meaning", label: "Meaning", slot: "translation" },
+  { id: "reading", label: "Reading", slot: "reading" }
 ];
 // `slot` = which logical field this groups/sorts by; `unit` = the likeness
 // extractor for the slotting/grouping variants (han chars, kana units, or Latin
@@ -317,6 +320,11 @@ export function entryKey(entry) {
 }
 
 export function searchText(entry) {
+  // A library may name the raw entry fields to search (kanji decks include
+  // radical/components so the tap-menu can filter by them); otherwise search the
+  // standard logical slots.
+  const keys = activeLibrary().searchKeys;
+  if (keys) return keys.map((key) => text(entry, key)).join(" ").toLowerCase();
   return [primaryText(entry), readingText(entry), translationText(entry), typeText(entry)].join(" ").toLowerCase();
 }
 
@@ -351,8 +359,14 @@ export function loadBundle() {
   return bundlePromises.get(url);
 }
 
+// Decks of the active library's `deckKind` only. The Japanese bundle holds both
+// word decks and kanji decks (kind:"kanji"); each library shows just its own, so
+// the word and kanji schemas never see each other's decks. Default kind is
+// "word" (decks carry no `kind` field unless they're a special schema).
 export function listDecks(bundle) {
-  return Array.isArray(bundle?.decks) ? bundle.decks : [];
+  const all = Array.isArray(bundle?.decks) ? bundle.decks : [];
+  const kind = activeLibrary().deckKind || "word";
+  return all.filter((deck) => (deck.kind || "word") === kind);
 }
 
 // Decks whose category folder is `path` or nested beneath it.
@@ -399,15 +413,18 @@ export function resolveDeck(bundle, deckId) {
 
 // Per-deck count of entries matching `query`, cached by query so callers (the
 // deck page) only recompute when the filter actually changed since last time.
-let matchCache = { bundle: null, query: null, counts: null };
+let matchCache = { bundle: null, library: null, query: null, counts: null };
 export function deckMatchCounts(bundle, query) {
   const q = String(query || "").trim().toLowerCase();
-  if (matchCache.bundle === bundle && matchCache.query === q && matchCache.counts) return matchCache.counts;
+  // Keyed by library too: japanese and japanese-kanji share one bundle object
+  // but listDecks filters to different decks, so the counts differ.
+  const library = activeLibrary().id;
+  if (matchCache.bundle === bundle && matchCache.library === library && matchCache.query === q && matchCache.counts) return matchCache.counts;
   const counts = new Map();
   for (const deck of listDecks(bundle)) {
     counts.set(deck.id, q ? (deck.entries || []).filter((entry) => searchText(entry).includes(q)).length : Number(deck.count || 0));
   }
-  matchCache = { bundle, query: q, counts };
+  matchCache = { bundle, library, query: q, counts };
   return counts;
 }
 

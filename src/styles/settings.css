@@ -14,7 +14,7 @@
 /* --- Header ------------------------------------------------------------- */
 .settings-top {
   display: grid;
-  grid-template-columns: 40px minmax(0, 1fr);
+  grid-template-columns: 40px minmax(0, auto) minmax(0, 1fr);
   align-items: center;
   gap: 10px;
 }
@@ -42,6 +42,19 @@
   font-size: 20px;
   font-weight: 600;
   line-height: 1;
+}
+
+/* Which schema these settings apply to (Japanese / Japanese Kanji / Spanish). */
+.settings-schema {
+  justify-self: end;
+  padding: 3px 10px;
+  border: 1px solid var(--accent-border);
+  border-radius: 999px;
+  background: rgba(30, 41, 59, 0.6);
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 500;
+  white-space: nowrap;
 }
 
 /* --- Form / scroll region ---------------------------------------------- */

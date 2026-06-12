@@ -149,6 +149,63 @@ id is referenced by `wordsDeckId`. Add a passage by dropping a new
 `data/japanese/texts/<slug>/` folder with these three files and rebuilding. The reading
 view that consumes the `texts` array is not built yet — this is the data layer.
 
+## Kanji decks (`kanji/` — per-character study)
+
+Single-character kanji study lives in its own subtree, `data/japanese/kanji/`,
+with **different columns** from the word decks. The bundler detects the
+`kanji/` path (`SCHEMAS.japanese.subschemas` in `tools/bundle-data.mjs`), parses
+these columns, and stamps each deck with `kind: "kanji"` so the app renders the
+kanji card layout (readings split into on/kun lines; radical + components in the
+top-right tap-menu) instead of the word layout.
+
+### Columns
+
+```
+kanji  onyomi  kunyomi  meaning  radical  radical-name  components  [strokes]  [grade]
+水	スイ	みず	water	水	みず		4	1
+校	コウ		school; proof	木	きへん	木、交	10	2
+```
+
+- **kanji** — the single character. One per row.
+- **onyomi** — on readings in **katakana**, `、`-separated (`ボク、モク`). Blank if none.
+- **kunyomi** — kun readings in **hiragana**, `、`-separated, with a `.` before
+  okurigana (`やす.む` = the kanji covers やす, む is okurigana). Blank if none.
+- **meaning** — English keyword(s), `;`-separated.
+- **radical** — the single classifying radical (部首) as its **combining-form
+  glyph** (`亻`, `氵`, `木`).
+- **radical-name** — its Japanese name (`にんべん`, `さんずい`, `きへん`).
+- **components** — the one-level decomposition into recognizable parts,
+  `、`-separated (`校` → `木、交`). Blank when the kanji is itself a primitive
+  with no further parts (`水`, `人`). The radical usually appears here too.
+- **strokes**, **grade** — optional trailing columns (画数; 教育漢字 grade 1–6).
+  `jlpt` is NOT a column — the level is encoded by the `n5/`…`n1/` folder.
+
+These two readings deliberately break the word decks' all-hiragana rule (§
+Classification principle 5): for kanji study the on=katakana / kun=hiragana
+split is the point.
+
+### Folder layout
+
+`kanji/<jlpt-level>/<theme>.tsv` — JLPT level first, then theme files mirroring
+the meaning groups used elsewhere (`n5/numbers.tsv`, `n5/nature.tsv`,
+`n5/people-body.tsv`, `n5/position.tsv`). For N1 (~1000+, where rarer kanji are
+domain-specific) add domain subfolders (`n1/law/`, `n1/medicine/`, …). Category
+comes out as "Kanji / N5", label from the filename, same as any deck.
+
+### Building it out — the coverage audit
+
+`tools/japanese/kanji-coverage.mjs` reads the built bundle and reports which
+kanji are **used** (in any word deck's `kanji` field or any text sentence) but
+not yet **covered** by a `kanji/` deck row:
+
+```bash
+node tools/bundle-data.mjs japanese && node tools/japanese/kanji-coverage.mjs
+```
+
+It writes `tmp/kanji-uncovered.json` — `[{ kanji, used, sampleWords,
+sampleSentences }]` sorted most-used first, so the top of the list is the
+highest-priority kanji to add next.
+
 ## Kanji gloss (`breakdown` column)
 
 The optional 5th column gives a per-kanji gloss so a learner can see what each

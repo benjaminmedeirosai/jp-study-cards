@@ -78,6 +78,10 @@ export function renderCardPage() {
   root.className = "study-page card-page";
 
   let state = loadState();
+  // The library is fixed for this mount (switching it re-mounts via the router),
+  // so the schema branch can be decided once here.
+  const schemaIsKanji = activeLibrary().deckKind === "kanji";
+  root.classList.toggle("kanji-schema", schemaIsKanji);
   root.classList.toggle("show-hotkeys", state.showHotkeys);
   let bundle = null;
   let deckCards = [];
@@ -176,11 +180,18 @@ export function renderCardPage() {
   const ttsSource = document.createElement("div");
   ttsSource.className = "tts-source";
   ttsSource.setAttribute("role", "radiogroup");
-  const ttsKanjiBtn = button("Kanji", "tts-option");
-  const ttsReadingBtn = button("Hiragana", "tts-option");
-  ttsKanjiBtn.dataset.value = "kanji";
-  ttsReadingBtn.dataset.value = "hiragana";
-  ttsSource.append(ttsKanjiBtn, ttsReadingBtn);
+  // Sound-source options come from the active library: word decks offer
+  // Kanji/Hiragana; the kanji schema offers On'yomi/Kun'yomi/Both. Each button's
+  // `value` is what we persist per card in state.ttsSources.
+  const soundSources = activeLibrary().soundSources || [];
+  ttsSource.dataset.count = String(soundSources.length);
+  const ttsButtons = soundSources.map((opt) => {
+    const btn = button(opt.label, "tts-option");
+    btn.dataset.value = opt.value;
+    btn.addEventListener("click", () => setTtsSource(opt.value));
+    return btn;
+  });
+  ttsSource.append(...ttsButtons);
   // Sound-source toggle + picker read as one control, so keep them grouped.
   const ttsGroup = document.createElement("div");
   ttsGroup.className = "tts-group";
@@ -283,32 +294,49 @@ export function renderCardPage() {
     return setCards[state.currentIndex] || null;
   }
 
-  // The system default reading source for an entry (only libraries with the
-  // sound-source feature, e.g. Japanese). Browser TTS mis-reads counter/numeral
-  // kanji (e.g. 十六匹 → ひき instead of the correct ぴき), so those default to the
-  // curated reading; everything else defaults to the primary form for better
-  // pitch-accent. The user can override per card (see setTtsSource).
-  function defaultTtsSource(entry) {
-    return entry?.type === "counter" || entry?.type === "numeral" ? "hiragana" : "kanji";
+  // The spoken text for a given sound-source value: each option names the entry
+  // fields it reads. For multi-reading/okurigana kanji fields, speak the FIRST
+  // listed reading with the okurigana dot stripped (やす.む → やすむ), and join the
+  // selected fields with 、 (so "Both" says 音 then 訓). Plain word fields (no 、,
+  // no dot) pass through unchanged.
+  function readingHead(value) {
+    return String(value || "").split("、")[0].replace(/\./g, "").trim();
+  }
+  function speechForSource(entry, value) {
+    const opt = soundSources.find((o) => o.value === value);
+    if (!opt) return "";
+    return opt.keys.map((key) => readingHead(text(entry, key))).filter(Boolean).join("、");
   }
 
-  // Effective source: the user's saved override for this card if any, else the
-  // system default. Always resolves to "kanji" (primary) or "hiragana" (reading).
+  // The system default sound source for an entry. Japanese words: browser TTS
+  // mis-reads counter/numeral kanji (十六匹 → ひき not ぴき), so those default to
+  // the curated reading, everything else to the kanji form. Other schemas: the
+  // first option that yields non-empty speech (e.g. kanji → on'yomi, or kun'yomi
+  // when there is no on'yomi). The user can override per card (see setTtsSource).
+  function defaultTtsSource(entry) {
+    const library = activeLibrary();
+    if (library.id === "japanese") {
+      return entry?.type === "counter" || entry?.type === "numeral" ? "hiragana" : "kanji";
+    }
+    for (const opt of soundSources) if (speechForSource(entry, opt.value)) return opt.value;
+    return soundSources[0]?.value || "";
+  }
+
+  // Effective source: the user's saved override for this card if it's still a
+  // valid option for this library, else the system default.
   function getCurrentTtsSource() {
     const entry = currentEntry();
     const saved = state.ttsSources[entryKey(entry)];
-    return saved === "kanji" || saved === "hiragana" ? saved : defaultTtsSource(entry);
+    return soundSources.some((o) => o.value === saved) ? saved : defaultTtsSource(entry);
   }
 
-  // The text to speak for an entry. With the sound-source feature, the user can
-  // choose reading vs primary; otherwise just speak the primary form.
+  // The text to speak for an entry. With the sound-source feature, speak the
+  // chosen source; otherwise just speak the primary form.
   function studySpeechText(entry) {
     if (!activeLibrary().features.soundSource) {
       return primaryText(entry) || readingText(entry) || translationText(entry);
     }
-    const useReading = getCurrentTtsSource() === "hiragana";
-    if (useReading) return readingText(entry) || primaryText(entry);
-    return primaryText(entry) || readingText(entry);
+    return speechForSource(entry, getCurrentTtsSource()) || primaryText(entry);
   }
 
   function speakStudy() {
@@ -323,7 +351,7 @@ export function renderCardPage() {
     ttsToggleBtn.setAttribute("aria-expanded", ttsExpanded ? "true" : "false");
     ttsToggleBtn.disabled = !entry;
     ttsSource.dataset.selected = source;
-    for (const btn of [ttsKanjiBtn, ttsReadingBtn]) {
+    for (const btn of ttsButtons) {
       const selected = btn.dataset.value === source;
       btn.classList.toggle("active", selected);
       btn.setAttribute("role", "radio");
@@ -361,11 +389,8 @@ export function renderCardPage() {
       chooseDeckBtn.hidden = !noDeck;
       return;
     }
-    const primary = primaryText(entry);
-    const reading = readingText(entry);
-    const translation = translationText(entry);
-    const type = typeText(entry);
-    const mainText = primary || reading || "-";
+    // Font CSS vars are shared by both schemas; the kanji card reuses the kanji
+    // font for the character and the reading font for the on/kun lines.
     card.style.setProperty("--japanese-main-font-size", `${state.kanjiFontPx}px`);
     card.style.setProperty("--japanese-reading-font-size", `${state.hiraganaFontPx}px`);
     card.style.setProperty("--japanese-english-font-size", `${state.englishFontPx}px`);
@@ -374,16 +399,29 @@ export function renderCardPage() {
     card.style.setProperty("--japanese-reading-font-family", fontStack(state.hiraganaFont));
     card.style.setProperty("--japanese-main-font-weight", state.kanjiBold ? "700" : "400");
     card.style.setProperty("--japanese-reading-font-weight", state.hiraganaBold ? "700" : "400");
+    // The active mode's `slot` is the field shown on the FRONT (question side);
+    // once revealed / in show-all every present field shows, gated by the
+    // per-field visibility toggles.
+    const frontSlot = (MODES.find((m) => m.id === state.mode) || {}).slot;
+    const showFront = revealed || state.mode === "show-all";
+    if (schemaIsKanji) renderKanjiSlots(entry, frontSlot, showFront);
+    else renderWordSlots(entry, frontSlot, showFront);
+    revealBtn.querySelector(".icon").innerHTML = revealed ? ICONS.eyeOff : ICONS.eye;
+    revealBtn.setAttribute("aria-label", revealed ? "Hide answer" : "Reveal answer");
+    renderTray();
+  }
+
+  // --- Word card (Japanese words, Spanish) --------------------------------
+  function renderWordSlots(entry, frontSlot, showFront) {
+    const primary = primaryText(entry);
+    const reading = readingText(entry);
+    const translation = translationText(entry);
+    const type = typeText(entry);
+    const mainText = primary || reading || "-";
     cardType.textContent = type;
     cardMain.textContent = mainText;
     cardReading.textContent = reading;
     cardEnglish.textContent = translation;
-    // The active mode's `slot` is the field shown on the FRONT (question side);
-    // once revealed / in show-all every (present) field shows, gated by the
-    // per-field visibility toggles. Mapping slot→visibility key keeps the
-    // existing kanji/hiragana/english toggles working for any library.
-    const frontSlot = (MODES.find((m) => m.id === state.mode) || {}).slot;
-    const showFront = revealed || state.mode === "show-all";
     setSlotVisible(cardType, state.visible.type && !!type);
     setSlotVisible(cardMain, (showFront ? state.visible.kanji : frontSlot === "primary") && !!mainText);
     setSlotVisible(cardReading, (showFront ? state.visible.hiragana : frontSlot === "reading") && !!reading);
@@ -402,9 +440,65 @@ export function renderCardPage() {
       return line;
     }));
     setSlotVisible(cardGloss, state.showGloss && showFront && segments.length > 0);
-    revealBtn.querySelector(".icon").innerHTML = revealed ? ICONS.eyeOff : ICONS.eye;
-    revealBtn.setAttribute("aria-label", revealed ? "Hide answer" : "Reveal answer");
-    renderTray();
+  }
+
+  // --- Kanji card (Japanese Kanji schema) ---------------------------------
+  // Same five slots, different content: the character (primary), on/kun reading
+  // lines (reading), the meaning (translation), strokes·grade (type), and the
+  // radical + components in the tap-menu gloss area. Radical/components and
+  // strokes are answer-side (shown with the rest on reveal / show-all).
+  function readingLine(tag, value) {
+    const line = document.createElement("div");
+    line.className = "card-reading-line";
+    const t = document.createElement("span");
+    t.className = "card-reading-tag";
+    t.textContent = tag;
+    const v = document.createElement("span");
+    v.className = "card-reading-val";
+    v.textContent = value;
+    line.append(t, v);
+    return line;
+  }
+  // A tappable radical/component chip → the same filter menu the word gloss uses
+  // (filter this deck / the Kanji deck by that character).
+  function glossChip(label, char, gloss) {
+    const el = document.createElement("button");
+    el.type = "button";
+    el.className = "card-gloss-line";
+    el.textContent = label;
+    el.setAttribute("aria-label", `Find kanji with ${char}`);
+    el.addEventListener("click", () => openGlossMenu(char, gloss, el));
+    return el;
+  }
+  function renderKanjiSlots(entry, frontSlot, showFront) {
+    const character = text(entry, "kanji");
+    const onyomi = text(entry, "onyomi");
+    const kunyomi = text(entry, "kunyomi");
+    const meaning = text(entry, "meaning");
+    const strokes = text(entry, "strokes");
+    const grade = text(entry, "grade");
+    const radical = text(entry, "radical");
+    const radicalName = text(entry, "radical-name");
+    const components = text(entry, "components").split("、").map((part) => part.trim()).filter(Boolean);
+
+    cardMain.textContent = character || "-";
+    cardReading.replaceChildren(...[
+      onyomi ? readingLine("音", onyomi) : null,
+      kunyomi ? readingLine("訓", kunyomi) : null
+    ].filter(Boolean));
+    cardEnglish.textContent = meaning;
+    cardType.textContent = [strokes && `${strokes}画`, grade && `学年${grade}`].filter(Boolean).join(" · ");
+
+    const chips = [];
+    if (radical) chips.push(glossChip(`部首 ${radical}${radicalName ? ` ${radicalName}` : ""}`, radical, radicalName));
+    for (const component of components) chips.push(glossChip(component, component, ""));
+    cardGloss.replaceChildren(...chips);
+
+    setSlotVisible(cardMain, (showFront ? state.visible.kanji : frontSlot === "primary") && !!character);
+    setSlotVisible(cardReading, (showFront ? state.visible.hiragana : frontSlot === "reading") && (!!onyomi || !!kunyomi));
+    setSlotVisible(cardEnglish, (showFront ? state.visible.english : frontSlot === "translation") && !!meaning);
+    setSlotVisible(cardType, showFront && state.visible.type && !!cardType.textContent);
+    setSlotVisible(cardGloss, showFront && chips.length > 0);
   }
 
   async function renderAll(options = {}) {
@@ -675,7 +769,7 @@ export function renderCardPage() {
   function setTtsSource(value) {
     const entry = currentEntry();
     const key = entryKey(entry);
-    if (!key || (value !== "kanji" && value !== "hiragana")) return;
+    if (!key || !soundSources.some((o) => o.value === value)) return;
     // Persist only a deviation from the system default; choosing the default
     // clears any prior override so the card falls back to it.
     if (value === defaultTtsSource(entry)) delete state.ttsSources[key];
@@ -710,8 +804,6 @@ export function renderCardPage() {
   });
   shuffleBtn.addEventListener("click", shuffleCurrentSet);
   playBtn.addEventListener("click", toggleAutoplay);
-  ttsKanjiBtn.addEventListener("click", () => setTtsSource("kanji"));
-  ttsReadingBtn.addEventListener("click", () => setTtsSource("hiragana"));
   prevBtn.addEventListener("click", () => move(-1));
   nextBtn.addEventListener("click", () => move(1));
   revealBtn.addEventListener("click", reveal);

@@ -95,7 +95,13 @@ export function renderSettingsPage() {
   const title = document.createElement("h1");
   title.className = "settings-title";
   title.textContent = "Settings";
-  top.append(backBtn, title);
+  // Caption naming which schema these settings apply to — settings are stored
+  // independently per library (Japanese / Japanese Kanji / Spanish), so make it
+  // explicit which one you're editing.
+  const schemaTag = document.createElement("span");
+  schemaTag.className = "settings-schema";
+  schemaTag.textContent = activeLibrary().label;
+  top.append(backBtn, title, schemaTag);
 
   const form = document.createElement("form");
   form.className = "settings-form";
