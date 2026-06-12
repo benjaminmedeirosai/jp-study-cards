@@ -1,0 +1,16 @@
+# Time, parts of day & seasons kanji (N3). 年時間今午半毎 live in n5/time.tsv.
+kanji	onyomi	kunyomi	meaning	radical	radical-name	components	strokes	grade
+朝	チョウ	あさ	morning	月	つき	龺、月	12	2
+昼	チュウ	ひる	noon; daytime	日	ひ	尺、旦	9	2
+夜	ヤ	よる、よ	night	夕	ゆうべ	亠、亻、夕	8	2
+晩	バン		evening; night	日	ひへん	日、免	12	6
+夕	セキ	ゆう	evening	夕	ゆうべ		3	1
+週	シュウ		week	辶	しんにょう	周、辶	11	2
+末	マツ、バツ	すえ	end; tip	木	き	一、木	5	4
+秒	ビョウ		second (time)	禾	のぎへん	禾、少	9	3
+期	キ、ゴ		period; term	月	つき	其、月	12	3
+昔	セキ、シャク	むかし	long ago; antiquity	日	ひ	龶、日	8	3
+春	シュン	はる	spring	日	ひ	龶、日	9	2
+夏	カ、ゲ	なつ	summer	夂	ふゆがしら	百、夂	10	2
+秋	シュウ	あき	autumn	禾	のぎへん	禾、火	9	2
+冬	トウ	ふゆ	winter	夂	ふゆがしら	夂、冫	5	2
