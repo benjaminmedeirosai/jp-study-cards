@@ -193,6 +193,14 @@ the meaning groups used elsewhere (`n5/numbers.tsv`, `n5/nature.tsv`,
 domain-specific) add domain subfolders (`n1/law/`, `n1/medicine/`, …). Category
 comes out as "Kanji / N5", label from the filename, same as any deck.
 
+**Level = JLPT, not school grade.** The folder is the kanji's JLPT level, which
+does **not** align with the 教育漢字 grade in the `grade` column (JLPT N2 spans
+grades 3–6 + secondary). `n2/` is the canonical JLPT N2 set (380 kanji, the
+jlptsensei list). `n5/`/`n4/`/`n3/` were originally bucketed by school grade and
+are **not yet realigned** to canonical JLPT lists — when realigning a level,
+diff its canonical list against the whole tree and relocate, don't re-grade.
+`n3/extra-f.tsv` parks grade-4 kanji displaced from `n2/` during the N2 fix.
+
 ### Building it out — the coverage audit
 
 `tools/japanese/kanji-coverage.mjs` reads the built bundle and reports which
