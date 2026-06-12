@@ -1,19 +1,19 @@
 # Numbers & counting kanji (N5). One character per row.
 # Columns: kanji / onyomi (katakana) / kunyomi (hiragana, okurigana in parens
-# あ（く）) / meaning (;) / radical (combining glyph) / radical-name /
+# あ(く)) / meaning (;) / radical (combining glyph) / radical-name /
 # components (、) / strokes / grade. Leave kunyomi or components blank when none.
 kanji	onyomi	kunyomi	meaning	radical	radical-name	components	strokes	grade
-一	イチ、イツ	ひと、ひと（つ）	one	一	いち		1	1
-二	ニ	ふた、ふた（つ）	two	二	に		2	1
-三	サン	み、みっ（つ）	three	一	いち		3	1
-四	シ	よ、よっ（つ）、よん	four	囗	くにがまえ	囗、儿	5	1
-五	ゴ	いつ、いつ（つ）	five	二	に		4	1
-六	ロク	む、むっ（つ）	six	八	はち	亠、八	4	1
-七	シチ	なな、なな（つ）	seven	一	いち		2	1
-八	ハチ	や、やっ（つ）	eight	八	はち		2	1
-九	キュウ、ク	ここの、ここの（つ）	nine	乙	おつ		2	1
+一	イチ、イツ	ひと、ひと(つ)	one	一	いち		1	1
+二	ニ	ふた、ふた(つ)	two	二	に		2	1
+三	サン	み、みっ(つ)	three	一	いち		3	1
+四	シ	よ、よっ(つ)、よん	four	囗	くにがまえ	囗、儿	5	1
+五	ゴ	いつ、いつ(つ)	five	二	に		4	1
+六	ロク	む、むっ(つ)	six	八	はち	亠、八	4	1
+七	シチ	なな、なな(つ)	seven	一	いち		2	1
+八	ハチ	や、やっ(つ)	eight	八	はち		2	1
+九	キュウ、ク	ここの、ここの(つ)	nine	乙	おつ		2	1
 十	ジュウ、ジッ	とお、と	ten	十	じゅう		2	1
 百	ヒャク		hundred	白	しろ	一、白	6	1
 千	セン	ち	thousand	十	じゅう	丿、十	3	1
 万	マン、バン		ten thousand; myriad	一	いち		3	2
-円	エン	まる（い）	circle; yen	冂	けいがまえ		4	1
+円	エン	まる(い)	circle; yen	冂	けいがまえ		4	1

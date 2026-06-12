@@ -302,7 +302,7 @@ export function renderCardPage() {
   // fields are joined with 、 (so "Both" says 音 then 訓). Plain word fields (no
   // 、, no parens) pass through unchanged either way.
   function readingForms(value) {
-    const forms = String(value || "").split("、").map((form) => form.replace(/[（）]/g, "").trim()).filter(Boolean);
+    const forms = String(value || "").split("、").map((form) => form.replace(/[()（）]/g, "").trim()).filter(Boolean);
     return state.voiceAllReadings ? forms : forms.slice(0, 1);
   }
   function speechForSource(entry, value) {
