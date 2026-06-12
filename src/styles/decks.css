@@ -155,7 +155,8 @@
 
 .deck-row--file { background: rgba(15, 23, 42, 0.26); }
 
-/* Library picker rows: a language "short" badge (日本語 / ES) + the label. */
+/* Library picker: a language header (short badge 日本語 / ES + name) with its
+   schemas (Words / Kanji) as indented rows beneath. */
 .library-short {
   flex: 0 0 auto;
   min-width: 2.6em;
@@ -163,6 +164,26 @@
   font-weight: 600;
   font-size: 13px;
 }
+
+.library-language {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 14px 0 4px;
+  padding: 0 2px;
+}
+.library-language:first-child { margin-top: 0; }
+
+.library-language-label {
+  color: var(--text);
+  font-weight: 600;
+  font-size: 15px;
+}
+
+/* Indent the schema rows so they read as belonging to the language above. */
+.deck-entry.library-schema-entry { margin-left: 18px; }
+
+.library-schema-row .deck-row-label { font-weight: 500; }
 
 .deck-icon {
   flex: 0 0 auto;

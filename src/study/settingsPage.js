@@ -2,6 +2,7 @@ import { activeSetGrouping, computeDeckSets } from "./sets.js";
 import { speak, getVoicesForLang, onVoicesChanged } from "./speech.js";
 import { historyDropdown, getFilterHistory, formatDuration, formatAgo } from "./filters.js";
 import { closeOverlay } from "./router.js";
+import { schemaCaption } from "./libraries.js";
 
 const VOICE_SAMPLE = "こんにちは。これは音声のプレビューです。";
 import {
@@ -95,12 +96,12 @@ export function renderSettingsPage() {
   const title = document.createElement("h1");
   title.className = "settings-title";
   title.textContent = "Settings";
-  // Caption naming which schema these settings apply to — settings are stored
-  // independently per library (Japanese / Japanese Kanji / Spanish), so make it
-  // explicit which one you're editing.
+  // Caption naming which schema these settings apply to (e.g. "Japanese · Kanji")
+  // — settings are stored independently per schema, so make it explicit which
+  // one you're editing.
   const schemaTag = document.createElement("span");
   schemaTag.className = "settings-schema";
-  schemaTag.textContent = activeLibrary().label;
+  schemaTag.textContent = schemaCaption(activeLibrary());
   top.append(backBtn, title, schemaTag);
 
   const form = document.createElement("form");

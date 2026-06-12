@@ -16,11 +16,27 @@
 // Japanese is the baseline; only seams Spanish actually needs are abstracted —
 // per-language divergence is expected to grow, so add config here, not forks.
 
+// A "language" groups the schemas you can study it under. The 🌐 picker selects
+// a language; each language owns one or more schemas (entries in LIBRARIES that
+// share its `language` id). This scales: a new schema for a language (a Kana
+// schema for Japanese, say) is one more LIBRARIES entry, not a new top-level
+// picker item.
+export const LANGUAGES = [
+  { id: "japanese", label: "Japanese", short: "日本語" },
+  { id: "spanish", label: "Spanish", short: "ES" }
+];
+
+// Each entry is a SCHEMA — the unit of independent state/modes/settings/card.
+// `language` groups it under a LANGUAGES entry; `schemaLabel` names it within
+// that language ("Words", "Kanji"). The default schema for a language is its
+// first entry here.
 export const LIBRARIES = [
   {
     id: "japanese",
     label: "Japanese",
     short: "日本語",
+    language: "japanese",
+    schemaLabel: "Words",
     data: "data/japanese/cards.json",
     // The Japanese bundle holds both word decks and kanji decks; this library is
     // the WORD schema, so it only shows decks of kind "word" (see listDecks).
@@ -55,6 +71,8 @@ export const LIBRARIES = [
     id: "japanese-kanji",
     label: "Japanese Kanji",
     short: "漢字",
+    language: "japanese",
+    schemaLabel: "Kanji",
     data: "data/japanese/cards.json",
     deckKind: "kanji",
     tts: { lang: "ja-JP", estimate: { source: "primary", msPerUnit: 200 } },
@@ -82,6 +100,8 @@ export const LIBRARIES = [
     id: "spanish",
     label: "Spanish",
     short: "ES",
+    language: "spanish",
+    schemaLabel: "Words",
     data: "data/spanish/cards.json",
     deckKind: "word",
     // Latin words run faster per character than Japanese morae.
@@ -107,4 +127,29 @@ export function getLibrary(id) {
 
 export function normalizeLibraryId(id) {
   return LIBRARIES.some((library) => library.id === id) ? id : DEFAULT_LIBRARY_ID;
+}
+
+export function getLanguage(id) {
+  return LANGUAGES.find((language) => language.id === id) || LANGUAGES[0];
+}
+
+// The schemas belonging to a language, in registry order (first = default).
+export function schemasForLanguage(languageId) {
+  return LIBRARIES.filter((library) => library.language === languageId);
+}
+
+// Languages with their schemas, in LANGUAGES order — the shape the 🌐 picker
+// renders. Drops any language that has no schemas.
+export function libraryGroups() {
+  return LANGUAGES
+    .map((language) => ({ language, schemas: schemasForLanguage(language.id) }))
+    .filter((group) => group.schemas.length);
+}
+
+// Display caption for a schema: "Japanese · Kanji" when its language has more
+// than one schema, else just the language name ("Spanish").
+export function schemaCaption(library) {
+  const language = getLanguage(library.language);
+  const multi = schemasForLanguage(library.language).length > 1;
+  return multi ? `${language.label} · ${library.schemaLabel}` : language.label;
 }

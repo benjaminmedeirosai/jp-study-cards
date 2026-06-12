@@ -1,9 +1,10 @@
-// Library picker overlay (reached via #/library): choose which language/
-// dictionary to study. Mirrors the deck page's shell + list styling. Selecting a
-// library switches the active one and returns to the cards view.
+// Library picker overlay (reached via #/library): choose a language, then a
+// schema within it (Japanese → Words / Kanji; Spanish → Words). Mirrors the deck
+// page's shell + list styling. Selecting a schema switches the active one and
+// returns to the cards view.
 
 import { loadState, button } from "./shared.js";
-import { LIBRARIES } from "./libraries.js";
+import { libraryGroups } from "./libraries.js";
 import { chooseLibrary, closeOverlay } from "./router.js";
 
 export function renderLibraryPage() {
@@ -24,30 +25,41 @@ export function renderLibraryPage() {
   const list = document.createElement("div");
   list.className = "decks-list";
 
-  for (const library of LIBRARIES) {
-    const isCurrent = state.libraryId === library.id;
-
-    const row = document.createElement("div");
-    row.className = "deck-row library-row";
+  // One section per language; its schemas are the selectable rows beneath it.
+  for (const { language, schemas } of libraryGroups()) {
+    const header = document.createElement("div");
+    header.className = "library-language";
     const shortEl = document.createElement("span");
     shortEl.className = "library-short";
-    shortEl.textContent = library.short;
-    const labelEl = document.createElement("span");
-    labelEl.className = "deck-row-label";
-    labelEl.textContent = library.label;
-    row.append(shortEl, labelEl);
+    shortEl.textContent = language.short;
+    const nameEl = document.createElement("span");
+    nameEl.className = "library-language-label";
+    nameEl.textContent = language.label;
+    header.append(shortEl, nameEl);
+    list.append(header);
 
-    const use = document.createElement("button");
-    use.type = "button";
-    use.className = `deck-use${isCurrent ? " is-current" : ""}`;
-    use.textContent = isCurrent ? "Selected" : "Select";
-    use.setAttribute("aria-label", `${isCurrent ? "Selected" : "Select"}: ${library.label}`);
-    use.addEventListener("click", () => chooseLibrary(library.id));
+    for (const library of schemas) {
+      const isCurrent = state.libraryId === library.id;
 
-    const entry = document.createElement("div");
-    entry.className = "deck-entry";
-    entry.append(row, use);
-    list.append(entry);
+      const row = document.createElement("div");
+      row.className = "deck-row library-schema-row";
+      const labelEl = document.createElement("span");
+      labelEl.className = "deck-row-label";
+      labelEl.textContent = library.schemaLabel;
+      row.append(labelEl);
+
+      const use = document.createElement("button");
+      use.type = "button";
+      use.className = `deck-use${isCurrent ? " is-current" : ""}`;
+      use.textContent = isCurrent ? "Selected" : "Select";
+      use.setAttribute("aria-label", `${isCurrent ? "Selected" : "Select"}: ${language.label} ${library.schemaLabel}`);
+      use.addEventListener("click", () => chooseLibrary(library.id));
+
+      const entry = document.createElement("div");
+      entry.className = "deck-entry library-schema-entry";
+      entry.append(row, use);
+      list.append(entry);
+    }
   }
 
   root.append(top, list);
