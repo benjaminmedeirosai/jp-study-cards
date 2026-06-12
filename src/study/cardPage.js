@@ -196,9 +196,10 @@ export function renderCardPage() {
   const ttsGroup = document.createElement("div");
   ttsGroup.className = "tts-group";
   ttsGroup.append(ttsToggleBtn, ttsSource);
-  // The kanji/hiragana source picker only applies to libraries with the
-  // sound-source feature; hide it entirely otherwise (e.g. Spanish).
-  ttsGroup.hidden = !activeLibrary().features.soundSource;
+  // The tray source picker is for "card"-scope schemas (a per-card choice). Hide
+  // it when the library has no sound source (Spanish) or its source is a standing
+  // "library"-scope setting that lives in Settings instead (kanji).
+  ttsGroup.hidden = !activeLibrary().features.soundSource || activeLibrary().soundSourceScope === "library";
   const playBtn = button("Autoplay", "mini mini--play");
   playBtn.innerHTML = `<span class="icon">${ICONS.play}</span>`;
   playBtn.setAttribute("aria-label", "Start autoplay");
@@ -296,12 +297,12 @@ export function renderCardPage() {
 
   // The spoken text for a given sound-source value: each option names the entry
   // fields it reads. Each field's value is a 、-separated reading list; we strip
-  // okurigana dots (やす.む → やすむ) and, per the "read all readings" setting, keep
-  // either just the first (most common) or every reading. Selected fields are
-  // joined with 、 (so "Both" says 音 then 訓). Plain word fields (no 、, no dot)
-  // pass through unchanged either way.
+  // the okurigana parens (やす（む）→ やすむ) and, per the "read all readings"
+  // setting, keep either just the first (most common) or every reading. Selected
+  // fields are joined with 、 (so "Both" says 音 then 訓). Plain word fields (no
+  // 、, no parens) pass through unchanged either way.
   function readingForms(value) {
-    const forms = String(value || "").split("、").map((form) => form.replace(/\./g, "").trim()).filter(Boolean);
+    const forms = String(value || "").split("、").map((form) => form.replace(/[（）]/g, "").trim()).filter(Boolean);
     return state.voiceAllReadings ? forms : forms.slice(0, 1);
   }
   function speechForSource(entry, value) {
@@ -324,12 +325,17 @@ export function renderCardPage() {
     return soundSources[0]?.value || "";
   }
 
-  // Effective source: the user's saved override for this card if it's still a
-  // valid option for this library, else the system default.
+  // Effective source. "library" scope: the standing setting (state.soundSource),
+  // falling back to the first option — same for every card. "card" scope: the
+  // user's saved per-card override if still valid, else the system default.
   function getCurrentTtsSource() {
+    const values = soundSources.map((o) => o.value);
+    if (activeLibrary().soundSourceScope === "library") {
+      return values.includes(state.soundSource) ? state.soundSource : (values[0] || "");
+    }
     const entry = currentEntry();
     const saved = state.ttsSources[entryKey(entry)];
-    return soundSources.some((o) => o.value === saved) ? saved : defaultTtsSource(entry);
+    return values.includes(saved) ? saved : defaultTtsSource(entry);
   }
 
   // The text to speak for an entry. With the sound-source feature, speak the
@@ -449,16 +455,6 @@ export function renderCardPage() {
   // lines (reading), the meaning (translation), strokes·grade (type), and the
   // radical + components in the tap-menu gloss area. Radical/components and
   // strokes are answer-side (shown with the rest on reveal / show-all).
-  // Display transform for the reading lines: the data marks okurigana with a dot
-  // (あ.く); show it parenthesized (あ（く）) so the kanji's reading vs the trailing
-  // kana reads clearly. Per 、-separated reading; readings with no dot are
-  // unchanged. (TTS reads the raw field and strips the dot separately.)
-  function displayReading(value) {
-    return String(value || "").split("、").map((reading) => {
-      const dot = reading.indexOf(".");
-      return dot === -1 ? reading : `${reading.slice(0, dot)}（${reading.slice(dot + 1)}）`;
-    }).join("、");
-  }
   function readingLine(tag, value) {
     const line = document.createElement("div");
     line.className = "card-reading-line";
@@ -495,8 +491,8 @@ export function renderCardPage() {
 
     cardMain.textContent = character || "-";
     cardReading.replaceChildren(...[
-      onyomi ? readingLine("音", displayReading(onyomi)) : null,
-      kunyomi ? readingLine("訓", displayReading(kunyomi)) : null
+      onyomi ? readingLine("音", onyomi) : null,
+      kunyomi ? readingLine("訓", kunyomi) : null
     ].filter(Boolean));
     cardEnglish.textContent = meaning;
     cardType.textContent = [strokes && `${strokes}画`, grade && `学年${grade}`].filter(Boolean).join(" · ");

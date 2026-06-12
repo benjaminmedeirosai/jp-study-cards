@@ -248,6 +248,18 @@ export function renderSettingsPage() {
     String(state.voiceRate)
   );
 
+  // Standing sound-source choice for "library"-scope schemas (e.g. kanji
+  // on'yomi/kun'yomi/both). Word schemas pick this per card on the tray instead.
+  const soundSourceOptions = library.soundSources || [];
+  const soundSourceSelect = makeSelect(
+    soundSourceOptions.map((option) => ({ value: option.value, label: option.label })),
+    soundSourceOptions.some((option) => option.value === state.soundSource) ? state.soundSource : (soundSourceOptions[0]?.value || "")
+  );
+  soundSourceSelect.addEventListener("change", () => {
+    state.soundSource = soundSourceSelect.value;
+    saveState(state);
+  });
+
   const voicePreviewBtn = document.createElement("button");
   voicePreviewBtn.type = "button";
   voicePreviewBtn.className = "voice-preview";
@@ -471,6 +483,10 @@ export function renderSettingsPage() {
     sectionHeading("Voice & speed"),
     fieldLabel(`${library.label} voice`, voiceRow),
     fieldLabel("Voice speed", rateSelect),
+    // Which reading to speak — only library-scope schemas (kanji); word schemas
+    // choose per card on the tray.
+    ...(library.soundSourceScope === "library" && soundSourceOptions.length
+      ? [fieldLabel("Spoken reading", soundSourceSelect)] : []),
     ...(library.features.multiReading ? [allReadingsToggle.label] : []),
     sectionHeading("Autoplay"),
     makePresetField("Question delay (sec)", questionDelayInput, [0.5, 1, 1.5, 2, 3]),

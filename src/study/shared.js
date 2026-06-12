@@ -10,7 +10,7 @@ const STATE_VERSION = 2;
 const LIBRARY_KEYS = [
   "deckId", "setId", "currentIndex", "query", "mode", "setGrouping",
   "kanjiFont", "hiraganaFont", "kanjiBold", "hiraganaBold",
-  "voice", "ttsSources", "deckHistory", "filterHistory"
+  "voice", "ttsSources", "soundSource", "deckHistory", "filterHistory"
 ];
 export const DEFAULT_SET_SIZE = 20;
 export const FONT_SCALE_OPTIONS = [10, 20, 35, 50, 75, 100, 125, 150, 200, 250];
@@ -277,6 +277,9 @@ export function loadState() {
       english: visible.english !== false
     },
     ttsSources: raw.ttsSources && typeof raw.ttsSources === "object" ? raw.ttsSources : {},
+    // Standing sound-source choice for "library"-scope schemas (e.g. kanji
+    // on'yomi/kun'yomi/both). Validated against the library's options in use.
+    soundSource: String(raw.soundSource || ""),
     filterHistory: Array.isArray(raw.filterHistory) ? raw.filterHistory : [],
     deckHistory: Array.isArray(raw.deckHistory) ? raw.deckHistory : []
   };

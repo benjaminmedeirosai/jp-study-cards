@@ -56,6 +56,9 @@ export const LIBRARIES = [
     ],
     // The sound-source picker options (value + button label + the entry fields
     // its speech reads). Word study: speak the kanji word or its kana reading.
+    // scope "card": a per-card choice on the tray (TTS mis-reads some words'
+    // counters, so the source is overridable per word).
+    soundSourceScope: "card",
     soundSources: [
       { value: "kanji", label: "Kanji", keys: ["kanji"] },
       { value: "hiragana", label: "Hiragana", keys: ["hiragana"] }
@@ -83,7 +86,10 @@ export const LIBRARIES = [
     labels: { primary: "Kanji", reading: "Reading" },
     modeIds: ["kanji", "meaning", "reading", "show-all"],
     groupingIds: ["kanji-alpha"],
-    // Sound source: on'yomi, kun'yomi, or both (speaks 音 then 訓).
+    // Sound source: on'yomi, kun'yomi, or both (speaks 音 then 訓). scope
+    // "library": a single standing preference (lives in Settings), not a per-card
+    // choice — which reading to voice isn't something you'd set per kanji.
+    soundSourceScope: "library",
     soundSources: [
       { value: "onyomi", label: "On'yomi", keys: ["onyomi"] },
       { value: "kunyomi", label: "Kun'yomi", keys: ["kunyomi"] },

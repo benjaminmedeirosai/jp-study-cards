@@ -168,8 +168,9 @@ kanji  onyomi  kunyomi  meaning  radical  radical-name  components  [strokes]  [
 
 - **kanji** — the single character. One per row.
 - **onyomi** — on readings in **katakana**, `、`-separated (`ボク、モク`). Blank if none.
-- **kunyomi** — kun readings in **hiragana**, `、`-separated, with a `.` before
-  okurigana (`やす.む` = the kanji covers やす, む is okurigana). Blank if none.
+- **kunyomi** — kun readings in **hiragana**, `、`-separated, with the okurigana
+  in full-width parens (`やす（む）` = the kanji covers やす, む is okurigana). This
+  is the literal display form; TTS strips the parens to speak it. Blank if none.
 - **meaning** — English keyword(s), `;`-separated.
 - **radical** — the single classifying radical (部首) as its **combining-form
   glyph** (`亻`, `氵`, `木`).
