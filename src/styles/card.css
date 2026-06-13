@@ -728,20 +728,24 @@
   color: var(--text);
   font-family: var(--japanese-main-font-family, inherit);
 }
-.card-alpha-name {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 2px;
-}
-.card-alpha-name-fa {
-  font-size: 2rem;
-  line-height: 1.1;
-  color: var(--text);
-}
-.card-alpha-name-rom {
+/* Romanized name: top-right corner, quiet (rarely read). */
+.card-alpha-rom {
+  position: absolute;
+  top: 18px;
+  right: 18px;
   font-size: 1rem;
   color: var(--muted);
+  font-family: system-ui, sans-serif;
+}
+/* Farsi name: bottom band (the "below the line" spot, like the Japanese meaning). */
+.card-alpha-fa {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 2.1rem;
+  line-height: 1.1;
+  color: var(--text);
 }
 
 .card-forms {

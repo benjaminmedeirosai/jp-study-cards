@@ -527,18 +527,16 @@ export function renderCardPage() {
       return node;
     };
 
+    // index → top-left; romanized name → top-right corner (rarely read); the
+    // letter + forms are the centered focus; the Farsi name sits at the bottom
+    // (the "below the line" spot, like the Japanese meaning). idx/rom/fa are
+    // absolutely positioned (out of the centered flow).
     const idx = elt("card-alpha-index", index ? `${index} / 32` : "");
+    const rom = elt("card-alpha-rom", text(entry, "name"));
+    rom.style.visibility = vis("name-en");
 
     const hero = elt("card-alpha-hero", text(entry, "isolated") || "-", true);
     hero.style.visibility = vis("letter");
-
-    const nameGroup = document.createElement("div");
-    nameGroup.className = "card-alpha-name";
-    const fa = elt("card-alpha-name-fa", text(entry, "name_fa"), true);
-    fa.style.visibility = vis("name-fa");
-    const rom = elt("card-alpha-name-rom", text(entry, "name"));
-    rom.style.visibility = vis("name-en");
-    nameGroup.append(fa, rom);
 
     // Forms row: initial · medial · final (no isolated — that's the hero above).
     const row = document.createElement("div");
@@ -552,7 +550,10 @@ export function renderCardPage() {
     cf.style.visibility = vis("final");
     row.append(ci, cm, cf);
 
-    cardAlpha.replaceChildren(idx, hero, nameGroup, row);
+    const fa = elt("card-alpha-fa", text(entry, "name_fa"), true);
+    fa.style.visibility = vis("name-fa");
+
+    cardAlpha.replaceChildren(idx, rom, hero, row, fa);
   }
 
   function renderKanjiSlots(entry, frontSlot, showFront) {
