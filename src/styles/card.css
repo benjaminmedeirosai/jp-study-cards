@@ -392,6 +392,21 @@
   text-shadow: 0 0 14px rgba(96, 165, 250, 0.08);
 }
 
+/* Spaced spelling under the word (Farsi): letters separated into isolated forms.
+   Sits below the bottom-anchored main word and above the meaning line. */
+.card-spell {
+  position: absolute;
+  top: 62%;
+  left: 50%;
+  transform: translateX(-50%);
+  max-width: calc(100% - 48px);
+  text-align: center;
+  font-family: var(--japanese-main-font-family, inherit);
+  font-size: var(--japanese-reading-font-size, 34px);
+  line-height: 1.1;
+  color: var(--muted);
+}
+
 .card-slot.card-english {
   left: 18px;
   right: 18px;
@@ -712,6 +727,12 @@
 
 /* Farsi alphabet: a dedicated card canvas (not the word slots). Fills the card,
    stacks letter → name → forms vertically with the index in the corner. */
+/* `display:flex` below overrides the [hidden] UA rule, so the empty canvas on
+   non-alpha cards would still cover the card (inset:0) and eat clicks — keep it
+   truly hidden. */
+.card-alpha[hidden] {
+  display: none;
+}
 .card-alpha {
   position: absolute;
   inset: 0;

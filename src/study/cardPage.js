@@ -172,12 +172,17 @@ export function renderCardPage() {
   cardEnglish.className = "card-slot card-english";
   const cardGloss = document.createElement("div");
   cardGloss.className = "card-slot card-gloss";
+  // Spaced spelling of the word (RTL scripts): the word with its letters
+  // separated into isolated forms, shown under the main word as a reading aid.
+  const cardSpell = document.createElement("div");
+  cardSpell.className = "card-spell";
+  cardSpell.style.display = "none";
   // Farsi alphabet uses a dedicated layout (its own absolutely-positioned canvas),
   // not the five word slots — so it isn't contorted to fit the word card.
   const cardAlpha = document.createElement("div");
   cardAlpha.className = "card-alpha";
   cardAlpha.hidden = true;
-  card.append(cardType, cardReading, cardMain, cardEnglish, cardGloss, cardAlpha);
+  card.append(cardType, cardReading, cardMain, cardEnglish, cardGloss, cardSpell, cardAlpha);
 
   // --- Bottom tray: mini rail above 6 main buttons ------------------------
   const tray = document.createElement("section");
@@ -440,6 +445,7 @@ export function renderCardPage() {
     // per-field visibility toggles.
     const frontSlot = (MODES.find((m) => m.id === state.mode) || {}).slot;
     const showFront = revealed || state.mode === "show-all";
+    cardSpell.style.display = "none"; // only the word card uses it
     if (schemaIsAlpha) renderFarsiAlphaSlots(entry, frontSlot, showFront);
     else if (schemaIsHarakat) renderFarsiHarakatSlots(entry, frontSlot, showFront);
     else if (schemaIsKanji) renderKanjiSlots(entry, frontSlot, showFront);
@@ -473,7 +479,15 @@ export function renderCardPage() {
       cardType,
       (typeIsAnswer ? (showFront ? state.visible.type : frontSlot === "type") : state.visible.type) && !!type
     );
-    setSlotVisible(cardMain, (showFront ? state.visible.kanji : frontSlot === "primary") && !!mainText);
+    const mainVisible = (showFront ? state.visible.kanji : frontSlot === "primary") && !!mainText;
+    setSlotVisible(cardMain, mainVisible);
+    // Spaced spelling under the word (RTL scripts only): the same word with its
+    // letters separated into isolated forms. Shown whenever the word itself is
+    // (it's the same word), and only when it has more than one letter.
+    const letters = rtl ? splitGraphemes(primary) : [];
+    cardSpell.textContent = letters.length > 1 ? letters.join(" ") : "";
+    cardSpell.dir = "rtl";
+    cardSpell.style.display = mainVisible && letters.length > 1 ? "block" : "none";
     setSlotVisible(cardReading, (showFront ? state.visible.hiragana : frontSlot === "reading") && !!reading);
     setSlotVisible(cardEnglish, (showFront ? state.visible.english : frontSlot === "translation") && !!translation);
     // Gloss: top-right, one line per kanji. Only for libraries with the gloss
