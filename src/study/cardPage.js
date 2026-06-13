@@ -498,77 +498,61 @@ export function renderCardPage() {
   // Letter (primary), its name (Persian name_fa = reading + spoken, romanized
   // name = translation), index in the type line, and a four-cell positional-
   // forms table (isolated/initial/medial/final) in the breakdown area.
-  function formCell(entry, key, label, center) {
-    const value = text(entry, key);
+  // A bare positional-form bubble — just the glyph (no label; the position/mode
+  // implies which form it is). Non-joining letters show a — dash.
+  function formCell(value) {
     const cell = document.createElement("div");
-    cell.className = `card-form-cell${center ? " card-form-center" : ""}`;
+    cell.className = "card-form-cell";
     const glyph = document.createElement("div");
     glyph.className = "card-form-glyph";
     glyph.textContent = value || "—";
     glyph.classList.toggle("card-form-empty", !value);
-    const tag = document.createElement("div");
-    tag.className = "card-form-label";
-    tag.textContent = label;
-    cell.append(glyph, tag);
+    cell.append(glyph);
     return cell;
   }
-  // Standalone centered on top (the letter itself), the three connecting forms
-  // in a row beneath. Each form gets a spot; non-joining letters show a — dash.
-  function formsTable(entry) {
-    const wrap = document.createElement("div");
-    wrap.className = "card-forms";
-    wrap.dir = "rtl";
-    const row = document.createElement("div");
-    row.className = "card-form-row";
-    row.dir = "rtl";
-    row.append(
-      formCell(entry, "initial", "initial"),
-      formCell(entry, "medial", "medial"),
-      formCell(entry, "final", "final")
-    );
-    wrap.append(formCell(entry, "isolated", "isolated", true), row);
-    return wrap;
-  }
+  // Each displayable element is its own mode-addressable field: Letter (isolated),
+  // Name (Farsi), Name (English), and the three connecting forms. The active mode
+  // shows just that element on the front; reveal / Show All shows everything.
   function renderFarsiAlphaSlots(entry, frontSlot, showFront) {
-    // Dedicated canvas — hide the word/kanji slots entirely.
     for (const slot of [cardType, cardReading, cardMain, cardEnglish, cardGloss]) setSlotVisible(slot, false);
     cardAlpha.hidden = false;
 
-    const letter = text(entry, "isolated");
-    const nameFa = text(entry, "name_fa");
-    const nameRom = text(entry, "name");
     const index = text(entry, "index");
-    // Letter mode prompts with the letter (recall the name); Name mode prompts
-    // with the name. Forms are reference, shown once revealed / in show-all.
-    const showLetter = showFront || frontSlot === "primary";
-    const showName = showFront || frontSlot === "translation";
+    const vis = (modeId) => (showFront || state.mode === modeId) ? "visible" : "hidden";
+    const elt = (cls, value, rtl) => {
+      const node = document.createElement("div");
+      node.className = cls;
+      if (rtl) node.dir = "rtl";
+      node.textContent = value;
+      return node;
+    };
 
-    const idx = document.createElement("div");
-    idx.className = "card-alpha-index";
-    idx.textContent = index ? `${index} / 32` : "";
+    const idx = elt("card-alpha-index", index ? `${index} / 32` : "");
 
-    const hero = document.createElement("div");
-    hero.className = "card-alpha-hero";
-    hero.dir = "rtl";
-    hero.textContent = letter || "-";
-    hero.style.visibility = showLetter ? "visible" : "hidden";
+    const hero = elt("card-alpha-hero", text(entry, "isolated") || "-", true);
+    hero.style.visibility = vis("letter");
 
-    const name = document.createElement("div");
-    name.className = "card-alpha-name";
-    name.style.visibility = showName ? "visible" : "hidden";
-    const fa = document.createElement("span");
-    fa.className = "card-alpha-name-fa";
-    fa.dir = "rtl";
-    fa.textContent = nameFa;
-    const rom = document.createElement("span");
-    rom.className = "card-alpha-name-rom";
-    rom.textContent = nameRom;
-    name.append(fa, rom);
+    const nameGroup = document.createElement("div");
+    nameGroup.className = "card-alpha-name";
+    const fa = elt("card-alpha-name-fa", text(entry, "name_fa"), true);
+    fa.style.visibility = vis("name-fa");
+    const rom = elt("card-alpha-name-rom", text(entry, "name"));
+    rom.style.visibility = vis("name-en");
+    nameGroup.append(fa, rom);
 
-    const forms = formsTable(entry);
-    forms.style.visibility = showFront ? "visible" : "hidden";
+    // Forms row: initial · medial · final (no isolated — that's the hero above).
+    const row = document.createElement("div");
+    row.className = "card-form-row";
+    row.dir = "rtl";
+    const ci = formCell(text(entry, "initial"));
+    const cm = formCell(text(entry, "medial"));
+    const cf = formCell(text(entry, "final"));
+    ci.style.visibility = vis("initial");
+    cm.style.visibility = vis("medial");
+    cf.style.visibility = vis("final");
+    row.append(ci, cm, cf);
 
-    cardAlpha.replaceChildren(idx, hero, name, forms);
+    cardAlpha.replaceChildren(idx, hero, nameGroup, row);
   }
 
   function renderKanjiSlots(entry, frontSlot, showFront) {

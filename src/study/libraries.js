@@ -169,7 +169,7 @@ export const LIBRARIES = [
     fields: { primary: "isolated", reading: "name_fa", translation: "name", type: "index", gloss: null },
     labels: { primary: "Letter", reading: "Name" },
     fontIds: ["default", "sys-sans", "sys-serif"],
-    modeIds: ["letter", "name", "voice", "show-all"],
+    modeIds: ["letter", "name-fa", "name-en", "initial", "medial", "final", "voice", "show-all"],
     groupingIds: ["primary-alpha"],
     soundSourceScope: "library",
     soundSources: [{ value: "name", label: "Name", keys: ["name_fa"] }],

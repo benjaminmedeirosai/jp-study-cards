@@ -22,6 +22,9 @@ import {
   saveState,
   text,
   searchText,
+  primaryText,
+  readingText,
+  translationText,
   loadBundle,
   resolveDeck,
   button,
@@ -327,7 +330,10 @@ export function renderSettingsPage() {
         if (seenCards.has(card)) duplicateCount += 1;
         else seenCards.add(card);
       }
-      const previewWords = optionCards.map((entry) => text(entry, "kanji") || text(entry, "hiragana") || text(entry, "english")).join(" · ");
+      // Use the active library's field accessors (not hardcoded Japanese keys),
+      // so the preview shows the real primary text for any schema (Farsi letters,
+      // Spanish/Farsi words, kanji…).
+      const previewWords = optionCards.map((entry) => primaryText(entry) || readingText(entry) || translationText(entry)).join(" · ");
       const row = document.createElement("div");
       row.className = "set-preview-row";
       row.setAttribute("aria-label", `${option.label}: ${previewWords}`);
