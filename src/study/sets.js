@@ -54,6 +54,15 @@ export function activeSetGrouping(groupingId) {
 }
 
 export function sortCardsForSets(cards, groupingId) {
+  // Ordered scripts (Farsi alphabet/harakat) carry a canonical `index`; follow
+  // it instead of glyph collation, which would scatter low-codepoint marks like
+  // ء (hamze) to the front even though they belong last.
+  const orderBy = activeLibrary().orderBy;
+  if (orderBy) {
+    return [...cards].sort(
+      (a, b) => (Number(text(a, orderBy)) || 0) - (Number(text(b, orderBy)) || 0)
+    );
+  }
   const grouping = activeSetGrouping(groupingId);
   const field = fieldName(grouping.slot) || fieldName("primary");
   const primaryField = fieldName("primary");

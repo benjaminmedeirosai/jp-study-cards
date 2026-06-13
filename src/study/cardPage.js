@@ -400,7 +400,9 @@ export function renderCardPage() {
     summaryMain.textContent = deck
       ? `${deckBreadcrumb(deck)}${filter ? ` · filter “${filter}”` : ""}`
       : "";
-    summaryGrouping.textContent = deck ? activeSetGrouping(state.setGrouping).shortLabel : "";
+    summaryGrouping.textContent = deck
+      ? (activeLibrary().orderBy ? "In order" : activeSetGrouping(state.setGrouping).shortLabel)
+      : "";
     prevBtn.disabled = total <= 1;
     nextBtn.disabled = total <= 1;
     setSelect.disabled = total === 0;

@@ -167,6 +167,9 @@ export const LIBRARIES = [
     tts: { lang: "fa-IR", estimate: { source: "reading", msPerUnit: 300 } },
     voiceSample: "الف، بِ، پِ.",
     fields: { primary: "isolated", reading: "name_fa", translation: "name", type: "index", gloss: null },
+    // Navigate in canonical alphabet order (the `index` column), not by glyph
+    // collation — otherwise ء (hamze) sorts to the front despite being last.
+    orderBy: "index",
     // Font-control labels map the four size slots onto the alphabet's elements:
     // primary→isolated letter, reading→Farsi name, translation→English name,
     // gloss→the positional forms.
@@ -196,6 +199,8 @@ export const LIBRARIES = [
     tts: { lang: "fa-IR", estimate: { source: "reading", msPerUnit: 300 } },
     voiceSample: "زَبَر، زیر، پیش.",
     fields: { primary: "mark", reading: "name_fa", translation: "name", type: "effect", gloss: null },
+    // Navigate in canonical order (the `index` column), not by glyph collation.
+    orderBy: "index",
     // Font-size slots: primary→mark, reading→Farsi name, translation→English
     // name, gloss→the example glyphs.
     labels: { primary: "Mark", reading: "Farsi name", translation: "English name", gloss: "Examples" },
