@@ -755,7 +755,7 @@
    alignment so the Farsi name stays put whether or not the second line exists. */
 .card-alpha-bottom {
   position: absolute;
-  bottom: 30px;
+  bottom: 64px;
   left: 50%;
   transform: translateX(-50%);
   display: flex;
@@ -833,6 +833,16 @@
 }
 .card-form-empty {
   opacity: 0.35;
+}
+/* Alphabet form bubbles: fixed square size so the outline doesn't grow/shrink
+   with the glyph's width — the three forms stay a uniform row. (Harakat uses
+   .card-ex-cell, which keeps its own content-sized bubbles.) */
+.alpha-schema .card-form-cell {
+  width: 84px;
+  height: 84px;
+  min-width: 0;
+  padding: 0;
+  justify-content: center;
 }
 /* Tappable letter forms (Farsi) → open the word-filter menu. */
 .card-form-tap {
