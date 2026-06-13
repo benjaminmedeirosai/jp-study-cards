@@ -1,15 +1,14 @@
 # label: Harakat
-# Farsi (Persian) harakat — diacritical marks. The `mark` shows the diacritic on
-# a carrier ب (marks can't stand alone). `effect` = plain-English role. ex1..ex4
-# are usage examples with romanization: the five vowel marks demo on consonant
-# syllables; the structural marks (tashdid/madd/hamze) demo in short real words.
+# Farsi (Persian) harakat — the six diacritical marks (vowel/consonant marks).
+# `mark` is the bare diacritic on a dotted circle (◌) — the standard way to show
+# a mark in isolation, so no carrier letter is treated as special. ex1..ex4 show
+# the mark on a FIXED carrier set (ب ت س م) for consistency, with romanization.
+# (آ madd and ء hamze are letter-like, so they live in the alphabet, not here.)
 # TTS speaks name_fa. Columns:
 index	mark	name	name_fa	effect	ex1	ex1_rom	ex2	ex2_rom	ex3	ex3_rom	ex4	ex4_rom
-1	بَ	zabar	زَبَر	short a	سَ	sa	مَ	ma	تَ	ta	دَ	da
-2	بِ	zir	زیر	short e	سِ	se	مِ	me	تِ	te	دِ	de
-3	بُ	pish	پیش	short o	سُ	so	مُ	mo	تُ	to	دُ	do
-4	بْ	sokun	سُکون	no vowel	اسْم	esm	دفْتر	daftar	رفْت	raft	مسْت	mast
-5	بّ	tashdid	تَشْدید	doubled consonant	خَطّ	khatt	حَقّ	haqq	بچّه	bachche	مکّه	makke
-6	بً	tanvin	تَنْوین	-an ending	سًا	san	لطفًا	lotfan	واقعًا	vāqe'an	مثلًا	masalan
-7	آ	madd	مَدّ	long ā	آب	āb	آن	ān	آرام	ārām	آتش	ātash
-8	ء	hamze	هَمْزه	glottal stop	سؤال	soʼāl	جزء	jozʼ	مسئله	masʼale	رأی	raʼy
+1	◌َ	zabar	زَبَر	short a	بَ	ba	تَ	ta	سَ	sa	مَ	ma
+2	◌ِ	zir	زیر	short e	بِ	be	تِ	te	سِ	se	مِ	me
+3	◌ُ	pish	پیش	short o	بُ	bo	تُ	to	سُ	so	مُ	mo
+4	◌ْ	sokun	سُکون	no vowel	بْ	b	تْ	t	سْ	s	مْ	m
+5	◌ّ	tashdid	تَشْدید	doubled consonant	بّ	bb	تّ	tt	سّ	ss	مّ	mm
+6	◌ً	tanvin	تَنْوین	-an ending	بًا	ban	تًا	tan	سًا	san	مًا	man

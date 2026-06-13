@@ -537,7 +537,7 @@ export function renderCardPage() {
     // letter + forms are the centered focus; the Farsi name sits at the bottom
     // (the "below the line" spot, like the Japanese meaning). idx/rom/fa are
     // absolutely positioned (out of the centered flow).
-    const idx = elt("card-alpha-index", index ? `${index} / 32` : "");
+    const idx = elt("card-alpha-index", index ? `${index} / 34` : "");
     const rom = elt("card-alpha-rom", text(entry, "name"));
     rom.style.visibility = vis("name-en");
 
@@ -603,7 +603,7 @@ export function renderCardPage() {
       return node;
     };
 
-    const idx = elt("card-alpha-index", index ? `${index} / 8` : "");
+    const idx = elt("card-alpha-index", index ? `${index} / 6` : "");
     const rom = elt("card-alpha-rom", text(entry, "name"));
     rom.style.visibility = vis("name-en");
 
