@@ -1,0 +1,28 @@
+# label: Nature & Weather
+# Farsi (Persian) — nature, landscape, and weather.
+# Columns: word / vocalized (blank = TTS speaks the word) / label (romanization) / meaning.
+word	vocalized	label	meaning
+طبیعت		tabiat	nature
+هوا		havaa	weather / air
+آسمان		aasemaan	sky
+خورشید		khorshid	sun
+ماه		maah	moon
+ستاره		setaare	star
+ابر		abr	cloud
+باران		baaraan	rain
+برف		barf	snow
+باد		baad	wind
+دریا		daryaa	sea
+رودخانه		rudkhaane	river
+دریاچه		daryaache	lake
+کوه		kuh	mountain
+درخت		derakht	tree
+گل		gol	flower
+برگ		barg	leaf
+سنگ		sang	stone
+خاک		khaak	soil / earth
+آتش		aatesh	fire
+جنگل		jangal	forest
+صحرا		sahraa	desert
+ساحل		saahel	beach / coast
+جزیره		jazire	island

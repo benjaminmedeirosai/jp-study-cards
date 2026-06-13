@@ -1,0 +1,34 @@
+# label: Food & Drink
+# Farsi (Persian) — food, drink, and meals.
+# Columns: word / vocalized (blank = TTS speaks the word) / label (romanization) / meaning.
+word	vocalized	label	meaning
+غذا		ghazaa	food
+آب		aab	water
+نان		naan	bread
+چای		chaay	tea
+قهوه		ghahve	coffee
+شیر		shir	milk
+برنج		berenj	rice
+گوشت		gusht	meat
+مرغ		morgh	chicken
+ماهی		maahi	fish
+تخم‌مرغ		tokhm-e-morgh	egg
+پنیر		panir	cheese
+کره		kare	butter
+سیب‌زمینی		sib-zamini	potato
+گوجه‌فرنگی		goje-farangi	tomato
+پیاز		piyaaz	onion
+سبزی		sabzi	herbs / greens
+میوه		mive	fruit
+سیب		sib	apple
+پرتقال		porteghaal	orange
+موز		moz	banana
+انگور		angur	grapes
+هندوانه		hendevaane	watermelon
+نمک		namak	salt
+شکر		shekar	sugar
+روغن		roghan	oil
+شیرینی		shirini	sweets / pastry
+صبحانه		sobhaane	breakfast
+ناهار		naahaar	lunch
+شام		shaam	dinner

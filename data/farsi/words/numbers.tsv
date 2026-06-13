@@ -1,0 +1,34 @@
+# label: Numbers
+# Farsi (Persian) — numbers 0–20, tens, hundred, thousand.
+# Columns: word / vocalized (blank = TTS speaks the word) / label (romanization) / meaning.
+word	vocalized	label	meaning
+صفر		sefr	zero
+یک		yek	one
+دو		do	two
+سه		se	three
+چهار		chahaar	four
+پنج		panj	five
+شش		shesh	six
+هفت		haft	seven
+هشت		hasht	eight
+نه		noh	nine
+ده		dah	ten
+یازده		yaazdah	eleven
+دوازده		davaazdah	twelve
+سیزده		sizdah	thirteen
+چهارده		chahaardah	fourteen
+پانزده		paanzdah	fifteen
+شانزده		shaanzdah	sixteen
+هفده		hefdah	seventeen
+هجده		hejdah	eighteen
+نوزده		nuzdah	nineteen
+بیست		bist	twenty
+سی		si	thirty
+چهل		chehel	forty
+پنجاه		panjaah	fifty
+شصت		shast	sixty
+هفتاد		haftaad	seventy
+هشتاد		hashtaad	eighty
+نود		navad	ninety
+صد		sad	hundred
+هزار		hezaar	thousand

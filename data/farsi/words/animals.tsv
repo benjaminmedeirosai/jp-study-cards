@@ -1,0 +1,26 @@
+# label: Animals
+# Farsi (Persian) — common animals.
+# Columns: word / vocalized (blank = TTS speaks the word) / label (romanization) / meaning.
+word	vocalized	label	meaning
+حیوان		heyvaan	animal
+سگ		sag	dog
+گربه		gorbe	cat
+اسب		asb	horse
+گاو		gaav	cow
+گوسفند		gusfand	sheep
+بز		boz	goat
+خروس		khorus	rooster
+پرنده		parande	bird
+ماهی		maahi	fish
+موش		mush	mouse
+شیر		shir	lion
+ببر		babr	tiger
+فیل		fil	elephant
+خرس		khers	bear
+گرگ		gorg	wolf
+روباه		rubaah	fox
+خرگوش		khargush	rabbit
+میمون		meymun	monkey
+مار		maar	snake
+زنبور		zanbur	bee
+پروانه		parvaane	butterfly

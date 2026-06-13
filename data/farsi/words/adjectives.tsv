@@ -1,0 +1,34 @@
+# label: Adjectives
+# Farsi (Persian) — common adjectives, mostly in opposite pairs.
+# Columns: word / vocalized (blank = TTS speaks the word) / label (romanization) / meaning.
+word	vocalized	label	meaning
+بزرگ		bozorg	big
+کوچک		kuchak	small
+خوب		khub	good
+بد		bad	bad
+زیبا		zibaa	beautiful
+زشت		zesht	ugly
+نو		no	new
+قدیمی		ghadimi	old (thing)
+پیر		pir	old (person)
+جوان		javaan	young
+گرم		garm	warm / hot
+سرد		sard	cold
+بلند		boland	tall / long
+کوتاه		kutaah	short
+سخت		sakht	hard / difficult
+آسان		aasaan	easy
+سریع		sari	fast
+آهسته		aaheste	slow
+تمیز		tamiz	clean
+کثیف		kasif	dirty
+گران		geraan	expensive
+ارزان		arzaan	cheap
+درست		dorost	correct
+غلط		ghalat	wrong
+پر		por	full
+خالی		khaali	empty
+سنگین		sangin	heavy
+سبک		sabok	light (weight)
+خوشحال		khoshhaal	happy
+ناراحت		naaraahat	sad / upset

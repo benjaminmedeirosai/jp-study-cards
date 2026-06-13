@@ -1,0 +1,24 @@
+# label: Greetings & Phrases
+# Farsi (Persian) — everyday greetings and polite phrases.
+# Columns: word / vocalized (blank = TTS speaks the word) / label (romanization) / meaning.
+word	vocalized	label	meaning
+سلام		salaam	hello
+خداحافظ		khodaahaafez	goodbye
+بله		bale	yes
+نه		na	no
+ممنون		mamnun	thank you
+متشکرم		moteshakkeram	thank you
+خواهش می‌کنم		khaahesh mikonam	you're welcome
+لطفاً		lotfan	please
+ببخشید		bebakhshid	excuse me / sorry
+صبح بخیر		sobh bekheyr	good morning
+شب بخیر		shab bekheyr	good night
+خوش آمدید		khosh aamadid	welcome
+بفرمایید		befarmaayid	here you are
+چطوری		chetori	how are you?
+خوبم		khubam	I'm fine
+خوشبختم		khoshbakhtam	nice to meet you
+اسم		esm	name
+خوب		khub	good / well
+شاید		shaayad	maybe
+حتماً		hatman	of course

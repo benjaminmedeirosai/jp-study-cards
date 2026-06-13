@@ -1,0 +1,30 @@
+# label: Places & Travel
+# Farsi (Persian) — places around town and ways to get around.
+# Columns: word / vocalized (blank = TTS speaks the word) / label (romanization) / meaning.
+word	vocalized	label	meaning
+شهر		shahr	city
+روستا		rustaa	village
+خیابان		khiyaabaan	street
+کوچه		kuche	alley
+مغازه		maghaaze	shop
+بازار		baazaar	market / bazaar
+رستوران		restoraan	restaurant
+هتل		hotel	hotel
+بیمارستان		bimaarestaan	hospital
+مدرسه		madrese	school
+دانشگاه		daaneshgaah	university
+کتابخانه		ketaabkhaane	library
+فرودگاه		forudgaah	airport
+ایستگاه		istgaah	station
+بانک		baank	bank
+پارک		paark	park
+مسجد		masjed	mosque
+ماشین		maashin	car
+اتوبوس		otobus	bus
+قطار		ghataar	train
+هواپیما		havaapeymaa	airplane
+دوچرخه		docharkhe	bicycle
+راه		raah	road / way
+نقشه		naghshe	map
+بلیط		belit	ticket
+سفر		safar	trip / journey

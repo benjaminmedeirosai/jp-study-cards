@@ -1,0 +1,25 @@
+# label: Family
+# Farsi (Persian) — family members and relations.
+# Columns: word / vocalized (blank = TTS speaks the word) / label (romanization) / meaning.
+word	vocalized	label	meaning
+خانواده		khaanevaade	family
+پدر		pedar	father
+مادر		maadar	mother
+برادر		baraadar	brother
+خواهر		khaahar	sister
+پسر		pesar	son / boy
+دختر		dokhtar	daughter / girl
+بچه		bachche	child
+همسر		hamsar	spouse
+شوهر		shohar	husband
+زن		zan	wife / woman
+پدربزرگ		pedarbozorg	grandfather
+مادربزرگ		maadarbozorg	grandmother
+نوه		nave	grandchild
+عمو		amu	uncle (father's side)
+دایی		daayi	uncle (mother's side)
+عمه		amme	aunt (father's side)
+خاله		khaale	aunt (mother's side)
+پسرعمو		pesar-amu	cousin (male)
+دخترعمو		dokhtar-amu	cousin (female)
+دوست		dust	friend

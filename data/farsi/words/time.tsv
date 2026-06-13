@@ -1,0 +1,28 @@
+# label: Time & Days
+# Farsi (Persian) — time words and days of the week.
+# Columns: word / vocalized (blank = TTS speaks the word) / label (romanization) / meaning.
+word	vocalized	label	meaning
+زمان		zamaan	time
+روز		ruz	day
+شب		shab	night
+صبح		sobh	morning
+ظهر		zohr	noon
+عصر		asr	late afternoon
+هفته		hafte	week
+ماه		maah	month / moon
+سال		saal	year
+ساعت		saaat	hour / clock
+دقیقه		daghighe	minute
+ثانیه		saaniye	second
+امروز		emruz	today
+فردا		fardaa	tomorrow
+دیروز		diruz	yesterday
+امشب		emshab	tonight
+الان		alaan	now
+شنبه		shanbe	Saturday
+یکشنبه		yekshanbe	Sunday
+دوشنبه		doshanbe	Monday
+سه‌شنبه		seshanbe	Tuesday
+چهارشنبه		chahaarshanbe	Wednesday
+پنجشنبه		panjshanbe	Thursday
+جمعه		jome	Friday
