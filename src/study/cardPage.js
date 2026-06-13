@@ -350,13 +350,16 @@ export function renderCardPage() {
     return values.includes(saved) ? saved : defaultTtsSource(entry);
   }
 
-  // The text to speak for an entry. With the sound-source feature, speak the
-  // chosen source; otherwise just speak the primary form.
+  // The text to speak for an entry. If the schema declares sound sources, speak
+  // the chosen one — e.g. the Farsi alphabet/harakat speak the Persian NAME
+  // (name_fa), not the carrier glyph; Farsi words speak the vocalized form.
+  // (features.soundSource only gates the per-card tray picker, not TTS itself.)
+  // Schemas with no sound sources (Spanish) just speak the primary form.
   function studySpeechText(entry) {
-    if (!activeLibrary().features.soundSource) {
-      return primaryText(entry) || readingText(entry) || translationText(entry);
+    if (soundSources.length) {
+      return speechForSource(entry, getCurrentTtsSource()) || primaryText(entry);
     }
-    return speechForSource(entry, getCurrentTtsSource()) || primaryText(entry);
+    return primaryText(entry) || readingText(entry) || translationText(entry);
   }
 
   function speakStudy() {
