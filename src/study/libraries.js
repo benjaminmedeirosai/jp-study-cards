@@ -111,7 +111,7 @@ export const LIBRARIES = [
     data: "data/spanish/cards.json",
     deckKind: "word",
     // Latin words run faster per character than Japanese morae.
-    tts: { lang: "es-ES", estimate: { source: "primary", msPerUnit: 75 } },
+    tts: { lang: "es-US", estimate: { source: "primary", msPerUnit: 75 } },
     voiceSample: "Hola. Esta es una vista previa de la voz.",
     fields: { primary: "spanish", reading: null, translation: "english", type: "type", gloss: null },
     labels: { primary: "Word" },
@@ -119,7 +119,7 @@ export const LIBRARIES = [
     // of generic system faces. (Omit `fontIds` to offer the full list, as
     // Japanese does.)
     fontIds: ["default", "sys-sans", "sys-serif"],
-    modeIds: ["spanish", "english", "voice"],
+    modeIds: ["spanish", "english", "voice", "show-all"],
     groupingIds: ["primary-alpha", "primary-likeness-slotting", "primary-likeness-grouping"],
     features: { soundSource: false, gloss: false, texts: false }
   }
