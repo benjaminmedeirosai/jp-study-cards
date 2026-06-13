@@ -1,0 +1,15 @@
+# label: Harakat
+# Farsi (Persian) harakat — diacritical marks. The `mark` shows the diacritic on
+# a carrier ب (marks can't stand alone). `effect` = plain-English role. ex1/ex2
+# are usage examples with romanization: the five vowel marks demo on sin/mim
+# syllables; the structural marks (tashdid/madd/hamze) demo in short real words.
+# TTS speaks name_fa. Columns:
+index	mark	name	name_fa	effect	ex1	ex1_rom	ex2	ex2_rom
+1	بَ	zabar	زَبَر	short a	سَ	sa	مَ	ma
+2	بِ	zir	زیر	short e	سِ	se	مِ	me
+3	بُ	pish	پیش	short o	سُ	so	مُ	mo
+4	بْ	sokun	سُکون	no vowel	اسْم	esm	دفْتر	daftar
+5	بّ	tashdid	تَشْدید	doubled consonant	خَطّ	khatt	حَقّ	haqq
+6	بً	tanvin	تَنْوین	-an ending	سًا	san	لطفًا	lotfan
+7	آ	madd	مَدّ	long ā	آب	āb	آن	ān
+8	ء	hamze	هَمْزه	glottal stop	سؤال	soʼāl	جزء	jozʼ

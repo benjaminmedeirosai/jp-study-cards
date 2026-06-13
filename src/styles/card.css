@@ -748,6 +748,35 @@
   line-height: 1.1;
   color: var(--text);
 }
+/* Harakat bottom band: Farsi name (large) + effect (muted), stacked. */
+.card-alpha-bottom {
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+.card-alpha-fa-inline {
+  font-size: var(--japanese-reading-font-size, 34px);
+  font-family: var(--japanese-reading-font-family, inherit);
+  line-height: 1.1;
+  color: var(--text);
+}
+.card-alpha-effect {
+  font-size: var(--japanese-english-font-size, 18px);
+  color: var(--muted);
+}
+/* Harakat example bubble: glyph + its romanization (the sound is the point, so
+   the label stays — unlike the unlabeled alphabet forms). */
+.card-ex-rom {
+  margin-top: 4px;
+  font-size: 0.8rem;
+  color: var(--muted);
+  direction: ltr;
+}
 
 .card-form-row {
   display: flex;

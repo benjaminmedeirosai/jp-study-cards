@@ -68,6 +68,12 @@ const SCHEMAS = {
         kind: "alpha",
         headers: ["index", "isolated", "initial", "medial", "final", "name", "name_fa"],
         optional: []
+      },
+      {
+        prefix: "harakat/",
+        kind: "harakat",
+        headers: ["index", "mark", "name", "name_fa", "effect", "ex1", "ex1_rom", "ex2", "ex2_rom"],
+        optional: []
       }
     ]
   }

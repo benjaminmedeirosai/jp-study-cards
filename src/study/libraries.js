@@ -180,6 +180,33 @@ export const LIBRARIES = [
     // formsTable: render the positional-forms table (the alphabet's analogue of
     // the kanji breakdown area).
     features: { soundSource: false, gloss: false, texts: false, formsTable: true }
+  },
+  {
+    // Farsi harakat (diacritical marks) — third schema. The card shows the mark
+    // on a carrier, its name + effect, and a row of usage examples (the mark in
+    // use, with romanization). TTS speaks the mark's Persian name (name_fa).
+    id: "farsi-harakat",
+    label: "Farsi Harakat",
+    short: "ـَ ـِ ـُ",
+    language: "farsi",
+    schemaLabel: "Harakat",
+    data: "data/farsi/cards.json",
+    deckKind: "harakat",
+    rtl: true,
+    tts: { lang: "fa-IR", estimate: { source: "reading", msPerUnit: 300 } },
+    voiceSample: "زَبَر، زیر، پیش.",
+    fields: { primary: "mark", reading: "name_fa", translation: "name", type: "effect", gloss: null },
+    // Font-size slots: primary→mark, reading→Farsi name, translation→English
+    // name, gloss→the example glyphs.
+    labels: { primary: "Mark", reading: "Farsi name", translation: "English name", gloss: "Examples" },
+    fontIds: ["default", "sys-sans", "sys-serif"],
+    modeIds: ["mark", "name-fa", "name-en", "effect", "voice", "show-all"],
+    groupingIds: ["primary-alpha"],
+    soundSourceScope: "library",
+    soundSources: [{ value: "name", label: "Name", keys: ["name_fa"] }],
+    searchKeys: ["mark", "name", "name_fa", "effect", "ex1", "ex1_rom", "ex2", "ex2_rom"],
+    // examplesTable: render the usage-examples card layout.
+    features: { soundSource: false, gloss: false, texts: false, examplesTable: true }
   }
 ];
 

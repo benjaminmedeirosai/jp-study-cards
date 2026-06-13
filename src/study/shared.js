@@ -146,7 +146,10 @@ export const MODES = [
   { id: "name-en", label: "Name (English)" },
   { id: "initial", label: "Initial" },
   { id: "medial", label: "Medial" },
-  { id: "final", label: "Final" }
+  { id: "final", label: "Final" },
+  // Farsi harakat: the mark, and its plain-English effect.
+  { id: "mark", label: "Mark" },
+  { id: "effect", label: "Effect" }
 ];
 // `slot` = which logical field this groups/sorts by; `unit` = the likeness
 // extractor for the slotting/grouping variants (han chars, kana units, or Latin

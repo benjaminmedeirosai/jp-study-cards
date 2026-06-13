@@ -82,10 +82,12 @@ export function renderCardPage() {
   // so the schema branch can be decided once here.
   const lib = activeLibrary();
   const schemaIsKanji = lib.deckKind === "kanji";
-  const schemaIsAlpha = lib.features?.formsTable === true;  // Farsi alphabet
-  const rtl = lib.rtl === true;                              // Farsi (RTL script)
+  const schemaIsAlpha = lib.features?.formsTable === true;     // Farsi alphabet
+  const schemaIsHarakat = lib.features?.examplesTable === true; // Farsi harakat
+  const rtl = lib.rtl === true;                                 // Farsi (RTL script)
   root.classList.toggle("kanji-schema", schemaIsKanji);
   root.classList.toggle("alpha-schema", schemaIsAlpha);
+  root.classList.toggle("harakat-schema", schemaIsHarakat);
   root.classList.toggle("rtl-schema", rtl);
   root.classList.toggle("show-hotkeys", state.showHotkeys);
   let bundle = null;
@@ -423,6 +425,7 @@ export function renderCardPage() {
     const frontSlot = (MODES.find((m) => m.id === state.mode) || {}).slot;
     const showFront = revealed || state.mode === "show-all";
     if (schemaIsAlpha) renderFarsiAlphaSlots(entry, frontSlot, showFront);
+    else if (schemaIsHarakat) renderFarsiHarakatSlots(entry, frontSlot, showFront);
     else if (schemaIsKanji) renderKanjiSlots(entry, frontSlot, showFront);
     else renderWordSlots(entry, frontSlot, showFront);
     revealBtn.querySelector(".icon").innerHTML = revealed ? ICONS.eyeOff : ICONS.eye;
@@ -564,6 +567,66 @@ export function renderCardPage() {
     fa.style.visibility = vis("name-fa");
 
     cardAlpha.replaceChildren(idx, rom, hero, row, fa);
+  }
+
+  // --- Farsi harakat card --------------------------------------------------
+  // Same canvas as the alphabet: index (top-left), romanized name (top-right),
+  // the mark on its carrier (hero), and the Farsi name + effect at the bottom.
+  // The "forms row" slot instead holds usage examples (the mark in use + romaji).
+  function exampleCell(glyph, rom) {
+    const cell = document.createElement("div");
+    cell.className = "card-form-cell card-ex-cell";
+    const g = document.createElement("div");
+    g.className = "card-form-glyph";
+    g.dir = "rtl";
+    g.textContent = glyph;
+    const r = document.createElement("div");
+    r.className = "card-ex-rom";
+    r.textContent = rom;
+    cell.append(g, r);
+    return cell;
+  }
+  function renderFarsiHarakatSlots(entry, frontSlot, showFront) {
+    for (const slot of [cardType, cardReading, cardMain, cardEnglish, cardGloss]) setSlotVisible(slot, false);
+    cardAlpha.hidden = false;
+
+    const index = text(entry, "index");
+    const vis = (modeId) => (showFront || state.mode === modeId) ? "visible" : "hidden";
+    const elt = (cls, value, rtl) => {
+      const node = document.createElement("div");
+      node.className = cls;
+      if (rtl) node.dir = "rtl";
+      node.textContent = value;
+      return node;
+    };
+
+    const idx = elt("card-alpha-index", index ? `${index} / 8` : "");
+    const rom = elt("card-alpha-rom", text(entry, "name"));
+    rom.style.visibility = vis("name-en");
+
+    const hero = elt("card-alpha-hero", text(entry, "mark") || "-", true);
+    hero.style.visibility = vis("mark");
+
+    // Examples row (reference; shown on reveal / show-all). Each = glyph + romaji.
+    const row = document.createElement("div");
+    row.className = "card-form-row";
+    row.dir = "rtl";
+    const examples = [["ex1", "ex1_rom"], ["ex2", "ex2_rom"]]
+      .map(([g, r]) => [text(entry, g), text(entry, r)])
+      .filter(([g]) => g);
+    for (const [glyph, romaji] of examples) row.append(exampleCell(glyph, romaji));
+    row.style.visibility = showFront ? "visible" : "hidden";
+
+    // Bottom band: Farsi name (large) + effect (muted), each mode-toggleable.
+    const bottom = document.createElement("div");
+    bottom.className = "card-alpha-bottom";
+    const fa = elt("card-alpha-fa-inline", text(entry, "name_fa"), true);
+    fa.style.visibility = vis("name-fa");
+    const effect = elt("card-alpha-effect", text(entry, "effect"));
+    effect.style.visibility = vis("effect");
+    bottom.append(fa, effect);
+
+    cardAlpha.replaceChildren(idx, rom, hero, row, bottom);
   }
 
   function renderKanjiSlots(entry, frontSlot, showFront) {
