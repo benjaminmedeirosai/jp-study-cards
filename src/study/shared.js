@@ -163,6 +163,13 @@ export const MODES = [
 // extractor for the slotting/grouping variants (han chars, kana units, or Latin
 // letters). Libraries pick which groupings they offer.
 export const SET_GROUPINGS = [
+  // Preserve the source-file order and just chop into sets (no sort). Offered by
+  // every library — useful when the deck is authored in a meaningful sequence
+  // (numbers, an alphabet, a curriculum).
+  { id: "file-order", label: "File order", shortLabel: "File", slot: "primary", type: "sequence" },
+  // Farsi: alphabetical by the Farsi word vs by the English meaning.
+  { id: "farsi-word-alpha", label: "Alphabetical (Farsi)", shortLabel: "ف A-Z", slot: "primary", type: "alpha" },
+  { id: "english-alpha", label: "Alphabetical (English)", shortLabel: "EN A-Z", slot: "translation", type: "alpha" },
   { id: "kanji-alpha", label: "Alphabetical (kanji)", shortLabel: "漢 A-Z", slot: "primary", type: "alpha" },
   { id: "hiragana-alpha", label: "Alphabetical (hiragana)", shortLabel: "かな A-Z", slot: "reading", type: "alpha" },
   { id: "kanji-likeness-slotting", label: "Kanji - likeness slotting", shortLabel: "漢 slot", slot: "primary", type: "slotting", unit: "han" },

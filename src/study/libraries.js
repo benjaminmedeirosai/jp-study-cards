@@ -53,7 +53,8 @@ export const LIBRARIES = [
     groupingIds: [
       "kanji-alpha", "hiragana-alpha",
       "kanji-likeness-slotting", "kanji-likeness-grouping",
-      "hiragana-likeness-slotting", "hiragana-likeness-grouping"
+      "hiragana-likeness-slotting", "hiragana-likeness-grouping",
+      "file-order"
     ],
     // The sound-source picker options (value + button label + the entry fields
     // its speech reads). Word study: speak the kanji word or its kana reading.
@@ -86,7 +87,7 @@ export const LIBRARIES = [
     fields: { primary: "kanji", reading: "onyomi", translation: "meaning", type: null, gloss: null },
     labels: { primary: "Kanji", reading: "Reading" },
     modeIds: ["kanji", "meaning", "reading", "show-all"],
-    groupingIds: ["kanji-alpha"],
+    groupingIds: ["kanji-alpha", "file-order"],
     // Sound source: on'yomi, kun'yomi, or both (speaks 音 then 訓). scope
     // "library": a single standing preference (lives in Settings), not a per-card
     // choice — which reading to voice isn't something you'd set per kanji.
@@ -121,7 +122,7 @@ export const LIBRARIES = [
     // Japanese does.)
     fontIds: ["default", "sys-sans", "sys-serif"],
     modeIds: ["spanish", "english", "voice", "show-all"],
-    groupingIds: ["primary-alpha", "primary-likeness-slotting", "primary-likeness-grouping"],
+    groupingIds: ["primary-alpha", "english-alpha", "primary-likeness-slotting", "primary-likeness-grouping", "file-order"],
     features: { soundSource: false, gloss: false, texts: false }
   },
   {
@@ -144,7 +145,7 @@ export const LIBRARIES = [
     labels: { primary: "Word", reading: "Vocalized" },
     fontIds: ["default", "sys-sans", "sys-serif"],
     modeIds: ["word", "english", "voice", "show-all"],
-    groupingIds: ["primary-alpha"],
+    groupingIds: ["farsi-word-alpha", "english-alpha", "file-order"],
     // Single sound source (Settings, not per-card): speak the vocalized form,
     // falling back to the bare word when it has no harakat marks.
     soundSourceScope: "library",
@@ -176,7 +177,7 @@ export const LIBRARIES = [
     labels: { primary: "Isolated", reading: "Farsi name", translation: "English name", gloss: "Other forms" },
     fontIds: ["default", "sys-sans", "sys-serif"],
     modeIds: ["letter", "name-fa", "name-en", "initial", "medial", "final", "voice", "show-all"],
-    groupingIds: ["primary-alpha"],
+    groupingIds: ["file-order"],
     soundSourceScope: "library",
     soundSources: [{ value: "name", label: "Name", keys: ["name_fa"] }],
     searchKeys: ["isolated", "name", "name_fa", "initial", "medial", "final"],
@@ -206,7 +207,7 @@ export const LIBRARIES = [
     labels: { primary: "Mark", reading: "Farsi name", translation: "English name", gloss: "Examples" },
     fontIds: ["default", "sys-sans", "sys-serif"],
     modeIds: ["mark", "name-fa", "name-en", "effect", "voice", "show-all"],
-    groupingIds: ["primary-alpha"],
+    groupingIds: ["file-order"],
     soundSourceScope: "library",
     soundSources: [{ value: "name", label: "Name", keys: ["name_fa"] }],
     searchKeys: ["mark", "name", "name_fa", "effect", "ex1", "ex1_rom", "ex2", "ex2_rom", "ex3", "ex3_rom", "ex4", "ex4_rom"],

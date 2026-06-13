@@ -64,6 +64,9 @@ export function sortCardsForSets(cards, groupingId) {
     );
   }
   const grouping = activeSetGrouping(groupingId);
+  // File order: keep the incoming order (deck.entries is the source-file order,
+  // and filtering preserves it) — buildSetOptions then chops it into sets.
+  if (grouping.type === "sequence") return [...cards];
   const field = fieldName(grouping.slot) || fieldName("primary");
   const primaryField = fieldName("primary");
   const locale = localeFor();

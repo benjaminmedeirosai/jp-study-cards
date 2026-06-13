@@ -54,11 +54,20 @@ function parseHash() {
 function applyCardsState(lib, deck, q) {
   if (lib) setLibrary(lib);
   const state = loadState();
-  state.deckId = String(deck || "");
-  state.query = String(q || "");
-  state.setId = "all";
-  state.currentIndex = 0;
-  state.currentKey = "";
+  const deckId = String(deck || "");
+  const query = String(q || "");
+  // Only reset the transient set/position when the (deck, filter) actually
+  // changes. Navigating *back* to a library whose saved deck/filter already
+  // matches the target should resume its set + card (kept in its own slice),
+  // not jump to the top.
+  const same = state.deckId === deckId && state.query === query;
+  state.deckId = deckId;
+  state.query = query;
+  if (!same) {
+    state.setId = "all";
+    state.currentIndex = 0;
+    state.currentKey = "";
+  }
   saveState(state);
 }
 
