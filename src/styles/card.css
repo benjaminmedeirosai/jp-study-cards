@@ -711,7 +711,9 @@
   align-items: center;
   justify-content: center;
   gap: 26px;
-  padding: 28px 20px;
+  /* Extra bottom padding lifts the centered hero+forms group up, away from the
+     bottom-anchored name band, so the card reads top-weighted. */
+  padding: 28px 20px 120px;
 }
 .card-alpha-index {
   position: absolute;
@@ -748,7 +750,9 @@
   line-height: 1.1;
   color: var(--text);
 }
-/* Harakat bottom band: Farsi name (large) + effect (muted), stacked. */
+/* Bottom band (alphabet + harakat): Farsi name on top, with a second line below
+   it (the spaced spelling, or the harakat effect). Fixed min-height + top
+   alignment so the Farsi name stays put whether or not the second line exists. */
 .card-alpha-bottom {
   position: absolute;
   bottom: 30px;
@@ -757,7 +761,9 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 4px;
+  justify-content: flex-start;
+  gap: 6px;
+  min-height: 72px;
 }
 .card-alpha-fa-inline {
   font-size: var(--japanese-reading-font-size, 34px);
