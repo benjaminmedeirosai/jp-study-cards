@@ -204,7 +204,7 @@ export const LIBRARIES = [
     groupingIds: ["primary-alpha"],
     soundSourceScope: "library",
     soundSources: [{ value: "name", label: "Name", keys: ["name_fa"] }],
-    searchKeys: ["mark", "name", "name_fa", "effect", "ex1", "ex1_rom", "ex2", "ex2_rom"],
+    searchKeys: ["mark", "name", "name_fa", "effect", "ex1", "ex1_rom", "ex2", "ex2_rom", "ex3", "ex3_rom", "ex4", "ex4_rom"],
     // examplesTable: render the usage-examples card layout.
     features: { soundSource: false, gloss: false, texts: false, examplesTable: true }
   }

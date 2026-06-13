@@ -769,11 +769,23 @@
   font-size: var(--japanese-english-font-size, 18px);
   color: var(--muted);
 }
-/* Harakat example bubble: glyph + its romanization (the sound is the point, so
-   the label stays — unlike the unlabeled alphabet forms). */
+/* Harakat examples: smaller bubbles than the alphabet forms (there are more of
+   them), glyph + its romanization (the sound is the point, so the label stays).
+   The row wraps if the examples don't fit one line. */
+.harakat-schema .card-form-row {
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.card-ex-cell {
+  min-width: 44px;
+  padding: 6px 9px;
+}
+.card-ex-cell .card-form-glyph {
+  font-size: calc(var(--japanese-gloss-font-size, 16px) * 1.2);
+}
 .card-ex-rom {
-  margin-top: 4px;
-  font-size: 0.8rem;
+  margin-top: 3px;
+  font-size: 0.72rem;
   color: var(--muted);
   direction: ltr;
 }

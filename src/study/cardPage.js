@@ -611,7 +611,7 @@ export function renderCardPage() {
     const row = document.createElement("div");
     row.className = "card-form-row";
     row.dir = "rtl";
-    const examples = [["ex1", "ex1_rom"], ["ex2", "ex2_rom"]]
+    const examples = [["ex1", "ex1_rom"], ["ex2", "ex2_rom"], ["ex3", "ex3_rom"], ["ex4", "ex4_rom"]]
       .map(([g, r]) => [text(entry, g), text(entry, r)])
       .filter(([g]) => g);
     for (const [glyph, romaji] of examples) row.append(exampleCell(glyph, romaji));

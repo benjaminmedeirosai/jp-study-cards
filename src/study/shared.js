@@ -9,7 +9,12 @@ const STATE_VERSION = 2;
 // else in `state` is global (fonts, voice, UI prefs) and shared across libraries.
 const LIBRARY_KEYS = [
   "deckId", "setId", "currentIndex", "query", "mode", "setGrouping",
+  // Fonts are per-schema: families/bold AND sizes. Each schema keeps its own
+  // four size slots, so (e.g.) the Farsi alphabet and harakat cards size
+  // independently. `global` still seeds the initial value until a schema's
+  // slider is touched, so nothing resets on upgrade.
   "kanjiFont", "hiraganaFont", "kanjiBold", "hiraganaBold",
+  "kanjiFontPx", "hiraganaFontPx", "englishFontPx", "glossFontPx",
   "voice", "ttsSources", "soundSource", "deckHistory", "filterHistory"
 ];
 export const DEFAULT_SET_SIZE = 20;

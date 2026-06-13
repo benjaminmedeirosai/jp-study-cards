@@ -72,7 +72,7 @@ const SCHEMAS = {
       {
         prefix: "harakat/",
         kind: "harakat",
-        headers: ["index", "mark", "name", "name_fa", "effect", "ex1", "ex1_rom", "ex2", "ex2_rom"],
+        headers: ["index", "mark", "name", "name_fa", "effect", "ex1", "ex1_rom", "ex2", "ex2_rom", "ex3", "ex3_rom", "ex4", "ex4_rom"],
         optional: []
       }
     ]
