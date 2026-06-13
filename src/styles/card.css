@@ -393,10 +393,12 @@
 }
 
 /* Spaced spelling under the word (Farsi): letters separated into isolated forms.
-   Sits below the bottom-anchored main word and above the meaning line. */
+   Anchored just under the main word using the same formula card-main uses for
+   its bottom edge (40% anchor + 0.51·size), so the gap tracks the word's size
+   instead of floating low. */
 .card-spell {
   position: absolute;
-  top: 62%;
+  top: calc(40% + var(--japanese-main-font-size, 67px) * 0.51 + 0.5em);
   left: 50%;
   transform: translateX(-50%);
   max-width: calc(100% - 48px);
