@@ -465,7 +465,14 @@ export function renderCardPage() {
     cardMain.textContent = mainText;
     cardReading.textContent = reading;
     cardEnglish.textContent = translation;
-    setSlotVisible(cardType, state.visible.type && !!type);
+    // If the library offers a mode that targets the type slot (e.g. Farsi's
+    // "pronunciation"), treat type as an answer: hidden until reveal / its own
+    // mode. Otherwise it's a constant tag (Japanese part-of-speech) and shows.
+    const typeIsAnswer = MODES.some((m) => m.slot === "type" && offeredModeIds.includes(m.id));
+    setSlotVisible(
+      cardType,
+      (typeIsAnswer ? (showFront ? state.visible.type : frontSlot === "type") : state.visible.type) && !!type
+    );
     setSlotVisible(cardMain, (showFront ? state.visible.kanji : frontSlot === "primary") && !!mainText);
     setSlotVisible(cardReading, (showFront ? state.visible.hiragana : frontSlot === "reading") && !!reading);
     setSlotVisible(cardEnglish, (showFront ? state.visible.english : frontSlot === "translation") && !!translation);

@@ -144,7 +144,7 @@ export const LIBRARIES = [
     fields: { primary: "word", reading: "vocalized", translation: "meaning", type: "label", gloss: null },
     labels: { primary: "Word", reading: "Vocalized" },
     fontIds: ["default", "sys-sans", "sys-serif"],
-    modeIds: ["word", "english", "voice", "show-all"],
+    modeIds: ["word", "english", "pronunciation", "voice", "show-all"],
     groupingIds: ["farsi-word-alpha", "english-alpha", "file-order"],
     // Single sound source (Settings, not per-card): speak the vocalized form,
     // falling back to the bare word when it has no harakat marks.

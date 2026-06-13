@@ -149,6 +149,9 @@ export const MODES = [
   // fields (handled directly in the alpha render, no generic slot needed):
   // letter + the two names + the three connecting forms.
   { id: "word", label: "Word", slot: "primary" },
+  // Farsi words: the romanization/pronunciation lives in the `type` slot, so a
+  // mode targeting it lets you study "show me just the pronunciation".
+  { id: "pronunciation", label: "Pronunciation", slot: "type" },
   { id: "letter", label: "Letter" },
   { id: "name-fa", label: "Name (Farsi)" },
   { id: "name-en", label: "Name (English)" },

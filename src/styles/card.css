@@ -236,6 +236,15 @@
   line-height: 1.15;
 }
 
+/* Farsi word card: the romanization (type slot) reads top-right, not top-left
+   (gloss is unused for Farsi, so the corner is free). Alpha/harakat hide the
+   type slot entirely, so this only affects the word card. */
+.rtl-schema .card-slot.card-type {
+  left: auto;
+  right: 18px;
+  text-align: right;
+}
+
 .card-slot.card-gloss {
   top: 18px;
   right: 18px;
