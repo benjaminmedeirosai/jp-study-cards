@@ -851,9 +851,6 @@
   border-radius: 12px;
   background: rgba(255, 255, 255, 0.03);
 }
-.card-form-center {
-  padding: 10px 18px;
-}
 /* Form glyphs share the letter font; size = the "Other forms" control (gloss
    slot), scaled up since connecting forms are small and the default gloss px is
    tuned for tiny corner glosses. */
@@ -886,7 +883,4 @@
 .card-form-cell.card-form-tap:focus-visible {
   border-color: var(--accent);
   outline: none;
-}
-.card-alpha-hero.card-form-tap:hover {
-  color: var(--accent);
 }
