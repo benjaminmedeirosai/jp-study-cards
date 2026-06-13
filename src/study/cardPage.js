@@ -1,7 +1,7 @@
 import { speak } from "./speech.js";
 import { buildSetOptions, activeSetGrouping, computeDeckSets } from "./sets.js";
 import { beginSession, endSession, sessionQualifies } from "./filters.js";
-import { openOverlay, pushCardsURL, replaceCardsURL } from "./router.js";
+import { openOverlay, pushCardsURL, replaceCardsURL, filterInLibrary } from "./router.js";
 import {
   MODES,
   LINK_TEMPLATES,
@@ -535,8 +535,13 @@ export function renderCardPage() {
     const rom = elt("card-alpha-rom", text(entry, "name"));
     rom.style.visibility = vis("name-en");
 
-    const hero = elt("card-alpha-hero", text(entry, "isolated") || "-", true);
+    const base = text(entry, "isolated");
+    const hero = elt("card-alpha-hero", base || "-", true);
     hero.style.visibility = vis("letter");
+    if (base) {
+      hero.classList.add("card-form-tap");
+      hero.addEventListener("click", () => openFormMenu(base, "isolated", hero));
+    }
 
     // Forms row: initial · medial · final (no isolated — that's the hero above).
     const row = document.createElement("div");
@@ -548,6 +553,15 @@ export function renderCardPage() {
     ci.style.visibility = vis("initial");
     cm.style.visibility = vis("medial");
     cf.style.visibility = vis("final");
+    // Each form bubble taps through to the Farsi Words, filtered to this letter
+    // in that position (initial/medial/final). The base letter is the same for
+    // all forms — the form just picks the word-position to search.
+    if (base) {
+      for (const [cell, form] of [[ci, "initial"], [cm, "medial"], [cf, "final"]]) {
+        cell.classList.add("card-form-tap");
+        cell.addEventListener("click", () => openFormMenu(base, form, cell));
+      }
+    }
     row.append(ci, cm, cf);
 
     const fa = elt("card-alpha-fa", text(entry, "name_fa"), true);
@@ -724,6 +738,77 @@ export function renderCardPage() {
       openOverlay("decks");
     });
     filterBtn.focus();
+  }
+
+  // Farsi alphabet: tap a letter form → jump to the Farsi Words, filtered to that
+  // letter in the matching word position. Forms aren't stored in the text (Arabic
+  // shaping is presentational), so we search the BASE letter with a position-
+  // anchored quoted query (see matchesQuery): initial→starts, final→ends,
+  // isolated→exact, medial→anywhere.
+  const FORM_FILTERS = {
+    isolated: { name: "isolated", query: (c) => `" ${c} "`, label: (c) => `Words that are just ${c}` },
+    initial: { name: "initial", query: (c) => `" ${c}"`, label: (c) => `Words starting with ${c}` },
+    medial: { name: "medial", query: (c) => `"${c}"`, label: (c) => `Words with ${c} anywhere` },
+    final: { name: "final", query: (c) => `"${c} "`, label: (c) => `Words ending with ${c}` }
+  };
+  function openFormMenu(baseChar, formId, anchor) {
+    closeGlossMenu();
+    const spec = FORM_FILTERS[formId] || FORM_FILTERS.isolated;
+    const backdrop = document.createElement("div");
+    backdrop.className = "gloss-menu-backdrop";
+    const menu = document.createElement("div");
+    menu.className = "gloss-menu";
+    menu.setAttribute("role", "menu");
+
+    const head = document.createElement("div");
+    head.className = "gloss-menu-head";
+    const charEl = document.createElement("span");
+    charEl.className = "gloss-menu-kanji";
+    charEl.dir = "rtl";
+    charEl.textContent = baseChar;
+    const formEl = document.createElement("span");
+    formEl.className = "gloss-menu-gloss";
+    formEl.textContent = `${spec.name} form`;
+    head.append(charEl, formEl);
+
+    // Primary: the position filter for this form. Secondary (except for medial,
+    // which already is "anywhere"): the broaden-to-anywhere option.
+    const items = [{ q: spec.query(baseChar), label: spec.label(baseChar) }];
+    if (formId !== "medial") items.push({ q: `"${baseChar}"`, label: `Words with ${baseChar} anywhere` });
+
+    menu.append(head);
+    const buttons = items.map((item) => {
+      const btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "gloss-menu-item";
+      btn.textContent = item.label;
+      btn.addEventListener("click", () => {
+        closeGlossMenu();
+        endSession();
+        filterInLibrary("farsi", "folder:Words", item.q);
+      });
+      menu.append(btn);
+      return btn;
+    });
+    document.body.append(backdrop, menu);
+
+    const r = anchor.getBoundingClientRect();
+    const mw = menu.offsetWidth;
+    const mh = menu.offsetHeight;
+    const left = Math.max(8, Math.min(r.right - mw, window.innerWidth - mw - 8));
+    let top = r.bottom + 6;
+    if (top + mh > window.innerHeight - 8) top = Math.max(8, r.top - mh - 6);
+    menu.style.left = `${left}px`;
+    menu.style.top = `${top}px`;
+
+    const onKey = (event) => {
+      if (event.key === "Escape") { event.preventDefault(); event.stopImmediatePropagation(); closeGlossMenu(); }
+    };
+    document.addEventListener("keydown", onKey, true);
+    window.addEventListener("popstate", closeGlossMenu);
+    glossMenu = { backdrop, menu, onKey };
+    backdrop.addEventListener("click", closeGlossMenu);
+    buttons[0].focus();
   }
 
   // --- Interactions -------------------------------------------------------

@@ -780,3 +780,17 @@
 .card-form-empty {
   opacity: 0.35;
 }
+/* Tappable letter forms (Farsi) → open the word-filter menu. */
+.card-form-tap {
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition: border-color 0.12s, color 0.12s;
+}
+.card-form-cell.card-form-tap:hover,
+.card-form-cell.card-form-tap:focus-visible {
+  border-color: var(--accent);
+  outline: none;
+}
+.card-alpha-hero.card-form-tap:hover {
+  color: var(--accent);
+}

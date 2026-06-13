@@ -118,6 +118,17 @@ export function chooseLibrary(libraryId) {
   mount();
 }
 
+// Cross-schema jump-and-filter: switch to another library, point it at a deck,
+// and apply a filter — as a NEW history entry so Back returns to where you came
+// from (e.g. Farsi alphabet → tap a form → land in Farsi Words filtered to that
+// letter's position; Back returns to the letter).
+export function filterInLibrary(libraryId, deckId, query) {
+  applyCardsState(libraryId, deckId, query);
+  view = "cards";
+  pushCardsURL();
+  mount();
+}
+
 // --- popstate ---------------------------------------------------------------
 const OVERLAY_VIEWS = ["settings", "decks", "library"];
 function onPopState(event) {

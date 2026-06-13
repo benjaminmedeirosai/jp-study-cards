@@ -22,6 +22,7 @@ import {
   saveState,
   text,
   searchText,
+  matchesQuery,
   primaryText,
   readingText,
   translationText,
@@ -295,7 +296,7 @@ export function renderSettingsPage() {
   function updateFilterCount() {
     const base = previewBaseCards;
     const query = String(queryInput.value || "").trim().toLowerCase();
-    const count = query ? base.filter((entry) => searchText(entry).includes(query)).length : base.length;
+    const count = query ? base.filter((entry) => matchesQuery(entry, query)).length : base.length;
     if (queryText) queryText.textContent = `Filter ${count}/${base.length} records`;
   }
   function updateSettingsPreview() {

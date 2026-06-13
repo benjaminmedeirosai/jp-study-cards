@@ -1,7 +1,7 @@
 // Pure set-building engine: sorting, likeness slotting, and likeness grouping.
 // No DOM, no app state — just card arrays in, set-option descriptors out.
 
-import { text, searchText, fieldName, activeLibrary, DEFAULT_SET_SIZE, SET_GROUPINGS } from "./shared.js";
+import { text, searchText, matchesQuery, fieldName, activeLibrary, DEFAULT_SET_SIZE, SET_GROUPINGS } from "./shared.js";
 
 // Collation locale for the active library (e.g. "ja", "es"). Used for all the
 // sort tie-breaks so non-Japanese libraries sort by their own rules.
@@ -38,7 +38,7 @@ export function computeDeckSets({ cacheKey, cards, query, setSize, groupingId })
   }
   const start = performance.now();
   const matching = normalizedQuery
-    ? cards.filter((entry) => searchText(entry).includes(normalizedQuery))
+    ? cards.filter((entry) => matchesQuery(entry, normalizedQuery))
     : cards;
   const deckCards = sortCardsForSets(matching, groupingId);
   const setOptions = buildSetOptions(deckCards, setSize, groupingId);

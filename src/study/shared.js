@@ -345,6 +345,34 @@ export function searchText(entry) {
   return [primaryText(entry), readingText(entry), translationText(entry), typeText(entry)].join(" ").toLowerCase();
 }
 
+// Deck-filter predicate. A PLAIN query is a case-insensitive substring over
+// searchText (unchanged — every existing search behaves exactly as before). A
+// QUOTED query opts into position matching against the primary field, using the
+// spaces inside the quotes as word boundaries:
+//   " x"  → primary starts with x   (Farsi initial form)
+//   "x "  → primary ends with x     (Farsi final form)
+//   " x " → primary equals x        (Farsi isolated / standalone)
+//   "x"   → primary contains x       (Farsi medial / anywhere)
+// Only the quotes trigger this, and nothing types them except the Farsi alphabet
+// form-filter popup, so plain search is untouched across all languages.
+export function matchesQuery(entry, rawQuery) {
+  const query = String(rawQuery || "").trim();
+  if (!query) return true;
+  if (query.length >= 2 && query.startsWith('"') && query.endsWith('"')) {
+    const inner = query.slice(1, -1);
+    const core = inner.trim().toLowerCase();
+    if (!core) return true;
+    const head = /^\s/.test(inner);   // space before the char → word start
+    const tail = /\s$/.test(inner);   // space after the char  → word end
+    const primary = primaryText(entry).toLowerCase();
+    if (head && tail) return primary === core;
+    if (head) return primary.startsWith(core);
+    if (tail) return primary.endsWith(core);
+    return primary.includes(core);
+  }
+  return searchText(entry).includes(query.toLowerCase());
+}
+
 export function studySearchText(entry) {
   return primaryText(entry) || readingText(entry) || translationText(entry);
 }
@@ -439,7 +467,7 @@ export function deckMatchCounts(bundle, query) {
   if (matchCache.bundle === bundle && matchCache.library === library && matchCache.query === q && matchCache.counts) return matchCache.counts;
   const counts = new Map();
   for (const deck of listDecks(bundle)) {
-    counts.set(deck.id, q ? (deck.entries || []).filter((entry) => searchText(entry).includes(q)).length : Number(deck.count || 0));
+    counts.set(deck.id, q ? (deck.entries || []).filter((entry) => matchesQuery(entry, q)).length : Number(deck.count || 0));
   }
   matchCache = { bundle, library, query: q, counts };
   return counts;
