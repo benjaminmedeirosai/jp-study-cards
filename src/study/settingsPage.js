@@ -399,7 +399,7 @@ export function renderSettingsPage() {
   const L = library.labels;
   const kanjiFontField = fieldLabel(`${L.primary} size ${state.kanjiFontPx}px`, kanjiFontInput);
   const hiraganaFontField = fieldLabel(`${L.reading || "Reading"} size ${state.hiraganaFontPx}px`, hiraganaFontInput);
-  const englishFontField = fieldLabel(`English size ${state.englishFontPx}px`, englishFontInput);
+  const englishFontField = fieldLabel(`${L.translation || "English"} size ${state.englishFontPx}px`, englishFontInput);
   const glossFontField = fieldLabel(`${L.gloss || "Gloss"} size ${state.glossFontPx}px`, glossFontInput);
   function wireFontScale(input, field, key, label) {
     input.addEventListener("input", () => {
@@ -410,7 +410,7 @@ export function renderSettingsPage() {
   }
   wireFontScale(kanjiFontInput, kanjiFontField, "kanjiFontPx", L.primary);
   wireFontScale(hiraganaFontInput, hiraganaFontField, "hiraganaFontPx", L.reading || "Reading");
-  wireFontScale(englishFontInput, englishFontField, "englishFontPx", "English");
+  wireFontScale(englishFontInput, englishFontField, "englishFontPx", L.translation || "English");
   wireFontScale(glossFontInput, glossFontField, "glossFontPx", L.gloss || "Gloss");
 
   kanjiFontFamilyInput.addEventListener("change", () => {
@@ -484,8 +484,9 @@ export function renderSettingsPage() {
     kanjiFontField,
     ...(library.fields.reading ? [hiraganaFontField] : []),
     englishFontField,
-    // Gloss size only for libraries with the gloss feature.
-    ...(library.features.gloss ? [glossFontField] : []),
+    // Gloss/forms size: libraries with the gloss feature (Japanese) or a forms
+    // table (Farsi alphabet, where this slot sizes the positional forms).
+    ...(library.features.gloss || library.features.formsTable ? [glossFontField] : []),
     sectionHeading("Voice & speed"),
     fieldLabel(`${library.label} voice`, voiceRow),
     fieldLabel("Voice speed", rateSelect),

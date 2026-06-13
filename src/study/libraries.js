@@ -167,7 +167,10 @@ export const LIBRARIES = [
     tts: { lang: "fa-IR", estimate: { source: "reading", msPerUnit: 300 } },
     voiceSample: "الف، بِ، پِ.",
     fields: { primary: "isolated", reading: "name_fa", translation: "name", type: "index", gloss: null },
-    labels: { primary: "Letter", reading: "Name" },
+    // Font-control labels map the four size slots onto the alphabet's elements:
+    // primary→isolated letter, reading→Farsi name, translation→English name,
+    // gloss→the positional forms.
+    labels: { primary: "Isolated", reading: "Farsi name", translation: "English name", gloss: "Other forms" },
     fontIds: ["default", "sys-sans", "sys-serif"],
     modeIds: ["letter", "name-fa", "name-en", "initial", "medial", "final", "voice", "show-all"],
     groupingIds: ["primary-alpha"],
