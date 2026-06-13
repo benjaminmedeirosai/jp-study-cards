@@ -538,10 +538,6 @@ export function renderCardPage() {
     const base = text(entry, "isolated");
     const hero = elt("card-alpha-hero", base || "-", true);
     hero.style.visibility = vis("letter");
-    if (base) {
-      hero.classList.add("card-form-tap");
-      hero.addEventListener("click", () => openFormMenu(base, "isolated", hero));
-    }
 
     // Forms row: initial · medial · final (no isolated — that's the hero above).
     const row = document.createElement("div");
