@@ -58,6 +58,7 @@ function applyCardsState(lib, deck, q) {
   state.query = String(q || "");
   state.setId = "all";
   state.currentIndex = 0;
+  state.currentKey = "";
   saveState(state);
 }
 

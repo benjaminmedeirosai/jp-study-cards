@@ -8,7 +8,10 @@ const STATE_VERSION = 2;
 // Keys that belong to the active library (isolated per language). Everything
 // else in `state` is global (fonts, voice, UI prefs) and shared across libraries.
 const LIBRARY_KEYS = [
-  "deckId", "setId", "currentIndex", "query", "mode", "setGrouping",
+  // `currentKey` anchors the study position to the actual card (its entryKey),
+  // so reload/return lands on the same character/word even though shuffle is
+  // never persisted. `currentIndex` is kept as a fallback for old saves.
+  "deckId", "setId", "currentIndex", "currentKey", "query", "mode", "setGrouping",
   // Fonts are per-schema: families/bold AND sizes. Each schema keeps its own
   // four size slots, so (e.g.) the Farsi alphabet and harakat cards size
   // independently. `global` still seeds the initial value until a schema's
@@ -275,6 +278,7 @@ export function loadState() {
     kanjiBold: raw.kanjiBold === true,
     hiraganaBold: raw.hiraganaBold === true,
     currentIndex: clampInt(raw.currentIndex, 0, 0, 100000),
+    currentKey: String(raw.currentKey || ""),
     query: String(raw.query || "").trim(),
     voice: String(raw.voice || ""),
     voiceRate: Number.isFinite(Number(raw.voiceRate)) ? Math.min(2, Math.max(0.5, Number(raw.voiceRate))) : 1,

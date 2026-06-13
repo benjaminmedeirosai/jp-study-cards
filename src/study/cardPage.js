@@ -274,8 +274,19 @@ export function renderCardPage() {
     const activeSet = setOptions.find((set) => set.id === state.setId) || setOptions[0];
     // Copy so in-place shuffling never mutates the cached setOptions.
     setCards = activeSet ? (activeSet.cards ? activeSet.cards.slice() : deckCards.slice(activeSet.start, activeSet.end)) : [];
-    if (!keepIndex) state.currentIndex = 0;
+    if (keepIndex) {
+      // Restore the spot by card identity (survives reload, where the set is
+      // always rebuilt in canonical order — shuffle is never persisted). Fall
+      // back to the saved numeric index for old saves with no key.
+      const byKey = state.currentKey
+        ? setCards.findIndex((entry) => entryKey(entry) === state.currentKey)
+        : -1;
+      if (byKey >= 0) state.currentIndex = byKey;
+    } else {
+      state.currentIndex = 0;
+    }
     if (state.currentIndex >= setCards.length) state.currentIndex = Math.max(0, setCards.length - 1);
+    state.currentKey = entryKey(setCards[state.currentIndex]) || "";
     revealed = false;
   }
 
@@ -717,6 +728,7 @@ export function renderCardPage() {
     state.query = kanji;
     state.setId = "all";
     state.currentIndex = 0;
+    state.currentKey = "";
     saveState(state);
   }
 
@@ -904,6 +916,7 @@ export function renderCardPage() {
   function move(delta) {
     if (!setCards.length) return;
     state.currentIndex = (state.currentIndex + delta + setCards.length) % setCards.length;
+    state.currentKey = entryKey(currentEntry()) || "";
     revealed = false;
     saveState(state);
     renderCard();
@@ -924,6 +937,9 @@ export function renderCardPage() {
       if (nextFirstIndex > 0) [setCards[0], setCards[nextFirstIndex]] = [setCards[nextFirstIndex], setCards[0]];
     }
     state.currentIndex = 0;
+    // Anchor to the now-first card by identity. Shuffle order itself is not
+    // persisted, so a later reload rebuilds canonical order and lands here.
+    state.currentKey = entryKey(setCards[0]) || "";
     revealed = false;
     saveState(state);
     renderCard();
