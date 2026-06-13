@@ -769,6 +769,13 @@
   font-size: var(--japanese-english-font-size, 18px);
   color: var(--muted);
 }
+/* Letter-spaced romanization under the Farsi name (alphabet bottom band). */
+.card-alpha-spell {
+  font-size: var(--japanese-english-font-size, 18px);
+  color: var(--muted);
+  font-family: system-ui, sans-serif;
+  letter-spacing: 0.05em;
+}
 /* Harakat examples: smaller bubbles than the alphabet forms (there are more of
    them), glyph + its romanization (the sound is the point, so the label stays).
    The row wraps if the examples don't fit one line. */

@@ -566,10 +566,22 @@ export function renderCardPage() {
     }
     row.append(ci, cm, cf);
 
-    const fa = elt("card-alpha-fa", text(entry, "name_fa"), true);
+    // Bottom band: Farsi name (large), and — when the name is more than one
+    // letter — a letter-spaced romanization below it ("shin" → "s h i n") to
+    // help sound out the individual letters while they're still unfamiliar.
+    const bottom = document.createElement("div");
+    bottom.className = "card-alpha-bottom";
+    const fa = elt("card-alpha-fa-inline", text(entry, "name_fa"), true);
     fa.style.visibility = vis("name-fa");
+    bottom.append(fa);
+    const romName = text(entry, "name").trim();
+    if (romName.replace(/\s+/g, "").length > 1) {
+      const spell = elt("card-alpha-spell", romName.split("").join(" "));
+      spell.style.visibility = vis("name-en");
+      bottom.append(spell);
+    }
 
-    cardAlpha.replaceChildren(idx, rom, hero, row, fa);
+    cardAlpha.replaceChildren(idx, rom, hero, row, bottom);
   }
 
   // --- Farsi harakat card --------------------------------------------------
