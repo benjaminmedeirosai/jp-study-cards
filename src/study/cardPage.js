@@ -519,6 +519,17 @@ export function renderCardPage() {
   // Each displayable element is its own mode-addressable field: Letter (isolated),
   // Name (Farsi), Name (English), and the three connecting forms. The active mode
   // shows just that element on the front; reveal / Show All shows everything.
+  // Split a Farsi string into grapheme clusters so a base letter keeps its
+  // combining diacritic (e.g. "بِ" stays one unit, not "ب" + floating kasre).
+  function splitGraphemes(str) {
+    const s = String(str || "");
+    if (typeof Intl !== "undefined" && Intl.Segmenter) {
+      const seg = new Intl.Segmenter("fa", { granularity: "grapheme" });
+      return [...seg.segment(s)].map((x) => x.segment);
+    }
+    return [...s];
+  }
+
   function renderFarsiAlphaSlots(entry, frontSlot, showFront) {
     for (const slot of [cardType, cardReading, cardMain, cardEnglish, cardGloss]) setSlotVisible(slot, false);
     cardAlpha.hidden = false;
@@ -566,18 +577,20 @@ export function renderCardPage() {
     }
     row.append(ci, cm, cf);
 
-    // Bottom band: Farsi name (large), and — when the name is more than one
-    // letter — a letter-spaced romanization below it ("shin" → "s h i n") to
-    // help sound out the individual letters while they're still unfamiliar.
+    // Bottom band: the Farsi name (large), and — when it's more than one letter
+    // — the same name with its letters separated below it. Spacing breaks the
+    // cursive joining so each letter shows in its isolated form ("همزه" →
+    // "ه م ز ه"), a reading aid while the shapes are still unfamiliar.
     const bottom = document.createElement("div");
     bottom.className = "card-alpha-bottom";
-    const fa = elt("card-alpha-fa-inline", text(entry, "name_fa"), true);
+    const faName = text(entry, "name_fa");
+    const fa = elt("card-alpha-fa-inline", faName, true);
     fa.style.visibility = vis("name-fa");
     bottom.append(fa);
-    const romName = text(entry, "name").trim();
-    if (romName.replace(/\s+/g, "").length > 1) {
-      const spell = elt("card-alpha-spell", romName.split("").join(" "));
-      spell.style.visibility = vis("name-en");
+    const letters = splitGraphemes(faName);
+    if (letters.length > 1) {
+      const spell = elt("card-alpha-spell", letters.join(" "), true);
+      spell.style.visibility = vis("name-fa");
       bottom.append(spell);
     }
 
