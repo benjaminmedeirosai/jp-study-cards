@@ -1,0 +1,45 @@
+# label: Short Words
+# Farsi (Persian) — 40 common short words (each ≤ 3 letters).
+# Columns: word / vocalized (harakat-marked, fed to TTS; blank = speak word) /
+# label (romanization) / meaning. vocalized forms are best-effort — verify by ear.
+word	vocalized	label	meaning
+و	وَ	va	and
+در	دَر	dar	in / door
+به	بِه	be	to
+از	اَز	az	from
+با		baa	with
+که	کِه	ke	that / who
+را		raa	(object marker)
+این		in	this
+آن		aan	that
+من	مَن	man	I
+تو		to	you
+او		u	he / she
+ما		maa	we
+شما	شُما	shomaa	you (plural)
+هم	هَم	ham	also
+تا		taa	until
+یا		yaa	or
+نه	نَه	na	no
+آب		aab	water
+نان		naan	bread
+دل	دِل	del	heart
+سر	سَر	sar	head
+دست	دَسْت	dast	hand
+چشم	چِشْم	cheshm	eye
+روز		ruz	day
+شب	شَب	shab	night
+ماه		maah	moon / month
+سال		saal	year
+گل	گُل	gol	flower
+خوب		khub	good
+بد	بَد	bad	bad
+گرم	گَرْم	garm	warm
+سرد	سَرْد	sard	cold
+زن	زَن	zan	woman
+مرد	مَرْد	mard	man
+نام		naam	name
+کار		kaar	work
+راه		raah	road
+شهر	شَهْر	shahr	city
+یک	یِک	yek	one

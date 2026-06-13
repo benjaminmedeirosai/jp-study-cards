@@ -1,0 +1,39 @@
+# label: Alphabet
+# Farsi (Persian) alphabet — 32 letters, all positional forms + name.
+# Columns: index / isolated / initial / medial / final / name (romanized) /
+# name_fa (Persian spelling — this is what TTS speaks).
+# ا د ذ ر ز ژ و are non-joining — no initial/medial form (left blank).
+# The ـ (tatweel) on connecting forms marks the join point.
+index	isolated	initial	medial	final	name	name_fa
+1	ا			ـا	alef	الف
+2	ب	بـ	ـبـ	ـب	be	بِ
+3	پ	پـ	ـپـ	ـپ	pe	پِ
+4	ت	تـ	ـتـ	ـت	te	تِ
+5	ث	ثـ	ـثـ	ـث	se	ثِ
+6	ج	جـ	ـجـ	ـج	jim	جیم
+7	چ	چـ	ـچـ	ـچ	che	چِ
+8	ح	حـ	ـحـ	ـح	he	حِ
+9	خ	خـ	ـخـ	ـخ	khe	خِ
+10	د			ـد	daal	دال
+11	ذ			ـذ	zaal	ذال
+12	ر			ـر	re	رِ
+13	ز			ـز	ze	زِ
+14	ژ			ـژ	zhe	ژِ
+15	س	سـ	ـسـ	ـس	sin	سین
+16	ش	شـ	ـشـ	ـش	shin	شین
+17	ص	صـ	ـصـ	ـص	saad	صاد
+18	ض	ضـ	ـضـ	ـض	zaad	ضاد
+19	ط	طـ	ـطـ	ـط	taa	طا
+20	ظ	ظـ	ـظـ	ـظ	zaa	ظا
+21	ع	عـ	ـعـ	ـع	eyn	عین
+22	غ	غـ	ـغـ	ـغ	gheyn	غین
+23	ف	فـ	ـفـ	ـف	fe	فِ
+24	ق	قـ	ـقـ	ـق	qaaf	قاف
+25	ک	کـ	ـکـ	ـک	kaaf	کاف
+26	گ	گـ	ـگـ	ـگ	gaaf	گاف
+27	ل	لـ	ـلـ	ـل	laam	لام
+28	م	مـ	ـمـ	ـم	mim	میم
+29	ن	نـ	ـنـ	ـن	nun	نون
+30	و			ـو	vaav	واو
+31	ه	هـ	ـهـ	ـه	he	هِ
+32	ی	یـ	ـیـ	ـی	ye	یِ

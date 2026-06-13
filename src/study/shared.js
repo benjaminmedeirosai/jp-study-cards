@@ -136,7 +136,11 @@ export const MODES = [
   { id: "spanish", label: "Spanish", slot: "primary" },
   // Kanji-schema modes: prompt with the meaning or the readings, recall the char.
   { id: "meaning", label: "Meaning", slot: "translation" },
-  { id: "reading", label: "Reading", slot: "reading" }
+  { id: "reading", label: "Reading", slot: "reading" },
+  // Farsi: word (primary), letter (primary, alphabet schema), name (translation).
+  { id: "word", label: "Word", slot: "primary" },
+  { id: "letter", label: "Letter", slot: "primary" },
+  { id: "name", label: "Name", slot: "translation" }
 ];
 // `slot` = which logical field this groups/sorts by; `unit` = the likeness
 // extractor for the slotting/grouping variants (han chars, kana units, or Latin

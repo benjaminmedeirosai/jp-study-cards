@@ -23,7 +23,8 @@
 // picker item.
 export const LANGUAGES = [
   { id: "japanese", label: "Japanese", short: "日本語" },
-  { id: "spanish", label: "Spanish", short: "ES" }
+  { id: "spanish", label: "Spanish", short: "ES" },
+  { id: "farsi", label: "Farsi", short: "فا" }
 ];
 
 // Each entry is a SCHEMA — the unit of independent state/modes/settings/card.
@@ -122,6 +123,60 @@ export const LIBRARIES = [
     modeIds: ["spanish", "english", "voice", "show-all"],
     groupingIds: ["primary-alpha", "primary-likeness-slotting", "primary-likeness-grouping"],
     features: { soundSource: false, gloss: false, texts: false }
+  },
+  {
+    // Farsi (Persian) words. RTL script — `rtl: true` flips the card text slots.
+    // The card render shows four rows (word / vocalized / romanization / meaning);
+    // vocalized is the harakat-marked form, shown at full emphasis (a distinct
+    // concept, not a dimmed reading) AND fed to TTS (falling back to the bare word
+    // for audio only — display stays blank when vocalized is empty).
+    id: "farsi",
+    label: "Farsi",
+    short: "فا",
+    language: "farsi",
+    schemaLabel: "Words",
+    data: "data/farsi/cards.json",
+    deckKind: "word",
+    rtl: true,
+    tts: { lang: "fa-IR", estimate: { source: "primary", msPerUnit: 90 } },
+    voiceSample: "سلام. این یک پیش‌نمایش صدا است.",
+    fields: { primary: "word", reading: "vocalized", translation: "meaning", type: "label", gloss: null },
+    labels: { primary: "Word", reading: "Vocalized" },
+    fontIds: ["default", "sys-sans", "sys-serif"],
+    modeIds: ["word", "english", "voice", "show-all"],
+    groupingIds: ["primary-alpha"],
+    // Single sound source (Settings, not per-card): speak the vocalized form,
+    // falling back to the bare word when it has no harakat marks.
+    soundSourceScope: "library",
+    soundSources: [{ value: "word", label: "Word", keys: ["vocalized", "word"] }],
+    searchKeys: ["word", "vocalized", "label", "meaning"],
+    features: { soundSource: false, gloss: false, texts: false }
+  },
+  {
+    // Farsi alphabet — its own schema. The card shows the letter big, its name
+    // (romanized + Persian), and a four-cell forms table (isolated/initial/medial/
+    // final) rendered specially. TTS speaks the Persian letter name (name_fa).
+    id: "farsi-alpha",
+    label: "Farsi Alphabet",
+    short: "ا ب پ",
+    language: "farsi",
+    schemaLabel: "Alphabet",
+    data: "data/farsi/cards.json",
+    deckKind: "alpha",
+    rtl: true,
+    tts: { lang: "fa-IR", estimate: { source: "reading", msPerUnit: 300 } },
+    voiceSample: "الف، بِ، پِ.",
+    fields: { primary: "isolated", reading: "name_fa", translation: "name", type: "index", gloss: null },
+    labels: { primary: "Letter", reading: "Name" },
+    fontIds: ["default", "sys-sans", "sys-serif"],
+    modeIds: ["letter", "name", "voice", "show-all"],
+    groupingIds: ["primary-alpha"],
+    soundSourceScope: "library",
+    soundSources: [{ value: "name", label: "Name", keys: ["name_fa"] }],
+    searchKeys: ["isolated", "name", "name_fa", "initial", "medial", "final"],
+    // formsTable: render the positional-forms table (the alphabet's analogue of
+    // the kanji breakdown area).
+    features: { soundSource: false, gloss: false, texts: false, formsTable: true }
   }
 ];
 

@@ -80,8 +80,13 @@ export function renderCardPage() {
   let state = loadState();
   // The library is fixed for this mount (switching it re-mounts via the router),
   // so the schema branch can be decided once here.
-  const schemaIsKanji = activeLibrary().deckKind === "kanji";
+  const lib = activeLibrary();
+  const schemaIsKanji = lib.deckKind === "kanji";
+  const schemaIsAlpha = lib.features?.formsTable === true;  // Farsi alphabet
+  const rtl = lib.rtl === true;                              // Farsi (RTL script)
   root.classList.toggle("kanji-schema", schemaIsKanji);
+  root.classList.toggle("alpha-schema", schemaIsAlpha);
+  root.classList.toggle("rtl-schema", rtl);
   root.classList.toggle("show-hotkeys", state.showHotkeys);
   let bundle = null;
   let deckCards = [];
@@ -165,7 +170,12 @@ export function renderCardPage() {
   cardEnglish.className = "card-slot card-english";
   const cardGloss = document.createElement("div");
   cardGloss.className = "card-slot card-gloss";
-  card.append(cardType, cardReading, cardMain, cardEnglish, cardGloss);
+  // Farsi alphabet uses a dedicated layout (its own absolutely-positioned canvas),
+  // not the five word slots — so it isn't contorted to fit the word card.
+  const cardAlpha = document.createElement("div");
+  cardAlpha.className = "card-alpha";
+  cardAlpha.hidden = true;
+  card.append(cardType, cardReading, cardMain, cardEnglish, cardGloss, cardAlpha);
 
   // --- Bottom tray: mini rail above 6 main buttons ------------------------
   const tray = document.createElement("section");
@@ -412,7 +422,8 @@ export function renderCardPage() {
     // per-field visibility toggles.
     const frontSlot = (MODES.find((m) => m.id === state.mode) || {}).slot;
     const showFront = revealed || state.mode === "show-all";
-    if (schemaIsKanji) renderKanjiSlots(entry, frontSlot, showFront);
+    if (schemaIsAlpha) renderFarsiAlphaSlots(entry, frontSlot, showFront);
+    else if (schemaIsKanji) renderKanjiSlots(entry, frontSlot, showFront);
     else renderWordSlots(entry, frontSlot, showFront);
     revealBtn.querySelector(".icon").innerHTML = revealed ? ICONS.eyeOff : ICONS.eye;
     revealBtn.setAttribute("aria-label", revealed ? "Hide answer" : "Reveal answer");
@@ -425,6 +436,11 @@ export function renderCardPage() {
     const reading = readingText(entry);
     const translation = translationText(entry);
     const type = typeText(entry);
+    // RTL languages (Farsi): the script slots read right-to-left. The translation
+    // (English) and type (romanization) stay LTR Latin, so only flip the script
+    // slots. Vocalized (reading) shows at full emphasis — see .rtl-schema CSS.
+    cardMain.dir = rtl ? "rtl" : "ltr";
+    cardReading.dir = rtl ? "rtl" : "ltr";
     const mainText = primary || reading || "-";
     cardType.textContent = type;
     cardMain.textContent = mainText;
@@ -478,6 +494,83 @@ export function renderCardPage() {
     el.addEventListener("click", () => openGlossMenu(char, gloss, el));
     return el;
   }
+  // --- Farsi alphabet card -------------------------------------------------
+  // Letter (primary), its name (Persian name_fa = reading + spoken, romanized
+  // name = translation), index in the type line, and a four-cell positional-
+  // forms table (isolated/initial/medial/final) in the breakdown area.
+  function formCell(entry, key, label, center) {
+    const value = text(entry, key);
+    const cell = document.createElement("div");
+    cell.className = `card-form-cell${center ? " card-form-center" : ""}`;
+    const glyph = document.createElement("div");
+    glyph.className = "card-form-glyph";
+    glyph.textContent = value || "—";
+    glyph.classList.toggle("card-form-empty", !value);
+    const tag = document.createElement("div");
+    tag.className = "card-form-label";
+    tag.textContent = label;
+    cell.append(glyph, tag);
+    return cell;
+  }
+  // Standalone centered on top (the letter itself), the three connecting forms
+  // in a row beneath. Each form gets a spot; non-joining letters show a — dash.
+  function formsTable(entry) {
+    const wrap = document.createElement("div");
+    wrap.className = "card-forms";
+    wrap.dir = "rtl";
+    const row = document.createElement("div");
+    row.className = "card-form-row";
+    row.dir = "rtl";
+    row.append(
+      formCell(entry, "initial", "initial"),
+      formCell(entry, "medial", "medial"),
+      formCell(entry, "final", "final")
+    );
+    wrap.append(formCell(entry, "isolated", "isolated", true), row);
+    return wrap;
+  }
+  function renderFarsiAlphaSlots(entry, frontSlot, showFront) {
+    // Dedicated canvas — hide the word/kanji slots entirely.
+    for (const slot of [cardType, cardReading, cardMain, cardEnglish, cardGloss]) setSlotVisible(slot, false);
+    cardAlpha.hidden = false;
+
+    const letter = text(entry, "isolated");
+    const nameFa = text(entry, "name_fa");
+    const nameRom = text(entry, "name");
+    const index = text(entry, "index");
+    // Letter mode prompts with the letter (recall the name); Name mode prompts
+    // with the name. Forms are reference, shown once revealed / in show-all.
+    const showLetter = showFront || frontSlot === "primary";
+    const showName = showFront || frontSlot === "translation";
+
+    const idx = document.createElement("div");
+    idx.className = "card-alpha-index";
+    idx.textContent = index ? `${index} / 32` : "";
+
+    const hero = document.createElement("div");
+    hero.className = "card-alpha-hero";
+    hero.dir = "rtl";
+    hero.textContent = letter || "-";
+    hero.style.visibility = showLetter ? "visible" : "hidden";
+
+    const name = document.createElement("div");
+    name.className = "card-alpha-name";
+    name.style.visibility = showName ? "visible" : "hidden";
+    const fa = document.createElement("span");
+    fa.className = "card-alpha-name-fa";
+    fa.dir = "rtl";
+    fa.textContent = nameFa;
+    const rom = document.createElement("span");
+    rom.className = "card-alpha-name-rom";
+    rom.textContent = nameRom;
+    name.append(fa, rom);
+
+    const forms = formsTable(entry);
+    forms.style.visibility = showFront ? "visible" : "hidden";
+
+    cardAlpha.replaceChildren(idx, hero, name, forms);
+  }
+
   function renderKanjiSlots(entry, frontSlot, showFront) {
     const character = text(entry, "kanji");
     const onyomi = text(entry, "onyomi");

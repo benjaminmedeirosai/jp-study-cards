@@ -57,7 +57,20 @@ const SCHEMAS = {
       }
     ]
   },
-  spanish: { headers: ["spanish", "type", "english"], optional: [], texts: false }
+  spanish: { headers: ["spanish", "type", "english"], optional: [], texts: false },
+  farsi: {
+    headers: ["word", "vocalized", "label", "meaning"],
+    optional: [],
+    texts: false,
+    subschemas: [
+      {
+        prefix: "alphabet/",
+        kind: "alpha",
+        headers: ["index", "isolated", "initial", "medial", "final", "name", "name_fa"],
+        optional: []
+      }
+    ]
+  }
 };
 const SENTENCE_HEADERS = ["japanese", "english"];
 
