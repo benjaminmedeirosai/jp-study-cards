@@ -1,34 +1,35 @@
 # label: Numbers
 # Farsi (Persian) — numbers 0–20, tens, hundred, thousand.
-# Columns: word / vocalized (blank = TTS speaks the word) / label (romanization) / meaning.
+# Columns: word / vocalized (harakat-marked reading, fed to TTS + shown as a
+# learning aid) / label (romanization) / meaning.
 word	vocalized	label	meaning
-صفر		sefr	zero
-یک		yek	one
-دو		do	two
-سه		se	three
-چهار		chahaar	four
-پنج		panj	five
-شش		shesh	six
-هفت		haft	seven
-هشت		hasht	eight
-نه		noh	nine
-ده		dah	ten
-یازده		yaazdah	eleven
-دوازده		davaazdah	twelve
-سیزده		sizdah	thirteen
-چهارده		chahaardah	fourteen
-پانزده		paanzdah	fifteen
-شانزده		shaanzdah	sixteen
-هفده		hefdah	seventeen
-هجده		hejdah	eighteen
-نوزده		nuzdah	nineteen
-بیست		bist	twenty
-سی		si	thirty
-چهل		chehel	forty
-پنجاه		panjaah	fifty
-شصت		shast	sixty
-هفتاد		haftaad	seventy
-هشتاد		hashtaad	eighty
-نود		navad	ninety
-صد		sad	hundred
-هزار		hezaar	thousand
+صفر	صِفْر	sefr	zero
+یک	یِک	yek	one
+دو	دو	do	two
+سه	سِه	se	three
+چهار	چَهار	chahaar	four
+پنج	پَنْج	panj	five
+شش	شِش	shesh	six
+هفت	هَفْت	haft	seven
+هشت	هَشْت	hasht	eight
+نه	نُه	noh	nine
+ده	دَه	dah	ten
+یازده	یازْدَه	yaazdah	eleven
+دوازده	دَوازْدَه	davaazdah	twelve
+سیزده	سیزْدَه	sizdah	thirteen
+چهارده	چَهارْدَه	chahaardah	fourteen
+پانزده	پانْزْدَه	paanzdah	fifteen
+شانزده	شانْزْدَه	shaanzdah	sixteen
+هفده	هِفْدَه	hefdah	seventeen
+هجده	هِجْدَه	hejdah	eighteen
+نوزده	نوزْدَه	nuzdah	nineteen
+بیست	بیسْت	bist	twenty
+سی	سی	si	thirty
+چهل	چِهِل	chehel	forty
+پنجاه	پَنْجاه	panjaah	fifty
+شصت	شَصْت	shast	sixty
+هفتاد	هَفْتاد	haftaad	seventy
+هشتاد	هَشْتاد	hashtaad	eighty
+نود	نَوَد	navad	ninety
+صد	صَد	sad	hundred
+هزار	هِزار	hezaar	thousand

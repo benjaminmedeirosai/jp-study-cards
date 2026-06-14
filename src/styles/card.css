@@ -409,6 +409,20 @@
   color: var(--muted);
 }
 
+/* Farsi word card stacks three lines under each other: word, then the vocalized
+   (harakat) reading, then the spaced isolated forms. Raise the word a little and
+   push the spaced line below the vocalized so they don't overlap. Scoped to the
+   RTL word card (alpha/harakat use their own canvas). */
+.rtl-schema .card-slot.card-main {
+  bottom: calc(64% - var(--japanese-main-font-size, 67px) * 0.51);
+}
+.rtl-schema .card-slot.card-reading {
+  top: calc(44% + var(--japanese-main-font-size, 67px) * 0.51);
+}
+.rtl-schema .card-spell {
+  top: calc(44% + var(--japanese-main-font-size, 67px) * 0.51 + 1.6em);
+}
+
 .card-slot.card-english {
   left: 18px;
   right: 18px;

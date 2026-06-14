@@ -510,7 +510,13 @@ export function renderCardPage() {
     cardSpell.textContent = letters.length > 1 ? letters.join(" ") : "";
     cardSpell.dir = "rtl";
     cardSpell.style.display = mainVisible && letters.length > 1 ? "block" : "none";
-    setSlotVisible(cardReading, (showFront ? state.visible.hiragana : frontSlot === "reading") && !!reading);
+    // Vocalized reading (Farsi): shown right under the word whenever the word is
+    // (it's a pronunciation aid for the same word). Japanese keeps its mode/
+    // reveal gating (hiragana mode shows it on the front; otherwise on reveal).
+    const readingVisible = rtl
+      ? (mainVisible && !!reading)
+      : ((showFront ? state.visible.hiragana : frontSlot === "reading") && !!reading);
+    setSlotVisible(cardReading, readingVisible);
     setSlotVisible(cardEnglish, (showFront ? state.visible.english : frontSlot === "translation") && !!translation);
     // Gloss: top-right, one line per kanji. Only for libraries with the gloss
     // feature, when the entry has a gloss and the answer is visible.

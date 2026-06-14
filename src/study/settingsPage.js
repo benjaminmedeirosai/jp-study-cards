@@ -579,7 +579,7 @@ export function renderSettingsPage() {
     fieldLabel("Voice speed", rateSelect),
     // Which reading to speak — only library-scope schemas (kanji); word schemas
     // choose per card on the tray.
-    ...(library.soundSourceScope === "library" && soundSourceOptions.length
+    ...(library.soundSourceScope === "library" && soundSourceOptions.length > 1
       ? [fieldLabel("Spoken reading", soundSourceSelect)] : []),
     ...(library.features.multiReading ? [allReadingsToggle.label] : []),
     sectionHeading("Offline audio"),
