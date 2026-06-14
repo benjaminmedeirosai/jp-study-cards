@@ -6,6 +6,9 @@
 // Clips are keyed by `${lang}::${entryKey}` — the card's intrinsic identity, so
 // playback looks them up without caring which deck view you're in.
 
+import { LIBRARIES } from "./libraries.js";
+import { audioSlug } from "./audioKey.js";
+
 const DB_NAME = "jp-study-audio";
 const STORE = "clips";
 const SEP = "::";
@@ -38,6 +41,18 @@ export function clipKey(lang, entryKey) {
   return `${lang}${SEP}${entryKey}`;
 }
 
+// The card-identity key for an entry under a SPECIFIC library's field mapping
+// (mirrors shared.js entryKey, but explicit about which library — used to match
+// clips for any deck, not just the active one).
+export function entryKeyFor(entry, lib) {
+  const f = lib.fields || {};
+  const t = (key) => (key ? String(entry?.[key] ?? "").trim() : "");
+  return [t(f.primary), t(f.reading), t(f.translation)].join("|");
+}
+export function clipKeyForEntry(entry, lib) {
+  return clipKey(lib.language, entryKeyFor(entry, lib));
+}
+
 export async function getClip(key) {
   try {
     const store = await tx("readonly");
@@ -64,6 +79,16 @@ export async function countClips(lang) {
   }
 }
 
+// Every stored clip key, as a Set — for tallying which entries have audio.
+export async function allClipKeys() {
+  try {
+    const store = await tx("readonly");
+    return new Set((await asPromise(store.getAllKeys())).map(String));
+  } catch {
+    return new Set();
+  }
+}
+
 export async function clearClips(lang) {
   const store = await tx("readwrite");
   const keys = await asPromise(store.getAllKeys());
@@ -73,6 +98,11 @@ export async function clearClips(lang) {
     if (String(k).startsWith(prefix)) { await asPromise(store.delete(k)); removed++; }
   }
   return removed;
+}
+
+export async function clearAllClips() {
+  const store = await tx("readwrite");
+  return asPromise(store.clear());
 }
 
 // Ask the browser to keep this storage from being evicted (best-effort).
@@ -129,4 +159,38 @@ export async function unzip(arrayBuffer) {
     out.push({ name, blob: new Blob([data], { type: "audio/mp4" }) });
   }
   return out;
+}
+
+// Import clips from a .zip (File or ArrayBuffer). Each entry path is the 1-1
+// mirror `<lang>/<deckId>/<slug>.m4a`; map it back to a card (via the shared
+// audioSlug) and store the blob under that card's identity key. Returns
+// { matched, unmatched }.
+export async function importAudioZip(fileOrBuffer) {
+  const buffer = fileOrBuffer instanceof Blob ? await fileOrBuffer.arrayBuffer() : fileOrBuffer;
+  const entries = (await unzip(buffer)).filter((e) => /\.m4a$/i.test(e.name));
+  const byLang = new Map();
+  for (const item of entries) {
+    const lang = item.name.split("/")[0];
+    if (!byLang.has(lang)) byLang.set(lang, []);
+    byLang.get(lang).push(item);
+  }
+  let matched = 0, unmatched = 0;
+  for (const [lang, items] of byLang) {
+    let bundle;
+    try { bundle = await (await fetch(`data/${lang}/cards.json`)).json(); }
+    catch { unmatched += items.length; continue; }
+    const deckById = new Map(bundle.decks.map((d) => [d.id, d]));
+    for (const { name, blob } of items) {
+      const segs = name.split("/");
+      const slug = segs[segs.length - 1].replace(/\.[^.]+$/, "");
+      const deckId = segs.slice(1, -1).join("/");
+      const deck = deckById.get(deckId);
+      const lib = deck && LIBRARIES.find((l) => l.language === lang && l.deckKind === (deck.kind || "word"));
+      const entry = lib && deck.entries.find((e) => audioSlug(e, lib) === slug);
+      if (!entry) { unmatched++; continue; }
+      await putClip(clipKeyForEntry(entry, lib), blob);
+      matched++;
+    }
+  }
+  return { matched, unmatched };
 }

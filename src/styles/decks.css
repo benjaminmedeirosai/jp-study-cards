@@ -183,7 +183,40 @@
 /* Indent the schema rows so they read as belonging to the language above. */
 .deck-entry.library-schema-entry { margin-left: 18px; }
 
+/* Schema row: label on top, a small meta line (totals + audio tally) under it. */
+.library-schema-row {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 3px;
+}
 .library-schema-row .deck-row-label { font-weight: 500; }
+.library-schema-meta {
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--muted);
+}
+.library-schema-meta.full-audio { color: #4ade80; }      /* fully imported */
+.library-schema-meta.partial-audio { color: rgb(250, 204, 21); } /* partial */
+
+/* Audio import bar (top of the library page). */
+.library-page { grid-template-rows: auto auto minmax(0, 1fr); }
+.library-import {
+  width: min(100%, 520px);
+  margin: 0 auto 4px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.library-import .settings-button {
+  flex: 0 0 auto;
+  padding: 0 14px;
+  min-height: 36px;
+}
+.library-import-status {
+  font-size: 13px;
+  color: var(--muted);
+}
 
 .deck-icon {
   flex: 0 0 auto;

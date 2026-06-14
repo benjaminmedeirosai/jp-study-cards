@@ -2,9 +2,7 @@ import { activeSetGrouping, computeDeckSets } from "./sets.js";
 import { speak, getVoicesForLang, onVoicesChanged } from "./speech.js";
 import { historyDropdown, getFilterHistory, formatDuration, formatAgo } from "./filters.js";
 import { closeOverlay } from "./router.js";
-import { schemaCaption, LIBRARIES } from "./libraries.js";
-import { unzip, putClip, clipKey, countClips, clearClips, requestPersist } from "./audioStore.js";
-import { audioSlug } from "./audioKey.js";
+import { schemaCaption } from "./libraries.js";
 
 const VOICE_SAMPLE = "こんにちは。これは音声のプレビューです。";
 import {
@@ -87,47 +85,6 @@ async function loadActiveDeckCards(state) {
   const bundle = await loadBundle();
   const deck = resolveDeck(bundle, state.deckId);
   return deck ? deck.entries : [];
-}
-
-// The card-identity key for an entry under a SPECIFIC library's field mapping
-// (mirrors shared.js entryKey, but explicit about which library — the importer
-// handles clips for any deck, not just the active one).
-function entryKeyFor(entry, lib) {
-  const f = lib.fields || {};
-  const t = (key) => (key ? String(entry?.[key] ?? "").trim() : "");
-  return [t(f.primary), t(f.reading), t(f.translation)].join("|");
-}
-
-// Import audio clips from an unzipped list of { name, blob }. Each name is the
-// 1-1 mirror path `<lang>/<deckId>/<slug>.m4a`; map it back to a card (via the
-// shared audioSlug) and store the blob under that card's identity key.
-async function importAudioZip(entries) {
-  const byLang = new Map();
-  for (const item of entries) {
-    if (!/\.m4a$/i.test(item.name)) continue;
-    const lang = item.name.split("/")[0];
-    if (!byLang.has(lang)) byLang.set(lang, []);
-    byLang.get(lang).push(item);
-  }
-  let matched = 0, unmatched = 0;
-  for (const [lang, items] of byLang) {
-    let bundle;
-    try { bundle = await (await fetch(`data/${lang}/cards.json`)).json(); }
-    catch { unmatched += items.length; continue; }
-    const deckById = new Map(bundle.decks.map((d) => [d.id, d]));
-    for (const { name, blob } of items) {
-      const segs = name.split("/");
-      const slug = segs[segs.length - 1].replace(/\.[^.]+$/, "");
-      const deckId = segs.slice(1, -1).join("/");
-      const deck = deckById.get(deckId);
-      const lib = deck && LIBRARIES.find((l) => l.language === lang && l.deckKind === (deck.kind || "word"));
-      const entry = lib && deck.entries.find((e) => audioSlug(e, lib) === slug);
-      if (!entry) { unmatched++; continue; }
-      await putClip(clipKey(lang, entryKeyFor(entry, lib)), blob);
-      matched++;
-    }
-  }
-  return { matched, unmatched };
 }
 
 export function renderSettingsPage() {
@@ -514,49 +471,6 @@ export function renderSettingsPage() {
   // The gloss toggle only applies to libraries with the gloss feature (Japanese).
   visibilityGroup.append(hotkeyToggle.label, ...(activeLibrary().features.gloss ? [glossToggle.label] : []));
 
-  // --- Offline audio: import generated TTS clips (for devices without the
-  // language's system voice). One .zip populates every deck it contains.
-  const audioStatus = document.createElement("div");
-  audioStatus.className = "audio-status";
-  const audioInput = document.createElement("input");
-  audioInput.type = "file";
-  audioInput.accept = ".zip,application/zip";
-  audioInput.hidden = true;
-  const audioImportBtn = button("Import audio (.zip)", "settings-button");
-  const audioClearBtn = button("Clear", "settings-button");
-  const audioRow = document.createElement("div");
-  audioRow.className = "audio-row";
-  audioRow.append(audioImportBtn, audioClearBtn, audioInput);
-  const audioField = document.createElement("div");
-  audioField.className = "study-field audio-field";
-  audioField.append(audioStatus, audioRow);
-
-  async function refreshAudioStatus(extra) {
-    const n = await countClips(activeLibrary().language);
-    audioClearBtn.style.display = n ? "" : "none";
-    audioStatus.textContent = extra
-      || (n ? `${n} clip${n === 1 ? "" : "s"} stored for ${activeLibrary().label}` : "No offline audio imported");
-  }
-  audioImportBtn.addEventListener("click", () => audioInput.click());
-  audioInput.addEventListener("change", async () => {
-    const file = audioInput.files[0];
-    audioInput.value = "";
-    if (!file) return;
-    audioStatus.textContent = "Importing…";
-    try {
-      await requestPersist();
-      const { matched, unmatched } = await importAudioZip(await unzip(await file.arrayBuffer()));
-      await refreshAudioStatus(`Imported ${matched} clip${matched === 1 ? "" : "s"}${unmatched ? ` · ${unmatched} unmatched` : ""}`);
-    } catch (err) {
-      audioStatus.textContent = `Import failed: ${err.message}`;
-    }
-  });
-  audioClearBtn.addEventListener("click", async () => {
-    const removed = await clearClips(activeLibrary().language);
-    await refreshAudioStatus(`Cleared ${removed} clip${removed === 1 ? "" : "s"}`);
-  });
-  refreshAudioStatus();
-
   content.append(
     sectionHeading("Filter & sets"),
     queryField,
@@ -582,8 +496,6 @@ export function renderSettingsPage() {
     ...(library.soundSourceScope === "library" && soundSourceOptions.length > 1
       ? [fieldLabel("Spoken reading", soundSourceSelect)] : []),
     ...(library.features.multiReading ? [allReadingsToggle.label] : []),
-    sectionHeading("Offline audio"),
-    audioField,
     sectionHeading("Autoplay"),
     makePresetField("Question delay (sec)", questionDelayInput, [0.5, 1, 1.5, 2, 3]),
     makePresetField("Answer delay (sec)", answerDelayInput, [0.5, 1, 1.5, 2, 3]),

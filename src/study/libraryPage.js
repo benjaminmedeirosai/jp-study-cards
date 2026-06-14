@@ -2,13 +2,22 @@
 // schema within it (Japanese → Words / Kanji; Spanish → Words). Mirrors the deck
 // page's shell + list styling. Selecting a schema switches the active one and
 // returns to the cards view.
+//
+// This page is also where offline audio is imported: one .zip populates every
+// deck it covers, and each schema row shows its total entries + how many have
+// an audio clip.
 
 import { loadState, button } from "./shared.js";
 import { libraryGroups } from "./libraries.js";
 import { chooseLibrary, closeOverlay } from "./router.js";
+import { importAudioZip, clipKeyForEntry, allClipKeys, clearAllClips, requestPersist } from "./audioStore.js";
+
+// Per-schema noun for the entry count.
+const KIND_NOUN = { word: "words", kanji: "kanji", alpha: "letters", harakat: "marks" };
 
 export function renderLibraryPage() {
   const state = loadState();
+  const groups = libraryGroups();
 
   const root = document.createElement("section");
   root.className = "study-page decks-page library-page";
@@ -22,11 +31,26 @@ export function renderLibraryPage() {
   title.textContent = "Library";
   top.append(backBtn, title);
 
+  // Offline-audio import bar.
+  const importBar = document.createElement("div");
+  importBar.className = "library-import";
+  const importInput = document.createElement("input");
+  importInput.type = "file";
+  importInput.accept = ".zip,application/zip";
+  importInput.hidden = true;
+  const importBtn = button("Import audio (.zip)", "settings-button");
+  const clearBtn = button("Clear all", "settings-button");
+  const importStatus = document.createElement("span");
+  importStatus.className = "library-import-status";
+  importBar.append(importBtn, clearBtn, importStatus, importInput);
+
   const list = document.createElement("div");
   list.className = "decks-list";
 
-  // One section per language; its schemas are the selectable rows beneath it.
-  for (const { language, schemas } of libraryGroups()) {
+  // schema id → its meta element (filled async once bundles + clip keys load).
+  const metaEls = new Map();
+
+  for (const { language, schemas } of groups) {
     const header = document.createElement("div");
     header.className = "library-language";
     const shortEl = document.createElement("span");
@@ -46,7 +70,10 @@ export function renderLibraryPage() {
       const labelEl = document.createElement("span");
       labelEl.className = "deck-row-label";
       labelEl.textContent = library.schemaLabel;
-      row.append(labelEl);
+      const metaEl = document.createElement("span");
+      metaEl.className = "library-schema-meta";
+      metaEls.set(library.id, metaEl);
+      row.append(labelEl, metaEl);
 
       const use = document.createElement("button");
       use.type = "button";
@@ -62,7 +89,55 @@ export function renderLibraryPage() {
     }
   }
 
-  root.append(top, list);
+  root.append(top, importBar, list);
+
+  // --- Per-schema totals + audio tally ------------------------------------
+  async function refreshMeta() {
+    const keySet = await allClipKeys();
+    for (const { schemas } of groups) {
+      let bundle = null;
+      try { bundle = await (await fetch(schemas[0].data)).json(); } catch {}
+      for (const lib of schemas) {
+        const el = metaEls.get(lib.id);
+        if (!el) continue;
+        if (!bundle) { el.textContent = ""; continue; }
+        const entries = bundle.decks
+          .filter((d) => (d.kind || "word") === lib.deckKind)
+          .flatMap((d) => d.entries);
+        const total = entries.length;
+        const audio = entries.reduce((n, e) => n + (keySet.has(clipKeyForEntry(e, lib)) ? 1 : 0), 0);
+        const noun = KIND_NOUN[lib.deckKind] || "cards";
+        const audioPart = total === 0 ? "" : (audio === 0 ? " · no audio" : ` · audio ${audio}/${total}`);
+        el.textContent = `${total} ${noun}${audioPart}`;
+        el.classList.toggle("full-audio", total > 0 && audio === total);
+        el.classList.toggle("partial-audio", audio > 0 && audio < total);
+      }
+    }
+  }
+
+  // --- Import wiring -------------------------------------------------------
+  importBtn.addEventListener("click", () => importInput.click());
+  importInput.addEventListener("change", async () => {
+    const file = importInput.files[0];
+    importInput.value = "";
+    if (!file) return;
+    importStatus.textContent = "Importing…";
+    try {
+      await requestPersist();
+      const { matched, unmatched } = await importAudioZip(file);
+      importStatus.textContent = `Imported ${matched} clip${matched === 1 ? "" : "s"}${unmatched ? ` · ${unmatched} unmatched` : ""}`;
+      await refreshMeta();
+    } catch (err) {
+      importStatus.textContent = `Import failed: ${err.message}`;
+    }
+  });
+  clearBtn.addEventListener("click", async () => {
+    await clearAllClips();
+    importStatus.textContent = "Cleared all audio";
+    await refreshMeta();
+  });
+
+  refreshMeta();
 
   backBtn.addEventListener("click", closeOverlay);
 
