@@ -1,28 +1,28 @@
 # label: Body
 # Farsi (Persian) — parts of the body.
-# Columns: word / vocalized (blank = TTS speaks the word) / label (romanization) / meaning.
+# Columns: word / vocalized (harakat-marked reading, for TTS + learning) / label (romanization) / meaning.
 word	vocalized	label	meaning
-بدن		badan	body
-سر		sar	head
-مو		mu	hair
-صورت		surat	face
-چشم		cheshm	eye
-ابرو		abru	eyebrow
-گوش		gush	ear
-بینی		bini	nose
-دهان		dahaan	mouth
-لب		lab	lip
-دندان		dandaan	tooth
-زبان		zabaan	tongue
-گردن		gardan	neck
-شانه		shaane	shoulder
-دست		dast	hand / arm
-انگشت		angosht	finger
-پا		paa	foot / leg
-زانو		zaanu	knee
-قلب		ghalb	heart
-شکم		shekam	stomach
-پشت		posht	back
-پوست		pust	skin
-خون		khun	blood
-استخوان		ostokhaan	bone
+بدن	بَدَن	badan	body
+سر	سَر	sar	head
+مو	مو	mu	hair
+صورت	صورَت	surat	face
+چشم	چِشْم	cheshm	eye
+ابرو	اَبْرو	abru	eyebrow
+گوش	گوش	gush	ear
+بینی	بینی	bini	nose
+دهان	دَهان	dahaan	mouth
+لب	لَب	lab	lip
+دندان	دَنْدان	dandaan	tooth
+زبان	زَبان	zabaan	tongue
+گردن	گَرْدَن	gardan	neck
+شانه	شانِه	shaane	shoulder
+دست	دَسْت	dast	hand / arm
+انگشت	اَنْگُشْت	angosht	finger
+پا	پا	paa	foot / leg
+زانو	زانو	zaanu	knee
+قلب	قَلْب	ghalb	heart
+شکم	شِکَم	shekam	stomach
+پشت	پُشْت	posht	back
+پوست	پوسْت	pust	skin
+خون	خون	khun	blood
+استخوان	اُسْتُخوان	ostokhaan	bone

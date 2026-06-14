@@ -1,21 +1,21 @@
 # label: Colors
 # Farsi (Persian) — colors.
-# Columns: word / vocalized (blank = TTS speaks the word) / label (romanization) / meaning.
+# Columns: word / vocalized (harakat-marked reading, for TTS + learning) / label (romanization) / meaning.
 word	vocalized	label	meaning
-رنگ		rang	color
-قرمز		ghermez	red
-آبی		aabi	blue
-سبز		sabz	green
-زرد		zard	yellow
-سفید		sefid	white
-سیاه		siyaah	black
-مشکی		meshki	black
-نارنجی		naarenji	orange
-بنفش		banafsh	purple
-صورتی		surati	pink
-قهوه‌ای		ghahve'i	brown
-خاکستری		khaakestari	gray
-طلایی		talaayi	gold
-نقره‌ای		noghre'i	silver
-روشن		roshan	light / bright
-تیره		tire	dark
+رنگ	رَنْگ	rang	color
+قرمز	قِرْمِز	ghermez	red
+آبی	آبی	aabi	blue
+سبز	سَبْز	sabz	green
+زرد	زَرْد	zard	yellow
+سفید	سِفید	sefid	white
+سیاه	سیاه	siyaah	black
+مشکی	مِشْکی	meshki	black
+نارنجی	نارَنْجی	naarenji	orange
+بنفش	بَنَفْش	banafsh	purple
+صورتی	صورَتی	surati	pink
+قهوه‌ای	قَهْوِه‌ای	ghahve'i	brown
+خاکستری	خاکِسْتَری	khaakestari	gray
+طلایی	طَلایی	talaayi	gold
+نقره‌ای	نُقْرِه‌ای	noghre'i	silver
+روشن	روشَن	roshan	light / bright
+تیره	تیرِه	tire	dark

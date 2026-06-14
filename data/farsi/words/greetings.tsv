@@ -1,24 +1,24 @@
 # label: Greetings & Phrases
 # Farsi (Persian) — everyday greetings and polite phrases.
-# Columns: word / vocalized (blank = TTS speaks the word) / label (romanization) / meaning.
+# Columns: word / vocalized (harakat-marked reading, for TTS + learning) / label (romanization) / meaning.
 word	vocalized	label	meaning
-سلام		salaam	hello
-خداحافظ		khodaahaafez	goodbye
-بله		bale	yes
-نه		na	no
-ممنون		mamnun	thank you
-متشکرم		moteshakkeram	thank you
-خواهش می‌کنم		khaahesh mikonam	you're welcome
-لطفاً		lotfan	please
-ببخشید		bebakhshid	excuse me / sorry
-صبح بخیر		sobh bekheyr	good morning
-شب بخیر		shab bekheyr	good night
-خوش آمدید		khosh aamadid	welcome
-بفرمایید		befarmaayid	here you are
-چطوری		chetori	how are you?
-خوبم		khubam	I'm fine
-خوشبختم		khoshbakhtam	nice to meet you
-اسم		esm	name
-خوب		khub	good / well
-شاید		shaayad	maybe
-حتماً		hatman	of course
+سلام	سَلام	salaam	hello
+خداحافظ	خُداحافِظ	khodaahaafez	goodbye
+بله	بَلِه	bale	yes
+نه	نَه	na	no
+ممنون	مَمْنون	mamnun	thank you
+متشکرم	مُتِشَکِّرَم	moteshakkeram	thank you
+خواهش می‌کنم	خواهِش می‌کُنَم	khaahesh mikonam	you're welcome
+لطفاً	لُطْفاً	lotfan	please
+ببخشید	بِبَخْشید	bebakhshid	excuse me / sorry
+صبح بخیر	صُبْح بِخِیر	sobh bekheyr	good morning
+شب بخیر	شَب بِخِیر	shab bekheyr	good night
+خوش آمدید	خوش آمَدید	khosh aamadid	welcome
+بفرمایید	بِفَرْمایید	befarmaayid	here you are
+چطوری	چِطوری	chetori	how are you?
+خوبم	خوبَم	khubam	I'm fine
+خوشبختم	خوشْبَخْتَم	khoshbakhtam	nice to meet you
+اسم	اِسْم	esm	name
+خوب	خوب	khub	good / well
+شاید	شایَد	shaayad	maybe
+حتماً	حَتْماً	hatman	of course

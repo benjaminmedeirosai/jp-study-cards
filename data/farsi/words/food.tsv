@@ -1,34 +1,34 @@
 # label: Food & Drink
 # Farsi (Persian) — food, drink, and meals.
-# Columns: word / vocalized (blank = TTS speaks the word) / label (romanization) / meaning.
+# Columns: word / vocalized (harakat-marked reading, for TTS + learning) / label (romanization) / meaning.
 word	vocalized	label	meaning
-غذا		ghazaa	food
-آب		aab	water
-نان		naan	bread
-چای		chaay	tea
-قهوه		ghahve	coffee
-شیر		shir	milk
-برنج		berenj	rice
-گوشت		gusht	meat
-مرغ		morgh	chicken
-ماهی		maahi	fish
-تخم‌مرغ		tokhm-e-morgh	egg
-پنیر		panir	cheese
-کره		kare	butter
-سیب‌زمینی		sib-zamini	potato
-گوجه‌فرنگی		goje-farangi	tomato
-پیاز		piyaaz	onion
-سبزی		sabzi	herbs / greens
-میوه		mive	fruit
-سیب		sib	apple
-پرتقال		porteghaal	orange
-موز		moz	banana
-انگور		angur	grapes
-هندوانه		hendevaane	watermelon
-نمک		namak	salt
-شکر		shekar	sugar
-روغن		roghan	oil
-شیرینی		shirini	sweets / pastry
-صبحانه		sobhaane	breakfast
-ناهار		naahaar	lunch
-شام		shaam	dinner
+غذا	غَذا	ghazaa	food
+آب	آب	aab	water
+نان	نان	naan	bread
+چای	چای	chaay	tea
+قهوه	قَهْوِه	ghahve	coffee
+شیر	شیر	shir	milk
+برنج	بِرِنْج	berenj	rice
+گوشت	گوشْت	gusht	meat
+مرغ	مُرْغ	morgh	chicken
+ماهی	ماهی	maahi	fish
+تخم‌مرغ	تُخْمِ‌مُرْغ	tokhm-e-morgh	egg
+پنیر	پَنیر	panir	cheese
+کره	کَرِه	kare	butter
+سیب‌زمینی	سیبْ‌زَمینی	sib-zamini	potato
+گوجه‌فرنگی	گوجِه‌فَرَنْگی	goje-farangi	tomato
+پیاز	پیاز	piyaaz	onion
+سبزی	سَبْزی	sabzi	herbs / greens
+میوه	میوِه	mive	fruit
+سیب	سیب	sib	apple
+پرتقال	پُرْتُقال	porteghaal	orange
+موز	موز	moz	banana
+انگور	اَنْگور	angur	grapes
+هندوانه	هِنْدِوانِه	hendevaane	watermelon
+نمک	نَمَک	namak	salt
+شکر	شِکَر	shekar	sugar
+روغن	روغَن	roghan	oil
+شیرینی	شیرینی	shirini	sweets / pastry
+صبحانه	صُبْحانِه	sobhaane	breakfast
+ناهار	ناهار	naahaar	lunch
+شام	شام	shaam	dinner

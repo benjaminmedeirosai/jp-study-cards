@@ -1,30 +1,30 @@
 # label: Places & Travel
 # Farsi (Persian) — places around town and ways to get around.
-# Columns: word / vocalized (blank = TTS speaks the word) / label (romanization) / meaning.
+# Columns: word / vocalized (harakat-marked reading, for TTS + learning) / label (romanization) / meaning.
 word	vocalized	label	meaning
-شهر		shahr	city
-روستا		rustaa	village
-خیابان		khiyaabaan	street
-کوچه		kuche	alley
-مغازه		maghaaze	shop
-بازار		baazaar	market / bazaar
-رستوران		restoraan	restaurant
-هتل		hotel	hotel
-بیمارستان		bimaarestaan	hospital
-مدرسه		madrese	school
-دانشگاه		daaneshgaah	university
-کتابخانه		ketaabkhaane	library
-فرودگاه		forudgaah	airport
-ایستگاه		istgaah	station
-بانک		baank	bank
-پارک		paark	park
-مسجد		masjed	mosque
-ماشین		maashin	car
-اتوبوس		otobus	bus
-قطار		ghataar	train
-هواپیما		havaapeymaa	airplane
-دوچرخه		docharkhe	bicycle
-راه		raah	road / way
-نقشه		naghshe	map
-بلیط		belit	ticket
-سفر		safar	trip / journey
+شهر	شَهْر	shahr	city
+روستا	روسْتا	rustaa	village
+خیابان	خیابان	khiyaabaan	street
+کوچه	کوچِه	kuche	alley
+مغازه	مَغازِه	maghaaze	shop
+بازار	بازار	baazaar	market / bazaar
+رستوران	رِسْتوران	restoraan	restaurant
+هتل	هُتِل	hotel	hotel
+بیمارستان	بیمارِسْتان	bimaarestaan	hospital
+مدرسه	مَدْرِسِه	madrese	school
+دانشگاه	دانِشْگاه	daaneshgaah	university
+کتابخانه	کِتابْخانِه	ketaabkhaane	library
+فرودگاه	فُرودْگاه	forudgaah	airport
+ایستگاه	ایسْتْگاه	istgaah	station
+بانک	بانْک	baank	bank
+پارک	پارْک	paark	park
+مسجد	مَسْجِد	masjed	mosque
+ماشین	ماشین	maashin	car
+اتوبوس	اُتوبوس	otobus	bus
+قطار	قَطار	ghataar	train
+هواپیما	هَواپِیما	havaapeymaa	airplane
+دوچرخه	دوچَرْخِه	docharkhe	bicycle
+راه	راه	raah	road / way
+نقشه	نَقْشِه	naghshe	map
+بلیط	بِلیط	belit	ticket
+سفر	سَفَر	safar	trip / journey

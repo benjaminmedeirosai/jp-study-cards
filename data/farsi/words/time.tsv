@@ -1,28 +1,28 @@
 # label: Time & Days
 # Farsi (Persian) — time words and days of the week.
-# Columns: word / vocalized (blank = TTS speaks the word) / label (romanization) / meaning.
+# Columns: word / vocalized (harakat-marked reading, for TTS + learning) / label (romanization) / meaning.
 word	vocalized	label	meaning
-زمان		zamaan	time
-روز		ruz	day
-شب		shab	night
-صبح		sobh	morning
-ظهر		zohr	noon
-عصر		asr	late afternoon
-هفته		hafte	week
-ماه		maah	month / moon
-سال		saal	year
-ساعت		saaat	hour / clock
-دقیقه		daghighe	minute
-ثانیه		saaniye	second
-امروز		emruz	today
-فردا		fardaa	tomorrow
-دیروز		diruz	yesterday
-امشب		emshab	tonight
-الان		alaan	now
-شنبه		shanbe	Saturday
-یکشنبه		yekshanbe	Sunday
-دوشنبه		doshanbe	Monday
-سه‌شنبه		seshanbe	Tuesday
-چهارشنبه		chahaarshanbe	Wednesday
-پنجشنبه		panjshanbe	Thursday
-جمعه		jome	Friday
+زمان	زَمان	zamaan	time
+روز	روز	ruz	day
+شب	شَب	shab	night
+صبح	صُبْح	sobh	morning
+ظهر	ظُهْر	zohr	noon
+عصر	عَصْر	asr	late afternoon
+هفته	هَفْتِه	hafte	week
+ماه	ماه	maah	month / moon
+سال	سال	saal	year
+ساعت	ساعَت	saaat	hour / clock
+دقیقه	دَقیقِه	daghighe	minute
+ثانیه	ثانیِه	saaniye	second
+امروز	اِمْروز	emruz	today
+فردا	فَرْدا	fardaa	tomorrow
+دیروز	دیروز	diruz	yesterday
+امشب	اِمْشَب	emshab	tonight
+الان	اَلان	alaan	now
+شنبه	شَنْبِه	shanbe	Saturday
+یکشنبه	یِکْشَنْبِه	yekshanbe	Sunday
+دوشنبه	دوشَنْبِه	doshanbe	Monday
+سه‌شنبه	سِه‌شَنْبِه	seshanbe	Tuesday
+چهارشنبه	چَهارْشَنْبِه	chahaarshanbe	Wednesday
+پنجشنبه	پَنْجْشَنْبِه	panjshanbe	Thursday
+جمعه	جُمْعِه	jome	Friday

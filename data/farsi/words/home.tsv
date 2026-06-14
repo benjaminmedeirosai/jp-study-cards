@@ -1,30 +1,30 @@
 # label: Home & Objects
 # Farsi (Persian) — the home and everyday objects.
-# Columns: word / vocalized (blank = TTS speaks the word) / label (romanization) / meaning.
+# Columns: word / vocalized (harakat-marked reading, for TTS + learning) / label (romanization) / meaning.
 word	vocalized	label	meaning
-خانه		khaane	house / home
-در		dar	door
-پنجره		panjere	window
-اتاق		otaagh	room
-آشپزخانه		aashpazkhaane	kitchen
-حمام		hammaam	bathroom
-میز		miz	table / desk
-صندلی		sandali	chair
-تخت		takht	bed
-مبل		mobl	sofa
-یخچال		yakhchaal	refrigerator
-تلویزیون		televizion	television
-کتاب		ketaab	book
-دفتر		daftar	notebook
-قلم		ghalam	pen
-کلید		kelid	key
-تلفن		telefon	telephone
-ساعت		saaat	clock / watch
-لباس		lebaas	clothes
-کفش		kafsh	shoe
-آینه		aayene	mirror
-چراغ		cheraagh	lamp / light
-فرش		farsh	carpet
-دیوار		divaar	wall
-پول		pul	money
-کیف		kif	bag
+خانه	خانِه	khaane	house / home
+در	دَر	dar	door
+پنجره	پَنْجِرِه	panjere	window
+اتاق	اُتاق	otaagh	room
+آشپزخانه	آشْپَزْخانِه	aashpazkhaane	kitchen
+حمام	حَمّام	hammaam	bathroom
+میز	میز	miz	table / desk
+صندلی	صَنْدَلی	sandali	chair
+تخت	تَخْت	takht	bed
+مبل	مُبْل	mobl	sofa
+یخچال	یَخْچال	yakhchaal	refrigerator
+تلویزیون	تِلِویزْیون	televizion	television
+کتاب	کِتاب	ketaab	book
+دفتر	دَفْتَر	daftar	notebook
+قلم	قَلَم	ghalam	pen
+کلید	کِلید	kelid	key
+تلفن	تِلِفُن	telefon	telephone
+ساعت	ساعَت	saaat	clock / watch
+لباس	لِباس	lebaas	clothes
+کفش	کَفْش	kafsh	shoe
+آینه	آیِنِه	aayene	mirror
+چراغ	چِراغ	cheraagh	lamp / light
+فرش	فَرْش	farsh	carpet
+دیوار	دیوار	divaar	wall
+پول	پول	pul	money
+کیف	کیف	kif	bag

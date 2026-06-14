@@ -1,25 +1,25 @@
 # label: Family
 # Farsi (Persian) — family members and relations.
-# Columns: word / vocalized (blank = TTS speaks the word) / label (romanization) / meaning.
+# Columns: word / vocalized (harakat-marked reading, for TTS + learning) / label (romanization) / meaning.
 word	vocalized	label	meaning
-خانواده		khaanevaade	family
-پدر		pedar	father
-مادر		maadar	mother
-برادر		baraadar	brother
-خواهر		khaahar	sister
-پسر		pesar	son / boy
-دختر		dokhtar	daughter / girl
-بچه		bachche	child
-همسر		hamsar	spouse
-شوهر		shohar	husband
-زن		zan	wife / woman
-پدربزرگ		pedarbozorg	grandfather
-مادربزرگ		maadarbozorg	grandmother
-نوه		nave	grandchild
-عمو		amu	uncle (father's side)
-دایی		daayi	uncle (mother's side)
-عمه		amme	aunt (father's side)
-خاله		khaale	aunt (mother's side)
-پسرعمو		pesar-amu	cousin (male)
-دخترعمو		dokhtar-amu	cousin (female)
-دوست		dust	friend
+خانواده	خانِوادِه	khaanevaade	family
+پدر	پِدَر	pedar	father
+مادر	مادَر	maadar	mother
+برادر	بَرادَر	baraadar	brother
+خواهر	خواهَر	khaahar	sister
+پسر	پِسَر	pesar	son / boy
+دختر	دُخْتَر	dokhtar	daughter / girl
+بچه	بَچِّه	bachche	child
+همسر	هَمْسَر	hamsar	spouse
+شوهر	شوهَر	shohar	husband
+زن	زَن	zan	wife / woman
+پدربزرگ	پِدَرْبُزُرْگ	pedarbozorg	grandfather
+مادربزرگ	مادَرْبُزُرْگ	maadarbozorg	grandmother
+نوه	نَوِه	nave	grandchild
+عمو	عَمو	amu	uncle (father's side)
+دایی	دایی	daayi	uncle (mother's side)
+عمه	عَمِّه	amme	aunt (father's side)
+خاله	خالِه	khaale	aunt (mother's side)
+پسرعمو	پِسَرْعَمو	pesar-amu	cousin (male)
+دخترعمو	دُخْتَرْعَمو	dokhtar-amu	cousin (female)
+دوست	دوسْت	dust	friend

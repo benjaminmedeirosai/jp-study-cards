@@ -1,34 +1,34 @@
 # label: Common Verbs
 # Farsi (Persian) — common verbs (dictionary/infinitive form, ending in -an/-dan/-tan).
-# Columns: word / vocalized (blank = TTS speaks the word) / label (romanization) / meaning.
+# Columns: word / vocalized (harakat-marked reading, for TTS + learning) / label (romanization) / meaning.
 word	vocalized	label	meaning
-بودن		budan	to be
-داشتن		daashtan	to have
-رفتن		raftan	to go
-آمدن		aamadan	to come
-کردن		kardan	to do / make
-شدن		shodan	to become
-گفتن		goftan	to say
-دیدن		didan	to see
-خوردن		khordan	to eat
-نوشیدن		nushidan	to drink
-خواستن		khaastan	to want
-دانستن		daanestan	to know
-توانستن		tavaanestan	to be able
-دادن		daadan	to give
-گرفتن		gereftan	to take / get
-خواندن		khaandan	to read / study
-نوشتن		neveshtan	to write
-شنیدن		shenidan	to hear
-خوابیدن		khaabidan	to sleep
-خریدن		kharidan	to buy
-فروختن		forukhtan	to sell
-آوردن		aavordan	to bring
-بردن		bordan	to take away
-زدن		zadan	to hit / strike
-ایستادن		istaadan	to stand
-نشستن		neshastan	to sit
-فهمیدن		fahmidan	to understand
-حرف زدن		harf zadan	to talk
-کار کردن		kaar kardan	to work
-بازی کردن		baazi kardan	to play
+بودن	بودَن	budan	to be
+داشتن	داشْتَن	daashtan	to have
+رفتن	رَفْتَن	raftan	to go
+آمدن	آمَدَن	aamadan	to come
+کردن	کَرْدَن	kardan	to do / make
+شدن	شُدَن	shodan	to become
+گفتن	گُفْتَن	goftan	to say
+دیدن	دیدَن	didan	to see
+خوردن	خوردَن	khordan	to eat
+نوشیدن	نوشیدَن	nushidan	to drink
+خواستن	خواسْتَن	khaastan	to want
+دانستن	دانِسْتَن	daanestan	to know
+توانستن	تَوانِسْتَن	tavaanestan	to be able
+دادن	دادَن	daadan	to give
+گرفتن	گِرِفْتَن	gereftan	to take / get
+خواندن	خوانْدَن	khaandan	to read / study
+نوشتن	نِوِشْتَن	neveshtan	to write
+شنیدن	شِنیدَن	shenidan	to hear
+خوابیدن	خوابیدَن	khaabidan	to sleep
+خریدن	خَریدَن	kharidan	to buy
+فروختن	فُروخْتَن	forukhtan	to sell
+آوردن	آوَرْدَن	aavordan	to bring
+بردن	بُرْدَن	bordan	to take away
+زدن	زَدَن	zadan	to hit / strike
+ایستادن	ایسْتادَن	istaadan	to stand
+نشستن	نِشَسْتَن	neshastan	to sit
+فهمیدن	فَهْمیدَن	fahmidan	to understand
+حرف زدن	حَرْف زَدَن	harf zadan	to talk
+کار کردن	کار کَرْدَن	kaar kardan	to work
+بازی کردن	بازی کَرْدَن	baazi kardan	to play
