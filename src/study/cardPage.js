@@ -230,6 +230,13 @@ export function renderCardPage() {
   trayMain.className = "tray-main";
   const chatgptBtn = keyButton("Ask ChatGPT", "key key--action chatgpt", ICONS.chatgpt);
   const soundBtn = keyButton("Play sound", "key key--action sound", ICONS.sound, "S");
+  // Duration badge: shown under the icon only when an offline audio clip is
+  // loaded for the current card — the visible signal that this card plays a
+  // file (with a known length) rather than live TTS.
+  const clipDur = document.createElement("span");
+  clipDur.className = "clip-dur";
+  clipDur.hidden = true;
+  soundBtn.append(clipDur);
   const imagesBtn = keyButton("Search images", "key key--action images", ICONS.images);
   const prevBtn = keyButton("Previous card", "key key--nav prev", ICONS.prev, "←");
   const revealBtn = keyButton("Reveal answer", "key key--reveal", ICONS.eye, "Space");
@@ -405,6 +412,41 @@ export function renderCardPage() {
     clipAudio.play().catch(() => {});
   }
 
+  // Read a clip's playback length (seconds) from its metadata.
+  function clipDuration(blob) {
+    return new Promise((resolve, reject) => {
+      const probe = new Audio();
+      probe.preload = "metadata";
+      const url = URL.createObjectURL(blob);
+      probe.onloadedmetadata = () => { URL.revokeObjectURL(url); resolve(probe.duration); };
+      probe.onerror = () => { URL.revokeObjectURL(url); reject(); };
+      probe.src = url;
+    });
+  }
+
+  // Show the offline clip's duration under the speak button when one exists for
+  // this card (the visible "this is a file, not TTS" cue); hide it otherwise.
+  // Durations are cached per clip key; a request token guards against the async
+  // result landing after the user has already moved to another card.
+  let clipBadgeReq = null;
+  const clipDurations = new Map();
+  async function updateClipBadge(entry) {
+    const key = entry ? clipKey(activeLibrary().language, entryKey(entry)) : null;
+    clipBadgeReq = key;
+    clipDur.hidden = true;
+    if (!key) return;
+    let seconds = clipDurations.get(key);
+    if (seconds == null) {
+      const blob = await getClip(key);
+      if (clipBadgeReq !== key) return;
+      seconds = blob ? await clipDuration(blob).catch(() => 0) : 0;
+      clipDurations.set(key, seconds);
+    }
+    if (clipBadgeReq !== key || !(seconds > 0)) return;
+    clipDur.textContent = `${seconds.toFixed(1)}s`;
+    clipDur.hidden = false;
+  }
+
   function renderTray() {
     const entry = currentEntry();
     const source = getCurrentTtsSource();
@@ -450,6 +492,7 @@ export function renderCardPage() {
         ? "No deck selected."
         : (bundle ? "No cards match this deck or filter." : "Loading cards...");
       chooseDeckBtn.hidden = !noDeck;
+      updateClipBadge(null);
       return;
     }
     // Font CSS vars are shared by both schemas; the kanji card reuses the kanji
@@ -475,6 +518,7 @@ export function renderCardPage() {
     revealBtn.querySelector(".icon").innerHTML = revealed ? ICONS.eyeOff : ICONS.eye;
     revealBtn.setAttribute("aria-label", revealed ? "Hide answer" : "Reveal answer");
     renderTray();
+    updateClipBadge(entry);
   }
 
   // --- Word card (Japanese words, Spanish) --------------------------------
