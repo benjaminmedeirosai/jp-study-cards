@@ -1,4 +1,5 @@
 import { speak } from "./speech.js";
+import { getClip, clipKey } from "./audioStore.js";
 import { buildSetOptions, activeSetGrouping, computeDeckSets } from "./sets.js";
 import { beginSession, endSession, sessionQualifies } from "./filters.js";
 import { openOverlay, pushCardsURL, replaceCardsURL, filterInLibrary } from "./router.js";
@@ -378,9 +379,30 @@ export function renderCardPage() {
     return primaryText(entry) || readingText(entry) || translationText(entry);
   }
 
+  // Play a stored offline clip if one exists for this card; otherwise speak via
+  // the Web Speech voice. The clip is keyed by the card's identity, so it works
+  // regardless of which deck view surfaced the card.
   function speakStudy() {
-    const value = studySpeechText(currentEntry());
-    if (value) speak(value, { lang: activeLibrary().tts.lang, voiceName: state.voice, rate: state.voiceRate });
+    const entry = currentEntry();
+    if (!entry) return;
+    const key = clipKey(activeLibrary().language, entryKey(entry));
+    getClip(key).then((blob) => {
+      if (blob) { playClip(blob); return; }
+      const value = studySpeechText(entry);
+      if (value) speak(value, { lang: activeLibrary().tts.lang, voiceName: state.voice, rate: state.voiceRate });
+    });
+  }
+
+  // One <audio> reused across cards so a new play stops the previous clip.
+  let clipAudio = null;
+  let clipUrl = null;
+  function playClip(blob) {
+    if (!clipAudio) clipAudio = new Audio();
+    clipAudio.pause();
+    if (clipUrl) URL.revokeObjectURL(clipUrl);
+    clipUrl = URL.createObjectURL(blob);
+    clipAudio.src = clipUrl;
+    clipAudio.play().catch(() => {});
   }
 
   function renderTray() {

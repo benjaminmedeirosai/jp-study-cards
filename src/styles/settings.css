@@ -323,3 +323,22 @@
   background: rgba(37, 99, 235, 0.24);
   color: var(--accent);
 }
+
+/* --- Offline audio import --------------------------------------------------- */
+.audio-field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.audio-status {
+  font-size: 13px;
+  color: var(--muted);
+}
+.audio-row {
+  display: flex;
+  gap: 8px;
+}
+.audio-row .settings-button {
+  flex: 0 0 auto;
+  padding: 0 14px;
+}

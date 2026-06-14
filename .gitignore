@@ -5,3 +5,7 @@ dist/
 tmp/
 temp/
 *.tmp
+# Offline TTS audio: generated on a Mac, imported into the app on device.
+# Big and regenerable — never committed (see tools/audio/gen-audio.mjs).
+# Leading slash anchors to repo root so tools/audio/ (the generator) is kept.
+/audio/
