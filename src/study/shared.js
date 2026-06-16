@@ -90,19 +90,18 @@ function normalizeFont(value) {
 // constant +Npx — equal perceived change at the small and large ends alike.
 export const FONT_PX_MIN = 8;
 export const FONT_PX_MAX = 192;
-export const FONT_PX_STEPS = 24;
-const FONT_PX_RATIO = FONT_PX_MAX / FONT_PX_MIN;
-// Default sizes, each landing exactly on a step (see fontStepToPx) so the slider
-// starts pinned and a first nudge doesn't jump. Kanji largest, then reading,
-// english, gloss.
-export const FONT_PX_DEFAULTS = { kanji: 67, hiragana: 34, english: 18, gloss: 16 };
-export function fontStepToPx(step) {
-  const s = clampInt(step, 0, 0, FONT_PX_STEPS);
-  return Math.round(FONT_PX_MIN * Math.pow(FONT_PX_RATIO, s / FONT_PX_STEPS));
-}
-export function fontPxToStep(px) {
+// Font size is picked from a fixed dropdown: 12 options, 10–150px, spaced
+// geometrically (~constant ratio per step) so each notch is an equal perceived
+// change at the small and large ends alike.
+export const FONT_PX_OPTIONS = [10, 13, 16, 21, 27, 34, 44, 56, 72, 91, 117, 150];
+// Default sizes, each on a dropdown option. Primary largest, then reading,
+// english/translation, gloss.
+export const FONT_PX_DEFAULTS = { kanji: 72, hiragana: 34, english: 16, gloss: 16 };
+// Snap an arbitrary px to the closest dropdown option (used to normalize saved
+// sizes from the old slider onto the new scale).
+export function nearestFontPx(px) {
   const p = clampNum(px, FONT_PX_MIN, FONT_PX_MIN, FONT_PX_MAX);
-  return Math.round(FONT_PX_STEPS * (Math.log(p / FONT_PX_MIN) / Math.log(FONT_PX_RATIO)));
+  return FONT_PX_OPTIONS.reduce((best, opt) => (Math.abs(opt - p) < Math.abs(best - p) ? opt : best), FONT_PX_OPTIONS[0]);
 }
 
 // --- System font detection ---------------------------------------------------

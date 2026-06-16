@@ -142,20 +142,8 @@
   gap: 8px;
 }
 
-/* Font-size sliders: strip the generic input box, theme the native control. */
-.study-field input.font-slider,
-.study-field input.font-slider:hover,
-.study-field input.font-slider:focus {
-  min-height: 28px;
-  padding: 0;
-  border: none;
-  background: none;
-  box-shadow: none;
-  accent-color: var(--accent);
-  cursor: pointer;
-}
-
-/* Font picker row: the family dropdown + an inline Bold toggle. */
+/* Font picker row: family dropdown (flexes) + a fixed-width size dropdown + the
+   Bold toggle, all on one line. */
 .font-family-row {
   display: flex;
   align-items: stretch;
@@ -163,6 +151,7 @@
 }
 
 .font-family-row select { flex: 1; min-width: 0; }
+.font-family-row .font-size-select { flex: 0 0 auto; width: 96px; }
 
 /* Bold toggle: a square bold-"B" icon button that highlights when on, reusing
    the preset-chip active treatment for consistency. */

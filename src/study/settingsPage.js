@@ -12,9 +12,8 @@ import {
   SET_GROUPINGS,
   availableFonts,
   fontStack,
-  FONT_PX_STEPS,
-  fontStepToPx,
-  fontPxToStep,
+  FONT_PX_OPTIONS,
+  nearestFontPx,
   clampInt,
   clampNum,
   normalizeSetGrouping,
@@ -148,24 +147,23 @@ export function renderSettingsPage() {
     state.setGrouping
   );
 
-  // --- Font sizes (sliders, absolute px) ----------------------------------
-  // The number shown IS the rendered px size, identical across slots, so the
-  // same value renders the same size everywhere. The bar moves in even steps
-  // but px grows geometrically (constant ratio per notch) — see fontStepToPx.
-  function makeFontSlider(px) {
-    const input = document.createElement("input");
-    input.type = "range";
-    input.className = "font-slider";
-    input.min = "0";
-    input.max = String(FONT_PX_STEPS);
-    input.step = "1";
-    input.value = String(fontPxToStep(px));
-    return input;
+  // --- Font sizes (dropdown, absolute px) ---------------------------------
+  // A 12-option px dropdown (geometric scale, see FONT_PX_OPTIONS). The chosen
+  // px renders identically across slots. Saved sizes from the old slider are
+  // snapped onto the nearest option so the dropdown and the card agree.
+  for (const key of ["kanjiFontPx", "hiraganaFontPx", "englishFontPx", "glossFontPx"]) {
+    state[key] = nearestFontPx(state[key]);
   }
-  const kanjiFontInput = makeFontSlider(state.kanjiFontPx);
-  const hiraganaFontInput = makeFontSlider(state.hiraganaFontPx);
-  const englishFontInput = makeFontSlider(state.englishFontPx);
-  const glossFontInput = makeFontSlider(state.glossFontPx);
+  saveState(state);
+  function makeSizeSelect(px) {
+    const select = makeSelect(FONT_PX_OPTIONS.map((p) => ({ value: String(p), label: `${p}px` })), String(nearestFontPx(px)));
+    select.classList.add("font-size-select");
+    return select;
+  }
+  const kanjiFontInput = makeSizeSelect(state.kanjiFontPx);
+  const hiraganaFontInput = makeSizeSelect(state.hiraganaFontPx);
+  const englishFontInput = makeSizeSelect(state.englishFontPx);
+  const glossFontInput = makeSizeSelect(state.glossFontPx);
   const hotkeyToggle = makeToggle("Hotkeys", state.showHotkeys);
   const glossToggle = makeToggle("Kanji gloss", state.showGloss);
 
@@ -200,11 +198,14 @@ export function renderSettingsPage() {
   }
   const kanjiBoldBtn = makeBoldToggle(state.kanjiBold);
   const hiraganaBoldBtn = makeBoldToggle(state.hiraganaBold);
-  // Each font row: the family dropdown + its Bold toggle, side by side.
-  function fontFamilyRow(select, boldBtn) {
+  // One row per lettering target: family dropdown + size dropdown + Bold toggle,
+  // side by side. Family/bold are omitted for size-only targets (english, gloss).
+  function fontRow({ family, size, bold }) {
     const row = document.createElement("div");
     row.className = "font-family-row";
-    row.append(select, boldBtn);
+    if (family) row.append(family);
+    if (size) row.append(size);
+    if (bold) row.append(bold);
     return row;
   }
 
@@ -471,23 +472,23 @@ export function renderSettingsPage() {
     updateSettingsPreview();
   });
 
-  // Font sizes apply immediately; the field label echoes the current px size.
+  // One combined row per target: [family] [size] [bold]. Family/bold only for
+  // the script slots (primary, reading); english/gloss are size-only.
   const L = library.labels;
-  const kanjiFontField = fieldLabel(`${L.primary} size ${state.kanjiFontPx}px`, kanjiFontInput);
-  const hiraganaFontField = fieldLabel(`${L.reading || "Reading"} size ${state.hiraganaFontPx}px`, hiraganaFontInput);
-  const englishFontField = fieldLabel(`${L.translation || "English"} size ${state.englishFontPx}px`, englishFontInput);
-  const glossFontField = fieldLabel(`${L.gloss || "Gloss"} size ${state.glossFontPx}px`, glossFontInput);
-  function wireFontScale(input, field, key, label) {
-    input.addEventListener("input", () => {
-      state[key] = fontStepToPx(input.value);
-      field.querySelector("span").textContent = `${label} size ${state[key]}px`;
+  const kanjiFontField = fieldLabel(`${L.primary} font`, fontRow({ family: kanjiFontFamilyInput, size: kanjiFontInput, bold: kanjiBoldBtn }));
+  const hiraganaFontField = fieldLabel(`${L.reading || "Reading"} font`, fontRow({ family: hiraganaFontFamilyInput, size: hiraganaFontInput, bold: hiraganaBoldBtn }));
+  const englishFontField = fieldLabel(`${L.translation || "English"} size`, fontRow({ size: englishFontInput }));
+  const glossFontField = fieldLabel(`${L.gloss || "Gloss"} size`, fontRow({ size: glossFontInput }));
+  function wireFontSize(select, key) {
+    select.addEventListener("change", () => {
+      state[key] = Number(select.value);
       saveState(state);
     });
   }
-  wireFontScale(kanjiFontInput, kanjiFontField, "kanjiFontPx", L.primary);
-  wireFontScale(hiraganaFontInput, hiraganaFontField, "hiraganaFontPx", L.reading || "Reading");
-  wireFontScale(englishFontInput, englishFontField, "englishFontPx", L.translation || "English");
-  wireFontScale(glossFontInput, glossFontField, "glossFontPx", L.gloss || "Gloss");
+  wireFontSize(kanjiFontInput, "kanjiFontPx");
+  wireFontSize(hiraganaFontInput, "hiraganaFontPx");
+  wireFontSize(englishFontInput, "englishFontPx");
+  wireFontSize(glossFontInput, "glossFontPx");
 
   kanjiFontFamilyInput.addEventListener("change", () => {
     state.kanjiFont = kanjiFontFamilyInput.value;
@@ -558,11 +559,8 @@ export function renderSettingsPage() {
     fieldLabel("Set grouping", setGroupingInput),
     setPreview,
     sectionHeading("Fonts"),
-    fieldLabel(`${L.primary} font`, fontFamilyRow(kanjiFontFamilyInput, kanjiBoldBtn)),
-    // Reading font controls only for libraries with a reading field.
-    ...(library.fields.reading
-      ? [fieldLabel(`${L.reading} font`, fontFamilyRow(hiraganaFontFamilyInput, hiraganaBoldBtn))] : []),
     kanjiFontField,
+    // Reading font controls only for libraries with a reading field.
     ...(library.fields.reading ? [hiraganaFontField] : []),
     englishFontField,
     // Gloss/forms size: libraries with the gloss feature (Japanese) or a forms
