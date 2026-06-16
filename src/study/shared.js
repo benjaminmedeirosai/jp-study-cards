@@ -25,6 +25,11 @@ const LIBRARY_KEYS = [
   "studyMore", "studyMoreFilter"
 ];
 export const DEFAULT_SET_SIZE = 20;
+// Set size is user-chosen with no preset ceiling, but capped so a runaway value
+// can't make the per-set audio preload (and grouping work) try to warm an absurd
+// number of cards at once.
+export const MIN_SET_SIZE = 3;
+export const MAX_SET_SIZE = 1000;
 export const FONT_SCALE_OPTIONS = [10, 20, 35, 50, 75, 100, 125, 150, 200, 250];
 export const VOICE_RATE_OPTIONS = [0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.25, 1.5, 1.75, 2];
 
@@ -280,7 +285,7 @@ export function loadState() {
     deckId: String(raw.deckId || ""),
     setId: String(raw.setId || "all"),
     mode: activeLibrary().modeIds.includes(raw.mode) ? raw.mode : activeLibrary().modeIds[0],
-    setSize: clampInt(raw.setSize, DEFAULT_SET_SIZE, 3, 100000),
+    setSize: clampInt(raw.setSize, DEFAULT_SET_SIZE, MIN_SET_SIZE, MAX_SET_SIZE),
     setGrouping: normalizeSetGrouping(raw.setGrouping),
     kanjiFontPx: clampInt(raw.kanjiFontPx, FONT_PX_DEFAULTS.kanji, FONT_PX_MIN, FONT_PX_MAX),
     hiraganaFontPx: clampInt(raw.hiraganaFontPx, FONT_PX_DEFAULTS.hiragana, FONT_PX_MIN, FONT_PX_MAX),

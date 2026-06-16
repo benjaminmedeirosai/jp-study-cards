@@ -8,6 +8,8 @@ import { fetchAudioManifest, getAudioMeta, voiceIdsForLang } from "./audioStore.
 const VOICE_SAMPLE = "こんにちは。これは音声のプレビューです。";
 import {
   DEFAULT_SET_SIZE,
+  MIN_SET_SIZE,
+  MAX_SET_SIZE,
   VOICE_RATE_OPTIONS,
   SET_GROUPINGS,
   availableFonts,
@@ -134,7 +136,8 @@ export function renderSettingsPage() {
   // --- Set size / grouping ------------------------------------------------
   const setSizeInput = document.createElement("input");
   setSizeInput.type = "number";
-  setSizeInput.min = "3";
+  setSizeInput.min = String(MIN_SET_SIZE);
+  setSizeInput.max = String(MAX_SET_SIZE);
   setSizeInput.step = "1";
   setSizeInput.value = String(state.setSize);
   // Only the groupings the active library offers.
@@ -414,7 +417,7 @@ export function renderSettingsPage() {
       cacheKey: state.deckId,
       cards: previewBaseCards,
       query: queryInput.value,
-      setSize: clampInt(setSizeInput.value, DEFAULT_SET_SIZE, 3, 100000),
+      setSize: clampInt(setSizeInput.value, DEFAULT_SET_SIZE, MIN_SET_SIZE, MAX_SET_SIZE),
       groupingId
     });
     setPreviewRows.innerHTML = "";
@@ -474,7 +477,7 @@ export function renderSettingsPage() {
   // Set size / grouping change which sets exist, so reset to the first set.
   setSizeInput.addEventListener("input", () => {
     const previous = state.setSize;
-    state.setSize = clampInt(setSizeInput.value, DEFAULT_SET_SIZE, 3, 100000);
+    state.setSize = clampInt(setSizeInput.value, DEFAULT_SET_SIZE, MIN_SET_SIZE, MAX_SET_SIZE);
     if (state.setSize !== previous) {
       state.setId = "all";
       state.currentIndex = 0;
