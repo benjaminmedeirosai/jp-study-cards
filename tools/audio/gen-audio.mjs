@@ -89,14 +89,13 @@ if (!decks.length) {
   process.exit(1);
 }
 
-let made = 0, skipped = 0, failed = 0, generatedRoots = new Set();
+let made = 0, skipped = 0, failed = 0;
 for (const deck of decks) {
   const lib = libFor(deck);
   if (!lib) { console.warn(`! no library for deck ${deck.id} (kind ${deck.kind}) — skipping`); continue; }
   const voice = voiceForLang(lib.tts && lib.tts.lang);
   const outDir = path.join(ROOT, "audio", lang, deck.id);
   mkdirSync(outDir, { recursive: true });
-  generatedRoots.add(path.join("audio", lang, deck.id.split("/")[0]));
   for (const entry of deck.entries) {
     const slug = audioSlug(entry, lib);
     const text = audioText(entry, lib);
@@ -117,10 +116,14 @@ process.stdout.write("\n");
 console.log(`[audio] ${lang}${deckPrefix ? "/" + deckPrefix : ""}: ${made} generated, ${skipped} skipped, ${failed} failed`);
 
 if (WANT_ZIP) {
-  const zipName = `${lang}${deckPrefix ? "-" + deckPrefix.replace(/\//g, "-") : ""}.zip`;
-  const zipPath = path.join(ROOT, "audio", zipName);
+  // Publish the FULL language pack (every clip under audio/<lang>/, regardless
+  // of which folder this run regenerated) to public/audio/<lang>.zip — the
+  // committed artifact the app fetches. Paths inside read as
+  // <lang>/<deckId>/<slug>.m4a, exactly what the importer expects.
+  const publicDir = path.join(ROOT, "public", "audio");
+  mkdirSync(publicDir, { recursive: true });
+  const zipPath = path.join(publicDir, `${lang}.zip`);
   if (existsSync(zipPath)) rmSync(zipPath);
-  // Zip paths are relative to audio/ so they read as <lang>/<deckId>/<slug>.m4a.
-  execFileSync("zip", ["-r", "-q", zipName, ...[...generatedRoots].map((p) => p.replace(/^audio\//, ""))], { cwd: path.join(ROOT, "audio") });
-  console.log(`[audio] wrote ${path.relative(ROOT, zipPath)}`);
+  execFileSync("zip", ["-r", "-q", zipPath, lang], { cwd: path.join(ROOT, "audio") });
+  console.log(`[audio] published ${path.relative(ROOT, zipPath)}`);
 }

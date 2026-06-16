@@ -38,11 +38,12 @@ export function renderLibraryPage() {
   importInput.type = "file";
   importInput.accept = ".zip,application/zip";
   importInput.hidden = true;
-  const importBtn = button("Import audio (.zip)", "settings-button");
+  const loadBtn = button("Load audio", "settings-button primary");
+  const importBtn = button("Import .zip", "settings-button");
   const clearBtn = button("Clear all", "settings-button");
   const importStatus = document.createElement("span");
   importStatus.className = "library-import-status";
-  importBar.append(importBtn, clearBtn, importStatus, importInput);
+  importBar.append(loadBtn, importBtn, clearBtn, importStatus, importInput);
 
   const list = document.createElement("div");
   list.className = "decks-list";
@@ -114,6 +115,34 @@ export function renderLibraryPage() {
       }
     }
   }
+
+  // --- Load wiring --------------------------------------------------------
+  // Fetch the audio packs bundled with the app (public/audio/<lang>.zip) and
+  // import them — on demand only. Re-clicking re-pulls (cache: "reload") and
+  // overwrites, so it doubles as a "refresh all audio" button. Languages with
+  // no published pack just 404 and are skipped.
+  const langIds = groups.map((g) => g.language.id);
+  loadBtn.addEventListener("click", async () => {
+    importStatus.textContent = "Loading…";
+    try {
+      await requestPersist();
+      let matched = 0, unmatched = 0, packs = 0;
+      for (const lang of langIds) {
+        let res;
+        try { res = await fetch(`public/audio/${lang}.zip`, { cache: "reload" }); }
+        catch { continue; }
+        if (!res.ok) continue;
+        const r = await importAudioZip(await res.arrayBuffer());
+        matched += r.matched; unmatched += r.unmatched; packs++;
+      }
+      importStatus.textContent = packs
+        ? `Loaded ${matched} clip${matched === 1 ? "" : "s"} from ${packs} pack${packs === 1 ? "" : "s"}${unmatched ? ` · ${unmatched} unmatched` : ""}`
+        : "No bundled audio packs found";
+      await refreshMeta();
+    } catch (err) {
+      importStatus.textContent = `Load failed: ${err.message}`;
+    }
+  });
 
   // --- Import wiring -------------------------------------------------------
   importBtn.addEventListener("click", () => importInput.click());
