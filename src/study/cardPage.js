@@ -472,8 +472,16 @@ export function renderCardPage() {
     if (!("mediaSession" in navigator)) return;
     const ms = navigator.mediaSession;
     const set = (action, fn) => { try { ms.setActionHandler(action, fn); } catch { /* action unsupported */ } };
-    set("play", () => speakStudy());
-    set("pause", () => { stopAutoplay(); if (currentClipAudio) currentClipAudio.pause(); ms.playbackState = "paused"; });
+    // Play resumes the listening run (or replays the current card if there's no
+    // set to run); pause halts EVERYTHING — autoplay, the keep-alive loop, and
+    // any clip — so the OS pause actually silences playback (the bug was the
+    // keep-alive looping on after pause).
+    set("play", () => { if (!autoplaying && setCards.length > 1) toggleAutoplay(); else speakStudy(); });
+    set("pause", () => {
+      stopAutoplay(); // also stops the keep-alive loop (stopKeepAlive) + gap timer
+      if (currentClipAudio) { try { currentClipAudio.pause(); } catch { /* not playing */ } }
+      ms.playbackState = "paused";
+    });
     // During autoplay, skip re-anchors the running loop (so it keeps going from
     // the new card); otherwise it's a one-off navigate-and-play.
     set("previoustrack", () => { if (autoplaying) { autoplayNav = -1; cancelAutoplaySleep(); } else move(-1, { play: true }); });
