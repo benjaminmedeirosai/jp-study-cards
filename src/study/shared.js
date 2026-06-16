@@ -18,7 +18,9 @@ const LIBRARY_KEYS = [
   // slider is touched, so nothing resets on upgrade.
   "kanjiFont", "hiraganaFont", "kanjiBold", "hiraganaBold",
   "kanjiFontPx", "hiraganaFontPx", "englishFontPx", "glossFontPx",
-  "voice", "ttsSources", "soundSource", "deckHistory", "filterHistory"
+  "voice", "ttsSources", "soundSource", "deckHistory", "filterHistory",
+  // Per-library "study more" flags, keyed by card identity (entryKey → true).
+  "studyMore"
 ];
 export const DEFAULT_SET_SIZE = 20;
 export const FONT_SCALE_OPTIONS = [10, 20, 35, 50, 75, 100, 125, 150, 200, 250];
@@ -322,7 +324,8 @@ export function loadState() {
     // on'yomi/kun'yomi/both). Validated against the library's options in use.
     soundSource: String(raw.soundSource || ""),
     filterHistory: Array.isArray(raw.filterHistory) ? raw.filterHistory : [],
-    deckHistory: Array.isArray(raw.deckHistory) ? raw.deckHistory : []
+    deckHistory: Array.isArray(raw.deckHistory) ? raw.deckHistory : [],
+    studyMore: raw.studyMore && typeof raw.studyMore === "object" ? raw.studyMore : {}
   };
 }
 
@@ -490,17 +493,26 @@ export function resolveDeck(bundle, deckId) {
 // Per-deck count of entries matching `query`, cached by query so callers (the
 // deck page) only recompute when the filter actually changed since last time.
 let matchCache = { bundle: null, library: null, query: null, counts: null };
-export function deckMatchCounts(bundle, query) {
+export function deckMatchCounts(bundle, query, options = {}) {
+  const studyMoreOnly = !!options.studyMoreOnly;
   const q = String(query || "").trim().toLowerCase();
   // Keyed by library too: japanese and japanese-kanji share one bundle object
   // but listDecks filters to different decks, so the counts differ.
   const library = activeLibrary().id;
-  if (matchCache.bundle === bundle && matchCache.library === library && matchCache.query === q && matchCache.counts) return matchCache.counts;
+  // The study-more set can change between opens (the user marks cards), so that
+  // path bypasses the cache; the plain query path stays cached.
+  if (!studyMoreOnly && matchCache.bundle === bundle && matchCache.library === library && matchCache.query === q && matchCache.counts) return matchCache.counts;
+  const studyMore = studyMoreOnly ? (loadState().studyMore || {}) : null;
   const counts = new Map();
   for (const deck of listDecks(bundle)) {
-    counts.set(deck.id, q ? (deck.entries || []).filter((entry) => matchesQuery(entry, q)).length : Number(deck.count || 0));
+    const entries = deck.entries || [];
+    if (studyMoreOnly) {
+      counts.set(deck.id, entries.filter((e) => studyMore[entryKey(e)] && (!q || matchesQuery(e, q))).length);
+    } else {
+      counts.set(deck.id, q ? entries.filter((entry) => matchesQuery(entry, q)).length : Number(deck.count || 0));
+    }
   }
-  matchCache = { bundle, library, query: q, counts };
+  if (!studyMoreOnly) matchCache = { bundle, library, query: q, counts };
   return counts;
 }
 

@@ -9,11 +9,46 @@
 
 .decks-top,
 .decks-page > .filter-wrap,
+.decks-cardfilter-row,
 .decks-studied-chips,
 .decks-list {
   width: min(100%, 520px);
   margin: 0 auto;
 }
+
+/* Card-content filter + the study-more toggle, side by side on one row. */
+.decks-cardfilter-row {
+  display: flex;
+  align-items: stretch;
+  gap: 8px;
+}
+.decks-cardfilter-row > .filter-wrap { flex: 1; min-width: 0; }
+.decks-studymore {
+  flex: 0 0 auto;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  border: 1px solid rgba(96, 165, 250, 0.22);
+  border-radius: 9px;
+  background: rgba(15, 23, 42, 0.55);
+  color: var(--muted);
+  cursor: pointer;
+}
+.decks-studymore svg {
+  width: 20px;
+  height: 20px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linejoin: round;
+}
+.decks-studymore:hover { border-color: var(--accent-border); color: var(--text); }
+.decks-studymore.active {
+  color: #fbbf24;
+  border-color: rgba(250, 204, 21, 0.5);
+  background: linear-gradient(180deg, rgba(250, 204, 21, 0.18), rgba(202, 138, 4, 0.14));
+}
+.decks-studymore.active svg { fill: currentColor; }
 
 /* Single-select chip row that narrows the list by how long ago each deck was
    last studied. Reuses .preset-chip (from settings) for the chip look; wraps to

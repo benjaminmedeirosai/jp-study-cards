@@ -9,7 +9,8 @@ const INDENT = 17;
 const ICONS = {
   folder: `<svg viewBox="0 0 24 24"><path d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z"/></svg>`,
   folderOpen: `<svg viewBox="0 0 24 24"><path d="m6 14 1.45-2.9A2 2 0 0 1 9.24 10H20a2 2 0 0 1 1.94 2.5l-1.55 6a2 2 0 0 1-1.94 1.5H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h3.9a2 2 0 0 1 1.69.9l.81 1.2a2 2 0 0 0 1.67.9H18a2 2 0 0 1 2 2v2"/></svg>`,
-  file: `<svg viewBox="0 0 24 24"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/></svg>`
+  file: `<svg viewBox="0 0 24 24"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/></svg>`,
+  star: `<svg viewBox="0 0 24 24"><path d="M12 3.5l2.6 5.3 5.9.9-4.2 4.1 1 5.8L12 17l-5.3 2.8 1-5.8-4.2-4.1 5.9-.9z"/></svg>`
 };
 
 function countCards(node) {
@@ -109,6 +110,23 @@ export function renderDeckPage() {
     emptyText: "No filters studied yet"
   });
 
+  // Study-more filter: a toggle on the card-filter row. When on, deck counts are
+  // narrowed to cards flagged "study more" (combined with the text filter).
+  let studyMoreOnly = false;
+  const studyMoreBtn = button("Study more", "decks-studymore");
+  studyMoreBtn.innerHTML = ICONS.star;
+  studyMoreBtn.setAttribute("aria-label", "Show only study-more cards");
+  studyMoreBtn.setAttribute("aria-pressed", "false");
+  studyMoreBtn.addEventListener("click", () => {
+    studyMoreOnly = !studyMoreOnly;
+    studyMoreBtn.classList.toggle("active", studyMoreOnly);
+    studyMoreBtn.setAttribute("aria-pressed", studyMoreOnly ? "true" : "false");
+    if (bundle) renderList();
+  });
+  const cardFilterRow = document.createElement("div");
+  cardFilterRow.className = "decks-cardfilter-row";
+  cardFilterRow.append(filterWrap, studyMoreBtn);
+
   // Studied-recency chips: a single-select group that narrows the list by how
   // long ago each deck/folder was last studied. "all" is the unfiltered default;
   // the rest are non-overlapping windows on the deck-history `at` timestamp.
@@ -151,7 +169,7 @@ export function renderDeckPage() {
   empty.textContent = "Loading decks...";
   list.append(empty);
 
-  root.append(top, nameWrap, filterWrap, studiedChips, list);
+  root.append(top, nameWrap, cardFilterRow, studiedChips, list);
 
   let tree = [];
   let bundle = null;
@@ -208,9 +226,9 @@ export function renderDeckPage() {
     return wrap;
   }
 
-  // "matched / total" while filtering, else just the total.
+  // "matched / total" while filtering (text query or study-more), else total.
   function countLabel(matched, total) {
-    return state.query ? `${matched} / ${total}` : `${total}`;
+    return (state.query || studyMoreOnly) ? `${matched} / ${total}` : `${total}`;
   }
 
   function matchedInNode(node) {
@@ -298,7 +316,7 @@ export function renderDeckPage() {
   }
 
   function renderList() {
-    counts = deckMatchCounts(bundle, state.query);
+    counts = deckMatchCounts(bundle, state.query, { studyMoreOnly });
     historyById = new Map(getDeckHistory().map((h) => [h.id, h]));
     const frag = document.createDocumentFragment();
     for (const node of tree) {

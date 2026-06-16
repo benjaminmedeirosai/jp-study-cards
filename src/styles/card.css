@@ -474,6 +474,25 @@
   background: linear-gradient(180deg, rgba(96, 165, 250, 0.42), rgba(37, 99, 235, 0.34));
 }
 
+/* Study-more (focus) flag: amber star, filled + highlighted when on. */
+.study-button.mini--focus svg {
+  width: 19px;
+  height: 19px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linejoin: round;
+}
+.study-button.mini--focus:not(.active) {
+  color: rgba(229, 238, 252, 0.82);
+  border-color: rgba(148, 163, 184, 0.28);
+}
+.study-button.mini--focus.active {
+  color: #fbbf24;
+  border-color: rgba(250, 204, 21, 0.5);
+  background: linear-gradient(180deg, rgba(250, 204, 21, 0.2), rgba(202, 138, 4, 0.16));
+}
+
 .study-button.mini {
   width: 38px;
   height: 38px;

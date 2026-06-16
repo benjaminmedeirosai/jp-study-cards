@@ -39,7 +39,10 @@ const ICONS = {
   eye: `<svg viewBox="0 0 24 24"><path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12z"/><circle cx="12" cy="12" r="3"/></svg>`,
   eyeOff: `<svg viewBox="0 0 24 24"><path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12z"/><circle cx="12" cy="12" r="3"/><path d="M4 4l16 16"/></svg>`,
   play: `<svg viewBox="0 0 24 24"><path d="M7 5l12 7-12 7z"/></svg>`,
-  pause: `<svg viewBox="0 0 24 24"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>`
+  pause: `<svg viewBox="0 0 24 24"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>`,
+  // Study-more flag: outline star when off, filled star when on.
+  focusOff: `<svg viewBox="0 0 24 24"><path d="M12 3.5l2.6 5.3 5.9.9-4.2 4.1 1 5.8L12 17l-5.3 2.8 1-5.8-4.2-4.1 5.9-.9z"/></svg>`,
+  focusOn: `<svg viewBox="0 0 24 24" style="fill:currentColor"><path d="M12 3.5l2.6 5.3 5.9.9-4.2 4.1 1 5.8L12 17l-5.3 2.8 1-5.8-4.2-4.1 5.9-.9z"/></svg>`
 };
 
 // Split a "[漢: gloss | 漢: gloss]" breakdown into per-kanji segments for the
@@ -224,7 +227,11 @@ export function renderCardPage() {
   const shuffleBtn = button("Shuffle", "mini mini--shuffle");
   shuffleBtn.innerHTML = "⇄";
   shuffleBtn.setAttribute("aria-label", "Shuffle current set");
-  trayMini.append(ttsGroup, playBtn, shuffleBtn);
+  // Study-more (focus) flag: a per-card toggle, highlighted when on (like play).
+  const focusBtn = button("Study more", "mini mini--focus");
+  focusBtn.innerHTML = `<span class="icon">${ICONS.focusOff}</span>`;
+  focusBtn.setAttribute("aria-pressed", "false");
+  trayMini.append(ttsGroup, playBtn, shuffleBtn, focusBtn);
 
   const trayMain = document.createElement("div");
   trayMain.className = "tray-main";
@@ -537,6 +544,7 @@ export function renderCardPage() {
     revealBtn.setAttribute("aria-label", revealed ? "Hide answer" : "Reveal answer");
     renderTray();
     updateClipBadge(entry);
+    reflectStudyMore();
   }
 
   // --- Word card (Japanese words, Spanish) --------------------------------
@@ -1077,6 +1085,28 @@ export function renderCardPage() {
   // speaks — the answer always, the question in voice mode. So a long word gets
   // proportionally more time before advancing. Stopping bumps autoplayToken,
   // which invalidates every pending sleep so in-flight cycles unwind.
+  // Study-more (focus) flag, stored per library (by card identity) so it
+  // persists and can be filtered on the deck page. The button shows its state.
+  function isStudyMore(entry) {
+    return !!(entry && state.studyMore[entryKey(entry)]);
+  }
+  function reflectStudyMore() {
+    const on = isStudyMore(currentEntry());
+    focusBtn.classList.toggle("active", on);
+    focusBtn.querySelector(".icon").innerHTML = on ? ICONS.focusOn : ICONS.focusOff;
+    focusBtn.setAttribute("aria-pressed", on ? "true" : "false");
+    focusBtn.setAttribute("aria-label", on ? "Marked for more study" : "Mark for more study");
+  }
+  function toggleStudyMore() {
+    const entry = currentEntry();
+    if (!entry) return;
+    const key = entryKey(entry);
+    if (state.studyMore[key]) delete state.studyMore[key];
+    else state.studyMore[key] = true;
+    saveState(state);
+    reflectStudyMore();
+  }
+
   function reflectAutoplay() {
     playBtn.classList.toggle("active", autoplaying);
     playBtn.querySelector(".icon").innerHTML = autoplaying ? ICONS.pause : ICONS.play;
@@ -1190,6 +1220,7 @@ export function renderCardPage() {
     renderTray();
   });
   shuffleBtn.addEventListener("click", shuffleCurrentSet);
+  focusBtn.addEventListener("click", toggleStudyMore);
   playBtn.addEventListener("click", toggleAutoplay);
   prevBtn.addEventListener("click", () => move(-1));
   nextBtn.addEventListener("click", () => move(1));
