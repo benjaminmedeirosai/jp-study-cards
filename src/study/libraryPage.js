@@ -10,7 +10,7 @@
 import { loadState, saveState, button } from "./shared.js";
 import { libraryGroups } from "./libraries.js";
 import { chooseLibrary, closeOverlay } from "./router.js";
-import { importAudioZip, clipKeyForEntry, allClipKeys, clearAllClips, countClips, getAudioMeta, requestPersist, fetchAudioManifest } from "./audioStore.js";
+import { importAudioZip, clipKeyForEntry, allClipKeys, clearAllClips, clearClips, countClips, getAudioMeta, requestPersist, fetchAudioManifest } from "./audioStore.js";
 
 // Per-schema noun for the entry count.
 const KIND_NOUN = { word: "words", kanji: "kanji", alpha: "letters", harakat: "marks" };
@@ -52,6 +52,8 @@ export function renderLibraryPage() {
   const metaEls = new Map();
   // language id → header size element (total audio footprint, filled async).
   const langSizeEls = new Map();
+  const langSrcEls = new Map();   // language id → source tag (Library / Imported)
+  const langClearEls = new Map(); // language id → per-language clear button
 
   for (const { language, schemas } of groups) {
     const header = document.createElement("div");
@@ -64,8 +66,26 @@ export function renderLibraryPage() {
     nameEl.textContent = language.label;
     const sizeEl = document.createElement("span");
     sizeEl.className = "library-language-size";
+    // Source tag: published packs come from the library (re-loadable via "Load
+    // audio"); others are manual zip imports (gone until you re-import the file).
+    const srcEl = document.createElement("span");
+    srcEl.className = "library-language-source";
+    // Drop just this language's audio (published → also clears its loaded
+    // version so "Load audio" re-offers it; imported → gone until re-import).
+    const clearOne = button("Clear", "library-clear-one");
+    clearOne.hidden = true;
+    clearOne.addEventListener("click", async () => {
+      await clearClips(language.id);
+      const st = loadState();
+      if (st.audioPackVersions && st.audioPackVersions[language.id]) { delete st.audioPackVersions[language.id]; saveState(st); }
+      importStatus.textContent = `Cleared ${language.label} audio`;
+      refreshLoadButton();
+      await refreshMeta();
+    });
     langSizeEls.set(language.id, sizeEl);
-    header.append(shortEl, nameEl, sizeEl);
+    langSrcEls.set(language.id, srcEl);
+    langClearEls.set(language.id, clearOne);
+    header.append(shortEl, nameEl, sizeEl, srcEl, clearOne);
     list.append(header);
 
     for (const library of schemas) {
@@ -130,6 +150,16 @@ export function renderLibraryPage() {
         const totalBytes = Object.values(voices).reduce((a, v) => a + (v.bytes || 0), 0);
         sizeEl.textContent = loaded && totalBytes ? ` · ${formatBytes(totalBytes)}` : "";
       }
+      // Source tag + per-language clear. "Library" packs are published (in the
+      // manifest) and re-loadable; others are manual imports.
+      const published = !!manifest[language.id];
+      const srcEl = langSrcEls.get(language.id);
+      if (srcEl) {
+        srcEl.textContent = published ? "Library" : (loaded ? "Imported" : "Import only");
+        srcEl.classList.toggle("is-imported", !published);
+      }
+      const clearOne = langClearEls.get(language.id);
+      if (clearOne) clearOne.hidden = !loaded;
       for (const lib of schemas) {
         const el = metaEls.get(lib.id);
         if (!el) continue;

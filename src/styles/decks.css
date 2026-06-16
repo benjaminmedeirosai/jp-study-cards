@@ -219,6 +219,28 @@
   color: var(--muted);
   font-size: 13px;
 }
+/* Source tag (Library = published/re-loadable, Imported = manual zip) + a
+   per-language clear, pushed to the right of the header. */
+.library-language-source {
+  margin-left: auto;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: var(--muted);
+  border: 1px solid rgba(148, 163, 184, 0.25);
+  border-radius: 999px;
+  padding: 2px 8px;
+}
+.library-language-source.is-imported {
+  color: var(--accent, #60a5fa);
+  border-color: var(--accent-border, rgba(96, 165, 250, 0.4));
+}
+.study-button.library-clear-one {
+  flex: 0 0 auto;
+  padding: 3px 10px;
+  font-size: 12px;
+}
 
 /* Indent the schema rows so they read as belonging to the language above. */
 .deck-entry.library-schema-entry { margin-left: 18px; }
