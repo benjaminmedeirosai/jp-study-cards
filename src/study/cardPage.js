@@ -488,23 +488,22 @@ export function renderCardPage() {
     set("nexttrack", () => { if (autoplaying) { autoplayNav = 1; cancelAutoplaySleep(); } else move(1, { play: true }); });
   }
 
-  // A silent WAV blob of `seconds` length, synthesized in-browser (no encoder):
-  // 8-bit unsigned PCM mono @ 8 kHz, all samples = 128. Played during autoplay
-  // gaps so a media element keeps "playing" — that keeps the OS media session
-  // alive (lock-screen skip/pause stay live through the gap) and makes gap
-  // timing immune to background timer-throttling (it ends on the clip's own
-  // `ended` event, not a setTimeout). URLs are cached per 0.1s bucket.
-  const SILENCE_RATE = 8000;
+  // A silent WAV blob of `seconds`, synthesized in-browser (no encoder), at
+  // FULL quality — 16-bit PCM mono @ 44.1 kHz. The rate matters: mobile locks
+  // the output stream to whatever starts first, so a low-rate silence playing
+  // ahead of the clips would downsample (muffle) them. 16-bit silence is all
+  // zeros, and an ArrayBuffer is zero-initialized, so there's nothing to fill.
+  const SILENCE_RATE = 44100;
   function silenceWav(seconds) {
-    const n = Math.max(1, Math.round(seconds * SILENCE_RATE));
-    const buf = new ArrayBuffer(44 + n);
+    const frames = Math.max(1, Math.round(seconds * SILENCE_RATE));
+    const dataLen = frames * 2; // 16-bit mono
+    const buf = new ArrayBuffer(44 + dataLen);
     const v = new DataView(buf);
     const str = (o, s) => { for (let i = 0; i < s.length; i++) v.setUint8(o + i, s.charCodeAt(i)); };
-    str(0, "RIFF"); v.setUint32(4, 36 + n, true); str(8, "WAVE");
+    str(0, "RIFF"); v.setUint32(4, 36 + dataLen, true); str(8, "WAVE");
     str(12, "fmt "); v.setUint32(16, 16, true); v.setUint16(20, 1, true); v.setUint16(22, 1, true);
-    v.setUint32(24, SILENCE_RATE, true); v.setUint32(28, SILENCE_RATE, true); v.setUint16(32, 1, true); v.setUint16(34, 8, true);
-    str(36, "data"); v.setUint32(40, n, true);
-    for (let i = 0; i < n; i++) v.setUint8(44 + i, 128);
+    v.setUint32(24, SILENCE_RATE, true); v.setUint32(28, SILENCE_RATE * 2, true); v.setUint16(32, 2, true); v.setUint16(34, 16, true);
+    str(36, "data"); v.setUint32(40, dataLen, true);
     return new Blob([buf], { type: "audio/wav" });
   }
   const silenceUrls = new Map();
@@ -522,7 +521,9 @@ export function renderCardPage() {
   // stay live. Real clips play over it; metadata stays the current card's.
   let keepAlive = null;
   function startKeepAlive() {
-    if (!keepAlive) { keepAlive = new Audio(); keepAlive.loop = true; keepAlive.src = silenceUrl(1); }
+    // ~10s loop: long enough to clear mobile Chrome's ~5s "real media" bar for
+    // showing the media notification, full-rate so it doesn't muffle the clips.
+    if (!keepAlive) { keepAlive = new Audio(); keepAlive.loop = true; keepAlive.src = silenceUrl(10); }
     keepAlive.play().catch(() => { /* needs the gesture that started autoplay; ignore */ });
     if ("mediaSession" in navigator) navigator.mediaSession.playbackState = "playing";
   }
