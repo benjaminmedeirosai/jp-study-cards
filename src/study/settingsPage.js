@@ -228,8 +228,9 @@ export function renderSettingsPage() {
   const storedAudioToggle = makeToggle("Use stored audio if available", state.preferStoredAudio);
 
   // Audio voice priority: when a card has clips in several voices, play them in
-  // this order (then fall back to live TTS). Built from the published manifest;
-  // reorder with ↑/↓. Hidden until at least one voice pack exists.
+  // this order (then fall back to live TTS). Scoped to THIS library's language
+  // (the page is per-library), reorder with ↑/↓. Shown only when stored audio is
+  // on AND this language has at least one voice pack.
   const voicePriority = document.createElement("div");
   voicePriority.className = "study-field voice-priority";
   voicePriority.hidden = true;
@@ -239,6 +240,11 @@ export function renderSettingsPage() {
   vpList.className = "voice-priority-list";
   voicePriority.append(vpTitle, vpList);
 
+  let langVoiceCount = 0;
+  function updateVoicePriorityVisibility() {
+    voicePriority.hidden = !(storedAudioToggle.input.checked && langVoiceCount > 0);
+  }
+
   function renderVoicePriority(order, voicesById) {
     vpList.replaceChildren();
     order.forEach((vid, i) => {
@@ -247,7 +253,7 @@ export function renderSettingsPage() {
       row.className = "voice-priority-row";
       const name = document.createElement("span");
       name.className = "voice-priority-name";
-      name.textContent = `${i + 1}. ${info ? info.name : vid}${info ? ` · ${info.lang}` : ""}`;
+      name.textContent = `${i + 1}. ${info ? info.name : vid}`;
       const up = button("↑", "voice-move");
       up.disabled = i === 0;
       up.addEventListener("click", () => moveVoice(order, voicesById, i, -1));
@@ -262,29 +268,34 @@ export function renderSettingsPage() {
     fb.textContent = `${order.length + 1}. Live TTS (fallback)`;
     vpList.append(fb);
   }
+  // `order` holds only this language's voices; persist it ahead of any voices
+  // from other languages so the global list stays valid (playback filters by
+  // the card's language anyway, so cross-language order is irrelevant).
   function moveVoice(order, voicesById, i, delta) {
     const j = i + delta;
     if (j < 0 || j >= order.length) return;
     [order[i], order[j]] = [order[j], order[i]];
-    state.audioVoiceOrder = order.slice();
+    const others = (state.audioVoiceOrder || []).filter((v) => !order.includes(v));
+    state.audioVoiceOrder = [...order, ...others];
     saveState(state);
     renderVoicePriority(order, voicesById);
   }
   fetchAudioManifest().then((m) => {
+    const lang = activeLibrary().language;
+    const info = m[lang] || {};
     const voicesById = {};
     const present = [];
-    for (const [lang, info] of Object.entries(m)) {
-      for (const [vid, v] of Object.entries(info.voices || {})) {
-        if (!voicesById[vid]) { voicesById[vid] = { name: v.name, lang }; present.push(vid); }
-      }
+    for (const [vid, v] of Object.entries(info.voices || {})) {
+      voicesById[vid] = { name: v.name };
+      present.push(vid);
     }
-    if (!present.length) return; // no packs → leave hidden
-    const pref = (state.audioVoiceOrder || []).filter((v) => present.includes(v));
-    const order = [...pref, ...present.filter((v) => !pref.includes(v))];
-    // Persist the normalized order so playback and settings agree.
-    state.audioVoiceOrder = order.slice();
+    langVoiceCount = present.length;
+    updateVoicePriorityVisibility();
+    if (!present.length) return;
+    const global = state.audioVoiceOrder || [];
+    const order = [...global.filter((v) => present.includes(v)), ...present.filter((v) => !global.includes(v))];
+    state.audioVoiceOrder = [...order, ...global.filter((v) => !present.includes(v))];
     saveState(state);
-    voicePriority.hidden = false;
     renderVoicePriority(order, voicesById);
   });
 
@@ -532,6 +543,7 @@ export function renderSettingsPage() {
   storedAudioToggle.input.addEventListener("change", () => {
     state.preferStoredAudio = storedAudioToggle.input.checked;
     saveState(state);
+    updateVoicePriorityVisibility();
   });
 
   const visibilityGroup = document.createElement("div");

@@ -1,7 +1,7 @@
 // Pure set-building engine: sorting, likeness slotting, and likeness grouping.
 // No DOM, no app state — just card arrays in, set-option descriptors out.
 
-import { text, searchText, matchesQuery, fieldName, activeLibrary, DEFAULT_SET_SIZE, SET_GROUPINGS } from "./shared.js";
+import { text, searchText, matchesQuery, entryKey, fieldName, activeLibrary, DEFAULT_SET_SIZE, SET_GROUPINGS } from "./shared.js";
 
 // Collation locale for the active library (e.g. "ja", "es"). Used for all the
 // sort tie-breaks so non-Japanese libraries sort by their own rules.
@@ -29,17 +29,22 @@ let setsCache = null;
 // Filter → sort → build sets for a deck, memoized on {cacheKey, query, setSize,
 // groupingId}. Every real recompute and every cache hit is logged with timing so
 // it is obvious in the console when (and how long) a grouping calc runs.
-export function computeDeckSets({ cacheKey, cards, query, setSize, groupingId }) {
+export function computeDeckSets({ cacheKey, cards, query, setSize, groupingId, studyMore }) {
   const normalizedQuery = String(query || "").trim().toLowerCase();
-  const signature = [cacheKey, cards.length, normalizedQuery, setSize, groupingId].join(" ");
+  // When studyMore is provided, the set is narrowed to flagged cards (combined
+  // with the text query). Its key-count is part of the signature so marking/
+  // unmarking busts the cache.
+  const smKeys = studyMore ? Object.keys(studyMore).length : -1;
+  const signature = [cacheKey, cards.length, normalizedQuery, setSize, groupingId, smKeys].join(" ");
   if (setsCache && setsCache.signature === signature) {
     console.log(`[sets] cache hit · ${groupingId} · ${setsCache.result.setOptions.length} sets (no recompute)`);
     return setsCache.result;
   }
   const start = performance.now();
-  const matching = normalizedQuery
-    ? cards.filter((entry) => matchesQuery(entry, normalizedQuery))
-    : cards;
+  const matching = cards.filter((entry) =>
+    (!normalizedQuery || matchesQuery(entry, normalizedQuery)) &&
+    (!studyMore || studyMore[entryKey(entry)])
+  );
   const deckCards = sortCardsForSets(matching, groupingId);
   const setOptions = buildSetOptions(deckCards, setSize, groupingId);
   const ms = (performance.now() - start).toFixed(1);

@@ -326,7 +326,9 @@ export function renderCardPage() {
       cards: deck.entries,
       query: state.query,
       setSize: state.setSize,
-      groupingId: state.setGrouping
+      groupingId: state.setGrouping,
+      // When the study-more filter is on, narrow the set to flagged cards.
+      studyMore: state.studyMoreFilter ? state.studyMore : null
     });
     deckCards = result.deckCards;
     setOptions = result.setOptions;
@@ -503,7 +505,7 @@ export function renderCardPage() {
     const filter = String(state.query || "").trim();
     // The set is shown by the Set selector above, so it's omitted here.
     summaryMain.textContent = deck
-      ? `${deckBreadcrumb(deck)}${filter ? ` · filter “${filter}”` : ""}`
+      ? `${deckBreadcrumb(deck)}${filter ? ` · filter “${filter}”` : ""}${state.studyMoreFilter ? " · ★ study more" : ""}`
       : "";
     summaryGrouping.textContent = deck
       ? (activeLibrary().orderBy ? "In order" : activeSetGrouping(state.setGrouping).shortLabel)
@@ -1105,6 +1107,9 @@ export function renderCardPage() {
     else state.studyMore[key] = true;
     saveState(state);
     reflectStudyMore();
+    // If the set is currently filtered to study-more cards, unmarking one should
+    // drop it from the set — rebuild (keeping the spot by identity where it can).
+    if (state.studyMoreFilter) renderAll({ keepIndex: true });
   }
 
   function reflectAutoplay() {

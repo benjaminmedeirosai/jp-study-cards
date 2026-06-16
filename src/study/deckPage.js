@@ -110,15 +110,18 @@ export function renderDeckPage() {
     emptyText: "No filters studied yet"
   });
 
-  // Study-more filter: a toggle on the card-filter row. When on, deck counts are
-  // narrowed to cards flagged "study more" (combined with the text filter).
-  let studyMoreOnly = false;
-  const studyMoreBtn = button("Study more", "decks-studymore");
+  // Study-more filter: a toggle on the card-filter row. Persisted (state.
+  // studyMoreFilter) so it also narrows the actual study set when a deck is
+  // selected — not just the deck counts here.
+  let studyMoreOnly = state.studyMoreFilter === true;
+  const studyMoreBtn = button("Study more", `decks-studymore${studyMoreOnly ? " active" : ""}`);
   studyMoreBtn.innerHTML = ICONS.star;
   studyMoreBtn.setAttribute("aria-label", "Show only study-more cards");
-  studyMoreBtn.setAttribute("aria-pressed", "false");
+  studyMoreBtn.setAttribute("aria-pressed", studyMoreOnly ? "true" : "false");
   studyMoreBtn.addEventListener("click", () => {
     studyMoreOnly = !studyMoreOnly;
+    state.studyMoreFilter = studyMoreOnly;
+    saveState(state);
     studyMoreBtn.classList.toggle("active", studyMoreOnly);
     studyMoreBtn.setAttribute("aria-pressed", studyMoreOnly ? "true" : "false");
     if (bundle) renderList();

@@ -19,8 +19,9 @@ const LIBRARY_KEYS = [
   "kanjiFont", "hiraganaFont", "kanjiBold", "hiraganaBold",
   "kanjiFontPx", "hiraganaFontPx", "englishFontPx", "glossFontPx",
   "voice", "ttsSources", "soundSource", "deckHistory", "filterHistory",
-  // Per-library "study more" flags, keyed by card identity (entryKey → true).
-  "studyMore"
+  // Per-library "study more" flags, keyed by card identity (entryKey → true),
+  // and whether the study set is currently narrowed to those flagged cards.
+  "studyMore", "studyMoreFilter"
 ];
 export const DEFAULT_SET_SIZE = 20;
 export const FONT_SCALE_OPTIONS = [10, 20, 35, 50, 75, 100, 125, 150, 200, 250];
@@ -325,7 +326,8 @@ export function loadState() {
     soundSource: String(raw.soundSource || ""),
     filterHistory: Array.isArray(raw.filterHistory) ? raw.filterHistory : [],
     deckHistory: Array.isArray(raw.deckHistory) ? raw.deckHistory : [],
-    studyMore: raw.studyMore && typeof raw.studyMore === "object" ? raw.studyMore : {}
+    studyMore: raw.studyMore && typeof raw.studyMore === "object" ? raw.studyMore : {},
+    studyMoreFilter: raw.studyMoreFilter === true
   };
 }
 
