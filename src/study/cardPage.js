@@ -108,6 +108,9 @@ export function renderCardPage() {
   let renderVersion = 0;
   let autoplaying = false;
   let autoplayToken = 0;
+  // Pending manual skip during autoplay (from lock-screen prev/next): the cycle
+  // honors it instead of its default +1 advance, so skipping re-anchors the loop.
+  let autoplayNav = 0;
 
   // --- Header -------------------------------------------------------------
   const top = document.createElement("header");
@@ -470,9 +473,54 @@ export function renderCardPage() {
     const ms = navigator.mediaSession;
     const set = (action, fn) => { try { ms.setActionHandler(action, fn); } catch { /* action unsupported */ } };
     set("play", () => speakStudy());
-    set("pause", () => { if (currentClipAudio) currentClipAudio.pause(); ms.playbackState = "paused"; });
-    set("previoustrack", () => move(-1, { play: true }));
-    set("nexttrack", () => move(1, { play: true }));
+    set("pause", () => { stopAutoplay(); if (currentClipAudio) currentClipAudio.pause(); ms.playbackState = "paused"; });
+    // During autoplay, skip re-anchors the running loop (so it keeps going from
+    // the new card); otherwise it's a one-off navigate-and-play.
+    set("previoustrack", () => { if (autoplaying) { autoplayNav = -1; cancelAutoplaySleep(); } else move(-1, { play: true }); });
+    set("nexttrack", () => { if (autoplaying) { autoplayNav = 1; cancelAutoplaySleep(); } else move(1, { play: true }); });
+  }
+
+  // A silent WAV blob of `seconds` length, synthesized in-browser (no encoder):
+  // 8-bit unsigned PCM mono @ 8 kHz, all samples = 128. Played during autoplay
+  // gaps so a media element keeps "playing" — that keeps the OS media session
+  // alive (lock-screen skip/pause stay live through the gap) and makes gap
+  // timing immune to background timer-throttling (it ends on the clip's own
+  // `ended` event, not a setTimeout). URLs are cached per 0.1s bucket.
+  const SILENCE_RATE = 8000;
+  function silenceWav(seconds) {
+    const n = Math.max(1, Math.round(seconds * SILENCE_RATE));
+    const buf = new ArrayBuffer(44 + n);
+    const v = new DataView(buf);
+    const str = (o, s) => { for (let i = 0; i < s.length; i++) v.setUint8(o + i, s.charCodeAt(i)); };
+    str(0, "RIFF"); v.setUint32(4, 36 + n, true); str(8, "WAVE");
+    str(12, "fmt "); v.setUint32(16, 16, true); v.setUint16(20, 1, true); v.setUint16(22, 1, true);
+    v.setUint32(24, SILENCE_RATE, true); v.setUint32(28, SILENCE_RATE, true); v.setUint16(32, 1, true); v.setUint16(34, 8, true);
+    str(36, "data"); v.setUint32(40, n, true);
+    for (let i = 0; i < n; i++) v.setUint8(44 + i, 128);
+    return new Blob([buf], { type: "audio/wav" });
+  }
+  const silenceUrls = new Map();
+  function silenceUrl(seconds) {
+    const key = Math.max(0, Math.round(seconds * 10) / 10);
+    let url = silenceUrls.get(key);
+    if (!url) { url = URL.createObjectURL(silenceWav(key)); silenceUrls.set(key, url); }
+    return url;
+  }
+
+  // A continuously-looping silent element that holds the OS media session for
+  // the whole autoplay run. The session is global — any one playing element
+  // keeps it alive — so this fills the gaps between clips (and the silence under
+  // each clip) so the lock screen never flips to "Not Playing" and the controls
+  // stay live. Real clips play over it; metadata stays the current card's.
+  let keepAlive = null;
+  function startKeepAlive() {
+    if (!keepAlive) { keepAlive = new Audio(); keepAlive.loop = true; keepAlive.src = silenceUrl(1); }
+    keepAlive.play().catch(() => { /* needs the gesture that started autoplay; ignore */ });
+    if ("mediaSession" in navigator) navigator.mediaSession.playbackState = "playing";
+  }
+  function stopKeepAlive() {
+    if (keepAlive) { try { keepAlive.pause(); } catch { /* not playing */ } }
+    if ("mediaSession" in navigator) navigator.mediaSession.playbackState = "paused";
   }
 
   // Preferred clip voices for this library, highest priority first — the user's
@@ -504,11 +552,13 @@ export function renderCardPage() {
       const audio = new Audio();
       audio.preload = "auto"; // load the bytes now, not on first play
       audio.src = url;
-      // Keep the lock-screen play/pause indicator in sync with this clip.
+      // Keep the lock-screen play/pause indicator in sync with this clip. During
+      // autoplay the looping keep-alive owns the "playing" state, so a clip
+      // ending mid-run must NOT flip it to paused.
       if ("mediaSession" in navigator) {
         audio.addEventListener("play", () => { navigator.mediaSession.playbackState = "playing"; });
-        audio.addEventListener("pause", () => { navigator.mediaSession.playbackState = "paused"; });
-        audio.addEventListener("ended", () => { navigator.mediaSession.playbackState = "paused"; });
+        audio.addEventListener("pause", () => { if (!autoplaying && currentClipAudio === audio) navigator.mediaSession.playbackState = "paused"; });
+        audio.addEventListener("ended", () => { if (!autoplaying && currentClipAudio === audio) navigator.mediaSession.playbackState = "paused"; });
       }
       rec = { audio, url };
       if (cacheKey) clipEls.set(cacheKey, rec);
@@ -1374,19 +1424,22 @@ export function renderCardPage() {
     if (!autoplaying) return;
     autoplaying = false;
     autoplayToken += 1; // invalidate any pending sleep/poll
-    cancelAutoplaySleep(); // clear the pending timer and settle its promise now
+    autoplayNav = 0;
+    cancelAutoplaySleep(); // clear the pending gap timer and settle its promise now
+    stopKeepAlive(); // release the media session
     reflectAutoplay();
   }
 
-  // The single in-flight sleep timer (the cycle awaits one at a time). Tracked
-  // so stop/teardown can clear it instead of letting it fire into a dead state.
+  // The single in-flight gap timer (the cycle awaits one at a time). The OS
+  // media session is held alive across these gaps by a separate looping silent
+  // element (see keep-alive below), so lock-screen skip/pause keep working
+  // between cards even though this gap itself plays no audio.
   let sleepTimer = null;
   let sleepResolve = null;
   function cancelAutoplaySleep() {
     if (sleepTimer !== null) { clearTimeout(sleepTimer); sleepTimer = null; }
     if (sleepResolve) { const r = sleepResolve; sleepResolve = null; r(false); }
   }
-
   // Resolves true after `ms`, or false if autoplay was stopped/superseded.
   function autoplaySleep(ms, token) {
     return new Promise((resolve) => {
@@ -1420,13 +1473,21 @@ export function renderCardPage() {
   async function autoplayCycle() {
     const token = autoplayToken;
     const live = () => autoplaying && token === autoplayToken && root.isConnected && setCards.length > 0;
+    // A gap that resolves false but with a pending manual skip means re-anchor,
+    // not stop: loop back so the top honors autoplayNav. Genuine stop → return.
+    const interrupted = () => autoplayNav !== 0 && live();
     while (live()) {
-      move(1); // next card, fresh question (speaks in voice mode)
-      if (!(await autoplaySettle(state.mode === "voice", state.autoplayQuestionDelay, token))) return;
+      move(autoplayNav || 1); // honor a pending lock-screen skip, else advance
+      autoplayNav = 0;
+      if (!(await autoplaySettle(state.mode === "voice", state.autoplayQuestionDelay, token))) {
+        if (interrupted()) continue; return;
+      }
       if (!live()) return;
       if (!revealed) reveal(); // show + speak the answer
       const spokeAnswer = !!studySpeechText(currentEntry());
-      if (!(await autoplaySettle(spokeAnswer, state.autoplayAnswerDelay, token))) return;
+      if (!(await autoplaySettle(spokeAnswer, state.autoplayAnswerDelay, token))) {
+        if (interrupted()) continue; return;
+      }
     }
   }
 
@@ -1435,6 +1496,8 @@ export function renderCardPage() {
     if (!setCards.length) return;
     autoplaying = true;
     autoplayToken += 1;
+    autoplayNav = 0;
+    startKeepAlive(); // hold the media session alive across the whole run
     reflectAutoplay();
     void autoplayCycle();
   }
