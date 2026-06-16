@@ -307,7 +307,8 @@ export function renderSettingsPage() {
   Promise.all([fetchAudioManifest(), getAudioMeta(lang), voiceIdsForLang(lang)]).then(([m, imported, idbVids]) => {
     const voicesById = {};
     for (const [vid, v] of Object.entries((m[lang] || {}).voices || {})) voicesById[vid] = { name: v.name, locale: v.locale };
-    for (const [vid, v] of Object.entries(imported || {})) voicesById[vid] = { name: v.name, locale: v.locale };
+    // imported voices.json is { version, voices } (tolerate the older bare map).
+    for (const [vid, v] of Object.entries((imported && (imported.voices || imported)) || {})) voicesById[vid] = { name: v.name, locale: v.locale };
     for (const vid of idbVids) if (!voicesById[vid]) voicesById[vid] = { name: vid.charAt(0).toUpperCase() + vid.slice(1), locale: activeLibrary().tts.lang || "" };
     const present = Object.keys(voicesById);
     langVoiceCount = present.length;

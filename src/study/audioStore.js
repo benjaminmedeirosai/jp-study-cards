@@ -235,32 +235,50 @@ export async function unzip(arrayBuffer) {
 
 // Import clips from a .zip (File or ArrayBuffer). Each entry path is the 1-1
 // mirror `<lang>/<deckId>/<slug>.m4a`; map it back to a card (via the shared
-// audioSlug) and store the blob under that card's identity key. Returns
-// { matched, unmatched }.
-export async function importAudioZip(fileOrBuffer) {
+// audioSlug) and store the blob under that card's identity key. `onProgress(done,
+// total)` is called as clips are stored. Returns { matched, unmatched, skipped }
+// — `skipped` lists languages whose pack is already imported at the same version
+// (so the slow re-import is avoided); a real content change has a new version and
+// re-imports normally.
+export async function importAudioZip(fileOrBuffer, onProgress) {
   const buffer = fileOrBuffer instanceof Blob ? await fileOrBuffer.arrayBuffer() : fileOrBuffer;
   const all = await unzip(buffer);
-  // Persist any embedded per-language voice metadata ("<lang>/voices.json").
+  // Read each embedded "<lang>/voices.json" ({ version, voices }), and decide
+  // which languages are already imported at that exact version (skip those).
+  const packs = {};
   for (const e of all) {
     const parts = e.name.split("/");
     if (parts.length === 2 && parts[1] === "voices.json") {
-      try { await putAudioMeta(parts[0], JSON.parse(await e.blob.text())); } catch {}
+      try { packs[parts[0]] = JSON.parse(await e.blob.text()); } catch { /* malformed */ }
     }
   }
-  const entries = all.filter((e) => /\.m4a$/i.test(e.name));
+  const skip = new Set();
+  for (const [lang, meta] of Object.entries(packs)) {
+    const ver = meta && meta.version;
+    if (!ver) continue;
+    const existing = await getAudioMeta(lang);
+    if (existing && existing.version === ver && (await countClips(lang)) > 0) skip.add(lang);
+  }
+  // Persist the metadata (names/locales/sizes/version) for every pack present.
+  for (const [lang, meta] of Object.entries(packs)) await putAudioMeta(lang, meta);
+
+  const entries = all.filter((e) => /\.m4a$/i.test(e.name) && !skip.has(e.name.split("/")[0]));
+  const total = entries.length;
   const byLang = new Map();
   for (const item of entries) {
     const lang = item.name.split("/")[0];
     if (!byLang.has(lang)) byLang.set(lang, []);
     byLang.get(lang).push(item);
   }
-  let matched = 0, unmatched = 0;
+  let matched = 0, unmatched = 0, done = 0;
+  const tick = () => { done++; if (onProgress && (done % 50 === 0 || done === total)) onProgress(done, total); };
   for (const [lang, items] of byLang) {
     let bundle;
     try { bundle = await (await fetch(`data/${lang}/cards.json`)).json(); }
-    catch { unmatched += items.length; continue; }
+    catch { unmatched += items.length; for (const _ of items) tick(); continue; }
     const deckById = new Map(bundle.decks.map((d) => [d.id, d]));
     for (const { name, blob } of items) {
+      tick();
       // <lang>/<voiceId>/<deckId…>/<slug>[.<source>].m4a
       const segs = name.split("/");
       const voiceId = segs[1];
@@ -283,5 +301,5 @@ export async function importAudioZip(fileOrBuffer) {
       matched++;
     }
   }
-  return { matched, unmatched };
+  return { matched, unmatched, skipped: [...skip] };
 }

@@ -1636,7 +1636,8 @@ export function renderCardPage() {
       // imported-pack metadata (Japanese, unpublished).
       const metaLang = activeLibrary().language;
       Promise.all([fetchAudioManifest(), getAudioMeta(metaLang)]).then(([m, imported]) => {
-        voiceMeta = { ...((m[metaLang] || {}).voices || {}), ...(imported || {}) };
+        // imported voices.json is { version, voices } (tolerate the older bare map).
+        voiceMeta = { ...((m[metaLang] || {}).voices || {}), ...((imported && (imported.voices || imported)) || {}) };
       });
       await renderAll({ keepIndex: true });
       // Start timing this study session (deck + active filter) for history.

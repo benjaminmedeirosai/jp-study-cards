@@ -111,16 +111,23 @@ export function renderLibraryPage() {
     for (const { language, schemas } of groups) {
       let bundle = null;
       try { bundle = await (await fetch(schemas[0].data)).json(); } catch {}
-      const voices = (manifest[language.id] && manifest[language.id].voices) || {};
+      // Voices come from the published manifest AND any imported pack's
+      // voices.json (Japanese is import-only, so it's absent from the manifest).
+      // imported is { version, voices } (tolerate the older bare map).
+      const imported = await getAudioMeta(language.id).catch(() => null);
+      const importedVoices = (imported && (imported.voices || imported)) || {};
+      // Merge per voice (field-wise), not whole objects — an imported pack that
+      // predates the `bytes` field must not wipe the manifest's size info.
+      const voices = {};
+      for (const [vid, v] of Object.entries((manifest[language.id] && manifest[language.id].voices) || {})) voices[vid] = { ...v };
+      for (const [vid, v] of Object.entries(importedVoices)) voices[vid] = { ...(voices[vid] || {}), ...v };
+      const loaded = (await countClips(language.id)) > 0;
       // Per-language audio footprint, shown on the header only when this
-      // language actually has clips stored. Byte totals come from the manifest
-      // (published) or the imported pack's voices.json — never recomputed here.
+      // language actually has clips stored. Byte totals are declared in the
+      // manifest / voices.json — never recomputed here.
       const sizeEl = langSizeEls.get(language.id);
       if (sizeEl) {
-        const imported = await getAudioMeta(language.id).catch(() => null);
-        const sizeVoices = Object.keys(voices).length ? voices : (imported || {});
-        const totalBytes = Object.values(sizeVoices).reduce((a, v) => a + (v.bytes || 0), 0);
-        const loaded = (await countClips(language.id)) > 0;
+        const totalBytes = Object.values(voices).reduce((a, v) => a + (v.bytes || 0), 0);
         sizeEl.textContent = loaded && totalBytes ? ` · ${formatBytes(totalBytes)}` : "";
       }
       for (const lib of schemas) {
@@ -131,10 +138,13 @@ export function renderLibraryPage() {
           .filter((d) => (d.kind || "word") === lib.deckKind)
           .flatMap((d) => d.entries);
         const total = entries.length;
+        // An entry "has audio" for a voice if a clip exists under ANY of the
+        // library's sound sources (Japanese stores per-source keys: kanji/hiragana).
+        const srcs = lib.soundSources && lib.soundSources.length > 1 ? lib.soundSources.map((s) => s.value) : [""];
         const parts = [];
         let anyPartial = false;
         for (const [vid, info] of Object.entries(voices)) {
-          const n = entries.reduce((a, e) => a + (keySet.has(clipKeyForEntry(e, lib, vid)) ? 1 : 0), 0);
+          const n = entries.reduce((a, e) => a + (srcs.some((src) => keySet.has(clipKeyForEntry(e, lib, vid, src))) ? 1 : 0), 0);
           if (n === 0) continue;
           parts.push(`${shortVoice(info.name)} ${n}/${total}`);
           if (n < total) anyPartial = true;
@@ -209,11 +219,19 @@ export function renderLibraryPage() {
     const file = importInput.files[0];
     importInput.value = "";
     if (!file) return;
-    importStatus.textContent = "Importing…";
+    importStatus.textContent = "Reading…";
     try {
       await requestPersist();
-      const { matched, unmatched } = await importAudioZip(file);
-      importStatus.textContent = `Imported ${matched} clip${matched === 1 ? "" : "s"}${unmatched ? ` · ${unmatched} unmatched` : ""}`;
+      const { matched, unmatched, skipped } = await importAudioZip(file, (done, total) => {
+        importStatus.textContent = `Importing… ${done}/${total} (${Math.round((done / total) * 100)}%)`;
+      });
+      if (matched === 0 && skipped && skipped.length) {
+        importStatus.textContent = `Already imported (${skipped.join(", ")}) — up to date`;
+      } else {
+        importStatus.textContent = `Imported ${matched} clip${matched === 1 ? "" : "s"}`
+          + (skipped && skipped.length ? ` · ${skipped.join(", ")} already up to date` : "")
+          + (unmatched ? ` · ${unmatched} unmatched` : "");
+      }
       await refreshMeta();
     } catch (err) {
       importStatus.textContent = `Import failed: ${err.message}`;

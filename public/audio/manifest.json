@@ -1,6 +1,6 @@
 {
   "farsi": {
-    "version": "107cd4c3d195",
+    "version": "156e9082ddf8",
     "voices": {
       "dariush": {
         "name": "Dariush (Enhanced)",
@@ -11,7 +11,7 @@
     }
   },
   "spanish": {
-    "version": "e30f3ec76bdc",
+    "version": "5e148646b0cb",
     "voices": {
       "carlos": {
         "name": "Carlos (Enhanced)",

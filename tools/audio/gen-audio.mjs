@@ -258,12 +258,15 @@ process.stdout.write("\n");
 console.log(`[audio] ${lang}${deckPrefix ? "/" + deckPrefix : ""}: ${made} generated, ${deduped} deduped, ${skipped} skipped, ${failed} failed`);
 
 // Always (re)write audio/<lang>/voices.json so any zip of the folder — even a
-// manual, unpublished one (Japanese) — carries voice names/locales for the app
-// to show in Settings and the sound menu after import.
+// manual, unpublished one (Japanese) — carries voice names/locales/sizes AND a
+// content version for the app: it shows them after import, and the version lets
+// a re-import of the same pack be skipped (while a real change still re-imports).
 {
   const langDir = path.join(ROOT, "audio", lang);
   if (existsSync(langDir)) {
-    writeFileSync(path.join(langDir, "voices.json"), JSON.stringify(scanVoices(langDir), null, 2) + "\n");
+    const voices = scanVoices(langDir);
+    const version = createHash("sha256").update(JSON.stringify(voices)).digest("hex").slice(0, 12);
+    writeFileSync(path.join(langDir, "voices.json"), JSON.stringify({ version, voices }, null, 2) + "\n");
   }
 }
 
