@@ -134,9 +134,8 @@ export function renderSettingsPage() {
   // --- Set size / grouping ------------------------------------------------
   const setSizeInput = document.createElement("input");
   setSizeInput.type = "number";
-  setSizeInput.min = "5";
-  setSizeInput.max = "100";
-  setSizeInput.step = "5";
+  setSizeInput.min = "3";
+  setSizeInput.step = "1";
   setSizeInput.value = String(state.setSize);
   // Only the groupings the active library offers.
   const offeredGroupings = activeLibrary().groupingIds
@@ -397,7 +396,7 @@ export function renderSettingsPage() {
       cacheKey: state.deckId,
       cards: previewBaseCards,
       query: queryInput.value,
-      setSize: clampInt(setSizeInput.value, DEFAULT_SET_SIZE, 5, 100),
+      setSize: clampInt(setSizeInput.value, DEFAULT_SET_SIZE, 3, 100000),
       groupingId
     });
     setPreviewRows.innerHTML = "";
@@ -457,7 +456,7 @@ export function renderSettingsPage() {
   // Set size / grouping change which sets exist, so reset to the first set.
   setSizeInput.addEventListener("input", () => {
     const previous = state.setSize;
-    state.setSize = clampInt(setSizeInput.value, DEFAULT_SET_SIZE, 5, 100);
+    state.setSize = clampInt(setSizeInput.value, DEFAULT_SET_SIZE, 3, 100000);
     if (state.setSize !== previous) {
       state.setId = "all";
       state.currentIndex = 0;
@@ -569,7 +568,7 @@ export function renderSettingsPage() {
   content.append(
     sectionHeading("Filter & sets"),
     queryField,
-    makePresetField("Set size", setSizeInput, [5, 10, 15, 20, 50]),
+    makePresetField("Set size", setSizeInput, [5, 7, 10, 15, 50]),
     fieldLabel("Set grouping", setGroupingInput),
     setPreview,
     sectionHeading("Fonts"),

@@ -280,7 +280,7 @@ export function loadState() {
     deckId: String(raw.deckId || ""),
     setId: String(raw.setId || "all"),
     mode: activeLibrary().modeIds.includes(raw.mode) ? raw.mode : activeLibrary().modeIds[0],
-    setSize: clampInt(raw.setSize, DEFAULT_SET_SIZE, 5, 100),
+    setSize: clampInt(raw.setSize, DEFAULT_SET_SIZE, 3, 100000),
     setGrouping: normalizeSetGrouping(raw.setGrouping),
     kanjiFontPx: clampInt(raw.kanjiFontPx, FONT_PX_DEFAULTS.kanji, FONT_PX_MIN, FONT_PX_MAX),
     hiraganaFontPx: clampInt(raw.hiraganaFontPx, FONT_PX_DEFAULTS.hiragana, FONT_PX_MIN, FONT_PX_MAX),
