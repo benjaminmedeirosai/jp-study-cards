@@ -433,6 +433,7 @@ export function renderCardPage() {
   function speakStudy() {
     const entry = currentEntry();
     if (!entry) return;
+    updateMediaSession(entry); // reflect the current card on the lock screen
     // "Use stored audio if available" off → always live TTS.
     if (state.preferStoredAudio === false) { speakTts(entry); return; }
     const lang = activeLibrary().language;
@@ -441,6 +442,37 @@ export function renderCardPage() {
       if (found) playClip(found.blob, rateForVoice(found.voiceId), clipKey(lang, found.voiceId, ek, found.source));
       else speakTts(entry);
     });
+  }
+
+  // --- MediaSession: lock-screen / headphone media controls ---------------
+  // Stored-clip playback is a real media element, so the OS shows a now-playing
+  // surface. Bind its metadata to the current card and its prev/next/play/pause
+  // to card navigation — hands-free study with the screen off. No-ops where the
+  // API is absent.
+  function updateMediaSession(entry) {
+    if (!("mediaSession" in navigator) || typeof MediaMetadata === "undefined" || !entry) return;
+    const title = primaryText(entry) || readingText(entry) || translationText(entry) || "";
+    const reading = readingText(entry);
+    const translation = translationText(entry);
+    const subtitle = [reading && reading !== title ? reading : "", translation].filter(Boolean).join(" · ");
+    const deck = currentDeck();
+    try {
+      navigator.mediaSession.metadata = new MediaMetadata({
+        title,
+        artist: subtitle,
+        album: deck ? deck.label : activeLibrary().label,
+        artwork: [{ src: "favicon.svg", sizes: "any", type: "image/svg+xml" }]
+      });
+    } catch { /* MediaMetadata not constructible here */ }
+  }
+  function setupMediaSession() {
+    if (!("mediaSession" in navigator)) return;
+    const ms = navigator.mediaSession;
+    const set = (action, fn) => { try { ms.setActionHandler(action, fn); } catch { /* action unsupported */ } };
+    set("play", () => speakStudy());
+    set("pause", () => { if (currentClipAudio) currentClipAudio.pause(); ms.playbackState = "paused"; });
+    set("previoustrack", () => move(-1, { play: true }));
+    set("nexttrack", () => move(1, { play: true }));
   }
 
   // Preferred clip voices for this library, highest priority first — the user's
@@ -472,6 +504,12 @@ export function renderCardPage() {
       const audio = new Audio();
       audio.preload = "auto"; // load the bytes now, not on first play
       audio.src = url;
+      // Keep the lock-screen play/pause indicator in sync with this clip.
+      if ("mediaSession" in navigator) {
+        audio.addEventListener("play", () => { navigator.mediaSession.playbackState = "playing"; });
+        audio.addEventListener("pause", () => { navigator.mediaSession.playbackState = "paused"; });
+        audio.addEventListener("ended", () => { navigator.mediaSession.playbackState = "paused"; });
+      }
       rec = { audio, url };
       if (cacheKey) clipEls.set(cacheKey, rec);
     }
@@ -1245,14 +1283,16 @@ export function renderCardPage() {
   }
 
   // --- Interactions -------------------------------------------------------
-  function move(delta) {
+  function move(delta, { play = false } = {}) {
     if (!setCards.length) return;
     state.currentIndex = (state.currentIndex + delta + setCards.length) % setCards.length;
     state.currentKey = entryKey(currentEntry()) || "";
     revealed = false;
     saveState(state);
     renderCard();
-    if (state.mode === "voice") speakStudy();
+    // Voice mode auto-speaks on every move; `play` forces it for lock-screen
+    // next/prev (the user is listening with the screen off, not in voice mode).
+    if (play || state.mode === "voice") speakStudy();
   }
 
   function shuffleCurrentSet() {
@@ -1501,6 +1541,7 @@ export function renderCardPage() {
     }
   }
 
+  setupMediaSession();
   renderCard();
   void initialize();
   return root;
