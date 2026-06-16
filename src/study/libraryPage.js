@@ -10,7 +10,7 @@
 import { loadState, saveState, button } from "./shared.js";
 import { libraryGroups } from "./libraries.js";
 import { chooseLibrary, closeOverlay } from "./router.js";
-import { importAudioZip, clipKeyForEntry, allClipKeys, clearAllClips, requestPersist, fetchAudioManifest } from "./audioStore.js";
+import { importAudioZip, clipKeyForEntry, allClipKeys, clearAllClips, countClips, requestPersist, fetchAudioManifest } from "./audioStore.js";
 
 // Per-schema noun for the entry count.
 const KIND_NOUN = { word: "words", kanji: "kanji", alpha: "letters", harakat: "marks" };
@@ -134,21 +134,32 @@ export function renderLibraryPage() {
   // We track which version is loaded per language; the button is enabled only
   // when something is missing/outdated and disabled ("Audio up to date") once
   // every published pack matches what's loaded. On demand only.
-  const outdatedLangs = () => {
+  // A pack is "stale" if its loaded version differs from the manifest OR it has
+  // no clips actually in storage — the recorded version alone can lie (cleared
+  // via devtools, or IndexedDB evicted under storage pressure, while the
+  // localStorage version survives), which is what makes "up to date" disagree
+  // with a "no audio" tally. Verifying clips exist keeps the two consistent.
+  const outdatedLangs = async () => {
     const loaded = loadState().audioPackVersions || {};
-    return Object.keys(manifest).filter((lang) => loaded[lang] !== manifest[lang].version);
+    const out = [];
+    for (const lang of Object.keys(manifest)) {
+      const versionMismatch = loaded[lang] !== manifest[lang].version;
+      const hasClips = (await countClips(lang)) > 0;
+      if (versionMismatch || !hasClips) out.push(lang);
+    }
+    return out;
   };
-  function refreshLoadButton() {
+  async function refreshLoadButton() {
     const langs = Object.keys(manifest);
-    const stale = outdatedLangs();
     if (!langs.length) { loadBtn.disabled = true; loadBtn.textContent = "No audio packs"; return; }
+    const stale = await outdatedLangs();
     loadBtn.disabled = stale.length === 0;
     const anyLoaded = langs.some((l) => !stale.includes(l));
     loadBtn.textContent = stale.length === 0 ? "Audio up to date" : (anyLoaded ? "Update audio" : "Load audio");
   }
 
   loadBtn.addEventListener("click", async () => {
-    const stale = outdatedLangs();
+    const stale = await outdatedLangs();
     if (!stale.length) return;
     importStatus.textContent = "Loading…";
     try {
