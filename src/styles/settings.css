@@ -315,6 +315,7 @@
 
 /* --- Audio voice priority -------------------------------------------------- */
 .voice-priority { display: flex; flex-direction: column; gap: 8px; }
+.voice-priority[hidden] { display: none; }
 .voice-priority-list { display: flex; flex-direction: column; gap: 6px; }
 .voice-priority-row {
   display: flex;
