@@ -390,9 +390,40 @@ export function searchText(entry) {
 //   "x"   → primary contains x       (Farsi medial / anywhere)
 // Only the quotes trigger this, and nothing types them except the Farsi alphabet
 // form-filter popup, so plain search is untouched across all languages.
+// Persian letters that join only to their RIGHT (the preceding letter) and never
+// to the next one — so a following letter starts a fresh connection group. ء
+// (hamze) doesn't join at all. A letter only takes its medial/final *form* when
+// the letter before it connects forward (i.e. isn't one of these).
+const FA_NON_CONNECTORS = new Set([..."اآأإٱدذرزژوؤءة"]);
+function faConnectsForward(ch) {
+  return !!ch && ch !== " " && ch !== "\u200c" && !FA_NON_CONNECTORS.has(ch);
+}
+// Does `word` contain `ch` actually shaped in its `mode` (final|medial) form?
+// final: ch is the last letter and the letter before it connects forward.
+// medial: ch sits between two letters, joined on both sides.
+function faFormMatch(word, mode, ch) {
+  const s = String(word || "");
+  if (mode === "final") {
+    const i = s.length - 1;
+    return s[i] === ch && faConnectsForward(s[i - 1]);
+  }
+  if (mode === "medial") {
+    for (let i = 1; i < s.length - 1; i += 1) {
+      if (s[i] !== ch) continue;
+      const nextIsLetter = s[i + 1] !== " " && s[i + 1] !== "\u200c";
+      if (faConnectsForward(s[i - 1]) && faConnectsForward(ch) && nextIsLetter) return true;
+    }
+  }
+  return false;
+}
+
 export function matchesQuery(entry, rawQuery) {
   const query = String(rawQuery || "").trim();
   if (!query) return true;
+  // Farsi shaping-aware filter: `fa:final <ch>` / `fa:medial <ch>` — only words
+  // where the letter is truly drawn in that connected form (see faFormMatch).
+  const faForm = query.match(/^fa:(final|medial)\s+(.+)$/);
+  if (faForm) return faFormMatch(primaryText(entry), faForm[1], faForm[2].trim());
   if (query.length >= 2 && query.startsWith('"') && query.endsWith('"')) {
     const inner = query.slice(1, -1);
     const core = inner.trim().toLowerCase();

@@ -502,7 +502,10 @@ export function renderCardPage() {
     empty.hidden = total > 0;
     card.hidden = total === 0;
     tray.hidden = total === 0;
-    const filter = String(state.query || "").trim();
+    const rawFilter = String(state.query || "").trim();
+    // Show the Farsi shaping filter in plain words rather than the fa: token.
+    const faForm = rawFilter.match(/^fa:(final|medial)\s+(.+)$/);
+    const filter = faForm ? `${faForm[2]} in ${faForm[1]} form` : rawFilter;
     // The set is shown by the Set selector above, so it's omitted here.
     summaryMain.textContent = deck
       ? `${deckBreadcrumb(deck)}${filter ? ` · filter “${filter}”` : ""}${state.studyMoreFilter ? " · ★ study more" : ""}`
@@ -967,15 +970,10 @@ export function renderCardPage() {
   // shaping is presentational), so we search the BASE letter with a position-
   // anchored quoted query (see matchesQuery): initial→starts, final→ends,
   // isolated→exact, medial→anywhere.
-  const FORM_FILTERS = {
-    isolated: { name: "isolated", query: (c) => `" ${c} "`, label: (c) => `Words that are just ${c}` },
-    initial: { name: "initial", query: (c) => `" ${c}"`, label: (c) => `Words starting with ${c}` },
-    medial: { name: "medial", query: (c) => `"${c}"`, label: (c) => `Words with ${c} anywhere` },
-    final: { name: "final", query: (c) => `"${c} "`, label: (c) => `Words ending with ${c}` }
-  };
+  const FORM_NAMES = { isolated: "isolated", initial: "initial", medial: "medial", final: "final" };
   function openFormMenu(baseChar, formId, anchor) {
     closeGlossMenu();
-    const spec = FORM_FILTERS[formId] || FORM_FILTERS.isolated;
+    const formName = FORM_NAMES[formId] || "isolated";
     const backdrop = document.createElement("div");
     backdrop.className = "gloss-menu-backdrop";
     const menu = document.createElement("div");
@@ -990,13 +988,31 @@ export function renderCardPage() {
     charEl.textContent = baseChar;
     const formEl = document.createElement("span");
     formEl.className = "gloss-menu-gloss";
-    formEl.textContent = `${spec.name} form`;
+    formEl.textContent = `${formName} form`;
     head.append(charEl, formEl);
 
-    // Primary: the position filter for this form. Secondary (except for medial,
-    // which already is "anywhere"): the broaden-to-anywhere option.
-    const items = [{ q: spec.query(baseChar), label: spec.label(baseChar) }];
-    if (formId !== "medial") items.push({ q: `"${baseChar}"`, label: `Words with ${baseChar} anywhere` });
+    // Options per form. For medial/final, the FIRST option is the connector-
+    // aware one: the letter only takes that shape when the previous letter joins
+    // forward (a non-joiner like ا/د/ر leaves it standalone instead). Then the
+    // looser position match, then broaden-to-anywhere.
+    const anywhere = { q: `"${baseChar}"`, label: `Words with ${baseChar} anywhere` };
+    let items;
+    if (formId === "final") {
+      items = [
+        { q: `fa:final ${baseChar}`, label: `Ending with ${baseChar} (final form)` },
+        { q: `"${baseChar} "`, label: `Words ending with ${baseChar}` },
+        anywhere
+      ];
+    } else if (formId === "medial") {
+      items = [
+        { q: `fa:medial ${baseChar}`, label: `${baseChar} mid-word (medial form)` },
+        anywhere
+      ];
+    } else if (formId === "initial") {
+      items = [{ q: `" ${baseChar}"`, label: `Words starting with ${baseChar}` }, anywhere];
+    } else {
+      items = [{ q: `" ${baseChar} "`, label: `Words that are just ${baseChar}` }, anywhere];
+    }
 
     menu.append(head);
     const buttons = items.map((item) => {
