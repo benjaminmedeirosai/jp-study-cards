@@ -192,6 +192,10 @@
 }
 
 .voice-row select { flex: 1; min-width: 0; }
+/* Speed sits inline with the voice, narrow and content-sized. Used both in the
+   live-TTS voice row and per-voice in the priority list. */
+.voice-row select.voice-rate,
+.voice-priority-row select.voice-rate { flex: 0 0 auto; width: auto; min-width: 64px; }
 
 .voice-preview {
   flex: 0 0 auto;

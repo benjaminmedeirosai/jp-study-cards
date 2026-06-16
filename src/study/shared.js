@@ -315,6 +315,10 @@ export function loadState() {
     // tries each in turn, then falls back to TTS. Voices not listed here fall to
     // the end (in manifest order). Global.
     audioVoiceOrder: Array.isArray(raw.audioVoiceOrder) ? raw.audioVoiceOrder.map(String) : [],
+    // Per-voice stored-clip playback speed, { <voiceId>: rate }. Distinct from
+    // `voiceRate` (live TTS) — each offline voice can be sped up/slowed down on
+    // its own. Global (voiceIds are language-unique). Missing → 1×.
+    audioVoiceRates: raw.audioVoiceRates && typeof raw.audioVoiceRates === "object" ? raw.audioVoiceRates : {},
     // Which published audio-pack version is loaded, per language (for the
     // Library "Load audio" up-to-date check). { <lang>: "<version>" }.
     audioPackVersions: raw.audioPackVersions && typeof raw.audioPackVersions === "object" ? raw.audioPackVersions : {},

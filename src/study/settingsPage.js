@@ -259,13 +259,24 @@ export function renderSettingsPage() {
       name.className = "voice-priority-name";
       const locale = info && info.locale ? ` · ${info.locale}` : "";
       name.textContent = `${i + 1}. ${info ? info.name : vid}${locale}`;
+      // Per-voice stored-clip playback speed. Independent of the TTS speed above.
+      const rates = state.audioVoiceRates || (state.audioVoiceRates = {});
+      const rate = makeSelect(
+        VOICE_RATE_OPTIONS.map((r) => ({ value: String(r), label: `${r}×` })),
+        String(Number(rates[vid]) || 1)
+      );
+      rate.className = "voice-rate";
+      rate.addEventListener("change", () => {
+        rates[vid] = Number(rate.value);
+        saveState(state);
+      });
       const up = button("↑", "voice-move");
       up.disabled = i === 0;
       up.addEventListener("click", () => moveVoice(order, voicesById, i, -1));
       const down = button("↓", "voice-move");
       down.disabled = i === order.length - 1;
       down.addEventListener("click", () => moveVoice(order, voicesById, i, 1));
-      row.append(name, up, down);
+      row.append(name, rate, up, down);
       vpList.append(row);
     });
     const fb = document.createElement("div");
@@ -350,9 +361,13 @@ export function renderSettingsPage() {
   voicePreviewBtn.setAttribute("aria-label", "Preview voice");
   voicePreviewBtn.innerHTML = `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 5l12 7-12 7z"/></svg><span>Preview</span>`;
   voicePreviewBtn.addEventListener("click", () => speak(library.voiceSample || VOICE_SAMPLE, { lang: library.tts.lang, voiceName: voiceSelect.value, rate: Number(rateSelect.value) }));
+  // Live-TTS speed lives in the same row as the voice it modifies, making it
+  // clear the speed applies to TTS (stored-clip speeds are set per voice in the
+  // priority list below).
+  rateSelect.classList.add("voice-rate");
   const voiceRow = document.createElement("div");
   voiceRow.className = "voice-row";
-  voiceRow.append(voiceSelect, voicePreviewBtn);
+  voiceRow.append(voiceSelect, rateSelect, voicePreviewBtn);
 
   // --- Live set preview ---------------------------------------------------
   const setPreview = document.createElement("div");
@@ -581,8 +596,7 @@ export function renderSettingsPage() {
     // table (Farsi alphabet, where this slot sizes the positional forms).
     ...(library.features.gloss || library.features.formsTable ? [glossFontField] : []),
     sectionHeading("Voice & speed"),
-    fieldLabel(`${library.label} voice`, voiceRow),
-    fieldLabel("Voice speed", rateSelect),
+    fieldLabel(`${library.label} voice & speed`, voiceRow),
     // Which reading to speak — only library-scope schemas (kanji); word schemas
     // choose per card on the tray.
     ...(library.soundSourceScope === "library" && soundSourceOptions.length > 1

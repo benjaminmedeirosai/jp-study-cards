@@ -421,7 +421,7 @@ export function renderCardPage() {
     // "Use stored audio if available" off → always live TTS.
     if (state.preferStoredAudio === false) { speakTts(entry); return; }
     firstClip(activeLibrary().language, entryKey(entry), voiceOrder).then((found) => {
-      if (found) playClip(found.blob);
+      if (found) playClip(found.blob, rateForVoice(found.voiceId));
       else speakTts(entry);
     });
   }
@@ -443,12 +443,17 @@ export function renderCardPage() {
   // One <audio> reused across cards so a new play stops the previous clip.
   let clipAudio = null;
   let clipUrl = null;
-  function playClip(blob) {
+  // Per-voice stored-clip playback speed (set in Settings → voice priority).
+  function rateForVoice(voiceId) {
+    return Number((state.audioVoiceRates || {})[voiceId]) || 1;
+  }
+  function playClip(blob, rate) {
     if (!clipAudio) clipAudio = new Audio();
     clipAudio.pause();
     if (clipUrl) URL.revokeObjectURL(clipUrl);
     clipUrl = URL.createObjectURL(blob);
     clipAudio.src = clipUrl;
+    clipAudio.playbackRate = Number(rate) || 1;
     clipAudio.play().catch(() => {});
   }
 
@@ -1176,7 +1181,7 @@ export function renderCardPage() {
       if (!blob) continue;
       const meta = voiceMeta[vid] || {};
       const label = `${meta.name || vid}${meta.locale ? ` · ${meta.locale}` : ""}`;
-      items.push({ label, run: () => playClip(blob) });
+      items.push({ label, run: () => playClip(blob, rateForVoice(vid)) });
     }
     openActionMenu(anchor, "Play audio", items);
   }
