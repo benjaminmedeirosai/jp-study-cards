@@ -18,18 +18,20 @@ export function slugify(value) {
     .replace(/[^a-z0-9_-]/g, "");
 }
 
-// The filename stem for a clip (no extension). Prefer the library's canonical
-// `orderBy` index (Farsi alphabet/harakat → "01".."34"), else a slug of the
-// romanization/translation/primary field — whichever ASCII value exists first.
+// The filename stem for a clip (no extension), unique per entry within a deck.
+// Order of preference:
+//   1. the library's `orderBy` index (Farsi alphabet/harakat → "01".."34")
+//   2. the library's explicit `audioSlugField` (e.g. Farsi words → romanization)
+//   3. the primary field (Latin-script words like Spanish "rojo")
+//   4. the translation, as a last resort when primary isn't ASCII
+// NOT the `type` field — it's a category (part-of-speech), not unique.
 export function audioSlug(entry, lib) {
   const orderBy = lib.orderBy;
   const orderVal = orderBy ? String(entry?.[orderBy] ?? "").trim() : "";
   if (orderVal && /^\d+$/.test(orderVal)) return orderVal.padStart(2, "0");
   const f = lib.fields || {};
-  const candidate = [f.type, f.translation, f.primary]
-    .map((key) => key && String(entry?.[key] ?? "").trim())
-    .find(Boolean) || "";
-  return slugify(candidate);
+  const slugField = lib.audioSlugField || f.primary;
+  return slugify(entry?.[slugField]) || slugify(entry?.[f.translation]);
 }
 
 // The text fed to `say` for a clip — mirrors cardPage's studySpeechText for the

@@ -92,12 +92,20 @@ export function renderLibraryPage() {
 
   root.append(top, importBar, list);
 
-  // --- Per-schema totals + audio tally ------------------------------------
+  // The manifest (public/audio/manifest.json) lists the published packs: a
+  // content version per language + the voices in each, with display names.
+  let manifest = {};
+
+  // Short voice name for the meta line: "Carlos (Enhanced)" → "Carlos".
+  const shortVoice = (name) => String(name || "").replace(/\s*\([^)]*\)/, "").trim();
+
+  // --- Per-schema totals + per-voice audio tally --------------------------
   async function refreshMeta() {
     const keySet = await allClipKeys();
-    for (const { schemas } of groups) {
+    for (const { language, schemas } of groups) {
       let bundle = null;
       try { bundle = await (await fetch(schemas[0].data)).json(); } catch {}
+      const voices = (manifest[language.id] && manifest[language.id].voices) || {};
       for (const lib of schemas) {
         const el = metaEls.get(lib.id);
         if (!el) continue;
@@ -106,22 +114,26 @@ export function renderLibraryPage() {
           .filter((d) => (d.kind || "word") === lib.deckKind)
           .flatMap((d) => d.entries);
         const total = entries.length;
-        const audio = entries.reduce((n, e) => n + (keySet.has(clipKeyForEntry(e, lib)) ? 1 : 0), 0);
+        const parts = [];
+        let anyPartial = false;
+        for (const [vid, info] of Object.entries(voices)) {
+          const n = entries.reduce((a, e) => a + (keySet.has(clipKeyForEntry(e, lib, vid)) ? 1 : 0), 0);
+          if (n === 0) continue;
+          parts.push(`${shortVoice(info.name)} ${n}/${total}`);
+          if (n < total) anyPartial = true;
+        }
         const noun = KIND_NOUN[lib.deckKind] || "cards";
-        const audioPart = total === 0 ? "" : (audio === 0 ? " · no audio" : ` · audio ${audio}/${total}`);
-        el.textContent = `${total} ${noun}${audioPart}`;
-        el.classList.toggle("full-audio", total > 0 && audio === total);
-        el.classList.toggle("partial-audio", audio > 0 && audio < total);
+        el.textContent = `${total} ${noun}` + (parts.length ? ` · ${parts.join(" · ")}` : (total ? " · no audio" : ""));
+        el.classList.toggle("full-audio", parts.length > 0 && !anyPartial);
+        el.classList.toggle("partial-audio", parts.length > 0 && anyPartial);
       }
     }
   }
 
   // --- Load wiring (version-aware) ----------------------------------------
-  // The manifest (public/audio/manifest.json) lists the published packs + their
-  // content versions. We track which version is loaded per language; the button
-  // is enabled only when something is missing/outdated and disabled ("Audio up
-  // to date") once every published pack matches what's loaded. On demand only.
-  let manifest = {};
+  // We track which version is loaded per language; the button is enabled only
+  // when something is missing/outdated and disabled ("Audio up to date") once
+  // every published pack matches what's loaded. On demand only.
   const outdatedLangs = () => {
     const loaded = loadState().audioPackVersions || {};
     return Object.keys(manifest).filter((lang) => loaded[lang] !== manifest[lang].version);
@@ -187,12 +199,11 @@ export function renderLibraryPage() {
     await refreshMeta();
   });
 
-  // Initial fill: the cheap manifest fetch drives the Load button; the heavier
-  // per-schema tally runs alongside.
+  // Initial fill: fetch the (cheap) manifest first — it drives both the Load
+  // button and the per-voice tally — then run the heavier per-schema count.
   loadBtn.disabled = true;
   loadBtn.textContent = "Load audio";
-  fetchAudioManifest().then((m) => { manifest = m; refreshLoadButton(); });
-  refreshMeta();
+  fetchAudioManifest().then((m) => { manifest = m; refreshLoadButton(); refreshMeta(); });
 
   backBtn.addEventListener("click", closeOverlay);
 

@@ -1,6 +1,24 @@
 {
   "farsi": {
-    "version": "484fdeea3452",
-    "clips": 404
+    "version": "6c4a8f73d087",
+    "voices": {
+      "dariush": {
+        "name": "Dariush (Enhanced)",
+        "clips": 404
+      }
+    }
+  },
+  "spanish": {
+    "version": "be80d1710e63",
+    "voices": {
+      "carlos": {
+        "name": "Carlos (Enhanced)",
+        "clips": 64
+      },
+      "paulina": {
+        "name": "Paulina (Enhanced)",
+        "clips": 64
+      }
+    }
   }
 }

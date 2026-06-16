@@ -1,5 +1,5 @@
 import { speak } from "./speech.js";
-import { getClip, clipKey } from "./audioStore.js";
+import { firstClip, voiceIdsForLang } from "./audioStore.js";
 import { buildSetOptions, activeSetGrouping, computeDeckSets } from "./sets.js";
 import { beginSession, endSession, sessionQualifies } from "./filters.js";
 import { openOverlay, pushCardsURL, replaceCardsURL, filterInLibrary } from "./router.js";
@@ -398,11 +398,21 @@ export function renderCardPage() {
     if (!entry) return;
     // "Use stored audio if available" off → always live TTS.
     if (state.preferStoredAudio === false) { speakTts(entry); return; }
-    const key = clipKey(activeLibrary().language, entryKey(entry));
-    getClip(key).then((blob) => {
-      if (blob) playClip(blob);
+    firstClip(activeLibrary().language, entryKey(entry), voiceOrder).then((found) => {
+      if (found) playClip(found.blob);
       else speakTts(entry);
     });
+  }
+
+  // Preferred clip voices for this library, highest priority first — the user's
+  // saved order, then any other voices that have clips, so playback works even
+  // before the order is configured. Computed on mount (works offline; derived
+  // from stored clips, not the manifest). firstClip() walks this, then TTS.
+  let voiceOrder = [];
+  async function computeVoiceOrder() {
+    const present = await voiceIdsForLang(activeLibrary().language);
+    const pref = state.audioVoiceOrder || [];
+    return [...pref.filter((v) => present.includes(v)), ...present.filter((v) => !pref.includes(v))];
   }
 
   // One <audio> reused across cards so a new play stops the previous clip.
@@ -437,18 +447,20 @@ export function renderCardPage() {
   const clipDurations = new Map();
   async function updateClipBadge(entry) {
     // No badge when stored audio is disabled — the card will speak via TTS.
-    const key = entry && state.preferStoredAudio !== false ? clipKey(activeLibrary().language, entryKey(entry)) : null;
-    clipBadgeReq = key;
+    const reqId = entry && state.preferStoredAudio !== false ? entryKey(entry) : null;
+    clipBadgeReq = reqId;
     clipDur.hidden = true;
-    if (!key) return;
-    let seconds = clipDurations.get(key);
+    if (!reqId) return;
+    const lang = activeLibrary().language;
+    const found = await firstClip(lang, reqId, voiceOrder);
+    if (clipBadgeReq !== reqId || !found) return;
+    const cacheKey = `${lang}::${found.voiceId}::${reqId}`;
+    let seconds = clipDurations.get(cacheKey);
     if (seconds == null) {
-      const blob = await getClip(key);
-      if (clipBadgeReq !== key) return;
-      seconds = blob ? await clipDuration(blob).catch(() => 0) : 0;
-      clipDurations.set(key, seconds);
+      seconds = await clipDuration(found.blob).catch(() => 0);
+      clipDurations.set(cacheKey, seconds);
     }
-    if (clipBadgeReq !== key || !(seconds > 0)) return;
+    if (clipBadgeReq !== reqId || !(seconds > 0)) return;
     clipDur.textContent = `${seconds.toFixed(1)}s`;
     clipDur.hidden = false;
   }
@@ -1217,6 +1229,7 @@ export function renderCardPage() {
   async function initialize() {
     try {
       bundle = await loadBundle();
+      voiceOrder = await computeVoiceOrder();
       await renderAll({ keepIndex: true });
       // Start timing this study session (deck + active filter) for history.
       const deck = currentDeck();

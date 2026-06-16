@@ -3,6 +3,7 @@ import { speak, getVoicesForLang, onVoicesChanged } from "./speech.js";
 import { historyDropdown, getFilterHistory, formatDuration, formatAgo } from "./filters.js";
 import { closeOverlay } from "./router.js";
 import { schemaCaption } from "./libraries.js";
+import { fetchAudioManifest } from "./audioStore.js";
 
 const VOICE_SAMPLE = "こんにちは。これは音声のプレビューです。";
 import {
@@ -225,6 +226,67 @@ export function renderSettingsPage() {
   const allReadingsToggle = makeToggle("Read all readings (not just the first)", state.voiceAllReadings);
   // Play a stored offline clip instead of live TTS when one exists for the card.
   const storedAudioToggle = makeToggle("Use stored audio if available", state.preferStoredAudio);
+
+  // Audio voice priority: when a card has clips in several voices, play them in
+  // this order (then fall back to live TTS). Built from the published manifest;
+  // reorder with ↑/↓. Hidden until at least one voice pack exists.
+  const voicePriority = document.createElement("div");
+  voicePriority.className = "study-field voice-priority";
+  voicePriority.hidden = true;
+  const vpTitle = document.createElement("span");
+  vpTitle.textContent = "Audio voice priority";
+  const vpList = document.createElement("div");
+  vpList.className = "voice-priority-list";
+  voicePriority.append(vpTitle, vpList);
+
+  function renderVoicePriority(order, voicesById) {
+    vpList.replaceChildren();
+    order.forEach((vid, i) => {
+      const info = voicesById[vid];
+      const row = document.createElement("div");
+      row.className = "voice-priority-row";
+      const name = document.createElement("span");
+      name.className = "voice-priority-name";
+      name.textContent = `${i + 1}. ${info ? info.name : vid}${info ? ` · ${info.lang}` : ""}`;
+      const up = button("↑", "voice-move");
+      up.disabled = i === 0;
+      up.addEventListener("click", () => moveVoice(order, voicesById, i, -1));
+      const down = button("↓", "voice-move");
+      down.disabled = i === order.length - 1;
+      down.addEventListener("click", () => moveVoice(order, voicesById, i, 1));
+      row.append(name, up, down);
+      vpList.append(row);
+    });
+    const fb = document.createElement("div");
+    fb.className = "voice-priority-row voice-priority-fallback";
+    fb.textContent = `${order.length + 1}. Live TTS (fallback)`;
+    vpList.append(fb);
+  }
+  function moveVoice(order, voicesById, i, delta) {
+    const j = i + delta;
+    if (j < 0 || j >= order.length) return;
+    [order[i], order[j]] = [order[j], order[i]];
+    state.audioVoiceOrder = order.slice();
+    saveState(state);
+    renderVoicePriority(order, voicesById);
+  }
+  fetchAudioManifest().then((m) => {
+    const voicesById = {};
+    const present = [];
+    for (const [lang, info] of Object.entries(m)) {
+      for (const [vid, v] of Object.entries(info.voices || {})) {
+        if (!voicesById[vid]) { voicesById[vid] = { name: v.name, lang }; present.push(vid); }
+      }
+    }
+    if (!present.length) return; // no packs → leave hidden
+    const pref = (state.audioVoiceOrder || []).filter((v) => present.includes(v));
+    const order = [...pref, ...present.filter((v) => !pref.includes(v))];
+    // Persist the normalized order so playback and settings agree.
+    state.audioVoiceOrder = order.slice();
+    saveState(state);
+    voicePriority.hidden = false;
+    renderVoicePriority(order, voicesById);
+  });
 
   // --- Voice (Web Speech API voices for the active library's language) ----
   const library = activeLibrary();
@@ -503,6 +565,7 @@ export function renderSettingsPage() {
       ? [fieldLabel("Spoken reading", soundSourceSelect)] : []),
     ...(library.features.multiReading ? [allReadingsToggle.label] : []),
     storedAudioToggle.label,
+    voicePriority,
     sectionHeading("Autoplay"),
     makePresetField("Question delay (sec)", questionDelayInput, [0.5, 1, 1.5, 2, 3]),
     makePresetField("Answer delay (sec)", answerDelayInput, [0.5, 1, 1.5, 2, 3]),

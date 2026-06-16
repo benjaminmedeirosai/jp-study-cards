@@ -143,6 +143,9 @@ export const LIBRARIES = [
     voiceSample: "سلام. این یک پیش‌نمایش صدا است.",
     fields: { primary: "word", reading: "vocalized", translation: "meaning", type: "label", gloss: null },
     labels: { primary: "Word", reading: "Vocalized" },
+    // Audio clip filenames use the romanization (unique ASCII) — the Persian
+    // word itself slugifies to empty, and meanings can repeat (synonyms).
+    audioSlugField: "label",
     fontIds: ["default", "sys-sans", "sys-serif"],
     modeIds: ["word", "english", "pronunciation", "voice", "show-all"],
     groupingIds: ["farsi-word-alpha", "english-alpha", "file-order"],

@@ -304,6 +304,10 @@ export function loadState() {
     audioSourceExpanded: raw.audioSourceExpanded !== false,
     // Prefer a stored offline clip over live TTS when one exists (global pref).
     preferStoredAudio: raw.preferStoredAudio !== false,
+    // Preferred audio-clip voices, highest priority first (voice ids). Playback
+    // tries each in turn, then falls back to TTS. Voices not listed here fall to
+    // the end (in manifest order). Global.
+    audioVoiceOrder: Array.isArray(raw.audioVoiceOrder) ? raw.audioVoiceOrder.map(String) : [],
     // Which published audio-pack version is loaded, per language (for the
     // Library "Load audio" up-to-date check). { <lang>: "<version>" }.
     audioPackVersions: raw.audioPackVersions && typeof raw.audioPackVersions === "object" ? raw.audioPackVersions : {},

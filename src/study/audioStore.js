@@ -37,8 +37,10 @@ function asPromise(req) {
   });
 }
 
-export function clipKey(lang, entryKey) {
-  return `${lang}${SEP}${entryKey}`;
+// A clip is identified by language + voice + card identity, so the same word
+// can hold several voices side by side: `${lang}::${voiceId}::${entryKey}`.
+export function clipKey(lang, voiceId, entryKey) {
+  return `${lang}${SEP}${voiceId}${SEP}${entryKey}`;
 }
 
 // The card-identity key for an entry under a SPECIFIC library's field mapping
@@ -49,8 +51,18 @@ export function entryKeyFor(entry, lib) {
   const t = (key) => (key ? String(entry?.[key] ?? "").trim() : "");
   return [t(f.primary), t(f.reading), t(f.translation)].join("|");
 }
-export function clipKeyForEntry(entry, lib) {
-  return clipKey(lib.language, entryKeyFor(entry, lib));
+export function clipKeyForEntry(entry, lib, voiceId) {
+  return clipKey(lib.language, voiceId, entryKeyFor(entry, lib));
+}
+
+// First stored clip for a card across an ordered list of preferred voices —
+// returns { blob, voiceId } for the first voice that has one, else null.
+export async function firstClip(lang, entryKey, voiceIds) {
+  for (const voiceId of voiceIds) {
+    const blob = await getClip(clipKey(lang, voiceId, entryKey));
+    if (blob) return { blob, voiceId };
+  }
+  return null;
 }
 
 export async function getClip(key) {
@@ -87,6 +99,20 @@ export async function allClipKeys() {
   } catch {
     return new Set();
   }
+}
+
+// Distinct voice ids that have at least one stored clip for a language (parsed
+// from the keys `${lang}::${voiceId}::…`). Drives playback order offline.
+export async function voiceIdsForLang(lang) {
+  const prefix = `${lang}${SEP}`;
+  const ids = new Set();
+  for (const key of await allClipKeys()) {
+    if (!key.startsWith(prefix)) continue;
+    const rest = key.slice(prefix.length);
+    const vid = rest.slice(0, rest.indexOf(SEP));
+    if (vid) ids.add(vid);
+  }
+  return [...ids];
 }
 
 export async function clearClips(lang) {
@@ -194,14 +220,16 @@ export async function importAudioZip(fileOrBuffer) {
     catch { unmatched += items.length; continue; }
     const deckById = new Map(bundle.decks.map((d) => [d.id, d]));
     for (const { name, blob } of items) {
+      // <lang>/<voiceId>/<deckId…>/<slug>.m4a
       const segs = name.split("/");
+      const voiceId = segs[1];
       const slug = segs[segs.length - 1].replace(/\.[^.]+$/, "");
-      const deckId = segs.slice(1, -1).join("/");
+      const deckId = segs.slice(2, -1).join("/");
       const deck = deckById.get(deckId);
       const lib = deck && LIBRARIES.find((l) => l.language === lang && l.deckKind === (deck.kind || "word"));
-      const entry = lib && deck.entries.find((e) => audioSlug(e, lib) === slug);
+      const entry = lib && voiceId && deck.entries.find((e) => audioSlug(e, lib) === slug);
       if (!entry) { unmatched++; continue; }
-      await putClip(clipKeyForEntry(entry, lib), blob);
+      await putClip(clipKeyForEntry(entry, lib, voiceId), blob);
       matched++;
     }
   }

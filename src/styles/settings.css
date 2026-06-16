@@ -323,3 +323,31 @@
   background: rgba(37, 99, 235, 0.24);
   color: var(--accent);
 }
+
+/* --- Audio voice priority -------------------------------------------------- */
+.voice-priority { display: flex; flex-direction: column; gap: 8px; }
+.voice-priority-list { display: flex; flex-direction: column; gap: 6px; }
+.voice-priority-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 40px;
+  padding: 6px 10px;
+  border: 1px solid rgba(96, 165, 250, 0.16);
+  border-radius: 9px;
+  background: rgba(15, 23, 42, 0.4);
+}
+.voice-priority-name { flex: 1; min-width: 0; font-size: 14px; }
+.voice-priority-fallback { color: var(--muted); font-style: italic; opacity: 0.85; }
+.study-button.voice-move {
+  flex: 0 0 auto;
+  width: 34px;
+  height: 30px;
+  border: 1px solid rgba(96, 165, 250, 0.3);
+  border-radius: 7px;
+  background: rgba(15, 23, 42, 0.5);
+  color: var(--accent);
+  font-size: 15px;
+}
+.study-button.voice-move:disabled { opacity: 0.3; cursor: default; }
+.study-button.voice-move:not(:disabled):hover { border-color: var(--accent-border); }
