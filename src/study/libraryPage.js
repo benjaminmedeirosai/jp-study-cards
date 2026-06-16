@@ -10,7 +10,7 @@
 import { loadState, saveState, button } from "./shared.js";
 import { libraryGroups } from "./libraries.js";
 import { chooseLibrary, closeOverlay } from "./router.js";
-import { importAudioZip, clipKeyForEntry, allClipKeys, clearAllClips, countClips, requestPersist, fetchAudioManifest } from "./audioStore.js";
+import { importAudioZip, clipKeyForEntry, allClipKeys, clearAllClips, countClips, getAudioMeta, requestPersist, fetchAudioManifest } from "./audioStore.js";
 
 // Per-schema noun for the entry count.
 const KIND_NOUN = { word: "words", kanji: "kanji", alpha: "letters", harakat: "marks" };
@@ -50,6 +50,8 @@ export function renderLibraryPage() {
 
   // schema id → its meta element (filled async once bundles + clip keys load).
   const metaEls = new Map();
+  // language id → header size element (total audio footprint, filled async).
+  const langSizeEls = new Map();
 
   for (const { language, schemas } of groups) {
     const header = document.createElement("div");
@@ -60,7 +62,10 @@ export function renderLibraryPage() {
     const nameEl = document.createElement("span");
     nameEl.className = "library-language-label";
     nameEl.textContent = language.label;
-    header.append(shortEl, nameEl);
+    const sizeEl = document.createElement("span");
+    sizeEl.className = "library-language-size";
+    langSizeEls.set(language.id, sizeEl);
+    header.append(shortEl, nameEl, sizeEl);
     list.append(header);
 
     for (const library of schemas) {
@@ -98,6 +103,7 @@ export function renderLibraryPage() {
 
   // Short voice name for the meta line: "Carlos (Enhanced)" → "Carlos".
   const shortVoice = (name) => String(name || "").replace(/\s*\([^)]*\)/, "").trim();
+  const formatBytes = (n) => (n >= 1048576 ? `${(n / 1048576).toFixed(1)} MB` : `${Math.max(1, Math.round(n / 1024))} KB`);
 
   // --- Per-schema totals + per-voice audio tally --------------------------
   async function refreshMeta() {
@@ -106,6 +112,17 @@ export function renderLibraryPage() {
       let bundle = null;
       try { bundle = await (await fetch(schemas[0].data)).json(); } catch {}
       const voices = (manifest[language.id] && manifest[language.id].voices) || {};
+      // Per-language audio footprint, shown on the header only when this
+      // language actually has clips stored. Byte totals come from the manifest
+      // (published) or the imported pack's voices.json — never recomputed here.
+      const sizeEl = langSizeEls.get(language.id);
+      if (sizeEl) {
+        const imported = await getAudioMeta(language.id).catch(() => null);
+        const sizeVoices = Object.keys(voices).length ? voices : (imported || {});
+        const totalBytes = Object.values(sizeVoices).reduce((a, v) => a + (v.bytes || 0), 0);
+        const loaded = (await countClips(language.id)) > 0;
+        sizeEl.textContent = loaded && totalBytes ? ` · ${formatBytes(totalBytes)}` : "";
+      }
       for (const lib of schemas) {
         const el = metaEls.get(lib.id);
         if (!el) continue;

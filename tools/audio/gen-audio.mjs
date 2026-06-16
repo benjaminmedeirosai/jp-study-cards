@@ -150,13 +150,23 @@ function filesEqual(a, b) {
   return ba.length === bb.length && ba.equals(bb);
 }
 
-// Recursively count .m4a files under a directory.
+// Recursively count .m4a files (and total bytes) under a directory.
 function countM4a(dir) {
   let n = 0;
   for (const name of readdirSync(dir)) {
     const full = path.join(dir, name);
     if (statSync(full).isDirectory()) n += countM4a(full);
     else if (name.endsWith(".m4a")) n += 1;
+  }
+  return n;
+}
+function bytesM4a(dir) {
+  let n = 0;
+  for (const name of readdirSync(dir)) {
+    const full = path.join(dir, name);
+    const st = statSync(full);
+    if (st.isDirectory()) n += bytesM4a(full);
+    else if (name.endsWith(".m4a")) n += st.size;
   }
   return n;
 }
@@ -174,7 +184,8 @@ function scanVoices(langDir, prevVoices = {}) {
     const prev = prevVoices[voiceDir] || {};
     const name = (fromNames && fromNames.name) || prev.name || voiceDir;
     const locale = (fromNames && fromNames.locale) || prev.locale || "";
-    voices[voiceDir] = { name, locale, clips: countM4a(path.join(langDir, voiceDir)) };
+    const vDir = path.join(langDir, voiceDir);
+    voices[voiceDir] = { name, locale, clips: countM4a(vDir), bytes: bytesM4a(vDir) };
   }
   return voices;
 }

@@ -1,26 +1,29 @@
 {
   "farsi": {
-    "version": "33acd6b14694",
+    "version": "107cd4c3d195",
     "voices": {
       "dariush": {
         "name": "Dariush (Enhanced)",
         "locale": "fa-IR",
-        "clips": 404
+        "clips": 404,
+        "bytes": 3462156
       }
     }
   },
   "spanish": {
-    "version": "3aa30e5849eb",
+    "version": "e30f3ec76bdc",
     "voices": {
       "carlos": {
         "name": "Carlos (Enhanced)",
         "locale": "es-CO",
-        "clips": 528
+        "clips": 528,
+        "bytes": 5283468
       },
       "paulina": {
         "name": "Paulina (Enhanced)",
         "locale": "es-MX",
-        "clips": 528
+        "clips": 528,
+        "bytes": 5059613
       }
     }
   }

@@ -214,6 +214,11 @@
   font-weight: 600;
   font-size: 15px;
 }
+/* Total audio footprint for the language (shown only when clips are loaded). */
+.library-language-size {
+  color: var(--muted);
+  font-size: 13px;
+}
 
 /* Indent the schema rows so they read as belonging to the language above. */
 .deck-entry.library-schema-entry { margin-left: 18px; }
