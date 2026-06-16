@@ -40,6 +40,10 @@ const ICONS = {
   eyeOff: `<svg viewBox="0 0 24 24"><path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12z"/><circle cx="12" cy="12" r="3"/><path d="M4 4l16 16"/></svg>`,
   play: `<svg viewBox="0 0 24 24"><path d="M7 5l12 7-12 7z"/></svg>`,
   pause: `<svg viewBox="0 0 24 24"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>`,
+  // Browser history back/forward (chevrons — distinct from the card prev/next
+  // arrows, which have a tail).
+  histBack: `<svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg>`,
+  histForward: `<svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg>`,
   // Study-more flag: outline star when off, filled star when on.
   focusOff: `<svg viewBox="0 0 24 24"><path d="M12 3.5l2.6 5.3 5.9.9-4.2 4.1 1 5.8L12 17l-5.3 2.8 1-5.8-4.2-4.1 5.9-.9z"/></svg>`,
   focusOn: `<svg viewBox="0 0 24 24" style="fill:currentColor"><path d="M12 3.5l2.6 5.3 5.9.9-4.2 4.1 1 5.8L12 17l-5.3 2.8 1-5.8-4.2-4.1 5.9-.9z"/></svg>`
@@ -231,7 +235,16 @@ export function renderCardPage() {
   const focusBtn = button("Study more", "mini mini--focus");
   focusBtn.innerHTML = `<span class="icon">${ICONS.focusOff}</span>`;
   focusBtn.setAttribute("aria-pressed", "false");
-  trayMini.append(ttsGroup, playBtn, shuffleBtn, focusBtn);
+  // History back/forward, left side of the mini rail — so the phone's back
+  // gesture is recoverable. They sit beside the (Japanese) sound-source toggle
+  // and hide while that picker is expanded (see renderTray).
+  const histBackBtn = button("Back", "mini mini--hist");
+  histBackBtn.innerHTML = `<span class="icon">${ICONS.histBack}</span>`;
+  histBackBtn.setAttribute("aria-label", "Go back");
+  const histFwdBtn = button("Forward", "mini mini--hist");
+  histFwdBtn.innerHTML = `<span class="icon">${ICONS.histForward}</span>`;
+  histFwdBtn.setAttribute("aria-label", "Go forward");
+  trayMini.append(histBackBtn, histFwdBtn, ttsGroup, playBtn, shuffleBtn, focusBtn);
 
   const trayMain = document.createElement("div");
   trayMain.className = "tray-main";
@@ -483,6 +496,11 @@ export function renderCardPage() {
     tray.classList.toggle("tts-collapsed", !ttsExpanded);
     ttsToggleBtn.setAttribute("aria-expanded", ttsExpanded ? "true" : "false");
     ttsToggleBtn.disabled = !entry;
+    // Free up the left rail for the expanded sound-source picker (Japanese only;
+    // for other libraries the toggle is hidden so back/forward always show).
+    const hideHist = ttsExpanded && !ttsGroup.hidden;
+    histBackBtn.hidden = hideHist;
+    histFwdBtn.hidden = hideHist;
     ttsSource.dataset.selected = source;
     for (const btn of ttsButtons) {
       const selected = btn.dataset.value === source;
@@ -1348,6 +1366,8 @@ export function renderCardPage() {
     renderTray();
   });
   shuffleBtn.addEventListener("click", shuffleCurrentSet);
+  histBackBtn.addEventListener("click", () => history.back());
+  histFwdBtn.addEventListener("click", () => history.forward());
   focusBtn.addEventListener("click", toggleStudyMore);
   playBtn.addEventListener("click", toggleAutoplay);
   prevBtn.addEventListener("click", () => move(-1));

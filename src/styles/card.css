@@ -528,6 +528,21 @@
   line-height: 1;
 }
 
+/* History back/forward: quiet (like the collapsed sound toggle). */
+.study-button.mini--hist {
+  color: rgba(229, 238, 252, 0.82);
+  border-color: rgba(148, 163, 184, 0.28);
+}
+.study-button.mini--hist svg {
+  width: 20px;
+  height: 20px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2.2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
 /* Segmented sound-source picker (Kanji / Hiragana). Capped width and centered
    in its track so it stays compact; the two columns are equal (1fr) so the
    buttons always match each other. */
