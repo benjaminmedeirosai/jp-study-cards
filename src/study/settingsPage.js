@@ -184,6 +184,8 @@ export function renderSettingsPage() {
   }
   const kanjiFontFamilyInput = makeFontSelect(state.kanjiFont);
   const hiraganaFontFamilyInput = makeFontSelect(state.hiraganaFont);
+  const englishFontFamilyInput = makeFontSelect(state.englishFont);
+  const glossFontFamilyInput = makeFontSelect(state.glossFont);
   // A bold "B" toggle button that highlights when on, matching the preset-chip
   // active style used elsewhere.
   function makeBoldToggle(active) {
@@ -198,6 +200,8 @@ export function renderSettingsPage() {
   }
   const kanjiBoldBtn = makeBoldToggle(state.kanjiBold);
   const hiraganaBoldBtn = makeBoldToggle(state.hiraganaBold);
+  const englishBoldBtn = makeBoldToggle(state.englishBold);
+  const glossBoldBtn = makeBoldToggle(state.glossBold);
   // One row per lettering target: family dropdown + size dropdown + Bold toggle,
   // side by side. Family/bold are omitted for size-only targets (english, gloss).
   function fontRow({ family, size, bold }) {
@@ -477,8 +481,8 @@ export function renderSettingsPage() {
   const L = library.labels;
   const kanjiFontField = fieldLabel(`${L.primary} font`, fontRow({ family: kanjiFontFamilyInput, size: kanjiFontInput, bold: kanjiBoldBtn }));
   const hiraganaFontField = fieldLabel(`${L.reading || "Reading"} font`, fontRow({ family: hiraganaFontFamilyInput, size: hiraganaFontInput, bold: hiraganaBoldBtn }));
-  const englishFontField = fieldLabel(`${L.translation || "English"} size`, fontRow({ size: englishFontInput }));
-  const glossFontField = fieldLabel(`${L.gloss || "Gloss"} size`, fontRow({ size: glossFontInput }));
+  const englishFontField = fieldLabel(`${L.translation || "English"} font`, fontRow({ family: englishFontFamilyInput, size: englishFontInput, bold: englishBoldBtn }));
+  const glossFontField = fieldLabel(`${L.gloss || "Gloss"} font`, fontRow({ family: glossFontFamilyInput, size: glossFontInput, bold: glossBoldBtn }));
   function wireFontSize(select, key) {
     select.addEventListener("change", () => {
       state[key] = Number(select.value);
@@ -498,6 +502,14 @@ export function renderSettingsPage() {
     state.hiraganaFont = hiraganaFontFamilyInput.value;
     saveState(state);
   });
+  englishFontFamilyInput.addEventListener("change", () => {
+    state.englishFont = englishFontFamilyInput.value;
+    saveState(state);
+  });
+  glossFontFamilyInput.addEventListener("change", () => {
+    state.glossFont = glossFontFamilyInput.value;
+    saveState(state);
+  });
   function wireBold(btn, key) {
     btn.addEventListener("click", () => {
       state[key] = !state[key];
@@ -508,6 +520,8 @@ export function renderSettingsPage() {
   }
   wireBold(kanjiBoldBtn, "kanjiBold");
   wireBold(hiraganaBoldBtn, "hiraganaBold");
+  wireBold(englishBoldBtn, "englishBold");
+  wireBold(glossBoldBtn, "glossBold");
 
   voiceSelect.addEventListener("change", () => {
     state.voice = voiceSelect.value;

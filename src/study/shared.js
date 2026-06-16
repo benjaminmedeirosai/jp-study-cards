@@ -16,7 +16,8 @@ const LIBRARY_KEYS = [
   // four size slots, so (e.g.) the Farsi alphabet and harakat cards size
   // independently. `global` still seeds the initial value until a schema's
   // slider is touched, so nothing resets on upgrade.
-  "kanjiFont", "hiraganaFont", "kanjiBold", "hiraganaBold",
+  "kanjiFont", "hiraganaFont", "englishFont", "glossFont",
+  "kanjiBold", "hiraganaBold", "englishBold", "glossBold",
   "kanjiFontPx", "hiraganaFontPx", "englishFontPx", "glossFontPx",
   "voice", "ttsSources", "soundSource", "deckHistory", "filterHistory",
   // Per-library "study more" flags, keyed by card identity (entryKey → true),
@@ -287,8 +288,12 @@ export function loadState() {
     glossFontPx: clampInt(raw.glossFontPx, FONT_PX_DEFAULTS.gloss, FONT_PX_MIN, FONT_PX_MAX),
     kanjiFont: normalizeFont(raw.kanjiFont),
     hiraganaFont: normalizeFont(raw.hiraganaFont),
+    englishFont: normalizeFont(raw.englishFont),
+    glossFont: normalizeFont(raw.glossFont),
     kanjiBold: raw.kanjiBold === true,
     hiraganaBold: raw.hiraganaBold === true,
+    englishBold: raw.englishBold === true,
+    glossBold: raw.glossBold === true,
     currentIndex: clampInt(raw.currentIndex, 0, 0, 100000),
     currentKey: String(raw.currentKey || ""),
     query: String(raw.query || "").trim(),

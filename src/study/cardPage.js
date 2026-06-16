@@ -533,8 +533,12 @@ export function renderCardPage() {
     card.style.setProperty("--japanese-gloss-font-size", `${state.glossFontPx}px`);
     card.style.setProperty("--japanese-main-font-family", fontStack(state.kanjiFont));
     card.style.setProperty("--japanese-reading-font-family", fontStack(state.hiraganaFont));
+    card.style.setProperty("--japanese-english-font-family", fontStack(state.englishFont));
+    card.style.setProperty("--japanese-gloss-font-family", fontStack(state.glossFont));
     card.style.setProperty("--japanese-main-font-weight", state.kanjiBold ? "700" : "400");
     card.style.setProperty("--japanese-reading-font-weight", state.hiraganaBold ? "700" : "400");
+    card.style.setProperty("--japanese-english-font-weight", state.englishBold ? "700" : "400");
+    card.style.setProperty("--japanese-gloss-font-weight", state.glossBold ? "700" : "400");
     // The active mode's `slot` is the field shown on the FRONT (question side);
     // once revealed / in show-all every present field shows, gated by the
     // per-field visibility toggles.

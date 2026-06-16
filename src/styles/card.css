@@ -253,8 +253,9 @@
   gap: 3px;
   text-align: right;
   color: var(--muted);
+  font-family: var(--japanese-gloss-font-family, inherit);
   font-size: var(--japanese-gloss-font-size, 16px);
-  font-weight: 400;
+  font-weight: var(--japanese-gloss-font-weight, 400);
   line-height: 1.25;
 }
 
@@ -427,8 +428,9 @@
   place-items: center;
   text-align: center;
   color: var(--text);
+  font-family: var(--japanese-english-font-family, inherit);
   font-size: var(--japanese-english-font-size, 30px);
-  font-weight: 400;
+  font-weight: var(--japanese-english-font-weight, 400);
   line-height: 1.22;
   padding-top: 14px;
   border-top: 1px solid rgba(148, 163, 184, 0.18);
