@@ -223,6 +223,8 @@ export function renderSettingsPage() {
   // Read all 、-separated readings vs just the first (most common). Only shown
   // for multi-reading schemas (kanji on/kun lists).
   const allReadingsToggle = makeToggle("Read all readings (not just the first)", state.voiceAllReadings);
+  // Play a stored offline clip instead of live TTS when one exists for the card.
+  const storedAudioToggle = makeToggle("Use stored audio if available", state.preferStoredAudio);
 
   // --- Voice (Web Speech API voices for the active library's language) ----
   const library = activeLibrary();
@@ -465,6 +467,10 @@ export function renderSettingsPage() {
     state.voiceAllReadings = allReadingsToggle.input.checked;
     saveState(state);
   });
+  storedAudioToggle.input.addEventListener("change", () => {
+    state.preferStoredAudio = storedAudioToggle.input.checked;
+    saveState(state);
+  });
 
   const visibilityGroup = document.createElement("div");
   visibilityGroup.className = "settings-toggle-grid";
@@ -496,6 +502,7 @@ export function renderSettingsPage() {
     ...(library.soundSourceScope === "library" && soundSourceOptions.length > 1
       ? [fieldLabel("Spoken reading", soundSourceSelect)] : []),
     ...(library.features.multiReading ? [allReadingsToggle.label] : []),
+    storedAudioToggle.label,
     sectionHeading("Autoplay"),
     makePresetField("Question delay (sec)", questionDelayInput, [0.5, 1, 1.5, 2, 3]),
     makePresetField("Answer delay (sec)", answerDelayInput, [0.5, 1, 1.5, 2, 3]),

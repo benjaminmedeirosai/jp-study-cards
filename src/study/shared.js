@@ -302,6 +302,11 @@ export function loadState() {
     // schemas (kanji); harmless elsewhere.
     voiceAllReadings: raw.voiceAllReadings === true,
     audioSourceExpanded: raw.audioSourceExpanded !== false,
+    // Prefer a stored offline clip over live TTS when one exists (global pref).
+    preferStoredAudio: raw.preferStoredAudio !== false,
+    // Which published audio-pack version is loaded, per language (for the
+    // Library "Load audio" up-to-date check). { <lang>: "<version>" }.
+    audioPackVersions: raw.audioPackVersions && typeof raw.audioPackVersions === "object" ? raw.audioPackVersions : {},
     visible: {
       kanji: visible.kanji !== false,
       type: visible.type !== false,

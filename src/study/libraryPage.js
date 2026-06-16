@@ -7,10 +7,10 @@
 // deck it covers, and each schema row shows its total entries + how many have
 // an audio clip.
 
-import { loadState, button } from "./shared.js";
+import { loadState, saveState, button } from "./shared.js";
 import { libraryGroups } from "./libraries.js";
 import { chooseLibrary, closeOverlay } from "./router.js";
-import { importAudioZip, clipKeyForEntry, allClipKeys, clearAllClips, requestPersist } from "./audioStore.js";
+import { importAudioZip, clipKeyForEntry, allClipKeys, clearAllClips, requestPersist, fetchAudioManifest } from "./audioStore.js";
 
 // Per-schema noun for the entry count.
 const KIND_NOUN = { word: "words", kanji: "kanji", alpha: "letters", harakat: "marks" };
@@ -116,28 +116,47 @@ export function renderLibraryPage() {
     }
   }
 
-  // --- Load wiring --------------------------------------------------------
-  // Fetch the audio packs bundled with the app (public/audio/<lang>.zip) and
-  // import them — on demand only. Re-clicking re-pulls (cache: "reload") and
-  // overwrites, so it doubles as a "refresh all audio" button. Languages with
-  // no published pack just 404 and are skipped.
-  const langIds = groups.map((g) => g.language.id);
+  // --- Load wiring (version-aware) ----------------------------------------
+  // The manifest (public/audio/manifest.json) lists the published packs + their
+  // content versions. We track which version is loaded per language; the button
+  // is enabled only when something is missing/outdated and disabled ("Audio up
+  // to date") once every published pack matches what's loaded. On demand only.
+  let manifest = {};
+  const outdatedLangs = () => {
+    const loaded = loadState().audioPackVersions || {};
+    return Object.keys(manifest).filter((lang) => loaded[lang] !== manifest[lang].version);
+  };
+  function refreshLoadButton() {
+    const langs = Object.keys(manifest);
+    const stale = outdatedLangs();
+    if (!langs.length) { loadBtn.disabled = true; loadBtn.textContent = "No audio packs"; return; }
+    loadBtn.disabled = stale.length === 0;
+    const anyLoaded = langs.some((l) => !stale.includes(l));
+    loadBtn.textContent = stale.length === 0 ? "Audio up to date" : (anyLoaded ? "Update audio" : "Load audio");
+  }
+
   loadBtn.addEventListener("click", async () => {
+    const stale = outdatedLangs();
+    if (!stale.length) return;
     importStatus.textContent = "Loading…";
     try {
       await requestPersist();
+      const versions = { ...(loadState().audioPackVersions || {}) };
       let matched = 0, unmatched = 0, packs = 0;
-      for (const lang of langIds) {
+      for (const lang of stale) {
         let res;
         try { res = await fetch(`public/audio/${lang}.zip`, { cache: "reload" }); }
         catch { continue; }
         if (!res.ok) continue;
         const r = await importAudioZip(await res.arrayBuffer());
         matched += r.matched; unmatched += r.unmatched; packs++;
+        versions[lang] = manifest[lang].version;
       }
+      const st = loadState(); st.audioPackVersions = versions; saveState(st);
       importStatus.textContent = packs
         ? `Loaded ${matched} clip${matched === 1 ? "" : "s"} from ${packs} pack${packs === 1 ? "" : "s"}${unmatched ? ` · ${unmatched} unmatched` : ""}`
         : "No bundled audio packs found";
+      refreshLoadButton();
       await refreshMeta();
     } catch (err) {
       importStatus.textContent = `Load failed: ${err.message}`;
@@ -162,10 +181,17 @@ export function renderLibraryPage() {
   });
   clearBtn.addEventListener("click", async () => {
     await clearAllClips();
+    const st = loadState(); st.audioPackVersions = {}; saveState(st);
     importStatus.textContent = "Cleared all audio";
+    refreshLoadButton();
     await refreshMeta();
   });
 
+  // Initial fill: the cheap manifest fetch drives the Load button; the heavier
+  // per-schema tally runs alongside.
+  loadBtn.disabled = true;
+  loadBtn.textContent = "Load audio";
+  fetchAudioManifest().then((m) => { manifest = m; refreshLoadButton(); });
   refreshMeta();
 
   backBtn.addEventListener("click", closeOverlay);

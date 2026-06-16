@@ -105,6 +105,19 @@ export async function clearAllClips() {
   return asPromise(store.clear());
 }
 
+// The published audio-pack manifest: { <lang>: { version, clips } }. Cheap to
+// fetch (small JSON) — lets the UI know which packs exist and their versions
+// without downloading the zips. Returns {} if absent.
+export async function fetchAudioManifest() {
+  try {
+    const res = await fetch("public/audio/manifest.json", { cache: "reload" });
+    if (!res.ok) return {};
+    return await res.json();
+  } catch {
+    return {};
+  }
+}
+
 // Ask the browser to keep this storage from being evicted (best-effort).
 export async function requestPersist() {
   try {

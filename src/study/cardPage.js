@@ -389,14 +389,19 @@ export function renderCardPage() {
   // Play a stored offline clip if one exists for this card; otherwise speak via
   // the Web Speech voice. The clip is keyed by the card's identity, so it works
   // regardless of which deck view surfaced the card.
+  function speakTts(entry) {
+    const value = studySpeechText(entry);
+    if (value) speak(value, { lang: activeLibrary().tts.lang, voiceName: state.voice, rate: state.voiceRate });
+  }
   function speakStudy() {
     const entry = currentEntry();
     if (!entry) return;
+    // "Use stored audio if available" off → always live TTS.
+    if (state.preferStoredAudio === false) { speakTts(entry); return; }
     const key = clipKey(activeLibrary().language, entryKey(entry));
     getClip(key).then((blob) => {
-      if (blob) { playClip(blob); return; }
-      const value = studySpeechText(entry);
-      if (value) speak(value, { lang: activeLibrary().tts.lang, voiceName: state.voice, rate: state.voiceRate });
+      if (blob) playClip(blob);
+      else speakTts(entry);
     });
   }
 
@@ -431,7 +436,8 @@ export function renderCardPage() {
   let clipBadgeReq = null;
   const clipDurations = new Map();
   async function updateClipBadge(entry) {
-    const key = entry ? clipKey(activeLibrary().language, entryKey(entry)) : null;
+    // No badge when stored audio is disabled — the card will speak via TTS.
+    const key = entry && state.preferStoredAudio !== false ? clipKey(activeLibrary().language, entryKey(entry)) : null;
     clipBadgeReq = key;
     clipDur.hidden = true;
     if (!key) return;

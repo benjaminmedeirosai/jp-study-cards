@@ -12,12 +12,13 @@
 //     [deckPrefix]  only decks whose id starts with this (folder scope),
 //                   e.g. "alphabet" or "words/numbers". Omit for all decks.
 //     --force       re-synthesize even if the .m4a already exists.
-//     --zip         also write audio/<lang>-<slug>.zip of the generated subtree.
+//     --zip         (re)publish public/audio/<lang>.zip + update the manifest.
 //
 // Only needed when words are added/changed — regenerate just that folder.
 
 import { execFileSync } from "node:child_process";
-import { mkdirSync, existsSync, rmSync, readFileSync } from "node:fs";
+import { mkdirSync, existsSync, rmSync, readFileSync, writeFileSync, readdirSync, statSync } from "node:fs";
+import { createHash } from "node:crypto";
 import path from "node:path";
 import os from "node:os";
 
@@ -126,4 +127,24 @@ if (WANT_ZIP) {
   if (existsSync(zipPath)) rmSync(zipPath);
   execFileSync("zip", ["-r", "-q", zipPath, lang], { cwd: path.join(ROOT, "audio") });
   console.log(`[audio] published ${path.relative(ROOT, zipPath)}`);
+
+  // Update the manifest: version = content hash of the zip, plus a clip count.
+  // The app reads this (cheap) to know when a newer pack is available and to
+  // disable "Load audio" once everything loaded matches the published version.
+  const countM4a = (dir) => {
+    let n = 0;
+    for (const name of readdirSync(dir)) {
+      const full = path.join(dir, name);
+      if (statSync(full).isDirectory()) n += countM4a(full);
+      else if (name.endsWith(".m4a")) n += 1;
+    }
+    return n;
+  };
+  const manifestPath = path.join(publicDir, "manifest.json");
+  let manifest = {};
+  if (existsSync(manifestPath)) { try { manifest = JSON.parse(readFileSync(manifestPath, "utf8")); } catch {} }
+  const version = createHash("sha256").update(readFileSync(zipPath)).digest("hex").slice(0, 12);
+  manifest[lang] = { version, clips: countM4a(path.join(ROOT, "audio", lang)) };
+  writeFileSync(manifestPath, JSON.stringify(manifest, null, 2) + "\n");
+  console.log(`[audio] manifest ${lang} → ${version} (${manifest[lang].clips} clips)`);
 }
