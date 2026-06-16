@@ -322,6 +322,9 @@ export function renderCardPage() {
     if (state.currentIndex >= setCards.length) state.currentIndex = Math.max(0, setCards.length - 1);
     state.currentKey = entryKey(setCards[state.currentIndex]) || "";
     revealed = false;
+    // Warm this set's audio in the background (load once, then scroll/play are
+    // free). Fire-and-forget; a later set change cancels it via its token.
+    prefetchSetAudio();
   }
 
   // Rebuild the deck's sets. The grouping calc itself is memoized by
@@ -485,6 +488,40 @@ export function renderCardPage() {
       probe.onerror = () => { URL.revokeObjectURL(url); reject(); };
       probe.src = url;
     });
+  }
+  // Same, but from an already-created (cached) object URL we keep alive — used
+  // by the prefetch pass so it doesn't churn a throwaway URL per clip.
+  function durationOfUrl(url) {
+    return new Promise((resolve) => {
+      const probe = new Audio();
+      probe.preload = "metadata";
+      probe.onloadedmetadata = () => resolve(probe.duration);
+      probe.onerror = () => resolve(0);
+      probe.src = url;
+    });
+  }
+
+  // Warm the whole active set's audio in the BACKGROUND when it loads: resolve
+  // each card's clip once and cache both its object URL (for instant, no-reload
+  // playback) and its duration (so the badge needs no per-card metadata probe on
+  // scroll). Cancellable via a token so changing set/deck abandons a stale pass.
+  // Non-blocking — clips are tiny, and the loop yields on every await.
+  let prefetchToken = 0;
+  async function prefetchSetAudio() {
+    if (state.preferStoredAudio === false) return;
+    const token = ++prefetchToken;
+    const lang = activeLibrary().language;
+    for (const entry of setCards.slice()) {
+      if (token !== prefetchToken || !root.isConnected) return; // set changed / unmounted
+      const reqId = entryKey(entry);
+      let found = null;
+      try { found = await firstClip(lang, reqId, voiceOrder, clipSourcesFor(entry)); } catch { /* offline read failed */ }
+      if (!found) continue;
+      const urlKey = clipKey(lang, found.voiceId, reqId, found.source);
+      if (!clipUrls.has(urlKey)) clipUrls.set(urlKey, URL.createObjectURL(found.blob));
+      const durKey = `${lang}::${found.voiceId}::${reqId}::${found.source}`;
+      if (!clipDurations.has(durKey)) clipDurations.set(durKey, await durationOfUrl(clipUrls.get(urlKey)));
+    }
   }
 
   // Show the offline clip's duration under the speak button when one exists for
