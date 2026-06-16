@@ -257,7 +257,8 @@ export function renderSettingsPage() {
       row.className = "voice-priority-row";
       const name = document.createElement("span");
       name.className = "voice-priority-name";
-      name.textContent = `${i + 1}. ${info ? info.name : vid}`;
+      const locale = info && info.locale ? ` · ${info.locale}` : "";
+      name.textContent = `${i + 1}. ${info ? info.name : vid}${locale}`;
       const up = button("↑", "voice-move");
       up.disabled = i === 0;
       up.addEventListener("click", () => moveVoice(order, voicesById, i, -1));
@@ -290,7 +291,7 @@ export function renderSettingsPage() {
     const voicesById = {};
     const present = [];
     for (const [vid, v] of Object.entries(info.voices || {})) {
-      voicesById[vid] = { name: v.name };
+      voicesById[vid] = { name: v.name, locale: v.locale };
       present.push(vid);
     }
     langVoiceCount = present.length;

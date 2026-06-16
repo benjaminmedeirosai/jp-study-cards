@@ -1,5 +1,5 @@
 import { speak } from "./speech.js";
-import { firstClip, voiceIdsForLang } from "./audioStore.js";
+import { firstClip, voiceIdsForLang, clipKey, getClip, fetchAudioManifest } from "./audioStore.js";
 import { buildSetOptions, activeSetGrouping, computeDeckSets } from "./sets.js";
 import { beginSession, endSession, sessionQualifies } from "./filters.js";
 import { openOverlay, pushCardsURL, replaceCardsURL, filterInLibrary } from "./router.js";
@@ -418,6 +418,9 @@ export function renderCardPage() {
   // before the order is configured. Computed on mount (works offline; derived
   // from stored clips, not the manifest). firstClip() walks this, then TTS.
   let voiceOrder = [];
+  // voiceId → { name, locale } for this library's language (from the manifest);
+  // used to label the long-press sound menu.
+  let voiceMeta = {};
   async function computeVoiceOrder() {
     const present = await voiceIdsForLang(activeLibrary().language);
     const pref = state.audioVoiceOrder || [];
@@ -1053,6 +1056,106 @@ export function renderCardPage() {
     buttons[0].focus();
   }
 
+  // Generic popup menu (reuses the gloss-menu styling): a heading + a list of
+  // { label, run } actions. Used by the ChatGPT / sound long-press menus.
+  function openActionMenu(anchor, headText, items) {
+    closeGlossMenu();
+    const backdrop = document.createElement("div");
+    backdrop.className = "gloss-menu-backdrop";
+    const menu = document.createElement("div");
+    menu.className = "gloss-menu";
+    menu.setAttribute("role", "menu");
+    const head = document.createElement("div");
+    head.className = "gloss-menu-head";
+    const t = document.createElement("span");
+    t.className = "gloss-menu-gloss";
+    t.textContent = headText;
+    head.append(t);
+    menu.append(head);
+    const buttons = items.map((item) => {
+      const btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "gloss-menu-item";
+      btn.textContent = item.label;
+      btn.addEventListener("click", () => { closeGlossMenu(); item.run(); });
+      menu.append(btn);
+      return btn;
+    });
+    document.body.append(backdrop, menu);
+    const r = anchor.getBoundingClientRect();
+    const mw = menu.offsetWidth;
+    const mh = menu.offsetHeight;
+    const left = Math.max(8, Math.min(r.left, window.innerWidth - mw - 8));
+    let top = r.top - mh - 6;
+    if (top < 8) top = Math.min(r.bottom + 6, window.innerHeight - mh - 8);
+    menu.style.left = `${left}px`;
+    menu.style.top = `${top}px`;
+    const onKey = (event) => {
+      if (event.key === "Escape") { event.preventDefault(); event.stopImmediatePropagation(); closeGlossMenu(); }
+    };
+    document.addEventListener("keydown", onKey, true);
+    window.addEventListener("popstate", closeGlossMenu);
+    glossMenu = { backdrop, menu, onKey };
+    backdrop.addEventListener("click", closeGlossMenu);
+    if (buttons[0]) buttons[0].focus();
+  }
+
+  // Long-press (touch) / right-click (desktop) → handler(el). Swallows the click
+  // that a touch long-press would otherwise fire, so the normal tap action and
+  // the long-press menu don't both run.
+  function onLongPress(el, handler) {
+    el.addEventListener("contextmenu", (event) => { event.preventDefault(); handler(el); });
+    let timer = null;
+    el.addEventListener("touchstart", () => {
+      timer = setTimeout(() => { timer = null; el._longPressed = true; handler(el); }, 500);
+    }, { passive: true });
+    const cancel = () => { if (timer) { clearTimeout(timer); timer = null; } };
+    el.addEventListener("touchend", cancel);
+    el.addEventListener("touchmove", cancel);
+    el.addEventListener("touchcancel", cancel);
+    el.addEventListener("click", (event) => {
+      if (el._longPressed) { event.preventDefault(); event.stopImmediatePropagation(); el._longPressed = false; }
+    }, true);
+  }
+
+  // ChatGPT long-press: ask about just this word, or the whole current set.
+  function openChatgptMenu(anchor) {
+    const entry = currentEntry();
+    if (!entry) return;
+    openActionMenu(anchor, "Ask ChatGPT", [
+      { label: `Ask about “${primaryText(entry)}”`, run: () => openSearchLink(LINK_TEMPLATES.chatgpt, entry) },
+      { label: `Ask about this set (${setCards.length})`, run: askChatgptAboutSet }
+    ]);
+  }
+  function askChatgptAboutSet() {
+    if (!setCards.length) return;
+    const list = setCards.map((e) => {
+      const t = translationText(e);
+      return primaryText(e) + (t ? ` — ${t}` : "");
+    }).join("\n");
+    const prompt = `These are ${setCards.length} ${activeLibrary().label} study cards:\n${list}`;
+    window.open(LINK_TEMPLATES.chatgpt + encodeURIComponent(prompt), "_blank");
+  }
+
+  // Sound long-press: choose live TTS or any stored voice that has a clip for
+  // this card. Each option is labelled with its language/region.
+  async function openSoundMenu(anchor) {
+    const entry = currentEntry();
+    if (!entry) return;
+    const lang = activeLibrary().language;
+    const ek = entryKey(entry);
+    const ttsLang = activeLibrary().tts.lang || "";
+    const items = [{ label: `Live TTS${ttsLang ? ` · ${ttsLang}` : ""}`, run: () => speakTts(entry) }];
+    for (const vid of voiceOrder) {
+      const blob = await getClip(clipKey(lang, vid, ek));
+      if (!blob) continue;
+      const meta = voiceMeta[vid] || {};
+      const label = `${meta.name || vid}${meta.locale ? ` · ${meta.locale}` : ""}`;
+      items.push({ label, run: () => playClip(blob) });
+    }
+    openActionMenu(anchor, "Play audio", items);
+  }
+
   // --- Interactions -------------------------------------------------------
   function move(delta) {
     if (!setCards.length) return;
@@ -1251,7 +1354,9 @@ export function renderCardPage() {
   nextBtn.addEventListener("click", () => move(1));
   revealBtn.addEventListener("click", reveal);
   soundBtn.addEventListener("click", speakStudy);
+  onLongPress(soundBtn, openSoundMenu);
   chatgptBtn.addEventListener("click", () => openSearchLink(LINK_TEMPLATES.chatgpt, currentEntry()));
+  onLongPress(chatgptBtn, openChatgptMenu);
   imagesBtn.addEventListener("click", () => openSearchLink(LINK_TEMPLATES.googleImages, currentEntry()));
 
   // Any real user gesture (except on the play button itself) stops autoplay.
@@ -1286,6 +1391,7 @@ export function renderCardPage() {
     try {
       bundle = await loadBundle();
       voiceOrder = await computeVoiceOrder();
+      fetchAudioManifest().then((m) => { voiceMeta = (m[activeLibrary().language] || {}).voices || {}; });
       await renderAll({ keepIndex: true });
       // Start timing this study session (deck + active filter) for history.
       const deck = currentDeck();

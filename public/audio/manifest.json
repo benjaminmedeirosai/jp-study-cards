@@ -4,6 +4,7 @@
     "voices": {
       "dariush": {
         "name": "Dariush (Enhanced)",
+        "locale": "fa-IR",
         "clips": 404
       }
     }
@@ -13,10 +14,12 @@
     "voices": {
       "carlos": {
         "name": "Carlos (Enhanced)",
+        "locale": "es-CO",
         "clips": 64
       },
       "paulina": {
         "name": "Paulina (Enhanced)",
+        "locale": "es-MX",
         "clips": 64
       }
     }

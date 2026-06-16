@@ -58,6 +58,14 @@ function assertVoiceInstalled(name) {
   const ok = installedVoices().split("\n").some((line) => line.startsWith(name + " ") || line.startsWith(name + "\t") || line.trimEnd().startsWith(name + " "));
   if (!ok) throw new Error(`voice "${name}" is not installed (see \`say -v '?'\`)`);
 }
+// The voice's locale, e.g. "Carlos (Enhanced)" → "es-CO" (say lists "es_CO").
+function localeOfVoice(name) {
+  for (const line of installedVoices().split("\n")) {
+    const m = line.match(/^(.+?)\s{2,}([A-Za-z_]+)\s/);
+    if (m && m[1].trim() === name) return m[2].replace("_", "-");
+  }
+  return "";
+}
 
 function synth(voice, text, outPath) {
   const tmp = path.join(os.tmpdir(), `tts-${process.pid}-${Math.random().toString(36).slice(2)}.wav`);
@@ -124,7 +132,7 @@ console.log(`[audio] voice: ${voiceName} (id ${vid})`);
 const namesPath = path.join(ROOT, "audio", ".voice-names.json");
 let voiceNames = {};
 if (existsSync(namesPath)) { try { voiceNames = JSON.parse(readFileSync(namesPath, "utf8")); } catch {} }
-voiceNames[`${lang}/${vid}`] = voiceName;
+voiceNames[`${lang}/${vid}`] = { name: voiceName, locale: localeOfVoice(voiceName) };
 mkdirSync(path.join(ROOT, "audio"), { recursive: true });
 writeFileSync(namesPath, JSON.stringify(voiceNames, null, 2) + "\n");
 
@@ -186,8 +194,11 @@ if (WANT_ZIP) {
   const voices = {};
   for (const voiceDir of readdirSync(langDir)) {
     if (!statSync(path.join(langDir, voiceDir)).isDirectory()) continue;
-    const name = voiceNames[`${lang}/${voiceDir}`] || (prevVoices[voiceDir] && prevVoices[voiceDir].name) || voiceDir;
-    voices[voiceDir] = { name, clips: countM4a(path.join(langDir, voiceDir)) };
+    const fromNames = voiceNames[`${lang}/${voiceDir}`];
+    const prev = prevVoices[voiceDir] || {};
+    const name = (fromNames && fromNames.name) || prev.name || voiceDir;
+    const locale = (fromNames && fromNames.locale) || prev.locale || "";
+    voices[voiceDir] = { name, locale, clips: countM4a(path.join(langDir, voiceDir)) };
   }
   const version = createHash("sha256").update(readFileSync(zipPath)).digest("hex").slice(0, 12);
   manifest[lang] = { version, voices };
