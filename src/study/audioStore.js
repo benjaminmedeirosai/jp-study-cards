@@ -60,12 +60,20 @@ export function clipKeyForEntry(entry, lib, voiceId, source = "") {
 }
 
 // First stored clip for a card across an ordered list of preferred voices —
-// returns { blob, voiceId } for the first voice that has one, else null.
-// `source` selects the per-sound-source clip on multi-source libraries.
+// returns { blob, voiceId, source } for the first voice that has one, else null.
+// `source` may be a single source value or an ORDERED list of fallback sources:
+// the generator drops a source's clip when it is byte-identical to another
+// (Japanese: a word read correctly via kanji needs no separate hiragana clip),
+// so playback asks for the active source first, then the alternatives. Voice
+// priority wins over source — a top voice's fallback clip beats a lower voice's
+// exact-source clip.
 export async function firstClip(lang, entryKey, voiceIds, source = "") {
+  const sources = Array.isArray(source) ? (source.length ? source : [""]) : [source];
   for (const voiceId of voiceIds) {
-    const blob = await getClip(clipKey(lang, voiceId, entryKey, source));
-    if (blob) return { blob, voiceId };
+    for (const src of sources) {
+      const blob = await getClip(clipKey(lang, voiceId, entryKey, src));
+      if (blob) return { blob, voiceId, source: src };
+    }
   }
   return null;
 }
@@ -128,7 +136,27 @@ export async function clearClips(lang) {
   for (const k of keys) {
     if (String(k).startsWith(prefix)) { await asPromise(store.delete(k)); removed++; }
   }
+  await asPromise(store.delete(META_PREFIX + lang));
   return removed;
+}
+
+// Voice metadata ({ <voiceId>: { name, locale, clips } }) embedded in an
+// imported pack's "<lang>/voices.json" — lets unpublished languages (Japanese,
+// imported manually) still show real voice names/regions in Settings and the
+// sound menu, the same way the published manifest does for Spanish/Farsi.
+// Stored under a namespaced key that never collides with clip keys (`<lang>::…`).
+const META_PREFIX = `__voices__${SEP}`;
+export async function putAudioMeta(lang, voices) {
+  const store = await tx("readwrite");
+  return asPromise(store.put(voices, META_PREFIX + lang));
+}
+export async function getAudioMeta(lang) {
+  try {
+    const store = await tx("readonly");
+    return (await asPromise(store.get(META_PREFIX + lang))) || null;
+  } catch {
+    return null;
+  }
 }
 
 export async function clearAllClips() {
@@ -211,7 +239,15 @@ export async function unzip(arrayBuffer) {
 // { matched, unmatched }.
 export async function importAudioZip(fileOrBuffer) {
   const buffer = fileOrBuffer instanceof Blob ? await fileOrBuffer.arrayBuffer() : fileOrBuffer;
-  const entries = (await unzip(buffer)).filter((e) => /\.m4a$/i.test(e.name));
+  const all = await unzip(buffer);
+  // Persist any embedded per-language voice metadata ("<lang>/voices.json").
+  for (const e of all) {
+    const parts = e.name.split("/");
+    if (parts.length === 2 && parts[1] === "voices.json") {
+      try { await putAudioMeta(parts[0], JSON.parse(await e.blob.text())); } catch {}
+    }
+  }
+  const entries = all.filter((e) => /\.m4a$/i.test(e.name));
   const byLang = new Map();
   for (const item of entries) {
     const lang = item.name.split("/")[0];

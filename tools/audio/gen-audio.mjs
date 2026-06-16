@@ -67,14 +67,21 @@ function localeOfVoice(name) {
   return "";
 }
 
-function synth(voice, text, outPath) {
+// Synthesis is split so per-source dedup can compare at the PCM/WAV stage:
+// `say` output is byte-deterministic for identical text, but the AAC .m4a
+// container embeds creation/modification timestamps (mvhd atom), so two m4a
+// files of the SAME audio made seconds apart differ. Comparing WAVs avoids that.
+function sayToWav(voice, text) {
   const tmp = path.join(os.tmpdir(), `tts-${process.pid}-${Math.random().toString(36).slice(2)}.wav`);
-  try {
-    execFileSync("say", ["-v", voice, "--file-format", SAY_FILE_FORMAT, "--data-format", SAY_DATA_FORMAT, "-o", tmp, text]);
-    execFileSync("afconvert", ["-f", "m4af", "-d", "aac", "-b", AAC_BITRATE, tmp, outPath]);
-  } finally {
-    if (existsSync(tmp)) rmSync(tmp);
-  }
+  execFileSync("say", ["-v", voice, "--file-format", SAY_FILE_FORMAT, "--data-format", SAY_DATA_FORMAT, "-o", tmp, text]);
+  return tmp;
+}
+function wavToM4a(wav, outPath) {
+  execFileSync("afconvert", ["-f", "m4af", "-d", "aac", "-b", AAC_BITRATE, wav, outPath]);
+}
+function synth(voice, text, outPath) {
+  const wav = sayToWav(voice, text);
+  try { wavToM4a(wav, outPath); } finally { if (existsSync(wav)) rmSync(wav); }
 }
 
 // --- args ------------------------------------------------------------------
@@ -136,36 +143,118 @@ voiceNames[`${lang}/${vid}`] = { name: voiceName, locale: localeOfVoice(voiceNam
 mkdirSync(path.join(ROOT, "audio"), { recursive: true });
 writeFileSync(namesPath, JSON.stringify(voiceNames, null, 2) + "\n");
 
-let made = 0, skipped = 0, failed = 0;
+// Byte-equal? Used to drop a redundant per-source clip.
+function filesEqual(a, b) {
+  if (!existsSync(a) || !existsSync(b)) return false;
+  const ba = readFileSync(a), bb = readFileSync(b);
+  return ba.length === bb.length && ba.equals(bb);
+}
+
+// Recursively count .m4a files under a directory.
+function countM4a(dir) {
+  let n = 0;
+  for (const name of readdirSync(dir)) {
+    const full = path.join(dir, name);
+    if (statSync(full).isDirectory()) n += countM4a(full);
+    else if (name.endsWith(".m4a")) n += 1;
+  }
+  return n;
+}
+
+// Scan audio/<lang>/ for the voices present → { <voiceId>: { name, locale,
+// clips } }. Names/locales come from .voice-names.json (recorded each run),
+// falling back to a prior manifest's values, then the bare id. Used both for
+// the published manifest (--zip) and the per-pack "<lang>/voices.json" that
+// makes unpublished imports show real voice names.
+function scanVoices(langDir, prevVoices = {}) {
+  const voices = {};
+  for (const voiceDir of readdirSync(langDir)) {
+    if (!statSync(path.join(langDir, voiceDir)).isDirectory()) continue;
+    const fromNames = voiceNames[`${lang}/${voiceDir}`];
+    const prev = prevVoices[voiceDir] || {};
+    const name = (fromNames && fromNames.name) || prev.name || voiceDir;
+    const locale = (fromNames && fromNames.locale) || prev.locale || "";
+    voices[voiceDir] = { name, locale, clips: countM4a(path.join(langDir, voiceDir)) };
+  }
+  return voices;
+}
+
+let made = 0, skipped = 0, failed = 0, deduped = 0;
 for (const deck of decks) {
   const lib = libFor(deck);
   if (!lib) { console.warn(`! no library for deck ${deck.id} (kind ${deck.kind}) — skipping`); continue; }
   const outDir = path.join(ROOT, "audio", lang, vid, deck.id);
   mkdirSync(outDir, { recursive: true });
-  // Multi-source libraries (Japanese words: kanji + hiragana) get one clip per
-  // source, filename "<slug>.<source>.m4a"; single-source libs keep "<slug>.m4a".
-  const sources = audioMultiSource(lib) ? lib.soundSources.map((s) => s.value) : [null];
+  const multi = audioMultiSource(lib);
+  // Synthesize one clip; return true on success. Skips an up-to-date file.
+  const make = (text, stem) => {
+    const out = path.join(outDir, `${stem}.m4a`);
+    if (!FORCE && existsSync(out)) { skipped++; return; }
+    try {
+      synth(voiceName, text, out);
+      made++;
+      process.stdout.write(`\r${vid}/${deck.id}/${stem}  "${text}"            `);
+    } catch (err) {
+      console.error(`\n! failed ${deck.id}/${stem}: ${err.message}`);
+      failed++;
+    }
+  };
   for (const entry of deck.entries) {
     const slug = audioSlug(entry, lib);
-    for (const src of sources) {
-      const text = src == null ? audioText(entry, lib) : audioTextForSource(entry, lib, src);
-      const stem = src == null ? slug : `${slug}.${src}`;
-      if (!slug || !text) { console.warn(`! ${deck.id}: empty slug/text${src ? ` [${src}]` : ""} for`, entry); failed++; continue; }
-      const out = path.join(outDir, `${stem}.m4a`);
-      if (!FORCE && existsSync(out)) { skipped++; continue; }
-      try {
-        synth(voiceName, text, out);
-        made++;
-        process.stdout.write(`\r${vid}/${deck.id}/${stem}  "${text}"            `);
-      } catch (err) {
-        console.error(`\n! failed ${deck.id}/${stem}: ${err.message}`);
-        failed++;
-      }
+    if (!slug) { console.warn(`! ${deck.id}: empty slug for`, entry); failed++; continue; }
+    if (!multi) { // single-source libs: one "<slug>.m4a" (unchanged)
+      const text = audioText(entry, lib);
+      if (!text) { console.warn(`! ${deck.id}: empty text for`, entry); failed++; continue; }
+      make(text, slug);
+      continue;
     }
+    // Multi-source (Japanese words: kanji + hiragana). The first source is the
+    // primary, always written "<slug>.<source>.m4a". Each later source is KEPT
+    // only if its audio differs from the primary's — a word read identically
+    // (most read correctly via kanji) needs no second clip; playback falls back
+    // to the primary. Dedup compares WAVs (see sayToWav) so identical audio is
+    // caught despite m4a timestamps.
+    const srcVals = lib.soundSources.map((s) => s.value);
+    const primary = srcVals[0];
+    const primaryText = audioTextForSource(entry, lib, primary);
+    if (!primaryText) { console.warn(`! ${deck.id}: empty text [${primary}] for`, entry); failed++; continue; }
+    let primaryWav;
+    try {
+      primaryWav = sayToWav(voiceName, primaryText);
+      const primaryOut = path.join(outDir, `${slug}.${primary}.m4a`);
+      if (FORCE || !existsSync(primaryOut)) {
+        wavToM4a(primaryWav, primaryOut); made++;
+        process.stdout.write(`\r${vid}/${deck.id}/${slug}.${primary}  "${primaryText}"            `);
+      } else skipped++;
+      for (const src of srcVals.slice(1)) {
+        const text = audioTextForSource(entry, lib, src);
+        if (!text) { console.warn(`! ${deck.id}: empty text [${src}] for`, entry); failed++; continue; }
+        const out = path.join(outDir, `${slug}.${src}.m4a`);
+        if (!FORCE && existsSync(out)) { skipped++; continue; }
+        const srcWav = sayToWav(voiceName, text);
+        try {
+          if (filesEqual(srcWav, primaryWav)) { if (existsSync(out)) rmSync(out); deduped++; }
+          else { wavToM4a(srcWav, out); made++; process.stdout.write(`\r${vid}/${deck.id}/${slug}.${src}  "${text}"            `); }
+        } finally { if (existsSync(srcWav)) rmSync(srcWav); }
+      }
+    } catch (err) {
+      console.error(`\n! failed ${deck.id}/${slug}: ${err.message}`);
+      failed++;
+    } finally { if (primaryWav && existsSync(primaryWav)) rmSync(primaryWav); }
   }
 }
 process.stdout.write("\n");
-console.log(`[audio] ${lang}${deckPrefix ? "/" + deckPrefix : ""}: ${made} generated, ${skipped} skipped, ${failed} failed`);
+console.log(`[audio] ${lang}${deckPrefix ? "/" + deckPrefix : ""}: ${made} generated, ${deduped} deduped, ${skipped} skipped, ${failed} failed`);
+
+// Always (re)write audio/<lang>/voices.json so any zip of the folder — even a
+// manual, unpublished one (Japanese) — carries voice names/locales for the app
+// to show in Settings and the sound menu after import.
+{
+  const langDir = path.join(ROOT, "audio", lang);
+  if (existsSync(langDir)) {
+    writeFileSync(path.join(langDir, "voices.json"), JSON.stringify(scanVoices(langDir), null, 2) + "\n");
+  }
+}
 
 if (WANT_ZIP) {
   // Publish the FULL language pack (every clip under audio/<lang>/, all voices,
@@ -183,29 +272,12 @@ if (WANT_ZIP) {
   // voice/clip changes → drives the app's "update available"). voices lists each
   // voice dir present in the pack with its display name + clip count. Names for
   // voices generated in earlier runs are carried over from the prior manifest.
-  const countM4a = (dir) => {
-    let n = 0;
-    for (const name of readdirSync(dir)) {
-      const full = path.join(dir, name);
-      if (statSync(full).isDirectory()) n += countM4a(full);
-      else if (name.endsWith(".m4a")) n += 1;
-    }
-    return n;
-  };
   const manifestPath = path.join(publicDir, "manifest.json");
   let manifest = {};
   if (existsSync(manifestPath)) { try { manifest = JSON.parse(readFileSync(manifestPath, "utf8")); } catch {} }
   const prevVoices = (manifest[lang] && manifest[lang].voices) || {};
   const langDir = path.join(ROOT, "audio", lang);
-  const voices = {};
-  for (const voiceDir of readdirSync(langDir)) {
-    if (!statSync(path.join(langDir, voiceDir)).isDirectory()) continue;
-    const fromNames = voiceNames[`${lang}/${voiceDir}`];
-    const prev = prevVoices[voiceDir] || {};
-    const name = (fromNames && fromNames.name) || prev.name || voiceDir;
-    const locale = (fromNames && fromNames.locale) || prev.locale || "";
-    voices[voiceDir] = { name, locale, clips: countM4a(path.join(langDir, voiceDir)) };
-  }
+  const voices = scanVoices(langDir, prevVoices);
   const version = createHash("sha256").update(readFileSync(zipPath)).digest("hex").slice(0, 12);
   manifest[lang] = { version, voices };
   writeFileSync(manifestPath, JSON.stringify(manifest, null, 2) + "\n");

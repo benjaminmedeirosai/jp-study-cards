@@ -3,7 +3,7 @@ import { speak, getVoicesForLang, onVoicesChanged } from "./speech.js";
 import { historyDropdown, getFilterHistory, formatDuration, formatAgo } from "./filters.js";
 import { closeOverlay } from "./router.js";
 import { schemaCaption } from "./libraries.js";
-import { fetchAudioManifest } from "./audioStore.js";
+import { fetchAudioManifest, getAudioMeta, voiceIdsForLang } from "./audioStore.js";
 
 const VOICE_SAMPLE = "こんにちは。これは音声のプレビューです。";
 import {
@@ -296,15 +296,17 @@ export function renderSettingsPage() {
     saveState(state);
     renderVoicePriority(order, voicesById);
   }
-  fetchAudioManifest().then((m) => {
-    const lang = activeLibrary().language;
-    const info = m[lang] || {};
+  const lang = activeLibrary().language;
+  // Voices for this language come from the published manifest (Spanish/Farsi)
+  // AND any imported pack: getAudioMeta supplies names/locales embedded in an
+  // imported zip (Japanese, unpublished), and voiceIdsForLang catches voices
+  // present in IndexedDB even without metadata (bare id + the library locale).
+  Promise.all([fetchAudioManifest(), getAudioMeta(lang), voiceIdsForLang(lang)]).then(([m, imported, idbVids]) => {
     const voicesById = {};
-    const present = [];
-    for (const [vid, v] of Object.entries(info.voices || {})) {
-      voicesById[vid] = { name: v.name, locale: v.locale };
-      present.push(vid);
-    }
+    for (const [vid, v] of Object.entries((m[lang] || {}).voices || {})) voicesById[vid] = { name: v.name, locale: v.locale };
+    for (const [vid, v] of Object.entries(imported || {})) voicesById[vid] = { name: v.name, locale: v.locale };
+    for (const vid of idbVids) if (!voicesById[vid]) voicesById[vid] = { name: vid.charAt(0).toUpperCase() + vid.slice(1), locale: activeLibrary().tts.lang || "" };
+    const present = Object.keys(voicesById);
     langVoiceCount = present.length;
     updateVoicePriorityVisibility();
     if (!present.length) return;

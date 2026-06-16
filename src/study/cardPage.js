@@ -1,6 +1,6 @@
 import { speak } from "./speech.js";
-import { firstClip, voiceIdsForLang, clipKey, getClip, fetchAudioManifest } from "./audioStore.js";
-import { audioClipSource } from "./audioKey.js";
+import { firstClip, voiceIdsForLang, clipKey, getClip, fetchAudioManifest, getAudioMeta } from "./audioStore.js";
+import { audioMultiSource } from "./audioKey.js";
 import { buildSetOptions, activeSetGrouping, computeDeckSets } from "./sets.js";
 import { beginSession, endSession, sessionQualifies } from "./filters.js";
 import { openOverlay, pushCardsURL, replaceCardsURL, filterInLibrary } from "./router.js";
@@ -396,10 +396,16 @@ export function renderCardPage() {
     return values.includes(saved) ? saved : defaultTtsSource(entry);
   }
 
-  // The stored-clip source segment for an entry's currently-effective sound
-  // source — "" on single-source libraries (keeps their sourceless keys).
-  function clipSourceFor(entry) {
-    return audioClipSource(activeLibrary(), getCurrentTtsSource(entry));
+  // Ordered stored-clip source candidates for an entry: the active sound source
+  // first, then the other sources as fallbacks (the generator drops a clip that
+  // duplicates another, so e.g. a hiragana request plays the identical kanji
+  // clip). [""] on single-source libraries — their keys carry no source.
+  function clipSourcesFor(entry) {
+    const lib = activeLibrary();
+    if (!audioMultiSource(lib)) return [""];
+    const current = getCurrentTtsSource(entry);
+    const all = soundSources.map((o) => o.value);
+    return [current, ...all.filter((v) => v !== current)];
   }
 
   // The text to speak for an entry. If the schema declares sound sources, speak
@@ -426,7 +432,7 @@ export function renderCardPage() {
     if (!entry) return;
     // "Use stored audio if available" off → always live TTS.
     if (state.preferStoredAudio === false) { speakTts(entry); return; }
-    firstClip(activeLibrary().language, entryKey(entry), voiceOrder, clipSourceFor(entry)).then((found) => {
+    firstClip(activeLibrary().language, entryKey(entry), voiceOrder, clipSourcesFor(entry)).then((found) => {
       if (found) playClip(found.blob, rateForVoice(found.voiceId));
       else speakTts(entry);
     });
@@ -488,10 +494,9 @@ export function renderCardPage() {
     clipDur.hidden = true;
     if (!reqId) return;
     const lang = activeLibrary().language;
-    const src = clipSourceFor(entry);
-    const found = await firstClip(lang, reqId, voiceOrder, src);
+    const found = await firstClip(lang, reqId, voiceOrder, clipSourcesFor(entry));
     if (clipBadgeReq !== reqId || !found) return;
-    const cacheKey = `${lang}::${found.voiceId}::${reqId}::${src}`;
+    const cacheKey = `${lang}::${found.voiceId}::${reqId}::${found.source}`;
     let seconds = clipDurations.get(cacheKey);
     if (seconds == null) {
       seconds = await clipDuration(found.blob).catch(() => 0);
@@ -1189,10 +1194,12 @@ export function renderCardPage() {
     const lang = activeLibrary().language;
     const ek = entryKey(entry);
     const ttsLang = activeLibrary().tts.lang || "";
-    const src = clipSourceFor(entry);
+    const sources = clipSourcesFor(entry);
     const items = [{ label: `Live TTS${ttsLang ? ` · ${ttsLang}` : ""}`, meta: `${state.voiceRate || 1}×`, run: () => speakTts(entry) }];
     for (const vid of voiceOrder) {
-      const blob = await getClip(clipKey(lang, vid, ek, src));
+      // Per voice, the active source first then its fallbacks (a deduped clip).
+      let blob = null;
+      for (const src of sources) { blob = await getClip(clipKey(lang, vid, ek, src)); if (blob) break; }
       if (!blob) continue;
       const meta = voiceMeta[vid] || {};
       const label = `${meta.name || vid}${meta.locale ? ` · ${meta.locale}` : ""}`;
@@ -1440,7 +1447,12 @@ export function renderCardPage() {
     try {
       bundle = await loadBundle();
       voiceOrder = await computeVoiceOrder();
-      fetchAudioManifest().then((m) => { voiceMeta = (m[activeLibrary().language] || {}).voices || {}; });
+      // Voice names/locales for the sound menu: published manifest plus any
+      // imported-pack metadata (Japanese, unpublished).
+      const metaLang = activeLibrary().language;
+      Promise.all([fetchAudioManifest(), getAudioMeta(metaLang)]).then(([m, imported]) => {
+        voiceMeta = { ...((m[metaLang] || {}).voices || {}), ...(imported || {}) };
+      });
       await renderAll({ keepIndex: true });
       // Start timing this study session (deck + active filter) for history.
       const deck = currentDeck();
