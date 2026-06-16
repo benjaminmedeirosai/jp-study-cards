@@ -1,5 +1,6 @@
 import { speak } from "./speech.js";
 import { firstClip, voiceIdsForLang, clipKey, getClip, fetchAudioManifest } from "./audioStore.js";
+import { audioClipSource } from "./audioKey.js";
 import { buildSetOptions, activeSetGrouping, computeDeckSets } from "./sets.js";
 import { beginSession, endSession, sessionQualifies } from "./filters.js";
 import { openOverlay, pushCardsURL, replaceCardsURL, filterInLibrary } from "./router.js";
@@ -386,14 +387,19 @@ export function renderCardPage() {
   // Effective source. "library" scope: the standing setting (state.soundSource),
   // falling back to the first option — same for every card. "card" scope: the
   // user's saved per-card override if still valid, else the system default.
-  function getCurrentTtsSource() {
+  function getCurrentTtsSource(entry = currentEntry()) {
     const values = soundSources.map((o) => o.value);
     if (activeLibrary().soundSourceScope === "library") {
       return values.includes(state.soundSource) ? state.soundSource : (values[0] || "");
     }
-    const entry = currentEntry();
     const saved = state.ttsSources[entryKey(entry)];
     return values.includes(saved) ? saved : defaultTtsSource(entry);
+  }
+
+  // The stored-clip source segment for an entry's currently-effective sound
+  // source — "" on single-source libraries (keeps their sourceless keys).
+  function clipSourceFor(entry) {
+    return audioClipSource(activeLibrary(), getCurrentTtsSource(entry));
   }
 
   // The text to speak for an entry. If the schema declares sound sources, speak
@@ -420,7 +426,7 @@ export function renderCardPage() {
     if (!entry) return;
     // "Use stored audio if available" off → always live TTS.
     if (state.preferStoredAudio === false) { speakTts(entry); return; }
-    firstClip(activeLibrary().language, entryKey(entry), voiceOrder).then((found) => {
+    firstClip(activeLibrary().language, entryKey(entry), voiceOrder, clipSourceFor(entry)).then((found) => {
       if (found) playClip(found.blob, rateForVoice(found.voiceId));
       else speakTts(entry);
     });
@@ -482,9 +488,10 @@ export function renderCardPage() {
     clipDur.hidden = true;
     if (!reqId) return;
     const lang = activeLibrary().language;
-    const found = await firstClip(lang, reqId, voiceOrder);
+    const src = clipSourceFor(entry);
+    const found = await firstClip(lang, reqId, voiceOrder, src);
     if (clipBadgeReq !== reqId || !found) return;
-    const cacheKey = `${lang}::${found.voiceId}::${reqId}`;
+    const cacheKey = `${lang}::${found.voiceId}::${reqId}::${src}`;
     let seconds = clipDurations.get(cacheKey);
     if (seconds == null) {
       seconds = await clipDuration(found.blob).catch(() => 0);
@@ -1182,9 +1189,10 @@ export function renderCardPage() {
     const lang = activeLibrary().language;
     const ek = entryKey(entry);
     const ttsLang = activeLibrary().tts.lang || "";
+    const src = clipSourceFor(entry);
     const items = [{ label: `Live TTS${ttsLang ? ` · ${ttsLang}` : ""}`, meta: `${state.voiceRate || 1}×`, run: () => speakTts(entry) }];
     for (const vid of voiceOrder) {
-      const blob = await getClip(clipKey(lang, vid, ek));
+      const blob = await getClip(clipKey(lang, vid, ek, src));
       if (!blob) continue;
       const meta = voiceMeta[vid] || {};
       const label = `${meta.name || vid}${meta.locale ? ` · ${meta.locale}` : ""}`;
@@ -1359,6 +1367,7 @@ export function renderCardPage() {
     else state.ttsSources[key] = value;
     saveState(state);
     renderTray();
+    updateClipBadge(entry); // kanji vs hiragana may have a different stored clip
     speakStudy();
   }
 

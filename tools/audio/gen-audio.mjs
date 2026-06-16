@@ -23,7 +23,7 @@ import path from "node:path";
 import os from "node:os";
 
 import { LIBRARIES } from "../../src/study/libraries.js";
-import { audioSlug, audioText } from "../../src/study/audioKey.js";
+import { audioSlug, audioText, audioTextForSource, audioMultiSource } from "../../src/study/audioKey.js";
 
 const ROOT = path.resolve(import.meta.dirname, "..", "..");
 
@@ -142,19 +142,25 @@ for (const deck of decks) {
   if (!lib) { console.warn(`! no library for deck ${deck.id} (kind ${deck.kind}) — skipping`); continue; }
   const outDir = path.join(ROOT, "audio", lang, vid, deck.id);
   mkdirSync(outDir, { recursive: true });
+  // Multi-source libraries (Japanese words: kanji + hiragana) get one clip per
+  // source, filename "<slug>.<source>.m4a"; single-source libs keep "<slug>.m4a".
+  const sources = audioMultiSource(lib) ? lib.soundSources.map((s) => s.value) : [null];
   for (const entry of deck.entries) {
     const slug = audioSlug(entry, lib);
-    const text = audioText(entry, lib);
-    if (!slug || !text) { console.warn(`! ${deck.id}: empty slug/text for`, entry); failed++; continue; }
-    const out = path.join(outDir, `${slug}.m4a`);
-    if (!FORCE && existsSync(out)) { skipped++; continue; }
-    try {
-      synth(voiceName, text, out);
-      made++;
-      process.stdout.write(`\r${vid}/${deck.id}/${slug}  "${text}"            `);
-    } catch (err) {
-      console.error(`\n! failed ${deck.id}/${slug}: ${err.message}`);
-      failed++;
+    for (const src of sources) {
+      const text = src == null ? audioText(entry, lib) : audioTextForSource(entry, lib, src);
+      const stem = src == null ? slug : `${slug}.${src}`;
+      if (!slug || !text) { console.warn(`! ${deck.id}: empty slug/text${src ? ` [${src}]` : ""} for`, entry); failed++; continue; }
+      const out = path.join(outDir, `${stem}.m4a`);
+      if (!FORCE && existsSync(out)) { skipped++; continue; }
+      try {
+        synth(voiceName, text, out);
+        made++;
+        process.stdout.write(`\r${vid}/${deck.id}/${stem}  "${text}"            `);
+      } catch (err) {
+        console.error(`\n! failed ${deck.id}/${stem}: ${err.message}`);
+        failed++;
+      }
     }
   }
 }

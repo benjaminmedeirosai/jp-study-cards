@@ -7,7 +7,7 @@
 // playback looks them up without caring which deck view you're in.
 
 import { LIBRARIES } from "./libraries.js";
-import { audioSlug } from "./audioKey.js";
+import { audioSlug, audioMultiSource } from "./audioKey.js";
 
 const DB_NAME = "jp-study-audio";
 const STORE = "clips";
@@ -39,8 +39,12 @@ function asPromise(req) {
 
 // A clip is identified by language + voice + card identity, so the same word
 // can hold several voices side by side: `${lang}::${voiceId}::${entryKey}`.
-export function clipKey(lang, voiceId, entryKey) {
-  return `${lang}${SEP}${voiceId}${SEP}${entryKey}`;
+// `source` distinguishes per-sound-source clips on multi-source libraries
+// (Japanese: kanji-spoken vs hiragana-spoken) and is appended only when set, so
+// single-source languages (Spanish, Farsi) keep their original sourceless keys.
+export function clipKey(lang, voiceId, entryKey, source = "") {
+  const base = `${lang}${SEP}${voiceId}${SEP}${entryKey}`;
+  return source ? `${base}${SEP}${source}` : base;
 }
 
 // The card-identity key for an entry under a SPECIFIC library's field mapping
@@ -51,15 +55,16 @@ export function entryKeyFor(entry, lib) {
   const t = (key) => (key ? String(entry?.[key] ?? "").trim() : "");
   return [t(f.primary), t(f.reading), t(f.translation)].join("|");
 }
-export function clipKeyForEntry(entry, lib, voiceId) {
-  return clipKey(lib.language, voiceId, entryKeyFor(entry, lib));
+export function clipKeyForEntry(entry, lib, voiceId, source = "") {
+  return clipKey(lib.language, voiceId, entryKeyFor(entry, lib), source);
 }
 
 // First stored clip for a card across an ordered list of preferred voices —
 // returns { blob, voiceId } for the first voice that has one, else null.
-export async function firstClip(lang, entryKey, voiceIds) {
+// `source` selects the per-sound-source clip on multi-source libraries.
+export async function firstClip(lang, entryKey, voiceIds, source = "") {
   for (const voiceId of voiceIds) {
-    const blob = await getClip(clipKey(lang, voiceId, entryKey));
+    const blob = await getClip(clipKey(lang, voiceId, entryKey, source));
     if (blob) return { blob, voiceId };
   }
   return null;
@@ -220,16 +225,25 @@ export async function importAudioZip(fileOrBuffer) {
     catch { unmatched += items.length; continue; }
     const deckById = new Map(bundle.decks.map((d) => [d.id, d]));
     for (const { name, blob } of items) {
-      // <lang>/<voiceId>/<deckId…>/<slug>.m4a
+      // <lang>/<voiceId>/<deckId…>/<slug>[.<source>].m4a
       const segs = name.split("/");
       const voiceId = segs[1];
-      const slug = segs[segs.length - 1].replace(/\.[^.]+$/, "");
+      const stem = segs[segs.length - 1].replace(/\.[^.]+$/, "");
       const deckId = segs.slice(2, -1).join("/");
       const deck = deckById.get(deckId);
       const lib = deck && LIBRARIES.find((l) => l.language === lang && l.deckKind === (deck.kind || "word"));
+      // On multi-source libraries the filename carries a ".<source>" suffix
+      // (e.g. "<slug>.kanji"); split it back off so the clip lands under the
+      // matching per-source key. Single-source libs have no suffix.
+      let slug = stem, source = "";
+      if (lib && audioMultiSource(lib)) {
+        for (const s of lib.soundSources) {
+          if (stem.endsWith(`.${s.value}`)) { source = s.value; slug = stem.slice(0, -(s.value.length + 1)); break; }
+        }
+      }
       const entry = lib && voiceId && deck.entries.find((e) => audioSlug(e, lib) === slug);
       if (!entry) { unmatched++; continue; }
-      await putClip(clipKeyForEntry(entry, lib, voiceId), blob);
+      await putClip(clipKeyForEntry(entry, lib, voiceId, source), blob);
       matched++;
     }
   }

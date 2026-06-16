@@ -65,6 +65,12 @@ export const LIBRARIES = [
       { value: "kanji", label: "Kanji", keys: ["kanji"] },
       { value: "hiragana", label: "Hiragana", keys: ["hiragana"] }
     ],
+    // Audio clips are generated per sound source (kanji-spoken + hiragana-spoken)
+    // so either tray choice plays a matching clip. Neither kanji nor kana is
+    // ASCII-sluggable and the English fallback collides for synonyms, so clip
+    // filenames hash the card identity instead. Japanese audio is optional
+    // (TTS is fine) and never published — generate locally and import the zip.
+    audioSlugMode: "hash",
     features: { soundSource: true, gloss: true, texts: true }
   },
   {
