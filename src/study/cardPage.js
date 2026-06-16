@@ -432,8 +432,10 @@ export function renderCardPage() {
     if (!entry) return;
     // "Use stored audio if available" off → always live TTS.
     if (state.preferStoredAudio === false) { speakTts(entry); return; }
-    firstClip(activeLibrary().language, entryKey(entry), voiceOrder, clipSourcesFor(entry)).then((found) => {
-      if (found) playClip(found.blob, rateForVoice(found.voiceId));
+    const lang = activeLibrary().language;
+    const ek = entryKey(entry);
+    firstClip(lang, ek, voiceOrder, clipSourcesFor(entry)).then((found) => {
+      if (found) playClip(found.blob, rateForVoice(found.voiceId), clipKey(lang, found.voiceId, ek, found.source));
       else speakTts(entry);
     });
   }
@@ -454,18 +456,22 @@ export function renderCardPage() {
 
   // One <audio> reused across cards so a new play stops the previous clip.
   let clipAudio = null;
-  let clipUrl = null;
+  // Object URLs cached for the session, keyed by clip identity — a clip's blob
+  // is wrapped in a URL ONCE, and replaying the same card reuses it (the blob
+  // stays in memory, no IndexedDB re-read and no fresh <audio> load). Clips are
+  // tiny (~10KB) so holding a session's worth costs little.
+  const clipUrls = new Map();
   // Per-voice stored-clip playback speed (set in Settings → voice priority).
   function rateForVoice(voiceId) {
     return Number((state.audioVoiceRates || {})[voiceId]) || 1;
   }
-  function playClip(blob, rate) {
+  function playClip(blob, rate, cacheKey) {
     if (!clipAudio) clipAudio = new Audio();
-    clipAudio.pause();
-    if (clipUrl) URL.revokeObjectURL(clipUrl);
-    clipUrl = URL.createObjectURL(blob);
-    clipAudio.src = clipUrl;
+    let url = cacheKey ? clipUrls.get(cacheKey) : null;
+    if (!url) { url = URL.createObjectURL(blob); if (cacheKey) clipUrls.set(cacheKey, url); }
+    if (clipAudio.src !== url) clipAudio.src = url; // only (re)load when the clip actually changes
     clipAudio.playbackRate = Number(rate) || 1;
+    try { clipAudio.currentTime = 0; } catch { /* not yet seekable; play() restarts it */ }
     clipAudio.play().catch(() => {});
   }
 
@@ -1198,13 +1204,14 @@ export function renderCardPage() {
     const items = [{ label: `Live TTS${ttsLang ? ` · ${ttsLang}` : ""}`, meta: `${state.voiceRate || 1}×`, run: () => speakTts(entry) }];
     for (const vid of voiceOrder) {
       // Per voice, the active source first then its fallbacks (a deduped clip).
-      let blob = null;
-      for (const src of sources) { blob = await getClip(clipKey(lang, vid, ek, src)); if (blob) break; }
+      let blob = null, matchedSrc = "";
+      for (const src of sources) { blob = await getClip(clipKey(lang, vid, ek, src)); if (blob) { matchedSrc = src; break; } }
       if (!blob) continue;
       const meta = voiceMeta[vid] || {};
       const label = `${meta.name || vid}${meta.locale ? ` · ${meta.locale}` : ""}`;
       const rate = rateForVoice(vid);
-      items.push({ label, meta: `${rate}×`, run: () => playClip(blob, rate) });
+      const key = clipKey(lang, vid, ek, matchedSrc);
+      items.push({ label, meta: `${rate}×`, run: () => playClip(blob, rate, key) });
     }
     openActionMenu(anchor, "Play audio", items);
   }
