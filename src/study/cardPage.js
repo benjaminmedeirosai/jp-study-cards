@@ -452,8 +452,30 @@ export function renderCardPage() {
   // surface. Bind its metadata to the current card and its prev/next/play/pause
   // to card navigation — hands-free study with the screen off. No-ops where the
   // API is absent.
+  // The app icon as a cached data URL — setting MediaMetadata re-fetches its
+  // artwork URL each time, so embedding it inline means zero network requests
+  // (the icon is fetched at most once, here).
+  let mediaArtwork = null;
+  let mediaArtworkTried = false;
+  function ensureMediaArtwork() {
+    if (mediaArtworkTried) return;
+    mediaArtworkTried = true;
+    fetch("favicon.svg").then((r) => (r.ok ? r.blob() : null)).then((b) => {
+      if (!b) return;
+      const fr = new FileReader();
+      fr.onload = () => { mediaArtwork = fr.result; };
+      fr.readAsDataURL(b);
+    }).catch(() => { /* no icon; metadata just goes without artwork */ });
+  }
+  let lastMediaKey = null;
   function updateMediaSession(entry) {
     if (!("mediaSession" in navigator) || typeof MediaMetadata === "undefined" || !entry) return;
+    ensureMediaArtwork();
+    // Only rebuild metadata when the card actually changes — re-pressing sound on
+    // the same card must not recreate it (that's what re-fetched the artwork).
+    const key = entryKey(entry);
+    if (key === lastMediaKey) return;
+    lastMediaKey = key;
     const title = primaryText(entry) || readingText(entry) || translationText(entry) || "";
     const reading = readingText(entry);
     const translation = translationText(entry);
@@ -464,7 +486,7 @@ export function renderCardPage() {
         title,
         artist: subtitle,
         album: deck ? deck.label : activeLibrary().label,
-        artwork: [{ src: "favicon.svg", sizes: "any", type: "image/svg+xml" }]
+        artwork: mediaArtwork ? [{ src: mediaArtwork, sizes: "any", type: "image/svg+xml" }] : []
       });
     } catch { /* MediaMetadata not constructible here */ }
   }
