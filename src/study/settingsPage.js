@@ -28,6 +28,7 @@ import {
   primaryText,
   readingText,
   translationText,
+  entryKey,
   loadBundle,
   resolveDeck,
   button,
@@ -35,6 +36,9 @@ import {
   makeSelect,
   makeToggle
 } from "./shared.js";
+
+// The study-more (★) glyph, matching the deck picker's filter-row toggle.
+const STAR_ICON = `<svg viewBox="0 0 24 24"><path d="M12 3.5l2.6 5.3 5.9.9-4.2 4.1 1 5.8L12 17l-5.3 2.8 1-5.8-4.2-4.1 5.9-.9z"/></svg>`;
 
 // A divider + label that opens a group of related settings.
 function sectionHeading(label) {
@@ -123,7 +127,7 @@ export function renderSettingsPage() {
   const queryField = fieldLabel("Filter", queryInput, "filter-field");
   const queryText = queryField.querySelector("span");
   // History dropdown — moves queryInput into a wrapper, then back into the field.
-  queryField.append(historyDropdown(queryInput, {
+  const filterWrap = historyDropdown(queryInput, {
     getItems: () => getFilterHistory().map((h) => ({
       primary: h.q,
       meta: `studied ${formatDuration(h.ms)} · ${formatAgo(h.at)}`,
@@ -131,7 +135,28 @@ export function renderSettingsPage() {
     })),
     onPick: (it) => { queryInput.value = it.value; queryInput.dispatchEvent(new Event("input", { bubbles: true })); },
     emptyText: "No filters studied yet"
-  }));
+  });
+  // Study-more (★) filter alongside the text filter, mirroring the deck picker's
+  // card-filter row. It toggles the same `state.studyMoreFilter` the deck/card
+  // pages read, so flipping it here narrows the real study set too — and the set
+  // preview + record count below update to reflect it.
+  let studyMoreOnly = state.studyMoreFilter === true;
+  const studyMoreBtn = button("Study more", `decks-studymore${studyMoreOnly ? " active" : ""}`);
+  studyMoreBtn.innerHTML = STAR_ICON;
+  studyMoreBtn.setAttribute("aria-label", "Show only study-more cards");
+  studyMoreBtn.setAttribute("aria-pressed", studyMoreOnly ? "true" : "false");
+  studyMoreBtn.addEventListener("click", () => {
+    studyMoreOnly = !studyMoreOnly;
+    state.studyMoreFilter = studyMoreOnly;
+    saveState(state);
+    studyMoreBtn.classList.toggle("active", studyMoreOnly);
+    studyMoreBtn.setAttribute("aria-pressed", studyMoreOnly ? "true" : "false");
+    updateSettingsPreview();
+  });
+  const cardFilterRow = document.createElement("div");
+  cardFilterRow.className = "decks-cardfilter-row";
+  cardFilterRow.append(filterWrap, studyMoreBtn);
+  queryField.append(cardFilterRow);
 
   // --- Set size / grouping ------------------------------------------------
   const setSizeInput = document.createElement("input");
@@ -397,7 +422,12 @@ export function renderSettingsPage() {
   function updateFilterCount() {
     const base = previewBaseCards;
     const query = String(queryInput.value || "").trim().toLowerCase();
-    const count = query ? base.filter((entry) => matchesQuery(entry, query)).length : base.length;
+    const studyMore = state.studyMoreFilter ? (state.studyMore || {}) : null;
+    const count = (query || studyMore)
+      ? base.filter((entry) =>
+          (!query || matchesQuery(entry, query)) &&
+          (!studyMore || studyMore[entryKey(entry)])).length
+      : base.length;
     if (queryText) queryText.textContent = `Filter ${count}/${base.length} records`;
   }
   function updateSettingsPreview() {
@@ -419,7 +449,10 @@ export function renderSettingsPage() {
       cards: previewBaseCards,
       query: queryInput.value,
       setSize: clampInt(setSizeInput.value, DEFAULT_SET_SIZE, MIN_SET_SIZE, MAX_SET_SIZE),
-      groupingId
+      groupingId,
+      // Honor the ★ study-more filter so the preview reflects the real set, not
+      // the unfiltered deck (matches what the card page will actually build).
+      studyMore: state.studyMoreFilter ? state.studyMore : null
     });
     setPreviewRows.innerHTML = "";
     const seenCards = new Set();
