@@ -457,55 +457,54 @@ export function renderCardPage() {
     return [...pref.filter((v) => present.includes(v)), ...present.filter((v) => !pref.includes(v))];
   }
 
-  // One <audio> reused across cards so a new play stops the previous clip.
-  let clipAudio = null;
-  // Object URLs cached for the session, keyed by clip identity — a clip's blob
-  // is wrapped in a URL ONCE, and replaying the same card reuses it (the blob
-  // stays in memory, no IndexedDB re-read and no fresh <audio> load). Clips are
-  // tiny (~10KB) so holding a session's worth costs little.
-  const clipUrls = new Map();
+  // One cached <audio> element PER clip, keyed by clip identity. The element is
+  // created and loaded once (at set-load by prefetchSetAudio) and the SAME
+  // element serves both the duration badge and playback — so once a set is
+  // warmed nothing reloads: the first play of a card has nothing left to fetch.
+  // Clips are tiny (~10KB) and the set size is capped, so a set's worth of
+  // elements costs little. Kept for the session (URLs freed on page unload).
+  const clipEls = new Map();   // clipKey -> { audio, url }
+  let currentClipAudio = null; // element currently playing, so a new play stops it
+  function clipElement(blob, cacheKey) {
+    let rec = cacheKey ? clipEls.get(cacheKey) : null;
+    if (!rec) {
+      const url = URL.createObjectURL(blob);
+      const audio = new Audio();
+      audio.preload = "auto"; // load the bytes now, not on first play
+      audio.src = url;
+      rec = { audio, url };
+      if (cacheKey) clipEls.set(cacheKey, rec);
+    }
+    return rec;
+  }
   // Per-voice stored-clip playback speed (set in Settings → voice priority).
   function rateForVoice(voiceId) {
     return Number((state.audioVoiceRates || {})[voiceId]) || 1;
   }
   function playClip(blob, rate, cacheKey) {
-    if (!clipAudio) clipAudio = new Audio();
-    let url = cacheKey ? clipUrls.get(cacheKey) : null;
-    if (!url) { url = URL.createObjectURL(blob); if (cacheKey) clipUrls.set(cacheKey, url); }
-    if (clipAudio.src !== url) clipAudio.src = url; // only (re)load when the clip actually changes
-    clipAudio.playbackRate = Number(rate) || 1;
-    try { clipAudio.currentTime = 0; } catch { /* not yet seekable; play() restarts it */ }
-    clipAudio.play().catch(() => {});
+    const rec = clipElement(blob, cacheKey);
+    if (currentClipAudio && currentClipAudio !== rec.audio) currentClipAudio.pause();
+    currentClipAudio = rec.audio;
+    rec.audio.playbackRate = Number(rate) || 1;
+    try { rec.audio.currentTime = 0; } catch { /* not yet seekable; play() restarts it */ }
+    rec.audio.play().catch(() => {});
   }
 
-  // Read a clip's playback length (seconds) from its metadata.
-  function clipDuration(blob) {
-    return new Promise((resolve, reject) => {
-      const probe = new Audio();
-      probe.preload = "metadata";
-      const url = URL.createObjectURL(blob);
-      probe.onloadedmetadata = () => { URL.revokeObjectURL(url); resolve(probe.duration); };
-      probe.onerror = () => { URL.revokeObjectURL(url); reject(); };
-      probe.src = url;
-    });
-  }
-  // Same, but from an already-created (cached) object URL we keep alive — used
-  // by the prefetch pass so it doesn't churn a throwaway URL per clip.
-  function durationOfUrl(url) {
+  // A clip's length (seconds), read from its cached element's metadata — which
+  // is already loading (or loaded) from the set-load prefetch.
+  function clipDurationOf(rec) {
+    const a = rec.audio;
+    if (a.readyState >= 1 && a.duration > 0) return Promise.resolve(a.duration);
     return new Promise((resolve) => {
-      const probe = new Audio();
-      probe.preload = "metadata";
-      probe.onloadedmetadata = () => resolve(probe.duration);
-      probe.onerror = () => resolve(0);
-      probe.src = url;
+      a.addEventListener("loadedmetadata", () => resolve(a.duration), { once: true });
+      a.addEventListener("error", () => resolve(0), { once: true });
     });
   }
 
-  // Warm the whole active set's audio in the BACKGROUND when it loads: resolve
-  // each card's clip once and cache both its object URL (for instant, no-reload
-  // playback) and its duration (so the badge needs no per-card metadata probe on
-  // scroll). Cancellable via a token so changing set/deck abandons a stale pass.
-  // Non-blocking — clips are tiny, and the loop yields on every await.
+  // Warm the whole active set's audio in the BACKGROUND when it loads: create
+  // (and start loading) each card's clip element once. Then scrolling shows the
+  // duration badge with no probe and the first play has nothing left to fetch.
+  // Cancellable via a token so changing set/deck abandons a stale pass.
   let prefetchToken = 0;
   async function prefetchSetAudio() {
     if (state.preferStoredAudio === false) return;
@@ -517,19 +516,15 @@ export function renderCardPage() {
       let found = null;
       try { found = await firstClip(lang, reqId, voiceOrder, clipSourcesFor(entry)); } catch { /* offline read failed */ }
       if (!found) continue;
-      const urlKey = clipKey(lang, found.voiceId, reqId, found.source);
-      if (!clipUrls.has(urlKey)) clipUrls.set(urlKey, URL.createObjectURL(found.blob));
-      const durKey = `${lang}::${found.voiceId}::${reqId}::${found.source}`;
-      if (!clipDurations.has(durKey)) clipDurations.set(durKey, await durationOfUrl(clipUrls.get(urlKey)));
+      clipElement(found.blob, clipKey(lang, found.voiceId, reqId, found.source)); // create + start loading
     }
   }
 
   // Show the offline clip's duration under the speak button when one exists for
   // this card (the visible "this is a file, not TTS" cue); hide it otherwise.
-  // Durations are cached per clip key; a request token guards against the async
-  // result landing after the user has already moved to another card.
+  // A request token guards against the async result landing after the user has
+  // already moved to another card.
   let clipBadgeReq = null;
-  const clipDurations = new Map();
   async function updateClipBadge(entry) {
     // No badge when stored audio is disabled — the card will speak via TTS.
     const reqId = entry && state.preferStoredAudio !== false ? entryKey(entry) : null;
@@ -539,12 +534,8 @@ export function renderCardPage() {
     const lang = activeLibrary().language;
     const found = await firstClip(lang, reqId, voiceOrder, clipSourcesFor(entry));
     if (clipBadgeReq !== reqId || !found) return;
-    const cacheKey = `${lang}::${found.voiceId}::${reqId}::${found.source}`;
-    let seconds = clipDurations.get(cacheKey);
-    if (seconds == null) {
-      seconds = await clipDuration(found.blob).catch(() => 0);
-      clipDurations.set(cacheKey, seconds);
-    }
+    const rec = clipElement(found.blob, clipKey(lang, found.voiceId, reqId, found.source));
+    const seconds = await clipDurationOf(rec).catch(() => 0);
     if (clipBadgeReq !== reqId || !(seconds > 0)) return;
     clipDur.textContent = `${seconds.toFixed(1)}s`;
     clipDur.hidden = false;
