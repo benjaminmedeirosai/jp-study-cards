@@ -1107,6 +1107,13 @@ export function renderCardPage() {
       btn.type = "button";
       btn.className = "gloss-menu-item";
       btn.textContent = item.label;
+      // Optional small trailing note (e.g. the playback speed for an audio voice).
+      if (item.meta) {
+        const meta = document.createElement("span");
+        meta.className = "gloss-menu-itemmeta";
+        meta.textContent = item.meta;
+        btn.append(meta);
+      }
       btn.addEventListener("click", () => { closeGlossMenu(); item.run(); });
       menu.append(btn);
       return btn;
@@ -1175,13 +1182,14 @@ export function renderCardPage() {
     const lang = activeLibrary().language;
     const ek = entryKey(entry);
     const ttsLang = activeLibrary().tts.lang || "";
-    const items = [{ label: `Live TTS${ttsLang ? ` · ${ttsLang}` : ""}`, run: () => speakTts(entry) }];
+    const items = [{ label: `Live TTS${ttsLang ? ` · ${ttsLang}` : ""}`, meta: `${state.voiceRate || 1}×`, run: () => speakTts(entry) }];
     for (const vid of voiceOrder) {
       const blob = await getClip(clipKey(lang, vid, ek));
       if (!blob) continue;
       const meta = voiceMeta[vid] || {};
       const label = `${meta.name || vid}${meta.locale ? ` · ${meta.locale}` : ""}`;
-      items.push({ label, run: () => playClip(blob, rateForVoice(vid)) });
+      const rate = rateForVoice(vid);
+      items.push({ label, meta: `${rate}×`, run: () => playClip(blob, rate) });
     }
     openActionMenu(anchor, "Play audio", items);
   }
