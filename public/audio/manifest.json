@@ -11,19 +11,19 @@
     }
   },
   "spanish": {
-    "version": "5e148646b0cb",
+    "version": "1872bcb812e4",
     "voices": {
       "carlos": {
         "name": "Carlos (Enhanced)",
         "locale": "es-CO",
-        "clips": 528,
-        "bytes": 5283468
+        "clips": 529,
+        "bytes": 5291670
       },
       "paulina": {
         "name": "Paulina (Enhanced)",
         "locale": "es-MX",
-        "clips": 528,
-        "bytes": 5059613
+        "clips": 529,
+        "bytes": 5067348
       }
     }
   }

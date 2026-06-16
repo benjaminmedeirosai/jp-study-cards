@@ -9,10 +9,15 @@
 // These take a plain entry object + its library config (no app state), so they
 // run identically under Node and the browser.
 
-// lowercase, spaces → hyphens, drop anything that isn't alnum/-/_ (mirrors the
-// shell slugify in the TTS helper, so filenames match across tools).
+// lowercase, fold accents to ASCII (í→i, ñ→n), spaces → hyphens, drop anything
+// that isn't alnum/-/_ (mirrors the shell slugify in the TTS helper, so
+// filenames match across tools). Folding (not dropping) accents is what keeps
+// distinct accented words distinct: without it "allí" and "allá" both collapse
+// to "all" and share — or clobber — one clip.
 export function slugify(value) {
   return String(value ?? "")
+    .normalize("NFD")
+    .replace(/[̀-ͯ]/g, "")
     .toLowerCase()
     .replace(/\s+/g, "-")
     .replace(/[^a-z0-9_-]/g, "");
