@@ -73,6 +73,11 @@ function applyCardsState(lib, deck, q) {
 
 // --- Mounting ---------------------------------------------------------------
 function mount() {
+  // Let the outgoing page release resources before it's detached — the card
+  // page uses this to stop playback / the media session (its audio elements are
+  // detached <audio> objects that would otherwise keep looping after removal).
+  const prev = app.firstElementChild;
+  if (prev && typeof prev._teardown === "function") { try { prev._teardown(); } catch { /* ignore */ } }
   app.innerHTML = "";
   if (view === "settings") app.append(renderSettingsPage());
   else if (view === "decks") app.append(renderDeckPage());

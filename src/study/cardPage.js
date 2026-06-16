@@ -553,6 +553,19 @@ export function renderCardPage() {
     if (keepAlive) { try { keepAlive.pause(); } catch { /* not playing */ } }
     if ("mediaSession" in navigator) navigator.mediaSession.playbackState = "paused";
   }
+  // Fully stop playback and release the media session — used when the set/deck/
+  // library changes or the page unmounts, so nothing keeps looping in the
+  // background (the audio elements are detached, so removing the page from the
+  // DOM doesn't stop them on its own).
+  function teardownAudio() {
+    stopAutoplay(); // stops autoplay + keep-alive + gap timer (no-op if idle)
+    if (currentClipAudio) { try { currentClipAudio.pause(); } catch { /* not playing */ } }
+    if (keepAlive) { try { keepAlive.pause(); } catch { /* not playing */ } }
+    lastMediaKey = null; // next play rebuilds metadata fresh
+    if ("mediaSession" in navigator) {
+      try { navigator.mediaSession.metadata = null; navigator.mediaSession.playbackState = "none"; } catch { /* unsupported */ }
+    }
+  }
 
   // Preferred clip voices for this library, highest priority first — the user's
   // saved order, then any other voices that have clips, so playback works even
@@ -1549,6 +1562,9 @@ export function renderCardPage() {
 
   deckButton.addEventListener("click", () => openOverlay("decks"));
   setSelect.addEventListener("change", () => {
+    // Changing the set stops any in-progress playback + releases the media
+    // session (the old set's cards no longer apply).
+    teardownAudio();
     // Only the selected set changed — re-slice, no re-sort/re-grouping.
     state.setId = setSelect.value;
     applyActiveSet({ keepIndex: false });
@@ -1636,6 +1652,9 @@ export function renderCardPage() {
   }
 
   setupMediaSession();
+  // The router calls this before detaching the page (deck/library/overlay
+  // change), so playback + the media session stop instead of looping on.
+  root._teardown = teardownAudio;
   renderCard();
   void initialize();
   return root;
