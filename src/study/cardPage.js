@@ -512,6 +512,8 @@ export function renderCardPage() {
     chatgptBtn.disabled = !entry;
     soundBtn.disabled = !entry;
     imagesBtn.disabled = !entry;
+    revealBtn.disabled = !entry;
+    focusBtn.disabled = !entry;
     shuffleBtn.disabled = setCards.length <= 1;
     playBtn.disabled = !entry;
   }
@@ -522,7 +524,9 @@ export function renderCardPage() {
     const deck = currentDeck();
     empty.hidden = total > 0;
     card.hidden = total === 0;
-    tray.hidden = total === 0;
+    // Keep the tray visible even with no cards, so back/forward stay reachable;
+    // every other control is disabled below when there's no entry.
+    tray.hidden = false;
     const rawFilter = String(state.query || "").trim();
     // Show the Farsi shaping filter in plain words rather than the fa: token.
     const faForm = rawFilter.match(/^fa:(final|medial)\s+(.+)$/);
@@ -543,6 +547,9 @@ export function renderCardPage() {
         ? "No deck selected."
         : (bundle ? "No cards match this deck or filter." : "Loading cards...");
       chooseDeckBtn.hidden = !noDeck;
+      // Tray stays visible but inert (except back/forward). renderTray doesn't
+      // run on this early-return path, so disable its buttons here.
+      for (const b of [chatgptBtn, soundBtn, imagesBtn, revealBtn, ttsToggleBtn, playBtn, shuffleBtn, focusBtn]) b.disabled = true;
       updateClipBadge(null);
       return;
     }

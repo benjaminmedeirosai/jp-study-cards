@@ -152,7 +152,10 @@ export const LIBRARIES = [
     // Single sound source (Settings, not per-card): speak the vocalized form,
     // falling back to the bare word when it has no harakat marks.
     soundSourceScope: "library",
-    soundSources: [{ value: "word", label: "Word", keys: ["vocalized", "word"] }],
+    // Speak only the vocalized (harakat) form — speechForSource joins all keys,
+    // so listing the bare word too made it say the word twice. When vocalized is
+    // empty, studySpeechText falls back to the word automatically.
+    soundSources: [{ value: "word", label: "Word", keys: ["vocalized"] }],
     searchKeys: ["word", "vocalized", "label", "meaning"],
     features: { soundSource: false, gloss: false, texts: false }
   },
