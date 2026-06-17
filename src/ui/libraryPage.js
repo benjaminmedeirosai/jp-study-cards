@@ -7,7 +7,7 @@
 // deck it covers, and each schema row shows its total entries + how many have
 // an audio clip.
 
-import { loadState, saveState, button } from "../core/shared.js";
+import { loadState, saveState, button, confirmDialog } from "../core/shared.js";
 import { libraryGroups } from "../core/libraries.js";
 import { chooseLibrary, closeOverlay } from "../core/router.js";
 import { importAudioZip, clipKeyForEntry, allClipKeys, clearAllClips, clearClips, countClips, getAudioMeta, requestPersist, fetchAudioManifest } from "../audio/audioStore.js";
@@ -83,6 +83,13 @@ export function renderLibraryPage() {
     const clearOne = button("Clear", "library-clear-one");
     clearOne.hidden = true;
     clearOne.addEventListener("click", async () => {
+      const published = !!manifest[language.id];
+      const ok = await confirmDialog(
+        `Clear ${language.label} audio?\n` +
+          (published ? "It's a library pack — you can re-load it afterward (re-downloads the pack)."
+                     : "You'll need to re-import the .zip to get it back."),
+        { confirmLabel: "Clear", danger: true });
+      if (!ok) return;
       await clearClips(language.id);
       const st = loadState();
       if (st.audioPackVersions && st.audioPackVersions[language.id]) { delete st.audioPackVersions[language.id]; saveState(st); }
@@ -301,6 +308,10 @@ export function renderLibraryPage() {
     }
   });
   clearBtn.addEventListener("click", async () => {
+    const ok = await confirmDialog(
+      "Clear ALL stored audio?\nEvery pack will need to be re-loaded or re-imported.",
+      { confirmLabel: "Clear all", danger: true });
+    if (!ok) return;
     await clearAllClips();
     const st = loadState(); st.audioPackVersions = {}; saveState(st);
     importStatus.textContent = "Cleared all audio";

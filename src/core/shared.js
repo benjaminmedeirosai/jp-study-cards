@@ -669,3 +669,52 @@ export function makeToggle(labelText, checked) {
 export function setSlotVisible(el, visible) {
   el.classList.toggle("is-invisible", !visible);
 }
+
+// A small modal confirm for destructive actions, styled to match the app (a
+// native confirm() looks jarring in the PWA). Returns a Promise<boolean>:
+// true if confirmed, false on cancel / backdrop click / Escape. The message
+// honors "\n" (the bubble uses white-space: pre-line).
+export function confirmDialog(message, { confirmLabel = "Confirm", cancelLabel = "Cancel", danger = false } = {}) {
+  return new Promise((resolve) => {
+    const backdrop = document.createElement("div");
+    backdrop.className = "confirm-backdrop";
+    const dialog = document.createElement("div");
+    dialog.className = "confirm-dialog";
+    dialog.setAttribute("role", "alertdialog");
+    dialog.setAttribute("aria-modal", "true");
+    const msg = document.createElement("p");
+    msg.className = "confirm-message";
+    msg.textContent = message;
+    const actions = document.createElement("div");
+    actions.className = "confirm-actions";
+    const cancel = document.createElement("button");
+    cancel.type = "button";
+    cancel.className = "confirm-btn confirm-cancel";
+    cancel.textContent = cancelLabel;
+    const ok = document.createElement("button");
+    ok.type = "button";
+    ok.className = `confirm-btn confirm-ok${danger ? " danger" : ""}`;
+    ok.textContent = confirmLabel;
+    actions.append(cancel, ok);
+    dialog.append(msg, actions);
+    backdrop.append(dialog);
+
+    function close(result) {
+      document.removeEventListener("keydown", onKey, true);
+      backdrop.remove();
+      resolve(result);
+    }
+    // Capture phase + stopImmediatePropagation so Escape here doesn't also
+    // trigger a host page's Escape handler (e.g. the library overlay closing).
+    function onKey(event) {
+      if (event.key === "Escape") { event.preventDefault(); event.stopImmediatePropagation(); close(false); }
+      else if (event.key === "Enter") { event.preventDefault(); event.stopImmediatePropagation(); close(true); }
+    }
+    cancel.addEventListener("click", () => close(false));
+    ok.addEventListener("click", () => close(true));
+    backdrop.addEventListener("click", (event) => { if (event.target === backdrop) close(false); });
+    document.addEventListener("keydown", onKey, true);
+    document.body.append(backdrop);
+    ok.focus();
+  });
+}
