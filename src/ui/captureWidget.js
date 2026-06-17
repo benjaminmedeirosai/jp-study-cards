@@ -156,6 +156,7 @@ export function openCaptureWidget({ lang, entryKey, label, onChange }) {
   let editId = null;              // set when re-editing an existing take
   let creatingNew = false;        // true while capturing/reviewing a brand-new take
   let focusId = null;             // the take the user is working on (highlighted row)
+  let baseline = null;            // review state on entry, to detect unsaved changes
   let mode = "idle";              // idle | recording | review
 
   const ctx2d = canvas.getContext("2d");
@@ -231,6 +232,7 @@ export function openCaptureWidget({ lang, entryKey, label, onChange }) {
     trimEndEl.style.left = `${(trimEnd / dur) * 100}%`;
     const peakPct = Math.round(Math.min(1, peakOf(reviewBuffer, trimStart, trimEnd) * gain) * 100);
     timer.textContent = `${(trimEnd - trimStart).toFixed(2)}s` + (trimStart > 0 || trimEnd < dur ? ` (of ${dur.toFixed(2)}s)` : "") + ` · peak ${peakPct}%` + (normChk.checked ? " · norm" : "");
+    updateDirty();
   }
 
   function setMode(next) {
@@ -240,6 +242,28 @@ export function openCaptureWidget({ lang, entryKey, label, onChange }) {
     playBtn.hidden = saveBtn.hidden = discardBtn.hidden = opts.hidden = next !== "review";
     trimStartEl.hidden = trimEndEl.hidden = next !== "review";
     closeBtn.disabled = next === "recording";
+  }
+
+  // Are there unsaved changes in the current review? A brand-new capture always
+  // counts; an edit counts only once trim/normalize/keep differ from where it
+  // was opened.
+  function isDirty() {
+    if (creatingNew) return true;
+    if (editId == null || !baseline) return false;
+    return trimStart !== baseline.trimStart || trimEnd !== baseline.trimEnd
+      || normChk.checked !== baseline.norm || keepChk.checked !== baseline.keep;
+  }
+  // Save/Discard are meaningful only with pending changes.
+  function updateDirty() {
+    const dirty = isDirty();
+    saveBtn.disabled = !dirty;
+    discardBtn.disabled = !dirty;
+  }
+  // True if a context switch (play/star/edit/delete/close) should be blocked
+  // because changes are pending; shows a hint when it blocks.
+  function blockedByPending() {
+    if (mode === "review" && isDirty()) { status.textContent = "Save or discard your changes first."; return true; }
+    return false;
   }
 
   // Abandon the current review (a new capture or an in-progress edit) and return
@@ -283,16 +307,16 @@ export function openCaptureWidget({ lang, entryKey, label, onChange }) {
       useBtn.title = t.id === activeId ? "Active (plays for this card)" : "Make active";
       useBtn.textContent = t.id === activeId ? "★" : "☆";
       useBtn.addEventListener("click", async () => {
-        if (mode === "recording") return;
-        if (mode === "review") leaveReview(); // clicking star leaves the current edit
+        if (mode === "recording" || blockedByPending()) return;
+        if (mode === "review") leaveReview(); // clicking star leaves the (clean) edit
         await setActiveRecording(lang, entryKey, t.id);
         focusId = t.id; onChange?.(); renderTakes();
       });
       const play = document.createElement("button");
       play.type = "button"; play.className = "capture-take-play"; play.textContent = "▶";
       play.addEventListener("click", async () => {
-        if (mode === "recording") return;
-        if (mode === "review") leaveReview(); // clicking play leaves the current edit
+        if (mode === "recording" || blockedByPending()) return;
+        if (mode === "review") leaveReview(); // clicking play leaves the (clean) edit
         focusId = t.id; renderTakes();
         const blob = await getRecordingBlob(lang, entryKey, t.id);
         if (blob) new Audio(URL.createObjectURL(blob)).play().catch(() => {});
@@ -302,11 +326,11 @@ export function openCaptureWidget({ lang, entryKey, label, onChange }) {
       meta.textContent = `Take ${n} · ${(t.durationMs / 1000).toFixed(2)}s · ${fmtAgo(t.createdAt)}` + (t.hasSource ? " · ✎" : "");
       const edit = document.createElement("button");
       edit.type = "button"; edit.className = "capture-take-edit"; edit.title = "Edit / re-trim"; edit.textContent = "✎";
-      edit.addEventListener("click", () => { if (mode !== "recording") loadForEdit(t); });
+      edit.addEventListener("click", () => { if (mode !== "recording" && !blockedByPending()) loadForEdit(t); });
       const del = document.createElement("button");
       del.type = "button"; del.className = "capture-take-del"; del.title = "Delete"; del.textContent = "🗑";
       del.addEventListener("click", async () => {
-        if (mode === "recording") return;
+        if (mode === "recording" || blockedByPending()) return;
         if (editId === t.id) leaveReview();
         await deleteRecording(lang, entryKey, t.id);
         if (focusId === t.id) focusId = null;
@@ -357,6 +381,8 @@ export function openCaptureWidget({ lang, entryKey, label, onChange }) {
     try { reviewBuffer = await audioCtx.decodeAudioData(await blob.arrayBuffer()); }
     catch (err) { status.textContent = `Could not decode recording: ${err?.message || err}`; creatingNew = false; setMode("idle"); renderTakes(); return; }
     trimStart = 0; trimEnd = reviewBuffer.duration;
+    keepChk.checked = false; normChk.checked = false; // fresh-take defaults
+    baseline = { trimStart, trimEnd, norm: false, keep: false };
     setMode("review");
     renderTakes(); // placeholder text: "recording…" → "new"
     drawReview();
@@ -380,6 +406,8 @@ export function openCaptureWidget({ lang, entryKey, label, onChange }) {
     trimStart = srcBlob && take.trimEnd > take.trimStart ? take.trimStart : 0;
     trimEnd = srcBlob && take.trimEnd > take.trimStart ? Math.min(take.trimEnd, reviewBuffer.duration) : reviewBuffer.duration;
     keepChk.checked = take.hasSource;
+    normChk.checked = false;
+    baseline = { trimStart, trimEnd, norm: false, keep: take.hasSource };
     setMode("review");
     status.textContent = `Editing take · ${srcBlob ? "full audio" : "trimmed only"}`;
     renderTakes();
@@ -461,24 +489,34 @@ export function openCaptureWidget({ lang, entryKey, label, onChange }) {
   }
 
   function close() {
-    if (mode === "recording") return;
     stopTracks(); stopPreview();
     try { audioCtx.close(); } catch {}
     document.removeEventListener("keydown", onKey, true);
     backdrop.remove();
   }
+  // ✕ / backdrop: can't close with pending changes (Save or Discard first).
+  function requestClose() {
+    if (mode === "recording" || blockedByPending()) return;
+    close();
+  }
+  // Esc = discard the current edit (handles pending changes); from idle it
+  // closes the widget.
   function onKey(e) {
-    if (e.key === "Escape" && mode !== "recording") { e.preventDefault(); e.stopImmediatePropagation(); close(); }
+    if (e.key !== "Escape" || mode === "recording") return;
+    e.preventDefault(); e.stopImmediatePropagation();
+    if (mode === "review") discard();
+    else close();
   }
 
   startBtn.addEventListener("click", start);
   stopBtn.addEventListener("click", stop);
-  normChk.addEventListener("change", () => drawReview()); // live: rescale waveform + peak readout
+  normChk.addEventListener("change", () => drawReview()); // live: rescale waveform + peak readout (+ dirty)
+  keepChk.addEventListener("change", updateDirty);
   playBtn.addEventListener("click", preview);
   saveBtn.addEventListener("click", save);
   discardBtn.addEventListener("click", discard);
-  closeBtn.addEventListener("click", close);
-  backdrop.addEventListener("click", (e) => { if (e.target === backdrop) close(); });
+  closeBtn.addEventListener("click", requestClose);
+  backdrop.addEventListener("click", (e) => { if (e.target === backdrop) requestClose(); });
   document.addEventListener("keydown", onKey, true);
 
   setMode("idle");
