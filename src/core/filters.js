@@ -134,6 +134,7 @@ export function formatAgo(at) {
 // ---------------------------------------------------------------------------
 
 const CHEVRON = `<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg>`;
+const CLEAR_X = `<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 6l12 12M18 6L6 18"/></svg>`;
 
 // Wrap an <input> with a right-aligned dropdown button + history panel.
 // getItems() → [{ primary, meta, value }]; onPick(item) fires on selection.
@@ -149,11 +150,35 @@ export function historyDropdown(input, { getItems, onPick, emptyText = "Nothing 
   btn.setAttribute("aria-expanded", "false");
   btn.innerHTML = CHEVRON;
 
+  // Clear (×) button — sits just left of the chevron, shown only when the input
+  // has text. Clears the value and fires a bubbling "input" so the host page
+  // (deck/cards/settings filter) reacts exactly as if the user emptied it.
+  const clearBtn = document.createElement("button");
+  clearBtn.type = "button";
+  clearBtn.className = "filter-clear-btn";
+  clearBtn.setAttribute("aria-label", "Clear filter");
+  clearBtn.innerHTML = CLEAR_X;
+  clearBtn.hidden = true;
+
   const panel = document.createElement("div");
   panel.className = "filter-dd-panel";
   panel.hidden = true;
 
-  wrap.append(input, btn, panel);
+  wrap.append(input, clearBtn, btn, panel);
+
+  function syncClear() {
+    const has = !!input.value;
+    clearBtn.hidden = !has;
+    input.classList.toggle("has-clear", has);
+  }
+  input.addEventListener("input", syncClear);
+  clearBtn.addEventListener("click", () => {
+    input.value = "";
+    input.dispatchEvent(new Event("input", { bubbles: true }));
+    input.focus();
+    syncClear();
+  });
+  syncClear(); // a persisted filter may already populate the input on mount
 
   const onDocPointer = (e) => { if (!wrap.contains(e.target)) close(); };
   // Capture-phase Escape: closes the panel and stops the event before it can
