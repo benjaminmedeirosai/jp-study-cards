@@ -989,7 +989,11 @@
 .capture-takes { display: grid; gap: 6px; max-height: 180px; overflow: auto; }
 .capture-takes-empty { padding: 2px; color: var(--muted); font-size: 13px; }
 .capture-take { display: flex; align-items: center; gap: 8px; padding: 6px 8px; border: 1px solid rgba(96, 165, 250, 0.14); border-radius: 9px; background: rgba(15, 23, 42, 0.4); }
-.capture-take.is-active { border-color: var(--accent-border); background: rgba(37, 99, 235, 0.18); }
+/* is-focused = the row you're working on (highlighted); is-active = the star
+   (which take plays for the card) — separate concerns. */
+.capture-take.is-focused { border-color: var(--accent-border); background: rgba(37, 99, 235, 0.18); }
+.capture-take.is-placeholder { border-style: dashed; border-color: var(--accent-border); }
+.capture-take.is-placeholder .capture-take-meta { color: var(--accent); }
 .capture-take-use, .capture-take-play, .capture-take-edit, .capture-take-del {
   flex: 0 0 auto; width: 30px; height: 30px; padding: 0;
   border: 1px solid rgba(148, 163, 184, 0.25); border-radius: 7px;

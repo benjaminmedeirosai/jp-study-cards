@@ -154,6 +154,8 @@ export function openCaptureWidget({ lang, entryKey, label, onChange }) {
   let trimStart = 0, trimEnd = 0; // seconds
   let previewSrc = null, previewProgress = null; // null = not previewing
   let editId = null;              // set when re-editing an existing take
+  let creatingNew = false;        // true while capturing/reviewing a brand-new take
+  let focusId = null;             // the take the user is working on (highlighted row)
   let mode = "idle";              // idle | recording | review
 
   const ctx2d = canvas.getContext("2d");
@@ -230,10 +232,30 @@ export function openCaptureWidget({ lang, entryKey, label, onChange }) {
     closeBtn.disabled = next === "recording";
   }
 
+  // Abandon the current review (a new capture or an in-progress edit) and return
+  // to idle — used when the user clicks play/star on a row, navigating away.
+  function leaveReview() {
+    stopPreview();
+    reviewBuffer = null; editId = null; creatingNew = false;
+    clearCanvas(); timer.textContent = "0.00s";
+    setMode("idle");
+  }
+
   async function renderTakes() {
     const { activeId, takes } = await listRecordings(lang, entryKey);
     takesEl.replaceChildren();
-    if (!takes.length) {
+    // Placeholder for a brand-new take in progress, so it's clear you're making
+    // a NEW one (not the recently edited one). Highlighted as the focus.
+    if (creatingNew) {
+      const ph = document.createElement("div");
+      ph.className = "capture-take is-focused is-placeholder";
+      const meta = document.createElement("span");
+      meta.className = "capture-take-meta";
+      meta.textContent = `Take ${takes.length + 1} · ${mode === "recording" ? "recording…" : "new"}`;
+      ph.append(meta);
+      takesEl.append(ph);
+    }
+    if (!takes.length && !creatingNew) {
       const em = document.createElement("div");
       em.className = "capture-takes-empty";
       em.textContent = "No recordings yet.";
@@ -243,15 +265,25 @@ export function openCaptureWidget({ lang, entryKey, label, onChange }) {
     takes.slice().reverse().forEach((t, i) => {
       const n = takes.length - i;
       const row = document.createElement("div");
-      row.className = `capture-take${t.id === activeId ? " is-active" : ""}`;
+      // is-active = the star (plays for the card); is-focused = what you're
+      // currently working on / last acted on (the highlighted row).
+      row.className = "capture-take" + (t.id === activeId ? " is-active" : "") + (t.id === focusId ? " is-focused" : "");
       const useBtn = document.createElement("button");
       useBtn.type = "button"; useBtn.className = "capture-take-use";
       useBtn.title = t.id === activeId ? "Active (plays for this card)" : "Make active";
       useBtn.textContent = t.id === activeId ? "★" : "☆";
-      useBtn.addEventListener("click", async () => { await setActiveRecording(lang, entryKey, t.id); onChange?.(); renderTakes(); });
+      useBtn.addEventListener("click", async () => {
+        if (mode === "recording") return;
+        if (mode === "review") leaveReview(); // clicking star leaves the current edit
+        await setActiveRecording(lang, entryKey, t.id);
+        focusId = t.id; onChange?.(); renderTakes();
+      });
       const play = document.createElement("button");
       play.type = "button"; play.className = "capture-take-play"; play.textContent = "▶";
       play.addEventListener("click", async () => {
+        if (mode === "recording") return;
+        if (mode === "review") leaveReview(); // clicking play leaves the current edit
+        focusId = t.id; renderTakes();
         const blob = await getRecordingBlob(lang, entryKey, t.id);
         if (blob) new Audio(URL.createObjectURL(blob)).play().catch(() => {});
       });
@@ -260,10 +292,16 @@ export function openCaptureWidget({ lang, entryKey, label, onChange }) {
       meta.textContent = `Take ${n} · ${(t.durationMs / 1000).toFixed(2)}s · ${fmtAgo(t.createdAt)}` + (t.hasSource ? " · ✎" : "");
       const edit = document.createElement("button");
       edit.type = "button"; edit.className = "capture-take-edit"; edit.title = "Edit / re-trim"; edit.textContent = "✎";
-      edit.addEventListener("click", () => loadForEdit(t));
+      edit.addEventListener("click", () => { if (mode !== "recording") loadForEdit(t); });
       const del = document.createElement("button");
       del.type = "button"; del.className = "capture-take-del"; del.title = "Delete"; del.textContent = "🗑";
-      del.addEventListener("click", async () => { await deleteRecording(lang, entryKey, t.id); onChange?.(); renderTakes(); });
+      del.addEventListener("click", async () => {
+        if (mode === "recording") return;
+        if (editId === t.id) leaveReview();
+        await deleteRecording(lang, entryKey, t.id);
+        if (focusId === t.id) focusId = null;
+        onChange?.(); renderTakes();
+      });
       row.append(useBtn, play, meta, edit, del);
       takesEl.append(row);
     });
@@ -273,10 +311,13 @@ export function openCaptureWidget({ lang, entryKey, label, onChange }) {
   async function start() {
     status.textContent = "";
     editId = null;
+    creatingNew = true; focusId = null; // a fresh take — show its placeholder
+    renderTakes();
     try {
       stream = await navigator.mediaDevices.getUserMedia({ audio: true });
     } catch (err) {
       status.textContent = err && err.name === "NotAllowedError" ? "Microphone permission denied." : `Mic unavailable: ${err?.message || err}`;
+      creatingNew = false; renderTakes(); // drop the placeholder
       return;
     }
     if (audioCtx.state === "suspended") await audioCtx.resume();
@@ -304,9 +345,10 @@ export function openCaptureWidget({ lang, entryKey, label, onChange }) {
     stopTracks();
     const blob = new Blob(chunks, { type: recorder.mimeType || "audio/webm" });
     try { reviewBuffer = await audioCtx.decodeAudioData(await blob.arrayBuffer()); }
-    catch (err) { status.textContent = `Could not decode recording: ${err?.message || err}`; setMode("idle"); return; }
+    catch (err) { status.textContent = `Could not decode recording: ${err?.message || err}`; creatingNew = false; setMode("idle"); renderTakes(); return; }
     trimStart = 0; trimEnd = reviewBuffer.duration;
     setMode("review");
+    renderTakes(); // placeholder text: "recording…" → "new"
     drawReview();
   }
 
@@ -321,6 +363,8 @@ export function openCaptureWidget({ lang, entryKey, label, onChange }) {
     try { reviewBuffer = await audioCtx.decodeAudioData(await blob.arrayBuffer()); }
     catch (err) { status.textContent = `Could not load: ${err?.message || err}`; return; }
     editId = take.id;
+    creatingNew = false;
+    focusId = take.id; // highlight the take being edited
     // With a kept source, restore the prior trim window; otherwise the clip is
     // already trimmed → full extent, trim further only.
     trimStart = srcBlob && take.trimEnd > take.trimStart ? take.trimStart : 0;
@@ -328,6 +372,7 @@ export function openCaptureWidget({ lang, entryKey, label, onChange }) {
     keepChk.checked = take.hasSource;
     setMode("review");
     status.textContent = `Editing take · ${srcBlob ? "full audio" : "trimmed only"}`;
+    renderTakes();
     drawReview();
   }
 
@@ -381,9 +426,10 @@ export function openCaptureWidget({ lang, entryKey, label, onChange }) {
     const opts2 = keepChk.checked
       ? { sourceBlob: encodeWav(reviewBuffer, 0, reviewBuffer.duration, 1), trimStart, trimEnd, fullDurationMs: reviewBuffer.duration * 1000 }
       : {};
-    if (editId) await updateRecording(lang, entryKey, editId, clip, durMs, opts2);
-    else await addRecording(lang, entryKey, clip, durMs, opts2);
-    editId = null;
+    let savedId;
+    if (editId) { await updateRecording(lang, entryKey, editId, clip, durMs, opts2); savedId = editId; }
+    else { savedId = await addRecording(lang, entryKey, clip, durMs, opts2); }
+    editId = null; creatingNew = false; focusId = savedId; // keep the saved take highlighted
     stopPreview(); reviewBuffer = null; clearCanvas(); timer.textContent = "0.00s";
     setMode("idle");
     status.textContent = "Saved.";
@@ -392,10 +438,13 @@ export function openCaptureWidget({ lang, entryKey, label, onChange }) {
   }
 
   function discard() {
-    editId = null;
+    // Keep an edited take highlighted; a discarded new take has no focus.
+    focusId = editId || null;
+    editId = null; creatingNew = false;
     stopPreview(); reviewBuffer = null; clearCanvas(); timer.textContent = "0.00s";
     setMode("idle");
     status.textContent = "";
+    renderTakes();
   }
 
   function close() {
