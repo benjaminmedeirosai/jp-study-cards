@@ -29,7 +29,7 @@ clips) stays git-ignored; only the per-language zip in `public/audio/` is
 committed. The app fetches it on demand — never automatically.
 
 The clip filename (`slug`) and spoken text both come from
-[`src/study/audioKey.js`](../../src/study/audioKey.js) — the **same** module the
+[`src/audio/audioKey.js`](../../src/audio/audioKey.js) — the **same** module the
 app uses on import — so the generator and the app can never disagree on a path.
 
 ## Generate

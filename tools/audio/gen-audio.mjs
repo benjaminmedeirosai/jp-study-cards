@@ -3,7 +3,7 @@
 //
 // Synthesizes a TTS clip per card and writes the 1-1 mirror of data/:
 //   data/<lang>/<deckId>.tsv  →  audio/<lang>/<deckId>/<slug>.m4a
-// The filename slug and spoken text come from src/study/audioKey.js, the SAME
+// The filename slug and spoken text come from src/audio/audioKey.js, the SAME
 // module the app uses on import — so the two never disagree.
 //
 // Usage:
@@ -22,8 +22,8 @@ import { createHash } from "node:crypto";
 import path from "node:path";
 import os from "node:os";
 
-import { LIBRARIES } from "../../src/study/libraries.js";
-import { audioSlug, audioText, audioTextForSource, audioMultiSource } from "../../src/study/audioKey.js";
+import { LIBRARIES } from "../../src/core/libraries.js";
+import { audioSlug, audioText, audioTextForSource, audioMultiSource } from "../../src/audio/audioKey.js";
 
 const ROOT = path.resolve(import.meta.dirname, "..", "..");
 

@@ -19,7 +19,7 @@ data/japanese/<…folders…>/<deck>.tsv   ← the ONLY source of truth (folders
   right folder; to recategorize, move/rename it. Then run the bundler.
 - `data/japanese/cards.json` is **generated** — never hand-edit it.
 - The app builds its category tree purely from the `category` strings in
-  `cards.json` (`src/study/shared.js`); it never sees the folder layout. Because
+  `cards.json` (`src/core/shared.js`); it never sees the folder layout. Because
   the bundler derives `category` *from* the folders, the two can't drift.
 
 ## File format

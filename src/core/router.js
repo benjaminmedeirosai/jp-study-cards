@@ -12,10 +12,10 @@
 // libraries too. Overlays are `#/settings` / `#/decks` / `#/library`.
 // history.state mirrors the hash for popstate restores.
 
-import { renderCardPage } from "./cardPage.js";
-import { renderSettingsPage } from "./settingsPage.js";
-import { renderDeckPage } from "./deckPage.js";
-import { renderLibraryPage } from "./libraryPage.js";
+import { renderCardPage } from "../ui/cardPage.js";
+import { renderSettingsPage } from "../ui/settingsPage.js";
+import { renderDeckPage } from "../ui/deckPage.js";
+import { renderLibraryPage } from "../ui/libraryPage.js";
 import { loadState, saveState, setLibrary } from "./shared.js";
 import { endSession } from "./filters.js";
 

@@ -6,7 +6,7 @@
 // Clips are keyed by `${lang}::${entryKey}` — the card's intrinsic identity, so
 // playback looks them up without caring which deck view you're in.
 
-import { LIBRARIES } from "./libraries.js";
+import { LIBRARIES } from "../core/libraries.js";
 import { audioSlug, audioMultiSource } from "./audioKey.js";
 
 const DB_NAME = "jp-study-audio";

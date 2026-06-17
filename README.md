@@ -22,7 +22,7 @@ truth** — there's no manifest. A deck's category, label, and id are derived fr
 its path and filename (`data/japanese/words/adjectives/na-adjectives/qualities.tsv`
 → category "Words / Adjectives / Na Adjectives", label "Qualities"). Each language
 is built into its own bundle, `data/<lang>/cards.json`, that the app fetches when
-that library is active (see `src/study/libraries.js`).
+that library is active (see `src/core/libraries.js`).
 
 The workflow:
 

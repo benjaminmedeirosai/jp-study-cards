@@ -10,7 +10,7 @@ data/<lang>/cards.json                ← built bundle the app fetches (generate
 - Each language declares its TSV schema in `tools/bundle-data.mjs` (`SCHEMAS`).
 - Bundle one language: `node tools/bundle-data.mjs <lang>`; all: `node tools/bundle-data.mjs`.
 - `cards.json` files are **generated** — never hand-edit them.
-- The app picks a language via the library registry (`src/study/libraries.js`),
+- The app picks a language via the library registry (`src/core/libraries.js`),
   which maps each library to its `data/<lang>/cards.json`.
 
 Per-language editing conventions live with that language's data:

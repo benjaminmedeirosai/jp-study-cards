@@ -1,9 +1,9 @@
-import { activeSetGrouping, computeDeckSets } from "./sets.js";
-import { speak, getVoicesForLang, onVoicesChanged } from "./speech.js";
-import { historyDropdown, getFilterHistory, formatDuration, formatAgo } from "./filters.js";
-import { closeOverlay } from "./router.js";
-import { schemaCaption } from "./libraries.js";
-import { fetchAudioManifest, getAudioMeta, voiceIdsForLang } from "./audioStore.js";
+import { activeSetGrouping, computeDeckSets } from "../core/sets.js";
+import { speak, getVoicesForLang, onVoicesChanged } from "../audio/speech.js";
+import { historyDropdown, getFilterHistory, formatDuration, formatAgo } from "../core/filters.js";
+import { closeOverlay } from "../core/router.js";
+import { schemaCaption } from "../core/libraries.js";
+import { fetchAudioManifest, getAudioMeta, voiceIdsForLang } from "../audio/audioStore.js";
 
 const VOICE_SAMPLE = "こんにちは。これは音声のプレビューです。";
 import {
@@ -35,7 +35,7 @@ import {
   fieldLabel,
   makeSelect,
   makeToggle
-} from "./shared.js";
+} from "../core/shared.js";
 
 // The study-more (★) glyph, matching the deck picker's filter-row toggle.
 const STAR_ICON = `<svg viewBox="0 0 24 24"><path d="M12 3.5l2.6 5.3 5.9.9-4.2 4.1 1 5.8L12 17l-5.3 2.8 1-5.8-4.2-4.1 5.9-.9z"/></svg>`;

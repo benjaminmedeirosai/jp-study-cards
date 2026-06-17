@@ -7,10 +7,10 @@
 // deck it covers, and each schema row shows its total entries + how many have
 // an audio clip.
 
-import { loadState, saveState, button } from "./shared.js";
-import { libraryGroups } from "./libraries.js";
-import { chooseLibrary, closeOverlay } from "./router.js";
-import { importAudioZip, clipKeyForEntry, allClipKeys, clearAllClips, clearClips, countClips, getAudioMeta, requestPersist, fetchAudioManifest } from "./audioStore.js";
+import { loadState, saveState, button } from "../core/shared.js";
+import { libraryGroups } from "../core/libraries.js";
+import { chooseLibrary, closeOverlay } from "../core/router.js";
+import { importAudioZip, clipKeyForEntry, allClipKeys, clearAllClips, clearClips, countClips, getAudioMeta, requestPersist, fetchAudioManifest } from "../audio/audioStore.js";
 
 // Per-schema noun for the entry count.
 const KIND_NOUN = { word: "words", kanji: "kanji", alpha: "letters", harakat: "marks" };

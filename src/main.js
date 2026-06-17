@@ -1,5 +1,5 @@
-import { startRouter } from "./study/router.js";
-import { endSession, pauseSession, resumeSession } from "./study/filters.js";
+import { startRouter } from "./core/router.js";
+import { endSession, pauseSession, resumeSession } from "./core/filters.js";
 
 async function registerServiceWorker() {
   if (!("serviceWorker" in navigator)) return;

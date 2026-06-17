@@ -1,6 +1,6 @@
-import { loadState, saveState, buildDeckTree, listDecks, loadBundle, deckMatchCounts, button } from "./shared.js";
-import { historyDropdown, getFilterHistory, getDeckHistory, formatDuration, formatAgo } from "./filters.js";
-import { chooseDeck, closeOverlay } from "./router.js";
+import { loadState, saveState, buildDeckTree, listDecks, loadBundle, deckMatchCounts, button } from "../core/shared.js";
+import { historyDropdown, getFilterHistory, getDeckHistory, formatDuration, formatAgo } from "../core/filters.js";
+import { chooseDeck, closeOverlay } from "../core/router.js";
 
 // Indentation per tree level, in px. Half an icon width — kept modest so the
 // per-row "studied" meta has room.

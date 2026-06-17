@@ -1,9 +1,9 @@
-import { speak } from "./speech.js";
-import { firstClip, voiceIdsForLang, clipKey, getClip, fetchAudioManifest, getAudioMeta } from "./audioStore.js";
-import { audioMultiSource } from "./audioKey.js";
-import { buildSetOptions, activeSetGrouping, computeDeckSets } from "./sets.js";
-import { beginSession, endSession, sessionQualifies } from "./filters.js";
-import { openOverlay, pushCardsURL, replaceCardsURL, filterInLibrary } from "./router.js";
+import { speak } from "../audio/speech.js";
+import { firstClip, voiceIdsForLang, clipKey, getClip, fetchAudioManifest, getAudioMeta } from "../audio/audioStore.js";
+import { audioMultiSource } from "../audio/audioKey.js";
+import { buildSetOptions, activeSetGrouping, computeDeckSets } from "../core/sets.js";
+import { beginSession, endSession, sessionQualifies } from "../core/filters.js";
+import { openOverlay, pushCardsURL, replaceCardsURL, filterInLibrary } from "../core/router.js";
 import {
   MODES,
   LINK_TEMPLATES,
@@ -27,7 +27,7 @@ import {
   translationText,
   glossText,
   typeText
-} from "./shared.js";
+} from "../core/shared.js";
 
 // Stroked, single-color icons for the six main tray buttons — same visual
 // language as the mini-rail sound icon.
