@@ -1,9 +1,10 @@
 import { speak } from "../audio/speech.js";
-import { firstClip, voiceIdsForLang, clipKey, getClip, fetchAudioManifest, getAudioMeta } from "../audio/audioStore.js";
+import { firstClip, voiceIdsForLang, clipKey, getClip, fetchAudioManifest, getAudioMeta, REC_VOICE } from "../audio/audioStore.js";
 import { audioMultiSource } from "../audio/audioKey.js";
 import { buildSetOptions, activeSetGrouping, computeDeckSets } from "../core/sets.js";
 import { beginSession, endSession, sessionQualifies } from "../core/filters.js";
 import { openOverlay, pushCardsURL, replaceCardsURL, filterInLibrary } from "../core/router.js";
+import { openCaptureWidget } from "./captureWidget.js";
 import {
   MODES,
   LINK_TEMPLATES,
@@ -47,7 +48,9 @@ const ICONS = {
   histForward: `<svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg>`,
   // Study-more flag: outline star when off, filled star when on.
   focusOff: `<svg viewBox="0 0 24 24"><path d="M12 3.5l2.6 5.3 5.9.9-4.2 4.1 1 5.8L12 17l-5.3 2.8 1-5.8-4.2-4.1 5.9-.9z"/></svg>`,
-  focusOn: `<svg viewBox="0 0 24 24" style="fill:currentColor"><path d="M12 3.5l2.6 5.3 5.9.9-4.2 4.1 1 5.8L12 17l-5.3 2.8 1-5.8-4.2-4.1 5.9-.9z"/></svg>`
+  focusOn: `<svg viewBox="0 0 24 24" style="fill:currentColor"><path d="M12 3.5l2.6 5.3 5.9.9-4.2 4.1 1 5.8L12 17l-5.3 2.8 1-5.8-4.2-4.1 5.9-.9z"/></svg>`,
+  // Microphone — opens the voice-capture widget for the current card.
+  mic: `<svg viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0"/><path d="M12 18v3"/></svg>`
 };
 
 // Split a "[漢: gloss | 漢: gloss]" breakdown into per-kanji segments for the
@@ -239,6 +242,20 @@ export function renderCardPage() {
   const focusBtn = button("Study more", "mini mini--focus");
   focusBtn.innerHTML = `<span class="icon">${ICONS.focusOff}</span>`;
   focusBtn.setAttribute("aria-pressed", "false");
+  // Voice capture: record your own pronunciation for the current card.
+  const recordBtn = button("Record", "mini mini--record");
+  recordBtn.innerHTML = `<span class="icon">${ICONS.mic}</span>`;
+  recordBtn.setAttribute("aria-label", "Record pronunciation");
+  recordBtn.addEventListener("click", () => {
+    const entry = currentEntry();
+    if (!entry) return;
+    openCaptureWidget({
+      lang: activeLibrary().language,
+      entryKey: entryKey(entry),
+      label: primaryText(entry) || readingText(entry) || translationText(entry),
+      onChange: onRecordingsChanged
+    });
+  });
   // History back/forward, left side of the mini rail — so the phone's back
   // gesture is recoverable. They sit beside the (Japanese) sound-source toggle
   // and hide while that picker is expanded (see renderTray).
@@ -248,7 +265,7 @@ export function renderCardPage() {
   const histFwdBtn = button("Forward", "mini mini--hist");
   histFwdBtn.innerHTML = `<span class="icon">${ICONS.histForward}</span>`;
   histFwdBtn.setAttribute("aria-label", "Go forward");
-  trayMini.append(histBackBtn, histFwdBtn, ttsGroup, playBtn, shuffleBtn, focusBtn);
+  trayMini.append(histBackBtn, histFwdBtn, ttsGroup, playBtn, shuffleBtn, focusBtn, recordBtn);
 
   const trayMain = document.createElement("div");
   trayMain.className = "tray-main";
@@ -411,7 +428,9 @@ export function renderCardPage() {
     if (!audioMultiSource(lib)) return [""];
     const current = getCurrentTtsSource(entry);
     const all = soundSources.map((o) => o.value);
-    return [current, ...all.filter((v) => v !== current)];
+    // Trailing "" finds source-less user recordings (a spoken word is the same
+    // whichever text-source is shown); imported clips never use "", so harmless.
+    return [current, ...all.filter((v) => v !== current), ""];
   }
 
   // The text to speak for an entry. If the schema declares sound sources, speak
@@ -578,7 +597,26 @@ export function renderCardPage() {
   async function computeVoiceOrder() {
     const present = await voiceIdsForLang(activeLibrary().language);
     const pref = state.audioVoiceOrder || [];
-    return [...pref.filter((v) => present.includes(v)), ...present.filter((v) => !pref.includes(v))];
+    const order = [...pref.filter((v) => present.includes(v)), ...present.filter((v) => !pref.includes(v))];
+    // Your own recordings ("me") play first by default — until you explicitly
+    // reorder them in Settings (then `pref` includes "me" and this stops).
+    if (present.includes(REC_VOICE) && !pref.includes(REC_VOICE)) {
+      return [REC_VOICE, ...order.filter((v) => v !== REC_VOICE)];
+    }
+    return order;
+  }
+  // Refresh after the capture widget changes recordings: recompute the voice
+  // order (a first recording adds the "me" voice), drop the stale cached <audio>
+  // for the mirrored take, and re-read the duration badge.
+  async function onRecordingsChanged() {
+    voiceOrder = await computeVoiceOrder();
+    const entry = currentEntry();
+    if (entry) {
+      const meKey = clipKey(activeLibrary().language, REC_VOICE, entryKey(entry), "");
+      const rec = clipEls.get(meKey);
+      if (rec) { try { URL.revokeObjectURL(rec.url); } catch {} clipEls.delete(meKey); }
+    }
+    updateClipBadge(entry);
   }
 
   // One cached <audio> element PER clip, keyed by clip identity. The element is

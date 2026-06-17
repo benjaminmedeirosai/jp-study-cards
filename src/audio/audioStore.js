@@ -132,9 +132,15 @@ export async function clearClips(lang) {
   const store = await tx("readwrite");
   const keys = await asPromise(store.getAllKeys());
   const prefix = `${lang}${SEP}`;
+  // Also purge this language's recording archive + meta (the active take's
+  // mirror clip is covered by the `${lang}::` prefix above).
+  const recPrefix = `${REC_PREFIX}${lang}${SEP}`;
+  const recMetaPrefix = `${REC_META_PREFIX}${lang}${SEP}`;
   let removed = 0;
   for (const k of keys) {
-    if (String(k).startsWith(prefix)) { await asPromise(store.delete(k)); removed++; }
+    const s = String(k);
+    if (s.startsWith(prefix)) { await asPromise(store.delete(k)); removed++; }
+    else if (s.startsWith(recPrefix) || s.startsWith(recMetaPrefix)) { await asPromise(store.delete(k)); }
   }
   await asPromise(store.delete(META_PREFIX + lang));
   return removed;
@@ -162,6 +168,71 @@ export async function getAudioMeta(lang) {
 export async function clearAllClips() {
   const store = await tx("readwrite");
   return asPromise(store.clear());
+}
+
+// --- User recordings (multi-take) ------------------------------------------
+// The user records their own pronunciation per card. A recording is a normal
+// playback "voice" (id "me"): the ACTIVE take is mirrored to the standard clip
+// key `${lang}::me::${entryKey}`, so all existing playback / voice-priority /
+// tally code treats it like any other voice with zero special-casing. Extra
+// takes are archived under their own keys, with a per-card meta record listing
+// the takes + which is active. Recordings are source-less (a spoken word is the
+// same whatever text-source is shown) — so the card page includes "" in its
+// clip-source candidates to find them on multi-source libraries too.
+export const REC_VOICE = "me";
+const REC_PREFIX = `__rec__${SEP}`;          // __rec__::<lang>::<entryKey>::<takeId> -> blob
+const REC_META_PREFIX = `__recmeta__${SEP}`; // __recmeta__::<lang>::<entryKey> -> { activeId, takes:[…] }
+const recMetaKey = (lang, ek) => `${REC_META_PREFIX}${lang}${SEP}${ek}`;
+const recTakeKey = (lang, ek, id) => `${REC_PREFIX}${lang}${SEP}${ek}${SEP}${id}`;
+
+// { activeId, takes: [{ id, createdAt, durationMs }] } for a card (newest last).
+export async function listRecordings(lang, entryKey) {
+  const meta = await getClip(recMetaKey(lang, entryKey));
+  return meta && Array.isArray(meta.takes) ? meta : { activeId: null, takes: [] };
+}
+export async function getRecordingBlob(lang, entryKey, takeId) {
+  return getClip(recTakeKey(lang, entryKey, takeId));
+}
+// Mirror the active take's blob to the canonical `me` clip key (or remove it
+// when there is no active take), so normal playback / tally pick it up.
+async function mirrorActiveRecording(lang, entryKey, meta) {
+  const meKey = clipKey(lang, REC_VOICE, entryKey, "");
+  if (meta.activeId) {
+    const blob = await getClip(recTakeKey(lang, entryKey, meta.activeId));
+    const store = await tx("readwrite");
+    if (blob) await asPromise(store.put(blob, meKey));
+    else await asPromise(store.delete(meKey));
+  } else {
+    const store = await tx("readwrite");
+    await asPromise(store.delete(meKey));
+  }
+}
+export async function addRecording(lang, entryKey, blob, durationMs) {
+  const id = `${Date.now().toString(36)}${Math.floor(Math.random() * 1e6).toString(36)}`;
+  await putClip(recTakeKey(lang, entryKey, id), blob);
+  const meta = await listRecordings(lang, entryKey);
+  meta.takes.push({ id, createdAt: Date.now(), durationMs: Math.round(durationMs) || 0 });
+  if (!meta.activeId) meta.activeId = id; // first take becomes the active one
+  await putClip(recMetaKey(lang, entryKey), meta);
+  await mirrorActiveRecording(lang, entryKey, meta);
+  return id;
+}
+export async function setActiveRecording(lang, entryKey, takeId) {
+  const meta = await listRecordings(lang, entryKey);
+  if (!meta.takes.some((t) => t.id === takeId)) return;
+  meta.activeId = takeId;
+  await putClip(recMetaKey(lang, entryKey), meta);
+  await mirrorActiveRecording(lang, entryKey, meta);
+}
+export async function deleteRecording(lang, entryKey, takeId) {
+  const store = await tx("readwrite");
+  await asPromise(store.delete(recTakeKey(lang, entryKey, takeId)));
+  const meta = await listRecordings(lang, entryKey);
+  meta.takes = meta.takes.filter((t) => t.id !== takeId);
+  // If the active take was deleted, fall back to the newest remaining one.
+  if (meta.activeId === takeId) meta.activeId = meta.takes.length ? meta.takes[meta.takes.length - 1].id : null;
+  await putClip(recMetaKey(lang, entryKey), meta);
+  await mirrorActiveRecording(lang, entryKey, meta);
 }
 
 // The published audio-pack manifest: { <lang>: { version, clips } }. Cheap to
