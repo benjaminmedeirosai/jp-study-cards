@@ -167,6 +167,46 @@ export async function voiceIdsForLang(lang) {
   return [...ids];
 }
 
+// Every provided (pack/imported) clip for one card — every voice/source that
+// shipped audio for this entry, EXCLUDING the user's own recording mirror
+// ("me"). Returns [{ voiceId, source, blob }] for read-only display in the
+// capture widget. Scoped cursor over the language range; entryKey sits in the
+// middle of the key (`${lang}::${voiceId}::${entryKey}[::${source}]`) and never
+// contains the `::` separator, so we can parse it out unambiguously.
+export async function listPackClips(lang, entryKey) {
+  const out = [];
+  const head = `${lang}${SEP}`;
+  try {
+    const store = await tx("readonly");
+    await new Promise((resolve, reject) => {
+      const req = store.openCursor(langRange(lang));
+      req.onsuccess = () => {
+        const cur = req.result;
+        if (!cur) return resolve();
+        const rest = String(cur.key).slice(head.length); // ${voiceId}::${entryKey}[::${source}]
+        const vEnd = rest.indexOf(SEP);
+        if (vEnd > 0) {
+          const voiceId = rest.slice(0, vEnd);
+          const after = rest.slice(vEnd + SEP.length);
+          if (voiceId !== REC_VOICE) {
+            let source = "";
+            let matches = after === entryKey;
+            if (!matches && after.startsWith(`${entryKey}${SEP}`)) {
+              source = after.slice(entryKey.length + SEP.length);
+              matches = true;
+            }
+            if (matches) out.push({ voiceId, source, blob: cur.value });
+          }
+        }
+        cur.continue();
+      };
+      req.onerror = () => reject(req.error);
+    });
+  } catch { /* offline read failed */ }
+  out.sort((a, b) => a.voiceId.localeCompare(b.voiceId) || a.source.localeCompare(b.source));
+  return out;
+}
+
 // Clear a language's downloadable/imported pack clips. Preserves the user's
 // recordings: their archive lives in the separate REC_STORE (untouched here),
 // and the active take's mirror clip (`${lang}::me::…`) is skipped so it keeps

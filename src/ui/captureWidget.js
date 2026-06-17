@@ -15,7 +15,8 @@
 
 import {
   listRecordings, getRecordingBlob, getRecordingSource,
-  addRecording, updateRecording, setActiveRecording, deleteRecording
+  addRecording, updateRecording, setActiveRecording, deleteRecording,
+  listPackClips, getAudioMeta
 } from "../audio/audioStore.js";
 
 const GREEN = "#4ade80";
@@ -158,11 +159,13 @@ export function openCaptureWidget({ lang, entryKey, label, onChange }) {
   let hardStart = 0, hardEnd = 0; // hard-trim (destructive) bounds; default 0..duration
   let hardActive = false;         // red hard-trim bars shown / in use
   let previewSrc = null, previewProgress = null; // null = not previewing
+  let viewBuffer = null;          // decoded clip shown read-only (play row → waveform)
+  let viewProgress = null;        // 0..1 playback position for the view line
   let editId = null;              // set when re-editing an existing take
   let creatingNew = false;        // true while capturing/reviewing a brand-new take
-  let focusId = null;             // the take the user is working on (highlighted row)
+  let focusId = null;             // the take/clip the user is working on / playing (highlighted row)
   let baseline = null;            // review state on entry, to detect unsaved changes
-  let mode = "idle";              // idle | recording | review
+  let mode = "idle";              // idle | recording | review | viewing
 
   const ctx2d = canvas.getContext("2d");
   const clearCanvas = () => ctx2d.clearRect(0, 0, canvas.width, canvas.height);
@@ -247,7 +250,10 @@ export function openCaptureWidget({ lang, entryKey, label, onChange }) {
 
   function setMode(next) {
     mode = next;
-    startBtn.hidden = next !== "idle";
+    // "viewing" = read-only waveform playback of a take or a provided clip; the
+    // Start button stays available (so you can still record) but every edit
+    // control is hidden.
+    startBtn.hidden = next !== "idle" && next !== "viewing";
     stopBtn.hidden = next !== "recording";
     playBtn.hidden = saveBtn.hidden = discardBtn.hidden = opts.hidden = trimBtn.hidden = next !== "review";
     trimStartEl.hidden = trimEndEl.hidden = next !== "review";
@@ -288,18 +294,32 @@ export function openCaptureWidget({ lang, entryKey, label, onChange }) {
     setMode("idle");
   }
 
+  // Stop a read-only waveform view (play of a take / provided clip) and return
+  // to idle. No-op outside viewing.
+  function leaveView() {
+    if (mode !== "viewing") return;
+    stopPreview();
+    viewBuffer = null;
+    clearCanvas(); timer.textContent = "0.00s";
+    setMode("idle");
+  }
+
   async function renderTakes() {
-    const { activeId, takes } = await listRecordings(lang, entryKey);
+    const [{ activeId, takes }, packClips, meta] = await Promise.all([
+      listRecordings(lang, entryKey),
+      listPackClips(lang, entryKey),
+      getAudioMeta(lang)
+    ]);
     takesEl.replaceChildren();
     // Placeholder for a brand-new take in progress, so it's clear you're making
     // a NEW one (not the recently edited one). Highlighted as the focus.
     if (creatingNew) {
       const ph = document.createElement("div");
       ph.className = "capture-take is-focused is-placeholder";
-      const meta = document.createElement("span");
-      meta.className = "capture-take-meta";
-      meta.textContent = `Take ${takes.length + 1} · ${mode === "recording" ? "recording…" : "new"}`;
-      ph.append(meta);
+      const m = document.createElement("span");
+      m.className = "capture-take-meta";
+      m.textContent = `Take ${takes.length + 1} · ${mode === "recording" ? "recording…" : "new"}`;
+      ph.append(m);
       takesEl.append(ph);
     }
     if (!takes.length && !creatingNew) {
@@ -307,7 +327,6 @@ export function openCaptureWidget({ lang, entryKey, label, onChange }) {
       em.className = "capture-takes-empty";
       em.textContent = "No recordings yet.";
       takesEl.append(em);
-      return;
     }
     takes.slice().reverse().forEach((t, i) => {
       const n = takes.length - i;
@@ -322,6 +341,7 @@ export function openCaptureWidget({ lang, entryKey, label, onChange }) {
       useBtn.addEventListener("click", async () => {
         if (mode === "recording" || blockedByPending()) return;
         if (mode === "review") leaveReview(); // clicking star leaves the (clean) edit
+        leaveView();
         await setActiveRecording(lang, entryKey, t.id);
         focusId = t.id; onChange?.(); renderTakes();
       });
@@ -332,7 +352,7 @@ export function openCaptureWidget({ lang, entryKey, label, onChange }) {
         if (mode === "review") leaveReview(); // clicking play leaves the (clean) edit
         focusId = t.id; renderTakes();
         const blob = await getRecordingBlob(lang, entryKey, t.id);
-        if (blob) new Audio(URL.createObjectURL(blob)).play().catch(() => {});
+        viewClip(blob, `Take ${n}`);
       });
       const meta = document.createElement("span");
       meta.className = "capture-take-meta";
@@ -345,6 +365,7 @@ export function openCaptureWidget({ lang, entryKey, label, onChange }) {
       del.addEventListener("click", async () => {
         if (mode === "recording" || blockedByPending()) return;
         if (editId === t.id) leaveReview();
+        leaveView();
         await deleteRecording(lang, entryKey, t.id);
         if (focusId === t.id) focusId = null;
         onChange?.(); renderTakes();
@@ -352,11 +373,44 @@ export function openCaptureWidget({ lang, entryKey, label, onChange }) {
       row.append(useBtn, play, meta, edit, del);
       takesEl.append(row);
     });
+
+    // Provided clips: the voices we ship for this card (TTS packs / imports).
+    // Read-only — you can hear them and see their waveform, but not star, edit,
+    // or delete them.
+    if (packClips.length) {
+      // Voice names live under `.voices` in a published/imported pack meta blob,
+      // but legacy blobs are a flat id→info map — accept either shape.
+      const voices = (meta && (meta.voices || meta)) || {};
+      const groupLabel = document.createElement("div");
+      groupLabel.className = "capture-takes-group";
+      groupLabel.textContent = "Provided";
+      takesEl.append(groupLabel);
+      packClips.forEach(({ voiceId, source, blob }) => {
+        const packId = `pack::${voiceId}::${source}`;
+        const name = (voices[voiceId] && voices[voiceId].name) || voiceId;
+        const label = name + (source ? ` · ${source}` : "");
+        const row = document.createElement("div");
+        row.className = "capture-take is-pack" + (packId === focusId ? " is-focused" : "");
+        const play = document.createElement("button");
+        play.type = "button"; play.className = "capture-take-play"; play.textContent = "▶";
+        play.addEventListener("click", () => {
+          if (mode === "recording" || blockedByPending()) return;
+          focusId = packId; renderTakes();
+          viewClip(blob, label);
+        });
+        const m = document.createElement("span");
+        m.className = "capture-take-meta";
+        m.textContent = label;
+        row.append(play, m);
+        takesEl.append(row);
+      });
+    }
   }
 
   // --- recording ---
   async function start() {
     setStatus("");
+    stopPreview(); viewBuffer = null; // drop any read-only view in progress
     editId = null;
     creatingNew = true; focusId = null; // a fresh take — show its placeholder
     renderTakes();
@@ -429,8 +483,64 @@ export function openCaptureWidget({ lang, entryKey, label, onChange }) {
     drawReview();
   }
 
+  // --- read-only view: play a take / provided clip and show its waveform ---
+  // Draws the buffer plain (no trim handles, no controls) with the green
+  // playback line. Used for both user takes and the provided pack clips.
+  function drawView() {
+    if (!viewBuffer) return;
+    const n = Math.floor(canvas.width / 3);
+    const ps = peaks(viewBuffer, n);
+    const dur = viewBuffer.duration;
+    const mid = canvas.height / 2;
+    clearCanvas(); drawGrid();
+    ctx2d.fillStyle = accent;
+    for (let i = 0; i < ps.length; i++) {
+      const h = Math.max(1, ps[i] * canvas.height * 0.92);
+      ctx2d.fillRect(i * 3, mid - h / 2, 2, h);
+    }
+    if (viewProgress != null) {
+      const x = viewProgress * canvas.width;
+      ctx2d.strokeStyle = GREEN; ctx2d.lineWidth = 2;
+      ctx2d.beginPath(); ctx2d.moveTo(x, 0); ctx2d.lineTo(x, canvas.height); ctx2d.stroke();
+    }
+    const peakPct = Math.round(peakOf(viewBuffer, 0, dur) * 100);
+    timer.textContent = `${dur.toFixed(2)}s · peak ${peakPct}%`;
+  }
+
+  // Decode `blob`, show its waveform read-only, and play it with the progress
+  // line. Falls back to a plain <audio> if decoding fails. Refuses while
+  // recording / with pending review changes; leaves a clean review first.
+  async function viewClip(blob, labelText) {
+    if (mode === "recording" || blockedByPending()) return;
+    if (mode === "review") leaveReview();
+    stopPreview();
+    if (!blob) return;
+    if (audioCtx.state === "suspended") await audioCtx.resume();
+    let buf;
+    try { buf = await audioCtx.decodeAudioData(await blob.arrayBuffer()); }
+    catch { new Audio(URL.createObjectURL(blob)).play().catch(() => {}); return; }
+    viewBuffer = buf; viewProgress = 0;
+    setMode("viewing");
+    setStatus(labelText || "");
+    drawView();
+    previewSrc = audioCtx.createBufferSource();
+    previewSrc.buffer = buf;
+    previewSrc.connect(audioCtx.destination);
+    const startedAt = audioCtx.currentTime;
+    const dur = buf.duration;
+    previewSrc.onended = () => { previewSrc = null; viewProgress = 1; drawView(); };
+    previewSrc.start();
+    const tick = () => {
+      if (!previewSrc) return;
+      viewProgress = Math.min(1, (audioCtx.currentTime - startedAt) / dur);
+      drawView();
+      if (viewProgress < 1) requestAnimationFrame(tick);
+    };
+    requestAnimationFrame(tick);
+  }
+
   // --- review: preview (with progress line) + trim drag ---
-  function stopPreview() { if (previewSrc) { try { previewSrc.stop(); } catch {} previewSrc = null; } previewProgress = null; }
+  function stopPreview() { if (previewSrc) { try { previewSrc.stop(); } catch {} previewSrc = null; } previewProgress = null; viewProgress = null; }
   function preview() {
     stopPreview();
     if (!reviewBuffer) return;

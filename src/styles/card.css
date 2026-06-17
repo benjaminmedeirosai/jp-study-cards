@@ -970,9 +970,10 @@
 }
 .capture-panel {
   width: min(560px, 100%);
-  max-height: calc(100vh - 32px);
-  overflow: auto;
-  display: grid;
+  height: min(75vh, calc(100vh - 32px));
+  overflow: hidden; /* the takes/clips list scrolls internally instead */
+  display: flex;
+  flex-direction: column;
   gap: 14px;
   padding: 18px;
   border: 1px solid rgba(96, 165, 250, 0.3);
@@ -986,7 +987,7 @@
 .capture-close:hover:not(:disabled) { color: var(--text); border-color: var(--accent-border); }
 .capture-close:disabled { opacity: 0.4; cursor: not-allowed; }
 
-.capture-takes { display: grid; gap: 6px; max-height: 180px; overflow: auto; }
+.capture-takes { display: grid; gap: 6px; flex: 1 1 auto; min-height: 64px; overflow: auto; align-content: start; }
 .capture-takes-empty { padding: 2px; color: var(--muted); font-size: 13px; }
 .capture-take { display: flex; align-items: center; gap: 8px; padding: 6px 8px; border: 1px solid rgba(96, 165, 250, 0.14); border-radius: 9px; background: rgba(15, 23, 42, 0.4); }
 /* is-focused = the row you're working on (highlighted); is-active = the star
@@ -994,6 +995,10 @@
 .capture-take.is-focused { border-color: var(--accent-border); background: rgba(37, 99, 235, 0.18); }
 .capture-take.is-placeholder { border-style: dashed; border-color: var(--accent-border); }
 .capture-take.is-placeholder .capture-take-meta { color: var(--accent); }
+/* Group heading separating the user's takes from the provided (pack) clips. */
+.capture-takes-group { margin-top: 4px; padding: 2px 2px 0; color: var(--muted); font-size: 11px; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; }
+/* Provided clips are read-only (play + waveform only) — softer, no edit chrome. */
+.capture-take.is-pack { border-color: rgba(148, 163, 184, 0.18); background: rgba(15, 23, 42, 0.28); }
 .capture-take-use, .capture-take-play, .capture-take-edit, .capture-take-del {
   flex: 0 0 auto; width: 30px; height: 30px; padding: 0;
   border: 1px solid rgba(148, 163, 184, 0.25); border-radius: 7px;
@@ -1037,6 +1042,7 @@
 
 /* Review option (normalize). */
 .capture-opts { display: flex; flex-wrap: wrap; gap: 8px 16px; }
+.capture-opts[hidden] { display: none; } /* author display:flex would otherwise defeat [hidden] */
 .capture-opt { display: flex; align-items: center; gap: 6px; color: var(--muted); font-size: 13px; cursor: pointer; }
 .capture-opt input { accent-color: var(--accent); }
 
