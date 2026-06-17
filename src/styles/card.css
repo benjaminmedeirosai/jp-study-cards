@@ -990,12 +990,12 @@
 .capture-takes-empty { padding: 2px; color: var(--muted); font-size: 13px; }
 .capture-take { display: flex; align-items: center; gap: 8px; padding: 6px 8px; border: 1px solid rgba(96, 165, 250, 0.14); border-radius: 9px; background: rgba(15, 23, 42, 0.4); }
 .capture-take.is-active { border-color: var(--accent-border); background: rgba(37, 99, 235, 0.18); }
-.capture-take-use, .capture-take-play, .capture-take-del {
+.capture-take-use, .capture-take-play, .capture-take-edit, .capture-take-del {
   flex: 0 0 auto; width: 30px; height: 30px; padding: 0;
   border: 1px solid rgba(148, 163, 184, 0.25); border-radius: 7px;
   background: rgba(15, 23, 42, 0.55); color: var(--text); font-size: 14px; cursor: pointer;
 }
-.capture-take-use:hover, .capture-take-play:hover, .capture-take-del:hover { border-color: var(--accent-border); }
+.capture-take-use:hover, .capture-take-play:hover, .capture-take-edit:hover, .capture-take-del:hover { border-color: var(--accent-border); }
 .capture-take.is-active .capture-take-use { color: #fbbf24; }
 .capture-take-meta { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: var(--muted); font-size: 12px; }
 
@@ -1013,3 +1013,12 @@
 .capture-btn--stop { color: #fecaca; border-color: rgba(248, 113, 113, 0.6); background: rgba(220, 38, 38, 0.2); }
 .capture-btn--save { margin-left: auto; color: #bbf7d0; border-color: rgba(74, 222, 128, 0.5); background: rgba(22, 163, 74, 0.18); }
 .capture-status { min-height: 16px; color: var(--muted); font-size: 13px; }
+
+/* Review options (keep-trimmed / normalize). */
+.capture-opts { display: flex; flex-wrap: wrap; gap: 8px 16px; }
+.capture-opt { display: flex; align-items: center; gap: 6px; color: var(--muted); font-size: 13px; cursor: pointer; }
+.capture-opt input { accent-color: var(--accent); }
+
+/* The tray record button reads as a record control (red tint). */
+.study-button.mini--record { color: #f87171; border-color: rgba(248, 113, 113, 0.4); }
+.study-button.mini--record:hover { border-color: rgba(248, 113, 113, 0.75); }

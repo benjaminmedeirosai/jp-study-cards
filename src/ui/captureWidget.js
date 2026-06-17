@@ -1,33 +1,48 @@
 // Voice-capture widget — record your own pronunciation for a card, review it on
 // a waveform, trim the dead air off each end, and save it as a "My recording"
 // take. Multiple takes per card are kept; you pick which one is active (the one
-// that plays). Opens from the mic button in the card's mini tray.
+// that plays). Saved takes can be re-opened and re-trimmed. Opens from the mic
+// button in the card's mini tray.
 //
 // Capture: getUserMedia → MediaRecorder (webm/opus). A live AnalyserNode drives
 // a scrolling volume graph + a millisecond timer. On stop the blob is decoded to
 // an AudioBuffer for the trim/preview view; saving slices that buffer between the
-// trim handles and re-encodes to WAV (deterministic, universally playable —
-// we can't make m4a client-side) before storing.
+// trim handles and re-encodes to WAV (deterministic, universally playable).
+//
+// "Keep trimmed audio" stores the untrimmed buffer alongside the clip so a later
+// re-edit can re-extend the trim (lossless); off by default (trimmed clip only,
+// so re-edit can only trim further). "Normalize" peak-scales the saved clip.
 
 import {
-  listRecordings, getRecordingBlob, addRecording, setActiveRecording, deleteRecording
+  listRecordings, getRecordingBlob, getRecordingSource,
+  addRecording, updateRecording, setActiveRecording, deleteRecording
 } from "../audio/audioStore.js";
 
+const GREEN = "#4ade80";
+
+// Peak amplitude over [startSec, endSec) of an AudioBuffer (channel 0), in [0,1].
+function peakOf(buffer, startSec, endSec) {
+  const ch = buffer.getChannelData(0);
+  const from = Math.max(0, Math.floor(startSec * buffer.sampleRate));
+  const to = Math.min(ch.length, Math.floor(endSec * buffer.sampleRate));
+  let p = 0;
+  for (let i = from; i < to; i++) p = Math.max(p, Math.abs(ch[i]));
+  return p;
+}
+
 // Encode a mono slice [startSec, endSec) of an AudioBuffer to a 16-bit PCM WAV
-// Blob. Channels are downmixed (averaged) — mic input is mono anyway.
-function encodeWav(buffer, startSec, endSec) {
+// Blob. Channels are downmixed (mic is mono anyway). `gain` scales samples
+// (used for normalization).
+function encodeWav(buffer, startSec, endSec, gain = 1) {
   const rate = buffer.sampleRate;
   const from = Math.max(0, Math.floor(startSec * rate));
   const to = Math.min(buffer.length, Math.floor(endSec * rate));
   const len = Math.max(0, to - from);
   const chans = buffer.numberOfChannels;
-  const data = new Int16Array(len);
+  const out = new Float32Array(len);
   for (let c = 0; c < chans; c++) {
     const src = buffer.getChannelData(c);
-    for (let i = 0; i < len; i++) {
-      const s = Math.max(-1, Math.min(1, src[from + i]));
-      data[i] += (s < 0 ? s * 0x8000 : s * 0x7fff) / chans;
-    }
+    for (let i = 0; i < len; i++) out[i] += src[from + i] / chans;
   }
   const bytes = 44 + len * 2;
   const ab = new ArrayBuffer(bytes);
@@ -38,7 +53,10 @@ function encodeWav(buffer, startSec, endSec) {
   view.setUint16(22, 1, true); view.setUint32(24, rate, true);
   view.setUint32(28, rate * 2, true); view.setUint16(32, 2, true); view.setUint16(34, 16, true);
   str(36, "data"); view.setUint32(40, len * 2, true);
-  for (let i = 0; i < len; i++) view.setInt16(44 + i * 2, data[i], true);
+  for (let i = 0; i < len; i++) {
+    const s = Math.max(-1, Math.min(1, out[i] * gain));
+    view.setInt16(44 + i * 2, s < 0 ? s * 0x8000 : s * 0x7fff, true);
+  }
   return new Blob([ab], { type: "audio/wav" });
 }
 
@@ -65,8 +83,7 @@ function fmtAgo(ms) {
 }
 
 export function openCaptureWidget({ lang, entryKey, label, onChange }) {
-  const cssVar = (name) => getComputedStyle(document.documentElement).getPropertyValue(name).trim();
-  const accent = cssVar("--accent") || "#60a5fa";
+  const accent = getComputedStyle(document.documentElement).getPropertyValue("--accent").trim() || "#60a5fa";
 
   const backdrop = document.createElement("div");
   backdrop.className = "capture-backdrop";
@@ -76,7 +93,6 @@ export function openCaptureWidget({ lang, entryKey, label, onChange }) {
   panel.setAttribute("aria-modal", "true");
   backdrop.append(panel);
 
-  // Header
   const head = document.createElement("div");
   head.className = "capture-head";
   const title = document.createElement("div");
@@ -89,11 +105,9 @@ export function openCaptureWidget({ lang, entryKey, label, onChange }) {
   closeBtn.textContent = "✕";
   head.append(title, closeBtn);
 
-  // Existing takes
   const takesEl = document.createElement("div");
   takesEl.className = "capture-takes";
 
-  // Capture / review area
   const stage = document.createElement("div");
   stage.className = "capture-stage";
   const canvas = document.createElement("canvas");
@@ -102,12 +116,22 @@ export function openCaptureWidget({ lang, entryKey, label, onChange }) {
   const timer = document.createElement("div");
   timer.className = "capture-timer";
   timer.textContent = "0.00s";
-  // Trim handles (review only)
   const trimStartEl = document.createElement("div"); trimStartEl.className = "capture-trim capture-trim--start"; trimStartEl.hidden = true;
   const trimEndEl = document.createElement("div"); trimEndEl.className = "capture-trim capture-trim--end"; trimEndEl.hidden = true;
   stage.append(canvas, timer, trimStartEl, trimEndEl);
 
-  // Controls
+  // Review options (keep source for lossless re-edit; normalize on save).
+  const opts = document.createElement("div");
+  opts.className = "capture-opts";
+  opts.hidden = true;
+  const keepLabel = document.createElement("label"); keepLabel.className = "capture-opt";
+  const keepChk = document.createElement("input"); keepChk.type = "checkbox";
+  keepLabel.append(keepChk, document.createTextNode(" Keep trimmed audio (re-editable)"));
+  const normLabel = document.createElement("label"); normLabel.className = "capture-opt";
+  const normChk = document.createElement("input"); normChk.type = "checkbox";
+  normLabel.append(normChk, document.createTextNode(" Normalize volume"));
+  opts.append(keepLabel, normLabel);
+
   const controls = document.createElement("div");
   controls.className = "capture-controls";
   const startBtn = document.createElement("button"); startBtn.type = "button"; startBtn.className = "capture-btn capture-btn--rec"; startBtn.textContent = "● Start";
@@ -120,23 +144,37 @@ export function openCaptureWidget({ lang, entryKey, label, onChange }) {
   const status = document.createElement("div");
   status.className = "capture-status";
 
-  panel.append(head, takesEl, stage, controls, status);
+  panel.append(head, takesEl, stage, opts, controls, status);
   document.body.append(backdrop);
 
-  // --- shared audio state ---
   const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
   let stream = null, recorder = null, analyser = null, rafId = 0;
   let chunks = [], liveVals = [], recStartTs = 0;
-  let reviewBuffer = null;            // decoded AudioBuffer awaiting save
-  let trimStart = 0, trimEnd = 0;     // seconds
-  let previewSrc = null;              // AudioBufferSourceNode currently previewing
-  let mode = "idle";                  // idle | recording | review
+  let reviewBuffer = null;        // decoded AudioBuffer awaiting save
+  let trimStart = 0, trimEnd = 0; // seconds
+  let previewSrc = null, previewProgress = null; // null = not previewing
+  let editId = null;              // set when re-editing an existing take
+  let mode = "idle";              // idle | recording | review
 
   const ctx2d = canvas.getContext("2d");
+  const clearCanvas = () => ctx2d.clearRect(0, 0, canvas.width, canvas.height);
 
-  function clearCanvas() { ctx2d.clearRect(0, 0, canvas.width, canvas.height); }
+  // Faint horizontal amplitude guides (center + ±50% + ±100%) so you can gauge
+  // how loud the recording is.
+  function drawGrid() {
+    const mid = canvas.height / 2;
+    ctx2d.strokeStyle = "rgba(148,163,184,0.16)";
+    ctx2d.lineWidth = 1;
+    for (const a of [0.5, 1]) {
+      for (const dir of [-1, 1]) {
+        const y = mid + dir * a * (canvas.height / 2 - 1);
+        ctx2d.beginPath(); ctx2d.moveTo(0, y); ctx2d.lineTo(canvas.width, y); ctx2d.stroke();
+      }
+    }
+    ctx2d.strokeStyle = "rgba(148,163,184,0.28)";
+    ctx2d.beginPath(); ctx2d.moveTo(0, mid); ctx2d.lineTo(canvas.width, mid); ctx2d.stroke();
+  }
 
-  // Live scrolling volume graph while recording.
   function drawLive() {
     const buf = new Uint8Array(analyser.frequencyBinCount);
     analyser.getByteTimeDomainData(buf);
@@ -145,7 +183,7 @@ export function openCaptureWidget({ lang, entryKey, label, onChange }) {
     liveVals.push(peak);
     const maxBars = canvas.width / 3;
     if (liveVals.length > maxBars) liveVals.shift();
-    clearCanvas();
+    clearCanvas(); drawGrid();
     ctx2d.fillStyle = accent;
     const mid = canvas.height / 2;
     for (let i = 0; i < liveVals.length; i++) {
@@ -156,14 +194,13 @@ export function openCaptureWidget({ lang, entryKey, label, onChange }) {
     rafId = requestAnimationFrame(drawLive);
   }
 
-  // Static waveform of the recorded buffer, dimming the trimmed-off ends.
   function drawReview() {
     if (!reviewBuffer) return;
     const n = Math.floor(canvas.width / 3);
     const ps = peaks(reviewBuffer, n);
     const dur = reviewBuffer.duration;
-    clearCanvas();
     const mid = canvas.height / 2;
+    clearCanvas(); drawGrid();
     for (let i = 0; i < ps.length; i++) {
       const t = (i / n) * dur;
       const inTrim = t >= trimStart && t <= trimEnd;
@@ -171,18 +208,24 @@ export function openCaptureWidget({ lang, entryKey, label, onChange }) {
       const h = Math.max(1, ps[i] * canvas.height * 0.92);
       ctx2d.fillRect(i * 3, mid - h / 2, 2, h);
     }
-    // position handles
-    const pct = (t) => `${(t / dur) * 100}%`;
-    trimStartEl.style.left = pct(trimStart);
-    trimEndEl.style.left = pct(trimEnd);
-    timer.textContent = `${(trimEnd - trimStart).toFixed(2)}s` + (trimStart > 0 || trimEnd < dur ? ` (of ${dur.toFixed(2)}s)` : "");
+    // green playback progress line
+    if (previewProgress != null) {
+      const t = trimStart + previewProgress * (trimEnd - trimStart);
+      const x = (t / dur) * canvas.width;
+      ctx2d.strokeStyle = GREEN; ctx2d.lineWidth = 2;
+      ctx2d.beginPath(); ctx2d.moveTo(x, 0); ctx2d.lineTo(x, canvas.height); ctx2d.stroke();
+    }
+    trimStartEl.style.left = `${(trimStart / dur) * 100}%`;
+    trimEndEl.style.left = `${(trimEnd / dur) * 100}%`;
+    const peakPct = Math.round(peakOf(reviewBuffer, trimStart, trimEnd) * 100);
+    timer.textContent = `${(trimEnd - trimStart).toFixed(2)}s` + (trimStart > 0 || trimEnd < dur ? ` (of ${dur.toFixed(2)}s)` : "") + ` · peak ${peakPct}%`;
   }
 
   function setMode(next) {
     mode = next;
     startBtn.hidden = next !== "idle";
     stopBtn.hidden = next !== "recording";
-    playBtn.hidden = saveBtn.hidden = discardBtn.hidden = next !== "review";
+    playBtn.hidden = saveBtn.hidden = discardBtn.hidden = opts.hidden = next !== "review";
     trimStartEl.hidden = trimEndEl.hidden = next !== "review";
     closeBtn.disabled = next === "recording";
   }
@@ -198,12 +241,11 @@ export function openCaptureWidget({ lang, entryKey, label, onChange }) {
       return;
     }
     takes.slice().reverse().forEach((t, i) => {
-      const n = takes.length - i; // newest shown first, numbered by age
+      const n = takes.length - i;
       const row = document.createElement("div");
       row.className = `capture-take${t.id === activeId ? " is-active" : ""}`;
       const useBtn = document.createElement("button");
-      useBtn.type = "button";
-      useBtn.className = "capture-take-use";
+      useBtn.type = "button"; useBtn.className = "capture-take-use";
       useBtn.title = t.id === activeId ? "Active (plays for this card)" : "Make active";
       useBtn.textContent = t.id === activeId ? "★" : "☆";
       useBtn.addEventListener("click", async () => { await setActiveRecording(lang, entryKey, t.id); onChange?.(); renderTakes(); });
@@ -211,17 +253,18 @@ export function openCaptureWidget({ lang, entryKey, label, onChange }) {
       play.type = "button"; play.className = "capture-take-play"; play.textContent = "▶";
       play.addEventListener("click", async () => {
         const blob = await getRecordingBlob(lang, entryKey, t.id);
-        if (!blob) return;
-        const a = new Audio(URL.createObjectURL(blob));
-        a.play().catch(() => {});
+        if (blob) new Audio(URL.createObjectURL(blob)).play().catch(() => {});
       });
       const meta = document.createElement("span");
       meta.className = "capture-take-meta";
-      meta.textContent = `Take ${n} · ${(t.durationMs / 1000).toFixed(2)}s · ${fmtAgo(t.createdAt)}`;
+      meta.textContent = `Take ${n} · ${(t.durationMs / 1000).toFixed(2)}s · ${fmtAgo(t.createdAt)}` + (t.hasSource ? " · ✎" : "");
+      const edit = document.createElement("button");
+      edit.type = "button"; edit.className = "capture-take-edit"; edit.title = "Edit / re-trim"; edit.textContent = "✎";
+      edit.addEventListener("click", () => loadForEdit(t));
       const del = document.createElement("button");
       del.type = "button"; del.className = "capture-take-del"; del.title = "Delete"; del.textContent = "🗑";
       del.addEventListener("click", async () => { await deleteRecording(lang, entryKey, t.id); onChange?.(); renderTakes(); });
-      row.append(useBtn, play, meta, del);
+      row.append(useBtn, play, meta, edit, del);
       takesEl.append(row);
     });
   }
@@ -229,12 +272,11 @@ export function openCaptureWidget({ lang, entryKey, label, onChange }) {
   // --- recording ---
   async function start() {
     status.textContent = "";
+    editId = null;
     try {
       stream = await navigator.mediaDevices.getUserMedia({ audio: true });
     } catch (err) {
-      status.textContent = err && err.name === "NotAllowedError"
-        ? "Microphone permission denied."
-        : `Mic unavailable: ${err?.message || err}`;
+      status.textContent = err && err.name === "NotAllowedError" ? "Microphone permission denied." : `Mic unavailable: ${err?.message || err}`;
       return;
     }
     if (audioCtx.state === "suspended") await audioCtx.resume();
@@ -256,36 +298,58 @@ export function openCaptureWidget({ lang, entryKey, label, onChange }) {
     cancelAnimationFrame(rafId);
     if (stream) { stream.getTracks().forEach((t) => t.stop()); stream = null; }
   }
-
-  function stop() {
-    if (recorder && recorder.state !== "inactive") recorder.stop(); // → onRecordingStopped
-  }
+  function stop() { if (recorder && recorder.state !== "inactive") recorder.stop(); }
 
   async function onRecordingStopped() {
     stopTracks();
     const blob = new Blob(chunks, { type: recorder.mimeType || "audio/webm" });
-    try {
-      reviewBuffer = await audioCtx.decodeAudioData(await blob.arrayBuffer());
-    } catch (err) {
-      status.textContent = `Could not decode recording: ${err?.message || err}`;
-      setMode("idle");
-      return;
-    }
+    try { reviewBuffer = await audioCtx.decodeAudioData(await blob.arrayBuffer()); }
+    catch (err) { status.textContent = `Could not decode recording: ${err?.message || err}`; setMode("idle"); return; }
     trimStart = 0; trimEnd = reviewBuffer.duration;
     setMode("review");
     drawReview();
   }
 
-  // --- review: preview + trim drag ---
-  function stopPreview() { if (previewSrc) { try { previewSrc.stop(); } catch {} previewSrc = null; } }
+  // --- re-edit an existing take ---
+  async function loadForEdit(take) {
+    stopPreview();
+    status.textContent = "";
+    const srcBlob = take.hasSource ? await getRecordingSource(lang, entryKey, take.id) : null;
+    const blob = srcBlob || await getRecordingBlob(lang, entryKey, take.id);
+    if (!blob) { status.textContent = "Recording unavailable."; return; }
+    if (audioCtx.state === "suspended") await audioCtx.resume();
+    try { reviewBuffer = await audioCtx.decodeAudioData(await blob.arrayBuffer()); }
+    catch (err) { status.textContent = `Could not load: ${err?.message || err}`; return; }
+    editId = take.id;
+    // With a kept source, restore the prior trim window; otherwise the clip is
+    // already trimmed → full extent, trim further only.
+    trimStart = srcBlob && take.trimEnd > take.trimStart ? take.trimStart : 0;
+    trimEnd = srcBlob && take.trimEnd > take.trimStart ? Math.min(take.trimEnd, reviewBuffer.duration) : reviewBuffer.duration;
+    keepChk.checked = take.hasSource;
+    setMode("review");
+    status.textContent = `Editing take · ${srcBlob ? "full audio" : "trimmed only"}`;
+    drawReview();
+  }
+
+  // --- review: preview (with progress line) + trim drag ---
+  function stopPreview() { if (previewSrc) { try { previewSrc.stop(); } catch {} previewSrc = null; } previewProgress = null; }
   function preview() {
     stopPreview();
     if (!reviewBuffer) return;
+    const dur = Math.max(0.01, trimEnd - trimStart);
     previewSrc = audioCtx.createBufferSource();
     previewSrc.buffer = reviewBuffer;
     previewSrc.connect(audioCtx.destination);
-    previewSrc.onended = () => { previewSrc = null; };
-    previewSrc.start(0, trimStart, Math.max(0.01, trimEnd - trimStart));
+    const startedAt = audioCtx.currentTime;
+    previewSrc.onended = () => { previewSrc = null; previewProgress = null; drawReview(); };
+    previewSrc.start(0, trimStart, dur);
+    const tick = () => {
+      if (!previewSrc) return;
+      previewProgress = Math.min(1, (audioCtx.currentTime - startedAt) / dur);
+      drawReview();
+      if (previewProgress < 1) requestAnimationFrame(tick);
+    };
+    requestAnimationFrame(tick);
   }
 
   function dragHandle(el, which) {
@@ -310,12 +374,17 @@ export function openCaptureWidget({ lang, entryKey, label, onChange }) {
 
   async function save() {
     if (!reviewBuffer) return;
-    const blob = encodeWav(reviewBuffer, trimStart, trimEnd);
-    await addRecording(lang, entryKey, blob, (trimEnd - trimStart) * 1000);
-    reviewBuffer = null;
-    stopPreview();
-    clearCanvas();
-    timer.textContent = "0.00s";
+    const gain = normChk.checked ? 1 / Math.max(0.01, peakOf(reviewBuffer, trimStart, trimEnd)) * 0.99 : 1;
+    const clip = encodeWav(reviewBuffer, trimStart, trimEnd, gain);
+    const durMs = (trimEnd - trimStart) * 1000;
+    // Keep the untrimmed buffer (raw, un-normalized) so re-edit can re-extend.
+    const opts2 = keepChk.checked
+      ? { sourceBlob: encodeWav(reviewBuffer, 0, reviewBuffer.duration, 1), trimStart, trimEnd, fullDurationMs: reviewBuffer.duration * 1000 }
+      : {};
+    if (editId) await updateRecording(lang, entryKey, editId, clip, durMs, opts2);
+    else await addRecording(lang, entryKey, clip, durMs, opts2);
+    editId = null;
+    stopPreview(); reviewBuffer = null; clearCanvas(); timer.textContent = "0.00s";
     setMode("idle");
     status.textContent = "Saved.";
     onChange?.();
@@ -323,17 +392,15 @@ export function openCaptureWidget({ lang, entryKey, label, onChange }) {
   }
 
   function discard() {
-    reviewBuffer = null;
-    stopPreview();
-    clearCanvas();
-    timer.textContent = "0.00s";
+    editId = null;
+    stopPreview(); reviewBuffer = null; clearCanvas(); timer.textContent = "0.00s";
     setMode("idle");
+    status.textContent = "";
   }
 
   function close() {
-    if (mode === "recording") return; // must stop first
-    stopTracks();
-    stopPreview();
+    if (mode === "recording") return;
+    stopTracks(); stopPreview();
     try { audioCtx.close(); } catch {}
     document.removeEventListener("keydown", onKey, true);
     backdrop.remove();

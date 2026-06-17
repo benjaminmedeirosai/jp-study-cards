@@ -237,8 +237,10 @@ export async function clearAllClips() {
 export const REC_VOICE = "me";
 const REC_PREFIX = `__rec__${SEP}`;          // __rec__::<lang>::<entryKey>::<takeId> -> blob
 const REC_META_PREFIX = `__recmeta__${SEP}`; // __recmeta__::<lang>::<entryKey> -> { activeId, takes:[…] }
+const REC_SRC_PREFIX = `__recsrc__${SEP}`;   // optional untrimmed source blob, kept for lossless re-edit
 const recMetaKey = (lang, ek) => `${REC_META_PREFIX}${lang}${SEP}${ek}`;
 const recTakeKey = (lang, ek, id) => `${REC_PREFIX}${lang}${SEP}${ek}${SEP}${id}`;
+const recSrcKey = (lang, ek, id) => `${REC_SRC_PREFIX}${lang}${SEP}${ek}${SEP}${id}`;
 
 // Recordings store accessors (separate object store from clips).
 async function recGet(key) {
@@ -256,6 +258,11 @@ export async function listRecordings(lang, entryKey) {
 export async function getRecordingBlob(lang, entryKey, takeId) {
   return recGet(recTakeKey(lang, entryKey, takeId));
 }
+// The optional untrimmed source blob for a take (present only when it was saved
+// with "keep trimmed audio"), enabling lossless re-edit. null otherwise.
+export async function getRecordingSource(lang, entryKey, takeId) {
+  return recGet(recSrcKey(lang, entryKey, takeId));
+}
 // Mirror the active take's blob into the CLIPS store at the canonical `me` clip
 // key (or remove it when there is no active take), so normal playback / tally /
 // settings treat recordings as an ordinary voice. The take archive + meta stay
@@ -267,15 +274,40 @@ async function mirrorActiveRecording(lang, entryKey, meta) {
   if (blob) await asPromise(store.put(blob, meKey));
   else await asPromise(store.delete(meKey));
 }
-export async function addRecording(lang, entryKey, blob, durationMs) {
+// Save a new take. `blob` is the trimmed clip that plays. `opts` may carry the
+// untrimmed `sourceBlob` (kept for lossless re-edit) + the trim bounds it was
+// cut at, recorded in the take's meta.
+export async function addRecording(lang, entryKey, blob, durationMs, opts = {}) {
   const id = `${Date.now().toString(36)}${Math.floor(Math.random() * 1e6).toString(36)}`;
   await recPut(recTakeKey(lang, entryKey, id), blob);
+  if (opts.sourceBlob) await recPut(recSrcKey(lang, entryKey, id), opts.sourceBlob);
   const meta = await listRecordings(lang, entryKey);
-  meta.takes.push({ id, createdAt: Date.now(), durationMs: Math.round(durationMs) || 0 });
+  meta.takes.push({
+    id, createdAt: Date.now(), durationMs: Math.round(durationMs) || 0,
+    hasSource: !!opts.sourceBlob, trimStart: opts.trimStart || 0, trimEnd: opts.trimEnd || 0,
+    fullDurationMs: Math.round(opts.fullDurationMs) || Math.round(durationMs) || 0
+  });
   if (!meta.activeId) meta.activeId = id; // first take becomes the active one
   await recPut(recMetaKey(lang, entryKey), meta);
   await mirrorActiveRecording(lang, entryKey, meta);
   return id;
+}
+// Re-save an existing take in place (re-edit): replace its trimmed clip + meta,
+// add/replace/clear the kept source, and re-mirror if it's the active take.
+export async function updateRecording(lang, entryKey, takeId, blob, durationMs, opts = {}) {
+  const meta = await listRecordings(lang, entryKey);
+  const take = meta.takes.find((t) => t.id === takeId);
+  if (!take) return;
+  await recPut(recTakeKey(lang, entryKey, takeId), blob);
+  if (opts.sourceBlob) await recPut(recSrcKey(lang, entryKey, takeId), opts.sourceBlob);
+  else await recDelete(recSrcKey(lang, entryKey, takeId));
+  take.durationMs = Math.round(durationMs) || 0;
+  take.hasSource = !!opts.sourceBlob;
+  take.trimStart = opts.trimStart || 0;
+  take.trimEnd = opts.trimEnd || 0;
+  take.fullDurationMs = Math.round(opts.fullDurationMs) || take.durationMs;
+  await recPut(recMetaKey(lang, entryKey), meta);
+  if (meta.activeId === takeId) await mirrorActiveRecording(lang, entryKey, meta);
 }
 export async function setActiveRecording(lang, entryKey, takeId) {
   const meta = await listRecordings(lang, entryKey);
@@ -286,6 +318,7 @@ export async function setActiveRecording(lang, entryKey, takeId) {
 }
 export async function deleteRecording(lang, entryKey, takeId) {
   await recDelete(recTakeKey(lang, entryKey, takeId));
+  await recDelete(recSrcKey(lang, entryKey, takeId));
   const meta = await listRecordings(lang, entryKey);
   meta.takes = meta.takes.filter((t) => t.id !== takeId);
   // If the active take was deleted, fall back to the newest remaining one.
