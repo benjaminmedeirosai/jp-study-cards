@@ -1,12 +1,12 @@
 {
   "farsi": {
-    "version": "156e9082ddf8",
+    "version": "e0ad67ab22c5",
     "voices": {
       "dariush": {
         "name": "Dariush (Enhanced)",
         "locale": "fa-IR",
-        "clips": 404,
-        "bytes": 3462156
+        "clips": 497,
+        "bytes": 4233365
       }
     }
   },
