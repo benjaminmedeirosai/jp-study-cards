@@ -10,16 +10,39 @@ import { LIBRARIES } from "../core/libraries.js";
 import { audioSlug, audioMultiSource } from "./audioKey.js";
 
 const DB_NAME = "jp-study-audio";
-const STORE = "clips";
+const STORE = "clips";          // downloadable / imported pack clips (+ the active recording mirror)
+const REC_STORE = "recordings"; // user recordings: take blobs + per-card meta (irreplaceable, isolated)
 const SEP = "::";
 
 let dbPromise = null;
 function openDb() {
   if (dbPromise) return dbPromise;
   dbPromise = new Promise((resolve, reject) => {
-    const req = indexedDB.open(DB_NAME, 1);
-    req.onupgradeneeded = () => {
-      if (!req.result.objectStoreNames.contains(STORE)) req.result.createObjectStore(STORE);
+    const req = indexedDB.open(DB_NAME, 2);
+    req.onupgradeneeded = (event) => {
+      const db = req.result;
+      if (!db.objectStoreNames.contains(STORE)) db.createObjectStore(STORE);
+      // v2: recordings get their own store so a pack "Clear all" (which clears
+      // the clips store) can never touch irreplaceable user recordings. Migrate
+      // any v1 recording keys (`__rec__…` / `__recmeta__…`) out of clips.
+      if (!db.objectStoreNames.contains(REC_STORE)) {
+        db.createObjectStore(REC_STORE);
+        if (event.oldVersion >= 1 && db.objectStoreNames.contains(STORE)) {
+          const upgradeTx = event.target.transaction;
+          const clips = upgradeTx.objectStore(STORE);
+          const recs = upgradeTx.objectStore(REC_STORE);
+          clips.openCursor().onsuccess = (e) => {
+            const cur = e.target.result;
+            if (!cur) return;
+            const k = String(cur.key);
+            if (k.startsWith("__rec__::") || k.startsWith("__recmeta__::")) {
+              recs.put(cur.value, cur.key);
+              cur.delete();
+            }
+            cur.continue();
+          };
+        }
+      }
     };
     req.onsuccess = () => resolve(req.result);
     req.onerror = () => reject(req.error);
@@ -29,6 +52,14 @@ function openDb() {
 
 function tx(mode) {
   return openDb().then((db) => db.transaction(STORE, mode).objectStore(STORE));
+}
+function recTx(mode) {
+  return openDb().then((db) => db.transaction(REC_STORE, mode).objectStore(REC_STORE));
+}
+// Inclusive key range covering every key with `${lang}::` prefix (all clips for
+// a language). ￿ sorts above any real key char, so it bounds the prefix.
+function langRange(lang) {
+  return IDBKeyRange.bound(`${lang}${SEP}`, `${lang}${SEP}￿`);
 }
 function asPromise(req) {
   return new Promise((resolve, reject) => {
@@ -92,13 +123,11 @@ export async function putClip(key, blob) {
   return asPromise(store.put(blob, key));
 }
 
-// Count clips for a language (keys prefixed `${lang}::`).
+// Count clips for a language — a scoped range count, no full key scan.
 export async function countClips(lang) {
   try {
     const store = await tx("readonly");
-    const keys = await asPromise(store.getAllKeys());
-    const prefix = `${lang}${SEP}`;
-    return keys.filter((k) => String(k).startsWith(prefix)).length;
+    return await asPromise(store.count(langRange(lang)));
   } catch {
     return 0;
   }
@@ -114,34 +143,48 @@ export async function allClipKeys() {
   }
 }
 
-// Distinct voice ids that have at least one stored clip for a language (parsed
-// from the keys `${lang}::${voiceId}::…`). Drives playback order offline.
+// Distinct voice ids with ≥1 stored clip for a language (parsed from the keys
+// `${lang}::${voiceId}::…`). Drives playback order offline. Scoped key cursor
+// over the language range — never scans other languages.
 export async function voiceIdsForLang(lang) {
   const prefix = `${lang}${SEP}`;
   const ids = new Set();
-  for (const key of await allClipKeys()) {
-    if (!key.startsWith(prefix)) continue;
-    const rest = key.slice(prefix.length);
-    const vid = rest.slice(0, rest.indexOf(SEP));
-    if (vid) ids.add(vid);
-  }
+  try {
+    const store = await tx("readonly");
+    await new Promise((resolve, reject) => {
+      const req = store.openKeyCursor(langRange(lang));
+      req.onsuccess = () => {
+        const cur = req.result;
+        if (!cur) return resolve();
+        const rest = String(cur.key).slice(prefix.length);
+        const vid = rest.slice(0, rest.indexOf(SEP));
+        if (vid) ids.add(vid);
+        cur.continue();
+      };
+      req.onerror = () => reject(req.error);
+    });
+  } catch { /* offline read failed */ }
   return [...ids];
 }
 
+// Clear a language's downloadable/imported pack clips. Preserves the user's
+// recordings: their archive lives in the separate REC_STORE (untouched here),
+// and the active take's mirror clip (`${lang}::me::…`) is skipped so it keeps
+// playing. Scoped cursor over the language range — no full scan.
 export async function clearClips(lang) {
   const store = await tx("readwrite");
-  const keys = await asPromise(store.getAllKeys());
-  const prefix = `${lang}${SEP}`;
-  // Also purge this language's recording archive + meta (the active take's
-  // mirror clip is covered by the `${lang}::` prefix above).
-  const recPrefix = `${REC_PREFIX}${lang}${SEP}`;
-  const recMetaPrefix = `${REC_META_PREFIX}${lang}${SEP}`;
+  const mePrefix = `${lang}${SEP}${REC_VOICE}${SEP}`;
   let removed = 0;
-  for (const k of keys) {
-    const s = String(k);
-    if (s.startsWith(prefix)) { await asPromise(store.delete(k)); removed++; }
-    else if (s.startsWith(recPrefix) || s.startsWith(recMetaPrefix)) { await asPromise(store.delete(k)); }
-  }
+  await new Promise((resolve, reject) => {
+    const req = store.openCursor(langRange(lang));
+    req.onsuccess = () => {
+      const cur = req.result;
+      if (!cur) return resolve();
+      if (!String(cur.key).startsWith(mePrefix)) { cur.delete(); removed++; }
+      cur.continue();
+    };
+    req.onerror = () => reject(req.error);
+  });
   await asPromise(store.delete(META_PREFIX + lang));
   return removed;
 }
@@ -165,9 +208,21 @@ export async function getAudioMeta(lang) {
   }
 }
 
+// Clear ALL pack clips (every language) + their voice metadata. Preserves the
+// active-recording mirrors (`*::me::*`); the recordings archive is in REC_STORE
+// and is never touched here — "Clear all" packs can't destroy your recordings.
 export async function clearAllClips() {
   const store = await tx("readwrite");
-  return asPromise(store.clear());
+  await new Promise((resolve, reject) => {
+    const req = store.openCursor();
+    req.onsuccess = () => {
+      const cur = req.result;
+      if (!cur) return resolve();
+      if (String(cur.key).split(SEP)[1] !== REC_VOICE) cur.delete();
+      cur.continue();
+    };
+    req.onerror = () => reject(req.error);
+  });
 }
 
 // --- User recordings (multi-take) ------------------------------------------
@@ -185,35 +240,40 @@ const REC_META_PREFIX = `__recmeta__${SEP}`; // __recmeta__::<lang>::<entryKey> 
 const recMetaKey = (lang, ek) => `${REC_META_PREFIX}${lang}${SEP}${ek}`;
 const recTakeKey = (lang, ek, id) => `${REC_PREFIX}${lang}${SEP}${ek}${SEP}${id}`;
 
+// Recordings store accessors (separate object store from clips).
+async function recGet(key) {
+  try { const s = await recTx("readonly"); return (await asPromise(s.get(key))) || null; }
+  catch { return null; }
+}
+async function recPut(key, value) { const s = await recTx("readwrite"); return asPromise(s.put(value, key)); }
+async function recDelete(key) { const s = await recTx("readwrite"); return asPromise(s.delete(key)); }
+
 // { activeId, takes: [{ id, createdAt, durationMs }] } for a card (newest last).
 export async function listRecordings(lang, entryKey) {
-  const meta = await getClip(recMetaKey(lang, entryKey));
+  const meta = await recGet(recMetaKey(lang, entryKey));
   return meta && Array.isArray(meta.takes) ? meta : { activeId: null, takes: [] };
 }
 export async function getRecordingBlob(lang, entryKey, takeId) {
-  return getClip(recTakeKey(lang, entryKey, takeId));
+  return recGet(recTakeKey(lang, entryKey, takeId));
 }
-// Mirror the active take's blob to the canonical `me` clip key (or remove it
-// when there is no active take), so normal playback / tally pick it up.
+// Mirror the active take's blob into the CLIPS store at the canonical `me` clip
+// key (or remove it when there is no active take), so normal playback / tally /
+// settings treat recordings as an ordinary voice. The take archive + meta stay
+// in REC_STORE; only this one mirror lives among the clips.
 async function mirrorActiveRecording(lang, entryKey, meta) {
   const meKey = clipKey(lang, REC_VOICE, entryKey, "");
-  if (meta.activeId) {
-    const blob = await getClip(recTakeKey(lang, entryKey, meta.activeId));
-    const store = await tx("readwrite");
-    if (blob) await asPromise(store.put(blob, meKey));
-    else await asPromise(store.delete(meKey));
-  } else {
-    const store = await tx("readwrite");
-    await asPromise(store.delete(meKey));
-  }
+  const blob = meta.activeId ? await recGet(recTakeKey(lang, entryKey, meta.activeId)) : null;
+  const store = await tx("readwrite");
+  if (blob) await asPromise(store.put(blob, meKey));
+  else await asPromise(store.delete(meKey));
 }
 export async function addRecording(lang, entryKey, blob, durationMs) {
   const id = `${Date.now().toString(36)}${Math.floor(Math.random() * 1e6).toString(36)}`;
-  await putClip(recTakeKey(lang, entryKey, id), blob);
+  await recPut(recTakeKey(lang, entryKey, id), blob);
   const meta = await listRecordings(lang, entryKey);
   meta.takes.push({ id, createdAt: Date.now(), durationMs: Math.round(durationMs) || 0 });
   if (!meta.activeId) meta.activeId = id; // first take becomes the active one
-  await putClip(recMetaKey(lang, entryKey), meta);
+  await recPut(recMetaKey(lang, entryKey), meta);
   await mirrorActiveRecording(lang, entryKey, meta);
   return id;
 }
@@ -221,17 +281,16 @@ export async function setActiveRecording(lang, entryKey, takeId) {
   const meta = await listRecordings(lang, entryKey);
   if (!meta.takes.some((t) => t.id === takeId)) return;
   meta.activeId = takeId;
-  await putClip(recMetaKey(lang, entryKey), meta);
+  await recPut(recMetaKey(lang, entryKey), meta);
   await mirrorActiveRecording(lang, entryKey, meta);
 }
 export async function deleteRecording(lang, entryKey, takeId) {
-  const store = await tx("readwrite");
-  await asPromise(store.delete(recTakeKey(lang, entryKey, takeId)));
+  await recDelete(recTakeKey(lang, entryKey, takeId));
   const meta = await listRecordings(lang, entryKey);
   meta.takes = meta.takes.filter((t) => t.id !== takeId);
   // If the active take was deleted, fall back to the newest remaining one.
   if (meta.activeId === takeId) meta.activeId = meta.takes.length ? meta.takes[meta.takes.length - 1].id : null;
-  await putClip(recMetaKey(lang, entryKey), meta);
+  await recPut(recMetaKey(lang, entryKey), meta);
   await mirrorActiveRecording(lang, entryKey, meta);
 }
 
