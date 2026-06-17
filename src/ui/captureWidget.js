@@ -196,18 +196,28 @@ export function openCaptureWidget({ lang, entryKey, label, onChange }) {
     rafId = requestAnimationFrame(drawLive);
   }
 
+  // Normalization gain (peak of the trimmed region → 0.99), or 1 when off.
+  // Applied live to the waveform, the preview, and the saved clip — so toggling
+  // the checkbox lets you A/B the loudness and save whichever you prefer.
+  function currentGain() {
+    if (!normChk.checked || !reviewBuffer) return 1;
+    const p = peakOf(reviewBuffer, trimStart, trimEnd);
+    return p > 0.001 ? 0.99 / p : 1;
+  }
+
   function drawReview() {
     if (!reviewBuffer) return;
     const n = Math.floor(canvas.width / 3);
     const ps = peaks(reviewBuffer, n);
     const dur = reviewBuffer.duration;
     const mid = canvas.height / 2;
+    const gain = currentGain();
     clearCanvas(); drawGrid();
     for (let i = 0; i < ps.length; i++) {
       const t = (i / n) * dur;
       const inTrim = t >= trimStart && t <= trimEnd;
       ctx2d.fillStyle = inTrim ? accent : "rgba(148,163,184,0.35)";
-      const h = Math.max(1, ps[i] * canvas.height * 0.92);
+      const h = Math.max(1, Math.min(1, ps[i] * gain) * canvas.height * 0.92);
       ctx2d.fillRect(i * 3, mid - h / 2, 2, h);
     }
     // green playback progress line
@@ -219,8 +229,8 @@ export function openCaptureWidget({ lang, entryKey, label, onChange }) {
     }
     trimStartEl.style.left = `${(trimStart / dur) * 100}%`;
     trimEndEl.style.left = `${(trimEnd / dur) * 100}%`;
-    const peakPct = Math.round(peakOf(reviewBuffer, trimStart, trimEnd) * 100);
-    timer.textContent = `${(trimEnd - trimStart).toFixed(2)}s` + (trimStart > 0 || trimEnd < dur ? ` (of ${dur.toFixed(2)}s)` : "") + ` · peak ${peakPct}%`;
+    const peakPct = Math.round(Math.min(1, peakOf(reviewBuffer, trimStart, trimEnd) * gain) * 100);
+    timer.textContent = `${(trimEnd - trimStart).toFixed(2)}s` + (trimStart > 0 || trimEnd < dur ? ` (of ${dur.toFixed(2)}s)` : "") + ` · peak ${peakPct}%` + (normChk.checked ? " · norm" : "");
   }
 
   function setMode(next) {
@@ -384,7 +394,11 @@ export function openCaptureWidget({ lang, entryKey, label, onChange }) {
     const dur = Math.max(0.01, trimEnd - trimStart);
     previewSrc = audioCtx.createBufferSource();
     previewSrc.buffer = reviewBuffer;
-    previewSrc.connect(audioCtx.destination);
+    // Route through a gain node so the preview is as loud as the saved clip
+    // will be (honors the live Normalize toggle).
+    const gainNode = audioCtx.createGain();
+    gainNode.gain.value = currentGain();
+    previewSrc.connect(gainNode); gainNode.connect(audioCtx.destination);
     const startedAt = audioCtx.currentTime;
     previewSrc.onended = () => { previewSrc = null; previewProgress = null; drawReview(); };
     previewSrc.start(0, trimStart, dur);
@@ -419,8 +433,7 @@ export function openCaptureWidget({ lang, entryKey, label, onChange }) {
 
   async function save() {
     if (!reviewBuffer) return;
-    const gain = normChk.checked ? 1 / Math.max(0.01, peakOf(reviewBuffer, trimStart, trimEnd)) * 0.99 : 1;
-    const clip = encodeWav(reviewBuffer, trimStart, trimEnd, gain);
+    const clip = encodeWav(reviewBuffer, trimStart, trimEnd, currentGain());
     const durMs = (trimEnd - trimStart) * 1000;
     // Keep the untrimmed buffer (raw, un-normalized) so re-edit can re-extend.
     const opts2 = keepChk.checked
@@ -460,6 +473,7 @@ export function openCaptureWidget({ lang, entryKey, label, onChange }) {
 
   startBtn.addEventListener("click", start);
   stopBtn.addEventListener("click", stop);
+  normChk.addEventListener("change", () => drawReview()); // live: rescale waveform + peak readout
   playBtn.addEventListener("click", preview);
   saveBtn.addEventListener("click", save);
   discardBtn.addEventListener("click", discard);
