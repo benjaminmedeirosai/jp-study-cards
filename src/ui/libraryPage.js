@@ -10,7 +10,7 @@
 import { loadState, saveState, button, confirmDialog } from "../core/shared.js";
 import { libraryGroups } from "../core/libraries.js";
 import { chooseLibrary, closeOverlay } from "../core/router.js";
-import { importAudioZip, clipKeyForEntry, allClipKeys, clearAllClips, clearClips, countClips, getAudioMeta, requestPersist, fetchAudioManifest } from "../audio/audioStore.js";
+import { importAudioZip, clipKeyForEntry, allClipKeys, clearAllClips, clearClips, countClips, getAudioMeta, requestPersist, fetchAudioManifest, REC_VOICE, recordingsRevision } from "../audio/audioStore.js";
 
 // Per-schema noun for the entry count.
 const KIND_NOUN = { word: "words", kanji: "kanji", alpha: "letters", harakat: "marks" };
@@ -169,7 +169,7 @@ export function renderLibraryPage() {
   async function recompute() {
     const keySet = await allClipKeys();
     const loadedVersions = loadState().audioPackVersions || {};
-    const cache = { manifest, langs: {}, schemas: {}, load: null };
+    const cache = { manifest, langs: {}, schemas: {}, load: null, recRev: recordingsRevision() };
     for (const { language, schemas } of groups) {
       let bundle = null;
       try { bundle = await (await fetch(schemas[0].data)).json(); } catch {}
@@ -213,9 +213,14 @@ export function renderLibraryPage() {
           parts.push(`${shortVoice(info.name)} ${n}/${total}`);
           if (n < total) anyPartial = true;
         }
+        // User recordings: count cards with an active "me" take (source-less,
+        // so checked at "" regardless of the library's sound sources). Shown as
+        // a 🎙 tally; doesn't affect the pack full/partial coloring.
+        const recN = entries.reduce((a, e) => a + (keySet.has(clipKeyForEntry(e, lib, REC_VOICE, "")) ? 1 : 0), 0);
+        const allParts = [...parts, recN > 0 ? `🎙 ${recN}` : ""].filter(Boolean);
         const noun = KIND_NOUN[lib.deckKind] || "cards";
         cache.schemas[lib.id] = {
-          text: `${total} ${noun}` + (parts.length ? ` · ${parts.join(" · ")}` : (total ? " · no audio" : "")),
+          text: `${total} ${noun}` + (allParts.length ? ` · ${allParts.join(" · ")}` : (total ? " · no audio" : "")),
           full: parts.length > 0 && !anyPartial,
           partial: parts.length > 0 && anyPartial
         };
@@ -318,15 +323,19 @@ export function renderLibraryPage() {
     await recompute();
   });
 
-  // Initial fill. If we've computed before this session, apply the cache
-  // synchronously — no IndexedDB reads, no bundle fetches — so reopening is
-  // instant (the slow part on phones). Otherwise fetch the (cheap) manifest,
-  // then run the one-time heavy compute that fills + caches everything.
+  // Initial fill. If we've computed before this session AND no recording has
+  // changed since (recordings mutate from the card page, off this page), apply
+  // the cache synchronously — no IndexedDB reads, no bundle fetches — so
+  // reopening is instant. Otherwise fetch the (cheap) manifest, then run the
+  // one-time heavy compute that fills + caches everything.
   loadBtn.disabled = true;
   loadBtn.textContent = "Load audio";
-  if (metaCache) {
+  if (metaCache && metaCache.recRev === recordingsRevision()) {
     manifest = metaCache.manifest || {};
     applyMeta(metaCache);
+  } else if (metaCache) {
+    manifest = metaCache.manifest || {};
+    recompute(); // recordings changed → refresh the tally
   } else {
     fetchAudioManifest().then((m) => { manifest = m; recompute(); });
   }

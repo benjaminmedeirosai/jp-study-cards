@@ -235,6 +235,10 @@ export async function clearAllClips() {
 // same whatever text-source is shown) — so the card page includes "" in its
 // clip-source candidates to find them on multi-source libraries too.
 export const REC_VOICE = "me";
+// Bumped on any recording mutation so views that cache recording-derived data
+// (e.g. the library tally) can tell when to recompute. Session-scoped.
+let recRev = 0;
+export const recordingsRevision = () => recRev;
 const REC_PREFIX = `__rec__${SEP}`;          // __rec__::<lang>::<entryKey>::<takeId> -> blob
 const REC_META_PREFIX = `__recmeta__${SEP}`; // __recmeta__::<lang>::<entryKey> -> { activeId, takes:[…] }
 const REC_SRC_PREFIX = `__recsrc__${SEP}`;   // optional untrimmed source blob, kept for lossless re-edit
@@ -278,6 +282,7 @@ async function mirrorActiveRecording(lang, entryKey, meta) {
 // untrimmed `sourceBlob` (kept for lossless re-edit) + the trim bounds it was
 // cut at, recorded in the take's meta.
 export async function addRecording(lang, entryKey, blob, durationMs, opts = {}) {
+  recRev++;
   const id = `${Date.now().toString(36)}${Math.floor(Math.random() * 1e6).toString(36)}`;
   await recPut(recTakeKey(lang, entryKey, id), blob);
   if (opts.sourceBlob) await recPut(recSrcKey(lang, entryKey, id), opts.sourceBlob);
@@ -317,6 +322,7 @@ export async function setActiveRecording(lang, entryKey, takeId) {
   await mirrorActiveRecording(lang, entryKey, meta);
 }
 export async function deleteRecording(lang, entryKey, takeId) {
+  recRev++;
   await recDelete(recTakeKey(lang, entryKey, takeId));
   await recDelete(recSrcKey(lang, entryKey, takeId));
   const meta = await listRecordings(lang, entryKey);
