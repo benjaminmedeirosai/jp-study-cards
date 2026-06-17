@@ -15,6 +15,14 @@ import { importAudioZip, clipKeyForEntry, allClipKeys, clearAllClips, clearClips
 // Per-schema noun for the entry count.
 const KIND_NOUN = { word: "words", kanji: "kanji", alpha: "letters", harakat: "marks" };
 
+// Computed library meta (per-schema tallies, per-language size/source, Load
+// button state), cached across opens. The underlying audio inventory only
+// changes via this page's own import / load / clear actions — each recomputes
+// and refreshes this cache — so reopening can apply it instantly with zero
+// IndexedDB reads or bundle fetches (the slow part, very noticeable on phones).
+// In-memory only: a full app reload (e.g. after a new build) starts it fresh.
+let metaCache = null;
+
 export function renderLibraryPage() {
   const state = loadState();
   const groups = libraryGroups();
@@ -79,8 +87,7 @@ export function renderLibraryPage() {
       const st = loadState();
       if (st.audioPackVersions && st.audioPackVersions[language.id]) { delete st.audioPackVersions[language.id]; saveState(st); }
       importStatus.textContent = `Cleared ${language.label} audio`;
-      refreshLoadButton();
-      await refreshMeta();
+      await recompute();
     });
     langSizeEls.set(language.id, sizeEl);
     langSrcEls.set(language.id, srcEl);
@@ -126,8 +133,36 @@ export function renderLibraryPage() {
   const formatBytes = (n) => (n >= 1048576 ? `${(n / 1048576).toFixed(1)} MB` : `${Math.max(1, Math.round(n / 1024))} KB`);
 
   // --- Per-schema totals + per-voice audio tally --------------------------
-  async function refreshMeta() {
+  // Write a computed cache object onto this render's DOM elements. Synchronous
+  // and cheap — this is the whole point of the cache: a reopen is just this.
+  function applyMeta(cache) {
+    for (const { language, schemas } of groups) {
+      const li = cache.langs[language.id];
+      const sizeEl = langSizeEls.get(language.id);
+      if (sizeEl && li) sizeEl.textContent = li.sizeText;
+      const srcEl = langSrcEls.get(language.id);
+      if (srcEl && li) { srcEl.textContent = li.srcText; srcEl.classList.toggle("is-imported", li.isImported); }
+      const clearOne = langClearEls.get(language.id);
+      if (clearOne && li) clearOne.hidden = !li.loaded;
+      for (const lib of schemas) {
+        const el = metaEls.get(lib.id);
+        const si = cache.schemas[lib.id];
+        if (!el || !si) continue;
+        el.textContent = si.text;
+        el.classList.toggle("full-audio", si.full);
+        el.classList.toggle("partial-audio", si.partial);
+      }
+    }
+    if (cache.load) { loadBtn.disabled = cache.load.disabled; loadBtn.textContent = cache.load.text; }
+  }
+
+  // The heavy path: read clip keys + each bundle + per-language clip presence
+  // once, fold it into a plain cache object, store it module-side, and apply.
+  // Called on first open and after every mutating action (import/load/clear).
+  async function recompute() {
     const keySet = await allClipKeys();
+    const loadedVersions = loadState().audioPackVersions || {};
+    const cache = { manifest, langs: {}, schemas: {}, load: null };
     for (const { language, schemas } of groups) {
       let bundle = null;
       try { bundle = await (await fetch(schemas[0].data)).json(); } catch {}
@@ -142,28 +177,20 @@ export function renderLibraryPage() {
       for (const [vid, v] of Object.entries((manifest[language.id] && manifest[language.id].voices) || {})) voices[vid] = { ...v };
       for (const [vid, v] of Object.entries(importedVoices)) voices[vid] = { ...(voices[vid] || {}), ...v };
       const loaded = (await countClips(language.id)) > 0;
-      // Per-language audio footprint, shown on the header only when this
-      // language actually has clips stored. Byte totals are declared in the
-      // manifest / voices.json — never recomputed here.
-      const sizeEl = langSizeEls.get(language.id);
-      if (sizeEl) {
-        const totalBytes = Object.values(voices).reduce((a, v) => a + (v.bytes || 0), 0);
-        sizeEl.textContent = loaded && totalBytes ? ` · ${formatBytes(totalBytes)}` : "";
-      }
-      // Source tag + per-language clear. "Library" packs are published (in the
-      // manifest) and re-loadable; others are manual imports.
+      // Per-language audio footprint, shown only when this language has clips
+      // stored. Byte totals are declared in the manifest / voices.json.
+      const totalBytes = Object.values(voices).reduce((a, v) => a + (v.bytes || 0), 0);
+      // Source tag: "Library" packs are published (in the manifest) and
+      // re-loadable; others are manual imports.
       const published = !!manifest[language.id];
-      const srcEl = langSrcEls.get(language.id);
-      if (srcEl) {
-        srcEl.textContent = published ? "Library" : (loaded ? "Imported" : "Import only");
-        srcEl.classList.toggle("is-imported", !published);
-      }
-      const clearOne = langClearEls.get(language.id);
-      if (clearOne) clearOne.hidden = !loaded;
+      cache.langs[language.id] = {
+        loaded,
+        sizeText: loaded && totalBytes ? ` · ${formatBytes(totalBytes)}` : "",
+        srcText: published ? "Library" : (loaded ? "Imported" : "Import only"),
+        isImported: !published
+      };
       for (const lib of schemas) {
-        const el = metaEls.get(lib.id);
-        if (!el) continue;
-        if (!bundle) { el.textContent = ""; continue; }
+        if (!bundle) { cache.schemas[lib.id] = { text: "", full: false, partial: false }; continue; }
         const entries = bundle.decks
           .filter((d) => (d.kind || "word") === lib.deckKind)
           .flatMap((d) => d.entries);
@@ -180,11 +207,26 @@ export function renderLibraryPage() {
           if (n < total) anyPartial = true;
         }
         const noun = KIND_NOUN[lib.deckKind] || "cards";
-        el.textContent = `${total} ${noun}` + (parts.length ? ` · ${parts.join(" · ")}` : (total ? " · no audio" : ""));
-        el.classList.toggle("full-audio", parts.length > 0 && !anyPartial);
-        el.classList.toggle("partial-audio", parts.length > 0 && anyPartial);
+        cache.schemas[lib.id] = {
+          text: `${total} ${noun}` + (parts.length ? ` · ${parts.join(" · ")}` : (total ? " · no audio" : "")),
+          full: parts.length > 0 && !anyPartial,
+          partial: parts.length > 0 && anyPartial
+        };
       }
     }
+    // Load button: stale = published packs whose loaded version differs OR that
+    // have no clips in storage. Reuses the per-language `loaded` already read.
+    const packLangs = Object.keys(manifest);
+    if (!packLangs.length) {
+      cache.load = { disabled: true, text: "No audio packs" };
+    } else {
+      const stale = packLangs.filter((lang) =>
+        loadedVersions[lang] !== manifest[lang].version || !(cache.langs[lang] && cache.langs[lang].loaded));
+      const anyLoaded = packLangs.some((l) => !stale.includes(l));
+      cache.load = { disabled: stale.length === 0, text: stale.length === 0 ? "Audio up to date" : (anyLoaded ? "Update audio" : "Load audio") };
+    }
+    metaCache = cache;
+    applyMeta(cache);
   }
 
   // --- Load wiring (version-aware) ----------------------------------------
@@ -206,14 +248,6 @@ export function renderLibraryPage() {
     }
     return out;
   };
-  async function refreshLoadButton() {
-    const langs = Object.keys(manifest);
-    if (!langs.length) { loadBtn.disabled = true; loadBtn.textContent = "No audio packs"; return; }
-    const stale = await outdatedLangs();
-    loadBtn.disabled = stale.length === 0;
-    const anyLoaded = langs.some((l) => !stale.includes(l));
-    loadBtn.textContent = stale.length === 0 ? "Audio up to date" : (anyLoaded ? "Update audio" : "Load audio");
-  }
 
   loadBtn.addEventListener("click", async () => {
     const stale = await outdatedLangs();
@@ -236,8 +270,7 @@ export function renderLibraryPage() {
       importStatus.textContent = packs
         ? `Loaded ${matched} clip${matched === 1 ? "" : "s"} from ${packs} pack${packs === 1 ? "" : "s"}${unmatched ? ` · ${unmatched} unmatched` : ""}`
         : "No bundled audio packs found";
-      refreshLoadButton();
-      await refreshMeta();
+      await recompute();
     } catch (err) {
       importStatus.textContent = `Load failed: ${err.message}`;
     }
@@ -262,7 +295,7 @@ export function renderLibraryPage() {
           + (skipped && skipped.length ? ` · ${skipped.join(", ")} already up to date` : "")
           + (unmatched ? ` · ${unmatched} unmatched` : "");
       }
-      await refreshMeta();
+      await recompute();
     } catch (err) {
       importStatus.textContent = `Import failed: ${err.message}`;
     }
@@ -271,15 +304,21 @@ export function renderLibraryPage() {
     await clearAllClips();
     const st = loadState(); st.audioPackVersions = {}; saveState(st);
     importStatus.textContent = "Cleared all audio";
-    refreshLoadButton();
-    await refreshMeta();
+    await recompute();
   });
 
-  // Initial fill: fetch the (cheap) manifest first — it drives both the Load
-  // button and the per-voice tally — then run the heavier per-schema count.
+  // Initial fill. If we've computed before this session, apply the cache
+  // synchronously — no IndexedDB reads, no bundle fetches — so reopening is
+  // instant (the slow part on phones). Otherwise fetch the (cheap) manifest,
+  // then run the one-time heavy compute that fills + caches everything.
   loadBtn.disabled = true;
   loadBtn.textContent = "Load audio";
-  fetchAudioManifest().then((m) => { manifest = m; refreshLoadButton(); refreshMeta(); });
+  if (metaCache) {
+    manifest = metaCache.manifest || {};
+    applyMeta(metaCache);
+  } else {
+    fetchAudioManifest().then((m) => { manifest = m; recompute(); });
+  }
 
   backBtn.addEventListener("click", closeOverlay);
 
