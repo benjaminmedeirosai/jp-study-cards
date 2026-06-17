@@ -1009,16 +1009,33 @@
 .capture-trim { position: absolute; top: 0; height: 120px; width: 14px; margin-left: -7px; cursor: ew-resize; touch-action: none; }
 .capture-trim::before { content: ""; position: absolute; left: 6px; top: 0; width: 2px; height: 100%; background: var(--accent); }
 .capture-trim::after { content: ""; position: absolute; left: 2px; top: 50%; width: 10px; height: 20px; transform: translateY(-50%); border-radius: 3px; background: var(--accent); }
+/* Hard-trim (destructive) bars — red, to distinguish from the soft blue ones. */
+.capture-trim--hard::before { background: #f87171; }
+.capture-trim--hard::after { background: #f87171; }
 
 .capture-controls { display: flex; flex-wrap: wrap; gap: 8px; }
 .capture-btn { min-height: 38px; padding: 0 16px; border: 1px solid rgba(148, 163, 184, 0.3); border-radius: 9px; background: rgba(15, 23, 42, 0.55); color: var(--text); font-size: 14px; font-weight: 600; cursor: pointer; }
 .capture-btn:hover { border-color: var(--accent-border); }
+.capture-btn:disabled { opacity: 0.4; cursor: not-allowed; }
 .capture-btn--rec { color: #fecaca; border-color: rgba(248, 113, 113, 0.5); }
 .capture-btn--stop { color: #fecaca; border-color: rgba(248, 113, 113, 0.6); background: rgba(220, 38, 38, 0.2); }
+.capture-btn--trim { color: #fecaca; border-color: rgba(248, 113, 113, 0.45); }
+.capture-btn--trim.is-on { color: #fff; background: rgba(220, 38, 38, 0.35); border-color: rgba(248, 113, 113, 0.85); }
 .capture-btn--save { margin-left: auto; color: #bbf7d0; border-color: rgba(74, 222, 128, 0.5); background: rgba(22, 163, 74, 0.18); }
 .capture-status { min-height: 16px; color: var(--muted); font-size: 13px; }
+/* Prominent, boxed warning (e.g. blocked actions with unsaved changes). */
+.capture-status.warn {
+  padding: 10px 14px;
+  border-radius: 10px;
+  border: 1px solid rgba(248, 113, 113, 0.6);
+  background: rgba(220, 38, 38, 0.18);
+  color: #fecaca;
+  font-size: 14px;
+  font-weight: 600;
+  box-shadow: 0 6px 18px rgba(220, 38, 38, 0.28);
+}
 
-/* Review options (keep-trimmed / normalize). */
+/* Review option (normalize). */
 .capture-opts { display: flex; flex-wrap: wrap; gap: 8px 16px; }
 .capture-opt { display: flex; align-items: center; gap: 6px; color: var(--muted); font-size: 13px; cursor: pointer; }
 .capture-opt input { accent-color: var(--accent); }

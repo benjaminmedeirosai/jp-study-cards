@@ -116,30 +116,33 @@ export function openCaptureWidget({ lang, entryKey, label, onChange }) {
   const timer = document.createElement("div");
   timer.className = "capture-timer";
   timer.textContent = "0.00s";
+  // Soft trim (blue): non-destructive playback window, stored as start/end on
+  // the take. Hard trim (red): destructively cuts the stored audio file.
   const trimStartEl = document.createElement("div"); trimStartEl.className = "capture-trim capture-trim--start"; trimStartEl.hidden = true;
   const trimEndEl = document.createElement("div"); trimEndEl.className = "capture-trim capture-trim--end"; trimEndEl.hidden = true;
-  stage.append(canvas, timer, trimStartEl, trimEndEl);
+  const hardStartEl = document.createElement("div"); hardStartEl.className = "capture-trim capture-trim--hard capture-trim--hstart"; hardStartEl.hidden = true;
+  const hardEndEl = document.createElement("div"); hardEndEl.className = "capture-trim capture-trim--hard capture-trim--hend"; hardEndEl.hidden = true;
+  stage.append(canvas, timer, hardStartEl, hardEndEl, trimStartEl, trimEndEl);
 
-  // Review options (keep source for lossless re-edit; normalize on save).
+  // Review option: normalize. Persisted on the take (it's a flag, not baked into
+  // the kept original — re-edit restores it).
   const opts = document.createElement("div");
   opts.className = "capture-opts";
   opts.hidden = true;
-  const keepLabel = document.createElement("label"); keepLabel.className = "capture-opt";
-  const keepChk = document.createElement("input"); keepChk.type = "checkbox";
-  keepLabel.append(keepChk, document.createTextNode(" Keep trimmed audio (re-editable)"));
   const normLabel = document.createElement("label"); normLabel.className = "capture-opt";
   const normChk = document.createElement("input"); normChk.type = "checkbox";
   normLabel.append(normChk, document.createTextNode(" Normalize volume"));
-  opts.append(keepLabel, normLabel);
+  opts.append(normLabel);
 
   const controls = document.createElement("div");
   controls.className = "capture-controls";
   const startBtn = document.createElement("button"); startBtn.type = "button"; startBtn.className = "capture-btn capture-btn--rec"; startBtn.textContent = "● Start";
   const stopBtn = document.createElement("button"); stopBtn.type = "button"; stopBtn.className = "capture-btn capture-btn--stop"; stopBtn.textContent = "■ Stop"; stopBtn.hidden = true;
   const playBtn = document.createElement("button"); playBtn.type = "button"; playBtn.className = "capture-btn"; playBtn.textContent = "▶ Play"; playBtn.hidden = true;
+  const trimBtn = document.createElement("button"); trimBtn.type = "button"; trimBtn.className = "capture-btn capture-btn--trim"; trimBtn.textContent = "✂ Trim file"; trimBtn.hidden = true;
   const saveBtn = document.createElement("button"); saveBtn.type = "button"; saveBtn.className = "capture-btn capture-btn--save"; saveBtn.textContent = "Save"; saveBtn.hidden = true;
   const discardBtn = document.createElement("button"); discardBtn.type = "button"; discardBtn.className = "capture-btn"; discardBtn.textContent = "Discard"; discardBtn.hidden = true;
-  controls.append(startBtn, stopBtn, playBtn, saveBtn, discardBtn);
+  controls.append(startBtn, stopBtn, playBtn, trimBtn, saveBtn, discardBtn);
 
   const status = document.createElement("div");
   status.className = "capture-status";
@@ -150,8 +153,10 @@ export function openCaptureWidget({ lang, entryKey, label, onChange }) {
   const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
   let stream = null, recorder = null, analyser = null, rafId = 0;
   let chunks = [], liveVals = [], recStartTs = 0;
-  let reviewBuffer = null;        // decoded AudioBuffer awaiting save
-  let trimStart = 0, trimEnd = 0; // seconds
+  let reviewBuffer = null;        // decoded AudioBuffer awaiting save (the ORIGINAL we keep)
+  let trimStart = 0, trimEnd = 0; // soft trim window (seconds, in reviewBuffer coords)
+  let hardStart = 0, hardEnd = 0; // hard-trim (destructive) bounds; default 0..duration
+  let hardActive = false;         // red hard-trim bars shown / in use
   let previewSrc = null, previewProgress = null; // null = not previewing
   let editId = null;              // set when re-editing an existing take
   let creatingNew = false;        // true while capturing/reviewing a brand-new take
@@ -161,6 +166,8 @@ export function openCaptureWidget({ lang, entryKey, label, onChange }) {
 
   const ctx2d = canvas.getContext("2d");
   const clearCanvas = () => ctx2d.clearRect(0, 0, canvas.width, canvas.height);
+  // status line; `warn` gives the prominent boxed style (e.g. blocked actions).
+  function setStatus(msg, warn = false) { status.textContent = msg || ""; status.classList.toggle("warn", !!warn && !!msg); }
 
   // Faint horizontal amplitude guides (center + ±50% + ±100%) so you can gauge
   // how loud the recording is.
@@ -216,8 +223,9 @@ export function openCaptureWidget({ lang, entryKey, label, onChange }) {
     clearCanvas(); drawGrid();
     for (let i = 0; i < ps.length; i++) {
       const t = (i / n) * dur;
-      const inTrim = t >= trimStart && t <= trimEnd;
-      ctx2d.fillStyle = inTrim ? accent : "rgba(148,163,184,0.35)";
+      const cut = hardActive && (t < hardStart || t > hardEnd);   // will be destroyed
+      const inTrim = t >= trimStart && t <= trimEnd;              // plays
+      ctx2d.fillStyle = cut ? "rgba(248,113,113,0.3)" : (inTrim ? accent : "rgba(148,163,184,0.35)");
       const h = Math.max(1, Math.min(1, ps[i] * gain) * canvas.height * 0.92);
       ctx2d.fillRect(i * 3, mid - h / 2, 2, h);
     }
@@ -230,6 +238,8 @@ export function openCaptureWidget({ lang, entryKey, label, onChange }) {
     }
     trimStartEl.style.left = `${(trimStart / dur) * 100}%`;
     trimEndEl.style.left = `${(trimEnd / dur) * 100}%`;
+    hardStartEl.style.left = `${(hardStart / dur) * 100}%`;
+    hardEndEl.style.left = `${(hardEnd / dur) * 100}%`;
     const peakPct = Math.round(Math.min(1, peakOf(reviewBuffer, trimStart, trimEnd) * gain) * 100);
     timer.textContent = `${(trimEnd - trimStart).toFixed(2)}s` + (trimStart > 0 || trimEnd < dur ? ` (of ${dur.toFixed(2)}s)` : "") + ` · peak ${peakPct}%` + (normChk.checked ? " · norm" : "");
     updateDirty();
@@ -239,8 +249,10 @@ export function openCaptureWidget({ lang, entryKey, label, onChange }) {
     mode = next;
     startBtn.hidden = next !== "idle";
     stopBtn.hidden = next !== "recording";
-    playBtn.hidden = saveBtn.hidden = discardBtn.hidden = opts.hidden = next !== "review";
+    playBtn.hidden = saveBtn.hidden = discardBtn.hidden = opts.hidden = trimBtn.hidden = next !== "review";
     trimStartEl.hidden = trimEndEl.hidden = next !== "review";
+    hardStartEl.hidden = hardEndEl.hidden = !(next === "review" && hardActive);
+    trimBtn.classList.toggle("is-on", hardActive);
     closeBtn.disabled = next === "recording";
   }
 
@@ -250,8 +262,9 @@ export function openCaptureWidget({ lang, entryKey, label, onChange }) {
   function isDirty() {
     if (creatingNew) return true;
     if (editId == null || !baseline) return false;
+    const hardCut = hardActive && (hardStart > 0.001 || hardEnd < reviewBuffer.duration - 0.001);
     return trimStart !== baseline.trimStart || trimEnd !== baseline.trimEnd
-      || normChk.checked !== baseline.norm || keepChk.checked !== baseline.keep;
+      || normChk.checked !== baseline.norm || hardCut;
   }
   // Save/Discard are meaningful only with pending changes.
   function updateDirty() {
@@ -260,9 +273,9 @@ export function openCaptureWidget({ lang, entryKey, label, onChange }) {
     discardBtn.disabled = !dirty;
   }
   // True if a context switch (play/star/edit/delete/close) should be blocked
-  // because changes are pending; shows a hint when it blocks.
+  // because changes are pending; shows the prominent warning when it blocks.
   function blockedByPending() {
-    if (mode === "review" && isDirty()) { status.textContent = "Save or discard your changes first."; return true; }
+    if (mode === "review" && isDirty()) { setStatus("Save or discard your changes first.", true); return true; }
     return false;
   }
 
@@ -270,7 +283,7 @@ export function openCaptureWidget({ lang, entryKey, label, onChange }) {
   // to idle — used when the user clicks play/star on a row, navigating away.
   function leaveReview() {
     stopPreview();
-    reviewBuffer = null; editId = null; creatingNew = false;
+    reviewBuffer = null; editId = null; creatingNew = false; hardActive = false;
     clearCanvas(); timer.textContent = "0.00s";
     setMode("idle");
   }
@@ -323,7 +336,7 @@ export function openCaptureWidget({ lang, entryKey, label, onChange }) {
       });
       const meta = document.createElement("span");
       meta.className = "capture-take-meta";
-      meta.textContent = `Take ${n} · ${(t.durationMs / 1000).toFixed(2)}s · ${fmtAgo(t.createdAt)}` + (t.hasSource ? " · ✎" : "");
+      meta.textContent = `Take ${n} · ${(t.durationMs / 1000).toFixed(2)}s · ${fmtAgo(t.createdAt)}`;
       const edit = document.createElement("button");
       edit.type = "button"; edit.className = "capture-take-edit"; edit.title = "Edit / re-trim"; edit.textContent = "✎";
       edit.addEventListener("click", () => { if (mode !== "recording" && !blockedByPending()) loadForEdit(t); });
@@ -343,14 +356,14 @@ export function openCaptureWidget({ lang, entryKey, label, onChange }) {
 
   // --- recording ---
   async function start() {
-    status.textContent = "";
+    setStatus("");
     editId = null;
     creatingNew = true; focusId = null; // a fresh take — show its placeholder
     renderTakes();
     try {
       stream = await navigator.mediaDevices.getUserMedia({ audio: true });
     } catch (err) {
-      status.textContent = err && err.name === "NotAllowedError" ? "Microphone permission denied." : `Mic unavailable: ${err?.message || err}`;
+      setStatus(err && err.name === "NotAllowedError" ? "Microphone permission denied." : `Mic unavailable: ${err?.message || err}`, true);
       creatingNew = false; renderTakes(); // drop the placeholder
       return;
     }
@@ -379,10 +392,11 @@ export function openCaptureWidget({ lang, entryKey, label, onChange }) {
     stopTracks();
     const blob = new Blob(chunks, { type: recorder.mimeType || "audio/webm" });
     try { reviewBuffer = await audioCtx.decodeAudioData(await blob.arrayBuffer()); }
-    catch (err) { status.textContent = `Could not decode recording: ${err?.message || err}`; creatingNew = false; setMode("idle"); renderTakes(); return; }
+    catch (err) { setStatus(`Could not decode recording: ${err?.message || err}`); creatingNew = false; setMode("idle"); renderTakes(); return; }
     trimStart = 0; trimEnd = reviewBuffer.duration;
-    keepChk.checked = false; normChk.checked = false; // fresh-take defaults
-    baseline = { trimStart, trimEnd, norm: false, keep: false };
+    hardActive = false; hardStart = 0; hardEnd = reviewBuffer.duration;
+    normChk.checked = false; // fresh-take default
+    baseline = { trimStart, trimEnd, norm: false };
     setMode("review");
     renderTakes(); // placeholder text: "recording…" → "new"
     drawReview();
@@ -391,25 +405,26 @@ export function openCaptureWidget({ lang, entryKey, label, onChange }) {
   // --- re-edit an existing take ---
   async function loadForEdit(take) {
     stopPreview();
-    status.textContent = "";
-    const srcBlob = take.hasSource ? await getRecordingSource(lang, entryKey, take.id) : null;
-    const blob = srcBlob || await getRecordingBlob(lang, entryKey, take.id);
-    if (!blob) { status.textContent = "Recording unavailable."; return; }
+    setStatus("");
+    // The kept original (always present for new takes); fall back to the rendered
+    // clip for any legacy take saved without a source.
+    const srcBlob = (await getRecordingSource(lang, entryKey, take.id)) || await getRecordingBlob(lang, entryKey, take.id);
+    if (!srcBlob) { setStatus("Recording unavailable."); return; }
+    const hasSource = take.hasSource !== false;
     if (audioCtx.state === "suspended") await audioCtx.resume();
-    try { reviewBuffer = await audioCtx.decodeAudioData(await blob.arrayBuffer()); }
-    catch (err) { status.textContent = `Could not load: ${err?.message || err}`; return; }
+    try { reviewBuffer = await audioCtx.decodeAudioData(await srcBlob.arrayBuffer()); }
+    catch (err) { setStatus(`Could not load: ${err?.message || err}`); return; }
     editId = take.id;
     creatingNew = false;
     focusId = take.id; // highlight the take being edited
-    // With a kept source, restore the prior trim window; otherwise the clip is
-    // already trimmed → full extent, trim further only.
-    trimStart = srcBlob && take.trimEnd > take.trimStart ? take.trimStart : 0;
-    trimEnd = srcBlob && take.trimEnd > take.trimStart ? Math.min(take.trimEnd, reviewBuffer.duration) : reviewBuffer.duration;
-    keepChk.checked = take.hasSource;
-    normChk.checked = false;
-    baseline = { trimStart, trimEnd, norm: false, keep: take.hasSource };
+    hardActive = false; hardStart = 0; hardEnd = reviewBuffer.duration;
+    // Restore the saved soft window + normalize flag from the take.
+    trimStart = hasSource && take.trimEnd > take.trimStart ? Math.max(0, take.trimStart) : 0;
+    trimEnd = hasSource && take.trimEnd > take.trimStart ? Math.min(take.trimEnd, reviewBuffer.duration) : reviewBuffer.duration;
+    normChk.checked = !!take.normalize;
+    baseline = { trimStart, trimEnd, norm: !!take.normalize };
     setMode("review");
-    status.textContent = `Editing take · ${srcBlob ? "full audio" : "trimmed only"}`;
+    setStatus(`Editing ${hasSource ? "take" : "take (legacy)"}`);
     renderTakes();
     drawReview();
   }
@@ -439,6 +454,15 @@ export function openCaptureWidget({ lang, entryKey, label, onChange }) {
     requestAnimationFrame(tick);
   }
 
+  // Keep the soft window inside the hard bounds (a soft bar can't sit outside
+  // the hard-trim range, which would drop part of the kept-audio playback).
+  function clampSoft() {
+    const lo = hardActive ? hardStart : 0;
+    const hi = hardActive ? hardEnd : reviewBuffer.duration;
+    trimStart = Math.max(lo, Math.min(trimStart, hi - 0.05));
+    trimEnd = Math.min(hi, Math.max(trimEnd, trimStart + 0.05));
+  }
+
   function dragHandle(el, which) {
     el.addEventListener("pointerdown", (e) => {
       e.preventDefault();
@@ -447,8 +471,12 @@ export function openCaptureWidget({ lang, entryKey, label, onChange }) {
       const move = (ev) => {
         const frac = Math.max(0, Math.min(1, (ev.clientX - rect.left) / rect.width));
         const t = frac * reviewBuffer.duration;
-        if (which === "start") trimStart = Math.min(t, trimEnd - 0.05);
-        else trimEnd = Math.max(t, trimStart + 0.05);
+        const lo = hardActive ? hardStart : 0;
+        const hi = hardActive ? hardEnd : reviewBuffer.duration;
+        if (which === "start") trimStart = Math.max(lo, Math.min(t, trimEnd - 0.05));
+        else if (which === "end") trimEnd = Math.min(hi, Math.max(t, trimStart + 0.05));
+        else if (which === "hstart") { hardStart = Math.max(0, Math.min(t, hardEnd - 0.05)); clampSoft(); }
+        else if (which === "hend") { hardEnd = Math.min(reviewBuffer.duration, Math.max(t, hardStart + 0.05)); clampSoft(); }
         drawReview();
       };
       const up = (ev) => { el.releasePointerCapture(ev.pointerId); el.removeEventListener("pointermove", move); el.removeEventListener("pointerup", up); };
@@ -458,22 +486,47 @@ export function openCaptureWidget({ lang, entryKey, label, onChange }) {
   }
   dragHandle(trimStartEl, "start");
   dragHandle(trimEndEl, "end");
+  dragHandle(hardStartEl, "hstart");
+  dragHandle(hardEndEl, "hend");
+
+  // ✂ Trim file: toggle the red hard-trim bars. On = bars at the full extent
+  // (drag them in to cut); off = no hard cut (reset to full).
+  function toggleTrim() {
+    hardActive = !hardActive;
+    if (hardActive) { hardStart = 0; hardEnd = reviewBuffer ? reviewBuffer.duration : 0; }
+    trimBtn.classList.toggle("is-on", hardActive);
+    hardStartEl.hidden = hardEndEl.hidden = !hardActive;
+    setStatus(hardActive ? "Hard-trim: drag the red bars to cut the saved file." : "");
+    drawReview();
+  }
 
   async function save() {
     if (!reviewBuffer) return;
+    const dur = reviewBuffer.duration;
+    // Hard-trim (destructive) bounds: the kept audio. Default = full buffer.
+    const hStart = hardActive ? hardStart : 0;
+    const hEnd = hardActive ? hardEnd : dur;
+    // Stored ORIGINAL = the (hard-cut) buffer, always kept, un-normalized.
+    const sourceBlob = encodeWav(reviewBuffer, hStart, hEnd, 1);
+    // Rendered playback clip = soft window, normalized if flagged. Card playback
+    // plays a plain blob, so the soft trim + normalize are baked into this clip;
+    // the original above + the flags below let re-edit reconstruct it.
     const clip = encodeWav(reviewBuffer, trimStart, trimEnd, currentGain());
     const durMs = (trimEnd - trimStart) * 1000;
-    // Keep the untrimmed buffer (raw, un-normalized) so re-edit can re-extend.
-    const opts2 = keepChk.checked
-      ? { sourceBlob: encodeWav(reviewBuffer, 0, reviewBuffer.duration, 1), trimStart, trimEnd, fullDurationMs: reviewBuffer.duration * 1000 }
-      : {};
+    const opts2 = {
+      sourceBlob,
+      trimStart: trimStart - hStart,         // soft bounds relative to the kept original
+      trimEnd: trimEnd - hStart,
+      normalize: normChk.checked,
+      fullDurationMs: (hEnd - hStart) * 1000
+    };
     let savedId;
     if (editId) { await updateRecording(lang, entryKey, editId, clip, durMs, opts2); savedId = editId; }
     else { savedId = await addRecording(lang, entryKey, clip, durMs, opts2); }
-    editId = null; creatingNew = false; focusId = savedId; // keep the saved take highlighted
+    editId = null; creatingNew = false; hardActive = false; focusId = savedId;
     stopPreview(); reviewBuffer = null; clearCanvas(); timer.textContent = "0.00s";
     setMode("idle");
-    status.textContent = "Saved.";
+    setStatus("Saved.");
     onChange?.();
     renderTakes();
   }
@@ -481,10 +534,10 @@ export function openCaptureWidget({ lang, entryKey, label, onChange }) {
   function discard() {
     // Keep an edited take highlighted; a discarded new take has no focus.
     focusId = editId || null;
-    editId = null; creatingNew = false;
+    editId = null; creatingNew = false; hardActive = false;
     stopPreview(); reviewBuffer = null; clearCanvas(); timer.textContent = "0.00s";
     setMode("idle");
-    status.textContent = "";
+    setStatus("");
     renderTakes();
   }
 
@@ -511,7 +564,7 @@ export function openCaptureWidget({ lang, entryKey, label, onChange }) {
   startBtn.addEventListener("click", start);
   stopBtn.addEventListener("click", stop);
   normChk.addEventListener("change", () => drawReview()); // live: rescale waveform + peak readout (+ dirty)
-  keepChk.addEventListener("change", updateDirty);
+  trimBtn.addEventListener("click", toggleTrim);
   playBtn.addEventListener("click", preview);
   saveBtn.addEventListener("click", save);
   discardBtn.addEventListener("click", discard);

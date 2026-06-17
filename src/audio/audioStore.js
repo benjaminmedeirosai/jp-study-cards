@@ -290,7 +290,7 @@ export async function addRecording(lang, entryKey, blob, durationMs, opts = {}) 
   meta.takes.push({
     id, createdAt: Date.now(), durationMs: Math.round(durationMs) || 0,
     hasSource: !!opts.sourceBlob, trimStart: opts.trimStart || 0, trimEnd: opts.trimEnd || 0,
-    fullDurationMs: Math.round(opts.fullDurationMs) || Math.round(durationMs) || 0
+    normalize: !!opts.normalize, fullDurationMs: Math.round(opts.fullDurationMs) || Math.round(durationMs) || 0
   });
   if (!meta.activeId) meta.activeId = id; // first take becomes the active one
   await recPut(recMetaKey(lang, entryKey), meta);
