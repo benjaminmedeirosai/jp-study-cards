@@ -23,6 +23,21 @@ export function slugify(value) {
     .replace(/[^a-z0-9_-]/g, "");
 }
 
+// Polytonic → monotonic Greek, for SPEECH only (display keeps the polytonic
+// spelling). Modern Greek TTS voices (the only ones available) don't understand
+// the ancient breathing marks: a smooth/rough breathing on an initial vowel
+// makes the voice swallow the whole vowel (Ἄρης → "ris" instead of "A-ris").
+// Decompose, drop the breathings + iota-subscript, fold circumflex/grave onto
+// the acute (the monotonic tonos), keep acute + diaeresis, recompose.
+export function monotonizeGreek(text) {
+  return String(text ?? "")
+    .normalize("NFD")
+    // ̓ psili, ̔ dasia, ͅ ypogegrammeni → drop;
+    // ͂ perispomeni, ̀ varia → ́ oxia (acute).
+    .replace(/[̓̔͂̀ͅ]/g, (m) => (m === "͂" || m === "̀" ? "́" : ""))
+    .normalize("NFC");
+}
+
 // Small, sync, dependency-free 53-bit hash (cyrb53) — identical under Node and
 // the browser. Used to slug entries whose fields aren't ASCII-uniquely
 // sluggable (Japanese: kanji/kana slugify to ""; the English fallback collides
@@ -90,12 +105,13 @@ export function audioText(entry, lib) {
   const source = (lib.soundSources || [])[0];
   if (source) {
     const t = audioTextForSource(entry, lib, source.value);
-    if (t) return t;
+    if (t) return t; // already speech-normalized by audioTextForSource
   }
   const f = lib.fields || {};
-  return [f.primary, f.reading, f.translation]
+  const raw = [f.primary, f.reading, f.translation]
     .map((key) => key && String(entry?.[key] ?? "").trim())
     .find(Boolean) || "";
+  return lib.monotonicSpeech ? monotonizeGreek(raw) : raw;
 }
 
 // The spoken text for a SPECIFIC sound source (by its value) — the first
@@ -106,7 +122,7 @@ export function audioTextForSource(entry, lib, sourceValue) {
   if (!source) return "";
   for (const key of source.keys) {
     const value = String(entry?.[key] ?? "").trim();
-    if (value) return value;
+    if (value) return lib.monotonicSpeech ? monotonizeGreek(value) : value;
   }
   return "";
 }

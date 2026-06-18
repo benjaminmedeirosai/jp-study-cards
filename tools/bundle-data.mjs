@@ -58,6 +58,19 @@ const SCHEMAS = {
     ]
   },
   spanish: { headers: ["spanish", "type", "english"], optional: [], texts: false },
+  greek: {
+    headers: ["greek", "translit", "english", "type"],
+    optional: [],
+    texts: false,
+    subschemas: [
+      {
+        prefix: "alphabet/",
+        kind: "alpha",
+        headers: ["index", "upper", "lower", "name", "name_el", "sound", "value"],
+        optional: []
+      }
+    ]
+  },
   farsi: {
     headers: ["word", "vocalized", "label", "meaning"],
     optional: [],

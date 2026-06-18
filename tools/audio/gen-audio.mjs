@@ -46,13 +46,17 @@ function installedVoices() {
   return sayListing;
 }
 // Auto-resolve the installed voice for a tts locale (fa-IR → the fa_IR voice).
+// When several voices share a locale (e.g. "Melina" + "Melina (Enhanced)"),
+// prefer the higher-quality Premium/Enhanced variant.
 function voiceForLang(ttsLang) {
   const locale = String(ttsLang || "").replace("-", "_");
+  const matches = [];
   for (const line of installedVoices().split("\n")) {
     const m = line.match(/^(.+?)\s{2,}([A-Za-z_]+)\s/);
-    if (m && m[2] === locale) return m[1].trim();
+    if (m && m[2] === locale) matches.push(m[1].trim());
   }
-  throw new Error(`no installed voice for locale ${locale} — install one in System Settings › Accessibility › Spoken Content`);
+  if (!matches.length) throw new Error(`no installed voice for locale ${locale} — install one in System Settings › Accessibility › Spoken Content`);
+  return matches.find((n) => /\((?:Premium|Enhanced)\)/i.test(n)) || matches[0];
 }
 function assertVoiceInstalled(name) {
   const ok = installedVoices().split("\n").some((line) => line.startsWith(name + " ") || line.startsWith(name + "\t") || line.trimEnd().startsWith(name + " "));

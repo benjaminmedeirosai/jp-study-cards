@@ -26,5 +26,16 @@
         "bytes": 5067348
       }
     }
+  },
+  "greek": {
+    "version": "2d055b6cb92c",
+    "voices": {
+      "melina": {
+        "name": "Melina (Enhanced)",
+        "locale": "el-GR",
+        "clips": 115,
+        "bytes": 1043617
+      }
+    }
   }
 }

@@ -174,7 +174,14 @@ export const MODES = [
   { id: "final", label: "Final" },
   // Farsi harakat: the mark, and its plain-English effect.
   { id: "mark", label: "Mark" },
-  { id: "effect", label: "Effect" }
+  { id: "effect", label: "Effect" },
+  // Greek words: the Greek form (primary) and its Latin transliteration (reading).
+  { id: "greek", label: "Greek", slot: "primary" },
+  { id: "translit", label: "Transliteration", slot: "reading" },
+  // Greek alphabet: the Greek letter name and the letter's classical sound
+  // (addressed directly in the Greek alpha render, like the Farsi alpha modes).
+  { id: "name-gr", label: "Name (Greek)" },
+  { id: "sound", label: "Sound" }
 ];
 // `slot` = which logical field this groups/sorts by; `unit` = the likeness
 // extractor for the slotting/grouping variants (han chars, kana units, or Latin

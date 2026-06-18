@@ -890,6 +890,12 @@
   font-size: var(--japanese-english-font-size, 18px);
   color: var(--muted);
 }
+/* Greek alphabet: the classical sound, just under the upper/lower hero. */
+.card-alpha-sound {
+  font-size: var(--japanese-english-font-size, 18px);
+  color: var(--muted);
+  font-family: system-ui, sans-serif;
+}
 /* The Farsi name with its letters separated into isolated forms, under the
    joined name (alphabet bottom band). Uses the Farsi/reading font. */
 .card-alpha-spell {

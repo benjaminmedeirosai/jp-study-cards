@@ -1,0 +1,29 @@
+# label: Basic Words
+# Very basic ancient Greek vocabulary — the elements, core nouns, and a few
+# essentials. Ancient words, monotonic spelling. Columns:
+# greek / translit / english / type (part of speech).
+greek	translit	english	type
+ναι	naí	yes	particle
+ουχί	ouchí	no	particle
+χαίρε	chaîre	hello / greetings	interjection
+ύδωρ	hýdōr	water	noun
+πυρ	pŷr	fire	noun
+γη	gê	earth, land	noun
+αήρ	aḗr	air	noun
+θεός	theós	god	noun
+άνθρωπος	ánthrōpos	human being	noun
+ανήρ	anḗr	man	noun
+γυνή	gynḗ	woman	noun
+αγάπη	agápē	love	noun
+πόλεμος	pólemos	war	noun
+ειρήνη	eirḗnē	peace	noun
+λόγος	lógos	word, reason	noun
+σοφία	sophía	wisdom	noun
+βασιλεύς	basileús	king	noun
+φως	phôs	light	noun
+θάλασσα	thálassa	sea	noun
+ζωή	zōḗ	life	noun
+θάνατος	thánatos	death	noun
+αγαθός	agathós	good	adjective
+κακός	kakós	bad	adjective
+μέγας	mégas	great, big	adjective

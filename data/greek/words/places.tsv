@@ -1,0 +1,27 @@
+# label: Places
+# Places of antiquity — cities, islands, regions, and famous sites. Ancient
+# polytonic. Columns: greek / translit / english (name) / type (kind of place).
+greek	translit	english	type
+Αθήναι	Athênai	Athens	City
+Σπάρτη	Spártē	Sparta	City
+Όλυμπος	Ólympos	Mount Olympus	Mountain (home of the gods)
+Δελφοί	Delphoí	Delphi	Oracle sanctuary
+Θήβαι	Thêbai	Thebes	City
+Τροία	Troía	Troy	City
+Κόρινθος	Kórinthos	Corinth	City
+Κρήτη	Krḗtē	Crete	Island
+Μυκήναι	Mykênai	Mycenae	City (Bronze Age)
+Μαραθών	Marathṓn	Marathon	Battle site
+Θερμοπύλαι	Thermopýlai	Thermopylae	Mountain pass (battle)
+Ακρόπολις	Akrópolis	Acropolis	Citadel
+Παρθενών	Parthenṓn	Parthenon	Temple of Athena
+Ελλάς	Hellás	Hellas (Greece)	Region
+Αίγυπτος	Aígyptos	Egypt	Region
+Μακεδονία	Makedonía	Macedonia	Region
+Ιθάκη	Ithákē	Ithaca	Island
+Ρόδος	Rhódos	Rhodes	Island
+Σάμος	Sámos	Samos	Island
+Μίλητος	Mílētos	Miletus	City (Ionia)
+Αλεξάνδρεια	Alexándreia	Alexandria	City (Hellenistic)
+Ολυμπία	Olympía	Olympia	Sanctuary (the Games)
+Πελοπόννησος	Pelopónnēsos	Peloponnese	Peninsula

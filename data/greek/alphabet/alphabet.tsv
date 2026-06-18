@@ -1,0 +1,33 @@
+# label: Alphabet
+# Greek alphabet — 24 letters, uppercase + lowercase. Same letters across
+# Modern/Koine/Classical; the names + sound values are the classical
+# (ancient) ones. `value` is the letter's numeral value (the milesian system:
+# ϝ digamma=6 and ϟ qoppa=90 are archaic numeral-only letters, so ζ=7 and the
+# jump κ→ρ skips 90 — that gap is authentic to antiquity).
+# Columns: index / upper / lower / name (English) / name_el (Greek spelling,
+# what TTS speaks) / sound (classical pronunciation) / value (numeral).
+index	upper	lower	name	name_el	sound	value
+1	Α	α	alpha	άλφα	a (father)	1
+2	Β	β	beta	βήτα	b	2
+3	Γ	γ	gamma	γάμμα	g (go)	3
+4	Δ	δ	delta	δέλτα	d	4
+5	Ε	ε	epsilon	έψιλον	e (pet)	5
+6	Ζ	ζ	zeta	ζήτα	zd / z	7
+7	Η	η	eta	ήτα	ē (long, hair)	8
+8	Θ	θ	theta	θήτα	th (aspirated t)	9
+9	Ι	ι	iota	ιώτα	i	10
+10	Κ	κ	kappa	κάππα	k	20
+11	Λ	λ	lambda	λάμβδα	l	30
+12	Μ	μ	mu	μυ	m	40
+13	Ν	ν	nu	νυ	n	50
+14	Ξ	ξ	xi	ξι	x (ks)	60
+15	Ο	ο	omicron	όμικρον	o (short)	70
+16	Π	π	pi	πι	p	80
+17	Ρ	ρ	rho	ρω	r (rolled)	100
+18	Σ	σ/ς	sigma	σίγμα	s	200
+19	Τ	τ	tau	ταυ	t	300
+20	Υ	υ	upsilon	ύψιλον	u / ü	400
+21	Φ	φ	phi	φι	ph (aspirated p)	500
+22	Χ	χ	chi	χι	kh (aspirated k)	600
+23	Ψ	ψ	psi	ψι	ps	700
+24	Ω	ω	omega	ωμέγα	ō (long, saw)	800

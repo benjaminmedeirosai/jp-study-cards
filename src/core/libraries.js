@@ -24,7 +24,8 @@
 export const LANGUAGES = [
   { id: "japanese", label: "Japanese", short: "日本語" },
   { id: "spanish", label: "Spanish", short: "ES" },
-  { id: "farsi", label: "Farsi", short: "فا" }
+  { id: "farsi", label: "Farsi", short: "فا" },
+  { id: "greek", label: "Greek", short: "Ελ" }
 ];
 
 // Each entry is a SCHEMA — the unit of independent state/modes/settings/card.
@@ -225,6 +226,65 @@ export const LIBRARIES = [
     searchKeys: ["mark", "name", "name_fa", "effect", "ex1", "ex1_rom", "ex2", "ex2_rom", "ex3", "ex3_rom", "ex4", "ex4_rom"],
     // examplesTable: render the usage-examples card layout.
     features: { soundSource: false, gloss: false, texts: false, examplesTable: true }
+  },
+  {
+    // Ancient/Classical Greek words — gods (by group), basic vocabulary, and
+    // places of antiquity. Polytonic spelling; the `translit` field is a Latin
+    // transliteration (pronunciation aid, shown like Farsi's romanization).
+    // TTS is Modern Greek (the only available voice) — an approximation of the
+    // ancient sound.
+    id: "greek",
+    label: "Greek",
+    short: "Ελ",
+    language: "greek",
+    schemaLabel: "Words",
+    data: "data/greek/cards.json",
+    deckKind: "word",
+    tts: { lang: "el-GR", estimate: { source: "primary", msPerUnit: 90 } },
+    voiceSample: "Γεια σας. Αυτή είναι μια δοκιμή φωνής.",
+    // Speak a monotonic form: the Modern Greek TTS voice mangles polytonic
+    // breathing marks (drops the initial vowel). Display stays polytonic.
+    monotonicSpeech: true,
+    fields: { primary: "greek", reading: "translit", translation: "english", type: "type", gloss: null },
+    labels: { primary: "Greek", reading: "Transliteration" },
+    // Greek slugifies to empty and English names can repeat; the transliteration
+    // is unique ASCII (after accent folding), so use it for clip filenames.
+    audioSlugField: "translit",
+    fontIds: ["default", "sys-sans", "sys-serif"],
+    modeIds: ["greek", "english", "translit", "voice", "show-all"],
+    groupingIds: ["file-order", "primary-alpha", "english-alpha"],
+    features: { soundSource: false, gloss: false, texts: false }
+  },
+  {
+    // Greek alphabet — its own schema. The card shows uppercase + lowercase
+    // together (a key feature of Greek), the letter's name (Greek + English),
+    // its classical sound, and its numeral value. Rendered specially (no Arabic
+    // positional-forms table). TTS speaks the Greek letter name (name_el).
+    id: "greek-alpha",
+    label: "Greek Alphabet",
+    short: "Α Β Γ",
+    language: "greek",
+    schemaLabel: "Alphabet",
+    data: "data/greek/cards.json",
+    deckKind: "alpha",
+    tts: { lang: "el-GR", estimate: { source: "reading", msPerUnit: 300 } },
+    voiceSample: "ἄλφα, βῆτα, γάμμα.",
+    monotonicSpeech: true, // see the Greek words schema — speak monotonic, show polytonic
+    // primary→lowercase (for entryKey/sort); the card renders upper+lower from
+    // the raw fields. reading→Greek name (spoken), translation→English name,
+    // type→classical sound.
+    fields: { primary: "lower", reading: "name_el", translation: "name", type: "sound", gloss: null },
+    // Navigate in canonical alphabet order (the `index` column).
+    orderBy: "index",
+    labels: { primary: "Letter", reading: "Greek name", translation: "English name", gloss: "Sound" },
+    fontIds: ["default", "sys-sans", "sys-serif"],
+    modeIds: ["letter", "name-en", "name-gr", "sound", "voice", "show-all"],
+    groupingIds: ["file-order"],
+    soundSourceScope: "library",
+    soundSources: [{ value: "name", label: "Name", keys: ["name_el"] }],
+    searchKeys: ["upper", "lower", "name", "name_el", "sound"],
+    // greekAlpha: render the uppercase/lowercase letter card layout.
+    features: { soundSource: false, gloss: false, texts: false, greekAlpha: true }
   }
 ];
 

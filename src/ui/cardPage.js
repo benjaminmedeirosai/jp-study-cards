@@ -1,6 +1,6 @@
 import { speak } from "../audio/speech.js";
 import { firstClip, voiceIdsForLang, clipKey, getClip, fetchAudioManifest, getAudioMeta, REC_VOICE } from "../audio/audioStore.js";
-import { audioMultiSource } from "../audio/audioKey.js";
+import { audioMultiSource, monotonizeGreek } from "../audio/audioKey.js";
 import { LIBRARIES } from "../core/libraries.js";
 import { buildSetOptions, activeSetGrouping, computeDeckSets } from "../core/sets.js";
 import { beginSession, endSession, sessionQualifies } from "../core/filters.js";
@@ -97,10 +97,12 @@ export function renderCardPage() {
   const schemaIsKanji = lib.deckKind === "kanji";
   const schemaIsAlpha = lib.features?.formsTable === true;     // Farsi alphabet
   const schemaIsHarakat = lib.features?.examplesTable === true; // Farsi harakat
+  const schemaIsGreekAlpha = lib.features?.greekAlpha === true; // Greek alphabet
   const rtl = lib.rtl === true;                                 // Farsi (RTL script)
   root.classList.toggle("kanji-schema", schemaIsKanji);
   root.classList.toggle("alpha-schema", schemaIsAlpha);
   root.classList.toggle("harakat-schema", schemaIsHarakat);
+  root.classList.toggle("greek-alpha-schema", schemaIsGreekAlpha);
   root.classList.toggle("rtl-schema", rtl);
   root.classList.toggle("show-hotkeys", state.showHotkeys);
   let bundle = null;
@@ -453,7 +455,10 @@ export function renderCardPage() {
   // the Web Speech voice. The clip is keyed by the card's identity, so it works
   // regardless of which deck view surfaced the card.
   function speakTts(entry) {
-    const value = studySpeechText(entry);
+    let value = studySpeechText(entry);
+    // Greek: speak a monotonic form (the modern TTS voice drops vowels under
+    // polytonic breathing marks); the card still shows the polytonic spelling.
+    if (value && activeLibrary().monotonicSpeech) value = monotonizeGreek(value);
     if (value) speak(value, { lang: activeLibrary().tts.lang, voiceName: state.voice, rate: state.voiceRate });
   }
   function speakStudy() {
@@ -844,6 +849,7 @@ export function renderCardPage() {
     cardSpell.style.display = "none"; // only the word card uses it
     if (schemaIsAlpha) renderFarsiAlphaSlots(entry, frontSlot, showFront);
     else if (schemaIsHarakat) renderFarsiHarakatSlots(entry, frontSlot, showFront);
+    else if (schemaIsGreekAlpha) renderGreekAlphaSlots(entry, frontSlot, showFront);
     else if (schemaIsKanji) renderKanjiSlots(entry, frontSlot, showFront);
     else renderWordSlots(entry, frontSlot, showFront);
     revealBtn.querySelector(".icon").innerHTML = revealed ? ICONS.eyeOff : ICONS.eye;
@@ -1034,6 +1040,42 @@ export function renderCardPage() {
     }
 
     cardAlpha.replaceChildren(idx, rom, hero, row, bottom);
+  }
+
+  // --- Greek alphabet card -------------------------------------------------
+  // Uppercase + lowercase together (the hero — a defining feature of Greek), the
+  // classical sound under it, and the Greek + English names in the bottom band.
+  // Index (top-left) and numeral value (top-right) sit in the corners. Each
+  // element is its own mode-addressable field (letter / sound / name-gr / name-en).
+  function renderGreekAlphaSlots(entry, frontSlot, showFront) {
+    for (const slot of [cardType, cardReading, cardMain, cardEnglish, cardGloss]) setSlotVisible(slot, false);
+    cardAlpha.hidden = false;
+    const vis = (modeId) => (showFront || state.mode === modeId) ? "visible" : "hidden";
+    const elt = (cls, value) => { const n = document.createElement("div"); n.className = cls; n.textContent = value; return n; };
+
+    const index = text(entry, "index");
+    const value = text(entry, "value");
+    const idx = elt("card-alpha-index", index ? `${index} / 24` : "");
+    const val = elt("card-alpha-rom", value ? `= ${value}` : ""); // numeral value, top-right
+
+    // Hero: uppercase + lowercase shown together. Always the "letter" mode.
+    const hero = elt("card-alpha-hero", [text(entry, "upper"), text(entry, "lower")].filter(Boolean).join(" ") || "-");
+    hero.style.visibility = vis("letter");
+
+    // Classical sound, just under the hero.
+    const sound = elt("card-alpha-sound", text(entry, "sound"));
+    sound.style.visibility = vis("sound");
+
+    // Bottom band: Greek name (large) over the English name (muted).
+    const bottom = document.createElement("div");
+    bottom.className = "card-alpha-bottom";
+    const grName = elt("card-alpha-fa-inline", text(entry, "name_el"));
+    grName.style.visibility = vis("name-gr");
+    const enName = elt("card-alpha-effect", text(entry, "name"));
+    enName.style.visibility = vis("name-en");
+    bottom.append(grName, enName);
+
+    cardAlpha.replaceChildren(idx, val, hero, sound, bottom);
   }
 
   // --- Farsi harakat card --------------------------------------------------
