@@ -15,11 +15,23 @@
 
 import {
   listRecordings, getRecordingBlob, getRecordingSource,
-  addRecording, updateRecording, setActiveRecording, deleteRecording,
-  listPackClips, getAudioMeta
+  addRecording, updateRecording, setActiveRecording, deleteRecording
 } from "../audio/audioStore.js";
 
 const GREEN = "#4ade80";
+const HOT_COLOR = "#fbbf24";   // amber: signal getting hot
+const CLIP_COLOR = "#f87171";  // red: near full-scale, likely clipping
+const HOT_AT = 0.85;           // ≥ this fraction of full scale → amber
+const CLIP_AT = 0.99;          // ≥ this → red (clipping risk)
+// Normalization target: scale the trimmed peak to this (not 1.0). Leaves
+// headroom and matches the ~0.7–0.8 peak the macOS `say` clips sit at, so a
+// recording and a generated clip play back at a comparable loudness.
+const NORM_TARGET = 0.8;
+// Mic processing (browser AGC / noise suppression / echo cancellation). Off by
+// default so capture reflects true levels — AGC would auto-ride the gain and
+// make the clip meter + Normalize meaningless. Remembered across reopens within
+// the session. Toggled per capture in the Record dialog before pressing Start.
+let lastMicProcessing = false;
 
 // Peak amplitude over [startSec, endSec) of an AudioBuffer (channel 0), in [0,1].
 function peakOf(buffer, startSec, endSec) {
@@ -83,8 +95,11 @@ function fmtAgo(ms) {
   return h < 24 ? `${h}h ago` : `${Math.round(h / 24)}d ago`;
 }
 
-export function openCaptureWidget({ lang, entryKey, label, onChange }) {
+export function openCaptureWidget({ lang, entryKey, label, onChange, getPackClips }) {
   const accent = getComputedStyle(document.documentElement).getPropertyValue("--accent").trim() || "#60a5fa";
+  // Waveform bar color for a sample level (fraction of full scale): red near the
+  // ceiling (likely clipped), amber when hot, else the normal accent.
+  const levelColor = (lvl) => (lvl >= CLIP_AT ? CLIP_COLOR : lvl >= HOT_AT ? HOT_COLOR : accent);
 
   const backdrop = document.createElement("div");
   backdrop.className = "capture-backdrop";
@@ -135,6 +150,18 @@ export function openCaptureWidget({ lang, entryKey, label, onChange }) {
   normLabel.append(normChk, document.createTextNode(" Normalize volume"));
   opts.append(normLabel);
 
+  // Idle option: mic processing. Off → raw capture (true levels for the meter +
+  // Normalize); on → the browser's auto-gain/noise-suppression/echo-cancellation.
+  // Chosen before Start; applies to the next capture.
+  const micOpts = document.createElement("div");
+  micOpts.className = "capture-opts";
+  micOpts.hidden = true;
+  const micLabel = document.createElement("label"); micLabel.className = "capture-opt";
+  micLabel.title = "On: browser auto-gain, noise suppression, and echo cancellation. Off: raw mic — true levels (best for the clip meter).";
+  const micChk = document.createElement("input"); micChk.type = "checkbox"; micChk.checked = lastMicProcessing;
+  micLabel.append(micChk, document.createTextNode(" Mic processing (auto-gain / noise reduction)"));
+  micOpts.append(micLabel);
+
   const controls = document.createElement("div");
   controls.className = "capture-controls";
   const startBtn = document.createElement("button"); startBtn.type = "button"; startBtn.className = "capture-btn capture-btn--rec"; startBtn.textContent = "● Start";
@@ -148,7 +175,7 @@ export function openCaptureWidget({ lang, entryKey, label, onChange }) {
   const status = document.createElement("div");
   status.className = "capture-status";
 
-  panel.append(head, takesEl, stage, opts, controls, status);
+  panel.append(head, takesEl, stage, opts, micOpts, controls, status);
   document.body.append(backdrop);
 
   const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
@@ -166,6 +193,7 @@ export function openCaptureWidget({ lang, entryKey, label, onChange }) {
   let focusId = null;             // the take/clip the user is working on / playing (highlighted row)
   let baseline = null;            // review state on entry, to detect unsaved changes
   let mode = "idle";              // idle | recording | review | viewing
+  let packClipList = [];          // provided clips [{ voiceId, source, blob, name }], loaded once
 
   const ctx2d = canvas.getContext("2d");
   const clearCanvas = () => ctx2d.clearRect(0, 0, canvas.width, canvas.height);
@@ -197,23 +225,27 @@ export function openCaptureWidget({ lang, entryKey, label, onChange }) {
     const maxBars = canvas.width / 3;
     if (liveVals.length > maxBars) liveVals.shift();
     clearCanvas(); drawGrid();
-    ctx2d.fillStyle = accent;
     const mid = canvas.height / 2;
     for (let i = 0; i < liveVals.length; i++) {
+      ctx2d.fillStyle = levelColor(liveVals[i]);
       const h = Math.max(1, liveVals[i] * canvas.height);
       ctx2d.fillRect(i * 3, mid - h / 2, 2, h);
     }
+    // Flash the box amber/red while the incoming level is hot/clipping (a live
+    // "back off the mic" cue; cleared when we leave recording).
+    canvas.classList.toggle("is-hot", peak >= HOT_AT && peak < CLIP_AT);
+    canvas.classList.toggle("is-clip", peak >= CLIP_AT);
     timer.textContent = `${((performance.now() - recStartTs) / 1000).toFixed(2)}s`;
     rafId = requestAnimationFrame(drawLive);
   }
 
-  // Normalization gain (peak of the trimmed region → 0.99), or 1 when off.
+  // Normalization gain (peak of the trimmed region → NORM_TARGET), or 1 when off.
   // Applied live to the waveform, the preview, and the saved clip — so toggling
   // the checkbox lets you A/B the loudness and save whichever you prefer.
   function currentGain() {
     if (!normChk.checked || !reviewBuffer) return 1;
     const p = peakOf(reviewBuffer, trimStart, trimEnd);
-    return p > 0.001 ? 0.99 / p : 1;
+    return p > 0.001 ? NORM_TARGET / p : 1;
   }
 
   function drawReview() {
@@ -223,12 +255,15 @@ export function openCaptureWidget({ lang, entryKey, label, onChange }) {
     const dur = reviewBuffer.duration;
     const mid = canvas.height / 2;
     const gain = currentGain();
+    canvas.classList.remove("is-hot", "is-clip"); // live flash is recording-only
     clearCanvas(); drawGrid();
     for (let i = 0; i < ps.length; i++) {
       const t = (i / n) * dur;
       const cut = hardActive && (t < hardStart || t > hardEnd);   // will be destroyed
       const inTrim = t >= trimStart && t <= trimEnd;              // plays
-      ctx2d.fillStyle = cut ? "rgba(248,113,113,0.3)" : (inTrim ? accent : "rgba(148,163,184,0.35)");
+      // Color the playable bars by their RAW level (pre-gain) so clipping in the
+      // original capture stays visible even after normalizing it down.
+      ctx2d.fillStyle = cut ? "rgba(248,113,113,0.3)" : (inTrim ? levelColor(ps[i]) : "rgba(148,163,184,0.35)");
       const h = Math.max(1, Math.min(1, ps[i] * gain) * canvas.height * 0.92);
       ctx2d.fillRect(i * 3, mid - h / 2, 2, h);
     }
@@ -254,6 +289,7 @@ export function openCaptureWidget({ lang, entryKey, label, onChange }) {
     // Start button stays available (so you can still record) but every edit
     // control is hidden.
     startBtn.hidden = next !== "idle" && next !== "viewing";
+    micOpts.hidden = startBtn.hidden; // the mic-processing choice rides with Start
     stopBtn.hidden = next !== "recording";
     playBtn.hidden = saveBtn.hidden = discardBtn.hidden = opts.hidden = trimBtn.hidden = next !== "review";
     trimStartEl.hidden = trimEndEl.hidden = next !== "review";
@@ -305,11 +341,7 @@ export function openCaptureWidget({ lang, entryKey, label, onChange }) {
   }
 
   async function renderTakes() {
-    const [{ activeId, takes }, packClips, meta] = await Promise.all([
-      listRecordings(lang, entryKey),
-      listPackClips(lang, entryKey),
-      getAudioMeta(lang)
-    ]);
+    const { activeId, takes } = await listRecordings(lang, entryKey);
     takesEl.replaceChildren();
     // Placeholder for a brand-new take in progress, so it's clear you're making
     // a NEW one (not the recently edited one). Highlighted as the focus.
@@ -377,18 +409,14 @@ export function openCaptureWidget({ lang, entryKey, label, onChange }) {
     // Provided clips: the voices we ship for this card (TTS packs / imports).
     // Read-only — you can hear them and see their waveform, but not star, edit,
     // or delete them.
-    if (packClips.length) {
-      // Voice names live under `.voices` in a published/imported pack meta blob,
-      // but legacy blobs are a flat id→info map — accept either shape.
-      const voices = (meta && (meta.voices || meta)) || {};
+    if (packClipList.length) {
       const groupLabel = document.createElement("div");
       groupLabel.className = "capture-takes-group";
       groupLabel.textContent = "Provided";
       takesEl.append(groupLabel);
-      packClips.forEach(({ voiceId, source, blob }) => {
+      packClipList.forEach(({ voiceId, source, blob, name }) => {
         const packId = `pack::${voiceId}::${source}`;
-        const name = (voices[voiceId] && voices[voiceId].name) || voiceId;
-        const label = name + (source ? ` · ${source}` : "");
+        const label = (name || voiceId) + (source ? ` · ${source}` : "");
         const row = document.createElement("div");
         row.className = "capture-take is-pack" + (packId === focusId ? " is-focused" : "");
         const play = document.createElement("button");
@@ -414,8 +442,14 @@ export function openCaptureWidget({ lang, entryKey, label, onChange }) {
     editId = null;
     creatingNew = true; focusId = null; // a fresh take — show its placeholder
     renderTakes();
+    // Mic processing per the toggle. Off → ask the browser to disable auto-gain,
+    // noise suppression, and echo cancellation so we capture true levels.
+    lastMicProcessing = micChk.checked;
+    const audioConstraints = micChk.checked
+      ? true
+      : { autoGainControl: false, noiseSuppression: false, echoCancellation: false };
     try {
-      stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+      stream = await navigator.mediaDevices.getUserMedia({ audio: audioConstraints });
     } catch (err) {
       setStatus(err && err.name === "NotAllowedError" ? "Microphone permission denied." : `Mic unavailable: ${err?.message || err}`, true);
       creatingNew = false; renderTakes(); // drop the placeholder
@@ -492,9 +526,10 @@ export function openCaptureWidget({ lang, entryKey, label, onChange }) {
     const ps = peaks(viewBuffer, n);
     const dur = viewBuffer.duration;
     const mid = canvas.height / 2;
+    canvas.classList.remove("is-hot", "is-clip"); // live flash is recording-only
     clearCanvas(); drawGrid();
-    ctx2d.fillStyle = accent;
     for (let i = 0; i < ps.length; i++) {
+      ctx2d.fillStyle = levelColor(ps[i]);
       const h = Math.max(1, ps[i] * canvas.height * 0.92);
       ctx2d.fillRect(i * 3, mid - h / 2, 2, h);
     }
@@ -684,4 +719,9 @@ export function openCaptureWidget({ lang, entryKey, label, onChange }) {
 
   setMode("idle");
   renderTakes();
+  // Provided clips are precomputed + warmed by the card page (no IDB scan here),
+  // so this resolves instantly; re-render once they're in to show the rows.
+  if (typeof getPackClips === "function") {
+    Promise.resolve(getPackClips()).then((list) => { packClipList = list || []; renderTakes(); }).catch(() => {});
+  }
 }

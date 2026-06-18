@@ -1009,7 +1009,11 @@
 .capture-take-meta { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: var(--muted); font-size: 12px; }
 
 .capture-stage { position: relative; }
-.capture-canvas { width: 100%; height: 120px; display: block; border: 1px solid rgba(96, 165, 250, 0.18); border-radius: 10px; background: rgba(2, 6, 23, 0.5); touch-action: none; }
+.capture-canvas { width: 100%; height: 120px; display: block; border: 1px solid rgba(96, 165, 250, 0.18); border-radius: 10px; background: rgba(2, 6, 23, 0.5); touch-action: none; transition: border-color 60ms linear, box-shadow 60ms linear, background-color 60ms linear; }
+/* Live input-level warning while recording: amber when hot, red when near the
+   clipping ceiling. Toggled per frame from the incoming peak. */
+.capture-canvas.is-hot { border-color: #fbbf24; background: rgba(251, 191, 36, 0.1); box-shadow: 0 0 0 1px rgba(251, 191, 36, 0.55); }
+.capture-canvas.is-clip { border-color: #f87171; background: rgba(248, 113, 113, 0.14); box-shadow: 0 0 0 2px rgba(248, 113, 113, 0.7); }
 .capture-timer { position: absolute; top: 6px; right: 10px; color: var(--muted); font-size: 12px; font-variant-numeric: tabular-nums; }
 .capture-trim { position: absolute; top: 0; height: 120px; width: 14px; margin-left: -7px; cursor: ew-resize; touch-action: none; }
 .capture-trim::before { content: ""; position: absolute; left: 6px; top: 0; width: 2px; height: 100%; background: var(--accent); }
@@ -1049,3 +1053,14 @@
 /* The tray record button reads as a record control (red tint). */
 .study-button.mini--record { color: #f87171; border-color: rgba(248, 113, 113, 0.4); }
 .study-button.mini--record:hover { border-color: rgba(248, 113, 113, 0.75); }
+/* Without this the mic SVG falls back to the default solid-black fill (invisible
+   on the dark button) — stroke it like the other outline icons. */
+.study-button.mini--record svg {
+  width: 19px;
+  height: 19px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}

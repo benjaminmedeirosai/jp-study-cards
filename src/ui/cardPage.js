@@ -253,6 +253,9 @@ export function renderCardPage() {
       lang: activeLibrary().language,
       entryKey: entryKey(entry),
       label: primaryText(entry) || readingText(entry) || translationText(entry),
+      // Provided clips, already warmed in memory for this card (no IDB scan on
+      // open). Await the in-flight warm if this is still the shown card.
+      getPackClips: () => (entryKey(entry) === cardPackKey ? cardPackPromise : buildCardPackClips(entry)),
       onChange: onRecordingsChanged
     });
   });
@@ -610,6 +613,7 @@ export function renderCardPage() {
   // for the mirrored take, and re-read the duration badge.
   async function onRecordingsChanged() {
     voiceOrder = await computeVoiceOrder();
+    cardPackKey = null; // voices changed → re-warm provided-clip list lazily
     const entry = currentEntry();
     if (entry) {
       const meKey = clipKey(activeLibrary().language, REC_VOICE, entryKey(entry), "");
@@ -711,6 +715,41 @@ export function renderCardPage() {
     clipDur.hidden = false;
   }
 
+  // --- Provided clips for the CURRENT card (powers the Record dialog) -------
+  // Every present voice × candidate source that has a stored clip, resolved by
+  // DIRECT key lookups (no full-store scan), warmed into the playback cache, and
+  // labeled. Warmed whenever the shown card changes, so opening the Record
+  // dialog is instant — it reads this in-memory list, not IndexedDB. Excludes
+  // the user's own recordings ("me"); the dialog lists those itself (cheap).
+  let cardPackKey = null;                 // entryKey the warmed list is for
+  let cardPackPromise = Promise.resolve([]);
+  async function buildCardPackClips(entry) {
+    const lang = activeLibrary().language;
+    const ek = entryKey(entry);
+    const sources = [...new Set(clipSourcesFor(entry))];
+    const out = [];
+    for (const voiceId of voiceOrder) {
+      if (voiceId === REC_VOICE) continue;
+      for (const source of sources) {
+        const ck = clipKey(lang, voiceId, ek, source);
+        const blob = await getClip(ck);
+        if (!blob) continue;
+        clipElement(blob, ck); // warm the playback <audio> too
+        out.push({ voiceId, source, blob, name: (voiceMeta[voiceId] && voiceMeta[voiceId].name) || voiceId });
+      }
+    }
+    return out;
+  }
+  // Kick off warming for `entry` (no-op if already warmed for it). Returns the
+  // promise so the Record dialog can await the in-flight pass instead of racing.
+  function warmCardClips(entry) {
+    const ek = entry ? entryKey(entry) : null;
+    if (ek === cardPackKey) return cardPackPromise;
+    cardPackKey = ek;
+    cardPackPromise = ek ? buildCardPackClips(entry) : Promise.resolve([]);
+    return cardPackPromise;
+  }
+
   function renderTray() {
     const entry = currentEntry();
     const source = getCurrentTtsSource();
@@ -749,9 +788,16 @@ export function renderCardPage() {
     // every other control is disabled below when there's no entry.
     tray.hidden = false;
     const rawFilter = String(state.query || "").trim();
-    // Show the Farsi shaping filter in plain words rather than the fa: token.
+    // Show the Farsi shaping filter + kanji-network token in plain words rather
+    // than their raw query syntax.
     const faForm = rawFilter.match(/^fa:(final|medial)\s+(.+)$/);
-    const filter = faForm ? `${faForm[2]} in ${faForm[1]} form` : rawFilter;
+    const kanjiAny = rawFilter.match(/^kanji:(.+)$/);
+    let filter = rawFilter;
+    if (faForm) filter = `${faForm[2]} in ${faForm[1]} form`;
+    else if (kanjiAny) {
+      const cs = [...kanjiAny[1]];
+      filter = cs.length > 1 ? `${cs[0]} + ${cs.length - 1} related kanji` : cs[0];
+    }
     // The set is shown by the Set selector above, so it's omitted here.
     summaryMain.textContent = deck
       ? `${deckBreadcrumb(deck)}${filter ? ` · filter “${filter}”` : ""}${state.studyMoreFilter ? " · ★ study more" : ""}`
@@ -802,6 +848,7 @@ export function renderCardPage() {
     revealBtn.setAttribute("aria-label", revealed ? "Hide answer" : "Reveal answer");
     renderTray();
     updateClipBadge(entry);
+    warmCardClips(entry); // preload this card's provided clips for the Record dialog
     reflectStudyMore();
   }
 
@@ -1108,6 +1155,29 @@ export function renderCardPage() {
     state.currentKey = "";
     saveState(state);
   }
+  // The kanji "network" of a seed: the seed plus every kanji that co-occurs with
+  // it in a word, across the whole loaded word corpus. One hop — gather the seed's
+  // words, then collect all their kanji — which is exactly the set the "related
+  // kanji" filter expands to. Re-running from another kanji walks the net further.
+  const KANJI_CHAR = /[㐀-䶿一-鿿豈-﫿]/;
+  function relatedKanjiSet(seed) {
+    const set = new Set([seed]);
+    for (const deck of bundle?.decks || []) {
+      for (const e of deck.entries || []) {
+        const primary = primaryText(e);
+        if (!primary.includes(seed)) continue;
+        for (const ch of primary) if (KANJI_CHAR.test(ch)) set.add(ch);
+      }
+    }
+    return [...set];
+  }
+  function applyRelatedKanjiFilter(seed) {
+    state.query = `kanji:${relatedKanjiSet(seed).join("")}`;
+    state.setId = "all";
+    state.currentIndex = 0;
+    state.currentKey = "";
+    saveState(state);
+  }
 
   // The top-level "root deck" containing the current selection — the first
   // category segment, as a folder target (e.g. "Texts" → "folder:Texts").
@@ -1155,11 +1225,20 @@ export function renderCardPage() {
       rootBtn.className = "gloss-menu-item";
       rootBtn.textContent = `Filter ${root.label} deck by ${kanji}`;
     }
+    // Network option (word cards only): filter the whole word corpus to this
+    // kanji AND every kanji that shares a word with it — a one-hop relatives net.
+    let relatedBtn = null;
+    if (!schemaIsKanji) {
+      relatedBtn = document.createElement("button");
+      relatedBtn.type = "button";
+      relatedBtn.className = "gloss-menu-item";
+      relatedBtn.textContent = `Filter words by ${kanji} + related kanji`;
+    }
     const chooseBtn = document.createElement("button");
     chooseBtn.type = "button";
     chooseBtn.className = "gloss-menu-item";
     chooseBtn.textContent = `Find ${kanji} in another deck…`;
-    menu.append(head, filterBtn, ...(rootBtn ? [rootBtn] : []), chooseBtn);
+    menu.append(head, filterBtn, ...(rootBtn ? [rootBtn] : []), ...(relatedBtn ? [relatedBtn] : []), chooseBtn);
     document.body.append(backdrop, menu);
 
     // Position below the tapped line, clamped to the viewport; flip above if it
@@ -1201,6 +1280,22 @@ export function renderCardPage() {
         endSession();
         state.deckId = root.id;
         applyKanjiFilter(kanji);
+        await renderAll();
+        const deck = currentDeck();
+        beginSession(state.deckId, deck ? deck.label : "", state.query);
+        remember ? pushCardsURL() : replaceCardsURL();
+      });
+    }
+    // Network filter over the whole word corpus (the root Words deck, or the
+    // current broad scope when already there / on All).
+    if (relatedBtn) {
+      relatedBtn.addEventListener("click", async () => {
+        const remember = sessionQualifies();
+        closeGlossMenu();
+        endSession();
+        const target = currentDeckRoot()?.id || state.deckId;
+        if (target) state.deckId = target;
+        applyRelatedKanjiFilter(kanji);
         await renderAll();
         const deck = currentDeck();
         beginSession(state.deckId, deck ? deck.label : "", state.query);
@@ -1414,6 +1509,32 @@ export function renderCardPage() {
     openActionMenu(anchor, "Play audio", items);
   }
 
+  // Shuffle long-press: reshuffle, or reset back to the deck's default order.
+  function resetShuffle() {
+    if (!setCards.length) return;
+    applyActiveSet({ keepIndex: false }); // canonical order, back to the first card
+    saveState(state);
+    renderCard();
+    if (state.mode === "voice") speakStudy();
+  }
+  function openShuffleMenu(anchor) {
+    openActionMenu(anchor, "Shuffle", [
+      { label: "Shuffle now", run: shuffleCurrentSet },
+      { label: "Reset to default order", run: resetShuffle }
+    ]);
+  }
+
+  // Autoplay long-press: toggle reshuffling each time the set repeats.
+  function openAutoplayMenu(anchor) {
+    const on = state.autoplayShuffleOnLoop;
+    openActionMenu(anchor, "Autoplay", [
+      {
+        label: `${on ? "✓ " : ""}Shuffle when set repeats`,
+        run: () => { state.autoplayShuffleOnLoop = !state.autoplayShuffleOnLoop; saveState(state); }
+      }
+    ]);
+  }
+
   // --- Interactions -------------------------------------------------------
   function move(delta, { play = false } = {}) {
     if (!setCards.length) return;
@@ -1559,8 +1680,14 @@ export function renderCardPage() {
     // not stop: loop back so the top honors autoplayNav. Genuine stop → return.
     const interrupted = () => autoplayNav !== 0 && live();
     while (live()) {
-      move(autoplayNav || 1); // honor a pending lock-screen skip, else advance
+      const delta = autoplayNav || 1;
       autoplayNav = 0;
+      // Reaching the end and looping back to the start = the set just repeated.
+      // With "shuffle when set repeats" on, reshuffle (which lands on the new
+      // first card) instead of plainly wrapping to index 0.
+      const looping = delta === 1 && state.currentIndex === setCards.length - 1;
+      if (looping && state.autoplayShuffleOnLoop && setCards.length > 1) shuffleCurrentSet();
+      else move(delta); // honor a pending lock-screen skip, else advance
       if (!(await autoplaySettle(state.mode === "voice", state.autoplayQuestionDelay, token))) {
         if (interrupted()) continue; return;
       }
@@ -1633,6 +1760,8 @@ export function renderCardPage() {
   nextBtn.addEventListener("click", () => move(1));
   revealBtn.addEventListener("click", reveal);
   soundBtn.addEventListener("click", speakStudy);
+  onLongPress(shuffleBtn, openShuffleMenu);
+  onLongPress(playBtn, openAutoplayMenu);
   onLongPress(soundBtn, openSoundMenu);
   chatgptBtn.addEventListener("click", () => openSearchLink(LINK_TEMPLATES.chatgpt, currentEntry()));
   onLongPress(chatgptBtn, openChatgptMenu);
@@ -1655,7 +1784,9 @@ export function renderCardPage() {
   root.addEventListener("change", onUserGesture, true);
 
   function onKeydown(event) {
-    if (!root.isConnected) { document.removeEventListener("keydown", onKeydown); return; }
+    // Detached behind a Decks/Library overlay: ignore but stay registered, so a
+    // restore (no re-mount) keeps keyboard nav working. Real teardown removes us.
+    if (!root.isConnected) return;
     const tag = String(event.target?.tagName || "").toLowerCase();
     if (["input", "select", "textarea"].includes(tag) || event.target?.isContentEditable) return;
     stopAutoplay();
@@ -1670,6 +1801,7 @@ export function renderCardPage() {
     try {
       bundle = await loadBundle();
       voiceOrder = await computeVoiceOrder();
+      cardPackKey = null; // voiceOrder now real → let warmCardClips rebuild
       // Voice names/locales for the sound menu: published manifest plus any
       // imported-pack metadata (Japanese, unpublished).
       const metaLang = activeLibrary().language;
@@ -1691,9 +1823,15 @@ export function renderCardPage() {
   }
 
   setupMediaSession();
-  // The router calls this before detaching the page (deck/library/overlay
-  // change), so playback + the media session stop instead of looping on.
-  root._teardown = teardownAudio;
+  // Router lifecycle hooks. _pause: stop playback/autoplay but keep the page
+  // alive with its listeners (used while a Decks/Library overlay sits on top, so
+  // closing it restores this exact page with no re-mount "Choose deck" flash).
+  // _resume: restart the study-session timer after such a restore. _teardown:
+  // full cleanup when the page is really destroyed (settings, deck/library
+  // change, genuine navigation) — stops audio and unbinds the key handler.
+  root._pause = teardownAudio;
+  root._resume = () => { const deck = currentDeck(); beginSession(state.deckId, deck ? deck.label : "", state.query); };
+  root._teardown = () => { teardownAudio(); document.removeEventListener("keydown", onKeydown); };
   renderCard();
   void initialize();
   return root;

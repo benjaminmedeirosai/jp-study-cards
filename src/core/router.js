@@ -72,17 +72,72 @@ function applyCardsState(lib, deck, q) {
 }
 
 // --- Mounting ---------------------------------------------------------------
+// A live card page kept alive (detached, paused) behind a Decks/Library overlay,
+// so closing that overlay with no change restores it instantly instead of
+// re-mounting (which reloads the bundle and flashes "Choose deck"). Identified
+// by the (library, deck, filter) it was showing — a mismatch on close means the
+// state changed, so we rebuild instead. Only Decks/Library stash; Settings can
+// alter fonts/mode/grouping, so it always rebuilds.
+let stash = null; // { el, key }
+const STASHABLE = ["decks", "library"];
+function cardsStateKey() {
+  const s = loadState();
+  return `${s.libraryId}|${s.deckId}|${s.query}`;
+}
+function discardStash() {
+  if (stash && stash.el && typeof stash.el._teardown === "function") { try { stash.el._teardown(); } catch { /* ignore */ } }
+  stash = null;
+}
+
+function renderView() {
+  if (view === "settings") return renderSettingsPage();
+  if (view === "decks") return renderDeckPage();
+  if (view === "library") return renderLibraryPage();
+  return renderCardPage(); // the card page opens its own study session on mount
+}
+
+// Full (re)mount: tear down whatever's mounted (and any stashed page), rebuild.
 function mount() {
   // Let the outgoing page release resources before it's detached — the card
   // page uses this to stop playback / the media session (its audio elements are
   // detached <audio> objects that would otherwise keep looping after removal).
   const prev = app.firstElementChild;
   if (prev && typeof prev._teardown === "function") { try { prev._teardown(); } catch { /* ignore */ } }
+  discardStash();
   app.innerHTML = "";
-  if (view === "settings") app.append(renderSettingsPage());
-  else if (view === "decks") app.append(renderDeckPage());
-  else if (view === "library") app.append(renderLibraryPage());
-  else app.append(renderCardPage()); // the card page opens its own study session on mount
+  app.append(renderView());
+}
+
+// Render an overlay on top of the current page. For Decks/Library, keep the
+// card page alive (paused + detached) so closing restores it without a re-mount;
+// otherwise (Settings, or no live card page) tear down for a clean rebuild.
+function showOverlay(next) {
+  const el = app.firstElementChild;
+  if (STASHABLE.includes(next) && view === "cards" && el) {
+    if (typeof el._pause === "function") { try { el._pause(); } catch { /* ignore */ } }
+    stash = { el, key: cardsStateKey() };
+    el.remove(); // detach WITHOUT teardown — we intend to restore it
+  } else {
+    if (el && typeof el._teardown === "function") { try { el._teardown(); } catch { /* ignore */ } }
+    discardStash();
+    app.innerHTML = "";
+  }
+  view = next;
+  app.append(renderView());
+}
+
+// Return to the cards view after an overlay. Restore the stashed (still-live)
+// card page when the live state still matches it (no flash); else rebuild.
+function returnToCards() {
+  view = "cards";
+  if (stash && stash.key === cardsStateKey()) {
+    app.innerHTML = ""; // drop the overlay
+    app.append(stash.el);
+    if (typeof stash.el._resume === "function") { try { stash.el._resume(); } catch { /* ignore */ } }
+    stash = null;
+  } else {
+    mount();
+  }
 }
 
 // --- Cards-state history (called by the card page after an in-place change) -
@@ -101,9 +156,8 @@ export function replaceCardsURL() {
 // Open Settings / Decks as a modal entry on top of the current cards state.
 export function openOverlay(next) {
   endSession();
-  view = next;
   history.pushState({ view: next }, "", `#/${next}`);
-  mount();
+  showOverlay(next);
 }
 
 // Close the current overlay — identical to the browser/OS back button.
@@ -117,9 +171,8 @@ export function closeOverlay() {
 export function chooseDeck(deckId) {
   const s = loadState();
   applyCardsState(s.libraryId, deckId, s.query);
-  view = "cards";
   replaceCardsURL();
-  mount();
+  returnToCards(); // same deck re-picked → restore the live page; changed → rebuild
 }
 
 // Choose a library from the Library overlay: switch the active library, then
@@ -128,9 +181,8 @@ export function chooseDeck(deckId) {
 // navigates between libraries.
 export function chooseLibrary(libraryId) {
   setLibrary(libraryId);
-  view = "cards";
   replaceCardsURL();
-  mount();
+  returnToCards(); // same library re-picked → restore the live page; changed → rebuild
 }
 
 // Cross-schema jump-and-filter: switch to another library, point it at a deck,
@@ -151,17 +203,15 @@ function onPopState(event) {
   const target = event.state || parseHash();
   if (OVERLAY_VIEWS.includes(target.view)) {
     // Going forward into an overlay (e.g. re-opening a just-closed one).
-    view = target.view;
-    mount();
+    showOverlay(target.view);
     return;
   }
   if (OVERLAY_VIEWS.includes(view)) {
     // Backing out of an overlay: close it and show cards reflecting the current
     // live state (so a filter edited inside the overlay is honored), normalizing
-    // the entry we landed on to match.
-    view = "cards";
+    // the entry we landed on to match. Restores the kept page when unchanged.
     replaceCardsURL();
-    mount();
+    returnToCards();
     return;
   }
   // Genuine back/forward between cards states: restore that snapshot (including

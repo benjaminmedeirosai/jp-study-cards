@@ -20,6 +20,12 @@ const LIBRARY_KEYS = [
   "kanjiBold", "hiraganaBold", "englishBold", "glossBold",
   "kanjiFontPx", "hiraganaFontPx", "englishFontPx", "glossFontPx",
   "voice", "ttsSources", "soundSource", "deckHistory", "filterHistory",
+  // Audio playback prefs are per-language: which voices exist, their priority
+  // order + per-voice clip speed, the live-TTS rate, and whether to prefer
+  // stored clips over TTS all differ by library (e.g. Farsi has good clips and
+  // prefers them; Japanese may prefer live TTS). `voice` (TTS voice) is already
+  // per-library, so its rate belongs here too.
+  "preferStoredAudio", "audioVoiceOrder", "audioVoiceRates", "voiceRate",
   // Per-library "study more" flags, keyed by card identity (entryKey → true),
   // and whether the study set is currently narrowed to those flagged cards.
   "studyMore", "studyMoreFilter"
@@ -253,6 +259,19 @@ function readStore() {
         delete store.global[key];
       }
     }
+    // Audio prefs that were formerly global but are really per-language (stored
+    // audio on/off, voice priority + per-voice rate, live-TTS rate). Seed EVERY
+    // existing library slice from the old global value once (so each starts
+    // where the shared one left off, then diverges), then drop the global copy.
+    const clone = (v) => (v && typeof v === "object" ? JSON.parse(JSON.stringify(v)) : v);
+    for (const key of ["preferStoredAudio", "audioVoiceOrder", "audioVoiceRates", "voiceRate"]) {
+      if (!(key in store.global)) continue;
+      for (const libId of Object.keys(store.libraries || {})) {
+        const slice = (store.libraries[libId] = store.libraries[libId] || {});
+        if (!(key in slice)) slice[key] = clone(store.global[key]);
+      }
+      delete store.global[key];
+    }
   }
   return store;
 }
@@ -309,6 +328,9 @@ export function loadState() {
     autoplayQuestionDelay: clampNum(raw.autoplayQuestionDelay, 2, 0.5, 60),
     autoplayAnswerDelay: clampNum(raw.autoplayAnswerDelay, 1.5, 0.5, 60),
     autoplayEstimateTts: raw.autoplayEstimateTts !== false,
+    // When autoplay reaches the end of the set and loops back to the start,
+    // reshuffle first (so repeats aren't in the same order). Global pacing pref.
+    autoplayShuffleOnLoop: raw.autoplayShuffleOnLoop === true,
     // Voice reads only the first reading of each type by default (most common);
     // on → read every 、-separated reading. Only meaningful for multi-reading
     // schemas (kanji); harmless elsewhere.
@@ -438,6 +460,15 @@ export function matchesQuery(entry, rawQuery) {
   // where the letter is truly drawn in that connected form (see faFormMatch).
   const faForm = query.match(/^fa:(final|medial)\s+(.+)$/);
   if (faForm) return faFormMatch(primaryText(entry), faForm[1], faForm[2].trim());
+  // Kanji-network filter: `kanji:当国家…` — match any word whose primary form
+  // contains ANY of the listed characters. Built by the gloss menu's "related
+  // kanji" option (a seed kanji plus every kanji that co-occurs with it across
+  // the word corpus), so the filter can express a whole set, not one character.
+  const kanjiAny = query.match(/^kanji:(.+)$/);
+  if (kanjiAny) {
+    const primary = primaryText(entry);
+    return [...kanjiAny[1]].some((ch) => primary.includes(ch));
+  }
   if (query.length >= 2 && query.startsWith('"') && query.endsWith('"')) {
     const inner = query.slice(1, -1);
     const core = inner.trim().toLowerCase();
