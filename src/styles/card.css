@@ -356,6 +356,16 @@
   border-color: var(--accent-border);
   outline: none;
 }
+/* Read-only value row (e.g. an autoplay delay) — quiet, non-interactive. */
+.gloss-menu-item.is-readonly {
+  cursor: default;
+  border-color: transparent;
+  background: none;
+  color: var(--muted);
+  font-weight: 600;
+  padding: 7px 10px;
+}
+.gloss-menu-item.is-readonly:hover { border-color: transparent; }
 
 .card-slot.card-reading {
   top: calc(40% + (var(--japanese-main-font-size, 67px) * 0.58));

@@ -253,6 +253,7 @@ export function renderSettingsPage() {
   const questionDelayInput = makeDelayInput(state.autoplayQuestionDelay);
   const answerDelayInput = makeDelayInput(state.autoplayAnswerDelay);
   const ttsEstimateToggle = makeToggle("Add estimated TTS delay", state.autoplayEstimateTts);
+  const shuffleLoopToggle = makeToggle("Shuffle when set repeats", state.autoplayShuffleOnLoop);
   // Read all 、-separated readings vs just the first (most common). Only shown
   // for multi-reading schemas (kanji on/kun lists).
   const allReadingsToggle = makeToggle("Read all readings (not just the first)", state.voiceAllReadings);
@@ -605,6 +606,10 @@ export function renderSettingsPage() {
     state.autoplayEstimateTts = ttsEstimateToggle.input.checked;
     saveState(state);
   });
+  shuffleLoopToggle.input.addEventListener("change", () => {
+    state.autoplayShuffleOnLoop = shuffleLoopToggle.input.checked;
+    saveState(state);
+  });
   allReadingsToggle.input.addEventListener("change", () => {
     state.voiceAllReadings = allReadingsToggle.input.checked;
     saveState(state);
@@ -647,6 +652,7 @@ export function renderSettingsPage() {
     makePresetField("Question delay (sec)", questionDelayInput, [0.5, 1, 1.5, 2, 3]),
     makePresetField("Answer delay (sec)", answerDelayInput, [0.5, 1, 1.5, 2, 3]),
     ttsEstimateToggle.label,
+    shuffleLoopToggle.label,
     sectionHeading("Other"),
     visibilityGroup
   );

@@ -1,6 +1,7 @@
 import { speak } from "../audio/speech.js";
 import { firstClip, voiceIdsForLang, clipKey, getClip, fetchAudioManifest, getAudioMeta, REC_VOICE } from "../audio/audioStore.js";
 import { audioMultiSource } from "../audio/audioKey.js";
+import { LIBRARIES } from "../core/libraries.js";
 import { buildSetOptions, activeSetGrouping, computeDeckSets } from "../core/sets.js";
 import { beginSession, endSession, sessionQualifies } from "../core/filters.js";
 import { openOverlay, pushCardsURL, replaceCardsURL, filterInLibrary } from "../core/router.js";
@@ -792,12 +793,13 @@ export function renderCardPage() {
     // than their raw query syntax.
     const faForm = rawFilter.match(/^fa:(final|medial)\s+(.+)$/);
     const kanjiAny = rawFilter.match(/^kanji:(.+)$/);
+    const quoted = rawFilter.match(/^"\s*(.+?)\s*"$/); // position/exact query → show the bare char
     let filter = rawFilter;
     if (faForm) filter = `${faForm[2]} in ${faForm[1]} form`;
     else if (kanjiAny) {
       const cs = [...kanjiAny[1]];
       filter = cs.length > 1 ? `${cs[0]} + ${cs.length - 1} related kanji` : cs[0];
-    }
+    } else if (quoted) filter = quoted[1];
     // The set is shown by the Set selector above, so it's omitted here.
     summaryMain.textContent = deck
       ? `${deckBreadcrumb(deck)}${filter ? ` · filter “${filter}”` : ""}${state.studyMoreFilter ? " · ★ study more" : ""}`
@@ -1238,7 +1240,20 @@ export function renderCardPage() {
     chooseBtn.type = "button";
     chooseBtn.className = "gloss-menu-item";
     chooseBtn.textContent = `Find ${kanji} in another deck…`;
-    menu.append(head, filterBtn, ...(rootBtn ? [rootBtn] : []), ...(relatedBtn ? [relatedBtn] : []), chooseBtn);
+    // Bottom option (word cards only): jump to this kanji's own card in the Kanji
+    // library — readings, radical, components, etc. Only when such a library
+    // exists for this language and we aren't already in it.
+    const kanjiLib = !schemaIsKanji
+      ? LIBRARIES.find((l) => l.language === activeLibrary().language && l.deckKind === "kanji")
+      : null;
+    let kanjiLookupBtn = null;
+    if (kanjiLib) {
+      kanjiLookupBtn = document.createElement("button");
+      kanjiLookupBtn.type = "button";
+      kanjiLookupBtn.className = "gloss-menu-item";
+      kanjiLookupBtn.textContent = `Look up ${kanji} in ${kanjiLib.schemaLabel || "Kanji"}`;
+    }
+    menu.append(head, filterBtn, ...(rootBtn ? [rootBtn] : []), ...(relatedBtn ? [relatedBtn] : []), chooseBtn, ...(kanjiLookupBtn ? [kanjiLookupBtn] : []));
     document.body.append(backdrop, menu);
 
     // Position below the tapped line, clamped to the viewport; flip above if it
@@ -1310,6 +1325,14 @@ export function renderCardPage() {
       remember ? pushCardsURL() : replaceCardsURL();
       openOverlay("decks");
     });
+    // Jump to the Kanji library, filtered to exactly this kanji (a quoted equals
+    // query). A new history entry, so Back returns to the word.
+    if (kanjiLookupBtn) {
+      kanjiLookupBtn.addEventListener("click", () => {
+        closeGlossMenu();
+        filterInLibrary(kanjiLib.id, "all", `" ${kanji} "`);
+      });
+    }
     filterBtn.focus();
   }
 
@@ -1414,20 +1437,22 @@ export function renderCardPage() {
     head.append(t);
     menu.append(head);
     const buttons = items.map((item) => {
-      const btn = document.createElement("button");
-      btn.type = "button";
-      btn.className = "gloss-menu-item";
-      btn.textContent = item.label;
-      // Optional small trailing note (e.g. the playback speed for an audio voice).
+      // Read-only row (no action): a labeled value, e.g. an autoplay delay set
+      // elsewhere. Rendered as a non-interactive div so it can't be focused/run.
+      const el = document.createElement(item.readonly ? "div" : "button");
+      el.className = "gloss-menu-item" + (item.readonly ? " is-readonly" : "");
+      if (!item.readonly) el.type = "button";
+      el.textContent = item.label;
+      // Optional small trailing note (e.g. a voice's playback speed, or a value).
       if (item.meta) {
         const meta = document.createElement("span");
         meta.className = "gloss-menu-itemmeta";
         meta.textContent = item.meta;
-        btn.append(meta);
+        el.append(meta);
       }
-      btn.addEventListener("click", () => { closeGlossMenu(); item.run(); });
-      menu.append(btn);
-      return btn;
+      if (!item.readonly) el.addEventListener("click", () => { closeGlossMenu(); item.run(); });
+      menu.append(el);
+      return item.readonly ? null : el;
     });
     document.body.append(backdrop, menu);
     const r = anchor.getBoundingClientRect();
@@ -1445,7 +1470,8 @@ export function renderCardPage() {
     window.addEventListener("popstate", closeGlossMenu);
     glossMenu = { backdrop, menu, onKey };
     backdrop.addEventListener("click", closeGlossMenu);
-    if (buttons[0]) buttons[0].focus();
+    const firstBtn = buttons.find(Boolean);
+    if (firstBtn) firstBtn.focus();
   }
 
   // Long-press (touch) / right-click (desktop) → handler(el). Swallows the click
@@ -1524,14 +1550,22 @@ export function renderCardPage() {
     ]);
   }
 
-  // Autoplay long-press: toggle reshuffling each time the set repeats.
+  // Autoplay long-press: quick autoplay settings. Two toggles (reshuffle on
+  // repeat, estimated TTS delay) that reopen the menu so the ✓ updates in place,
+  // plus the question/answer delays as read-only values (edit them in Settings).
   function openAutoplayMenu(anchor) {
-    const on = state.autoplayShuffleOnLoop;
+    const secs = (s) => `${Number(s).toFixed(1)}s`;
     openActionMenu(anchor, "Autoplay", [
       {
-        label: `${on ? "✓ " : ""}Shuffle when set repeats`,
-        run: () => { state.autoplayShuffleOnLoop = !state.autoplayShuffleOnLoop; saveState(state); }
-      }
+        label: `${state.autoplayShuffleOnLoop ? "✓ " : ""}Shuffle when set repeats`,
+        run: () => { state.autoplayShuffleOnLoop = !state.autoplayShuffleOnLoop; saveState(state); openAutoplayMenu(anchor); }
+      },
+      {
+        label: `${state.autoplayEstimateTts ? "✓ " : ""}Add estimated TTS delay`,
+        run: () => { state.autoplayEstimateTts = !state.autoplayEstimateTts; saveState(state); openAutoplayMenu(anchor); }
+      },
+      { label: "Question delay", meta: secs(state.autoplayQuestionDelay), readonly: true },
+      { label: "Answer delay", meta: secs(state.autoplayAnswerDelay), readonly: true }
     ]);
   }
 
@@ -1611,9 +1645,27 @@ export function renderCardPage() {
     else state.studyMore[key] = true;
     saveState(state);
     reflectStudyMore();
-    // If the set is currently filtered to study-more cards, unmarking one should
-    // drop it from the set — rebuild (keeping the spot by identity where it can).
-    if (state.studyMoreFilter) renderAll({ keepIndex: true });
+    // Deliberately NO rebuild here, even when filtering by study-more: once the
+    // set is built, unstarring a card leaves it in place until something else
+    // forces a recalc (deck/set/filter change). Avoids the card vanishing mid-study.
+  }
+  // Star / unstar every card in the current set at once (focus button long-press).
+  // Like toggleStudyMore, this doesn't rebuild the set — flags only.
+  function setStudyMoreForSet(on) {
+    if (!setCards.length) return;
+    for (const e of setCards) {
+      const k = entryKey(e);
+      if (on) state.studyMore[k] = true;
+      else delete state.studyMore[k];
+    }
+    saveState(state);
+    reflectStudyMore();
+  }
+  function openFocusMenu(anchor) {
+    openActionMenu(anchor, "Study more (★)", [
+      { label: "Star all cards in set", run: () => setStudyMoreForSet(true) },
+      { label: "Unstar all cards in set", run: () => setStudyMoreForSet(false) }
+    ]);
   }
 
   function reflectAutoplay() {
@@ -1762,6 +1814,7 @@ export function renderCardPage() {
   soundBtn.addEventListener("click", speakStudy);
   onLongPress(shuffleBtn, openShuffleMenu);
   onLongPress(playBtn, openAutoplayMenu);
+  onLongPress(focusBtn, openFocusMenu);
   onLongPress(soundBtn, openSoundMenu);
   chatgptBtn.addEventListener("click", () => openSearchLink(LINK_TEMPLATES.chatgpt, currentEntry()));
   onLongPress(chatgptBtn, openChatgptMenu);
