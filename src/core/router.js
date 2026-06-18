@@ -82,7 +82,9 @@ let stash = null; // { el, key }
 const STASHABLE = ["decks", "library"];
 function cardsStateKey() {
   const s = loadState();
-  return `${s.libraryId}|${s.deckId}|${s.query}`;
+  // study-more filter is included: the Decks page can toggle it, and it narrows
+  // the set like the text filter, so toggling it must count as a change on exit.
+  return `${s.libraryId}|${s.deckId}|${s.query}|${s.studyMoreFilter ? 1 : 0}`;
 }
 function discardStash() {
   if (stash && stash.el && typeof stash.el._teardown === "function") { try { stash.el._teardown(); } catch { /* ignore */ } }
